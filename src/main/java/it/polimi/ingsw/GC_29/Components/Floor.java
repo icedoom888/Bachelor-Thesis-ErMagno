@@ -4,15 +4,15 @@ package it.polimi.ingsw.GC_29.Components;
  * Created by Lorenzotara on 17/05/17.
  */
 public class Floor {
-    private Card card;
+    private DevelopmentCard developmentCard;
     private ActionSpace actionSpace;
 
-    public void setCard(Card card) {
-        this.card = card;
+    public void setDevelopmentCard(DevelopmentCard developmentCard) {
+        this.developmentCard = developmentCard;
     }
 
-    public Card getCard() {
-        return card;
+    public DevelopmentCard getDevelopmentCard() {
+        return developmentCard;
     }
 
     public ActionSpace getActionSpace() {
