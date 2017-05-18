@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnAction;
-import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnEffect;
+import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnGoodsObtained;
 
 /**
  * Created by Lorenzotara on 17/05/17.

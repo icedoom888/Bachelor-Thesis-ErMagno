@@ -1,7 +1,8 @@
 package it.polimi.ingsw.GC_29.Player;
 
+import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnAction;
-import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnEffect;
+import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnGoodsObtained;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  */
 public class PlayerStatus {
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnActionList;
-    private ArrayList<BonusAndMalusOnEffect> bonudAndMalusEffectList;
+    private ArrayList<BonusAndMalusOnGoodsObtained> bonudAndMalusOnGoodsObtainedList;
+    private GoodSet actualGoodSet;
     private boolean blackPawnAvailability;
     private boolean whitePawnAvailability;
     private boolean orangePawnAvailability;
@@ -20,8 +22,12 @@ public class PlayerStatus {
         return bonusAndMalusOnActionList;
     }
 
-    public ArrayList<BonusAndMalusOnEffect> getBonudAndMalusEffectList() {
-        return bonudAndMalusEffectList;
+    public ArrayList<BonusAndMalusOnGoodsObtained> getBonudAndMalusOnGoodsObtainedList() {
+        return bonudAndMalusOnGoodsObtainedList;
+    }
+
+    public GoodSet getActualGoodSet() {
+        return actualGoodSet;
     }
 
     public boolean isBlackPawnAvailability() {
