@@ -55,7 +55,6 @@ public class ActionSpace {
     }
 
     public void setSingle(boolean single) {
-
         this.single = single;
     }
 

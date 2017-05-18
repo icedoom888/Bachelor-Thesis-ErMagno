@@ -13,6 +13,14 @@ public class ExcommunicationTile {
     private BonusAndMalusOnGoodsObtained malusOnEffect;
     private String description;
 
+    public ExcommunicationTile(Era era, String name, BonusAndMalusOnAction malusOnAction, BonusAndMalusOnGoodsObtained malusOnEffect, String description) {
+        this.era = era;
+        this.name = name;
+        this.malusOnAction = malusOnAction;
+        this.malusOnEffect = malusOnEffect;
+        this.description = description;
+    }
+
     public Era getEra() {
         return era;
     }
