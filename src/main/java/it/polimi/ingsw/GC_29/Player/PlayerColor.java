@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Components;
+package it.polimi.ingsw.GC_29.Player;
 
 /**
  * Created by Lorenzotara on 17/05/17.
