@@ -17,4 +17,5 @@ public class FaithPointsPawnSlot extends PawnSlot {
         return victoryPoints;
     }
 
+
 }

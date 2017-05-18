@@ -7,8 +7,13 @@ import java.util.ArrayList;
  */
 public class PawnSlot {
     private ArrayList<Pawn> playerPawns;
-    private int maxNumberOfPawns; // serve per non mettere più pedine del necessario
-                                 // nel caso di B&M che fanno mettere pedine in più il controller non guarderà questa variabile
+
+    /*
+    * this field needs to know how many Pawns can stay inside the slot
+    * in case of B&M that let the player put the Pawn in slots already occupied the controller will not use this attribute
+     */
+    private int maxNumberOfPawns;
+
     private boolean free;
 
     public PawnSlot(int maxNumberOfPawns, boolean free) {
@@ -27,9 +32,23 @@ public class PawnSlot {
     }
 
     public void addPawn(Pawn pawn) {
-
         playerPawns.add(pawn);
     }
+
+    public void removePawn(Pawn pawn) {
+        playerPawns.remove(pawn);
+    }
+
+    public Pawn findPawn(Pawn pawn) {
+
+        if (playerPawns.contains(pawn)) {
+            int index = playerPawns.indexOf(pawn);
+            return playerPawns.get(index);
+        }
+        else return null;
+    }
+
+
 
     public void clearSlot(){
         playerPawns.clear(); // more efficient vs removeAll() method. Clear() is O(n), removeAll is O(n^2)
