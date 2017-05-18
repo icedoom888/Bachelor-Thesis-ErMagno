@@ -10,12 +10,12 @@ public class ActionSpace {
     private boolean single;
     private boolean occupied;
 
-    public void addPawn(FamilyPawn pawnPlaced) {
-        this.pawnPlaced.addPawn(pawnPlaced);
-    }
-
-    public void removePawns(){
-
+    public ActionSpace(Effect effect, int actionCost, PawnSlot pawnPlaced, boolean single, boolean occupied) {
+        this.effect = effect;
+        this.actionCost = actionCost;
+        this.pawnPlaced = pawnPlaced;
+        this.single = single;
+        this.occupied = occupied;
     }
 
     public Effect getEffect() {
@@ -39,6 +39,17 @@ public class ActionSpace {
     }
 
 
+    @Override
+    public String toString() {
+        return "ActionSpace{" +
+                "the effect is:" + effect +
+                ", the actionCost value is:" + actionCost +
+                ", the pawns placed are=" + pawnPlaced +
+                ", the actionSpace is only for one pawn:" + single +
+                ", the actionSpace is occupied=" + occupied +
+                '}';
+    }
+
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
     }
@@ -47,4 +58,13 @@ public class ActionSpace {
 
         this.single = single;
     }
+
+    public void addPawn(FamilyPawn pawnPlaced) {
+        this.pawnPlaced.addPawn(pawnPlaced);
+    }
+
+    public void removePawns(){
+
+    }
+
 }

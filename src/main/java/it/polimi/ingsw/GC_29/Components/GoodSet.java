@@ -10,7 +10,7 @@ public class GoodSet {
     private HashMap<GoodType,Integer> goodSet;
     private static final int numberOfGoods = 7;
 
-    public GoodSet(int wood, Integer stone, int coins, int workers, int victoryPoints, int militaryPoints, int faithPoints) {
+    public GoodSet(int wood, int stone, int coins, int workers, int victoryPoints, int militaryPoints, int faithPoints) {
         this.goodSet.put(GoodType.WOOD, wood);
         this.goodSet.put(GoodType.STONE, stone);
         this.goodSet.put(GoodType.COINS, coins);
@@ -18,7 +18,15 @@ public class GoodSet {
         this.goodSet.put(GoodType.VICTORYPOINTS, victoryPoints);
         this.goodSet.put(GoodType.MMILITARYPOINTS, militaryPoints);
         this.goodSet.put(GoodType.FAITHPOINTS, faithPoints);
+    }
 
+    public HashMap<GoodType, Integer> getHashMapGoodSet() {
+        return goodSet;
+    }
+
+    public GoodSet(GoodSet oldset){
+
+        this.goodSet = new HashMap<GoodType, Integer>(oldset.goodSet);
     }
 
     public Good getGood(GoodType type){

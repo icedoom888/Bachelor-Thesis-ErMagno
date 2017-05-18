@@ -22,4 +22,12 @@ public class Dice {
     public void roll(){
         face = (int)(Math.random()*6) + 1;
     }
+
+    @Override
+    public String toString() {
+        return "Dice{" +
+                "face=" + face +
+                ", color=" + color +
+                '}';
+    }
 }

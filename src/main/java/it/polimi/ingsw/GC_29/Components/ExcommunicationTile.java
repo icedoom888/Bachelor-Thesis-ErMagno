@@ -7,7 +7,7 @@ public class ExcommunicationTile {
     private Era era;
     private String name;
     private BonusAndMalusOnAction malusOnAction;
-    private BonusAndMalusOnEffect malusOnEffect;
+    private BonusAndMalusOnGoodsObtained malusOnEffect;
     private String description;
 
     public Era getEra() {
@@ -22,7 +22,7 @@ public class ExcommunicationTile {
         return malusOnAction;
     }
 
-    public BonusAndMalusOnEffect getMalusOnEffect() {
+    public BonusAndMalusOnGoodsObtained getMalusOnEffect() {
         return malusOnEffect;
     }
 
