@@ -11,11 +11,27 @@ import java.util.HashMap;
  */
 public class ObtainEffect implements Effect{
 
-    private GoodSet goodsObtained;
+    protected GoodSet goodsObtained;
 
     public ObtainEffect(GoodSet goodSetObtained) {
+
         this.goodsObtained = goodSetObtained;
     }
+
+    public ObtainEffect(int wood, int stone, int coins, int workers, int victoryPoints, int militaryPoints, int faithPoints) {
+
+        this.goodsObtained = new GoodSet(wood, stone, coins, workers, victoryPoints, militaryPoints, faithPoints);
+    }
+
+    public ObtainEffect(){
+        this.goodsObtained = new GoodSet();
+    }
+
+    @Override
+    public void execute(PlayerStatus status) {
+        activateBonusMalusOnGoodsObtained(status);
+    }
+
 
     private void update(PlayerStatus status, HashMap<GoodType, Integer> hashMapGoodSet) {
         for(GoodType type : GoodType.values()){
@@ -26,8 +42,7 @@ public class ObtainEffect implements Effect{
         }
     }
 
-    @Override
-    public void execute(PlayerStatus status) {
+    private void activateBonusMalusOnGoodsObtained(PlayerStatus status){
         ArrayList<BonusAndMalusOnGoodsObtained> currentPLayerBonusMalus = status.getBonudAndMalusOnGoodsObtainedList();
         HashMap<GoodType, Integer> hashMapGoodsObtained = goodsObtained.getHashMapGoodSet();
         HashMap<GoodType, Integer> temporaryHashMapGoodSet = new HashMap<GoodType, Integer>(hashMapGoodsObtained);
@@ -39,6 +54,8 @@ public class ObtainEffect implements Effect{
                 }
             }
         }
-    update(status, temporaryHashMapGoodSet);
-     }
+        update(status, temporaryHashMapGoodSet);
+    }
+
+
 }

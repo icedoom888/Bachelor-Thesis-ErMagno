@@ -8,7 +8,6 @@ import java.util.HashMap;
 public class GoodSet {
 
     private HashMap<GoodType,Integer> goodSet;
-    private static final int numberOfGoods = 7;
 
     public GoodSet(int wood, int stone, int coins, int workers, int victoryPoints, int militaryPoints, int faithPoints) {
         this.goodSet.put(GoodType.WOOD, wood);
@@ -18,6 +17,10 @@ public class GoodSet {
         this.goodSet.put(GoodType.VICTORYPOINTS, victoryPoints);
         this.goodSet.put(GoodType.MMILITARYPOINTS, militaryPoints);
         this.goodSet.put(GoodType.FAITHPOINTS, faithPoints);
+    }
+
+    public GoodSet() {
+        this(0,0,0,0,0,0,0);
     }
 
     public HashMap<GoodType, Integer> getHashMapGoodSet() {
