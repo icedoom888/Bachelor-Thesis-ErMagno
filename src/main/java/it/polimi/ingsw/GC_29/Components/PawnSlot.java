@@ -17,6 +17,7 @@ public class PawnSlot {
         this.free = free;
     }
 
+
     public ArrayList<Pawn> getPlayerPawns() {
         return playerPawns;
     }

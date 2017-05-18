@@ -9,6 +9,11 @@ public class CardRequirement extends Requirement {
     private CardColor cardColor;
     private int number;
 
+    public CardRequirement(CardColor cardColor, int number) {
+        this.cardColor = cardColor;
+        this.number = number;
+    }
+
     @Override
     public void check(Player player) {
         super.check(player);
