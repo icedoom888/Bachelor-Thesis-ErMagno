@@ -18,6 +18,15 @@ public class PlayerStatus {
     private boolean orangePawnAvailability;
     private boolean neutralPawnAvailability;
 
+
+    /*
+    * I'm using this constructor just to make some tests
+    *
+     */
+    public PlayerStatus(GoodSet actualGoodSet) {
+        this.actualGoodSet = actualGoodSet;
+    }
+
     public ArrayList<BonusAndMalusOnAction> getBonusAndMalusOnActionList() {
         return bonusAndMalusOnActionList;
     }

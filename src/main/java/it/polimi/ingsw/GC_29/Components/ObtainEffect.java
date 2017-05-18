@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnGoodsObtained;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,8 +48,8 @@ public class ObtainEffect implements Effect{
         HashMap<GoodType, Integer> hashMapGoodsObtained = goodsObtained.getHashMapGoodSet();
         HashMap<GoodType, Integer> temporaryHashMapGoodSet = new HashMap<GoodType, Integer>(hashMapGoodsObtained);
         for (BonusAndMalusOnGoodsObtained playerBonusMalus : currentPLayerBonusMalus) {
-            for(GoodType type : GoodType.values()){
-                if(hashMapGoodsObtained.get(type)*(playerBonusMalus.getGoodSetBonusMalus().getHashMapGoodSet().get(type)) !=0){
+            for(GoodType type : GoodType.values()) {
+                if(hashMapGoodsObtained.get(type)*(playerBonusMalus.getGoodSetBonusMalus().getHashMapGoodSet().get(type)) !=0) {
                     int temporaryAmount = hashMapGoodsObtained.get(type) + playerBonusMalus.getGoodSetBonusMalus().getHashMapGoodSet().get(type);
                     temporaryHashMapGoodSet.put(type, temporaryAmount);
                 }
