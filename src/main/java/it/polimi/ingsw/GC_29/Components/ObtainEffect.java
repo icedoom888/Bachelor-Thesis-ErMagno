@@ -40,5 +40,5 @@ public class ObtainEffect implements Effect{
             }
         }
     update(status, temporaryHashMapGoodSet);
-    }
+     }
 }

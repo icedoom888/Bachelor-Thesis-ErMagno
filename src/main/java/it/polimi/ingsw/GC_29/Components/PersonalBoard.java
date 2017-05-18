@@ -8,10 +8,16 @@ public class PersonalBoard {
     private Lane buildingLane;
     private Lane venturesLane;
     private Lane familyLane;
-    private Lane territoryLane;
+    private TerritoryLane territoryLane;
     private GoodSet goodCoffer;
 
     public PersonalBoard(){
+        bonusTile = new BonusTile(); //mancano gli obtainEffect da passare per creare le bonusTile
+        buildingLane = new Lane();
+        venturesLane = new Lane();
+        familyLane = new Lane();
+        territoryLane = new TerritoryLane();
+        goodCoffer = new GoodSet(0,0,0,0,0,0,0);
     }
 
     public BonusTile getBonusTile() {
