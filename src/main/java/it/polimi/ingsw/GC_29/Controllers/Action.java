@@ -13,7 +13,7 @@ public abstract class Action {
     private FamilyPawn pawnSelected;
     private ActionType actionSelected;
     private int workersSelected;
-    private ActionSpace selectedActionSpace;
+    protected ActionSpace actionSpaceSelected;
     private FamilyPawn temporaryPawn;
     private GoodSet tempGoodSet;
     private boolean realAction;
@@ -23,7 +23,6 @@ public abstract class Action {
         this.actionSelected = actionSelected;
         this.workersSelected = workersSelected;
         this.temporaryPawn = new FamilyPawn(pawnSelected);
-        this.tempGoodSet = tempGoodSet;
         this.realAction = realAction;
     }
 
@@ -43,29 +42,39 @@ public abstract class Action {
         return temporaryPawn;
     }
 
-    public GoodSet getTempGoodSet() {
-        return tempGoodSet;
-    }
-
     public boolean isRealAction() {
         return realAction;
     }
 
-    public abstract void apply(PlayerStatus playerStatus);
+    public abstract void execute(PlayerStatus playerStatus);
 
-    public boolean checkActionSpaceOccupied(ActionSpace actionSpace) {
+    protected abstract void update(PlayerStatus playerStatus);
+
+    protected boolean isPossible() { // nelle figlie override con return super.isPossibile() && tutti i controlli della zona specifica
+        return checkActionSpaceOccupied(actionSpaceSelected)&&checkSufficientActionValue();
+    }
+
+    private boolean checkActionSpaceOccupied(ActionSpace actionSpace) {
         //TODO: impl - controlla B&M che balzano actionSpace occupato
         return true;
     }
 
-    public boolean checkSufficientActionValue() {
+    private boolean checkSufficientActionValue() {
         executeBonusAndMalusOnAction();
         //TODO: impl - verifica il valore della temp pawn >= actionSpace value
         return true;
     }
 
-    private void executeBonusAndMalusOnAction() {
+    private void executeBonusAndMalusOnAction() { // serve per controllare che con B&M il valore della pawn vada bene o meno
         //TODO: impl - iteri la lista b&m sulla tempPawn
+    }
+
+    /*
+    * Ultimi 2 metodi dentro isPossible
+     */
+
+    protected void addPawn() { // mette il familiare e si occupa di attivare effetto actionSpace
+
     }
 
 }

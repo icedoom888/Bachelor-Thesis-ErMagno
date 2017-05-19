@@ -22,6 +22,10 @@ public class Tower implements Cleanable {
         return floors;
     }
 
+    public Floor getFloor(int index) {
+        return floors[index];
+    }
+
     public CardColor getCardType() {
         return cardType;
     }

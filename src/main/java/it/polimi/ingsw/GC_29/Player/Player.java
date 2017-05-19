@@ -8,13 +8,13 @@ import it.polimi.ingsw.GC_29.Components.*;
 public class Player {
     private String playerID;
     private PlayerColor playerColor;
-    private it.polimi.ingsw.GC_29.Components.GameBoard gameboard;
+    private GameBoard gameboard;
     private it.polimi.ingsw.GC_29.Components.PersonalBoard personalBoard;
     private PlayerStatus status;
-    private it.polimi.ingsw.GC_29.Components.LeaderCard[] leaderCards;
-    private it.polimi.ingsw.GC_29.Components.FamilyPawn[] relativePawns;
-    private it.polimi.ingsw.GC_29.Components.Pawn[] excommunicationPawns;
-    private it.polimi.ingsw.GC_29.Components.Pawn[] markerDiscs;
+    private LeaderCard[] leaderCards;
+    private FamilyPawn[] relativePawns;
+    private Pawn[] excommunicationPawns;
+    private Pawn[] markerDiscs;
 
     public String getPlayerID() {
         return playerID;
