@@ -12,7 +12,7 @@ public class PersonalBoard {
     private GoodSet goodCoffer;
 
     public PersonalBoard(){
-        bonusTile = new BonusTile(); //mancano gli obtainEffect da passare per creare le bonusTile
+        // bonusTile = new BonusTile(); //mancano gli obtainEffect da passare per creare le bonusTile
         buildingLane = new Lane();
         venturesLane = new Lane();
         familyLane = new Lane();

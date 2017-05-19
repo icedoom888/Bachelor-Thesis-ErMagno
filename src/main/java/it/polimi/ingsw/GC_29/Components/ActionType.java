@@ -5,4 +5,13 @@ package it.polimi.ingsw.GC_29.Components;
  */
 public enum ActionType {
 
+    GREENTOWER,
+    YELLOWTOWER,
+    BLUETOWER,
+    PURPLETOWER,
+    MARKET,
+    COUNCILPALACE,
+    HARVEST,
+    PRODUCTION,
+    SKIPTURN
 }

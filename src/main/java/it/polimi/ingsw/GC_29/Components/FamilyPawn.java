@@ -11,6 +11,15 @@ public class FamilyPawn extends Pawn {
         this.actualValue = actualValue;
     }
 
+    public FamilyPawn(FamilyPawnType type, int actualValue) {
+        this.type = type;
+        this.actualValue = actualValue;
+    }
+
+    public FamilyPawn(FamilyPawn familyPawn) {
+        this(familyPawn.getType(), familyPawn.getActualValue());
+    }
+
     public FamilyPawnType getType() {
 
         return type;
