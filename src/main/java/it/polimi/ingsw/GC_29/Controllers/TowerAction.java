@@ -16,8 +16,8 @@ public class TowerAction extends Action {
     private GoodSet towerCost;
     private GoodSet cardCost;
 
-    public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, Tower towerChosen, int floorIndex) {
-        super(pawnSelected, actionSelected, workersSelected, realAction);
+    public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus, Tower towerChosen, int floorIndex) {
+        super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
         this.towerChosen = towerChosen;
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();

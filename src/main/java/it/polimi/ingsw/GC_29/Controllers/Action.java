@@ -18,7 +18,7 @@ public abstract class Action {
     private GoodSet tempGoodSet;
     private boolean realAction;
 
-    public Action(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction) {
+    public Action(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus) {
         this.pawnSelected = pawnSelected;
         this.actionSelected = actionSelected;
         this.workersSelected = workersSelected;

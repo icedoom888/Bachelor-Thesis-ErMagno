@@ -16,6 +16,7 @@ public class ActionEffect implements Effect{
 
     @Override
     public void execute(PlayerStatus status) {
-
+        // devo passare al builder realAction false
+        // chiedo al player che discount vuole
     }
 }

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import java.util.HashMap;
+
 /**
  * Created by Lorenzotara on 17/05/17.
  */
@@ -8,7 +10,7 @@ public class GameBoard {
     private Track venturesPointsTrack;
     private Track turnOrderTrack;
     private FaithPointsTrack faithPointsTrack;
-    private Tower[] towerList;
+    private HashMap<CardColor,Tower> towerMap;
     private ExcommunicationLane excommunicationLane;
     private CouncilPalaceActionSpace councilPalace;
     private Workspace harvestArea;
@@ -32,8 +34,8 @@ public class GameBoard {
         return faithPointsTrack;
     }
 
-    public Tower[] getTowerList() {
-        return towerList;
+    public HashMap<CardColor,Tower> getTowerMap() {
+        return towerMap;
     }
 
     public ExcommunicationLane getExcommunicationLane() {
