@@ -1,4 +1,4 @@
-package Components;
+package it.polimi.ingsw.GC_29.Components;
 
 /**
  * Created by Lorenzotara on 19/05/17.

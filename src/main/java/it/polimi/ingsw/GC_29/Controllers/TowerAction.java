@@ -12,12 +12,13 @@ public class TowerAction extends Action {
 
     private Tower towerChosen;
     private int floorIndex;
-    private GoodSet temporaryGoodSet;
+    private GoodSet temporaryGoodSet; // accumula il bonus dell'actionSpace
     private GoodSet towerCost;
     private GoodSet cardCost;
+    private GoodSet discount; // discount che c'è se non è realAction e viene passato dall'ActionEffect già selezionato se c'è l'alternativa
 
-    public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, Tower towerChosen, int floorIndex) {
-        super(pawnSelected, actionSelected, workersSelected, realAction);
+    public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus, Tower towerChosen, int floorIndex) {
+        super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
         this.towerChosen = towerChosen;
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
@@ -27,7 +28,7 @@ public class TowerAction extends Action {
     }
 
     @Override
-    public void execute(PlayerStatus playerStatus) {
+    public void execute() {
 
         // isPossible
 
@@ -58,15 +59,18 @@ public class TowerAction extends Action {
     private void setActionSpaceEffect() { // prendo l'effetto dell'action space, se esiste, lo filtro (senza usare l'effect.execute) e lo assegno al temporaryGoodSet
     }
 
+    private void filterCardCost() { // ricopia il costo della carta in cardCost, filtro di B&M sugli eventuali sconti o malus modificando cardCost
+        // vedo se è realAction per gestire eventuale discount su carta - gestisci bene
+        // poi fa cardCost = cardCost - towerCost + temporaryGoodSet
+    }
+
     private boolean checkSufficientGoodsForCard() {
         filterCardCost();
                                                             // confronta cardCost con le risorse del player -> true/false
+
         return true;
     }
 
-    private void filterCardCost() { // ricopia il costo della carta in cardCost, filtro di B&M sugli eventuali sconti o malus modificando cardCost
-                                    // poi fa cardCost = cardCost - towerCost + temporaryGoodSet
-    }
 
 
     /*
@@ -84,7 +88,7 @@ public class TowerAction extends Action {
      */
 
     private void activateCardEffects() {
-        // se la carta è blu vado a salvare i permanent
+        // se la carta è blu vado a salvare i permanenti
     }
 
 
@@ -92,7 +96,7 @@ public class TowerAction extends Action {
 
 
 
-    protected void update(PlayerStatus playerStatus) {
+    protected void update() {
 
     }
 

@@ -17,13 +17,15 @@ public abstract class Action {
     private FamilyPawn temporaryPawn;
     private GoodSet tempGoodSet;
     private boolean realAction;
+    private PlayerStatus playerStatus;
 
-    public Action(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction) {
+    public Action(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus) {
         this.pawnSelected = pawnSelected;
         this.actionSelected = actionSelected;
         this.workersSelected = workersSelected;
         this.temporaryPawn = new FamilyPawn(pawnSelected);
         this.realAction = realAction;
+        this.playerStatus = playerStatus;
     }
 
     public FamilyPawn getPawnSelected() {
@@ -46,9 +48,9 @@ public abstract class Action {
         return realAction;
     }
 
-    public abstract void execute(PlayerStatus playerStatus);
+    public abstract void execute();
 
-    protected abstract void update(PlayerStatus playerStatus);
+    protected abstract void update();
 
     protected boolean isPossible() { // nelle figlie override con return super.isPossibile() && tutti i controlli della zona specifica
         return checkActionSpaceOccupied(actionSpaceSelected)&&checkSufficientActionValue();
