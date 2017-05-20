@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 /**
@@ -47,17 +48,16 @@ public class ObtainEffect implements Effect {
      */
     protected GoodSet activateBonusMalusOnGoods(ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalus,GoodSet goodset){ // questo sarà il metodo filter
 
-        HashMap<GoodType, Integer> hashMapGoods = goodset.getHashMapGoodSet();
-        HashMap<GoodType, Integer> temporaryHashMapGoodSet = new HashMap<GoodType, Integer>(hashMapGoods);
+        HashMap<GoodType, Integer> temporaryHashMapGoodSet = new HashMap<GoodType, Integer>(goodset.getHashMapGoodSet());
 
         for (BonusAndMalusOnGoods playerBonusMalus : currentPLayerBonusMalus) {
 
             for(GoodType type : GoodType.values()) { // il doppio ciclo for mi sta bene poiché la dimensione del secondo for è costante, dunque complessità O(n)
-                int goodObtainedAmount = hashMapGoods.get(type);
+                int goodObtainedAmount = temporaryHashMapGoodSet.get(type);
                 int playerBonusMalusOnGoodAmount = playerBonusMalus.getGoodSetBonusMalus().getHashMapGoodSet().get(type);
 
                 if(goodObtainedAmount*playerBonusMalusOnGoodAmount !=0) {
-                    int temporaryAmount = min(0,goodObtainedAmount + playerBonusMalusOnGoodAmount);
+                    int temporaryAmount = max(0,goodObtainedAmount + playerBonusMalusOnGoodAmount);
                     temporaryHashMapGoodSet.put(type, temporaryAmount);
                 }
             }

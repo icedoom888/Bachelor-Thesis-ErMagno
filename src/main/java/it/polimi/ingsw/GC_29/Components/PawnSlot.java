@@ -51,9 +51,7 @@ public class PawnSlot {
             int index = playerPawns.indexOf(pawn);
             return playerPawns.get(index);
         }
-        else {
-            return null;
-        }
+        else return null;
     }
 
 

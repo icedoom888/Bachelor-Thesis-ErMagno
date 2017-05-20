@@ -21,14 +21,30 @@ public class PlayerStatus {
     private boolean orangePawnAvailability;
     private boolean neutralPawnAvailability;
 
+    public PlayerStatus() {
+        bonusAndMalusOnActionList = new ArrayList<BonusAndMalusOnAction>();
+        bonusAndMalusOnGoods = new ArrayList<BonusAndMalusOnGoods>();
+        actualGoodSet = new GoodSet();
+        cardsOwned = new HashMap<CardColor, Integer>();
+    }
 
-    /*
+    public PlayerStatus(ArrayList<BonusAndMalusOnAction> bonusAndMalusOnActionList, ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods, GoodSet actualGoodSet, HashMap<CardColor, Integer> cardsOwned, boolean blackPawnAvailability, boolean whitePawnAvailability, boolean orangePawnAvailability, boolean neutralPawnAvailability) {
+        this.bonusAndMalusOnActionList = bonusAndMalusOnActionList;
+        this.bonusAndMalusOnGoods = bonusAndMalusOnGoods;
+        this.actualGoodSet = actualGoodSet;
+        this.cardsOwned = cardsOwned;
+        this.blackPawnAvailability = blackPawnAvailability;
+        this.whitePawnAvailability = whitePawnAvailability;
+        this.orangePawnAvailability = orangePawnAvailability;
+        this.neutralPawnAvailability = neutralPawnAvailability;
+    }
+/*
     * I'm using this constructor just to make some tests
     *
-     */
+
     public PlayerStatus(GoodSet actualGoodSet) {
         this.actualGoodSet = actualGoodSet;
-    }
+    }*/
 
     public ArrayList<BonusAndMalusOnAction> getBonusAndMalusOnActionList() {
         return bonusAndMalusOnActionList;

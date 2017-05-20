@@ -23,7 +23,7 @@ public class Track implements Cleanable {
         this.maxNumberOfPawns = maxNumberOfPawns;
         this.track = new PawnSlot[trackLenght];
 
-        for (int i = 0; i < trackLenght ; i++) {
+        for (int i = 0; i < maxNumberOfPawns ; i++) {
             track[i] = new PawnSlot(maxNumberOfPawns, true);
         }
 
@@ -55,8 +55,8 @@ public class Track implements Cleanable {
 
         if (realPawn != null) {
             track[index].removePawn(realPawn);
-            track[position].addPawn(pawn);
-            pawnMap.put(pawn,position);
+            track[position].addPawn(realPawn);
+            pawnMap.put(realPawn,position);
 
         } else {
             System.out.println("Error: Wrong Pawn");
@@ -76,7 +76,6 @@ public class Track implements Cleanable {
     public void startTrack(ArrayList<Pawn> pawns) {
         for (Pawn pawn : pawns) {
             track[0].addPawn(pawn);
-            pawnMap.put(pawn,0);
         }
     }
 }

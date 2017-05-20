@@ -10,6 +10,7 @@ public class GoodSet {
     private HashMap<GoodType,Integer> goodSet;
 
     public GoodSet(int wood, int stone, int coins, int workers, int victoryPoints, int militaryPoints, int faithPoints) {
+        this.goodSet = new HashMap<GoodType,Integer>();
         this.goodSet.put(GoodType.WOOD, wood);
         this.goodSet.put(GoodType.STONE, stone);
         this.goodSet.put(GoodType.COINS, coins);
@@ -56,5 +57,14 @@ public class GoodSet {
         for(GoodType type : GoodType.values()){
             System.out.print(type+": "+getGoodAmount(type)+"/n");
         }
+    }
+
+    @Override
+    public String toString() {
+        String result = new String();
+        for(GoodType type : GoodType.values()){
+            result = result + type + ": " + getGoodAmount(type) + " ";
+       }
+       return result;
     }
 }
