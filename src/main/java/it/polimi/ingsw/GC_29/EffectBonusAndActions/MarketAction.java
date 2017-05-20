@@ -16,6 +16,16 @@ public class MarketAction extends Action {
     }
 
     @Override
+    public void execute() {
+
+    }
+
+    @Override
+    protected void update() {
+
+    }
+    /*
+    @Override
     public void execute(PlayerStatus playerStatus) {
 
     }
@@ -23,5 +33,5 @@ public class MarketAction extends Action {
     @Override
     protected void update(PlayerStatus playerStatus) {
 
-    }
+    }*/
 }

@@ -15,11 +15,11 @@ public class ActionEffect implements Effect{
     private Discount discount;
 
 
-    @Override
+    /*@Override
     public void execute(PlayerStatus status) {
         // devo passare al builder realAction false
         // chiedo al player che discount vuole
-    }
+    }*/
 
     @Override
     public void execute(Player player) {
