@@ -5,8 +5,8 @@ import java.util.ArrayList;
 /**
  * Created by Lorenzotara on 17/05/17.
  */
-public class PawnSlot {
-    private ArrayList<Pawn> playerPawns;
+public class PawnSlot{
+    protected ArrayList<Pawn> playerPawns;
 
     /*
     * this field needs to know how many Pawns can stay inside the slot
