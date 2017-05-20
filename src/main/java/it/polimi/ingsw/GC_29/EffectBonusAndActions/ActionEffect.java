@@ -22,7 +22,7 @@ public class ActionEffect implements Effect{
     }*/
 
     @Override
-    public void execute(Player player) {
+    public void execute(PlayerStatus status) {
 
     }
 }

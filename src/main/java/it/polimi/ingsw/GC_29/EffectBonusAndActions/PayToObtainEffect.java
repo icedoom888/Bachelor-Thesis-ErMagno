@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Icedoom on 18/05/2017.
@@ -22,7 +21,7 @@ public class PayToObtainEffect extends ObtainEffect {
     public void execute(PlayerStatus status) {
         GoodSet newCost = activateBonusMalusOnGoods(status.getBonusAndMalusOnGoods(false),cost);
         if(checkSufficientGoods(status,newCost)){
-            update(status,newCost);
+            status.updateGoodSet(newCost);
             super.execute(status);
         }
     }

@@ -32,12 +32,7 @@ public class ObtainEffect implements Effect {
     @Override
     public void execute(PlayerStatus status) {
         GoodSet newGoodsObtained = activateBonusMalusOnGoods(status.getBonusAndMalusOnGoods(true),goodsObtained);
-        update(status, newGoodsObtained);
-    }
-
-
-    protected void update(PlayerStatus status, GoodSet goodSet) {
-       status.updateGoodSet(goodSet);
+        status.updateGoodSet(newGoodsObtained);
     }
 
     protected GoodSet activateBonusMalusOnGoods(ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalus,GoodSet goodset){
