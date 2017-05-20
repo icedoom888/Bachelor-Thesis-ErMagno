@@ -1,8 +1,10 @@
-package it.polimi.ingsw.GC_29.Components;
+package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import it.polimi.ingsw.GC_29.Components.CardColor;
+import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import java.util.HashMap;
 
 /**
  * Created by Icedoom on 18/05/2017.

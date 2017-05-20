@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnAction;
-import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnGoods;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
 
 import java.util.ArrayList;
 

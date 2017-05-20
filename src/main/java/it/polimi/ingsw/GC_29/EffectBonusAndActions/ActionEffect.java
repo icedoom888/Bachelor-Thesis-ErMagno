@@ -1,6 +1,7 @@
-package it.polimi.ingsw.GC_29.Components;
+package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 
+import it.polimi.ingsw.GC_29.Components.Discount;
 import it.polimi.ingsw.GC_29.Player.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
@@ -18,5 +19,10 @@ public class ActionEffect implements Effect{
     public void execute(PlayerStatus status) {
         // devo passare al builder realAction false
         // chiedo al player che discount vuole
+    }
+
+    @Override
+    public void execute(Player player) {
+
     }
 }

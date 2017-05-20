@@ -1,9 +1,9 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.ActionType;
-import it.polimi.ingsw.GC_29.Components.CardColor;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.Tower;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**

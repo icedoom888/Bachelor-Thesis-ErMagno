@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Controllers;
+package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 

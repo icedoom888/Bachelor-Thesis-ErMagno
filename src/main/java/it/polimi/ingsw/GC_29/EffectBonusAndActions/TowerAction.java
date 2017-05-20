@@ -1,9 +1,9 @@
-package it.polimi.ingsw.GC_29.Controllers;
+package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-
-import javax.smartcardio.Card;
 
 /**
  * Created by Lorenzotara on 19/05/17.

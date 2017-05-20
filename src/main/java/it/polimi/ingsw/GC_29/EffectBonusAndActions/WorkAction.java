@@ -1,5 +1,6 @@
-package it.polimi.ingsw.GC_29.Controllers;
+package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -8,6 +9,16 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public class WorkAction extends Action {
     @Override
     public void execute(PlayerStatus playerStatus) {
+
+    }
+
+    @Override
+    public void execute() {
+
+    }
+
+    @Override
+    protected void update() {
 
     }
 }

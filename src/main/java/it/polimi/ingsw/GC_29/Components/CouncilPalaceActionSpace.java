@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.util.Arrays;

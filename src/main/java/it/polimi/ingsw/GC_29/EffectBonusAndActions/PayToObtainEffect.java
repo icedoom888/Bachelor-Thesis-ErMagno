@@ -1,16 +1,15 @@
-package it.polimi.ingsw.GC_29.Components;
+package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnGoods;
+import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.GoodType;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 import it.polimi.ingsw.GC_29.Player.Player;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Icedoom on 18/05/2017.
  */
-public class PayToObtainEffect extends ObtainEffect{
+public class PayToObtainEffect extends ObtainEffect {
 
     private GoodSet cost;
 

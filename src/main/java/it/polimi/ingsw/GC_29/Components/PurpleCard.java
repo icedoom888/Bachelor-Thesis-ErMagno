@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
+
 import java.util.ArrayList;
 
 /**

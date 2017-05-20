@@ -1,6 +1,5 @@
-package it.polimi.ingsw.GC_29.Components;
+package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnAction;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.util.ArrayList;

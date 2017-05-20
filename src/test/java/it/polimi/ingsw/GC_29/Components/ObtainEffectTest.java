@@ -1,9 +1,8 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import it.polimi.ingsw.GC_29.Player.*;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.*;
 
 /**
  * Created by Lorenzotara on 18/05/17.
