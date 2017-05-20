@@ -8,6 +8,10 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 public class Pawn {
     private PlayerColor playerColor;
 
+    public Pawn(PlayerColor playerColor) {
+        this.playerColor = playerColor;
+    }
+
     public PlayerColor getPlayerColor() {
         return playerColor;
     }
