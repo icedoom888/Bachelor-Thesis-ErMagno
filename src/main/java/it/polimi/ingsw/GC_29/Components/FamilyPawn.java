@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
+
 /**
  * Created by Lorenzotara on 17/05/17.
  */
@@ -11,13 +13,15 @@ public class FamilyPawn extends Pawn {
         this.actualValue = actualValue;
     }
 
-    public FamilyPawn(FamilyPawnType type, int actualValue) {
+    public FamilyPawn(PlayerColor playerColor, FamilyPawnType type, int actualValue) {
+        super(playerColor);
         this.type = type;
         this.actualValue = actualValue;
     }
 
     public FamilyPawn(FamilyPawn familyPawn) {
-        this(familyPawn.getType(), familyPawn.getActualValue());
+
+        this(familyPawn.getPlayerColor(), familyPawn.getType(), familyPawn.getActualValue());
     }
 
     public FamilyPawnType getType() {

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -8,6 +9,7 @@ import java.util.HashMap;
 public class Track implements Cleanable {
     private PawnSlot[] track;
     private int maxNumberOfPawns;
+    private int trackLenght;
 
     /*
     * This HashMap is good to keep track of all the pawns
@@ -17,15 +19,19 @@ public class Track implements Cleanable {
      */
     private HashMap<Pawn, Integer> pawnMap;
 
-    public Track(int maxNumberOfPawns) {
+    public Track(int maxNumberOfPawns, int trackLenght) {
         this.maxNumberOfPawns = maxNumberOfPawns;
-        this.track = new PawnSlot[maxNumberOfPawns];
+        this.track = new PawnSlot[trackLenght];
 
         for (int i = 0; i < maxNumberOfPawns ; i++) {
             track[i] = new PawnSlot(maxNumberOfPawns, true);
         }
 
         this.pawnMap = new HashMap<Pawn, Integer>();
+    }
+
+    public PawnSlot[] getTrack() {
+        return track;
     }
 
     public int findPawn(Pawn pawn) {
@@ -38,6 +44,8 @@ public class Track implements Cleanable {
     * If the Pawn is really there, it changes its position from the index
     * provided by pawnMap to the new given position, if not it prints
     * that there has been an error
+     * @param position int where to move the pawn
+     * @param pawn Pawn pawn to move
      */
     public void movePawn(int position, Pawn pawn) {
         // TODO: testing
@@ -65,7 +73,9 @@ public class Track implements Cleanable {
 
     }
 
-    public PawnSlot[] getTrack() {
-        return track;
+    public void startTrack(ArrayList<Pawn> pawns) {
+        for (Pawn pawn : pawns) {
+            track[0].addPawn(pawn);
+        }
     }
 }
