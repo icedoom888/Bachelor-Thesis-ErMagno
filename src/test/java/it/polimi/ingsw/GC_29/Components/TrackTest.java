@@ -18,7 +18,7 @@ public class TrackTest {
         Pawn redPawn = new Pawn(PlayerColor.RED);
         Pawn bluePawn = new Pawn(PlayerColor.BLUE);
 
-        ArrayList<Pawn> pawns = new ArrayList<>();
+        ArrayList<Pawn> pawns = new ArrayList<Pawn>();
         pawns.add(redPawn);
         pawns.add(bluePawn);
 
@@ -27,7 +27,7 @@ public class TrackTest {
         track.movePawn(5,redPawn);
         track.movePawn(4,bluePawn);
 
-
-    }
+        System.out.println(track.getTrack()[5].getPlayerPawns().get(0).getPlayerColor());
+        }
 
 }
