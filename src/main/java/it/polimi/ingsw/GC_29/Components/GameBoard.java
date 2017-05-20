@@ -63,5 +63,18 @@ public class GameBoard {
     }
 
     public void clearAll() {
+        victoryPointsTrack.clean();
+        venturesPointsTrack.clean();
+        turnOrderTrack.clean();
+        faithPointsTrack.clean();
+        towerMap.clear();
+        excommunicationLane.clean();
+        harvestArea.clean();
+        productionArea.clean();
+        market.clean();
+        // councilPalace.clean()
+        for (Dice dice : diceLane) {
+            dice = null;
+        }
     }
 }

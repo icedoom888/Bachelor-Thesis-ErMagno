@@ -20,6 +20,11 @@ public class Track implements Cleanable {
     public Track(int maxNumberOfPawns) {
         this.maxNumberOfPawns = maxNumberOfPawns;
         this.track = new PawnSlot[maxNumberOfPawns];
+
+        for (int i = 0; i < maxNumberOfPawns ; i++) {
+            track[i] = new PawnSlot(maxNumberOfPawns, true);
+        }
+
         this.pawnMap = new HashMap<Pawn, Integer>();
     }
 

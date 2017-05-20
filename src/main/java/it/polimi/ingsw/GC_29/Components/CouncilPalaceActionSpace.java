@@ -35,7 +35,7 @@ public class CouncilPalaceActionSpace extends ActionSpace {
     }
 
     @Override
-    public void removePawns() {
+    public void removePawn() {
         // TODO: impl -> rimuove sia da actionSpace che da turnOrder
     }
 

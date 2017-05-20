@@ -9,7 +9,7 @@ public class Player {
     private String playerID;
     private PlayerColor playerColor;
     private GameBoard gameboard;
-    private it.polimi.ingsw.GC_29.Components.PersonalBoard personalBoard;
+    private PersonalBoard personalBoard;
     private PlayerStatus status;
     private LeaderCard[] leaderCards;
     private FamilyPawn[] relativePawns;

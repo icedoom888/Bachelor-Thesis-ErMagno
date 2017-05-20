@@ -29,12 +29,11 @@ public class ExcommunicationLane implements Cleanable {
     }
 
 
-    /*
+    /**
      * This method sets all the Excommunication Tiles when the game starts
      * The tiles will be the keys of the HashMap, the PawnSlots will be the excommunicated Players
      * for that specific Excommunication Tile
      */
-
     public void setExcommunicationTiles(ExcommunicationTile excommunicationTile1, ExcommunicationTile excommunicationTile2, ExcommunicationTile excommunicationTile3, int maxNumberOfPawns) {
         tileAndPawns.put(excommunicationTile1, pawnSlots[1]);
         tileAndPawns.put(excommunicationTile2, pawnSlots[2]);

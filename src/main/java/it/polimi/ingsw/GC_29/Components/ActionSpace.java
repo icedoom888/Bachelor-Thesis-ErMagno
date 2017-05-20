@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_29.Components;
 /**
  * Created by Lorenzotara on 17/05/17.
  */
-public class ActionSpace {
+public class ActionSpace implements Cleanable {
     private Effect effect;
     private int actionCost;
     private PawnSlot pawnPlaced;
@@ -17,6 +17,8 @@ public class ActionSpace {
         this.single = single;
         this.occupied = occupied;
     }
+
+    // TODO: clean e remove
 
     public Effect getEffect() {
         return effect;
@@ -62,8 +64,12 @@ public class ActionSpace {
         this.pawnPlaced.addPawn(pawnPlaced);
     }
 
-    public void removePawns(){
+    public void removePawn(){
 
     }
 
+    @Override
+    public void clean() {
+
+    }
 }
