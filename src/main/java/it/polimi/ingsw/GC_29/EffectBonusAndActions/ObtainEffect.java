@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
-import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
@@ -31,9 +30,9 @@ public class ObtainEffect implements Effect {
     }
 
     @Override
-    public void execute(Player player) {
-        GoodSet newGoodsObtained = activateBonusMalusOnGoods(player.getStatus().getBonusAndMalusOnGoodsObtainedList(),goodsObtained);
-        update(player.getStatus(), newGoodsObtained);
+    public void execute(PlayerStatus status) {
+        GoodSet newGoodsObtained = activateBonusMalusOnGoods(status.getBonusAndMalusOnGoods(true),goodsObtained);
+        update(status, newGoodsObtained);
     }
 
 

@@ -52,4 +52,9 @@ public class GoodSet {
             this.goodSet.put(type, this.goodSet.get(type)+ goodSetToAdd.getHashMapGoodSet().get(type));
         }
     }
+    public void printGoodSet(){
+        for(GoodType type : GoodType.values()){
+            System.out.print(type+": "+getGoodAmount(type)+"/n");
+        }
+    }
 }

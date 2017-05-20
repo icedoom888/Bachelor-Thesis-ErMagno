@@ -1,5 +1,4 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
-import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -7,5 +6,5 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  */
 public interface Effect {
 
-    void execute(Player player);
+    void execute(PlayerStatus status);
 }

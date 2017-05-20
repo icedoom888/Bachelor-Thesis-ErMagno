@@ -1,19 +1,21 @@
 package it.polimi.ingsw.GC_29.Player;
 
+import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Christian on 17/05/2017.
  */
 public class PlayerStatus {
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnActionList;
-    private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoodsObtainedList;
-    private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoodsToPayList;
+    private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
     private GoodSet actualGoodSet;
+    private HashMap<CardColor, Integer> cardsOwned;
     private boolean blackPawnAvailability;
     private boolean whitePawnAvailability;
     private boolean orangePawnAvailability;
@@ -32,16 +34,37 @@ public class PlayerStatus {
         return bonusAndMalusOnActionList;
     }
 
-    public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoodsObtainedList() {
-        return bonusAndMalusOnGoodsObtainedList;
-    }
-
-    public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoodsToPayList() {
-        return bonusAndMalusOnGoodsToPayList;
+    public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoods(boolean whenObtained) {
+        ArrayList<BonusAndMalusOnGoods> newBonusAndMalusOnGoods = new ArrayList<BonusAndMalusOnGoods>();
+        for(BonusAndMalusOnGoods singleBonusAndMalusOnGoods: bonusAndMalusOnGoods){
+            if(singleBonusAndMalusOnGoods.isWhenObtained()==whenObtained){
+                newBonusAndMalusOnGoods.add(singleBonusAndMalusOnGoods);
+            }
+        }
+        return newBonusAndMalusOnGoods;
     }
 
     public GoodSet getActualGoodSet() {
         return actualGoodSet;
+    }
+
+    public void updateGoodSet(GoodSet newGoodSet) {
+        this.actualGoodSet.addGoodSet(newGoodSet);
+    }
+
+    public HashMap<CardColor, Integer> getCardsOwned() {
+        return cardsOwned;
+    }
+
+    public void updateCardsOwned(CardColor cardColor){
+        /**durante una towerAction nel momento in cui la carta sarà
+        *aggiunta alla PersonalBoard dovrà essere chiamato anche questo metodo
+         */
+        this.cardsOwned.put(cardColor,this.cardsOwned.get(cardColor)+1);
+    }
+
+    public int getNumberOfCardsOwned(CardColor cardColor){
+        return cardsOwned.get(cardColor);
     }
 
     public boolean isBlackPawnAvailable() {
@@ -75,8 +98,5 @@ public class PlayerStatus {
     public void setNeutralPawnAvailability(boolean neutralPawnAvailability) {
         this.neutralPawnAvailability = neutralPawnAvailability;
     }
-
-    public void updateGoodSet(GoodSet newGoodSet) {
-        this.actualGoodSet.addGoodSet(newGoodSet);
-    }
 }
+

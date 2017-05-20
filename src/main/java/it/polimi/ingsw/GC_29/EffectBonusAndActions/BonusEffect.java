@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
 
@@ -20,9 +21,9 @@ public class BonusEffect implements Effect {
      * This effect add the bonusAndMalusOnAction in the list of
      * bonusAndMalusOnAction of the player
      */
-    public void execute(Player player) { // x albi qua modifica
+    public void execute(PlayerStatus status) {
         System.out.println("You received a Bonus! It will be added to your Bonus List");
-        ArrayList<BonusAndMalusOnAction> bonusOnActionList = player.getStatus().getBonusAndMalusOnActionList(); // x albi qua modifica
+        ArrayList<BonusAndMalusOnAction> bonusOnActionList = status.getBonusAndMalusOnActionList();
         bonusOnActionList.add(bonusAndMalusOnAction);
     }
 }

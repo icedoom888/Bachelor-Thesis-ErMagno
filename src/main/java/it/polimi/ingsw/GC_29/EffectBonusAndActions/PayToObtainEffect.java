@@ -19,11 +19,11 @@ public class PayToObtainEffect extends ObtainEffect {
     }
 
     @Override
-    public void execute(Player player) {
-        GoodSet newCost = activateBonusMalusOnGoods(player.getStatus().getBonusAndMalusOnGoodsToPayList(),cost);
-        if(checkSufficientGoods(player.getStatus(),newCost)){
-            update(player.getStatus(),newCost);
-            super.execute(player);
+    public void execute(PlayerStatus status) {
+        GoodSet newCost = activateBonusMalusOnGoods(status.getBonusAndMalusOnGoods(false),cost);
+        if(checkSufficientGoods(status,newCost)){
+            update(status,newCost);
+            super.execute(status);
         }
     }
 

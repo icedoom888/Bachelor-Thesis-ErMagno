@@ -1,5 +1,5 @@
 package it.polimi.ingsw.GC_29.Components;
-
+import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 /**
  * Created by icedoom on 18/05/17.
  */

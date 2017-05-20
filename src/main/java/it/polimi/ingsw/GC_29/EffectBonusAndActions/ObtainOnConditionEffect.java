@@ -23,31 +23,31 @@ public class ObtainOnConditionEffect extends ObtainEffect{
     }
 
     @Override
-    public void execute(Player player) {
-        evaluateActualGoodsObtained(player);
-        super.execute(player);
+    public void execute(PlayerStatus status) {
+        evaluateActualGoodsObtained(status);
+        super.execute(status);
     }
 
-    public void evaluateActualGoodsObtained(Player player){
-        evaluateCardCondition(player);
-        evaluateGoodsCondition(player.getStatus());
+    public void evaluateActualGoodsObtained(PlayerStatus status){
+        evaluateCardCondition(status);
+        evaluateGoodsCondition(status);
     }
 
-    private void evaluateCardCondition(Player player){
+    private void evaluateCardCondition(PlayerStatus status){
         if(cardCondition==null){return;}
         int multiplier=0;
 
         if(cardCondition==CardColor.BLUE){
-            multiplier = player.getPersonalBoard().getFamilyLane().getNumberOfCardsPresent();
+            multiplier = status.getNumberOfCardsOwned(CardColor.BLUE);
         }
         if(cardCondition==CardColor.YELLOW){
-            multiplier = player.getPersonalBoard().getBuildingLane().getNumberOfCardsPresent();
+            multiplier = status.getNumberOfCardsOwned(CardColor.YELLOW);
         }
         if(cardCondition==CardColor.PURPLE){
-            multiplier = player.getPersonalBoard().getVenturesLane().getNumberOfCardsPresent();
+            multiplier = status.getNumberOfCardsOwned(CardColor.PURPLE);
         }
         if(cardCondition==CardColor.GREEN){
-            multiplier = player.getPersonalBoard().getTerritoryLane().getNumberOfCardsPresent();
+            multiplier = status.getNumberOfCardsOwned(CardColor.GREEN);
         }
         for(GoodType type : GoodType.values()) {
             goodsObtained.getHashMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
