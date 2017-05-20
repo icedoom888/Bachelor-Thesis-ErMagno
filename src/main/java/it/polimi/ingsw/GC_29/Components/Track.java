@@ -8,9 +8,9 @@ import java.util.HashMap;
  * Created by Lorenzotara on 17/05/17.
  */
 public class Track implements Cleanable {
-    private PawnSlot[] track;
-    private int maxNumberOfPawns;
-    private int trackLenght;
+    protected PawnSlot[] track;
+    protected int maxNumberOfPawns;
+    protected int trackLenght;
 
     /*
     * This HashMap is good to keep track of all the pawns
@@ -18,14 +18,14 @@ public class Track implements Cleanable {
     * It contains the pawn as key and the position of the array
     * as value.
      */
-    private HashMap<Pawn, Integer> pawnMap;
+    protected HashMap<Pawn, Integer> pawnMap;
 
     public Track(int maxNumberOfPawns, int trackLenght) {
         this.maxNumberOfPawns = maxNumberOfPawns;
         this.trackLenght = trackLenght;
         this.track = new PawnSlot[trackLenght];
 
-        for (int i = 0; i < maxNumberOfPawns ; i++) {
+        for (int i = 0; i < trackLenght ; i++) {
             track[i] = new PawnSlot(maxNumberOfPawns, true);
         }
 
@@ -33,10 +33,12 @@ public class Track implements Cleanable {
     }
 
     public PawnSlot[] getTrack() {
+
         return track;
     }
 
     public int findPawn(Pawn pawn) {
+
         return pawnMap.get(pawn);
     }
 
@@ -71,13 +73,12 @@ public class Track implements Cleanable {
             pawnSlot.clearSlot();
             pawnMap.clear();
         }
-
-
     }
 
     public void startTrack(ArrayList<Pawn> pawns) {
         for (Pawn pawn : pawns) {
             track[0].addPawn(pawn);
+            pawnMap.put(pawn,0);
         }
     }
 
