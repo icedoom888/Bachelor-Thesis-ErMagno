@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -21,6 +22,7 @@ public class Track implements Cleanable {
 
     public Track(int maxNumberOfPawns, int trackLenght) {
         this.maxNumberOfPawns = maxNumberOfPawns;
+        this.trackLenght = trackLenght;
         this.track = new PawnSlot[trackLenght];
 
         for (int i = 0; i < trackLenght ; i++) {
@@ -78,5 +80,15 @@ public class Track implements Cleanable {
             track[0].addPawn(pawn);
             pawnMap.put(pawn,0);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Track{" +
+                "track=" + Arrays.toString(track) +
+                ", maxNumberOfPawns=" + maxNumberOfPawns +
+                ", trackLenght=" + trackLenght +
+                ", pawnMap=" + pawnMap +
+                '}';
     }
 }

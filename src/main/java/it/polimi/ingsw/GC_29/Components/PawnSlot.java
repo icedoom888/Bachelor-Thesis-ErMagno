@@ -68,4 +68,13 @@ public class PawnSlot {
     protected boolean isFree() {
         return free;
     }
+
+    @Override
+    public String toString() {
+        return "PawnSlot{" +
+                "playerPawns=" + playerPawns +
+                ", maxNumberOfPawns=" + maxNumberOfPawns +
+                ", free=" + free +
+                '}';
+    }
 }
