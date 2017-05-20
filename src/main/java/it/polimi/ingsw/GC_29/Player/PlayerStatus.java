@@ -26,6 +26,9 @@ public class PlayerStatus {
         bonusAndMalusOnGoods = new ArrayList<BonusAndMalusOnGoods>();
         actualGoodSet = new GoodSet();
         cardsOwned = new HashMap<CardColor, Integer>();
+        for(CardColor color : CardColor.values()){
+            cardsOwned.put(color,0);
+        }
     }
 
     public PlayerStatus(ArrayList<BonusAndMalusOnAction> bonusAndMalusOnActionList, ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods, GoodSet actualGoodSet, HashMap<CardColor, Integer> cardsOwned, boolean blackPawnAvailability, boolean whitePawnAvailability, boolean orangePawnAvailability, boolean neutralPawnAvailability) {
@@ -72,7 +75,7 @@ public class PlayerStatus {
         /**durante una towerAction nel momento in cui la carta sarà
         *aggiunta alla PersonalBoard dovrà essere chiamato anche questo metodo
          */
-        this.cardsOwned.put(cardColor,this.cardsOwned.get(cardColor)+1);
+        this.cardsOwned.put(cardColor,(this.getNumberOfCardsOwned(cardColor)+1));
     }
 
     public int getNumberOfCardsOwned(CardColor cardColor){

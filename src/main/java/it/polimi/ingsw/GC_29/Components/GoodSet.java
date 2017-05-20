@@ -16,7 +16,7 @@ public class GoodSet {
         this.goodSet.put(GoodType.COINS, coins);
         this.goodSet.put(GoodType.WORKERS, workers);
         this.goodSet.put(GoodType.VICTORYPOINTS, victoryPoints);
-        this.goodSet.put(GoodType.MMILITARYPOINTS, militaryPoints);
+        this.goodSet.put(GoodType.MILITARYPOINTS, militaryPoints);
         this.goodSet.put(GoodType.FAITHPOINTS, faithPoints);
     }
 
