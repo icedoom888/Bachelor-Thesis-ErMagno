@@ -75,4 +75,8 @@ public class PlayerStatus {
     public void setNeutralPawnAvailability(boolean neutralPawnAvailability) {
         this.neutralPawnAvailability = neutralPawnAvailability;
     }
+
+    public void updateGoodSet(GoodSet newGoodSet) {
+        this.actualGoodSet.addGoodSet(newGoodSet);
+    }
 }

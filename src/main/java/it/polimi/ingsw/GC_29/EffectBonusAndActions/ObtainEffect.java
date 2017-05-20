@@ -38,7 +38,7 @@ public class ObtainEffect implements Effect {
 
 
     protected void update(PlayerStatus status, GoodSet goodSet) {
-       status.getActualGoodSet().addGoodSet(goodSet);
+       status.updateGoodSet(goodSet);
     }
 
     protected GoodSet activateBonusMalusOnGoods(ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalus,GoodSet goodset){
