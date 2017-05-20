@@ -9,9 +9,15 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  */
 public class WorkActionBuilder implements ActionBuilder {
 
+    private ActionType actionType;
     private PlayerStatus playerStatus;
+    private boolean bonusAction;
 
-    public WorkActionBuilder(ActionType harvest) {
+    public WorkActionBuilder(ActionType actionType, PlayerStatus playerStatus, boolean bonusAction) {
+
+        this.actionType = actionType;
+        this.playerStatus = playerStatus;
+        this.bonusAction = bonusAction;
     }
 
     @Override

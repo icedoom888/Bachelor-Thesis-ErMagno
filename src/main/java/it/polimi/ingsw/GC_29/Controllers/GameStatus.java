@@ -10,24 +10,26 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public class  GameStatus {
 
+    private static GameStatus instance = null;
+
     // Mancano i controller da inserire in futuro
     private GameBoard gameBoard;
     private Player currentPlayer;
     private Era currentEra;
     private int currentTurn;
-    private final int numberOfPlayers;
+    //private final int numberOfPlayers = COSTANTEDAFILE; TODO: bisogna creare delle costanti da file da usare, come in questo caso
     private Player[] turnOrder;
     private Dice[] currentDices;
 
-    public GameStatus(GameBoard gameBoard, int numberOfPlayers) {
-        this.gameBoard = gameBoard;
-        this.currentPlayer = null;
-        this.currentEra = Era.FIRSTERA;
-        this.currentTurn = 0;
-        this.numberOfPlayers = numberOfPlayers;
-        this.turnOrder = new Player[numberOfPlayers];
-        this.currentDices = new Dice[3];
+    private GameStatus() {
 
+    }
+
+    public static GameStatus getInstance(){
+        if(instance == null){
+            instance = new GameStatus();
+        }
+        return instance;
     }
 
     public GameBoard getGameBoard() {
@@ -58,9 +60,9 @@ public class  GameStatus {
         this.currentTurn = currentTurn;
     }
 
-    public int getNumberOfPlayers() {
+    /*public int getNumberOfPlayers() {
         return numberOfPlayers;
-    }
+    }*/
 
     public Player[] getTurnOrder() {
         return turnOrder;
@@ -78,4 +80,11 @@ public class  GameStatus {
         currentDices=getGameBoard().getDiceLane();
     }
 
+    public void setGameBoard(GameBoard gameBoard) {
+        this.gameBoard = gameBoard;
+    }
+
+    public void setCurrentDices(Dice[] currentDices) {
+        this.currentDices = currentDices;
+    }
 }

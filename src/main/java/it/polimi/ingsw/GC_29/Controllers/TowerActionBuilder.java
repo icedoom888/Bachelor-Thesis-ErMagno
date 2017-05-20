@@ -14,11 +14,13 @@ public class TowerActionBuilder implements ActionBuilder {
     private ActionType towerColor;
     private PlayerStatus playerStatus;
     private Tower tower;
-    private boolean realAction;
+    private boolean bonusAction;
 
-    public TowerActionBuilder(ActionType towerColor, Tower tower, PlayerStatus playerStatus) {
+    public TowerActionBuilder(ActionType towerColor, Tower tower, PlayerStatus playerStatus, boolean bonusAction) {
         this.towerColor = towerColor;
         this.tower = tower;
+        this.playerStatus = playerStatus;
+        this.bonusAction = bonusAction;
     }
 
     private FamilyPawn askFamilyPawn(){
@@ -30,10 +32,10 @@ public class TowerActionBuilder implements ActionBuilder {
 
         FamilyPawn familyPawnSelected = askFamilyPawn();
         int workersSelected = askForWorkers();
-        // realAction TODO: devo capire come collegare le azioni bouns ai builder
+        // bonusAction TODO: devo capire come collegare le azioni bouns ai builder
         int floorIndex = askFloor();
 
-        return new TowerAction(familyPawnSelected, towerColor, workersSelected, realAction, playerStatus, tower, floorIndex);
+        return new TowerAction(familyPawnSelected, towerColor, workersSelected, bonusAction, playerStatus, tower, floorIndex);
     }
 
     private int askFloor() {

@@ -9,6 +9,12 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public class CouncilPalaceActionBuilder implements ActionBuilder {
 
     private PlayerStatus playerStatus;
+    private boolean bonusAction;
+
+    public CouncilPalaceActionBuilder(PlayerStatus playerStatus, boolean bonusAction) {
+        this.playerStatus = playerStatus;
+        this.bonusAction = bonusAction;
+    }
 
     @Override
     public Action build() {

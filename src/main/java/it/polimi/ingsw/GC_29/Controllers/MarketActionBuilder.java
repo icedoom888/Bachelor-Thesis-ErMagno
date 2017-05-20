@@ -9,6 +9,12 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public class MarketActionBuilder implements ActionBuilder{
 
     private PlayerStatus playerStatus;
+    private boolean bonusAction;
+
+    public MarketActionBuilder(PlayerStatus playerStatus, boolean bonusAction) {
+        this.playerStatus = playerStatus;
+        this.bonusAction = bonusAction;
+    }
 
     @Override
     public Action build() {
