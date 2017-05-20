@@ -34,17 +34,13 @@ public class PlayerStatus {
         return bonusAndMalusOnActionList;
     }
 
-    public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoods(boolean whenObtained) {
-        ArrayList<BonusAndMalusOnGoods> newBonusAndMalusOnGoods = new ArrayList<BonusAndMalusOnGoods>();
-        for(BonusAndMalusOnGoods singleBonusAndMalusOnGoods: bonusAndMalusOnGoods){
-            if(singleBonusAndMalusOnGoods.isWhenObtained()==whenObtained){
-                newBonusAndMalusOnGoods.add(singleBonusAndMalusOnGoods);
-            }
-        }
-        return newBonusAndMalusOnGoods;
+    public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoods() {
+
+        return bonusAndMalusOnGoods;
     }
 
     public GoodSet getActualGoodSet() {
+
         return actualGoodSet;
     }
 
