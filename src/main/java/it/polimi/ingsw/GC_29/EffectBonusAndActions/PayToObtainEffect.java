@@ -17,17 +17,33 @@ public class PayToObtainEffect extends ObtainEffect {
         this.cost = cost;
     }
 
+    /** The execute of a @PayToObtainEffect first check's if the cost in payable based on the player's ActualGoodSet
+     * if the cost is payable it is detracted from the player's ActualGoodSet,
+     * and the @goodsObtained are handled with the same process as the ObtainEffects
+     * if the cost isn't payable the execution stops: the cost isn't detracted from the status and the @goodsObtained are not added either
+     */
     @Override
     public void execute(PlayerStatus status) {
-        GoodSet newCost = activateBonusMalusOnGoods(status.getBonusAndMalusOnGoods(),cost);
-        if(checkSufficientGoods(status,newCost)){
-            status.updateGoodSet(newCost);
+        if(checkSufficientGoods(status)){
+            System.out.println("Resources sufficient to activate!");
+            status.updateGoodSet(cost);
             super.execute(status);
+        }
+        else{
+            System.out.println("Resources not sufficient!");
         }
     }
 
-    private boolean checkSufficientGoods(PlayerStatus status, GoodSet cost){
-        GoodSet newGoodset = status.getActualGoodSet();
+    /** checkSufficientGoods is used to make sure the Price of the effect is payable with the player's resources:
+     * it creates a copy of the player's actualGoodSet and detracts from it the cost of the PayToObtainEffect
+     * checks every single GoodAmount making sure they are all positive
+     * if there is a negative amount the function returns false.
+     * @param status
+     * @return
+     */
+    private boolean checkSufficientGoods(PlayerStatus status){
+        GoodSet newGoodset = new GoodSet();
+        newGoodset.addGoodSet(status.getActualGoodSet());
         newGoodset.addGoodSet(cost);
         for(GoodType type : GoodType.values()){
             if(newGoodset.getGoodAmount(type)<0){
