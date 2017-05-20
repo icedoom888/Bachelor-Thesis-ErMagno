@@ -31,15 +31,21 @@ public class PawnSlot {
         return maxNumberOfPawns;
     }
 
-    public void addPawn(Pawn pawn) {
-        playerPawns.add(pawn);
+    protected void addPawn(Pawn pawn) {
+        if (playerPawns.size() < maxNumberOfPawns) {
+            playerPawns.add(pawn);
+            this.free = false;
+        } else {
+            System.out.println("You can't add a pawn, maximum number of pawns reached");
+        }
     }
 
-    public void removePawn(Pawn pawn) {
+    protected void removePawn(Pawn pawn) {
         playerPawns.remove(pawn);
+        if (playerPawns.isEmpty()) free = true;
     }
 
-    public Pawn findPawn(Pawn pawn) {
+    protected Pawn findPawn(Pawn pawn) {
 
         if (playerPawns.contains(pawn)) {
             int index = playerPawns.indexOf(pawn);
@@ -50,14 +56,14 @@ public class PawnSlot {
 
 
 
-    public void clearSlot(){
+    protected void clearSlot(){
         playerPawns.clear(); // more efficient vs removeAll() method. Clear() is O(n), removeAll is O(n^2)
         free = true;
     }
 
 
 
-    public boolean isFree() {
-        return false;
+    protected boolean isFree() {
+        return free;
     }
 }

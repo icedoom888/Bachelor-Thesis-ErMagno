@@ -15,7 +15,15 @@ public class PlayerController {
     private GameStatus gameStatus;
     private ActionBuilder actionBuilder;
 
-    public void setActionBuilder(ActionType type) {
+    public void init(){
+        // chiamo askForAction e ciò che mi arriva lo sparo a setActionBuilder
+    }
+
+    private ActionType askForAction(){
+        return null;
+    }
+
+    private void setActionBuilder(ActionType type) {
 
         PlayerStatus playerStatus = gameStatus.getCurrentPlayer().getStatus();
         HashMap<CardColor,Tower> towerHashMap = gameStatus.getGameBoard().getTowerMap();

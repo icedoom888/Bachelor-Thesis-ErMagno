@@ -27,7 +27,7 @@ public class Track implements Cleanable {
         return pawnMap.get(pawn);
     }
 
-    /*
+    /**
     * movePawn search the position of the pawn in the HashMap,
     * then search the pawn in the right PawnSlot.
     * If the Pawn is really there, it changes its position from the index
