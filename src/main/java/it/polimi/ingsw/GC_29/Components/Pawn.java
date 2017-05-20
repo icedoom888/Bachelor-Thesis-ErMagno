@@ -15,4 +15,11 @@ public class Pawn {
     public PlayerColor getPlayerColor() {
         return playerColor;
     }
+
+    @Override
+    public String toString() {
+        return "Pawn{" +
+                "playerColor=" + playerColor +
+                '}';
+    }
 }

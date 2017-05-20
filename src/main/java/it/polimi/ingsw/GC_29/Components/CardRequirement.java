@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Lorenzotara on 18/05/17.
@@ -15,7 +16,7 @@ public class CardRequirement extends Requirement {
     }
 
     @Override
-    public void check(Player player) {
-        super.check(player);
+    public void check(PlayerStatus status) {
+        super.check(status);
     }
 }
