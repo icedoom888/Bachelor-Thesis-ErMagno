@@ -15,8 +15,9 @@ public class Dice {
         return color;
     }
 
-    public Dice(int face) {
-        this.face = face;
+    public Dice(DiceType dicetype) {
+        this.face = 0;
+        this.color= dicetype;
     }
 
     public void roll(){

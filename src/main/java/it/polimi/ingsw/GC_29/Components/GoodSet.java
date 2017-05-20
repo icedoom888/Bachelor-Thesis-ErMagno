@@ -19,17 +19,18 @@ public class GoodSet {
         this.goodSet.put(GoodType.FAITHPOINTS, faithPoints);
     }
 
+    public GoodSet(HashMap<GoodType,Integer> goodSet){
+        this.goodSet=goodSet;
+    }
     public GoodSet() {
         this(0,0,0,0,0,0,0);
+    }
+    public GoodSet(GoodSet oldset){
+        this.goodSet = new HashMap<GoodType, Integer>(oldset.goodSet);
     }
 
     public HashMap<GoodType, Integer> getHashMapGoodSet() {
         return goodSet;
-    }
-
-    public GoodSet(GoodSet oldset){
-
-        this.goodSet = new HashMap<GoodType, Integer>(oldset.goodSet);
     }
 
     public Good getGood(GoodType type){
@@ -38,7 +39,17 @@ public class GoodSet {
         return newGood;
     }
 
+    public void setGoodSet(HashMap<GoodType, Integer> goodSet) {
+        this.goodSet = goodSet;
+    }
+
     public int getGoodAmount(GoodType type){
         return goodSet.get(type);
+    }
+
+    public void addGoodSet(GoodSet goodSetToAdd){
+        for (GoodType type: GoodType.values()){
+            this.goodSet.put(type, this.goodSet.get(type)+ goodSetToAdd.getHashMapGoodSet().get(type));
+        }
     }
 }

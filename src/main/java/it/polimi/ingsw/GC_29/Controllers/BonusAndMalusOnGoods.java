@@ -5,10 +5,10 @@ import it.polimi.ingsw.GC_29.Components.GoodSet;
 /**
  * Created by Lorenzotara on 17/05/17.
  */
-public class BonusAndMalusOnGoodsObtained {
+public class BonusAndMalusOnGoods {
     private GoodSet GoodSetBonusMalus;
 
-    public BonusAndMalusOnGoodsObtained(GoodSet goodSetBonusMalus) {
+    public BonusAndMalusOnGoods(GoodSet goodSetBonusMalus) {
         GoodSetBonusMalus = goodSetBonusMalus;
     }
 

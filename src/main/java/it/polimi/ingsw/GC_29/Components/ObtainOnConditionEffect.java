@@ -1,10 +1,11 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import it.polimi.ingsw.GC_29.Player.*;
+import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import java.util.HashMap;
 
 /**
- * Created by Christian on 18/05/2017.
+ * Created by Icedoom on 18/05/2017.
  */
 public class ObtainOnConditionEffect extends ObtainEffect{
 
@@ -20,12 +21,51 @@ public class ObtainOnConditionEffect extends ObtainEffect{
     }
 
     @Override
-    public void execute(PlayerStatus status) {
-        evaluateActualGoodsObtained(status);
-        super.execute(status); // dopo che hai modificato l'attributo protected lanci la execute del metodo padre, senza chiamare altri metodi.
+    public void execute(Player player) {
+        evaluateActualGoodsObtained(player);
+        super.execute(player);
     }
 
-    private void evaluateActualGoodsObtained(PlayerStatus status){
-        // qui modifichi l'attributo goodsObtained della classe padre che è protected
+    public void evaluateActualGoodsObtained(Player player){
+        evaluateCardCondition(player);
+        evaluateGoodsCondition(player.getStatus());
+    }
+
+    private void evaluateCardCondition(Player player){
+        if(cardCondition==null){return;}
+        int multiplier=0;
+
+        if(cardCondition==CardColor.BLUE){
+            multiplier = player.getPersonalBoard().getFamilyLane().getNumberOfCardsPresent();
+        }
+        if(cardCondition==CardColor.YELLOW){
+            multiplier = player.getPersonalBoard().getBuildingLane().getNumberOfCardsPresent();
+        }
+        if(cardCondition==CardColor.PURPLE){
+            multiplier = player.getPersonalBoard().getVenturesLane().getNumberOfCardsPresent();
+        }
+        if(cardCondition==CardColor.GREEN){
+            multiplier = player.getPersonalBoard().getTerritoryLane().getNumberOfCardsPresent();
+        }
+        for(GoodType type : GoodType.values()) {
+            goodsObtained.getHashMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
+        }
+    }
+
+    private void evaluateGoodsCondition(PlayerStatus status){
+        if(goodsCondition==null){return;}
+        int multiplier=100;//valore inizializzato alto per necessità
+
+        for(GoodType type : GoodType.values()){
+            if(goodsCondition.getGood(type).getAmount()!=0){
+                int temporaryMultiplier = status.getActualGoodSet().getGood(type).getAmount()/goodsCondition.getGood(type).getAmount();
+                if(temporaryMultiplier<=multiplier){
+                    multiplier=temporaryMultiplier;
+                }
+            }
+        }
+        for(GoodType type : GoodType.values()) {
+            goodsObtained.getHashMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
+        }
     }
 }

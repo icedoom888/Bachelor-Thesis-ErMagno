@@ -6,8 +6,8 @@ package it.polimi.ingsw.GC_29.Components;
 public class TerritoryLane extends Lane {
     private ComplexSlot[] slots;
 
-    public TerritoryLane(){
-        cards = new DevelopmentCard[6];
+    public TerritoryLane(CardColor color){
+        super(color);
         slots = new ComplexSlot[6];
         slots[0]= new ComplexSlot(0,0);
         slots[1]= new ComplexSlot(0,0);

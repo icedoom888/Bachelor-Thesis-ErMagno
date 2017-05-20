@@ -1,5 +1,5 @@
 package it.polimi.ingsw.GC_29.Components;
-
+import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -7,5 +7,5 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  */
 public interface Effect {
 
-    void execute(PlayerStatus status);
+    void execute(Player player);
 }

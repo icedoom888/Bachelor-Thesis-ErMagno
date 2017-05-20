@@ -1,10 +1,14 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import it.polimi.ingsw.GC_29.Player.*;
+import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnGoods;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
- * Created by Christian on 18/05/2017.
+ * Created by Icedoom on 18/05/2017.
  */
 public class PayToObtainEffect extends ObtainEffect{
 
@@ -16,12 +20,22 @@ public class PayToObtainEffect extends ObtainEffect{
     }
 
     @Override
-    public void execute(PlayerStatus status) {
-        // TODO qui inserisci il controllo chiamando il metodo check, se positivo chiami super.execute(status)
+    public void execute(Player player) {
+        GoodSet newCost = activateBonusMalusOnGoods(player.getStatus().getBonusAndMalusOnGoodsToPayList(),cost);
+        if(checkSufficientGoods(player.getStatus(),newCost)){
+            update(player.getStatus(),newCost);
+            super.execute(player);
+        }
     }
 
-    private boolean checkSufficientGoods(PlayerStatus status){
-        // implementazione controllo risorse o punti sufficienti per ottenere il risultato dell'effetto
+    private boolean checkSufficientGoods(PlayerStatus status, GoodSet cost){
+        GoodSet newGoodset = status.getActualGoodSet();
+        newGoodset.addGoodSet(cost);
+        for(GoodType type : GoodType.values()){
+            if(newGoodset.getGoodAmount(type)<0){
+                return false;
+            }
+        }
         return true;
     }
 }

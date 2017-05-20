@@ -58,6 +58,10 @@ public class GameBoard {
         return market;
     }
 
+    public Dice[] getDiceLane() {
+        return diceLane;
+    }
+
     public void clearAll() {
     }
 }

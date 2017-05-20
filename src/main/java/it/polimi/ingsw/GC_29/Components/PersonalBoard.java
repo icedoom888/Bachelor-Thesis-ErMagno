@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 /**
- * Created by Lorenzotara on 18/05/17.
+ * Created by icedoom on 18/05/17.
  */
 public class PersonalBoard {
     private BonusTile bonusTile;
@@ -13,10 +13,10 @@ public class PersonalBoard {
 
     public PersonalBoard(){
         // bonusTile = new BonusTile(); //mancano gli obtainEffect da passare per creare le bonusTile
-        buildingLane = new Lane();
-        venturesLane = new Lane();
-        familyLane = new Lane();
-        territoryLane = new TerritoryLane();
+        buildingLane = new Lane(CardColor.YELLOW);
+        venturesLane = new Lane(CardColor.PURPLE);
+        familyLane = new Lane(CardColor.BLUE);
+        territoryLane = new TerritoryLane(CardColor.GREEN);
         goodCoffer = new GoodSet(0,0,0,0,0,0,0);
     }
 
@@ -36,7 +36,7 @@ public class PersonalBoard {
         return familyLane;
     }
 
-    public Lane getTerritoryLane() {
+    public TerritoryLane getTerritoryLane() {
         return territoryLane;
     }
 

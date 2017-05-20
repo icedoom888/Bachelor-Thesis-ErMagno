@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnAction;
-import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnGoodsObtained;
+import it.polimi.ingsw.GC_29.Controllers.BonusAndMalusOnGoods;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,8 @@ import java.util.ArrayList;
  */
 public class PlayerStatus {
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnActionList;
-    private ArrayList<BonusAndMalusOnGoodsObtained> bonudAndMalusOnGoodsObtainedList;
+    private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoodsObtainedList;
+    private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoodsToPayList;
     private GoodSet actualGoodSet;
     private boolean blackPawnAvailability;
     private boolean whitePawnAvailability;
@@ -31,27 +32,31 @@ public class PlayerStatus {
         return bonusAndMalusOnActionList;
     }
 
-    public ArrayList<BonusAndMalusOnGoodsObtained> getBonudAndMalusOnGoodsObtainedList() {
-        return bonudAndMalusOnGoodsObtainedList;
+    public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoodsObtainedList() {
+        return bonusAndMalusOnGoodsObtainedList;
+    }
+
+    public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoodsToPayList() {
+        return bonusAndMalusOnGoodsToPayList;
     }
 
     public GoodSet getActualGoodSet() {
         return actualGoodSet;
     }
 
-    public boolean isBlackPawnAvailability() {
+    public boolean isBlackPawnAvailable() {
         return blackPawnAvailability;
     }
 
-    public boolean isWhitePawnAvailability() {
+    public boolean isWhitePawnAvailable() {
         return whitePawnAvailability;
     }
 
-    public boolean isOrangePawnAvailability() {
+    public boolean isOrangePawnAvailable() {
         return orangePawnAvailability;
     }
 
-    public boolean isNeutralPawnAvailability() {
+    public boolean isNeutralPawnAvailable() {
         return neutralPawnAvailability;
     }
 
