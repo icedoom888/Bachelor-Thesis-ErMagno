@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import it.polimi.ingsw.GC_29.Components.CardCost;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
@@ -30,5 +32,14 @@ public final class Filter {
 
             playerBonusMalus.filter(goodsObtained);
         }
+    }
+
+    public static void apply(PlayerStatus playerStatus, CardCost cardCost) {
+
+    }
+
+    //per costo torre - leader - chiaramente non va bene è per togliere gli errori
+    public static void apply(PlayerStatus playerStatus, GoodSet towerCost) {
+
     }
 }
