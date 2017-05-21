@@ -37,9 +37,4 @@ public final class Filter {
     public static void apply(PlayerStatus playerStatus, CardCost cardCost) {
 
     }
-
-    //per costo torre - leader - chiaramente non va bene è per togliere gli errori
-    public static void apply(PlayerStatus playerStatus, GoodSet towerCost) {
-
-    }
 }
