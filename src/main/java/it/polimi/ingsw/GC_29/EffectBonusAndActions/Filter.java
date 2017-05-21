@@ -20,10 +20,11 @@ public final class Filter {
 
     /**
      *
-     * @param currentPLayerBonusMalusOnGoods BonusMalus on Goods list of the player
      * @param goodsObtained GoodSet to be filtered through the bonusMalusOnGoodsList
      */
-    public static void apply(ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalusOnGoods, GoodSet goodsObtained){
+    public static void apply(PlayerStatus playerStatus, GoodSet goodsObtained){
+
+        ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalusOnGoods = playerStatus.getBonusAndMalusOnGoods();
 
         for (BonusAndMalusOnGoods playerBonusMalus : currentPLayerBonusMalusOnGoods) {
 

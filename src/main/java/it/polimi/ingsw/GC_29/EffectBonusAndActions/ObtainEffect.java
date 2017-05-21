@@ -34,23 +34,22 @@ public class ObtainEffect implements Effect {
 
     @Override
     public void execute(PlayerStatus status) {
-        GoodSet newGoodsObtained = activateBonusMalusOnGoods(status.getBonusAndMalusOnGoods(),goodsObtained);
+        GoodSet newGoodsObtained = activateBonusMalusOnGoods(status,goodsObtained);
         status.updateGoodSet(newGoodsObtained);
     }
 
     /**
      *
-     * @param currentPLayerBonusMalus actual player's list of bonusMalus on Goods obtained in the game, the goods are filtered in this list
      * @param goodset goods obtained from the effect, these goods must be filtered in the player's bonusMalus on goods list
      * @return for each bonusMalus on goods in the list the method check if one specific good is obtained and if it has a BonusMalus,
      * this is done by the if condition (example: BonusMalus A, it has -2 on wood and -2 on stone, the goodset obtained has 3 wood and 1 coin,
      * the if condition is true for the wood, false for the coin and the stone)
      */
-    protected GoodSet activateBonusMalusOnGoods(ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalus,GoodSet goodset) { // questo sarà il metodo filter
+    protected GoodSet activateBonusMalusOnGoods(PlayerStatus playerStatus,GoodSet goodset) { // questo sarà il metodo filter
 
         GoodSet filteredGoodSet = new GoodSet(goodset);
 
-        Filter.apply(currentPLayerBonusMalus, filteredGoodSet);
+        Filter.apply(playerStatus, filteredGoodSet);
 
         return filteredGoodSet;
     }

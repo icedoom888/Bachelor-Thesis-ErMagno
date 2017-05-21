@@ -27,12 +27,7 @@ public class CardCost {
             this.necessaryGoodset[i] = necessaryGoodset[i];
         }
     }
-
-    public CardCost(CardCost cardCost) { // immutable object
-        this.numberOfAlternatives = cardCost.numberOfAlternatives;
-        this.cost = cardCost.cost;
-        this.alternative = cardCost.alternative;
-        this.necessaryGoodset = cardCost.necessaryGoodset;
+    
     public CardCost(CardCost cardCost) { // immutable object
         this.numberOfAlternatives = cardCost.numberOfAlternatives;
         this.cost = cardCost.cost;
