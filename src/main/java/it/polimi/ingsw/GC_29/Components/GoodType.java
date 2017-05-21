@@ -9,6 +9,7 @@ public enum GoodType {
     COINS,
     WORKERS,
     VICTORYPOINTS,
-    MMILITARYPOINTS,
+    MILITARYPOINTS,
     FAITHPOINTS
 }
+
