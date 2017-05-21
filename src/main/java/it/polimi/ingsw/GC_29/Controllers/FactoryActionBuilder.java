@@ -16,7 +16,7 @@ public class FactoryActionBuilder {
 
     public static ActionBuilder getActionBuilder(ActionType type, boolean bonusAction, PlayerStatus playerStatus){
 
-        switch (type){ // factory di actionBuilder sposta questo switch nella factory
+        switch (type){
             case GREENTOWER:
                 return new TowerActionBuilder(ActionType.GREENTOWER, towerHashMap.get(CardColor.GREEN), playerStatus, bonusAction);
 
