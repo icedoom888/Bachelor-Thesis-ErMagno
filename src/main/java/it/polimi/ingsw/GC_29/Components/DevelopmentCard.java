@@ -11,15 +11,16 @@ public abstract class DevelopmentCard {
     private String name;
     private String description;
     private Era era;
-    private Cost cost;
+    private CardCost cardCost;
     private CardColor color;
     private ArrayList<Effect> immediateEffect;
     private ArrayList<Effect> permanentEffect;
 
-    public DevelopmentCard(String name, String description, Era era, CardColor color, ArrayList<Effect> immediateEffect, ArrayList<Effect> permanentEffect) {
+    public DevelopmentCard(String name, String description, Era era, CardCost cardCost, CardColor color, ArrayList<Effect> immediateEffect, ArrayList<Effect> permanentEffect) {
         this.name = name;
         this.description = description;
         this.era = era;
+        this.cardCost = cardCost;
         this.color = color;
         this.immediateEffect = immediateEffect;
         this.permanentEffect = permanentEffect;
@@ -37,8 +38,8 @@ public abstract class DevelopmentCard {
         return era;
     }
 
-    public Cost getCost() { // immutable object
-        return new Cost(cost);
+    public CardCost getCardCost() { // immutable object
+        return new CardCost(cardCost);
     }
 
     public CardColor getColor() {

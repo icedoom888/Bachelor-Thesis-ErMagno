@@ -3,8 +3,9 @@ package it.polimi.ingsw.GC_29.Components;
 /**
  * Created by Lorenzotara on 21/05/17.
  */
-public class Cost {
+public class CardCost {
 
+    // TODO: add method to call the Static Speaker class
     private int numberOfAlternatives;
     private boolean alternative; // TODO: forse inutile per via di numberOfAlternatives
     private boolean withPrice;
@@ -13,7 +14,7 @@ public class Cost {
     private boolean withActionValue;
     private int actionValue;
 
-    public Cost(boolean withPrice, int numberOfAlternatives, boolean alternative, GoodSet[] costs, GoodSet[] necessaryGoodset, boolean withActionValue, int actionValue) {
+    public CardCost(boolean withPrice, int numberOfAlternatives, boolean alternative, GoodSet[] costs, GoodSet[] necessaryGoodset, boolean withActionValue, int actionValue) {
         this.numberOfAlternatives = numberOfAlternatives;
         this.alternative = alternative;
         this.cost = new GoodSet[numberOfAlternatives];
@@ -27,11 +28,14 @@ public class Cost {
         }
     }
 
-    public Cost(Cost cost) { // immutable object
-        this.numberOfAlternatives = cost.numberOfAlternatives;
-        this.cost = cost.cost;
-        this.alternative = cost.alternative;
-        this.necessaryGoodset = cost.necessaryGoodset;
+    public CardCost(CardCost cardCost) { // immutable object
+        this.numberOfAlternatives = cardCost.numberOfAlternatives;
+        this.cost = cardCost.cost;
+        this.alternative = cardCost.alternative;
+        this.necessaryGoodset = cardCost.necessaryGoodset;
+        this.withPrice = cardCost.withPrice;
+        this.withActionValue = cardCost.withActionValue;
+        this.actionValue = cardCost.actionValue;
     }
 
     public int getNumberOfAlternatives() {
@@ -39,7 +43,7 @@ public class Cost {
     }
 
     /*
-    public GoodSet[] getCost() { // immutable field
+    public GoodSet[] getCardCost() { // immutable field
         GoodSet[] temporaryGoodSet = new GoodSet[numberOfAlternatives];
         for (int i = 0; i < numberOfAlternatives; i++) {
             temporaryGoodSet[i] = this.cost[i];
