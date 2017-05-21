@@ -3,15 +3,15 @@ package it.polimi.ingsw.GC_29.Components;
 /**
  * Created by Lorenzotara on 17/05/17.
  */
-public class Floor<T extends DevelopmentCard> {
-    private T developmentCard;
+public class Floor {
+    private DevelopmentCard developmentCard;
     private ActionSpace actionSpace;
 
-    public void setDevelopmentCard(T developmentCard) {
+    public void setDevelopmentCard(DevelopmentCard developmentCard) {
         this.developmentCard = developmentCard;
     }
 
-    public T getDevelopmentCard() {
+    public DevelopmentCard getDevelopmentCard() {
         return developmentCard;
     }
 
