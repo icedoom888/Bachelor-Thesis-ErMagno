@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -14,7 +13,7 @@ public class TowerAction extends Action {
     private int floorIndex;
     private GoodSet temporaryGoodSet; // accumula il bonus dell'actionSpace
     private GoodSet towerCost;
-    private GoodSet cardCost;
+    private Cost cardCost;
     private GoodSet discount; // discount che c'è se non è realAction e viene passato dall'ActionEffect già selezionato se c'è l'alternativa
 
     public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus, Tower towerChosen, int floorIndex) {
@@ -23,7 +22,7 @@ public class TowerAction extends Action {
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.temporaryGoodSet = new GoodSet();
-
+        this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCost();
 
     }
 
@@ -44,15 +43,46 @@ public class TowerAction extends Action {
 
     @Override
     protected boolean isPossible() {
-        return super.isPossible() && checkFamilyPresence() && checkSufficientGoodsForCard();
+        return super.isPossible() && !checkFamilyPresence() && checkSufficientGoodsForCard();
     }
 
+    /**
+     * This method checks if there already is a player's familiar in the tower
+     * @return true if there is a player's familiar, false otherwise
+     */
     private boolean checkFamilyPresence() { // va a controllare nella torre se c'è un familiare del player
-        return true;
+
+        boolean familiarPresent = false;
+        for (Floor floor : towerChosen.getFloors()) {
+            ActionSpace actionSpace = floor.getActionSpace();
+            if (actionSpace.isOccupied()) {
+                familiarPresent = actionSpace.getPawnPlaced().searchFamiliar(this.pawnSelected);
+            }
+        }
+        return familiarPresent;
     }
 
-    private boolean isOccupied() { // se torre occupata controllo che il player abbia 3 monete e se ce le ha salvo nel towerCost
-                                   // se non ce le ha controllo B&M carta leader, se nemmeno chiudo
+    /**
+     * This method checks if the tower is occupied: in this case it controls if the player
+     * has a BM that make him access the tower, otherwise it checks if the player has enough coins
+     * to enter the tower
+     * @return true if you can access the tower, false otherwise
+     */
+    private boolean isOccupied() {
+
+        if (towerChosen.isOccupied()) {
+            Filter.apply(playerStatus, towerCost); // da rivedere, passo un int al filter
+            if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.COINS) >= towerChosen.getGoldCostIfOccupied()) {
+                //This branch is taken if the player have enough coins to pay the access to the occupied tower
+                towerCost.addGoodSet(new GoodSet(0,0,towerChosen.getGoldCostIfOccupied(),0,0,0,0));
+                return true;
+            }
+            else {
+                System.out.println("You don't have enough coins to acces to the tower!");
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -65,8 +95,8 @@ public class TowerAction extends Action {
     }
 
     private boolean checkSufficientGoodsForCard() {
-        filterCardCost();
                                                             // confronta cardCost con le risorse del player -> true/false
+        Filter.apply(playerStatus, cardCost);
 
         return true;
     }

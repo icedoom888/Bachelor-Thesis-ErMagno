@@ -113,5 +113,6 @@ public class PlayerStatus {
     public void setNeutralPawnAvailability(boolean neutralPawnAvailability) {
         this.neutralPawnAvailability = neutralPawnAvailability;
     }
+
 }
 

@@ -133,6 +133,8 @@ public class CouncilPrivilegeEffect implements Effect {
         return temporaryGoodSet;
     }
 
+    // TODO: filtering
+
     // This method is for testing
     public void setEffectsChosen(CouncilPrivilegeType[] effectsChosen) {
         this.effectsChosen = effectsChosen;

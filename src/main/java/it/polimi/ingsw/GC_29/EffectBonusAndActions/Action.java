@@ -10,14 +10,14 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  * Created by Lorenzotara on 19/05/17.
  */
 public abstract class Action {
-    private FamilyPawn pawnSelected;
+    protected FamilyPawn pawnSelected;
     private ActionType actionSelected;
     private int workersSelected;
     protected ActionSpace actionSpaceSelected;
     private FamilyPawn temporaryPawn;
-    private GoodSet tempGoodSet;
+    // private GoodSet tempGoodSet;
     private boolean realAction;
-    private PlayerStatus playerStatus;
+    protected PlayerStatus playerStatus;
 
     public Action(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus) {
         this.pawnSelected = pawnSelected;

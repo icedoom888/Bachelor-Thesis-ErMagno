@@ -62,6 +62,19 @@ public class PawnSlot{
     }
 
 
+    /**
+     * This method search if there is a Pawn of the same colour of the parameter
+     * @param familyPawn
+     * @return
+     */
+    public boolean searchFamiliar(FamilyPawn familyPawn) {
+
+        boolean familiarPresent = false;
+        for (Pawn playerPawn : playerPawns) {
+            if (playerPawn.getPlayerColor() == familyPawn.getPlayerColor()) familiarPresent = true;
+        }
+        return familiarPresent;
+    }
 
     protected boolean isFree() {
         return free;
