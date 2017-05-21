@@ -70,7 +70,7 @@ public class TowerAction extends Action {
     private boolean isOccupied() {
 
         if (towerChosen.isOccupied()) {
-            Filter.apply(playerStatus, towerCost); // da rivedere, passo un int al filter
+            Filter.apply(playerStatus, towerCost); // da rivedere, passo un goodSet al filter
             if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.COINS) >= towerChosen.getGoldCostIfOccupied()) {
                 //This branch is taken if the player have enough coins to pay the access to the occupied tower
                 towerCost.addGoodSet(new GoodSet(0,0,towerChosen.getGoldCostIfOccupied(),0,0,0,0));

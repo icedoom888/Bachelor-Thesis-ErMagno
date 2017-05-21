@@ -22,7 +22,7 @@ public class CardCost {
         this.withPrice = withPrice;
         this.withActionValue = withActionValue;
         this.actionValue = actionValue;
-        for (int i = 0; i < numberOfAlternatives; i++) {
+        for (int i = 0; i < numberOfAlternatives+1; i++) {
             this.cost[i] = costs[i];
             this.necessaryGoodset[i] = necessaryGoodset[i];
         }
