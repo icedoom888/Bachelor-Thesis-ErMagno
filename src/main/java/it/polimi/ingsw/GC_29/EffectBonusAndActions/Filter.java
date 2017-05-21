@@ -24,6 +24,7 @@ public final class Filter {
      *
      * @param goodsObtained GoodSet to be filtered through the bonusMalusOnGoodsList
      */
+
     public static void apply(PlayerStatus playerStatus, GoodSet goodsObtained){
 
         ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalusOnGoods = playerStatus.getBonusAndMalusOnGoods();
@@ -31,6 +32,16 @@ public final class Filter {
         for (BonusAndMalusOnGoods playerBonusMalus : currentPLayerBonusMalusOnGoods) {
 
             playerBonusMalus.filter(goodsObtained);
+        }
+    }
+
+    public static void apply(PlayerStatus playerStatus,ActionType actionType,int actionValue){
+        ArrayList<BonusAndMalusOnAction> currentPlayerBonusMalusOnAction = playerStatus.getBonusAndMalusOnAction();
+
+        for (BonusAndMalusOnAction playerBonusMalus : currentPlayerBonusMalusOnAction){
+            if(playerBonusMalus.getActionType()==actionType){
+                playerBonusMalus.filter(actionValue,playerStatus.getActualGoodSet());
+            }
         }
     }
 

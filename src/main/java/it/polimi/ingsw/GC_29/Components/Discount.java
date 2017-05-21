@@ -20,4 +20,10 @@ public class Discount {
     public boolean isAlternativeDiscount() {
         return alternativeDiscount;
     }
+
+    public Discount(GoodSet firstDiscount, GoodSet secondDiscount, boolean alternativeDiscount) {
+        this.firstDiscount = firstDiscount;
+        this.secondDiscount = secondDiscount;
+        this.alternativeDiscount = alternativeDiscount;
+    }
 }

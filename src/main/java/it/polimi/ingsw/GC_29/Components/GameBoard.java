@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
+
 import java.util.HashMap;
 
 /**
@@ -17,6 +19,27 @@ public class GameBoard {
     private Workspace productionArea;
     private Market market;
     private Dice[] diceLane;
+
+    public GameBoard(int numberOfPlayers,ExcommunicationTile tile_1,ExcommunicationTile tile_2,ExcommunicationTile tile_3){
+
+        this.victoryPointsTrack = new Track(numberOfPlayers, 100);
+        this.venturesPointsTrack = new Track(numberOfPlayers,26);
+        this.turnOrderTrack = new Track(1,numberOfPlayers);
+        int[] victoryPointsForFaithTrack = {0,1,2,3,4,5,7,9,11,13,15,17,19,22,25,30};
+        this.faithPointsTrack = new FaithPointsTrack(numberOfPlayers,16,victoryPointsForFaithTrack);
+        this.towerMap = new HashMap<CardColor,Tower>();
+        for (CardColor color : CardColor.values()){
+            towerMap.put(color,new Tower(color));
+        }
+        this.excommunicationLane = new ExcommunicationLane(numberOfPlayers,tile_1,tile_2,tile_3);
+        this.councilPalace = new CouncilPalaceActionSpace(numberOfPlayers);
+        this.harvestArea = new Workspace(ActionType.HARVEST,numberOfPlayers);
+        this.productionArea = new Workspace(ActionType.PRODUCTION,numberOfPlayers);
+        this.market = new Market(numberOfPlayers);
+        this.diceLane = new Dice[3];
+
+
+    }
 
     public Track getVictoryPointsTrack() {
         return victoryPointsTrack;

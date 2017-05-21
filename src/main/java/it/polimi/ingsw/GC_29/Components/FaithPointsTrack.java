@@ -12,7 +12,7 @@ public class FaithPointsTrack extends Track {
 
     public FaithPointsTrack(int maxNumberOfPawns, int trackLenght, int[] victoryPointsPerSlot) {
         super(maxNumberOfPawns, trackLenght);
-        this.victoryPointsPerSlot = new int[trackLenght];
+        this.victoryPointsPerSlot = victoryPointsPerSlot;
     }
 
     public int[] getVictoryPointsPerSlot() {

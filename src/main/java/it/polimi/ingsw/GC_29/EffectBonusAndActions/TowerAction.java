@@ -89,7 +89,7 @@ public class TowerAction extends Action {
 
         if (towerChosen.isOccupied()) {
             Filter.apply(playerStatus, towerCost); // TODO da rivedere, passo un goodSet al filter e invece devo andare a controllare le leaderCard
-            int goldCost = towerChosen.getGoldCostIfOccupied();
+            int goldCost = towerChosen.getCostIfOccupied();
             if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.COINS) >= goldCost) {
                 //This branch is taken if the player have enough coins to pay the access to the occupied tower
                 towerCost.addGoodSet(new GoodSet(0,0,goldCost,0,0,0,0));
@@ -200,7 +200,7 @@ public class TowerAction extends Action {
 
         if (cardSelected.getColor() == CardColor.BLUE) {
             for (Effect effect : cardSelected.getPermanentEffect()) {
-                playerStatus.getBonusAndMalusOnActionList().add((BonusAndMalusOnAction) effect); //cast obbligatorio
+                playerStatus.getBonusAndMalusOnAction().add((BonusAndMalusOnAction) effect); //cast obbligatorio
             }
         }
 

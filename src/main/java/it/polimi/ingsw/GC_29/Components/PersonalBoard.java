@@ -11,8 +11,8 @@ public class PersonalBoard {
     private TerritoryLane territoryLane;
     private GoodSet goodCoffer; // TODO: serve???
 
-    public PersonalBoard(){
-        // bonusTile = new BonusTile(); //mancano gli obtainEffect da passare per creare le bonusTile
+    public PersonalBoard(BonusTile chosenTile){
+        bonusTile = chosenTile;
         buildingLane = new Lane(CardColor.YELLOW);
         venturesLane = new Lane(CardColor.PURPLE);
         familyLane = new Lane(CardColor.BLUE);

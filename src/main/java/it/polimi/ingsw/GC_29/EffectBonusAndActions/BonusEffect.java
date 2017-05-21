@@ -23,7 +23,7 @@ public class BonusEffect implements Effect {
      */
     public void execute(PlayerStatus status) {
         System.out.println("You received a Bonus! It will be added to your Bonus List");
-        ArrayList<BonusAndMalusOnAction> bonusOnActionList = status.getBonusAndMalusOnActionList();
+        ArrayList<BonusAndMalusOnAction> bonusOnActionList = status.getBonusAndMalusOnAction();
         bonusOnActionList.add(bonusAndMalusOnAction);
     }
 }
