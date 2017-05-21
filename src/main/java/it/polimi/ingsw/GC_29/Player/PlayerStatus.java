@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.PersonalBoard;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
 
@@ -14,6 +15,7 @@ import java.util.HashMap;
 public class PlayerStatus {
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnActionList;
     private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
+    private PersonalBoard personalBoard; // TODO: aggiunto perchè dalle azioni
     private GoodSet actualGoodSet;
     private HashMap<CardColor, Integer> cardsOwned;
     private boolean blackPawnAvailability;
@@ -56,6 +58,10 @@ public class PlayerStatus {
     public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoods() {
 
         return bonusAndMalusOnGoods;
+    }
+
+    public PersonalBoard getPersonalBoard() {
+        return personalBoard;
     }
 
     public GoodSet getActualGoodSet() {

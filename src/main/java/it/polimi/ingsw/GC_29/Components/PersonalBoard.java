@@ -9,7 +9,7 @@ public class PersonalBoard {
     private Lane venturesLane;
     private Lane familyLane;
     private TerritoryLane territoryLane;
-    private GoodSet goodCoffer;
+    private GoodSet goodCoffer; // TODO: serve???
 
     public PersonalBoard(){
         // bonusTile = new BonusTile(); //mancano gli obtainEffect da passare per creare le bonusTile

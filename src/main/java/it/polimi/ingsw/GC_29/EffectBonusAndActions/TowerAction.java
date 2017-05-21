@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
+import java.util.ArrayList;
+
 /**
  * Created by Lorenzotara on 19/05/17.
  */
@@ -14,6 +16,8 @@ public class TowerAction extends Action {
     private GoodSet towerCost; // 3 coins
     private CardCost cardCost;
     private GoodSet discount; // discount che c'è se non è realAction e viene passato dall'ActionEffect già selezionato se c'è l'alternativa
+    private GoodSet totalCost;
+    private DevelopmentCard cardSelected;
 
     public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus, Tower towerChosen, int floorIndex) {
         super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
@@ -21,7 +25,10 @@ public class TowerAction extends Action {
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.temporaryGoodSet = new GoodSet();
+        this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
         this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
+        this.totalCost = new GoodSet();
+        this.towerCost = new GoodSet();
 
     }
 
@@ -31,28 +38,29 @@ public class TowerAction extends Action {
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.temporaryGoodSet = new GoodSet();
+        this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
         this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
         this.discount = discount;
+        this.totalCost = new GoodSet();
+        this.towerCost = new GoodSet();
     }
 
     @Override
     public void execute() {
 
-        // isPossible
+        // isPossible balza, diventa public
 
-        // ramo true della isPossible
         super.addPawn();
-
-        // payCard
-        // getCard
-        // handleCard
-
-        // update
+        activateActionSpaceEffect();
+        payCard();
+        giveCard();
+        activateCardEffects();
+        update();
     }
 
     @Override
     protected boolean isPossible() {
-        return super.isPossible() && !checkFamilyPresence() && checkSufficientGoodsForCard();
+        return super.isPossible() && !checkFamilyPresence() && isOccupied() && checkSufficientGoodsForCard();
     }
 
     /**
@@ -96,11 +104,12 @@ public class TowerAction extends Action {
         return true;
     }
 
+
     /**
-     * This method saves the resources of the actionSpace Effect in order to make other
+     * This method saves the resources of the actionSpace Effect, after being filtered, in order to make other
      * controls in the future. The effect is not activated.
      */
-    private void setActionSpaceEffect() { // prendo l'effetto dell'action space, se esiste, lo filtro (senza usare l'effect.execute) e lo assegno al temporaryGoodSet
+    private void setActionSpaceEffect() {
 
         ObtainEffect effect = (ObtainEffect) this.actionSpaceSelected.getEffect();
         GoodSet actionSpaceGoodSet = effect.getGoodsObtained();
@@ -109,10 +118,6 @@ public class TowerAction extends Action {
 
     }
 
-    /* private void filterCardCost() { // ricopia il costo della carta in cardCost, filtro di B&M sugli eventuali sconti o malus modificando cardCost
-        // vedo se è realAction per gestire eventuale discount su carta - gestisci bene
-        // poi fa cardCost = cardCost - towerCost + temporaryGoodSet
-    }*/
 
     /**
      * After saving the potential resources that the actionSpace can give to the player,
@@ -122,12 +127,10 @@ public class TowerAction extends Action {
      * @return true if there are enough resources to pay the card, false otherwise
      */
     private boolean checkSufficientGoodsForCard() {
-        // confronta cardCost con le risorse del player -> true/false
 
-        setActionSpaceEffect(); // da assegnare al temporaryGoodSet
+        setActionSpaceEffect();
         Filter.apply(playerStatus, cardCost);
 
-        GoodSet totalCost = new GoodSet();
         totalCost.addGoodSet(cardCost.getMainCost());
         totalCost.addGoodSet(towerCost);
         totalCost.subGoodSet(temporaryGoodSet);
@@ -137,32 +140,75 @@ public class TowerAction extends Action {
     }
 
 
-
-    /*
-    * Fino a qui tutto contenuto in isPossible
-     */
-
     private void payCard() {
+
+        playerStatus.getActualGoodSet().subGoodSet(totalCost);
     }
 
-    /*
-    * private Card getCard() { // prende e posiziona carta
-    *    return Card;
-    * }
 
+    /**
+     * This method removes the Card from the chosen floor and gives this card to
+     * the player. From the colour of the card the method chooses where to add
+     * the card (TerritoryLane, FamilyLane, BuildingLane, VenturesLane).
      */
+    private void giveCard() {
 
-    private void activateCardEffects() {
-        // se la carta è blu vado a salvare i permanenti
+        DevelopmentCard card = towerChosen.getFloor(floorIndex).removeCard();
+        switch (card.getColor()) {
+            case GREEN:
+                playerStatus.getPersonalBoard().getTerritoryLane().addCard(card);
+                break;
+            case BLUE:
+                playerStatus.getPersonalBoard().getFamilyLane().addCard(card);
+                break;
+            case YELLOW:
+                playerStatus.getPersonalBoard().getBuildingLane().addCard(card);
+                break;
+            case PURPLE:
+                playerStatus.getPersonalBoard().getVenturesLane().addCard(card);
+                break;
+            default:
+                System.out.println("Ops! There has been an error!");
+        }
+
+    }
+
+    private void activateActionSpaceEffect() {
+        this.actionSpaceSelected.getEffect().execute(playerStatus);
     }
 
 
+    /**
+     * This method activates all the immediate effects of the selected card
+     */
+    private void activateCardEffects() {
+
+        ArrayList<Effect> immediateEffects = this.cardSelected.getImmediateEffect();
+        for (Effect immediateEffect : immediateEffects) {
+            immediateEffect.execute(playerStatus);
+        }
+    }
 
 
-
-
+    /**
+     * This method update:
+     * permanent effects in playerStatus
+     * number of card per colour in playerStatus
+     * ...
+     */
     protected void update() {
 
+        if (cardSelected.getColor() == CardColor.BLUE) {
+            for (Effect effect : cardSelected.getPermanentEffect()) {
+                playerStatus.getBonusAndMalusOnActionList().add((BonusAndMalusOnAction) effect); //cast obbligatorio
+            }
+        }
+
+        int numberOfCards = playerStatus.getCardsOwned().get(cardSelected.getColor());
+        numberOfCards++;
+        playerStatus.getCardsOwned().put(cardSelected.getColor(), numberOfCards);
+
+        // altre cose?
     }
 
 }

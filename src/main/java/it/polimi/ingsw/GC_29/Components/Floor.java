@@ -19,4 +19,10 @@ public class Floor {
         return actionSpace;
     }
 
+    public DevelopmentCard removeCard(){
+        DevelopmentCard card = this.developmentCard;
+        this.developmentCard = null;
+        return card;
+    }
+
 }
