@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -13,7 +12,7 @@ public class TowerAction extends Action {
     private int floorIndex;
     private GoodSet temporaryGoodSet; // accumula il bonus dell'actionSpace
     private GoodSet towerCost;
-    private Cost cardCost;
+    private CardCost cardCost;
     private GoodSet discount; // discount che c'è se non è realAction e viene passato dall'ActionEffect già selezionato se c'è l'alternativa
 
     public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus, Tower towerChosen, int floorIndex) {
@@ -22,7 +21,7 @@ public class TowerAction extends Action {
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.temporaryGoodSet = new GoodSet();
-        this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCost();
+        this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
 
     }
 

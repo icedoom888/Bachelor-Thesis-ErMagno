@@ -11,7 +11,7 @@ public abstract class DevelopmentCard {
     private String name;
     private String description;
     private Era era;
-    private Cost cost;
+    private CardCost cardCost;
     private CardColor color;
     private ArrayList<Effect> immediateEffect;
     private ArrayList<Effect> permanentEffect;
@@ -37,8 +37,8 @@ public abstract class DevelopmentCard {
         return era;
     }
 
-    public Cost getCost() { // immutable object
-        return new Cost(cost);
+    public CardCost getCardCost() { // immutable object
+        return new CardCost(cardCost);
     }
 
     public CardColor getColor() {
