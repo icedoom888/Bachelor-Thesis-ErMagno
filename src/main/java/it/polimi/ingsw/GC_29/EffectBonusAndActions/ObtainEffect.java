@@ -50,10 +50,7 @@ public class ObtainEffect implements Effect {
 
         GoodSet filteredGoodSet = new GoodSet(goodset);
 
-        for (BonusAndMalusOnGoods playerBonusMalus : currentPLayerBonusMalus) {
-
-            playerBonusMalus.filter(filteredGoodSet);
-        }
+        Filter.apply(currentPLayerBonusMalus, filteredGoodSet);
 
         return filteredGoodSet;
     }

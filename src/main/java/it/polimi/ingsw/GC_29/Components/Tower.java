@@ -1,10 +1,15 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Lorenzotara on 17/05/17.
  */
-public class Tower implements Cleanable {
-    private Floor[] floors;
+public class Tower<T extends DevelopmentCard> implements Cleanable {
+    private List<Floor<T>> floors = new ArrayList<Floor<T>>();
+    //private Floor[] floors;
     private CardColor cardType;
     private boolean occupied;
     private int goldCostIfOccupied;
@@ -18,12 +23,12 @@ public class Tower implements Cleanable {
 
     }
 
-    public Floor[] getFloors() {
+    public List<Floor<T>> getFloors() {
         return floors;
     }
 
-    public Floor getFloor(int index) {
-        return floors[index];
+    public Floor<T> getFloor(int index) {
+        return floors.get(index);
     }
 
     public CardColor getCardType() {
