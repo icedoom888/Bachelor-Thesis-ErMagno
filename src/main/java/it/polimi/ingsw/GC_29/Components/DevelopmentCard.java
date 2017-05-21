@@ -16,10 +16,11 @@ public abstract class DevelopmentCard {
     private ArrayList<Effect> immediateEffect;
     private ArrayList<Effect> permanentEffect;
 
-    public DevelopmentCard(String name, String description, Era era, CardColor color, ArrayList<Effect> immediateEffect, ArrayList<Effect> permanentEffect) {
+    public DevelopmentCard(String name, String description, Era era, CardCost cardCost, CardColor color, ArrayList<Effect> immediateEffect, ArrayList<Effect> permanentEffect) {
         this.name = name;
         this.description = description;
         this.era = era;
+        this.cardCost = cardCost;
         this.color = color;
         this.immediateEffect = immediateEffect;
         this.permanentEffect = permanentEffect;

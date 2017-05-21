@@ -5,6 +5,7 @@ package it.polimi.ingsw.GC_29.Components;
  */
 public class CardCost {
 
+    // TODO: add method to call the Static Speaker class
     private int numberOfAlternatives;
     private boolean alternative; // TODO: forse inutile per via di numberOfAlternatives
     private boolean withPrice;
@@ -32,6 +33,14 @@ public class CardCost {
         this.cost = cardCost.cost;
         this.alternative = cardCost.alternative;
         this.necessaryGoodset = cardCost.necessaryGoodset;
+    public CardCost(CardCost cardCost) { // immutable object
+        this.numberOfAlternatives = cardCost.numberOfAlternatives;
+        this.cost = cardCost.cost;
+        this.alternative = cardCost.alternative;
+        this.necessaryGoodset = cardCost.necessaryGoodset;
+        this.withPrice = cardCost.withPrice;
+        this.withActionValue = cardCost.withActionValue;
+        this.actionValue = cardCost.actionValue;
     }
 
     public int getNumberOfAlternatives() {
