@@ -32,6 +32,10 @@ public class ObtainEffect implements Effect {
         this.goodsObtained = new GoodSet();
     }
 
+    public GoodSet getGoodsObtained() {
+        return new GoodSet(goodsObtained);
+    }
+
     @Override
     public void execute(PlayerStatus status) {
         GoodSet newGoodsObtained = activateBonusMalusOnGoods(status,goodsObtained);

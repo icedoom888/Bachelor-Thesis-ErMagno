@@ -16,7 +16,7 @@ public abstract class Action {
     protected ActionSpace actionSpaceSelected;
     private FamilyPawn temporaryPawn;
     // private GoodSet tempGoodSet;
-    private boolean realAction;
+    protected boolean realAction;
     protected PlayerStatus playerStatus;
 
     public Action(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus) {

@@ -11,7 +11,7 @@ public class TowerAction extends Action {
     private Tower towerChosen;
     private int floorIndex;
     private GoodSet temporaryGoodSet; // accumula il bonus dell'actionSpace
-    private GoodSet towerCost;
+    private GoodSet towerCost; // 3 coins
     private CardCost cardCost;
     private GoodSet discount; // discount che c'è se non è realAction e viene passato dall'ActionEffect già selezionato se c'è l'alternativa
 
@@ -23,6 +23,16 @@ public class TowerAction extends Action {
         this.temporaryGoodSet = new GoodSet();
         this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
 
+    }
+
+    public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus, Tower towerChosen, int floorIndex, GoodSet discount) {
+        super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
+        this.towerChosen = towerChosen;
+        this.floorIndex = floorIndex;
+        this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
+        this.temporaryGoodSet = new GoodSet();
+        this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
+        this.discount = discount;
     }
 
     @Override
@@ -70,14 +80,15 @@ public class TowerAction extends Action {
     private boolean isOccupied() {
 
         if (towerChosen.isOccupied()) {
-            Filter.apply(playerStatus, towerCost); // da rivedere, passo un goodSet al filter
-            if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.COINS) >= towerChosen.getGoldCostIfOccupied()) {
+            Filter.apply(playerStatus, towerCost); // TODO da rivedere, passo un goodSet al filter e invece devo andare a controllare le leaderCard
+            int goldCost = towerChosen.getGoldCostIfOccupied();
+            if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.COINS) >= goldCost) {
                 //This branch is taken if the player have enough coins to pay the access to the occupied tower
-                towerCost.addGoodSet(new GoodSet(0,0,towerChosen.getGoldCostIfOccupied(),0,0,0,0));
+                towerCost.addGoodSet(new GoodSet(0,0,goldCost,0,0,0,0));
                 return true;
             }
             else {
-                System.out.println("You don't have enough coins to acces to the tower!");
+                System.out.println("You don't have enough coins to access to the tower!");
                 return false;
             }
         }
@@ -85,19 +96,44 @@ public class TowerAction extends Action {
         return true;
     }
 
+    /**
+     * This method saves the resources of the actionSpace Effect in order to make other
+     * controls in the future. The effect is not activated.
+     */
     private void setActionSpaceEffect() { // prendo l'effetto dell'action space, se esiste, lo filtro (senza usare l'effect.execute) e lo assegno al temporaryGoodSet
+
+        ObtainEffect effect = (ObtainEffect) this.actionSpaceSelected.getEffect();
+        GoodSet actionSpaceGoodSet = effect.getGoodsObtained();
+        Filter.apply(this.playerStatus, actionSpaceGoodSet);
+        temporaryGoodSet = actionSpaceGoodSet;
+
     }
 
-    private void filterCardCost() { // ricopia il costo della carta in cardCost, filtro di B&M sugli eventuali sconti o malus modificando cardCost
+    /* private void filterCardCost() { // ricopia il costo della carta in cardCost, filtro di B&M sugli eventuali sconti o malus modificando cardCost
         // vedo se è realAction per gestire eventuale discount su carta - gestisci bene
         // poi fa cardCost = cardCost - towerCost + temporaryGoodSet
-    }
+    }*/
 
+    /**
+     * After saving the potential resources that the actionSpace can give to the player,
+     * this method filters the cost of the card, add the cost of the tower and subtract the resources received
+     * by the actionSpace effect and if it is an action created by an effect with a discount, subtract also the discount,
+     * then checks if the player has enough resources in his goodSet to pay the selected card
+     * @return true if there are enough resources to pay the card, false otherwise
+     */
     private boolean checkSufficientGoodsForCard() {
-                                                            // confronta cardCost con le risorse del player -> true/false
+        // confronta cardCost con le risorse del player -> true/false
+
+        setActionSpaceEffect(); // da assegnare al temporaryGoodSet
         Filter.apply(playerStatus, cardCost);
 
-        return true;
+        GoodSet totalCost = new GoodSet();
+        totalCost.addGoodSet(cardCost.getMainCost());
+        totalCost.addGoodSet(towerCost);
+        totalCost.subGoodSet(temporaryGoodSet);
+        if (!this.realAction) totalCost.subGoodSet(discount);
+
+        return playerStatus.getActualGoodSet().enoughResources(totalCost);
     }
 
 

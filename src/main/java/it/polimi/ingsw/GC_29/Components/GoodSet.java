@@ -23,9 +23,11 @@ public class GoodSet {
     public GoodSet(HashMap<GoodType,Integer> goodSet){
         this.goodSet=goodSet;
     }
+
     public GoodSet() {
         this(0,0,0,0,0,0,0);
     }
+
     public GoodSet(GoodSet oldset){
         this.goodSet = new HashMap<GoodType, Integer>(oldset.goodSet);
     }
@@ -53,6 +55,27 @@ public class GoodSet {
             this.goodSet.put(type, this.goodSet.get(type)+ goodSetToAdd.getHashMapGoodSet().get(type));
         }
     }
+
+    public void subGoodSet(GoodSet goodSetToSub){
+        for (GoodType type: GoodType.values()) {
+            this.goodSet.put(type, this.goodSet.get(type) - goodSetToSub.getHashMapGoodSet().get(type));
+        }
+    }
+
+    /**
+     * This method compare two goodSets in order to see if the one which calls
+     * has equal or more resources than the one called
+     * @param compareSet is the goodSet to pay
+     * @return true if this goodSet has equal or more resources than compareSet, false otherwise
+     */
+    public boolean enoughResources (GoodSet compareSet) {
+        boolean enough = true;
+        for (GoodType type : GoodType.values()) {
+            enough = this.goodSet.get(type) >= compareSet.getHashMapGoodSet().get(type);
+        }
+        return enough;
+    }
+
     public void printGoodSet(){
         for(GoodType type : GoodType.values()){
             System.out.print(type+": "+getGoodAmount(type)+"/n");
