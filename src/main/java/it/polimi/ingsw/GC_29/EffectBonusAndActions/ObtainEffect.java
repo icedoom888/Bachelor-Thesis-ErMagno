@@ -46,23 +46,15 @@ public class ObtainEffect implements Effect {
      * this is done by the if condition (example: BonusMalus A, it has -2 on wood and -2 on stone, the goodset obtained has 3 wood and 1 coin,
      * the if condition is true for the wood, false for the coin and the stone)
      */
-    protected GoodSet activateBonusMalusOnGoods(ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalus,GoodSet goodset){ // questo sarà il metodo filter
+    protected GoodSet activateBonusMalusOnGoods(ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalus,GoodSet goodset) { // questo sarà il metodo filter
 
-        HashMap<GoodType, Integer> temporaryHashMapGoodSet = new HashMap<GoodType, Integer>(goodset.getHashMapGoodSet());
+        GoodSet filteredGoodSet = new GoodSet(goodset);
 
         for (BonusAndMalusOnGoods playerBonusMalus : currentPLayerBonusMalus) {
 
-            for(GoodType type : GoodType.values()) { // il doppio ciclo for mi sta bene poiché la dimensione del secondo for è costante, dunque complessità O(n)
-                int goodObtainedAmount = temporaryHashMapGoodSet.get(type);
-                int playerBonusMalusOnGoodAmount = playerBonusMalus.getGoodSetBonusMalus().getHashMapGoodSet().get(type);
-
-                if(goodObtainedAmount*playerBonusMalusOnGoodAmount !=0) {
-                    int temporaryAmount = max(0,goodObtainedAmount + playerBonusMalusOnGoodAmount);
-                    temporaryHashMapGoodSet.put(type, temporaryAmount);
-                }
-            }
+            playerBonusMalus.filter(filteredGoodSet);
         }
-        GoodSet goodSet = new GoodSet(temporaryHashMapGoodSet);
-        return goodSet;
+
+        return filteredGoodSet;
     }
 }

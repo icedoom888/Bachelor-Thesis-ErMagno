@@ -14,10 +14,10 @@ import static org.testng.Assert.*;
 public class ObtainEffectTest {
     @Test
     public void testExecute() throws Exception {
-        GoodSet statusGoodset = new GoodSet(2,0,0,0,4,1,3);
+        GoodSet statusGoodset = new GoodSet(2,0,1,0,4,1,3);
         ObtainEffect testEffect = new ObtainEffect(4,2,0,0,5,0,1);
         BonusAndMalusOnGoods bonus = new BonusAndMalusOnGoods(new GoodSet(3,0,6,0,0,0,0));
-        BonusAndMalusOnGoods malus = new BonusAndMalusOnGoods(new GoodSet(-1,0,-5,0,0,0,-1000));
+        BonusAndMalusOnGoods malus = new BonusAndMalusOnGoods(new GoodSet(-1,0,-5,0,-4,0,-1000));
         PlayerStatus status = new PlayerStatus();
         status.getActualGoodSet().addGoodSet(statusGoodset);
         status.getBonusAndMalusOnGoods().add(bonus);

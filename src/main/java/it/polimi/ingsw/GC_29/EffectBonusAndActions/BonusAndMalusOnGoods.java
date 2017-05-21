@@ -21,9 +21,9 @@ public class BonusAndMalusOnGoods {
         return GoodSetBonusMalus;
     }
 
-    public GoodSet filter(GoodSet goodsObtained){
+    public void filter(GoodSet goodsObtained){
 
-        HashMap<GoodType, Integer> temporaryHashMapGoodSet = new HashMap<GoodType, Integer>(goodsObtained.getHashMapGoodSet());
+        HashMap<GoodType, Integer> temporaryHashMapGoodSet = goodsObtained.getHashMapGoodSet();
         for(GoodType type : GoodType.values()) { // il doppio ciclo for mi sta bene poiché la dimensione del secondo for è costante, dunque complessità O(n)
             int goodObtainedAmount = temporaryHashMapGoodSet.get(type);
             int BonusMalusOnGoodAmount = GoodSetBonusMalus.getHashMapGoodSet().get(type);
@@ -33,6 +33,5 @@ public class BonusAndMalusOnGoods {
                 temporaryHashMapGoodSet.put(type, temporaryAmount);
             }
         }
-        return goodsObtained;
     }
 }
