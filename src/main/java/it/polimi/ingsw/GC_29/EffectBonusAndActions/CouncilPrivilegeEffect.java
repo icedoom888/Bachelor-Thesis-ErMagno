@@ -60,7 +60,7 @@ public class CouncilPrivilegeEffect implements Effect {
                 k++;
             }
             Scanner scanner = new Scanner(System.in);
-            String answer = scanner.nextLine();
+            String answer = scanner.nextLine(); // TODO: gestire l'errore ecc..
             switch (answer) {
                 case "1":
                     CouncilPrivilegeType realAnswer = ONEWOOD_ONESTONE;
@@ -83,6 +83,7 @@ public class CouncilPrivilegeEffect implements Effect {
                     effectsChosen[i]=realAnswer;
                     break;
                 default:
+                    System.out.println("Error Input");
                     break;
             }
         }
@@ -106,7 +107,7 @@ public class CouncilPrivilegeEffect implements Effect {
     /**
      * collectRewards method adds to a temporaryGoodSet all the rewards of the effect
      */
-    public GoodSet collectRewards() {
+    public GoodSet collectRewards() { // TODO: create effects
 
         GoodSet temporaryGoodSet = new GoodSet();
 

@@ -71,7 +71,7 @@ public class GoodSet {
     public boolean enoughResources (GoodSet compareSet) {
         boolean enough = true;
         for (GoodType type : GoodType.values()) {
-            enough = this.goodSet.get(type) >= compareSet.getHashMapGoodSet().get(type);
+            enough = enough && this.goodSet.get(type) >= compareSet.getHashMapGoodSet().get(type);
         }
         return enough;
     }

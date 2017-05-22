@@ -36,7 +36,7 @@ public class TowerActionTest {
 
         tower.getFloor(floorIndex-1).getActionSpace().addPawn(familyPawnRedBlack);
 
-        System.out.println(towerAction.isPossible()); //TODO: isPossible() che viene chiamato è di Action, non di TowerAction
+        System.out.println(towerAction.isPossible());
     }
 
 }
