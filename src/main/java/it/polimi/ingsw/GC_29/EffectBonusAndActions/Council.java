@@ -16,7 +16,7 @@ class CouncilTest {
         PlayerStatus playerStatus = new PlayerStatus(null, null, new GoodSet(), null, true, true, true, true);
 
         effect.execute(playerStatus);
-        System.out.println(effect.checkDifferentPrivileges());
+        //System.out.println(effect.checkDifferentPrivileges());
 
     }
 }
