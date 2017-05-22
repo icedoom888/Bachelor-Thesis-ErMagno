@@ -52,7 +52,7 @@ public abstract class Action {
 
     protected abstract void update();
 
-    protected boolean isPossible() { // nelle figlie override con return super.isPossibile() && tutti i controlli della zona specifica
+    public boolean isPossible() { // nelle figlie override con return super.isPossibile() && tutti i controlli della zona specifica
         return checkActionSpaceOccupied(actionSpaceSelected)&&checkSufficientActionValue();
     }
 

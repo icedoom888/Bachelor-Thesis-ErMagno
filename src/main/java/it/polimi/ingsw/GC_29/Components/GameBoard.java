@@ -62,6 +62,10 @@ public class GameBoard {
         return diceLane;
     }
 
+    public void setTowerMap(HashMap<CardColor, Tower> towerMap) { // per il test sul playerController
+        this.towerMap = towerMap;
+    }
+
     public void clearAll() {
         victoryPointsTrack.clean();
         venturesPointsTrack.clean();

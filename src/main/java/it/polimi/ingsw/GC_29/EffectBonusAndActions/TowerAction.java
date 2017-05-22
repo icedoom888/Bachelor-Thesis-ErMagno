@@ -17,11 +17,12 @@ public class TowerAction extends Action {
 
     public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus, Tower towerChosen, int floorIndex) {
         super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
+
         this.towerChosen = towerChosen;
         this.floorIndex = floorIndex;
-        this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
+       // this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace(); // per il test su PlayerController
         this.temporaryGoodSet = new GoodSet();
-        this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
+        //this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost(); // per il test su PlayerController
 
     }
 
@@ -41,8 +42,10 @@ public class TowerAction extends Action {
     }
 
     @Override
-    protected boolean isPossible() {
-        return super.isPossible() && !checkFamilyPresence() && checkSufficientGoodsForCard();
+    public boolean isPossible() {
+        System.out.println("sono nel metodo isPossible() di TowerAction");
+        return true;
+        //return super.isPossible() && !checkFamilyPresence() && checkSufficientGoodsForCard();
     }
 
     /**

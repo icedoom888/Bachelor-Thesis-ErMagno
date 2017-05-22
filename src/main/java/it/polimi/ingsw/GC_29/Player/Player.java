@@ -52,6 +52,10 @@ public class Player {
         return markerDiscs;
     }
 
+    public void setStatus(PlayerStatus status){ // per il test su PlayerController
+        this.status = status;
+    }
+
     public void removeLeaderCard(LeaderCard leaderCard) {
         //TODO: scelta la carta leader da rimuovere, questo metodo la rimuove
     }
