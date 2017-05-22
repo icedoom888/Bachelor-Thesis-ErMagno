@@ -44,10 +44,10 @@ public class MainGSonToFile {
         // Combattere le Eresie
 
         ArrayList<Effect> immediateEffectsCLE = new ArrayList<Effect>(1);
-        immediateEffectsOIM.add(new ObtainEffect(0,0,0,0,0,2,0));
+        immediateEffectsCLE.add(new ObtainEffect(0,0,0,0,0,2,0));
 
         ArrayList<Effect> permanentEffectsCLE = new ArrayList<Effect>(1);
-        permanentEffectsOIM.add(new ObtainEffect(0,0,0,0,5,0,0));
+        permanentEffectsCLE.add(new ObtainEffect(0,0,0,0,5,0,0));
 
 
         DevelopmentCard combattereLeEresie = new DevelopmentCard(
