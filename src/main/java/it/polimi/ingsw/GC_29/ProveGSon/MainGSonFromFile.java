@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.ProveGSon;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,6 +21,9 @@ public class MainGSonFromFile {
         FileReader fileReader = new FileReader("/Users/Lorenzotara/Desktop/cartaProva");
 
         DevelopmentCard[] cards;
+
+        //ObtainEffectInstanceCreator creator = new ObtainEffectInstanceCreator();
+
         cards = gson.fromJson(fileReader, DevelopmentCard[].class);
 
         for (DevelopmentCard card : cards) {

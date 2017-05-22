@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Lorenzotara on 21/05/17.
  */
@@ -14,7 +17,12 @@ public class CardCost {
     private boolean necessaryGoodSetForAlternativeCost; // if it's true the necessaryGoodSet refers to alternativeCost
     private GoodSet necessaryGoodSet;
 
-    public CardCost(boolean alternative, boolean withPrice, GoodSet mainCost, GoodSet alternativeCost, boolean necessaryGoodSetForMainCost, GoodSet necessaryGoodSet) {
+    @JsonCreator
+    public CardCost(@JsonProperty("alternative") boolean alternative,@JsonProperty("withPrice") boolean withPrice,
+                    @JsonProperty("mainCost") GoodSet mainCost,@JsonProperty("alternativeCost") GoodSet alternativeCost,
+                    @JsonProperty("necessaryGoodSetForMainCost") boolean necessaryGoodSetForMainCost,
+                    @JsonProperty("necessaryGoodSet") GoodSet necessaryGoodSet) {
+
         this.alternative = alternative;
         this.withPrice = withPrice;
         this.mainCost = mainCost;

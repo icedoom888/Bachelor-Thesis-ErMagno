@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Lorenzotara on 19/05/17.
  */
+@JsonDeserialize(as = BonusEffect.class)
 public class BonusEffect implements Effect {
 
     private BonusAndMalusOnAction bonusAndMalusOnAction;

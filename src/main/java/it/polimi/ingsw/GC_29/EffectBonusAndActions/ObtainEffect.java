@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
@@ -14,6 +15,7 @@ import static java.lang.Math.min;
  * Created by Christian on 18/05/2017.
  * Upgraded by Icedoom on 19/05/2017.
  */
+@JsonDeserialize(as = ObtainEffect.class)
 public class ObtainEffect implements Effect {
 
     protected GoodSet goodsObtained;
@@ -56,5 +58,10 @@ public class ObtainEffect implements Effect {
         Filter.apply(playerStatus, filteredGoodSet);
 
         return filteredGoodSet;
+    }
+
+    @Override
+    public String toString() {
+        return "ObtainEffect{" + "goodsObtained=" + goodsObtained + '}';
     }
 }

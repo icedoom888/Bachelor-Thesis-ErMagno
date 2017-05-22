@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
@@ -8,6 +9,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 /**
  * Created by Icedoom on 18/05/2017.
  */
+@JsonDeserialize(as = PayToObtainEffect.class)
 public class PayToObtainEffect extends ObtainEffect {
 
     private GoodSet cost;

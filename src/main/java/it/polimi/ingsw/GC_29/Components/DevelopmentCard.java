@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
  * Created by Lorenzotara on 17/05/17.
  */
 public class DevelopmentCard {
+
     private String name;
     private String description;
     private Era era;
@@ -18,8 +21,13 @@ public class DevelopmentCard {
     private boolean withActionValue;
     private int actionValue;
 
-    public DevelopmentCard(String name, String description, Era era, CardCost cardCost, CardColor color,
-                           ArrayList<Effect> immediateEffect, ArrayList<Effect> permanentEffect, boolean withActionValue, int actionValue) {
+    @JsonCreator
+    public DevelopmentCard(@JsonProperty("name") String name,@JsonProperty("description") String description,
+                           @JsonProperty("era") Era era,@JsonProperty("cardCost") CardCost cardCost,@JsonProperty("color") CardColor color,
+                           @JsonProperty("immediateEffect") ArrayList<Effect> immediateEffect,
+                           @JsonProperty("permanentEffect") ArrayList<Effect> permanentEffect,
+                           @JsonProperty("withActionValue") boolean withActionValue,
+                           @JsonProperty("actionValue") int actionValue) {
         this.name = name;
         this.description = description;
         this.era = era;
@@ -65,5 +73,10 @@ public class DevelopmentCard {
 
     public int getActionValue() {
         return actionValue;
+    }
+
+    @Override
+    public String toString() {
+        return "DevelopmentCard{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", era=" + era + ", cardCost=" + cardCost + ", color=" + color + ", immediateEffect=" + immediateEffect + ", permanentEffect=" + permanentEffect + ", withActionValue=" + withActionValue + ", actionValue=" + actionValue + '}';
     }
 }
