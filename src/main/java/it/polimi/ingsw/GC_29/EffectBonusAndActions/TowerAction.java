@@ -57,7 +57,7 @@ public class TowerAction extends Action {
     }
 
     @Override
-    protected boolean isPossible() {
+    public boolean isPossible() {
         return super.isPossible() && !checkFamilyPresence() && isOccupied() && checkSufficientGoodsForCard();
     }
 
