@@ -48,8 +48,6 @@ public class TowerAction extends Action {
     @Override
     public void execute() {
 
-        // isPossible balza, diventa public
-
         super.addPawn();
         activateActionSpaceEffect();
         payCard();

@@ -31,7 +31,9 @@ public final class Filter {
 
         for (BonusAndMalusOnGoods playerBonusMalus : currentPLayerBonusMalusOnGoods) {
 
-            playerBonusMalus.filter(goodsObtained);
+            if (playerBonusMalus != null) {
+                playerBonusMalus.filter(goodsObtained);
+            }
         }
     }
 
