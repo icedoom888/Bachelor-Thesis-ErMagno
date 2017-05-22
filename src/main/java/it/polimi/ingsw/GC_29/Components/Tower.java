@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 
+import java.util.Arrays;
+
 /**
  * Created by Lorenzotara on 17/05/17.
  */

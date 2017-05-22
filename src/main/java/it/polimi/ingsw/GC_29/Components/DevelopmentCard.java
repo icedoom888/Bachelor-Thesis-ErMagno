@@ -18,7 +18,8 @@ public class DevelopmentCard {
     private boolean withActionValue;
     private int actionValue;
 
-    public DevelopmentCard(String name, String description, Era era, CardCost cardCost, CardColor color, ArrayList<Effect> immediateEffect, ArrayList<Effect> permanentEffect, boolean withActionValue, int actionValue) {
+    public DevelopmentCard(String name, String description, Era era, CardCost cardCost, CardColor color,
+                           ArrayList<Effect> immediateEffect, ArrayList<Effect> permanentEffect, boolean withActionValue, int actionValue) {
         this.name = name;
         this.description = description;
         this.era = era;
