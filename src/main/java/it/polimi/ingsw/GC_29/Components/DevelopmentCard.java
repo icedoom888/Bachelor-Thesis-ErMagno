@@ -15,8 +15,10 @@ public class DevelopmentCard {
     private CardColor color;
     private ArrayList<Effect> immediateEffect;
     private ArrayList<Effect> permanentEffect;
+    private boolean withActionValue;
+    private int actionValue;
 
-    public DevelopmentCard(String name, String description, Era era, CardCost cardCost, CardColor color, ArrayList<Effect> immediateEffect, ArrayList<Effect> permanentEffect) {
+    public DevelopmentCard(String name, String description, Era era, CardCost cardCost, CardColor color, ArrayList<Effect> immediateEffect, ArrayList<Effect> permanentEffect, boolean withActionValue, int actionValue) {
         this.name = name;
         this.description = description;
         this.era = era;
@@ -24,6 +26,8 @@ public class DevelopmentCard {
         this.color = color;
         this.immediateEffect = immediateEffect;
         this.permanentEffect = permanentEffect;
+        this.withActionValue = withActionValue;
+        this.actionValue = actionValue;
     }
 
     public String getName() {
@@ -52,5 +56,13 @@ public class DevelopmentCard {
 
     public ArrayList<Effect> getPermanentEffect() {
         return permanentEffect;
+    }
+
+    public boolean isWithActionValue() {
+        return withActionValue;
+    }
+
+    public int getActionValue() {
+        return actionValue;
     }
 }

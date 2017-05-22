@@ -11,19 +11,17 @@ public class CardCost {
     private GoodSet mainCost; // mainCost - one of the alternatives and the alternative chosen by the player
     private GoodSet alternativeCost;
     private boolean necessaryGoodSetForMainCost; // if it's true the necessaryGoodSet refers to mainCost
+    private boolean necessaryGoodSetForAlternativeCost; // if it's true the necessaryGoodSet refers to alternativeCost
     private GoodSet necessaryGoodSet;
-    private boolean withActionValue;
-    private int actionValue;
 
-    public CardCost(boolean alternative, boolean withPrice, GoodSet mainCost, GoodSet alternativeCost, boolean necessaryGoodSetForMainCost, GoodSet necessaryGoodSet, boolean withActionValue, int actionValue) {
+    public CardCost(boolean alternative, boolean withPrice, GoodSet mainCost, GoodSet alternativeCost, boolean necessaryGoodSetForMainCost, GoodSet necessaryGoodSet) {
         this.alternative = alternative;
         this.withPrice = withPrice;
         this.mainCost = mainCost;
         this.alternativeCost = alternativeCost;
         this.necessaryGoodSetForMainCost = necessaryGoodSetForMainCost;
         this.necessaryGoodSet = necessaryGoodSet;
-        this.withActionValue = withActionValue;
-        this.actionValue = actionValue;
+
     }
 
 
@@ -33,8 +31,6 @@ public class CardCost {
         this.alternative = cardCost.alternative;
         this.necessaryGoodSet = cardCost.necessaryGoodSet;
         this.withPrice = cardCost.withPrice;
-        this.withActionValue = cardCost.withActionValue;
-        this.actionValue = cardCost.actionValue;
     }
 
 
@@ -66,14 +62,6 @@ public class CardCost {
 
     public GoodSet getNecessaryGoodSet() {
         return necessaryGoodSet;
-    }
-
-    public boolean isWithActionValue() {
-        return withActionValue;
-    }
-
-    public int getActionValue() {
-        return actionValue;
     }
 
     public boolean isAlternative() {
