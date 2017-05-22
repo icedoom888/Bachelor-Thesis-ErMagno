@@ -9,6 +9,9 @@ public class FamilyPawn extends Pawn {
     private FamilyPawnType type;
     private int actualValue;
 
+    /** this method will be called at the beginning of every turn to set the pawn values based on the dices
+     * @param actualValue is the dice value
+     */
     public void setActualValue(int actualValue) {
         this.actualValue = actualValue;
     }
@@ -20,7 +23,6 @@ public class FamilyPawn extends Pawn {
     }
 
     public FamilyPawn(FamilyPawn familyPawn) {
-
         this(familyPawn.getPlayerColor(), familyPawn.getType(), familyPawn.getActualValue());
     }
 

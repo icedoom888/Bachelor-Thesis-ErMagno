@@ -10,7 +10,13 @@ public class GoodSetRequirement extends Requirement {
     private GoodSet goodSet;
 
     @Override
-    public void check(PlayerStatus status) {
-        super.check(status);
+    public boolean check(PlayerStatus status) {
+        for (GoodType type : GoodType.values()) {
+            if (status.getActualGoodSet().getGoodAmount(type) >= goodSet.getGoodAmount(type)) {
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 }

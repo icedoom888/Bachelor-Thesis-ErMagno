@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Lorenzotara on 17/05/17.
  */
-public abstract class DevelopmentCard {
+public class DevelopmentCard {
     private String name;
     private String description;
     private Era era;

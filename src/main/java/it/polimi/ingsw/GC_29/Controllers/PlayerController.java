@@ -48,7 +48,7 @@ public class PlayerController {
 
     public void init(){
 
-        while(currentState.getClass() == EndTurnState.class){ // finché non arrivo all'utlimo stato del turno continuo ad eseguire gli stati intermedi
+        while(currentState.getClass() != EndTurnState.class){ // finché non arrivo all'utlimo stato del turno continuo ad eseguire gli stati intermedi
             currentState.executeState(this);
         }
 

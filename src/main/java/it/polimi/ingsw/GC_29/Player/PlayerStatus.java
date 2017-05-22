@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.PersonalBoard;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
 
@@ -12,8 +13,9 @@ import java.util.HashMap;
  * Created by Christian on 17/05/2017.
  */
 public class PlayerStatus {
-    private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnActionList;
+    private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction;
     private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
+    private PersonalBoard personalBoard; // TODO: aggiunto perchè dalle azioni
     private GoodSet actualGoodSet;
     private HashMap<CardColor, Integer> cardsOwned;
     private boolean blackPawnAvailability;
@@ -22,7 +24,7 @@ public class PlayerStatus {
     private boolean neutralPawnAvailability;
 
     public PlayerStatus() {
-        bonusAndMalusOnActionList = new ArrayList<BonusAndMalusOnAction>();
+        bonusAndMalusOnAction = new ArrayList<BonusAndMalusOnAction>();
         bonusAndMalusOnGoods = new ArrayList<BonusAndMalusOnGoods>();
         actualGoodSet = new GoodSet();
         cardsOwned = new HashMap<CardColor, Integer>();
@@ -31,8 +33,8 @@ public class PlayerStatus {
         }
     }
 
-    public PlayerStatus(ArrayList<BonusAndMalusOnAction> bonusAndMalusOnActionList, ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods, GoodSet actualGoodSet, HashMap<CardColor, Integer> cardsOwned, boolean blackPawnAvailability, boolean whitePawnAvailability, boolean orangePawnAvailability, boolean neutralPawnAvailability) {
-        this.bonusAndMalusOnActionList = bonusAndMalusOnActionList;
+    public PlayerStatus(ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction, ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods, GoodSet actualGoodSet, HashMap<CardColor, Integer> cardsOwned, boolean blackPawnAvailability, boolean whitePawnAvailability, boolean orangePawnAvailability, boolean neutralPawnAvailability) {
+        this.bonusAndMalusOnAction = bonusAndMalusOnAction;
         this.bonusAndMalusOnGoods = bonusAndMalusOnGoods;
         this.actualGoodSet = actualGoodSet;
         this.cardsOwned = cardsOwned;
@@ -49,13 +51,17 @@ public class PlayerStatus {
         this.actualGoodSet = actualGoodSet;
     }*/
 
-    public ArrayList<BonusAndMalusOnAction> getBonusAndMalusOnActionList() {
-        return bonusAndMalusOnActionList;
+    public ArrayList<BonusAndMalusOnAction> getBonusAndMalusOnAction() {
+        return bonusAndMalusOnAction;
     }
 
     public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoods() {
 
         return bonusAndMalusOnGoods;
+    }
+
+    public PersonalBoard getPersonalBoard() {
+        return personalBoard;
     }
 
     public GoodSet getActualGoodSet() {

@@ -7,5 +7,6 @@ public enum ShopName {
     MONEYSHOP,
     WORKERSHOP,
     BONUSSHOP,
-    PRIVILEGESHOP
+    PRIVILEGESHOP;
+
 }

@@ -41,7 +41,12 @@ public class CouncilPrivilegeEffect implements Effect {
             decisionDone = checkDifferentPrivileges();
         }
 
-        status.updateGoodSet(collectRewards());
+        ObtainEffect[] effects = collectRewards();
+        System.out.println("You received the following effects: ");
+        for (ObtainEffect effect : effects) {
+            effect.execute(status);
+            System.out.println(effect.toString());
+        }
 
     }
 
@@ -83,6 +88,7 @@ public class CouncilPrivilegeEffect implements Effect {
                     effectsChosen[i]=realAnswer;
                     break;
                 default:
+                    System.out.println("Error Input");
                     break;
             }
         }
@@ -100,43 +106,43 @@ public class CouncilPrivilegeEffect implements Effect {
                 if (k != i && effectsChosen[k] == effectsChosen[i]) duplicate = true;
             }
         }
+
+        if (duplicate == true) {
+            System.out.println("You made wrong choices, try again");
+        }
         return !duplicate;
     }
 
     /**
      * collectRewards method adds to a temporaryGoodSet all the rewards of the effect
      */
-    public GoodSet collectRewards() {
+    public ObtainEffect[] collectRewards() { // TODO: create effects
 
-        GoodSet temporaryGoodSet = new GoodSet();
+        ObtainEffect[] effects = new ObtainEffect[numberOfCouncilPrivileges];
 
-        for (CouncilPrivilegeType councilPrivilegeType : effectsChosen) {
-            switch (councilPrivilegeType) {
+        for (int i = 0; i < numberOfCouncilPrivileges; i++) {
+            switch (effectsChosen[i]) {
                 case ONEWOOD_ONESTONE:
-                    temporaryGoodSet.addGoodSet(new GoodSet(1, 1, 0, 0, 0, 0, 0));
+                    effects[i] = new ObtainEffect(new GoodSet(1, 1, 0, 0, 0, 0, 0));
                     break;
                 case TWOWORKERS:
-                    temporaryGoodSet.addGoodSet(new GoodSet(0, 0, 0, 2, 0, 0, 0));
+                    effects[i] = new ObtainEffect(new GoodSet(0, 0, 0, 2, 0, 0, 0));
                     break;
                 case TWOGOLDS:
-                    temporaryGoodSet.addGoodSet(new GoodSet(0, 0, 2, 0, 0, 0, 0));
+                    effects[i] = new ObtainEffect(new GoodSet(0, 0, 2, 0, 0, 0, 0));
                     break;
                 case TWOMILITARYPOINTS:
-                    temporaryGoodSet.addGoodSet(new GoodSet(0, 0, 0, 0, 0, 2, 0));
+                    effects[i] = new ObtainEffect(new GoodSet(0, 0, 0, 0, 0, 2, 0));
                     break;
                 case ONEFAITHPOINT:
-                    temporaryGoodSet.addGoodSet(new GoodSet(0, 0, 0, 0, 0, 0, 1));
+                    effects[i] = new ObtainEffect(new GoodSet(0, 0, 0, 0, 0, 0, 1));
                     break;
             }
+
         }
 
-        return temporaryGoodSet;
+        return effects;
     }
 
-    // TODO: filtering
 
-    // This method is for testing
-    public void setEffectsChosen(CouncilPrivilegeType[] effectsChosen) {
-        this.effectsChosen = effectsChosen;
-    }
 }

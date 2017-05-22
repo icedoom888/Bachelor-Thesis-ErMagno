@@ -16,7 +16,8 @@ public class CardRequirement extends Requirement {
     }
 
     @Override
-    public void check(PlayerStatus status) {
-        super.check(status);
+    public boolean check(PlayerStatus status) {
+        if(status.getNumberOfCardsOwned(cardColor)>=number){return true;}
+        else{return false;}
     }
 }
