@@ -19,7 +19,7 @@ public class ActionEffect implements Effect{
     //private String name = "actionEffect";
     private ActionType type;
 
-    private int actionValue; //  TODO: qui metterei direttamente la bonusPawn
+    private int actionValue; //TODO: qui metterei direttamente la bonusPawn
 
     private Discount discount;
 

@@ -13,16 +13,10 @@ import java.lang.reflect.Type;
  */
 public class ObtainEffectInstanceCreator implements InstanceCreator<ObtainEffect> {
 
-    private GoodSet context;
-
-    public ObtainEffectInstanceCreator(GoodSet context) {
-        this.context = context;
-    }
-
     @Override
     public ObtainEffect createInstance(Type type) {
 
-        ObtainEffect obtainEffect = new ObtainEffect(context);
+        ObtainEffect obtainEffect = new ObtainEffect();
         return obtainEffect;
     }
 

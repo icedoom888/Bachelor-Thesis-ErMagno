@@ -17,15 +17,15 @@ import static it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeType.O
  */
 /* @JsonDeserialize(as = CouncilPrivilegeEffect.class) */
 
-
-
+@JsonIgnoreProperties(value = { "effectsChosen"})
 public class CouncilPrivilegeEffect implements Effect {
 
     private int numberOfCouncilPrivileges;
     private CouncilPrivilegeType[] effectsChosen;
 
+    @JsonCreator
     public CouncilPrivilegeEffect(
-            int numberOfCouncilPrivileges) {
+            @JsonProperty("numberOfCouncilPrivileges") int numberOfCouncilPrivileges) {
 
         this.numberOfCouncilPrivileges = numberOfCouncilPrivileges;
         this.effectsChosen = new CouncilPrivilegeType[numberOfCouncilPrivileges];

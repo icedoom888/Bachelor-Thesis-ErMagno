@@ -21,12 +21,16 @@ public class MainGSonToFile {
         // Ospitare i mendicanti
 
         ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>();
-        immediateEffectsOIM.add(new PayToObtainEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
-        immediateEffectsOIM.add(new CouncilPrivilegeEffect(3));
+        //immediateEffectsOIM.add(new PayToObtainEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
+        immediateEffectsOIM.add(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)));
+
 
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
-        permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN,4,new Discount(new GoodSet(), new GoodSet(), false)));
+        //permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN,4,new Discount(new GoodSet(), new GoodSet(), false)));
+        //permanentEffectsOIM.add(new ObtainEffect(new GoodSet()));
+        permanentEffectsOIM.add(new CouncilPrivilegeEffect(3));
+
 
 
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(
@@ -41,7 +45,7 @@ public class MainGSonToFile {
 
         // toJson
 
-        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\cartaProva");
+        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaProva");
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
