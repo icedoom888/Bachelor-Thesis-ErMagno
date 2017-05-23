@@ -31,7 +31,7 @@ public class TowerActionTest {
         PlayerStatus playerStatus = new PlayerStatus(new ArrayList<BonusAndMalusOnAction>(), new ArrayList<BonusAndMalusOnGoods>(), new GoodSet(1,2,3,4,5,6,7), new HashMap<CardColor, Integer>(), true, true,true,true);
         Tower tower = new Tower(CardColor.BLUE);
         int floorIndex = 2;
-        tower.getFloors()[floorIndex].setDevelopmentCard(new DevelopmentCard("a", "a", Era.FIRSTERA, new CardCost(false, true, new GoodSet(2,2,3,4,5,6,7), new GoodSet(), false, new GoodSet(), false, 0), CardColor.BLUE, new ArrayList<Effect>(), new ArrayList<Effect>()));
+        tower.getFloors()[floorIndex].setDevelopmentCard(new DevelopmentCard("a", "a", Era.FIRSTERA, new CardCost(false, true, new GoodSet(2,2,3,4,5,6,7), new GoodSet(), false, new GoodSet()), CardColor.BLUE, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0));
         TowerAction towerAction = new TowerAction(familyPawnBlueOrange, actionType, workersSelected, realAction, playerStatus, tower, floorIndex);
 
         tower.getFloor(floorIndex-1).getActionSpace().addPawn(familyPawnRedBlack);
