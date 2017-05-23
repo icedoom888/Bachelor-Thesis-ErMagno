@@ -78,4 +78,6 @@ public class ObtainEffect implements Effect {
     public String toString() {
         return "ObtainEffect{" + "goodsObtained=" + goodsObtained + '}';
     }
+
+
 }

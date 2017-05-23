@@ -23,15 +23,16 @@ public class JSCardToFile {
         ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>();
         //immediateEffectsOIM.add(new PayToObtainEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
         immediateEffectsOIM.add(new CouncilPrivilegeEffect(3));
+        //immediateEffectsOIM.add(new BonusEffect(new BonusAndMalusOnAction(ActionType.PURPLETOWER, 3, new GoodSet(1,1,1,1,1,1,1))));
 
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
         permanentEffectsOIM.add(new ObtainEffect(new GoodSet(5,1,1,1,1,1,1)));
 
 
+
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(
                 "Ospitare i Mendicanti",
-                "descrizione",
                 Era.FIRSTERA,
                 new CardCost(false, true, new GoodSet(4,0,0,0,0,0,0), new GoodSet(), false, new GoodSet()),
                 CardColor.PURPLE,

@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * Created by Lorenzotara on 19/05/17.
  */
 /* @JsonDeserialize(as = BonusEffect.class) */
+
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY

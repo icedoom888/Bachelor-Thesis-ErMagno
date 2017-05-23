@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Components;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 
 import java.util.ArrayList;
@@ -74,6 +76,6 @@ public class DevelopmentCard {
 
     @Override
     public String toString() {
-        return "DevelopmentCard{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", era=" + era + ", cardCost=" + cardCost + ", color=" + color + ", immediateEffect=" + immediateEffect + ", permanentEffect=" + permanentEffect + ", withActionValue=" + withActionValue + ", actionValue=" + actionValue + '}';
+        return "DevelopmentCard{" + "name='" + name  + '\'' + ", era=" + era + ", cardCost=" + cardCost + ", color=" + color + ", immediateEffect=" + immediateEffect + ", permanentEffect=" + permanentEffect + ", withActionValue=" + withActionValue + ", actionValue=" + actionValue + '}';
     }
 }
