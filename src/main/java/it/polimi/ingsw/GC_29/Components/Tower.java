@@ -48,6 +48,16 @@ public class Tower implements Cleanable {
 
     }
 
+    @Override
+    public String toString() {
+        return "Tower{" +
+                "floors=" + Arrays.toString(floors) +
+                ", cardType=" + cardType +
+                ", occupied=" + occupied +
+                ", CostIfOccupied=" + CostIfOccupied +
+                '}';
+    }
+
     public Floor[] getFloors() {
         return floors;
     }
@@ -66,9 +76,5 @@ public class Tower implements Cleanable {
 
     public int getCostIfOccupied() {
         return CostIfOccupied;
-    }
-
-    public Floor visitFloor(int floor) {
-        return null;
     }
 }

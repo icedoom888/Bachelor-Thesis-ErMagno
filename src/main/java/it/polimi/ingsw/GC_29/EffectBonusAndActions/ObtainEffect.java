@@ -15,7 +15,7 @@ import static java.lang.Math.min;
 
 /**
  * Created by Christian on 18/05/2017.
- * Upgraded by Icedoom on 19/05/2017.
+ * Made Better by Icedoom on 19/05/2017.
  */
 @JsonDeserialize(using = ObtainEffectDeSerializer.class)
 @JsonDeserialize(as = ObtainEffect.class)
