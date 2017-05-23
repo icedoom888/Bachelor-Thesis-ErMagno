@@ -21,7 +21,7 @@ public class BonusActionState implements State {
 
             processedBonusAction.execute(wrapper.getPlayerStatus()); // chiedo cosa vuole se ho alternative
 
-            wrapper.setActionBuilder(processedBonusAction); // costruttore con overloading
+            //wrapper.setActionBuilder(processedBonusAction); // costruttore con overloading
 
             wrapper.setCurrentAction(wrapper.getActionBuilder().build());
 

@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class EffectsArrayListJsonDeserializer extends JsonDeserializer<ArrayList<Effect>> {
 
     @Override
-    public ArrayList<Effect> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public ArrayList<Effect> deserialize(JsonParser jsonParser,
+                                         DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         return null;
     }
 }

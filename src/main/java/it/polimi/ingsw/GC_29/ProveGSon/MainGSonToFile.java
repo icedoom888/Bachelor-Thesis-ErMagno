@@ -2,8 +2,10 @@ package it.polimi.ingsw.GC_29.ProveGSon;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,15 +19,16 @@ public class MainGSonToFile {
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList<DevelopmentCard> cards = new ArrayList<DevelopmentCard>();
 
         // Ospitare i mendicanti
 
-        ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>(1);
-        immediateEffectsOIM.add(new ObtainEffect(0,0,0,4,0,0,0));
+        ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>();
+        immediateEffectsOIM.add(new PayToObtainEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
+        immediateEffectsOIM.add(new CouncilPrivilegeEffect(3));
 
-        ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>(1);
-        permanentEffectsOIM.add(new ObtainEffect(0,0,0,0,4,0,0));
+
+        ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
+        //permanentEffectsOIM.add(new ObtainEffect(new GoodSet(5,1,1,1,1,1,1)));
 
 
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(
@@ -39,38 +42,14 @@ public class MainGSonToFile {
                 false,
                 0);
 
-        cards.add(ospitareIMendicanti);
-
-        // Combattere le Eresie
-
-        ArrayList<Effect> immediateEffectsCLE = new ArrayList<Effect>(1);
-        immediateEffectsCLE.add(new ObtainEffect(0,0,0,0,0,2,0));
-
-        ArrayList<Effect> permanentEffectsCLE = new ArrayList<Effect>(1);
-        permanentEffectsCLE.add(new ObtainEffect(0,0,0,0,5,0,0));
-
-
-        DevelopmentCard combattereLeEresie = new DevelopmentCard(
-                "Combattere le Eresie",
-                "descrizione",
-                Era.FIRSTERA,
-                new CardCost(false, true, new GoodSet(4,0,0,0,0,0,0), new GoodSet(), false, new GoodSet()),
-                CardColor.PURPLE,
-                immediateEffectsCLE,
-                permanentEffectsCLE,
-                false,
-                0);
-
-        cards.add(combattereLeEresie);
-
         // toJson
 
-        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaProva");
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\cartaProva");
 
         Gson gson = new Gson();
 
 
-        gson.toJson(cards, fileWriter);
+        gson.toJson(ospitareIMendicanti, fileWriter);
 
         fileWriter.close();
     }

@@ -21,12 +21,12 @@ public class JSCardToFile {
         // Ospitare i mendicanti
 
         ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>();
-        //immediateEffectsOIM.add(new PayToObtainEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
-        immediateEffectsOIM.add(new CouncilPrivilegeEffect(3));
+        immediateEffectsOIM.add(new PayToObtainEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
+        //immediateEffectsOIM.add(new CouncilPrivilegeEffect(3));
 
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
-        permanentEffectsOIM.add(new ObtainEffect(new GoodSet(5,1,1,1,1,1,1)));
+        //permanentEffectsOIM.add(new ObtainEffect(new GoodSet(5,1,1,1,1,1,1)));
 
 
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(
@@ -44,7 +44,7 @@ public class JSCardToFile {
         // JACKSON
 
         ObjectMapper mapper = new ObjectMapper();
-        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaProva");
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\cartaProva");
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.writeValue(fileWriter, ospitareIMendicanti);
