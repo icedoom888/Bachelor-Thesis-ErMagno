@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
@@ -13,6 +14,7 @@ import static it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeType.O
 /**
  * Created by Lorenzotara on 19/05/17.
  */
+@JsonDeserialize(as = CouncilPrivilegeEffect.class)
 public class CouncilPrivilegeEffect implements Effect {
 
     private int numberOfCouncilPrivileges;

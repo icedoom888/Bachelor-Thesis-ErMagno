@@ -16,27 +16,34 @@ import java.io.IOException;
  */
 public class EffectDeSerializer extends JsonDeserializer<Effect> {
 
+    /*
     public static final String OBTAINEFFECT = "obtainEffect";
     public static final String PAYTOOBTAINEFFECT = "payToObtainEffect";
     public static final String OBTAINONCONDITIONEFFECT = "obtainOnConditionEffect";
     public static final String ACTIONEFFECT = "actionEffect";
     public static final String BONUSEFFECT = "bonusEffect";
+    */
 
     @Override
     public Effect deserialize(JsonParser jp, DeserializationContext context) throws IOException {
         ObjectMapper mapper = (ObjectMapper) jp.getCodec();
         ObjectNode root = mapper.readTree(jp);
         if (root.has("goodsObtained")) {
+
             if (root.has("goodsForEachCondition")) {
                 return mapper.readValue(root.toString(), ObtainOnConditionEffect.class);
+
             } else if (root.has("cost")) {
                 return mapper.readValue(root.toString(), PayToObtainEffect.class);
             }
             return mapper.readValue(root.toString(), ObtainEffect.class);
+
         } else if (root.has("type")) {
             return mapper.readValue(root.toString(), ActionEffect.class);
+
         } else if (root.has("bonusAndMalusOnAction")) {
             return mapper.readValue(root.toString(), BonusEffect.class);
+
         } else if (root.has("numberOfCouncilPrivileges")) {
             return mapper.readValue(root.toString(), CouncilPrivilegeEffect.class);
         }

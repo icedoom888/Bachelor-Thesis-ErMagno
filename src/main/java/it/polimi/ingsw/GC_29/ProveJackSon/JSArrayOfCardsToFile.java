@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.ProveJackSon;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
@@ -67,6 +68,7 @@ public class JSArrayOfCardsToFile {
         ObjectMapper mapper = new ObjectMapper();
         FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaProva");
 
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.writeValue(fileWriter, cards);
 
         fileWriter.close();

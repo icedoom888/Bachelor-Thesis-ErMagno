@@ -15,7 +15,10 @@ public class PayToObtainEffect extends ObtainEffect {
     //private String name = "payToObtainEffect";
     private GoodSet cost;
 
-    public PayToObtainEffect(GoodSet cost, GoodSet goodsObtained) {
+    public PayToObtainEffect(
+            GoodSet cost,
+            GoodSet goodsObtained) {
+
         super(goodsObtained); // va chiamato poichè non esiste costruttore di defaut classe padre
         this.cost = cost;
     }
