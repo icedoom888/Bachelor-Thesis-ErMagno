@@ -30,7 +30,6 @@ public class MainGSonToFile {
 
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(
                 "Ospitare i Mendicanti",
-                "descrizione",
                 Era.FIRSTERA,
                 new CardCost(false, true, new GoodSet(4,0,0,0,0,0,0), new GoodSet(), false, new GoodSet()),
                 CardColor.PURPLE,
@@ -52,7 +51,6 @@ public class MainGSonToFile {
 
         DevelopmentCard combattereLeEresie = new DevelopmentCard(
                 "Combattere le Eresie",
-                "descrizione",
                 Era.FIRSTERA,
                 new CardCost(false, true, new GoodSet(4,0,0,0,0,0,0), new GoodSet(), false, new GoodSet()),
                 CardColor.PURPLE,
