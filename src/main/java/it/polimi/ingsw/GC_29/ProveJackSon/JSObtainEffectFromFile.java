@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by Lorenzotara on 22/05/17.
  */
-public class JackSonObtainEffectFromFile {
+public class JSObtainEffectFromFile {
     public static void main(String[] args) throws IOException {
 
         FileReader fileReader = new FileReader("/Users/Lorenzotara/Desktop/cartaProva");

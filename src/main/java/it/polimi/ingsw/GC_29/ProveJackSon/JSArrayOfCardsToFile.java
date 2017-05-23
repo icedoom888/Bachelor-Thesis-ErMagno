@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.ProveJackSon;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Lorenzotara on 22/05/17.
+ * Created by Lorenzotara on 23/05/17.
  */
-public class MainJackSonToFile {
+public class JSArrayOfCardsToFile {
 
     public static void main(String[] args) throws IOException {
 
-        //ArrayList<DevelopmentCard> cards = new ArrayList<DevelopmentCard>();
+        ArrayList<DevelopmentCard> cards = new ArrayList<DevelopmentCard>();
 
         // Ospitare i mendicanti
 
@@ -39,11 +39,11 @@ public class MainJackSonToFile {
                 false,
                 0);
 
-        //cards.add(ospitareIMendicanti);
+        cards.add(ospitareIMendicanti);
 
         // Combattere le Eresie
 
-        /* ArrayList<Effect> immediateEffectsCLE = new ArrayList<Effect>(1);
+        ArrayList<Effect> immediateEffectsCLE = new ArrayList<Effect>(1);
         immediateEffectsCLE.add(new ObtainEffect(0,0,0,0,0,2,0));
 
         ArrayList<Effect> permanentEffectsCLE = new ArrayList<Effect>(1);
@@ -63,16 +63,13 @@ public class MainJackSonToFile {
 
         cards.add(combattereLeEresie);
 
-        for (DevelopmentCard card : cards) {
-            System.out.println(card);
-        } */
-
         // JACKSON
 
         ObjectMapper mapper = new ObjectMapper();
         FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaProva");
 
-        mapper.writeValue(fileWriter, ospitareIMendicanti);
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.writeValue(fileWriter, cards);
 
         fileWriter.close();
 

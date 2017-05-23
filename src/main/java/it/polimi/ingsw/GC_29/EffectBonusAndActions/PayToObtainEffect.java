@@ -9,13 +9,16 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 /**
  * Created by Icedoom on 18/05/2017.
  */
-@JsonDeserialize(as = PayToObtainEffect.class)
+// @JsonDeserialize(as = PayToObtainEffect.class)
 public class PayToObtainEffect extends ObtainEffect {
 
     //private String name = "payToObtainEffect";
     private GoodSet cost;
 
-    public PayToObtainEffect(GoodSet cost, GoodSet goodsObtained) {
+    public PayToObtainEffect(
+            GoodSet cost,
+            GoodSet goodsObtained) {
+
         super(goodsObtained); // va chiamato poichè non esiste costruttore di defaut classe padre
         this.cost = cost;
     }

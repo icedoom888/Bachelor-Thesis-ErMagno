@@ -11,7 +11,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 /**
  * Created by Christian on 18/05/2017.
  */
-@JsonDeserialize(as = ActionEffect.class)
+// @JsonDeserialize(as = ActionEffect.class)
 public class ActionEffect implements Effect{
 
     //private String name = "actionEffect";

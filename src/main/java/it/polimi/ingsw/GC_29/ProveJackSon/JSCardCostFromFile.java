@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by Lorenzotara on 23/05/17.
  */
-public class JsonCardCostFromFile {
+public class JSCardCostFromFile {
 
     public static void main(String[] args) throws IOException {
 

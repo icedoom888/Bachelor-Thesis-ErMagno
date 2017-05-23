@@ -11,7 +11,12 @@ public class ExcommunicationLane implements Cleanable {
     private PawnSlot[] pawnSlots;
     private int maxNumberOfPawns;
 
-    public ExcommunicationLane(int maxNumberOfPawns,ExcommunicationTile tile_1,ExcommunicationTile tile_2,ExcommunicationTile tile_3) {
+    public ExcommunicationLane(
+            int maxNumberOfPawns,
+            ExcommunicationTile tile_1,
+            ExcommunicationTile tile_2,
+            ExcommunicationTile tile_3) {
+
         this.tileAndPawns = new HashMap<ExcommunicationTile,PawnSlot>(3);
         tileAndPawns.put(tile_1,new PawnSlot(maxNumberOfPawns,true));
         tileAndPawns.put(tile_2,new PawnSlot(maxNumberOfPawns,true));

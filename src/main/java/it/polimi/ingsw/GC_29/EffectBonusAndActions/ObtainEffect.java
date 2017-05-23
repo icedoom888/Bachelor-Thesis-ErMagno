@@ -1,9 +1,13 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.ProveJackSon.EffectDeSerializer;
+import it.polimi.ingsw.GC_29.ProveJackSon.ObtainEffectDeSerializer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +19,16 @@ import static java.lang.Math.min;
  * Created by Christian on 18/05/2017.
  * Upgraded by Icedoom on 19/05/2017.
  */
-@JsonDeserialize(as = ObtainEffect.class)
+/* @JsonDeserialize(as = ObtainEffect.class) */
+
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY
+)
+@JsonSubTypes( {
+        @JsonSubTypes.Type(value = PayToObtainEffect.class, name = "PayToObtainEffect"),
+        @JsonSubTypes.Type(value = ObtainOnConditionEffect.class, name = "ObtainOnCondition")
+})
 public class ObtainEffect implements Effect {
 
     //private String name = "obtainEffect";
