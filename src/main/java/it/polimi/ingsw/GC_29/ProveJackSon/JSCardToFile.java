@@ -22,11 +22,11 @@ public class JSCardToFile {
 
         ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>();
         //immediateEffectsOIM.add(new PayToObtainEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
-        immediateEffectsOIM.add(new BonusEffect(new BonusAndMalusOnAction(ActionType.BLUETOWER, 3)));
+        immediateEffectsOIM.add(new CouncilPrivilegeEffect(3));
 
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
-        permanentEffectsOIM.add(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)));
+        permanentEffectsOIM.add(new ObtainEffect(new GoodSet(5,1,1,1,1,1,1)));
 
 
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.Player;
@@ -20,7 +22,10 @@ public class CouncilPrivilegeEffect implements Effect {
     private int numberOfCouncilPrivileges;
     private CouncilPrivilegeType[] effectsChosen;
 
-    public CouncilPrivilegeEffect(int numberOfCouncilPrivileges) {
+    @JsonCreator
+    public CouncilPrivilegeEffect(
+            @JsonProperty("numberOfCouncilPrivileges") int numberOfCouncilPrivileges) {
+
         this.numberOfCouncilPrivileges = numberOfCouncilPrivileges;
         this.effectsChosen = new CouncilPrivilegeType[numberOfCouncilPrivileges];
     }
@@ -146,5 +151,8 @@ public class CouncilPrivilegeEffect implements Effect {
         return effects;
     }
 
-
+    @Override
+    public String toString() {
+        return "CouncilPrivilegeEffect{" + "numberOfCouncilPrivileges=" + numberOfCouncilPrivileges + ", effectsChosen=" + Arrays.toString(effectsChosen) + '}';
+    }
 }
