@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by Lorenzotara on 22/05/17.
  */
-public class MainJackSonFromFile {
+public class JSCardFromFile {
 
     public static void main(String[] args) throws IOException {
 
@@ -22,8 +22,6 @@ public class MainJackSonFromFile {
         DevelopmentCard card;
 
         ObjectMapper mapper = new ObjectMapper();
-        //mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
 
 
         card = mapper.readValue(fileReader, DevelopmentCard.class);
