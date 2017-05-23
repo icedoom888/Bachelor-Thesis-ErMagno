@@ -1,11 +1,9 @@
 package it.polimi.ingsw.GC_29.ProveGSon;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,12 +26,11 @@ public class MainGSonToFile {
 
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
-        //permanentEffectsOIM.add(new ObtainEffect(new GoodSet(5,1,1,1,1,1,1)));
+        permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN,4,new Discount(new GoodSet(), new GoodSet(), false)));
 
 
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(
                 "Ospitare i Mendicanti",
-                "descrizione",
                 Era.FIRSTERA,
                 new CardCost(false, true, new GoodSet(4,0,0,0,0,0,0), new GoodSet(), false, new GoodSet()),
                 CardColor.PURPLE,
@@ -46,7 +43,7 @@ public class MainGSonToFile {
 
         FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\cartaProva");
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 
         gson.toJson(ospitareIMendicanti, fileWriter);
