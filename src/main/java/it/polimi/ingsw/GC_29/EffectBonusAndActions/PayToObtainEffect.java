@@ -9,7 +9,8 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 /**
  * Created by Icedoom on 18/05/2017.
  */
-// @JsonDeserialize(as = PayToObtainEffect.class)
+/* @JsonDeserialize(as = PayToObtainEffect.class) */
+
 public class PayToObtainEffect extends ObtainEffect {
 
     //private String name = "payToObtainEffect";

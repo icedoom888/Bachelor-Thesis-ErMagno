@@ -17,7 +17,7 @@ import static java.lang.Math.min;
 
 /**
  * Created by Christian on 18/05/2017.
- * Upgraded by Icedoom on 19/05/2017.
+ * Made Better by Icedoom on 19/05/2017.
  */
 /* @JsonDeserialize(as = ObtainEffect.class) */
 
@@ -78,4 +78,6 @@ public class ObtainEffect implements Effect {
     public String toString() {
         return "ObtainEffect{" + "goodsObtained=" + goodsObtained + '}';
     }
+
+
 }

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 public class DevelopmentCard {
 
     private String name;
-    private String description;
     private Era era;
     private CardCost cardCost;
     private CardColor color;
@@ -24,7 +24,6 @@ public class DevelopmentCard {
     @JsonCreator
     public DevelopmentCard(
             @JsonProperty("name") String name,
-            @JsonProperty("description") String description,
             @JsonProperty("era") Era era,
             @JsonProperty("cardCost") CardCost cardCost,
             @JsonProperty("color") CardColor color,
@@ -34,7 +33,6 @@ public class DevelopmentCard {
             @JsonProperty("actionValue") int actionValue) {
 
         this.name = name;
-        this.description = description;
         this.era = era;
         this.cardCost = cardCost;
         this.color = color;
@@ -46,10 +44,6 @@ public class DevelopmentCard {
 
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public Era getEra() {
@@ -82,6 +76,6 @@ public class DevelopmentCard {
 
     @Override
     public String toString() {
-        return "DevelopmentCard{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", era=" + era + ", cardCost=" + cardCost + ", color=" + color + ", immediateEffect=" + immediateEffect + ", permanentEffect=" + permanentEffect + ", withActionValue=" + withActionValue + ", actionValue=" + actionValue + '}';
+        return "DevelopmentCard{" + "name='" + name  + '\'' + ", era=" + era + ", cardCost=" + cardCost + ", color=" + color + ", immediateEffect=" + immediateEffect + ", permanentEffect=" + permanentEffect + ", withActionValue=" + withActionValue + ", actionValue=" + actionValue + '}';
     }
 }

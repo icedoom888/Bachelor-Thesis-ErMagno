@@ -18,17 +18,21 @@ public class BonusAndMalusOnAction {
     private GoodSet goodSetDiscountOrIncrement;
     private boolean actionAllowed;
 
-    public BonusAndMalusOnAction(ActionType actionType, int diceIncrementOrReduction, GoodSet goodSetDiscountOrIncrement) {
+    @JsonCreator
+    public BonusAndMalusOnAction(
+            @JsonProperty("actionType")ActionType actionType,
+            @JsonProperty("diceIncrementOrReduction") int diceIncrementOrReduction,
+            @JsonProperty("goodSetDiscountOrIncrement") GoodSet goodSetDiscountOrIncrement) {
+
         this.actionType = actionType;
         this.diceIncrementOrReduction = diceIncrementOrReduction;
         this.goodSetDiscountOrIncrement = goodSetDiscountOrIncrement;
         this.actionAllowed = true;
     }
 
-    @JsonCreator
     public BonusAndMalusOnAction(
-            @JsonProperty("actionType")ActionType actionType,
-            @JsonProperty("diceIncrementOrReduction") int diceIncrementOrReduction) {
+            ActionType actionType,
+            int diceIncrementOrReduction) {
 
         this.actionType = actionType;
         this.diceIncrementOrReduction = diceIncrementOrReduction;
