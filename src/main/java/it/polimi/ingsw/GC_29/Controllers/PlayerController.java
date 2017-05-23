@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.Tower;
@@ -26,14 +27,6 @@ public class PlayerController {
 
     }
 
-    public void setCurrentState(State newState){
-        currentState = newState;
-    }
-
-    public void executeState(){
-        currentState.executeState(this);
-    }
-
     public Action getCurrentAction() {
         return currentAction;
     }
@@ -46,13 +39,25 @@ public class PlayerController {
         return actionBuilder;
     }
 
+    public PlayerStatus getPlayerStatus() {
+        return playerStatus;
+    }
+
+    public void setCurrentState(State newState){
+        currentState = newState;
+    }
+
+    public void executeState(){
+        currentState.executeState(this);
+    }
+
     public void init(){
 
         while(currentState.getClass() != EndTurnState.class){ // finché non arrivo all'utlimo stato del turno continuo ad eseguire gli stati intermedi
-            currentState.executeState(this);
+            executeState();
         }
 
-        currentState.executeState(this);
+        executeState();
 
         /**
          * boolean valid = false;
@@ -86,5 +91,20 @@ public class PlayerController {
             actionBuilder = FactoryActionBuilder.getActionBuilder(type, false, playerStatus);
         }
         // TODO: continuazione processo di gestione turno
+    }
+
+
+    /**
+     *
+     * @return check if the current player has a bonusAction to be executed
+     */
+    public boolean checkBonusAction() {
+
+       return playerStatus.getCurrentBonusActionList().getFirst() != null;
+    }
+
+    public ActionEffect getBonusActionEffect(){
+
+        return playerStatus.getCurrentBonusActionList().removeFirst();
     }
 }
