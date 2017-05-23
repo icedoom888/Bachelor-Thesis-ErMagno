@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.ProveJackSon;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;

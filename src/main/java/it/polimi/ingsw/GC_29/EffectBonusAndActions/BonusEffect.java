@@ -12,6 +12,7 @@ import java.util.ArrayList;
 @JsonDeserialize(as = BonusEffect.class)
 public class BonusEffect implements Effect {
 
+    //private String name = "bonusEffect";
     private BonusAndMalusOnAction bonusAndMalusOnAction;
 
     public BonusEffect(BonusAndMalusOnAction bonusAndMalusOnAction) {

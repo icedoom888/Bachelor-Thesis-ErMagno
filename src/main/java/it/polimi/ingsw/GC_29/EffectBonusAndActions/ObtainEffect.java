@@ -18,6 +18,7 @@ import static java.lang.Math.min;
 @JsonDeserialize(as = ObtainEffect.class)
 public class ObtainEffect implements Effect {
 
+    //private String name = "obtainEffect";
     protected GoodSet goodsObtained;
 
     public ObtainEffect(GoodSet goodSetObtained) {

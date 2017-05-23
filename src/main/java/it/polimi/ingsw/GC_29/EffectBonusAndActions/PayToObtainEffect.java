@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 @JsonDeserialize(as = PayToObtainEffect.class)
 public class PayToObtainEffect extends ObtainEffect {
 
+    //private String name = "payToObtainEffect";
     private GoodSet cost;
 
     public PayToObtainEffect(GoodSet cost, GoodSet goodsObtained) {
