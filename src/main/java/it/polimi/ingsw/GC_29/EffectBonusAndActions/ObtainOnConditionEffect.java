@@ -13,9 +13,10 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 @JsonDeserialize(as = ObtainOnConditionEffect.class)
 public class ObtainOnConditionEffect extends ObtainEffect{
 
-   private GoodSet goodsForEachCondition;
-   private CardColor cardCondition;
-   private GoodSet goodsCondition;
+    //private String name = "obtainOnCondtionEffect";
+    private GoodSet goodsForEachCondition;
+    private CardColor cardCondition;
+    private GoodSet goodsCondition;
 
     public ObtainOnConditionEffect(GoodSet goodsForEachCondition, CardColor cardCondition) {
         super();

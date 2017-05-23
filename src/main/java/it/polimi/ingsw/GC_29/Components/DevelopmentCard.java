@@ -22,12 +22,17 @@ public class DevelopmentCard {
     private int actionValue;
 
     @JsonCreator
-    public DevelopmentCard(@JsonProperty("name") String name,@JsonProperty("description") String description,
-                           @JsonProperty("era") Era era,@JsonProperty("cardCost") CardCost cardCost,@JsonProperty("color") CardColor color,
-                           @JsonProperty("immediateEffect") ArrayList<Effect> immediateEffect,
-                           @JsonProperty("permanentEffect") ArrayList<Effect> permanentEffect,
-                           @JsonProperty("withActionValue") boolean withActionValue,
-                           @JsonProperty("actionValue") int actionValue) {
+    public DevelopmentCard(
+            @JsonProperty("name") String name,
+            @JsonProperty("description") String description,
+            @JsonProperty("era") Era era,
+            @JsonProperty("cardCost") CardCost cardCost,
+            @JsonProperty("color") CardColor color,
+            @JsonProperty("immediateEffect") ArrayList<Effect> immediateEffect,
+            @JsonProperty("permanentEffect") ArrayList<Effect> permanentEffect,
+            @JsonProperty("withActionValue") boolean withActionValue,
+            @JsonProperty("actionValue") int actionValue) {
+
         this.name = name;
         this.description = description;
         this.era = era;

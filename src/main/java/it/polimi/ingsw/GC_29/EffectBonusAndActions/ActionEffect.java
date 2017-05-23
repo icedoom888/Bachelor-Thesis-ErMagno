@@ -14,6 +14,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 @JsonDeserialize(as = ActionEffect.class)
 public class ActionEffect implements Effect{
 
+    //private String name = "actionEffect";
     private ActionType type;
 
     private int actionValue; //  TODO: qui metterei direttamente la bonusPawn

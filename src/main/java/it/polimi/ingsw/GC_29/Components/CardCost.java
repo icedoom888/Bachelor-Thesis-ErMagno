@@ -14,14 +14,16 @@ public class CardCost {
     private GoodSet mainCost; // mainCost - one of the alternatives and the alternative chosen by the player
     private GoodSet alternativeCost;
     private boolean necessaryGoodSetForMainCost; // if it's true the necessaryGoodSet refers to mainCost
-    private boolean necessaryGoodSetForAlternativeCost; // if it's true the necessaryGoodSet refers to alternativeCost
     private GoodSet necessaryGoodSet;
 
     @JsonCreator
-    public CardCost(@JsonProperty("alternative") boolean alternative,@JsonProperty("withPrice") boolean withPrice,
-                    @JsonProperty("mainCost") GoodSet mainCost,@JsonProperty("alternativeCost") GoodSet alternativeCost,
-                    @JsonProperty("necessaryGoodSetForMainCost") boolean necessaryGoodSetForMainCost,
-                    @JsonProperty("necessaryGoodSet") GoodSet necessaryGoodSet) {
+    public CardCost(
+            @JsonProperty("alternative") boolean alternative,
+            @JsonProperty("withPrice") boolean withPrice,
+            @JsonProperty("mainCost") GoodSet mainCost,
+            @JsonProperty("alternativeCost") GoodSet alternativeCost,
+            @JsonProperty("necessaryGoodSetForMainCost") boolean necessaryGoodSetForMainCost,
+            @JsonProperty("necessaryGoodSet") GoodSet necessaryGoodSet) {
 
         this.alternative = alternative;
         this.withPrice = withPrice;
@@ -74,5 +76,10 @@ public class CardCost {
 
     public boolean isAlternative() {
         return alternative;
+    }
+
+    @Override
+    public String toString() {
+        return "CardCost{" + "alternative=" + alternative + ", withPrice=" + withPrice + ", mainCost=" + mainCost + ", alternativeCost=" + alternativeCost + ", necessaryGoodSetForMainCost=" + necessaryGoodSetForMainCost + ", necessaryGoodSet=" + necessaryGoodSet + '}';
     }
 }
