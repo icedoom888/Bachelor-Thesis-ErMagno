@@ -16,7 +16,7 @@ public class ActionEffect implements Effect{
 
     private ActionType type;
 
-    private int actionValue;
+    private int actionValue; //  TODO: qui metterei direttamente la bonusPawn
 
     private Discount discount;
 

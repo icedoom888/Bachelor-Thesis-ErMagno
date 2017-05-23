@@ -6,8 +6,8 @@ package it.polimi.ingsw.GC_29.Controllers;
 public class ExecuteActionState implements State {
     @Override
     public void executeState(PlayerController wrapper) {
-        wrapper.getCurrentAction().execute(); // TODO: la execute delle azioni ritorna sempre un nuovo stato del turno, vedi appunti quaderno
-
+        wrapper.getCurrentAction().execute();
+        
         if(wrapper.checkBonusAction()){
             wrapper.setCurrentState(new BonusActionState());
         }
