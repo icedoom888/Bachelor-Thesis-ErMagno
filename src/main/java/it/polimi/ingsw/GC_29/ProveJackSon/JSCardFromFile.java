@@ -18,7 +18,7 @@ public class JSCardFromFile {
 
     public static void main(String[] args) throws IOException {
 
-        FileReader fileReader = new FileReader("/Users/Lorenzotara/Desktop/cartaProva");
+        FileReader fileReader = new FileReader("C:\\Users\\Christian\\Desktop\\cartaProva");
         DevelopmentCard card;
 
         ObjectMapper mapper = new ObjectMapper();

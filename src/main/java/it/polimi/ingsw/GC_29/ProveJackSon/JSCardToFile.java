@@ -22,13 +22,14 @@ public class JSCardToFile {
 
         ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>();
         immediateEffectsOIM.add(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)));
+        immediateEffectsOIM.add(new ObtainOnConditionEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
         //immediateEffectsOIM.add(new CouncilPrivilegeEffect(3));
         //immediateEffectsOIM.add(new BonusEffect(new BonusAndMalusOnAction(ActionType.PURPLETOWER, 3, new GoodSet(1,1,1,1,1,1,1))));
         //immediateEffectsOIM.add(new ActionEffect(ActionType.PURPLETOWER, 3, new Discount(new GoodSet(), new GoodSet(), true)));
 
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
-        permanentEffectsOIM.add(new ObtainEffect(new GoodSet(5,1,1,1,1,1,1)));
+        //permanentEffectsOIM.add(new CouncilPrivilegeEffect(3));
 
 
 
@@ -46,12 +47,18 @@ public class JSCardToFile {
         // JACKSON
 
         ObjectMapper mapper = new ObjectMapper();
-        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaProva2");
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\prova");
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.writeValue(fileWriter, ospitareIMendicanti);
 
         fileWriter.close();
+
+        String ciad;
+        Effect ciao;
+         ciao = new ObtainOnConditionEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1));
+        ciad = new ObjectMapper().writeValueAsString(ciao);
+        System.out.println(ciad);
 
     }
 }

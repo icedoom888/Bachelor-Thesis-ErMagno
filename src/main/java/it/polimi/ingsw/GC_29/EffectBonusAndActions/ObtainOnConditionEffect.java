@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
@@ -11,21 +14,30 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  * Created by Icedoom on 18/05/2017.
  */
 // @JsonDeserialize(as = ObtainOnConditionEffect.class)
+//@JsonIgnoreProperties(value = { "goodsForEachCondition", "goodsCondition"})
+
 public class ObtainOnConditionEffect extends ObtainEffect{
 
-    //private String name = "obtainOnCondtionEffect";
     private GoodSet goodsForEachCondition;
     private CardColor cardCondition;
     private GoodSet goodsCondition;
 
-    public ObtainOnConditionEffect(GoodSet goodsForEachCondition, CardColor cardCondition) {
+
+
+    public ObtainOnConditionEffect(
+             GoodSet goodsForEachCondition, CardColor cardCondition) {
+
         super();
         this.goodsForEachCondition = goodsForEachCondition;
         this.cardCondition = cardCondition;
         this.goodsCondition = null;
     }
 
-    public ObtainOnConditionEffect(GoodSet goodsForEachCondition,GoodSet goodsCondition){
+    @JsonCreator
+    public ObtainOnConditionEffect(
+            @JsonProperty("goodsForEachCondition") GoodSet goodsForEachCondition,
+            @JsonProperty("goodsCondition") GoodSet goodsCondition){
+
         super();
         this.goodsForEachCondition = goodsForEachCondition;
         this.cardCondition = null;
@@ -100,5 +112,15 @@ public class ObtainOnConditionEffect extends ObtainEffect{
         for(GoodType type : GoodType.values()) {
             goodsObtained.getHashMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ObtainOnConditionEffect{" +
+                "goodsForEachCondition=" + goodsForEachCondition +
+                ", cardCondition=" + cardCondition +
+                ", goodsCondition=" + goodsCondition +
+                ", goodsObtained=" + goodsObtained +
+                '}';
     }
 }

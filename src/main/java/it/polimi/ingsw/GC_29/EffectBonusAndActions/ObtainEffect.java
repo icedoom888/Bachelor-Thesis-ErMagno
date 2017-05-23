@@ -21,14 +21,14 @@ import static java.lang.Math.min;
  */
 /* @JsonDeserialize(as = ObtainEffect.class) */
 
-@JsonTypeInfo(
+/*@JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY
 )
 @JsonSubTypes( {
         @JsonSubTypes.Type(value = PayToObtainEffect.class, name = "PayToObtainEffect"),
-        @JsonSubTypes.Type(value = ObtainOnConditionEffect.class, name = "ObtainOnCondition")
-})
+        @JsonSubTypes.Type(value = ObtainOnConditionEffect.class, name = "ObtainOnConditionEffect")
+})*/
 public class ObtainEffect implements Effect {
 
     //private String name = "obtainEffect";
@@ -45,6 +45,7 @@ public class ObtainEffect implements Effect {
     }
 
     public ObtainEffect(){
+
         this.goodsObtained = new GoodSet();
     }
 

@@ -61,4 +61,12 @@ public class PayToObtainEffect extends ObtainEffect {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "PayToObtainEffect{" +
+                "cost=" + cost +
+                ", goodsObtained=" + goodsObtained +
+                '}';
+    }
 }
