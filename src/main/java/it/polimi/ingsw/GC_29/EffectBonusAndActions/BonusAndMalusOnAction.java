@@ -1,15 +1,22 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 
 /**
  * Created by Lorenzotara on 17/05/17.
  */
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY
+)
 public class BonusAndMalusOnAction {
-    ActionType actionType;
-    int diceIncrementOrReduction;
-    GoodSet goodSetDiscountOrIncrement;
-    boolean actionAllowed;
+    private ActionType actionType;
+    private int diceIncrementOrReduction;
+    private GoodSet goodSetDiscountOrIncrement;
+    private boolean actionAllowed;
 
     public BonusAndMalusOnAction(ActionType actionType, int diceIncrementOrReduction, GoodSet goodSetDiscountOrIncrement) {
         this.actionType = actionType;
@@ -18,14 +25,21 @@ public class BonusAndMalusOnAction {
         this.actionAllowed = true;
     }
 
-    public BonusAndMalusOnAction(ActionType actionType, int diceIncrementOrReduction) {
+    @JsonCreator
+    public BonusAndMalusOnAction(
+            @JsonProperty("actionType")ActionType actionType,
+            @JsonProperty("diceIncrementOrReduction") int diceIncrementOrReduction) {
+
         this.actionType = actionType;
         this.diceIncrementOrReduction = diceIncrementOrReduction;
         this.goodSetDiscountOrIncrement = new GoodSet();
         this.actionAllowed = true;
     }
 
-    public BonusAndMalusOnAction(ActionType actionType,boolean actionAllowed) {
+
+    public BonusAndMalusOnAction(ActionType actionType,
+                                 boolean actionAllowed) {
+
         this.actionType = actionType;
         this.actionAllowed = actionAllowed;
         this.diceIncrementOrReduction = 0;

@@ -4,9 +4,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,10 +21,12 @@ public class JSCardToFile {
         // Ospitare i mendicanti
 
         ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>();
-        immediateEffectsOIM.add(new PayToObtainEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
+        //immediateEffectsOIM.add(new PayToObtainEffect(new GoodSet(1,1,1,1,1,1,1), new GoodSet(1,1,1,1,1,1,1)));
+        immediateEffectsOIM.add(new CouncilPrivilegeEffect(3));
+
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
-        permanentEffectsOIM.add(new ObtainEffect(0,0,0,0,4,0,0));
+        permanentEffectsOIM.add(new ObtainEffect(new GoodSet(5,1,1,1,1,1,1)));
 
 
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(

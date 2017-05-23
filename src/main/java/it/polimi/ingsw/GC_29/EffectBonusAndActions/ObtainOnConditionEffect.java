@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 /**
  * Created by Icedoom on 18/05/2017.
  */
-@JsonDeserialize(as = ObtainOnConditionEffect.class)
+// @JsonDeserialize(as = ObtainOnConditionEffect.class)
 public class ObtainOnConditionEffect extends ObtainEffect{
 
     //private String name = "obtainOnCondtionEffect";

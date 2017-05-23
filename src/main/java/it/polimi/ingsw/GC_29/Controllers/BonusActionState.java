@@ -1,20 +1,34 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
 
 /**
  * Created by Christian on 21/05/2017.
  */
 public class BonusActionState implements State {
 
-    private ActionEffect bonusAction;
-
-    public BonusActionState(ActionEffect bonusAction) {
-        this.bonusAction = bonusAction;
-    }
-
     @Override
     public void executeState(PlayerController wrapper) {
+
+        boolean validAction = false;
+
+        ActionEffect currentBonusAction = wrapper.getBonusActionEffect();
+
+        while (!validAction){
+
+            ActionEffect processedBonusAction = new ActionEffect(currentBonusAction);
+
+            processedBonusAction.execute(wrapper.getPlayerStatus()); // chiedo cosa vuole se ho alternative
+
+            wrapper.setActionBuilder(processedBonusAction); // costruttore con overloading
+
+            wrapper.setCurrentAction(wrapper.getActionBuilder().build());
+
+            validAction = wrapper.getCurrentAction().isPossible();
+        }
+
+        wrapper.setCurrentState(new ExecuteActionState());
 
         /*
         *

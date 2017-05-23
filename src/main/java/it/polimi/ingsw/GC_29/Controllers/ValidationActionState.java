@@ -14,9 +14,13 @@ public class ValidationActionState implements State {
         boolean validAction = false;
 
         while (!validAction){
+
             ActionType typeSelected = askForAction();
+
             wrapper.setActionBuilder(typeSelected);
+
             wrapper.setCurrentAction(wrapper.getActionBuilder().build());
+
             validAction = wrapper.getCurrentAction().isPossible();
         }
         wrapper.setCurrentState(new ExecuteActionState());
