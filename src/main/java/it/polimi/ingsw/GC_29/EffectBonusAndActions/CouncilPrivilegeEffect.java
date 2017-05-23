@@ -14,7 +14,7 @@ import static it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeType.O
 /**
  * Created by Lorenzotara on 19/05/17.
  */
-@JsonDeserialize(as = CouncilPrivilegeEffect.class)
+// @JsonDeserialize(as = CouncilPrivilegeEffect.class)
 public class CouncilPrivilegeEffect implements Effect {
 
     private int numberOfCouncilPrivileges;
