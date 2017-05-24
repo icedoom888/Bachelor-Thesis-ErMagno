@@ -1,4 +1,6 @@
 package it.polimi.ingsw.GC_29.ProveJackSon;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
@@ -8,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import it.polimi.ingsw.GC_29.ProveGSon.RuntimeTypeAdapterFactory;
 
 /**
  * Created by AlbertoPennino on 23/05/2017.
@@ -88,15 +91,33 @@ public class CardsCreator {
                loop = false;
             }
         }
+        FileWriter fileWriter = new FileWriter("/Users/icedoom/Desktop/prova");
 
-        ObjectMapper mapper = new ObjectMapper();
-        FileWriter fileWriter = new FileWriter("/Users/icedoom/Desktop/Progetto IS/Cards");
+        final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
+                .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
+                .registerSubtype(ObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect")
+                .registerSubtype(ActionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect")
+                .registerSubtype(BonusEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect")
+                .registerSubtype(CouncilPrivilegeEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect")
+                .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
+                .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect");
 
-        mapper.writeValue(fileWriter, cards);
+        /*final RuntimeTypeAdapterFactory<ObtainEffect> typeFactory1 = RuntimeTypeAdapterFactory
+                .of(ObtainEffect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
+                .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
+                .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect");*/
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(typeFactory);
+        //gsonBuilder.registerTypeAdapterFactory(typeFactory1);
+
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
+
+        gson.toJson(cards, fileWriter);
 
         fileWriter.close();
-
     }
+
 
     public static CardCost createCardCost(Scanner in) {
         System.out.println("Insert alternative boolean:");
