@@ -152,28 +152,7 @@ public class CouncilPrivilegeEffect implements Effect {
 
         for (int i = 0; i < numberOfCouncilPrivileges; i++) {
 
-            switch (effectsChosen[i]) {
-
-                case ONEWOOD_ONESTONE:
-                    effects[i] = new ObtainEffect(new GoodSet(1, 1, 0, 0, 0, 0, 0));
-                    break;
-
-                case TWOWORKERS:
-                    effects[i] = new ObtainEffect(new GoodSet(0, 0, 0, 2, 0, 0, 0));
-                    break;
-
-                case TWOGOLDS:
-                    effects[i] = new ObtainEffect(new GoodSet(0, 0, 2, 0, 0, 0, 0));
-                    break;
-
-                case TWOMILITARYPOINTS:
-                    effects[i] = new ObtainEffect(new GoodSet(0, 0, 0, 0, 0, 2, 0));
-                    break;
-
-                case ONEFAITHPOINT:
-                    effects[i] = new ObtainEffect(new GoodSet(0, 0, 0, 0, 0, 0, 1));
-                    break;
-            }
+            effects[i] = new ObtainEffect(effectsChosen[i].getGoodSet());
 
         }
 

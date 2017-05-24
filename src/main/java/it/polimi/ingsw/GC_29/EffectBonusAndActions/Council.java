@@ -13,7 +13,7 @@ class CouncilTest {
 
     public static void main(String[] args) throws Exception {
 
-        int numberOfCouncilPrivileges = 1;
+        int numberOfCouncilPrivileges = 3;
         CouncilPrivilegeEffect effect = new CouncilPrivilegeEffect(numberOfCouncilPrivileges);
         PlayerStatus playerStatus = new PlayerStatus(null, new ArrayList<BonusAndMalusOnGoods>(), new GoodSet(), null, true, true, true, true);
 

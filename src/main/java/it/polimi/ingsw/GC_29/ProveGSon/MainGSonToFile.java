@@ -44,7 +44,7 @@ public class MainGSonToFile {
 
         // toJson
 
-        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\prova");
+        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaprova");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.

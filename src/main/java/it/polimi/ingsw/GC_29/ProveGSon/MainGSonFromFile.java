@@ -41,7 +41,7 @@ public class MainGSonFromFile {
 
         final Gson gson = gsonBuilder.create();
 
-        FileReader fileReader = new FileReader("C:\\Users\\Christian\\Desktop\\prova");
+        FileReader fileReader = new FileReader("/Users/Lorenzotara/Desktop/cartaprova");
 
         DevelopmentCard card;
 
