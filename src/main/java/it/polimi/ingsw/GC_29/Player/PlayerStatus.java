@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.CardColor;
+import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.PersonalBoard;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
@@ -17,10 +18,7 @@ import java.util.LinkedList;
  */
 public class PlayerStatus {
 
-    private boolean blackPawnAvailability;
-    private boolean whitePawnAvailability;
-    private boolean orangePawnAvailability;
-    private boolean neutralPawnAvailability;
+    private HashMap<FamilyPawnType, Boolean> familyPawnAvailability;
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction;
     private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
     private PersonalBoard personalBoard; // TODO: aggiunto perchè dalle azioni
@@ -39,6 +37,11 @@ public class PlayerStatus {
             cardsOwned.put(color,0);
         }
         currentBonusActionList = new LinkedList<ActionEffect>();
+        this.familyPawnAvailability = new HashMap<FamilyPawnType, Boolean>();
+        familyPawnAvailability.put(FamilyPawnType.BLACK, true);
+        familyPawnAvailability.put(FamilyPawnType.ORANGE, true);
+        familyPawnAvailability.put(FamilyPawnType.WHITE, true);
+        familyPawnAvailability.put(FamilyPawnType.NEUTRAL, true);
     }
 
     public PlayerStatus(ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction, ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods, GoodSet actualGoodSet, HashMap<CardColor, Integer> cardsOwned, boolean blackPawnAvailability, boolean whitePawnAvailability, boolean orangePawnAvailability, boolean neutralPawnAvailability) {
@@ -46,10 +49,12 @@ public class PlayerStatus {
         this.bonusAndMalusOnGoods = bonusAndMalusOnGoods;
         this.actualGoodSet = actualGoodSet;
         this.cardsOwned = cardsOwned;
-        this.blackPawnAvailability = blackPawnAvailability;
-        this.whitePawnAvailability = whitePawnAvailability;
-        this.orangePawnAvailability = orangePawnAvailability;
-        this.neutralPawnAvailability = neutralPawnAvailability;
+        this.familyPawnAvailability = new HashMap<FamilyPawnType, Boolean>();
+        familyPawnAvailability.put(FamilyPawnType.BLACK, true);
+        familyPawnAvailability.put(FamilyPawnType.ORANGE, true);
+        familyPawnAvailability.put(FamilyPawnType.WHITE, true);
+        familyPawnAvailability.put(FamilyPawnType.NEUTRAL, true);
+
     }
 /*
     * I'm using this constructor just to make some tests
@@ -85,41 +90,6 @@ public class PlayerStatus {
         return cardsOwned.get(cardColor);
     }
 
-    public boolean isBlackPawnAvailable() {
-        return blackPawnAvailability;
-    }
-
-    public boolean isWhitePawnAvailable() {
-        return whitePawnAvailability;
-    }
-
-    public boolean isOrangePawnAvailable() {
-        return orangePawnAvailability;
-    }
-
-    public boolean isNeutralPawnAvailable() {
-        return neutralPawnAvailability;
-    }
-
-    public void setBlackPawnAvailability(boolean blackPawnAvailability) {
-
-        this.blackPawnAvailability = blackPawnAvailability;
-    }
-
-    public void setWhitePawnAvailability(boolean whitePawnAvailability) {
-        this.whitePawnAvailability = whitePawnAvailability;
-    }
-
-    public void setOrangePawnAvailability(boolean orangePawnAvailability) {
-
-        this.orangePawnAvailability = orangePawnAvailability;
-    }
-
-    public void setNeutralPawnAvailability(boolean neutralPawnAvailability) {
-
-        this.neutralPawnAvailability = neutralPawnAvailability;
-    }
-
     public Action getCurrentAction() {
 
         return currentAction;
@@ -147,6 +117,8 @@ public class PlayerStatus {
         this.actualGoodSet.addGoodSet(newGoodSet);
     }
 
-
+    public HashMap<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
+        return familyPawnAvailability;
+    }
 }
 

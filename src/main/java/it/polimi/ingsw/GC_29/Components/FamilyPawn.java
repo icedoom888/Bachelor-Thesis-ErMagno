@@ -34,4 +34,5 @@ public class FamilyPawn extends Pawn {
     public int getActualValue() {
         return actualValue;
     }
+
 }
