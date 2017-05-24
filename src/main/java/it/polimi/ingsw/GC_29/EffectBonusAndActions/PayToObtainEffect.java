@@ -1,26 +1,21 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Icedoom on 18/05/2017.
  */
-/* @JsonDeserialize(as = PayToObtainEffect.class) */
-
 public class PayToObtainEffect extends ObtainEffect {
 
-    //private String name = "payToObtainEffect";
     private GoodSet cost;
 
-    public PayToObtainEffect(
-            GoodSet cost,
-            GoodSet goodsObtained) {
+    public PayToObtainEffect(GoodSet cost, GoodSet goodsObtained) {
 
         super(goodsObtained); // va chiamato poichè non esiste costruttore di defaut classe padre
+
         this.cost = cost;
     }
 
@@ -31,15 +26,22 @@ public class PayToObtainEffect extends ObtainEffect {
      */
     @Override
     public void execute(PlayerStatus status) {
+
         if(checkSufficientGoods(status)){
+
             System.out.println("Resources sufficient to activate!");
+
             status.updateGoodSet(cost);
+
             System.out.println("The actualGoodSet after the detraction is: "+ "\n"+status.getActualGoodSet());
 
             super.execute(status);
         }
+
         else{
+
             System.out.println("Resources not sufficient!");
+
         }
     }
 
@@ -51,15 +53,25 @@ public class PayToObtainEffect extends ObtainEffect {
      * @return boolean that indicates if the player's resources are enough to activate the effect
      */
     private boolean checkSufficientGoods(PlayerStatus status){
+
         GoodSet newGoodset = new GoodSet();
+
         newGoodset.addGoodSet(status.getActualGoodSet());
+
         newGoodset.addGoodSet(cost);
+
         for(GoodType type : GoodType.values()){
+
             if(newGoodset.getGoodAmount(type)<0){
+
                 return false;
+
             }
+
         }
+
         return true;
+
     }
 
     @Override

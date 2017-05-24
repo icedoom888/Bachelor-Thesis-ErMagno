@@ -1,21 +1,14 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
-import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Icedoom on 18/05/2017.
  */
-// @JsonDeserialize(as = ObtainOnConditionEffect.class)
-//@JsonIgnoreProperties(value = { "goodsForEachCondition", "goodsCondition"})
-
 public class ObtainOnConditionEffect extends ObtainEffect{
 
     private GoodSet goodsForEachCondition;
@@ -24,23 +17,25 @@ public class ObtainOnConditionEffect extends ObtainEffect{
 
 
 
-    public ObtainOnConditionEffect(
-             GoodSet goodsForEachCondition, CardColor cardCondition) {
+    public ObtainOnConditionEffect(GoodSet goodsForEachCondition, CardColor cardCondition) {
 
         super();
+
         this.goodsForEachCondition = goodsForEachCondition;
+
         this.cardCondition = cardCondition;
+
         this.goodsCondition = null;
     }
 
-    @JsonCreator
-    public ObtainOnConditionEffect(
-            @JsonProperty("goodsForEachCondition") GoodSet goodsForEachCondition,
-            @JsonProperty("goodsCondition") GoodSet goodsCondition){
+    public ObtainOnConditionEffect(GoodSet goodsForEachCondition, GoodSet goodsCondition){
 
         super();
+
         this.goodsForEachCondition = goodsForEachCondition;
+
         this.cardCondition = null;
+
         this.goodsCondition = goodsCondition;
     }
 
@@ -52,8 +47,11 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      */
     @Override
     public void execute(PlayerStatus status) {
+
         evaluateActualGoodsObtained(status);
+
         System.out.println("With your current resources the goodset you will acquire is:"+"\n"+goodsObtained);
+
         super.execute(status);
     }
 
@@ -61,7 +59,9 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      * @param status
      */
     public void evaluateActualGoodsObtained(PlayerStatus status){
+
         evaluateCardCondition(status);
+
         evaluateGoodsCondition(status);
     }
 
@@ -71,7 +71,9 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      * @param status
      */
     private void evaluateCardCondition(PlayerStatus status){
+
         if(cardCondition==null){return;}
+
         int multiplier=0;
 
         if(cardCondition==CardColor.BLUE){
@@ -98,18 +100,25 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      * @param status
      */
     private void evaluateGoodsCondition(PlayerStatus status){
+
         if(goodsCondition==null){return;}
+
         int multiplier=100;//valore inizializzato alto per necessità
 
         for(GoodType type : GoodType.values()){
+
             if(goodsCondition.getGood(type).getAmount()!=0){
+
                 int temporaryMultiplier = status.getActualGoodSet().getGood(type).getAmount()/goodsCondition.getGood(type).getAmount();
+
                 if(temporaryMultiplier<=multiplier){
+
                     multiplier=temporaryMultiplier;
                 }
             }
         }
         for(GoodType type : GoodType.values()) {
+
             goodsObtained.getHashMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
         }
     }

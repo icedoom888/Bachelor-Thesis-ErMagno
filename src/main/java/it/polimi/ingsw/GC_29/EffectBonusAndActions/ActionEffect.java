@@ -1,30 +1,26 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import it.polimi.ingsw.GC_29.Components.Discount;
 import it.polimi.ingsw.GC_29.Controllers.ActionBuilder;
 import it.polimi.ingsw.GC_29.Controllers.FactoryActionBuilder;
-import it.polimi.ingsw.GC_29.Player.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Christian on 18/05/2017.
  */
-// @JsonDeserialize(as = ActionEffect.class)
 public class ActionEffect implements Effect{
 
+
     private ActionType type;
+
     private int actionValue; //TODO: qui metterei direttamente la bonusPawn
+
     private Discount discount;
 
-    @JsonCreator
     public ActionEffect(
-            @JsonProperty("type") ActionType type,
-            @JsonProperty("actionValue") int actionValue,
-            @JsonProperty("discount") Discount discount) {
+            ActionType type,
+            int actionValue,
+            Discount discount) {
 
         this.type = type;
 
@@ -34,6 +30,7 @@ public class ActionEffect implements Effect{
     }
 
     public ActionEffect(ActionEffect actionEffect) {
+
         this.type = actionEffect.type;
 
         this.actionValue = actionEffect.actionValue;
