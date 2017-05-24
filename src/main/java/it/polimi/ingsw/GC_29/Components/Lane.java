@@ -4,17 +4,17 @@ package it.polimi.ingsw.GC_29.Components;
  */
 public class  Lane implements Cleanable {
     protected DevelopmentCard[] cards;
-    protected int numberOfCardsPresent;
+    protected int firstFreeSlotIndex;
     protected CardColor color;
 
-    public Lane(CardColor color){
-        cards = new DevelopmentCard[6];
-        numberOfCardsPresent=0;
+    public Lane(CardColor color, int laneDimension){
+        cards = new DevelopmentCard[laneDimension];
+        firstFreeSlotIndex =0;
         this.color= color;
     }
 
-    public int getNumberOfCardsPresent() {
-        return numberOfCardsPresent;
+    public int getFirstFreeSlotIndex() {
+        return firstFreeSlotIndex;
     }
 
     public CardColor getColor() {
@@ -22,8 +22,13 @@ public class  Lane implements Cleanable {
     }
 
     public void addCard(DevelopmentCard newCard) {
-        this.cards[numberOfCardsPresent] = newCard;
-        numberOfCardsPresent++;
+        if (firstFreeSlotIndex < cards.length) {
+            this.cards[firstFreeSlotIndex] = newCard;
+            firstFreeSlotIndex++;
+        } else {
+
+            System.out.println("There has been an error, you can't add a card");
+        }
     }
 
     public DevelopmentCard getCard(int position) {
@@ -35,9 +40,13 @@ public class  Lane implements Cleanable {
     }
 
     public void clean() {
-        for (int i = 0; i < numberOfCardsPresent; i++) {
+        for (int i = 0; i < firstFreeSlotIndex; i++) {
             removeCard(i);
         }
-        numberOfCardsPresent = 0;
+        firstFreeSlotIndex = 0;
+    }
+
+    public boolean isFree() {
+        return firstFreeSlotIndex < cards.length;
     }
 }

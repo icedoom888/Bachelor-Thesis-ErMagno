@@ -10,6 +10,8 @@ import java.util.ArrayList;
  */
 public class TowerAction extends Action {
 
+    //TODO testing per nuove condizioni di isPossible
+
     private Tower towerChosen;
     private int floorIndex;
     private GoodSet temporaryGoodSet; // accumula il bonus dell'actionSpace
@@ -66,7 +68,11 @@ public class TowerAction extends Action {
 
     @Override
     public boolean isPossible() {
-        return super.isPossible() && !checkFamilyPresence() && isOccupied() && checkSufficientGoodsForCard();
+        return super.isPossible()
+                && !checkFamilyPresence()
+                && isOccupied()
+                && laneAvailable()
+                && checkSufficientGoodsForCard();
     }
 
     /**
@@ -145,6 +151,32 @@ public class TowerAction extends Action {
         return playerStatus.getActualGoodSet().enoughResources(totalCost);
     }
 
+    private boolean checkTerritorySlotAvailability() {
+        TerritoryLane lane = playerStatus.getPersonalBoard().getTerritoryLane();
+        int index = lane.getFirstFreeSlotIndex();
+        return playerStatus.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS) == lane.getSlot(index).getMilitaryPointsNeeded();
+    }
+
+    /**
+     * laneAvailable checks if the lane where the card will be put has free space.
+     * If the tower chosen contains Territory cards, there is another control to
+     * check if the player has enough military points to put the card in the first
+     * free slot
+     * @return true if lane aren't full e the player has enough military points to pay
+     * the necessary militaryNecessaryPoints, false otherwise
+     */
+    private boolean laneAvailable() {
+
+        boolean var1 = true;
+        CardColor actualColor = towerChosen.getCardType();
+        if (actualColor == CardColor.GREEN) {
+            var1 = checkTerritorySlotAvailability();
+        }
+
+        return var1
+                && playerStatus.getPersonalBoard().getLane(actualColor).isFree();
+
+    }
 
     private void payCard() {
 
@@ -200,7 +232,7 @@ public class TowerAction extends Action {
      * This method update:
      * permanent effects in playerStatus
      * number of card per colour in playerStatus
-     * ...
+     * set availability false for the pawn used
      */
     protected void update() {
 
@@ -214,6 +246,8 @@ public class TowerAction extends Action {
         numberOfCards++;
         playerStatus.getCardsOwned().put(cardSelected.getColor(), numberOfCards);
 
+        FamilyPawnType familyPawnType = pawnSelected.getType();
+        playerStatus.getFamilyPawnAvailability().put(familyPawnType, false);
         // altre cose?
     }
 

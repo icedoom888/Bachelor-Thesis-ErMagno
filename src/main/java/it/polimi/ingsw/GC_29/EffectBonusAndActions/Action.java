@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.ActionSpace;
+import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
@@ -53,7 +54,9 @@ public abstract class Action {
     protected abstract void update();
 
     public boolean isPossible() { // nelle figlie override con return super.isPossibile() && tutti i controlli della zona specifica
-        return checkActionSpaceOccupied(actionSpaceSelected)&&checkSufficientActionValue();
+        return checkActionSpaceOccupied(actionSpaceSelected)
+                && checkSufficientActionValue()
+                && checkFamilyPawn();
     }
 
     private boolean checkActionSpaceOccupied(ActionSpace actionSpace) {
@@ -71,9 +74,15 @@ public abstract class Action {
         //TODO: impl - iteri la lista b&m sulla tempPawn
     }
 
-    /*
-    * Ultimi 2 metodi dentro isPossible
+    /**
+     * checkFamilyPawn checks if the pawn selected by the player is available or not
+     * @return true if the pawn hasn't been used during the turn, false otherwise
      */
+    private boolean checkFamilyPawn() {
+        FamilyPawnType familyPawnType = pawnSelected.getType();
+        return playerStatus.getFamilyPawnAvailability().get(familyPawnType);
+    }
+
 
     protected void addPawn() { // mette il familiare e si occupa di attivare effetto actionSpace
 
