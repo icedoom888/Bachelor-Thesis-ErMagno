@@ -22,7 +22,7 @@ public class CardsCreator {
             System.out.println("Do you want to add a card to the list?");
             String answer = in.nextLine();
 
-            if (answer.equals("yes")){
+            if (answer.equals("y")){
                 System.out.println("Insert card name:");
                 String name = in.nextLine();
                 System.out.println("Insert era:");
@@ -77,9 +77,14 @@ public class CardsCreator {
 
 
                 DevelopmentCard cardCreated = new DevelopmentCard(name,era,cardCost,color,immediateEffect,permanentEffect,withActionValue,actionValue);
-                cards.add(cardCreated);
+                System.out.println("Do you want to add the card?");
+                System.out.println(cardCreated);
+                String answer3 = in.nextLine();
+                if (answer3.equals("y")) {
+                    cards.add(cardCreated);
+                }
             }
-            if(answer.equals("no")){
+            if(answer.equals("n")){
                loop = false;
             }
         }
@@ -155,7 +160,7 @@ public class CardsCreator {
         while (true) {
             System.out.println("Do you want to add an effect to the list?");
             String answer = in.nextLine();
-            if (answer.equals("yes")){
+            if (answer.equals("y")){
                 System.out.println("Insert effect type:");
                 String effectType = in.nextLine();
                 switch (effectType){
@@ -327,7 +332,7 @@ public class CardsCreator {
                         break;
                 }
             }
-            if(answer.equals("no")){
+            if(answer.equals("n")){
                 return effectlist;
             }
         }

@@ -10,7 +10,7 @@ public class PersonalBoardConstructorTest {
     @Test
     public void testPersonalBoard() throws Exception{
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
-        PersonalBoard personalBoard_1 = new PersonalBoard(bonusTile);
+        PersonalBoard personalBoard_1 = new PersonalBoard(bonusTile,6);
         System.out.println("personalBoard_1 successfully created");
     }
 }

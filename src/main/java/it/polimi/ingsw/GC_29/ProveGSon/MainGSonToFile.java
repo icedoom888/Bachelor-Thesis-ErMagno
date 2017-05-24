@@ -1,14 +1,13 @@
 package it.polimi.ingsw.GC_29.ProveGSon;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Lorenzotara on 22/05/17.
@@ -17,15 +16,20 @@ public class MainGSonToFile {
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList<DevelopmentCard> cards = new ArrayList<DevelopmentCard>();
 
         // Ospitare i mendicanti
 
-        ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>(1);
-        immediateEffectsOIM.add(new ObtainEffect(0,0,0,4,0,0,0));
+        ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>();
+        immediateEffectsOIM.add(new ObtainOnConditionEffect(new GoodSet(1,1,1,1,1,1,1), CardColor.BLUE));
+        immediateEffectsOIM.add(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)));
 
-        ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>(1);
-        permanentEffectsOIM.add(new ObtainEffect(0,0,0,0,4,0,0));
+
+
+        ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
+        //permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN,4,new Discount(new GoodSet(), new GoodSet(), false)));
+        //permanentEffectsOIM.add(new ObtainEffect(new GoodSet()));
+        permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN, 4, new Discount(new GoodSet(), new GoodSet(),false)));
+
 
 
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(
@@ -38,37 +42,34 @@ public class MainGSonToFile {
                 false,
                 0);
 
-        cards.add(ospitareIMendicanti);
-
-        // Combattere le Eresie
-
-        ArrayList<Effect> immediateEffectsCLE = new ArrayList<Effect>(1);
-        immediateEffectsCLE.add(new ObtainEffect(0,0,0,0,0,2,0));
-
-        ArrayList<Effect> permanentEffectsCLE = new ArrayList<Effect>(1);
-        permanentEffectsCLE.add(new ObtainEffect(0,0,0,0,5,0,0));
-
-
-        DevelopmentCard combattereLeEresie = new DevelopmentCard(
-                "Combattere le Eresie",
-                Era.FIRSTERA,
-                new CardCost(false, true, new GoodSet(4,0,0,0,0,0,0), new GoodSet(), false, new GoodSet()),
-                CardColor.PURPLE,
-                immediateEffectsCLE,
-                permanentEffectsCLE,
-                false,
-                0);
-
-        cards.add(combattereLeEresie);
-
         // toJson
 
-        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaProva");
+        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaprova");
 
-        Gson gson = new Gson();
+        final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
+                .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
+                .registerSubtype(ObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect")
+                .registerSubtype(ActionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect")
+                .registerSubtype(BonusEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect")
+                .registerSubtype(CouncilPrivilegeEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect")
+                .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
+                .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect");
+
+        /*final RuntimeTypeAdapterFactory<ObtainEffect> typeFactory1 = RuntimeTypeAdapterFactory
+                .of(ObtainEffect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
+                .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
+                .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect");*/
 
 
-        gson.toJson(cards, fileWriter);
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapterFactory(typeFactory);
+        //gsonBuilder.registerTypeAdapterFactory(typeFactory1);
+
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
+
+
+        gson.toJson(ospitareIMendicanti, fileWriter);
 
         fileWriter.close();
     }
