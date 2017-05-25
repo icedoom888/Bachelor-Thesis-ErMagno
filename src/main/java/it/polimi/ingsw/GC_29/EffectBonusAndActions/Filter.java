@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import it.polimi.ingsw.GC_29.Components.ActionSpace;
 import it.polimi.ingsw.GC_29.Components.CardCost;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.Player;
@@ -49,5 +50,16 @@ public final class Filter {
 
     public static void apply(PlayerStatus playerStatus, CardCost cardCost) {
 
+    }
+
+    /**
+     * The method checks if the player has a bonusAndMalus that can make him access to the actionSpace
+     * even if the actionSpace is occupied. This method returns true has that particular bonusAndMalus, false otherwise.
+     * @param playerStatus
+     * @param actionSpace
+     * @return boolean value: true if the player can access the actionSpace, false otherwise
+     */
+    public static boolean applyOnActionSpace(PlayerStatus playerStatus, ActionSpace actionSpace) {
+        return true;
     }
 }

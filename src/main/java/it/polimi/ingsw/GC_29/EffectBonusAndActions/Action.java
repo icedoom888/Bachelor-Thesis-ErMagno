@@ -2,9 +2,8 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.ActionSpace;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -13,17 +12,17 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public abstract class Action {
     protected FamilyPawn pawnSelected;
     private ActionType actionSelected;
-    private int workersSelected;
+    private int workers;
     protected ActionSpace actionSpaceSelected;
     private FamilyPawn temporaryPawn;
     // private GoodSet tempGoodSet;
     protected boolean realAction;
     protected PlayerStatus playerStatus;
 
-    public Action(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus) {
+    public Action(FamilyPawn pawnSelected, ActionType actionSelected, int workers, boolean realAction, PlayerStatus playerStatus) {
         this.pawnSelected = pawnSelected;
         this.actionSelected = actionSelected;
-        this.workersSelected = workersSelected;
+        this.workers = workers;
         this.temporaryPawn = new FamilyPawn(pawnSelected);
         this.realAction = realAction;
         this.playerStatus = playerStatus;
@@ -37,8 +36,8 @@ public abstract class Action {
         return actionSelected;
     }
 
-    public int getWorkersSelected() {
-        return workersSelected;
+    public int getWorkers() {
+        return workers;
     }
 
     public FamilyPawn getTemporaryPawn() {
@@ -51,28 +50,89 @@ public abstract class Action {
 
     public abstract void execute();
 
-    protected abstract void update();
+    /**
+     * if it is a real action, update:
+     * set as not available the family pawn used by the player
+     * set as occupied the actionSpace if it is single
+     * ...
+     */
+    protected void update() {
+        if (realAction) {
+            FamilyPawnType familyPawnType = pawnSelected.getType();
+            playerStatus.getFamilyPawnAvailability().put(familyPawnType, false);
+        }
+    }
 
-    public boolean isPossible() { // nelle figlie override con return super.isPossibile() && tutti i controlli della zona specifica
-        return checkActionSpaceOccupied(actionSpaceSelected)
+    public boolean isPossible() {
+        return checkActionSpaceOccupied()
                 && checkSufficientActionValue()
                 && checkFamilyPawn();
     }
 
-    private boolean checkActionSpaceOccupied(ActionSpace actionSpace) {
-        //TODO: impl - controlla B&M che balzano actionSpace occupato
+
+    /**
+     * checkActionSpaceOccupied calls the Filter only if the actionSpace has just one place and is occupied:
+     * Filter.applyOnActionSpace returns true only if the player has a particular bonusAndMalus, otherwise
+     * it returns false. If the actionSpace is not single or is not occupied, the method returns true.
+     * @return true if the player can add a pawn in the actionSpace, false otherwise
+     */
+    private boolean checkActionSpaceOccupied() {
+
+        if (actionSpaceSelected.isSingle() && actionSpaceSelected.isOccupied()) {
+            return Filter.applyOnActionSpace(playerStatus, actionSpaceSelected);
+        }
+
         return true;
     }
 
+
+    /**
+     * checkSufficientActionValue checks if the pawnSelected has enough value or
+     * if, thanks to bonusAndMalus, reaches the needed value or, in case it doesn't reach it,
+     * if the player has enough workers to reach he right actionValue.
+     * @return true if the player has enough actionValue on the pawn or enough workers to access the
+     * actionSpace, false otherwise
+     */
     private boolean checkSufficientActionValue() {
+
         executeBonusAndMalusOnAction();
-        //TODO: impl - verifica il valore della temp pawn >= actionSpace value
+
+        if (pawnSelected.getActualValue() < actionSpaceSelected.getActionCost()) {
+            int workersNeeded = workersNeeded();
+
+            if (workersNeeded > playerStatus.getActualGoodSet().getGoodAmount(GoodType.WORKERS)) {
+                return false;
+
+            } else {
+                setWorkers(workersNeeded);
+            }
+
+        }
         return true;
     }
 
+
+    /**
+     * executeBonusAndMalusOnAction calls the Filter.apply that can change the value
+     * of the pawnSelected
+     */
     private void executeBonusAndMalusOnAction() { // serve per controllare che con B&M il valore della pawn vada bene o meno
-        //TODO: impl - iteri la lista b&m sulla tempPawn
+        Filter.apply(playerStatus, actionSelected, pawnSelected.getActualValue());
     }
+
+
+
+    private int workersNeeded() {
+        return pawnSelected.getActualValue() - actionSpaceSelected.getActionCost();
+    }
+
+
+
+    public void setWorkers(int workers) {
+        this.workers = workers;
+    }
+
+
 
     /**
      * checkFamilyPawn checks if the pawn selected by the player is available or not
@@ -84,8 +144,19 @@ public abstract class Action {
     }
 
 
-    protected void addPawn() { // mette il familiare e si occupa di attivare effetto actionSpace
+    /**
+     * addPawn put the pawn on the selected actionSpace and then execute the effect
+     */
+    protected void addPawn() {
+        actionSpaceSelected.addPawn(pawnSelected);
 
+        /*
+        // TODO: meglio metterlo nell'update? sarebbe codice ripetuto a meno che update non sia più abstract - cosa che per il momento è successa
+        if (realAction) {
+            playerStatus.getFamilyPawnAvailability().put(pawnSelected.getType(), false);
+        }*/
+
+        actionSpaceSelected.getEffect().execute(playerStatus);
     }
 
 }

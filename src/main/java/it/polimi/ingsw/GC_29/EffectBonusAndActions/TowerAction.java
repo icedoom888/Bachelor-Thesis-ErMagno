@@ -230,11 +230,14 @@ public class TowerAction extends Action {
 
     /**
      * This method update:
+     * set availability false for the pawn used (super)
      * permanent effects in playerStatus
      * number of card per colour in playerStatus
-     * set availability false for the pawn used
+     * altro?
      */
     protected void update() {
+
+        super.update();
 
         if (cardSelected.getColor() == CardColor.BLUE) {
             for (Effect effect : cardSelected.getPermanentEffect()) {
@@ -246,8 +249,7 @@ public class TowerAction extends Action {
         numberOfCards++;
         playerStatus.getCardsOwned().put(cardSelected.getColor(), numberOfCards);
 
-        FamilyPawnType familyPawnType = pawnSelected.getType();
-        playerStatus.getFamilyPawnAvailability().put(familyPawnType, false);
+
         // altre cose?
     }
 

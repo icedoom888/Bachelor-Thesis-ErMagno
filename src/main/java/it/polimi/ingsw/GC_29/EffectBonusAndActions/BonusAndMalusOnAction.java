@@ -63,8 +63,9 @@ public class BonusAndMalusOnAction {
         return actionAllowed;
     }
 
-    public boolean filter(int actionValue, GoodSet actualGoodset){
-        return true;
+    // Questo metodo era un boolean, ma non aveva tanto senso
+    public void filter(int actionValue, GoodSet actualGoodset){
+
     }
 
     @Override
