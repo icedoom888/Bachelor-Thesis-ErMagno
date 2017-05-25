@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
 import org.testng.annotations.Test;
 
 /**
@@ -12,9 +11,9 @@ public class GameBoardConstructorTest {
         int numberOfPlayers_1 = 4;
         int numberOfPlayers_2 = 3;
         int numberOfPlayers_3 = 2;
-        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRSTERA,"sei",null,null,"777");
-        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECONDERA,"un",null,null,"su ogni");
-        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRDERA,"bufu",null,null,"cosa");
+        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null,"777");
+        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,"su ogni");
+        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,"cosa");
 
 
 

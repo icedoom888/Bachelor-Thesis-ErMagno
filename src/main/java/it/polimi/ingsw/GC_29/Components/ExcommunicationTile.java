@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
 /**
  * Created by Lorenzotara on 17/05/17.
  */
+
 public class ExcommunicationTile {
     private Era era;
     private String name;
@@ -13,7 +14,11 @@ public class ExcommunicationTile {
     private BonusAndMalusOnGoods malusOnEffect;
     private String description;
 
-    public ExcommunicationTile(Era era, String name, BonusAndMalusOnAction malusOnAction, BonusAndMalusOnGoods malusOnEffect, String description) {
+    public ExcommunicationTile(Era era,
+                               String name,
+                               BonusAndMalusOnAction malusOnAction,
+                               BonusAndMalusOnGoods malusOnEffect,
+                               String description) {
         this.era = era;
         this.name = name;
         this.malusOnAction = malusOnAction;
@@ -40,4 +45,15 @@ public class ExcommunicationTile {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public String toString() {
+        return "ExcommunicationTile{" + "era=" + era + ", name='" + name + '\'' + ", malusOnAction=" + malusOnAction + ", malusOnEffect=" + malusOnEffect + ", description='" + description + '\'' + '}';
+    }
+
+    /*
+    @Override
+    public String toString() {
+        return "ExcommunicationTile{" + "era=" + era + ", name='" + name + '\'' + ", malusOnAction=" + malusOnAction + ", malusOnEffect=" + malusOnEffect + ", description='" + description + '\'' + '}';
+    }*/
 }

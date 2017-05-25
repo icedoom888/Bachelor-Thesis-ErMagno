@@ -24,14 +24,18 @@ public class Discount {
         return alternativeDiscount;
     }
 
-    @JsonCreator
     public Discount(
-            @JsonProperty("firsDiscount") GoodSet firstDiscount,
-            @JsonProperty("secondDiscount")GoodSet secondDiscount,
-            @JsonProperty("alternativeDiscount")boolean alternativeDiscount) {
+            GoodSet firstDiscount,
+            GoodSet secondDiscount,
+            boolean alternativeDiscount) {
 
         this.firstDiscount = firstDiscount;
         this.secondDiscount = secondDiscount;
         this.alternativeDiscount = alternativeDiscount;
+    }
+
+    @Override
+    public String toString() {
+        return "Discount{" + "firstDiscount=" + firstDiscount + ", secondDiscount=" + secondDiscount + ", alternativeDiscount=" + alternativeDiscount + '}';
     }
 }

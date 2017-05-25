@@ -1,8 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 import org.testng.annotations.Test;
 
@@ -10,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static it.polimi.ingsw.GC_29.Player.PlayerColor.*;
-import static org.testng.Assert.*;
 
 /**
  * Created by Lorenzotara on 22/05/17.
@@ -31,7 +28,7 @@ public class TowerActionTest {
         PlayerStatus playerStatus = new PlayerStatus(new ArrayList<BonusAndMalusOnAction>(), new ArrayList<BonusAndMalusOnGoods>(), new GoodSet(1,2,3,4,5,6,7), new HashMap<CardColor, Integer>(), true, true,true,true);
         Tower tower = new Tower(CardColor.BLUE);
         int floorIndex = 2;
-        tower.getFloors()[floorIndex].setDevelopmentCard(new DevelopmentCard("a", Era.FIRSTERA, new CardCost(false, true, new GoodSet(2,2,3,4,5,6,7), new GoodSet(), false, new GoodSet()), CardColor.BLUE, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0));
+        tower.getFloors()[floorIndex].setDevelopmentCard(new DevelopmentCard("a", Era.FIRST, new CardCost(false, true, new GoodSet(2,2,3,4,5,6,7), new GoodSet(), false, new GoodSet()), CardColor.BLUE, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0));
         TowerAction towerAction = new TowerAction(familyPawnBlueOrange, actionType, workersSelected, realAction, playerStatus, tower, floorIndex);
 
         tower.getFloor(floorIndex-1).getActionSpace().addPawn(familyPawnRedBlack);

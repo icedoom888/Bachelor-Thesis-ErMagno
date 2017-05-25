@@ -34,4 +34,8 @@ public class Floor {
         return card;
     }
 
+    @Override
+    public String toString() {
+        return "Floor{" + "developmentCard=" + developmentCard + ", actionSpace=" + actionSpace + '}';
+    }
 }

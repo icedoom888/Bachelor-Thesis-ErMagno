@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -47,5 +48,10 @@ public class ExcommunicationLane implements Cleanable {
         tileAndPawns.put(excommunicationTile1, pawnSlots[1]);
         tileAndPawns.put(excommunicationTile2, pawnSlots[2]);
         tileAndPawns.put(excommunicationTile3, pawnSlots[3]);
+    }
+
+    @Override
+    public String toString() {
+        return "ExcommunicationLane{" + "tileAndPawns=" + tileAndPawns + ", pawnSlots=" + Arrays.toString(pawnSlots) + ", maxNumberOfPawns=" + maxNumberOfPawns + '}';
     }
 }

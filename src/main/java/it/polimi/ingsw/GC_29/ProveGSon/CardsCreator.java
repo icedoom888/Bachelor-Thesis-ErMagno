@@ -6,11 +6,8 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.io.IOException;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import it.polimi.ingsw.GC_29.ProveGSon.RuntimeTypeAdapterFactory;
 
 /**
  * Created by AlbertoPennino on 23/05/2017.
@@ -33,13 +30,13 @@ public class CardsCreator {
                 Era era = null;
                 switch(era_in){
                     case "1":
-                        era = Era.FIRSTERA;
+                        era = Era.FIRST;
                         break;
                     case "2":
-                        era = Era.SECONDERA;
+                        era = Era.SECOND;
                         break;
                     case "3":
-                        era = Era.THIRDERA;
+                        era = Era.THIRD;
                         break;
                 }
                 System.out.println("Creation CardCost..");

@@ -38,4 +38,9 @@ public class Workspace implements Cleanable {
     public ActionType getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return "Workspace{" + "mainField=" + mainField + ", secondaryField=" + secondaryField + ", type=" + type + '}';
+    }
 }

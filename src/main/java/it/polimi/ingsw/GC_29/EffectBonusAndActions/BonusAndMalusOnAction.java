@@ -66,4 +66,9 @@ public class BonusAndMalusOnAction {
     public boolean filter(int actionValue, GoodSet actualGoodset){
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "BonusAndMalusOnAction{" + "actionType=" + actionType + ", diceIncrementOrReduction=" + diceIncrementOrReduction + ", goodSetDiscountOrIncrement=" + goodSetDiscountOrIncrement + ", actionAllowed=" + actionAllowed + '}';
+    }
 }

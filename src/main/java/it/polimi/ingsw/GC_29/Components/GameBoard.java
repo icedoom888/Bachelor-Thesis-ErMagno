@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -103,5 +104,12 @@ public class GameBoard {
         for (Dice dice : diceLane) {
             dice = null;
         }
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "GameBoard{" + "victoryPointsTrack=" + victoryPointsTrack + ", venturesPointsTrack=" + venturesPointsTrack + ", turnOrderTrack=" + turnOrderTrack + ", faithPointsTrack=" + faithPointsTrack + ", towerMap=" + towerMap + ", excommunicationLane=" + excommunicationLane + ", councilPalace=" + councilPalace + ", harvestArea=" + harvestArea + ", productionArea=" + productionArea + ", market=" + market + ", diceLane=" + Arrays.toString(diceLane) + '}';
     }
 }

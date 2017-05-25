@@ -5,17 +5,17 @@ import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Lorenzotara on 22/05/17.
+ * Created by Lorenzotara on 25/05/17.
  */
-public class MainGSonToFile {
+public class GameBoardCreator {
 
     public static void main(String[] args) throws IOException {
-
 
         // Ospitare i mendicanti
 
@@ -26,8 +26,6 @@ public class MainGSonToFile {
 
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
-        //permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN,4,new Discount(new GoodSet(), new GoodSet(), false)));
-        //permanentEffectsOIM.add(new ObtainEffect(new GoodSet()));
         permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN, 4, new Discount(new GoodSet(), new GoodSet(),false)));
 
 
@@ -42,9 +40,16 @@ public class MainGSonToFile {
                 false,
                 0);
 
-        // toJson
+        ExcommunicationTile tile1 = new ExcommunicationTile(Era.FIRST, "name1", new BonusAndMalusOnAction(ActionType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom1");
+        ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ActionType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
+        ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ActionType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
 
-        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaprova");
+        GameBoard gameBoard = new GameBoard(4, tile1, tile2, tile3);
+        gameBoard.getTowerMap().get(CardColor.BLUE).getFloor(3).setDevelopmentCard(ospitareIMendicanti);
+
+        // to Json
+
+        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/gameBoard");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
@@ -55,24 +60,45 @@ public class MainGSonToFile {
                 .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
                 .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect");
 
-        /*final RuntimeTypeAdapterFactory<ObtainEffect> typeFactory1 = RuntimeTypeAdapterFactory
-                .of(ObtainEffect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
-                .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
-                .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect");*/
+        final RuntimeTypeAdapterFactory<ExcommunicationTile> typeFactory1 = RuntimeTypeAdapterFactory
+                .of(ExcommunicationTile.class, "@class");
+
 
 
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapterFactory(typeFactory);
         //gsonBuilder.registerTypeAdapterFactory(typeFactory1);
+        gsonBuilder.enableComplexMapKeySerialization();
+
 
         Gson gson = gsonBuilder.setPrettyPrinting().create();
 
 
-        gson.toJson(ospitareIMendicanti, fileWriter);
+        gson.toJson(gameBoard, fileWriter);
 
         fileWriter.close();
+
+        // from Json
+
+        FileReader fileReader = new FileReader("/Users/Lorenzotara/Desktop/gameBoard");
+
+
+        GameBoard gameBoardFromFile = gson.fromJson(fileReader, GameBoard.class);
+
+        System.out.println("GameBoard creata in Java\n\n");
+        System.out.println(gameBoard + "\n\n\n");
+
+        System.out.println("GameBoard caricata da file\n\n");
+        System.out.println(gameBoardFromFile + "\n\n\n");
+
+        System.out.println(gameBoard.equals(gameBoardFromFile));
+
+        //gameBoardFromFile.getTowerMap().get(CardColor.BLUE).getFloor(3).setDevelopmentCard(ospitareIMendicanti);
+        DevelopmentCard card = gameBoardFromFile.getTowerMap().get(CardColor.BLUE).getFloor(3).getDevelopmentCard();
+
+
+        System.out.println(card);
+
     }
-
-
 }
