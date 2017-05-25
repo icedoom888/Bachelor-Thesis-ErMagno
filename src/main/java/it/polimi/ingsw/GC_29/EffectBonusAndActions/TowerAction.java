@@ -230,10 +230,11 @@ public class TowerAction extends Action {
 
     /**
      * This method update:
-     * set availability false for the pawn used (super)
-     * permanent effects in playerStatus
-     * number of card per colour in playerStatus
-     * altro?
+     * sets availability false for the pawn used (super)
+     * sets the actionSpace as occupied (super)
+     * sets permanent effects of the card in playerStatus
+     * updates number of card per colour in playerStatus
+     * ...
      */
     protected void update() {
 

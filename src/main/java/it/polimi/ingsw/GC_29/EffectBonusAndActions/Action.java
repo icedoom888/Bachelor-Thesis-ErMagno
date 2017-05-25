@@ -52,8 +52,8 @@ public abstract class Action {
 
     /**
      * if it is a real action, update:
-     * set as not available the family pawn used by the player
-     * set as occupied the actionSpace if it is single
+     * sets as not available the family pawn used by the player
+     * sets as occupied the actionSpace if it is single
      * ...
      */
     protected void update() {
