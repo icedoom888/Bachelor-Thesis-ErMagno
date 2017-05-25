@@ -16,14 +16,13 @@ public class CardCost {
     private boolean necessaryGoodSetForMainCost; // if it's true the necessaryGoodSet refers to mainCost
     private GoodSet necessaryGoodSet;
 
-    @JsonCreator
     public CardCost(
-            @JsonProperty("alternative") boolean alternative,
-            @JsonProperty("withPrice") boolean withPrice,
-            @JsonProperty("mainCost") GoodSet mainCost,
-            @JsonProperty("alternativeCost") GoodSet alternativeCost,
-            @JsonProperty("necessaryGoodSetForMainCost") boolean necessaryGoodSetForMainCost,
-            @JsonProperty("necessaryGoodSet") GoodSet necessaryGoodSet) {
+            boolean alternative,
+            boolean withPrice,
+            GoodSet mainCost,
+            GoodSet alternativeCost,
+            boolean necessaryGoodSetForMainCost,
+            GoodSet necessaryGoodSet) {
 
         this.alternative = alternative;
         this.withPrice = withPrice;
@@ -44,15 +43,7 @@ public class CardCost {
     }
 
 
-    /*
-    public GoodSet[] getCardCost() { // immutable field
-        GoodSet[] temporaryGoodSet = new GoodSet[numberOfAlternatives];
-        for (int i = 0; i < numberOfAlternatives; i++) {
-            temporaryGoodSet[i] = this.mainCost[i];
-        }
-        return temporaryGoodSet;
-    }
-    */
+
 
     public boolean isWithPrice() {
         return withPrice;

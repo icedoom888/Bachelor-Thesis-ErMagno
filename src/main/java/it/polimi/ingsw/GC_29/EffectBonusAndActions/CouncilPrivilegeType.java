@@ -8,7 +8,7 @@ import it.polimi.ingsw.GC_29.Components.GoodSet;
 /**
  * Created by Lorenzotara on 20/05/17.
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+
 public enum CouncilPrivilegeType {
     ONEWOOD_ONESTONE(1,1,0,0,0,0,0),
     TWOWORKERS(0,0,0,2,0,0,0),

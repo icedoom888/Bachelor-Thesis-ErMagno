@@ -21,16 +21,16 @@ public class DevelopmentCard {
     private boolean withActionValue;
     private int actionValue;
 
-    @JsonCreator
+
     public DevelopmentCard(
-            @JsonProperty("name") String name,
-            @JsonProperty("era") Era era,
-            @JsonProperty("cardCost") CardCost cardCost,
-            @JsonProperty("color") CardColor color,
-            @JsonProperty("immediateEffect") ArrayList<Effect> immediateEffect,
-            @JsonProperty("permanentEffect") ArrayList<Effect> permanentEffect,
-            @JsonProperty("withActionValue") boolean withActionValue,
-            @JsonProperty("actionValue") int actionValue) {
+            String name,
+            Era era,
+            CardCost cardCost,
+            CardColor color,
+            ArrayList<Effect> immediateEffect,
+            ArrayList<Effect> permanentEffect,
+            boolean withActionValue,
+            int actionValue) {
 
         this.name = name;
         this.era = era;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.ProveJackSon;
+package it.polimi.ingsw.GC_29.ProveGSon;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.GC_29.Components.*;

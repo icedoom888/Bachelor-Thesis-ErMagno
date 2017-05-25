@@ -8,21 +8,18 @@ import it.polimi.ingsw.GC_29.Components.GoodSet;
 /**
  * Created by Lorenzotara on 17/05/17.
  */
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY
-)
+
 public class BonusAndMalusOnAction {
     private ActionType actionType;
     private int diceIncrementOrReduction;
     private GoodSet goodSetDiscountOrIncrement;
     private boolean actionAllowed;
 
-    @JsonCreator
+
     public BonusAndMalusOnAction(
-            @JsonProperty("actionType")ActionType actionType,
-            @JsonProperty("diceIncrementOrReduction") int diceIncrementOrReduction,
-            @JsonProperty("goodSetDiscountOrIncrement") GoodSet goodSetDiscountOrIncrement) {
+            ActionType actionType,
+            int diceIncrementOrReduction,
+            GoodSet goodSetDiscountOrIncrement) {
 
         this.actionType = actionType;
         this.diceIncrementOrReduction = diceIncrementOrReduction;
