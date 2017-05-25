@@ -60,7 +60,11 @@ public abstract class Action {
         if (realAction) {
             FamilyPawnType familyPawnType = pawnSelected.getType();
             playerStatus.getFamilyPawnAvailability().put(familyPawnType, false);
+
+            if (actionSpaceSelected.isSingle()) actionSpaceSelected.setOccupied(true);
+
         }
+
     }
 
     public boolean isPossible() {
