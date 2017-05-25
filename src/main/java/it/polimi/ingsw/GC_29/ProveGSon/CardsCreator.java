@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class CardsCreator {
     public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
-        ArrayList<DevelopmentCard> cards = new ArrayList<DevelopmentCard>();
+        ArrayList<DevelopmentCard> cards = new ArrayList<>();
         boolean loop = true;
 
         while (loop) {
@@ -25,40 +25,15 @@ public class CardsCreator {
             if (answer.equals("y")){
                 System.out.println("Insert card name:");
                 String name = in.nextLine();
-                System.out.println("Insert era:");
-                String era_in = in.nextLine();
-                Era era = null;
-                switch(era_in){
-                    case "1":
-                        era = Era.FIRST;
-                        break;
-                    case "2":
-                        era = Era.SECOND;
-                        break;
-                    case "3":
-                        era = Era.THIRD;
-                        break;
-                }
+
+                System.out.println("Creation era..");
+                Era era = createEra(in);
+
                 System.out.println("Creation CardCost..");
                 CardCost cardCost = createCardCost(in);
 
-                System.out.println("Insert color:");
-                String color_in = in.nextLine();
-                CardColor color = null;
-                switch(color_in){
-                    case "green":
-                        color = CardColor.GREEN;
-                        break;
-                    case "blue":
-                        color = CardColor.BLUE;
-                        break;
-                    case "yellow":
-                        color = CardColor.YELLOW;
-                        break;
-                    case "purple":
-                        color = CardColor.PURPLE;
-                        break;
-                }
+                System.out.println("Creation color..");
+                CardColor color = createColor(in);
 
                 System.out.println("Creation immediateEffect list..");
                 ArrayList<Effect> immediateEffect = createEffectList(in);
@@ -69,6 +44,7 @@ public class CardsCreator {
                 System.out.println("Insert withActionValue boolean:");
                 String withActionValue_in = in.nextLine();
                 Boolean withActionValue = Boolean.parseBoolean(withActionValue_in);
+
                 int actionValue = 0;
                 if (withActionValue){
                     System.out.println("Insert actionValue int:");
@@ -355,5 +331,48 @@ public class CardsCreator {
             }
         }
 
+    }
+
+    public static CardColor createColor(Scanner in){
+        System.out.println("Insert color:");
+        String color_in = in.nextLine();
+        CardColor color = null;
+        switch(color_in){
+            case "g":
+                color = CardColor.GREEN;
+                break;
+            case "b":
+                color = CardColor.BLUE;
+                break;
+            case "y":
+                color = CardColor.YELLOW;
+                break;
+            case "p":
+                color = CardColor.PURPLE;
+                break;
+            default:
+                color = createColor(in);
+        }
+        return color;
+    }
+
+    public static Era createEra(Scanner in){
+        System.out.println("Insert era:");
+        String era_in = in.nextLine();
+        Era era = null;
+        switch(era_in){
+            case "1":
+                era = Era.FIRST;
+                break;
+            case "2":
+                era = Era.SECOND;
+                break;
+            case "3":
+                era = Era.THIRD;
+                break;
+            default:
+                era = createEra(in);
+        }
+        return era;
     }
 }
