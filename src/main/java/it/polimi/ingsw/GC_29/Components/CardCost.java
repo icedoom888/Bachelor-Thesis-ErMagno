@@ -14,7 +14,7 @@ public class CardCost {
     private Cost mainCost; // mainCost - one of the alternatives and the alternative chosen by the player
     private Cost alternativeCost;
 
-    private CardCost(
+    public CardCost(
             boolean alternative,
             boolean withPrice,
             Cost mainCost,

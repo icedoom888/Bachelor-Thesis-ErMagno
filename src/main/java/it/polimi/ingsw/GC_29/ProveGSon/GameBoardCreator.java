@@ -33,7 +33,7 @@ public class GameBoardCreator {
         DevelopmentCard ospitareIMendicanti = new DevelopmentCard(
                 "Ospitare i Mendicanti",
                 Era.FIRST,
-                new CardCost(false, true, new GoodSet(4,0,0,0,0,0,0), new GoodSet(), false, new GoodSet()),
+                new CardCost(false, true, new Cost(new GoodSet(4,0,0,0,0,0,0), new GoodSet()), new Cost(new GoodSet(), new GoodSet())),
                 CardColor.PURPLE,
                 immediateEffectsOIM,
                 permanentEffectsOIM,
