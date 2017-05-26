@@ -307,6 +307,7 @@ public class TowerAction extends Action {
     protected void update() {
         
         //TODO: dividi in più metodi
+        //TODO: magari il controllo al posto che sul cardColor fallo su BonusEffect
 
         super.update();
 
@@ -322,6 +323,5 @@ public class TowerAction extends Action {
 
     }
 
-    private void giveBonusAndMalus
 
 }

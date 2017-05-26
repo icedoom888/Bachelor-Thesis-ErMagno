@@ -11,10 +11,16 @@ public class BonusEffect implements Effect {
 
     private BonusAndMalusOnAction bonusAndMalusOnAction;
     private BonusAndMalusOnGoods bonusAndMalusOnGoods;
+    private BonusAndMalusOnCost bonusAndMalusOnCost;
 
-   public BonusEffect(BonusAndMalusOnAction bonusAndMalusOnAction) {
 
-       this.bonusAndMalusOnAction = bonusAndMalusOnAction;
+    public BonusEffect(BonusAndMalusOnAction bonusAndMalusOnAction,
+                       BonusAndMalusOnGoods bonusAndMalusOnGoods,
+                       BonusAndMalusOnCost bonusAndMalusOnCost) {
+
+        this.bonusAndMalusOnAction = bonusAndMalusOnAction;
+        this.bonusAndMalusOnGoods = bonusAndMalusOnGoods;
+        this.bonusAndMalusOnCost = bonusAndMalusOnCost;
     }
 
     @Override
@@ -27,12 +33,17 @@ public class BonusEffect implements Effect {
         System.out.println("You received a Bonus! It will be added to your Bonus List");
 
         ArrayList<BonusAndMalusOnAction> bonusOnActionList = status.getBonusAndMalusOnAction();
+        ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoodsList = status.getBonusAndMalusOnGoods();
+        ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCostList = status.getBonusAndMalusOnCost();
 
         bonusOnActionList.add(bonusAndMalusOnAction);
+        bonusAndMalusOnGoodsList.add(bonusAndMalusOnGoods);
+        bonusAndMalusOnCostList.add(bonusAndMalusOnCost);
+
     }
 
     @Override
     public String toString() {
-        return "BonusEffect{" + "bonusAndMalusOnAction=" + bonusAndMalusOnAction + '}';
+        return "BonusEffect{" + "bonusAndMalusOnAction=" + bonusAndMalusOnAction + ", bonusAndMalusOnGoods=" + bonusAndMalusOnGoods + ", bonusAndMalusOnCost=" + bonusAndMalusOnCost + '}';
     }
 }
