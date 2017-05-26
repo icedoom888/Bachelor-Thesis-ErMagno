@@ -24,14 +24,6 @@ public class MarketAction extends Action {
     protected void update() {
 
     }
-    /*
-    @Override
-    public void execute(PlayerStatus playerStatus) {
 
-    }
 
-    @Override
-    protected void update(PlayerStatus playerStatus) {
-
-    }*/
 }

@@ -9,17 +9,22 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 /**
  * Created by Lorenzotara on 19/05/17.
  */
-public abstract class Action {
+public class Action {
+
     protected FamilyPawn pawnSelected;
     private ActionType actionSelected;
     private int workers;
     protected ActionSpace actionSpaceSelected;
     private FamilyPawn temporaryPawn;
-    // private GoodSet tempGoodSet;
     protected boolean realAction;
     protected PlayerStatus playerStatus;
 
-    public Action(FamilyPawn pawnSelected, ActionType actionSelected, int workers, boolean realAction, PlayerStatus playerStatus) {
+    public Action(FamilyPawn pawnSelected,
+                  ActionType actionSelected,
+                  int workers,
+                  boolean realAction,
+                  PlayerStatus playerStatus) {
+
         this.pawnSelected = pawnSelected;
         this.actionSelected = actionSelected;
         this.workers = workers;
@@ -48,7 +53,10 @@ public abstract class Action {
         return realAction;
     }
 
-    public abstract void execute();
+    public void execute() {
+        addPawn();
+        update();
+    }
 
     /**
      * if it is a real action, update:
@@ -68,9 +76,14 @@ public abstract class Action {
     }
 
     public boolean isPossible() {
-        return checkActionSpaceOccupied()
+        return isActionAvailable()
+                &&checkActionSpaceOccupied()
                 && checkSufficientActionValue()
                 && checkFamilyPawn();
+    }
+
+    private boolean isActionAvailable() {
+        return Filter.applySpecia(playerStatus, actionSelected);
     }
 
 
@@ -83,7 +96,7 @@ public abstract class Action {
     private boolean checkActionSpaceOccupied() {
 
         if (actionSpaceSelected.isSingle() && actionSpaceSelected.isOccupied()) {
-            return Filter.applyOnActionSpace(playerStatus, actionSpaceSelected);
+            return Filter.applySpecial(playerStatus, actionSpaceSelected);
         }
 
         return true;
@@ -122,7 +135,7 @@ public abstract class Action {
      * of the pawnSelected
      */
     private void executeBonusAndMalusOnAction() { // serve per controllare che con B&M il valore della pawn vada bene o meno
-        Filter.apply(playerStatus, actionSelected, pawnSelected.getActualValue());
+        Filter.apply(playerStatus, actionSelected, temporaryPawn.getActualValue());
     }
 
 

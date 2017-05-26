@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class TowerAction extends Action {
 
     //TODO testing per nuove condizioni di isPossible
+    //TODO gestire il costo della carta sia per controlli (con le alternative) sia per l'esecuzione
 
     private Tower towerChosen;
     private int floorIndex;
@@ -42,7 +43,15 @@ public class TowerAction extends Action {
 
     }
 
-    public TowerAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus, Tower towerChosen, int floorIndex, GoodSet discount) {
+    public TowerAction(FamilyPawn pawnSelected,
+                       ActionType actionSelected,
+                       int workersSelected,
+                       boolean realAction,
+                       PlayerStatus playerStatus,
+                       Tower towerChosen,
+                       int floorIndex,
+                       GoodSet discount) {
+
         super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
         this.towerChosen = towerChosen;
         this.floorIndex = floorIndex;
@@ -67,9 +76,10 @@ public class TowerAction extends Action {
 
     @Override
     public boolean isPossible() {
+
         return super.isPossible()
                 && !checkFamilyPresence()
-                && isOccupied()
+                && isTowerAccesPossible()
                 && laneAvailable()
                 && checkSufficientGoodsForCard();
     }
@@ -92,26 +102,28 @@ public class TowerAction extends Action {
 
     /**
      * This method checks if the tower is occupied: in this case it controls if the player
-     * has a BM that make him access the tower, otherwise it checks if the player has enough coins
+     * has a BM that make him access the tower; if the player has it return true, otherwise it checks if the player has enough coins
      * to enter the tower
      * @return true if you can access the tower, false otherwise
      */
-    private boolean isOccupied() {
+    private boolean isTowerAccesPossible() {
 
         if (towerChosen.isOccupied()) {
-            Filter.apply(playerStatus, towerCost); // TODO da rivedere, passo un goodSet al filter e invece devo andare a controllare le leaderCard
-            int goldCost = towerChosen.getCostIfOccupied();
-            if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.COINS) >= goldCost) {
-                //This branch is taken if the player have enough coins to pay the access to the occupied tower
-                towerCost.addGoodSet(new GoodSet(0,0,goldCost,0,0,0,0));
-                return true;
-            }
-            else {
-                System.out.println("You don't have enough coins to access to the tower!");
-                return false;
+
+            if (!Filter.applySpecial(playerStatus, towerCost)) {
+                int goldCost = towerChosen.getCostIfOccupied();
+
+                if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.COINS) >= goldCost) {
+                    //This branch is taken if the player have enough coins to pay the access to the occupied tower
+                    towerCost = new GoodSet(0,0,goldCost,0,0,0,0);
+                    return true;
+
+                } else {
+                    System.out.println("You don't have enough coins to access to the tower!");
+                    return false;
+                }
             }
         }
-
         return true;
     }
 

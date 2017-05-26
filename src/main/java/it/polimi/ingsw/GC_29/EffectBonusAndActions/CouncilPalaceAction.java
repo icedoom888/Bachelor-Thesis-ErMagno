@@ -14,8 +14,14 @@ public class CouncilPalaceAction extends Action {
 
     private CouncilPalaceActionSpace councilPalace;
 
-    public CouncilPalaceAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus) {
+    public CouncilPalaceAction(FamilyPawn pawnSelected,
+                               ActionType actionSelected,
+                               int workersSelected,
+                               boolean realAction,
+                               PlayerStatus playerStatus) {
+
         super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
+
     }
 
 
@@ -25,6 +31,7 @@ public class CouncilPalaceAction extends Action {
 
         super.addPawn();
         setOrder();
+        super.update();
     }
 
     /**
