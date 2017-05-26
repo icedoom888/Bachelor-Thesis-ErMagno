@@ -11,34 +11,29 @@ public class CardCost {
     // TODO: add method to call the Static Speaker class
     private boolean withPrice; // has the card have a price?
     private boolean alternative; // can you choose between differnts methods to pay?
-    private boolean necessaryGoodSetForMainCost; // if it's true the necessaryGoodSet refers to mainCost
-    private GoodSet mainCost; // mainCost - one of the alternatives and the alternative chosen by the player
-    private GoodSet alternativeCost;
-    private GoodSet necessaryGoodSet;
+    private Cost mainCost; // mainCost - one of the alternatives and the alternative chosen by the player
+    private Cost alternativeCost;
 
     private CardCost(
             boolean alternative,
             boolean withPrice,
-            GoodSet mainCost,
-            GoodSet alternativeCost,
-            boolean necessaryGoodSetForMainCost,
-            GoodSet necessaryGoodSet) {
+            Cost mainCost,
+            Cost alternativeCost) {
 
         this.alternative = alternative;
         this.withPrice = withPrice;
         this.mainCost = mainCost;
         this.alternativeCost = alternativeCost;
-        this.necessaryGoodSetForMainCost = necessaryGoodSetForMainCost;
-        this.necessaryGoodSet = necessaryGoodSet;
+
 
     }
 
 
     
     public CardCost(CardCost cardCost) { // immutable object
+        this.withPrice = cardCost.withPrice;
         this.mainCost = cardCost.mainCost;
         this.alternative = cardCost.alternative;
-        this.necessaryGoodSet = cardCost.necessaryGoodSet;
         this.withPrice = cardCost.withPrice;
     }
 
@@ -49,20 +44,12 @@ public class CardCost {
         return withPrice;
     }
 
-    public GoodSet getMainCost() {
+    public Cost getMainCost() {
         return mainCost;
     }
 
-    public GoodSet getAlternativeCost() {
+    public Cost getAlternativeCost() {
         return alternativeCost;
-    }
-
-    public boolean isNecessaryGoodSetForMainCost() {
-        return necessaryGoodSetForMainCost;
-    }
-
-    public GoodSet getNecessaryGoodSet() {
-        return necessaryGoodSet;
     }
 
     public boolean isAlternative() {
@@ -71,6 +58,6 @@ public class CardCost {
 
     @Override
     public String toString() {
-        return "CardCost{" + "alternative=" + alternative + ", withPrice=" + withPrice + ", mainCost=" + mainCost + ", alternativeCost=" + alternativeCost + ", necessaryGoodSetForMainCost=" + necessaryGoodSetForMainCost + ", necessaryGoodSet=" + necessaryGoodSet + '}';
+        return "CardCost{" + "withPrice=" + withPrice + ", alternative=" + alternative + ", mainCost=" + mainCost + ", alternativeCost=" + alternativeCost + '}';
     }
 }

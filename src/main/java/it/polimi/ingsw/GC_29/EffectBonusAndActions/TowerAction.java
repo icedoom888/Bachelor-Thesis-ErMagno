@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by Lorenzotara on 19/05/17.
@@ -18,9 +19,7 @@ public class TowerAction extends Action {
     private GoodSet temporaryGoodSet; // accumula il bonus dell'actionSpace
     private GoodSet towerCost; // 3 coins
     private CardCost cardCost;
-    private GoodSet discount; // discount che c'è se non è realAction e viene passato dall'ActionEffect già selezionato se c'è l'alternativa
-    private GoodSet mainTotalCost;
-    private GoodSet alternativeTotalCost;
+    private ArrayList<Cost> possibleCardCosts;
     private DevelopmentCard cardSelected;
 
     public TowerAction(
@@ -39,9 +38,8 @@ public class TowerAction extends Action {
         this.temporaryGoodSet = new GoodSet();
         this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
         this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
-        this.mainTotalCost = new GoodSet();
-        this.alternativeTotalCost = new GoodSet();
         this.towerCost = new GoodSet();
+        this.possibleCardCosts = new ArrayList<>();
 
     }
 
@@ -61,10 +59,8 @@ public class TowerAction extends Action {
         this.temporaryGoodSet = new GoodSet();
         this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
         this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
-        this.discount = discount;
-        this.mainTotalCost = new GoodSet();
-        this.alternativeTotalCost = new GoodSet();
         this.towerCost = new GoodSet();
+        this.possibleCardCosts = new ArrayList<>();
     }
 
     @Override
@@ -80,11 +76,19 @@ public class TowerAction extends Action {
     @Override
     public boolean isPossible() {
 
-        return super.isPossible()
-                && !checkFamilyPresence()
-                && isTowerAccessPossible()
-                && laneAvailable()
-                && checkSufficientGoodsForCard();
+        if(super.isPossible()){
+            if(!checkFamilyPresence()){
+                if (isTowerAccessPossible()) {
+                    if (laneAvailable()) {
+                        if (cardCost.isWithPrice()) {
+                            if (checkSufficientGoodsForCard()) return true;
+                        }
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -105,7 +109,7 @@ public class TowerAction extends Action {
 
     /**
      * This method checks if the tower is occupied: in this case it controls if the player
-     * has a BM that make him access the tower; if the player has it return true, otherwise it checks if the player has enough coins
+     * has a BM that makes him access the tower; if the player has it return true, otherwise it checks if the player has enough coins
      * to enter the tower
      * @return true if you can access the tower, false otherwise
      */
@@ -148,30 +152,43 @@ public class TowerAction extends Action {
     /**
      * After saving the potential resources that the actionSpace can give to the player,
      * this method filters the cost of the card, add the cost of the tower and subtract the resources received
-     * by the actionSpace effect and if it is an action created by an effect with a discount, subtract also the discount.
+     * by the actionSpace effect.
      * Then it checks if the player has enough resources in his goodSet to pay the selected card
      * @return true if there are enough resources to pay the card, false otherwise
      */
     private boolean checkSufficientGoodsForCard() {
-
+        
         setActionSpaceEffect();
-        Filter.apply(playerStatus, cardCost);
+        
+        ArrayList<Cost> costList = new ArrayList<Cost>();
+        Filter.apply(playerStatus, cardCost, costList, actionType);
 
-        mainTotalCost.addGoodSet(towerCost);
-        mainTotalCost.subGoodSet(temporaryGoodSet);
-        alternativeTotalCost.addGoodSet(mainTotalCost);
-        mainTotalCost.addGoodSet(cardCost.getMainCost());
-        alternativeTotalCost.addGoodSet(cardCost.getAlternativeCost());
+        GoodSet playerGoodSet = new GoodSet(playerStatus.getActualGoodSet());
+        GoodSet necessaryGoodSet;
+        GoodSet realCost;
 
-        if (!this.realAction) {
-            mainTotalCost.subGoodSet(discount);
-            alternativeTotalCost.subGoodSet(discount);
+        playerGoodSet.subGoodSet(towerCost);
+        playerGoodSet.addGoodSet(temporaryGoodSet);
+
+        boolean value = false;
+        for (Cost cost : costList) {
+
+            necessaryGoodSet = cost.getNecessaryResources();
+            realCost = cost.getCost();
+
+            if (playerGoodSet.enoughResources(necessaryGoodSet)
+                    && playerGoodSet.enoughResources(realCost)) {
+
+                possibleCardCosts.add(cost);
+                value = true;
+            }
         }
 
-        return playerStatus.getActualGoodSet().enoughResources(mainTotalCost)
-                || playerStatus.getActualGoodSet().enoughResources(alternativeTotalCost);
+        return value;
     }
 
+    
+    
     private boolean checkTerritorySlotAvailability() {
         TerritoryLane lane = playerStatus.getPersonalBoard().getTerritoryLane();
         int index = lane.getFirstFreeSlotIndex();
@@ -201,8 +218,41 @@ public class TowerAction extends Action {
 
     private void payCard() {
 
-        playerStatus.getActualGoodSet().subGoodSet(mainTotalCost);
+        if(!cardCost.isWithPrice()){
+            return;
+        }
+
+        if (towerCost.getGoodAmount(GoodType.COINS) != 0) {
+            System.out.println("You have to pay the access to the tower because it's occupied: ");
+            System.out.println("The cost is " + towerCost.getGoodAmount(GoodType.COINS) + " coins.");
+        }
+
+        System.out.println("The actual cost of the card is: \n" + cardCost);
+
+        if (possibleCardCosts.size() > 1) {
+            System.out.println("Applying your bonusAndMalus you can choose between different costs: ");
+
+            int i = 1;
+            for (Cost cost : possibleCardCosts) {
+                System.out.println(i + ") " + cost);
+                i++;
+            }
+
+            System.out.println("Write the number of the option chosen");
+            Scanner scanner = new Scanner(System.in);
+            int answer = scanner.nextInt();
+            playerStatus.getActualGoodSet().subGoodSet(possibleCardCosts.get(answer).getCost());
+            System.out.println("The card has been paid");
+            return;
+        }
+
+        System.out.println("Applying your bonusAndMalus you have to pay: ");
+        System.out.println(possibleCardCosts.get(0));
+
+        playerStatus.getActualGoodSet().subGoodSet(possibleCardCosts.get(0).getCost());
+        System.out.println("The card has been paid");
     }
+
 
 
     /**
@@ -213,18 +263,19 @@ public class TowerAction extends Action {
     private void giveCard() {
 
         DevelopmentCard card = towerChosen.getFloor(floorIndex).removeCard();
+        PersonalBoard playerBoard = playerStatus.getPersonalBoard();
         switch (card.getColor()) {
             case GREEN:
-                playerStatus.getPersonalBoard().getTerritoryLane().addCard(card);
+                playerBoard.getTerritoryLane().addCard(card);
                 break;
             case BLUE:
-                playerStatus.getPersonalBoard().getFamilyLane().addCard(card);
+                playerBoard.getFamilyLane().addCard(card);
                 break;
             case YELLOW:
-                playerStatus.getPersonalBoard().getBuildingLane().addCard(card);
+                playerBoard.getBuildingLane().addCard(card);
                 break;
             case PURPLE:
-                playerStatus.getPersonalBoard().getVenturesLane().addCard(card);
+                playerBoard.getVenturesLane().addCard(card);
                 break;
             default:
                 System.out.println("Ops! There has been an error!");
@@ -254,6 +305,8 @@ public class TowerAction extends Action {
      * ...
      */
     protected void update() {
+        
+        //TODO: dividi in più metodi
 
         super.update();
 
@@ -267,8 +320,8 @@ public class TowerAction extends Action {
         numberOfCards++;
         playerStatus.getCardsOwned().put(cardSelected.getColor(), numberOfCards);
 
-
-        // altre cose?
     }
+
+    private void giveBonusAndMalus
 
 }

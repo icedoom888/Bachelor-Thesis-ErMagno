@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class BonusEffect implements Effect {
 
     private BonusAndMalusOnAction bonusAndMalusOnAction;
+    private BonusAndMalusOnGoods bonusAndMalusOnGoods;
 
    public BonusEffect(BonusAndMalusOnAction bonusAndMalusOnAction) {
 

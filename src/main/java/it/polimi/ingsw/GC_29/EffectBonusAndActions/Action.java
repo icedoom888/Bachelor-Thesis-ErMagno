@@ -12,7 +12,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public class Action {
 
     protected FamilyPawn pawnSelected;
-    private ActionType actionSelected;
+    protected ActionType actionType;
     private int workers;
     protected ActionSpace actionSpaceSelected;
     private FamilyPawn temporaryPawn;
@@ -20,13 +20,13 @@ public class Action {
     protected PlayerStatus playerStatus;
 
     public Action(FamilyPawn pawnSelected,
-                  ActionType actionSelected,
+                  ActionType actionType,
                   int workers,
                   boolean realAction,
                   PlayerStatus playerStatus) {
 
         this.pawnSelected = pawnSelected;
-        this.actionSelected = actionSelected;
+        this.actionType = actionType;
         this.workers = workers;
         this.temporaryPawn = new FamilyPawn(pawnSelected);
         this.realAction = realAction;
@@ -37,8 +37,8 @@ public class Action {
         return pawnSelected;
     }
 
-    public ActionType getActionSelected() {
-        return actionSelected;
+    public ActionType getActionType() {
+        return actionType;
     }
 
     public int getWorkers() {
@@ -83,7 +83,7 @@ public class Action {
     }
 
     private boolean isActionAvailable() {
-        return Filter.applySpecia(playerStatus, actionSelected);
+        return Filter.applySpecia(playerStatus, actionType);
     }
 
 
@@ -135,7 +135,7 @@ public class Action {
      * of the pawnSelected
      */
     private void executeBonusAndMalusOnAction() { // serve per controllare che con B&M il valore della pawn vada bene o meno
-        Filter.apply(playerStatus, actionSelected, temporaryPawn.getActualValue());
+        Filter.apply(playerStatus, actionType, temporaryPawn.getActualValue());
     }
 
 

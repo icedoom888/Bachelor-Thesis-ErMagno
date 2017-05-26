@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.ActionSpace;
 import it.polimi.ingsw.GC_29.Components.CardCost;
+import it.polimi.ingsw.GC_29.Components.Cost;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
@@ -52,9 +53,26 @@ public final class Filter {
     }
 
 
+    /**
+     * This method divides the cardCost in its two components (if present) and put them in a list.
+     * Then it calls the filter of bonusAndMalusOnCost on the list.
+     * @param playerStatus
+     * @param cardCost
+     * @param costs
+     * @param actionType
+     */
+    public static void apply(PlayerStatus playerStatus, CardCost cardCost, ArrayList<Cost> costs, ActionType actionType) {
+        ArrayList<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCost = playerStatus.getBonusAndMalusOnCost();
 
-    public static void apply(PlayerStatus playerStatus, CardCost cardCost) {
+        costs.add(cardCost.getMainCost());
 
+        if (cardCost.isAlternative()) {
+            costs.add(cardCost.getAlternativeCost());
+        }
+
+        for (BonusAndMalusOnCost bonusAndMalusOnCost : currentPlayerBonusAndMalusOnCost) {
+            bonusAndMalusOnCost.filter(playerStatus, costs, actionType);
+        }
     }
 
 

@@ -4,10 +4,7 @@ import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.PersonalBoard;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +18,7 @@ public class PlayerStatus {
     private HashMap<FamilyPawnType, Boolean> familyPawnAvailability;
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction;
     private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
+    private ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCost;
     private PersonalBoard personalBoard; // TODO: aggiunto perchè dalle azioni
     private GoodSet actualGoodSet;
     private HashMap<CardColor, Integer> cardsOwned;
@@ -31,11 +29,14 @@ public class PlayerStatus {
     public PlayerStatus() {
         bonusAndMalusOnAction = new ArrayList<BonusAndMalusOnAction>();
         bonusAndMalusOnGoods = new ArrayList<BonusAndMalusOnGoods>();
+        bonusAndMalusOnCost = new ArrayList<BonusAndMalusOnCost>();
         actualGoodSet = new GoodSet();
         cardsOwned = new HashMap<CardColor, Integer>();
+
         for(CardColor color : CardColor.values()){
             cardsOwned.put(color,0);
         }
+
         currentBonusActionList = new LinkedList<ActionEffect>();
         this.familyPawnAvailability = new HashMap<FamilyPawnType, Boolean>();
         familyPawnAvailability.put(FamilyPawnType.BLACK, true);
@@ -44,9 +45,18 @@ public class PlayerStatus {
         familyPawnAvailability.put(FamilyPawnType.NEUTRAL, true);
     }
 
-    public PlayerStatus(ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction, ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods, GoodSet actualGoodSet, HashMap<CardColor, Integer> cardsOwned, boolean blackPawnAvailability, boolean whitePawnAvailability, boolean orangePawnAvailability, boolean neutralPawnAvailability) {
+    public PlayerStatus(ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction,
+                        ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods,
+                        ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCost,
+                        GoodSet actualGoodSet, HashMap<CardColor, Integer> cardsOwned,
+                        boolean blackPawnAvailability,
+                        boolean whitePawnAvailability,
+                        boolean orangePawnAvailability,
+                        boolean neutralPawnAvailability) {
+
         this.bonusAndMalusOnAction = bonusAndMalusOnAction;
         this.bonusAndMalusOnGoods = bonusAndMalusOnGoods;
+        this.bonusAndMalusOnCost = bonusAndMalusOnCost;
         this.actualGoodSet = actualGoodSet;
         this.cardsOwned = cardsOwned;
         this.familyPawnAvailability = new HashMap<FamilyPawnType, Boolean>();
@@ -56,13 +66,7 @@ public class PlayerStatus {
         familyPawnAvailability.put(FamilyPawnType.NEUTRAL, true);
 
     }
-/*
-    * I'm using this constructor just to make some tests
-    *
 
-    public PlayerStatus(GoodSet actualGoodSet) {
-        this.actualGoodSet = actualGoodSet;
-    }*/
 
     public ArrayList<BonusAndMalusOnAction> getBonusAndMalusOnAction() {
         return bonusAndMalusOnAction;
@@ -106,8 +110,8 @@ public class PlayerStatus {
     }
 
     public void updateCardsOwned(CardColor cardColor){
-        /**durante una towerAction nel momento in cui la carta sarà
-         *aggiunta alla PersonalBoard dovrà essere chiamato anche questo metodo
+        /* durante una towerAction nel momento in cui la carta sarà
+          aggiunta alla PersonalBoard dovrà essere chiamato anche questo metodo
          */
         this.cardsOwned.put(cardColor,(this.getNumberOfCardsOwned(cardColor)+1));
     }
@@ -119,6 +123,10 @@ public class PlayerStatus {
 
     public HashMap<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
         return familyPawnAvailability;
+    }
+
+    public ArrayList<BonusAndMalusOnCost> getBonusAndMalusOnCost() {
+        return bonusAndMalusOnCost;
     }
 }
 

@@ -8,6 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Discount {
 
+    //TODO: cancellare probabilmente
+
+    /*
+    Il discount può essere sia positivo che negativo
+     */
+
     private GoodSet firstDiscount;
     private GoodSet secondDiscount;
     private boolean alternativeDiscount;
