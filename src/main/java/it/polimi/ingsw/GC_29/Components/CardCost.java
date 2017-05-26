@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CardCost {
 
     // TODO: add method to call the Static Speaker class
-    private boolean alternative; // can you choose between differnts methods to pay?
     private boolean withPrice; // has the card have a price?
+    private boolean alternative; // can you choose between differnts methods to pay?
+    private boolean necessaryGoodSetForMainCost; // if it's true the necessaryGoodSet refers to mainCost
     private GoodSet mainCost; // mainCost - one of the alternatives and the alternative chosen by the player
     private GoodSet alternativeCost;
-    private boolean necessaryGoodSetForMainCost; // if it's true the necessaryGoodSet refers to mainCost
     private GoodSet necessaryGoodSet;
 
-    public CardCost(
+    private CardCost(
             boolean alternative,
             boolean withPrice,
             GoodSet mainCost,

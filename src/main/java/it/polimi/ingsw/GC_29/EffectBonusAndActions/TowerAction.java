@@ -19,7 +19,8 @@ public class TowerAction extends Action {
     private GoodSet towerCost; // 3 coins
     private CardCost cardCost;
     private GoodSet discount; // discount che c'è se non è realAction e viene passato dall'ActionEffect già selezionato se c'è l'alternativa
-    private GoodSet totalCost;
+    private GoodSet mainTotalCost;
+    private GoodSet alternativeTotalCost;
     private DevelopmentCard cardSelected;
 
     public TowerAction(
@@ -38,7 +39,8 @@ public class TowerAction extends Action {
         this.temporaryGoodSet = new GoodSet();
         this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
         this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
-        this.totalCost = new GoodSet();
+        this.mainTotalCost = new GoodSet();
+        this.alternativeTotalCost = new GoodSet();
         this.towerCost = new GoodSet();
 
     }
@@ -60,7 +62,8 @@ public class TowerAction extends Action {
         this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
         this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
         this.discount = discount;
-        this.totalCost = new GoodSet();
+        this.mainTotalCost = new GoodSet();
+        this.alternativeTotalCost = new GoodSet();
         this.towerCost = new GoodSet();
     }
 
@@ -79,7 +82,7 @@ public class TowerAction extends Action {
 
         return super.isPossible()
                 && !checkFamilyPresence()
-                && isTowerAccesPossible()
+                && isTowerAccessPossible()
                 && laneAvailable()
                 && checkSufficientGoodsForCard();
     }
@@ -106,7 +109,7 @@ public class TowerAction extends Action {
      * to enter the tower
      * @return true if you can access the tower, false otherwise
      */
-    private boolean isTowerAccesPossible() {
+    private boolean isTowerAccessPossible() {
 
         if (towerChosen.isOccupied()) {
 
@@ -145,8 +148,8 @@ public class TowerAction extends Action {
     /**
      * After saving the potential resources that the actionSpace can give to the player,
      * this method filters the cost of the card, add the cost of the tower and subtract the resources received
-     * by the actionSpace effect and if it is an action created by an effect with a discount, subtract also the discount,
-     * then checks if the player has enough resources in his goodSet to pay the selected card
+     * by the actionSpace effect and if it is an action created by an effect with a discount, subtract also the discount.
+     * Then it checks if the player has enough resources in his goodSet to pay the selected card
      * @return true if there are enough resources to pay the card, false otherwise
      */
     private boolean checkSufficientGoodsForCard() {
@@ -154,12 +157,19 @@ public class TowerAction extends Action {
         setActionSpaceEffect();
         Filter.apply(playerStatus, cardCost);
 
-        totalCost.addGoodSet(cardCost.getMainCost());
-        totalCost.addGoodSet(towerCost);
-        totalCost.subGoodSet(temporaryGoodSet);
-        if (!this.realAction) totalCost.subGoodSet(discount);
+        mainTotalCost.addGoodSet(towerCost);
+        mainTotalCost.subGoodSet(temporaryGoodSet);
+        alternativeTotalCost.addGoodSet(mainTotalCost);
+        mainTotalCost.addGoodSet(cardCost.getMainCost());
+        alternativeTotalCost.addGoodSet(cardCost.getAlternativeCost());
 
-        return playerStatus.getActualGoodSet().enoughResources(totalCost);
+        if (!this.realAction) {
+            mainTotalCost.subGoodSet(discount);
+            alternativeTotalCost.subGoodSet(discount);
+        }
+
+        return playerStatus.getActualGoodSet().enoughResources(mainTotalCost)
+                || playerStatus.getActualGoodSet().enoughResources(alternativeTotalCost);
     }
 
     private boolean checkTerritorySlotAvailability() {
@@ -191,7 +201,7 @@ public class TowerAction extends Action {
 
     private void payCard() {
 
-        playerStatus.getActualGoodSet().subGoodSet(totalCost);
+        playerStatus.getActualGoodSet().subGoodSet(mainTotalCost);
     }
 
 
