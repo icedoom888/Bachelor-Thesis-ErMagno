@@ -1,7 +1,10 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import it.polimi.ingsw.GC_29.Components.CouncilPalaceActionSpace;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -9,21 +12,38 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  */
 public class CouncilPalaceAction extends Action {
 
+    private CouncilPalaceActionSpace councilPalace;
+
     public CouncilPalaceAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus) {
         super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
     }
-    /*@Override
-    public void execute(PlayerStatus playerStatus) {
 
-    }*/
+
 
     @Override
     public void execute() {
 
+        super.addPawn();
+        setOrder();
     }
 
-    @Override
-    protected void update() {
+    /**
+     * setOrder sets the turn order only if the familyPawnType is not Neutral and the Action that
+     * the player is making is real. If there are no other pawns of the player in the turnOrder track, then
+     * the pawn is put in the first free space.
+     */
+    private void setOrder() {
+        if (pawnSelected.getType() != FamilyPawnType.NEUTRAL && this.isRealAction()) {
+            PlayerColor[] turnOrder = councilPalace.getTurnOrder();
+            PlayerColor currentPlayerColor = pawnSelected.getPlayerColor();
 
+            int firstFreeSpace = 0;
+            for (PlayerColor playerColor : turnOrder) {
+                if (playerColor == currentPlayerColor) return;
+                if (playerColor != null) firstFreeSpace++;
+            }
+
+            turnOrder[firstFreeSpace] = currentPlayerColor;
+        }
     }
 }

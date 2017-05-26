@@ -59,7 +59,6 @@ public class TowerAction extends Action {
     public void execute() {
 
         super.addPawn();
-        activateActionSpaceEffect();
         payCard();
         giveCard();
         activateCardEffects();
@@ -209,10 +208,6 @@ public class TowerAction extends Action {
                 System.out.println("Ops! There has been an error!");
         }
 
-    }
-
-    private void activateActionSpaceEffect() {
-        this.actionSpaceSelected.getEffect().execute(playerStatus);
     }
 
 

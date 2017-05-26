@@ -112,6 +112,7 @@ public abstract class Action {
             }
 
         }
+        setWorkers(0);
         return true;
     }
 
@@ -160,7 +161,8 @@ public abstract class Action {
             playerStatus.getFamilyPawnAvailability().put(pawnSelected.getType(), false);
         }*/
 
-        actionSpaceSelected.getEffect().execute(playerStatus);
+        Effect effect = actionSpaceSelected.getEffect();
+        if (effect != null) effect.execute(playerStatus);
     }
 
 }
