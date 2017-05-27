@@ -30,9 +30,7 @@ public class ValidationActionState implements State {
 
                 FamilyPawn pawnSelected = AskFamilyPawn();
 
-                int workers = wrapper.askForWorkers();
-
-                currentAction = FactoryAction.getAction(typeSelected, pawnSelected, workers, wrapper.getPlayerStatus());
+                currentAction = FactoryAction.getAction(typeSelected, pawnSelected, wrapper.getPlayerStatus());
 
                 validAction = currentAction.isPossible();
 

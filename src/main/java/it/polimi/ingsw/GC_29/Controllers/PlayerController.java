@@ -73,10 +73,6 @@ public class PlayerController {
         return playerStatus.getCurrentBonusActionList().removeFirst();
     }
 
-    public int askForWorkers() {
-
-        return 0;
-    }
 
     public boolean isPlaceFamilyMemberAction() {
 

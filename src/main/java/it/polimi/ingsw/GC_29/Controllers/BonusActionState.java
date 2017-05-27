@@ -36,9 +36,7 @@ public class BonusActionState implements State {
 
                 ZoneType zoneType = processedBonusAction.getType();
 
-                int workers = wrapper.askForWorkers();
-
-                currentAction = FactoryAction.getAction(zoneType, familyPawn, workers, wrapper.getPlayerStatus());
+                currentAction = FactoryAction.getAction(zoneType, familyPawn, wrapper.getPlayerStatus());
 
                 // TODO: se vi è un bonus sul costo dato dall'effetto azione bonus, salvarlo in attributo temporaryBonusMalusOnCost del playerStatus (da utilizzare nel filtraggio dei costi)
 
