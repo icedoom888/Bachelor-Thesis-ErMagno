@@ -10,8 +10,8 @@ public class MarketAction extends Action {
 
     private int houseSelected;
 
-    public MarketAction(FamilyPawn pawnSelected, int workersSelected, PlayerStatus playerStatus, int houseSelected) {
-        super(pawnSelected, ZoneType.MARKET, workersSelected, playerStatus);
+    public MarketAction(FamilyPawn pawnSelected, PlayerStatus playerStatus, int houseSelected) {
+        super(pawnSelected, ZoneType.MARKET, playerStatus);
 
         this.houseSelected = houseSelected;
     }

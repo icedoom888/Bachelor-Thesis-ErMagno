@@ -9,32 +9,32 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  */
 public class FactoryAction {
 
-    public static Action getAction(ZoneType zoneType, FamilyPawn familyPawn, int workers, PlayerStatus playerStatus){
+    public static Action getAction(ZoneType zoneType, FamilyPawn familyPawn, PlayerStatus playerStatus){
 
         if(zoneType == ZoneType.GREENTOWER || zoneType == ZoneType.YELLOWTOWER || zoneType == ZoneType.BLUETOWER || zoneType == ZoneType.PURPLETOWER){
 
             int floorIndex = askWichFloor();
 
-            return new TowerAction(familyPawn, zoneType, workers, playerStatus, floorIndex);
+            return new TowerAction(familyPawn, zoneType, playerStatus, floorIndex);
         }
 
         if(zoneType == ZoneType.HARVEST || zoneType == ZoneType.PRODUCTION){
 
             int fieldSelected = askWichField();
 
-            return new WorkAction(familyPawn, zoneType, workers, playerStatus, fieldSelected);
+            return new WorkAction(familyPawn, zoneType, playerStatus, fieldSelected);
         }
 
         if(zoneType == ZoneType.MARKET){
 
             int houseSelected = askWichHouse();
 
-            return new MarketAction(familyPawn, workers, playerStatus, houseSelected);
+            return new MarketAction(familyPawn, playerStatus, houseSelected);
         }
 
         if(zoneType == ZoneType.COUNCILPALACE){
 
-            return new CouncilPalaceAction(familyPawn, workers, playerStatus);
+            return new CouncilPalaceAction(familyPawn, playerStatus);
         }
 
         else{

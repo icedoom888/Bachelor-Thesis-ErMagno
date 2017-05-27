@@ -11,8 +11,8 @@ public class WorkAction extends Action {
 
     private int fieldSelected;
 
-    public WorkAction(FamilyPawn familyPawn, ZoneType zoneType, int workers, PlayerStatus playerStatus, int fieldSelected){
-        super(familyPawn, zoneType, workers, playerStatus);
+    public WorkAction(FamilyPawn familyPawn, ZoneType zoneType, PlayerStatus playerStatus, int fieldSelected){
+        super(familyPawn, zoneType, playerStatus);
 
         this.fieldSelected = fieldSelected;
     }

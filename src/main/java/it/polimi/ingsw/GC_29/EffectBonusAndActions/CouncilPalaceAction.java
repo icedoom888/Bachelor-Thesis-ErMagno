@@ -14,13 +14,12 @@ public class CouncilPalaceAction extends Action {
     private CouncilPalaceActionSpace councilPalace;
 
     public CouncilPalaceAction(FamilyPawn pawnSelected,
-                               int workersSelected,
                                PlayerStatus playerStatus) {
 
-        super(pawnSelected, ZoneType.COUNCILPALACE, workersSelected, playerStatus);
+        super(pawnSelected, ZoneType.COUNCILPALACE, playerStatus);
 
     }
-    
+
 
     @Override
     public void execute() {

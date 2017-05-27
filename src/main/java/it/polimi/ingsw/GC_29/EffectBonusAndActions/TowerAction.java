@@ -26,11 +26,10 @@ public class TowerAction extends Action {
     public TowerAction(
             FamilyPawn pawnSelected,
             ZoneType actionSelected,
-            int workersSelected,
             PlayerStatus playerStatus,
             int floorIndex) {
 
-        super(pawnSelected, actionSelected, workersSelected, playerStatus);
+        super(pawnSelected, actionSelected, playerStatus);
         this.towerChosen = GameStatus.getInstance().getGameBoard().getTower(zoneType);
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();

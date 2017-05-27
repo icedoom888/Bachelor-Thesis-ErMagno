@@ -26,14 +26,11 @@ public class Action {
 
     public Action(FamilyPawn pawnSelected,
                   ZoneType zoneType,
-                  int workers,
                   PlayerStatus playerStatus) {
 
         this.pawnSelected = pawnSelected;
 
         this.zoneType = zoneType;
-
-        this.workers = workers;
 
         this.temporaryPawn = new FamilyPawn(pawnSelected);
 
@@ -175,7 +172,7 @@ public class Action {
         }
 
         // TODO: inserire la pawnSelected nella mappa fi pawn usate del gameStatus
-        
+
         Effect effect = actionSpaceSelected.getEffect();
 
         if (effect != null){
