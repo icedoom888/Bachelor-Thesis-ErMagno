@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,11 +13,10 @@ public class GameBoard {
     private Track venturesPointsTrack;
     private Track turnOrderTrack;
     private FaithPointsTrack faithPointsTrack;
-    private HashMap<CardColor,Tower> towerMap;
+    private HashMap<ZoneType,Tower> towerMap;
+    private HashMap<ZoneType, Workspace> workAreaMap;
     private ExcommunicationLane excommunicationLane;
     private CouncilPalaceActionSpace councilPalace;
-    private Workspace harvestArea;
-    private Workspace productionArea;
     private Market market;
     private Dice[] diceLane;
 
@@ -28,18 +27,38 @@ public class GameBoard {
         this.turnOrderTrack = new Track(1,numberOfPlayers);
         int[] victoryPointsForFaithTrack = {0,1,2,3,4,5,7,9,11,13,15,17,19,22,25,30};
         this.faithPointsTrack = new FaithPointsTrack(numberOfPlayers,16,victoryPointsForFaithTrack);
-        this.towerMap = new HashMap<CardColor,Tower>();
-        for (CardColor color : CardColor.values()){
-            towerMap.put(color,new Tower(color));
-        }
-        this.excommunicationLane = new ExcommunicationLane(numberOfPlayers,tile_1,tile_2,tile_3);
-        this.councilPalace = new CouncilPalaceActionSpace(numberOfPlayers);
-        this.harvestArea = new Workspace(ActionType.HARVEST,numberOfPlayers);
-        this.productionArea = new Workspace(ActionType.PRODUCTION,numberOfPlayers);
-        this.market = new Market(numberOfPlayers);
+        this.towerMap = new HashMap<ZoneType,Tower>();
+        this.workAreaMap = new HashMap<ZoneType, Workspace>();
+        createZones(numberOfPlayers);
         this.diceLane = new Dice[3];
 
+    }
 
+    private void createZones(int numberOfPlayers) {
+
+        for (ZoneType zoneType : ZoneType.values()){
+
+            if(zoneType == ZoneType.GREENTOWER
+                || zoneType == ZoneType.YELLOWTOWER
+                || zoneType == ZoneType.BLUETOWER
+                || zoneType == ZoneType.PURPLETOWER){
+
+                towerMap.put(zoneType, new Tower(zoneType));
+            }
+
+            if(zoneType == ZoneType.HARVEST || zoneType == ZoneType.PRODUCTION){
+
+                workAreaMap.put(zoneType, new Workspace(zoneType, numberOfPlayers));
+            }
+
+            if(zoneType == ZoneType.MARKET){
+                market = new Market(numberOfPlayers);
+            }
+
+            if(zoneType == ZoneType.COUNCILPALACE){
+                councilPalace = new CouncilPalaceActionSpace(numberOfPlayers);
+            }
+        }
     }
 
     public Track getVictoryPointsTrack() {
@@ -58,7 +77,7 @@ public class GameBoard {
         return faithPointsTrack;
     }
 
-    public HashMap<CardColor,Tower> getTowerMap() {
+    public HashMap<ZoneType,Tower> getTowerMap() {
         return towerMap;
     }
 
@@ -71,11 +90,35 @@ public class GameBoard {
     }
 
     public Workspace getHarvestArea() {
-        return harvestArea;
+
+        return workAreaMap.get(ZoneType.HARVEST);
     }
 
     public Workspace getProductionArea() {
-        return productionArea;
+
+        return workAreaMap.get(ZoneType.PRODUCTION);
+    }
+
+    public Tower getTower(ZoneType zoneType){
+        if (zoneType != ZoneType.GREENTOWER || zoneType != ZoneType.YELLOWTOWER || zoneType != ZoneType.BLUETOWER || zoneType != ZoneType.PURPLETOWER){
+            throw new IllegalArgumentException("Illegal tower equest: " + zoneType);
+        }
+
+        else{
+
+            return towerMap.get(zoneType);
+        }
+    }
+
+    public Workspace getWorkArea(ZoneType area){
+        if (area != ZoneType.HARVEST || area != ZoneType.PRODUCTION){
+            throw new IllegalArgumentException("Illegal areaRequest: " + area);
+        }
+        else {
+
+            return workAreaMap.get(area);
+        }
+
     }
 
     public Market getMarket() {
@@ -86,30 +129,52 @@ public class GameBoard {
         return diceLane;
     }
 
-    public void setTowerMap(HashMap<CardColor, Tower> towerMap) { // per il test sul playerController
-        this.towerMap = towerMap;
-    }
-
+    /**
+     *
+     * TODO: completare i metodi clean, ci sono metodi chiamati che sono vuoti
+     *
     public void clearAll() {
+
         victoryPointsTrack.clean();
+
         venturesPointsTrack.clean();
+
         turnOrderTrack.clean();
+
         faithPointsTrack.clean();
-        towerMap.clear();
+
+        for (Tower tower : towerMap.values()){
+            tower.clean();
+        }
+
+        for (Workspace workspace : workAreaMap.values()){
+            workspace.clean();
+        }
+
         excommunicationLane.clean();
-        harvestArea.clean();
-        productionArea.clean();
+
         market.clean();
         // councilPalace.clean()
+
         for (Dice dice : diceLane) {
             dice = null;
         }
-    }
-
+    }*/
 
 
     @Override
     public String toString() {
-        return "GameBoard{" + "victoryPointsTrack=" + victoryPointsTrack + ", venturesPointsTrack=" + venturesPointsTrack + ", turnOrderTrack=" + turnOrderTrack + ", faithPointsTrack=" + faithPointsTrack + ", towerMap=" + towerMap + ", excommunicationLane=" + excommunicationLane + ", councilPalace=" + councilPalace + ", harvestArea=" + harvestArea + ", productionArea=" + productionArea + ", market=" + market + ", diceLane=" + Arrays.toString(diceLane) + '}';
+        return "GameBoard{" +
+                "victoryPointsTrack=" + victoryPointsTrack +
+                ", venturesPointsTrack=" + venturesPointsTrack +
+                ", turnOrderTrack=" + turnOrderTrack +
+                ", faithPointsTrack=" + faithPointsTrack +
+                ", towerMap=" + towerMap +
+                ", workAreaMap=" + workAreaMap +
+                ", excommunicationLane=" + excommunicationLane +
+                ", councilPalace=" + councilPalace +
+                ", market=" + market +
+                ", diceLane=" + Arrays.toString(diceLane) +
+                '}';
     }
 }

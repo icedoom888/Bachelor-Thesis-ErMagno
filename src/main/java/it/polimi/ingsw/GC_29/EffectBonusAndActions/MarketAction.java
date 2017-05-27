@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
@@ -10,9 +8,12 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  */
 public class MarketAction extends Action {
 
+    private int houseSelected;
 
-    public MarketAction(FamilyPawn pawnSelected, ActionType actionSelected, int workersSelected, boolean realAction, PlayerStatus playerStatus) {
-        super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
+    public MarketAction(FamilyPawn pawnSelected, int workersSelected, PlayerStatus playerStatus, int houseSelected) {
+        super(pawnSelected, ZoneType.MARKET, workersSelected, playerStatus);
+
+        this.houseSelected = houseSelected;
     }
 
     @Override

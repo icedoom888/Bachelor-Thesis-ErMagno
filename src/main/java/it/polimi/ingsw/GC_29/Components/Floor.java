@@ -38,4 +38,11 @@ public class Floor {
     public String toString() {
         return "Floor{" + "developmentCard=" + developmentCard + ", actionSpace=" + actionSpace + '}';
     }
+
+    public void clean() {
+        if(developmentCard != null){
+            this.developmentCard = null;
+        }
+        actionSpace.clean();
+    }
 }

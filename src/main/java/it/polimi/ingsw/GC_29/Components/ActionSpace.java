@@ -73,5 +73,11 @@ public class ActionSpace implements Cleanable {
     @Override
     public void clean() {
 
+        if(!pawnPlaced.isFree()){
+
+            pawnPlaced.clearSlot();
+
+        }
+
     }
 }

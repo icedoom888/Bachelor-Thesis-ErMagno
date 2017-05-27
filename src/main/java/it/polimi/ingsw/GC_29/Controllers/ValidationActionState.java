@@ -1,7 +1,10 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 /**
  * Created by Christian on 21/05/2017.
@@ -13,20 +16,65 @@ public class ValidationActionState implements State {
 
         boolean validAction = false;
 
+        boolean skipTurn = false;
+
+        Action currentAction = null;
+
         while (!validAction){
 
-            ActionType typeSelected = askForAction();
+            if(wrapper.isPlaceFamilyMemberAction()){
 
-            wrapper.setActionBuilder(typeSelected);
+                // TODO: da inserire richiesta di attivazione carta leader
 
-            wrapper.setCurrentAction(wrapper.getActionBuilder().build());
+                ZoneType typeSelected = askForAction();
 
-            validAction = wrapper.getCurrentAction().isPossible();
+                FamilyPawn pawnSelected = AskFamilyPawn();
+
+                int workers = wrapper.askForWorkers();
+
+                currentAction = FactoryAction.getAction(typeSelected, pawnSelected, workers, wrapper.getPlayerStatus());
+
+                validAction = currentAction.isPossible();
+
+            }
+
+            else{
+
+                skipTurn = true;
+                break;
+
+            }
+
         }
-        wrapper.setCurrentState(new ExecuteActionState());
+
+        if(!skipTurn){
+
+            wrapper.getPlayerStatus().setCurrentAction(currentAction);
+
+            wrapper.setCurrentState(new ExecuteActionState());
+        }
+
+        else {
+            wrapper.setCurrentState(new EndTurnState());
+        }
+
     }
 
-    private ActionType askForAction() {
-        return ActionType.BLUETOWER; // prova
+
+    /**
+     * ask if the player wants to place a family member or skip his round
+     * @return
+     */
+
+    private FamilyPawn AskFamilyPawn() {
+
+        return new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 4); // metodo di interfaccia, questo return è fasullo
     }
+
+
+    private ZoneType askForAction() {
+        return ZoneType.BLUETOWER; // prova
+    }
+
+
 }

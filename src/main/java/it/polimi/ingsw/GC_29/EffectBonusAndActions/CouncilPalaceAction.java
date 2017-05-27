@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 import it.polimi.ingsw.GC_29.Components.CouncilPalaceActionSpace;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
@@ -15,16 +14,13 @@ public class CouncilPalaceAction extends Action {
     private CouncilPalaceActionSpace councilPalace;
 
     public CouncilPalaceAction(FamilyPawn pawnSelected,
-                               ActionType actionSelected,
                                int workersSelected,
-                               boolean realAction,
                                PlayerStatus playerStatus) {
 
-        super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
+        super(pawnSelected, ZoneType.COUNCILPALACE, workersSelected, playerStatus);
 
     }
-
-
+    
 
     @Override
     public void execute() {
@@ -40,7 +36,7 @@ public class CouncilPalaceAction extends Action {
      * the pawn is put in the first free space.
      */
     private void setOrder() {
-        if (pawnSelected.getType() != FamilyPawnType.NEUTRAL && this.isRealAction()) {
+        if (pawnSelected.getType() != FamilyPawnType.NEUTRAL && pawnSelected.getType() != FamilyPawnType.BONUS) {
             PlayerColor[] turnOrder = councilPalace.getTurnOrder();
             PlayerColor currentPlayerColor = pawnSelected.getPlayerColor();
 

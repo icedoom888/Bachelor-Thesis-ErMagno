@@ -1,13 +1,9 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
-import it.polimi.ingsw.GC_29.Components.CardColor;
-import it.polimi.ingsw.GC_29.Components.Tower;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-
-import java.util.HashMap;
 
 /**
  * Created by Christian on 19/05/2017.
@@ -15,28 +11,13 @@ import java.util.HashMap;
 public class PlayerController {
 
     private State currentState;
-    private Action currentAction;
-    private GameStatus gameStatus;
     private PlayerStatus playerStatus;
-    private ActionBuilder actionBuilder;
 
     public PlayerController() {
-        this.gameStatus = GameStatus.getInstance();
-        this.playerStatus = gameStatus.getCurrentPlayer().getStatus();
+
+        this.playerStatus = GameStatus.getInstance().getCurrentPlayer().getStatus();
         currentState = new BeginTurnState();
 
-    }
-
-    public Action getCurrentAction() {
-        return currentAction;
-    }
-
-    public void setCurrentAction(Action currentAction) {
-        this.currentAction = currentAction;
-    }
-
-    public ActionBuilder getActionBuilder() {
-        return actionBuilder;
     }
 
     public PlayerStatus getPlayerStatus() {
@@ -63,7 +44,7 @@ public class PlayerController {
          * boolean valid = false;
 
         while(!valid){ // per il test su PlayerController
-            ActionType typeSelected = askForAction();
+            ZoneType typeSelected = askForAction();
             setActionBuilder(typeSelected);
             Action actionCreated = actionBuilder.build();
             valid = actionCreated.isPossible(); // dovrebbe prendere il metodo del tipo dinamico
@@ -77,36 +58,28 @@ public class PlayerController {
 
     }
 
-    private ActionType askForAction(){
-
-        return ActionType.BLUETOWER;
-    }
-
-
-
-    public void setActionBuilder(ActionType type) {
-
-        if(type == ActionType.SKIPTURN){
-            // TODO: gestione fine turno
-        }
-        else {
-            actionBuilder = FactoryActionBuilder.getActionBuilder(type, false, playerStatus);
-        }
-        // TODO: continuazione processo di gestione turno
-    }
-
 
     /**
      *
      * @return check if the current player has a bonusAction to be executed
      */
-    public boolean checkBonusAction() {
+    public boolean checkPresenceBonusActionEffect() {
 
-       return playerStatus.getCurrentBonusActionList().getFirst() != null;
+       return !playerStatus.getCurrentBonusActionList().isEmpty();
     }
 
     public ActionEffect getBonusActionEffect(){
 
         return playerStatus.getCurrentBonusActionList().removeFirst();
+    }
+
+    public int askForWorkers() {
+
+        return 0;
+    }
+
+    public boolean isPlaceFamilyMemberAction() {
+
+        return true;
     }
 }

@@ -1,43 +1,37 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.Tower;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Christian on 19/05/2017.
- */
+
 public class TowerActionBuilder implements ActionBuilder {
 
-    private ActionType towerColor;
+    private ZoneType towerColor;
     private PlayerStatus playerStatus;
     private Tower tower;
-    private boolean bonusAction;
+    private FamilyPawn familyPawnSelected;
 
-    public TowerActionBuilder(ActionType towerColor, Tower tower, PlayerStatus playerStatus, boolean bonusAction) {
+    public TowerActionBuilder(ZoneType type, FamilyPawn familyPawnSelected, PlayerStatus playerStatus, Tower tower) {
+
         this.towerColor = towerColor;
         this.tower = tower;
         this.playerStatus = playerStatus;
-        this.bonusAction = bonusAction;
+        this.familyPawnSelected = familyPawnSelected;
     }
 
-    private FamilyPawn askFamilyPawn(){
-
-        return new FamilyPawn(PlayerColor.BLUE,FamilyPawnType.BLACK, 4); // per il test su PlayerController
-    }
     @Override
     public TowerAction build() {
 
-        FamilyPawn familyPawnSelected = askFamilyPawn();
-        int workersSelected = askForWorkers();
-        // bonusAction TODO: devo capire come collegare le azioni bouns ai builder
-        int floorIndex = askFloor();
+        int floorIndex = askFloor(); // se fai qui il controllo sui workers necessari porti la logica del metodo isPossible() (interno all'azione già costruita) qui nel momento in cui stai ancora costruendo l'azione
 
-        return new TowerAction(familyPawnSelected, towerColor, workersSelected, bonusAction, playerStatus, tower, floorIndex);
+        int workersSelected = askForWorkers();
+
+        return new TowerAction(familyPawnSelected, towerColor, workersSelected, playerStatus, tower, floorIndex);
     }
 
     private int askFloor() {
@@ -47,4 +41,4 @@ public class TowerActionBuilder implements ActionBuilder {
     private int askForWorkers() {
         return 0;
     }
-}
+}*/

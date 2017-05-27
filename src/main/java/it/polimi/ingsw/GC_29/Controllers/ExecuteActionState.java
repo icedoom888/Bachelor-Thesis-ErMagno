@@ -6,9 +6,11 @@ package it.polimi.ingsw.GC_29.Controllers;
 public class ExecuteActionState implements State {
     @Override
     public void executeState(PlayerController wrapper) {
-        wrapper.getCurrentAction().execute();
+
+        wrapper.getPlayerStatus().getCurrentAction().execute();
         
-        if(wrapper.checkBonusAction()){
+        if(wrapper.checkPresenceBonusActionEffect()){
+
             wrapper.setCurrentState(new BonusActionState());
         }
 

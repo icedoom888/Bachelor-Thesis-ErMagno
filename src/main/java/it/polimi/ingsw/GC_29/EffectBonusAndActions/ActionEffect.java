@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.Discount;
 import it.polimi.ingsw.GC_29.Controllers.ActionBuilder;
-import it.polimi.ingsw.GC_29.Controllers.FactoryActionBuilder;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -11,14 +10,14 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public class ActionEffect implements Effect{
 
 
-    private ActionType type;
+    private ZoneType type;
 
     private int actionValue; //TODO: qui metterei direttamente la bonusPawn
 
     private Discount discount;
 
     public ActionEffect(
-            ActionType type,
+            ZoneType type,
             int actionValue,
             Discount discount) {
 
@@ -38,7 +37,7 @@ public class ActionEffect implements Effect{
         this.discount = actionEffect.discount;
     }
 
-    public ActionType getType() {
+    public ZoneType getType() {
 
         return type;
     }
@@ -71,7 +70,6 @@ public class ActionEffect implements Effect{
     @Override
     public void execute(PlayerStatus playerStatus) {
 
-        ActionBuilder actionBuilder = FactoryActionBuilder.getActionBuilder(type,true, playerStatus);
     }
 
 }

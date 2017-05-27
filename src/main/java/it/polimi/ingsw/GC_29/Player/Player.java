@@ -7,7 +7,6 @@ import it.polimi.ingsw.GC_29.Components.*;
  */
 public class Player {
     private String playerID;
-    private PlayerColor playerColor;
     private GameBoard gameboard;
     private PersonalBoard personalBoard;
     private PlayerStatus status;
@@ -19,11 +18,7 @@ public class Player {
     public String getPlayerID() {
         return playerID;
     }
-
-    public PlayerColor getPlayerColor() {
-        return playerColor;
-    }
-
+    
     public GameBoard getGameboard() {
         return gameboard;
     }

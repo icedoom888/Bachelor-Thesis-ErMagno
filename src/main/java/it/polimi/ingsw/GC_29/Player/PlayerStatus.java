@@ -15,6 +15,7 @@ import java.util.LinkedList;
  */
 public class PlayerStatus {
 
+    private PlayerColor playerColor;
     private HashMap<FamilyPawnType, Boolean> familyPawnAvailability;
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction;
     private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
@@ -45,7 +46,8 @@ public class PlayerStatus {
         familyPawnAvailability.put(FamilyPawnType.NEUTRAL, true);
     }
 
-    public PlayerStatus(ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction,
+    public PlayerStatus(PlayerColor playerColor,
+                        ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction,
                         ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods,
                         ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCost,
                         GoodSet actualGoodSet, HashMap<CardColor, Integer> cardsOwned,
@@ -54,6 +56,7 @@ public class PlayerStatus {
                         boolean orangePawnAvailability,
                         boolean neutralPawnAvailability) {
 
+        this.playerColor = playerColor;
         this.bonusAndMalusOnAction = bonusAndMalusOnAction;
         this.bonusAndMalusOnGoods = bonusAndMalusOnGoods;
         this.bonusAndMalusOnCost = bonusAndMalusOnCost;
@@ -67,6 +70,10 @@ public class PlayerStatus {
 
     }
 
+    public PlayerColor getPlayerColor() {
+
+        return playerColor;
+    }
 
     public ArrayList<BonusAndMalusOnAction> getBonusAndMalusOnAction() {
         return bonusAndMalusOnAction;

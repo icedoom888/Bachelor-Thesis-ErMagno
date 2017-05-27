@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by Christian on 18/05/2017.
  */
 
-public enum ActionType {
+public enum ZoneType {
 
     GREENTOWER,
     YELLOWTOWER,
@@ -16,6 +16,5 @@ public enum ActionType {
     MARKET,
     COUNCILPALACE,
     HARVEST,
-    PRODUCTION,
-    SKIPTURN
+    PRODUCTION
 }

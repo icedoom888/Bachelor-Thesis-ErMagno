@@ -1,12 +1,9 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.CardCost;
 import it.polimi.ingsw.GC_29.Components.Cost;
-import it.polimi.ingsw.GC_29.Components.Discount;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
-import javax.smartcardio.Card;
 import java.util.ArrayList;
 
 /**
@@ -14,17 +11,17 @@ import java.util.ArrayList;
  */
 public class BonusAndMalusOnCost {
 
-    private ActionType actionType;
+    private ZoneType zoneType;
     private GoodSet firstDiscount;
     private GoodSet secondDiscount;
     private boolean alternative;
 
-    public BonusAndMalusOnCost(ActionType actionType,
+    public BonusAndMalusOnCost(ZoneType zoneType,
                                GoodSet firstDiscount,
                                GoodSet secondDiscount,
                                boolean alternative) {
 
-        this.actionType = actionType;
+        this.zoneType = zoneType;
         this.firstDiscount = firstDiscount;
         this.secondDiscount = secondDiscount;
         this.alternative = alternative;
@@ -37,11 +34,11 @@ public class BonusAndMalusOnCost {
      * cardCost
      * @param playerStatus
      * @param costs
-     * @param cardActionType
+     * @param cardZoneType
      */
-    public void filter(PlayerStatus playerStatus, ArrayList<Cost> costs, ActionType cardActionType) {
+    public void filter(PlayerStatus playerStatus, ArrayList<Cost> costs, ZoneType cardZoneType) {
 
-        if (this.actionType == cardActionType) {
+        if (this.zoneType == cardZoneType) {
 
             int listLength = costs.size();
             int cont = 0;

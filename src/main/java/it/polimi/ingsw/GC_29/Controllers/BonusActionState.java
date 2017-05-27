@@ -1,7 +1,10 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionType;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 
 /**
  * Created by Christian on 21/05/2017.
@@ -13,22 +16,60 @@ public class BonusActionState implements State {
 
         boolean validAction = false;
 
+        boolean skipBonusAction = false;
+
+        Action currentAction = null;
+
         ActionEffect currentBonusAction = wrapper.getBonusActionEffect();
 
-        while (!validAction){
+        while (!validAction) {
 
-            ActionEffect processedBonusAction = new ActionEffect(currentBonusAction);
+            if (wrapper.isPlaceFamilyMemberAction()) {
 
-            processedBonusAction.execute(wrapper.getPlayerStatus()); // chiedo cosa vuole se ho alternative
+                ActionEffect processedBonusAction = new ActionEffect(currentBonusAction);
 
-            //wrapper.setActionBuilder(processedBonusAction); // costruttore con overloading
+                processedBonusAction.execute(wrapper.getPlayerStatus()); // chiedo cosa vuole se ho alternative
 
-            wrapper.setCurrentAction(wrapper.getActionBuilder().build());
+                //wrapper.setActionBuilder(processedBonusAction); // costruttore con overloading
 
-            validAction = wrapper.getCurrentAction().isPossible();
+                FamilyPawn familyPawn = new FamilyPawn(wrapper.getPlayerStatus().getPlayerColor(), FamilyPawnType.BONUS, processedBonusAction.getActionValue());
+
+                ZoneType zoneType = processedBonusAction.getType();
+
+                int workers = wrapper.askForWorkers();
+
+                currentAction = FactoryAction.getAction(zoneType, familyPawn, workers, wrapper.getPlayerStatus());
+
+                // TODO: se vi è un bonus sul costo dato dall'effetto azione bonus, salvarlo in attributo temporaryBonusMalusOnCost del playerStatus (da utilizzare nel filtraggio dei costi)
+
+                validAction = currentAction.isPossible();
+
+            }
+
+            else {
+
+                skipBonusAction = true;
+                break;
+
+            }
+
         }
 
-        wrapper.setCurrentState(new ExecuteActionState());
+        if (!skipBonusAction) {
+
+            wrapper.getPlayerStatus().setCurrentAction(currentAction);
+
+            wrapper.setCurrentState(new ExecuteActionState());
+
+        }
+
+        else if(!wrapper.checkPresenceBonusActionEffect()) {
+
+            wrapper.setCurrentState(new EndTurnState());
+        }
+
+        // altrimenti il currentState rimane il BonusActionState!
+    }
 
         /*
         *
@@ -38,4 +79,3 @@ public class BonusActionState implements State {
          */
 
     }
-}

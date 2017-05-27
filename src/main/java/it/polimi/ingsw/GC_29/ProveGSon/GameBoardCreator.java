@@ -26,7 +26,7 @@ public class GameBoardCreator {
 
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
-        permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN, 4, new Discount(new GoodSet(), new GoodSet(),false)));
+        //permanentEffectsOIM.add(new ActionEffect(ZoneType.SKIPTURN, 4, new Discount(new GoodSet(), new GoodSet(),false)));
 
 
 
@@ -40,9 +40,9 @@ public class GameBoardCreator {
                 false,
                 0);
 
-        ExcommunicationTile tile1 = new ExcommunicationTile(Era.FIRST, "name1", new BonusAndMalusOnAction(ActionType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom1");
-        ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ActionType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
-        ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ActionType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
+        ExcommunicationTile tile1 = new ExcommunicationTile(Era.FIRST, "name1", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom1");
+        ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
+        ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
 
         GameBoard gameBoard = new GameBoard(4, tile1, tile2, tile3);
         gameBoard.getTowerMap().get(CardColor.BLUE).getFloor(3).setDevelopmentCard(ospitareIMendicanti);

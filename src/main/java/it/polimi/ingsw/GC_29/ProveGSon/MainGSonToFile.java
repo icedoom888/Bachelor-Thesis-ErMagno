@@ -26,9 +26,9 @@ public class MainGSonToFile {
 
 
         ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
-        //permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN,4,new Discount(new GoodSet(), new GoodSet(), false)));
+        //permanentEffectsOIM.add(new ActionEffect(ZoneType.SKIPTURN,4,new Discount(new GoodSet(), new GoodSet(), false)));
         //permanentEffectsOIM.add(new ObtainEffect(new GoodSet()));
-        permanentEffectsOIM.add(new ActionEffect(ActionType.SKIPTURN, 4, new Discount(new GoodSet(), new GoodSet(),false)));
+        //permanentEffectsOIM.add(new ActionEffect(ZoneType.SKIPTURN, 4, new Discount(new GoodSet(), new GoodSet(),false)));
 
 
 

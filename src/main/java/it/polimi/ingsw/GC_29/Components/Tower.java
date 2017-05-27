@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 
 import java.util.Arrays;
 
@@ -9,32 +10,38 @@ import java.util.Arrays;
  */
 public class Tower implements Cleanable {
     private Floor[] floors;
-    private CardColor cardType;
+    private final int NUMBEROFFLOORS = 4;
+    private ZoneType zoneType;
     private boolean occupied;
     private int CostIfOccupied;
 
-    public Tower(CardColor color){
-        this.floors = new Floor[4];
+    public Tower(ZoneType zoneType){
+
+        if (zoneType != ZoneType.GREENTOWER || zoneType != ZoneType.YELLOWTOWER || zoneType != ZoneType.BLUETOWER || zoneType != ZoneType.PURPLETOWER){
+            throw new IllegalArgumentException("Illegal tower type: " + zoneType);
+        }
+
+        this.floors = new Floor[NUMBEROFFLOORS];
         floors[0] = new Floor(new ObtainEffect(0,0,0,0,0,0,0),1);
         floors[1] = new Floor(new ObtainEffect(0,0,0,0,0,0,0),3);
-        if(color==CardColor.GREEN){
+        if(zoneType == ZoneType.GREENTOWER){
             floors[2] = new Floor(new ObtainEffect(1,0,0,0,0,0,0),5);
             floors[3] = new Floor(new ObtainEffect(2,0,0,0,0,0,0),7);
         }
-        if(color==CardColor.BLUE){
+        if(zoneType == ZoneType.BLUETOWER){
             floors[2] = new Floor(new ObtainEffect(0,1,0,0,0,0,0),5);
             floors[3] = new Floor(new ObtainEffect(0,2,0,0,0,0,0),7);
         }
-        if(color==CardColor.YELLOW){
+        if(zoneType == ZoneType.YELLOWTOWER){
             floors[2] = new Floor(new ObtainEffect(0,0,0,0,0,1,0),5);
             floors[3] = new Floor(new ObtainEffect(0,0,0,0,0,2,0),7);
         }
-        if(color==CardColor.PURPLE){
+        if(zoneType == ZoneType.PURPLETOWER){
             floors[2] = new Floor(new ObtainEffect(0,0,1,0,0,0,0),5);
             floors[3] = new Floor(new ObtainEffect(0,0,2,0,0,0,0),7);
         }
 
-        this.cardType = color;
+        this.zoneType = zoneType;
         this.occupied = false;
         this.CostIfOccupied = 3;
     }
@@ -45,14 +52,16 @@ public class Tower implements Cleanable {
 
     @Override
     public void clean() {
-
+        for (int i = 0; i < NUMBEROFFLOORS; i++){
+            floors[i].clean();
+        }
     }
 
     @Override
     public String toString() {
         return "Tower{" +
                 "floors=" + Arrays.toString(floors) +
-                ", cardType=" + cardType +
+                ", cardType=" + zoneType +
                 ", occupied=" + occupied +
                 ", CostIfOccupied=" + CostIfOccupied +
                 '}';
@@ -66,8 +75,9 @@ public class Tower implements Cleanable {
         return floors[index];
     }
 
-    public CardColor getCardType() {
-        return cardType;
+    public ZoneType getTowerType(){
+
+        return zoneType;
     }
 
     public boolean isOccupied() {
@@ -76,5 +86,24 @@ public class Tower implements Cleanable {
 
     public int getCostIfOccupied() {
         return CostIfOccupied;
+    }
+
+    public CardColor getCardType() {
+
+        if(zoneType == ZoneType.GREENTOWER){
+            return CardColor.GREEN;
+        }
+
+        else if(zoneType == ZoneType.YELLOWTOWER){
+            return CardColor.YELLOW;
+        }
+
+        else if(zoneType == ZoneType.BLUETOWER){
+            return CardColor.BLUE;
+        }
+
+        else {
+            return CardColor.PURPLE;
+        }
     }
 }

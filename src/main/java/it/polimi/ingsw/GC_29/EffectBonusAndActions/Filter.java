@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_29.Components.ActionSpace;
 import it.polimi.ingsw.GC_29.Components.CardCost;
 import it.polimi.ingsw.GC_29.Components.Cost;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
@@ -42,11 +41,11 @@ public final class Filter {
 
 
 
-    public static void apply(PlayerStatus playerStatus,ActionType actionType,int actionValue){
+    public static void apply(PlayerStatus playerStatus, ZoneType zoneType, int actionValue){
         ArrayList<BonusAndMalusOnAction> currentPlayerBonusMalusOnAction = playerStatus.getBonusAndMalusOnAction();
 
         for (BonusAndMalusOnAction playerBonusMalus : currentPlayerBonusMalusOnAction){
-            if(playerBonusMalus.getActionType()==actionType){
+            if(playerBonusMalus.getZoneType()== zoneType){
                 playerBonusMalus.filter(actionValue,playerStatus.getActualGoodSet());
             }
         }
@@ -59,9 +58,9 @@ public final class Filter {
      * @param playerStatus
      * @param cardCost
      * @param costs
-     * @param actionType
+     * @param zoneType
      */
-    public static void apply(PlayerStatus playerStatus, CardCost cardCost, ArrayList<Cost> costs, ActionType actionType) {
+    public static void apply(PlayerStatus playerStatus, CardCost cardCost, ArrayList<Cost> costs, ZoneType zoneType) {
         ArrayList<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCost = playerStatus.getBonusAndMalusOnCost();
 
         costs.add(cardCost.getMainCost());
@@ -71,7 +70,7 @@ public final class Filter {
         }
 
         for (BonusAndMalusOnCost bonusAndMalusOnCost : currentPlayerBonusAndMalusOnCost) {
-            bonusAndMalusOnCost.filter(playerStatus, costs, actionType);
+            bonusAndMalusOnCost.filter(playerStatus, costs, zoneType);
         }
     }
 
@@ -104,9 +103,9 @@ public final class Filter {
      * The method checks if the player has a bonusAndMalus that denies him to make the action. It returns
      * true if the player DOES NOT have it, false otherwise
      * @param playerStatus
-     * @param actionType
+     * @param zoneType
      * @return boolean value: true if the player can try to make the action, false otherwise
      */
-    public static boolean applySpecia(PlayerStatus playerStatus, ActionType actionType) { return true; }
+    public static boolean applySpecia(PlayerStatus playerStatus, ZoneType zoneType) { return true; }
 
 }

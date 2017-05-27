@@ -10,10 +10,14 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 public class Workspace implements Cleanable {
     private ActionSpace mainField;
     private ActionSpace secondaryField;
-    private ActionType type;
+    private ZoneType type;
 
-    public Workspace (ActionType type,
+    public Workspace (ZoneType type,
                      int numberOfPlayers) {
+
+        if (type != ZoneType.HARVEST || type != ZoneType.PRODUCTION){
+            throw new IllegalArgumentException("Illegal area type: " + type);
+        }
 
         this.type = type;
         this.mainField = new ActionSpace(null,1, new PawnSlot(1,true),true,false);
@@ -41,6 +45,10 @@ public class Workspace implements Cleanable {
     @Override
     public void clean() {
 
+        mainField.clean();
+
+        secondaryField.clean();
+
     }
 
     public ActionSpace getMainField() {
@@ -51,7 +59,7 @@ public class Workspace implements Cleanable {
         return secondaryField;
     }
 
-    public ActionType getType() {
+    public ZoneType getType() {
         return type;
     }
 

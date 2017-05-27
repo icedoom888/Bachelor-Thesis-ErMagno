@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
@@ -24,27 +25,29 @@ public class TowerAction extends Action {
 
     public TowerAction(
             FamilyPawn pawnSelected,
-            ActionType actionSelected,
+            ZoneType actionSelected,
             int workersSelected,
-            boolean realAction,
             PlayerStatus playerStatus,
-            Tower towerChosen,
             int floorIndex) {
 
-        super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
-        this.towerChosen = towerChosen;
+        super(pawnSelected, actionSelected, workersSelected, playerStatus);
+        this.towerChosen = GameStatus.getInstance().getGameBoard().getTower(zoneType);
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.temporaryGoodSet = new GoodSet();
         this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
-        this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
+        this.cardCost = cardSelected.getCardCost();
         this.towerCost = new GoodSet();
         this.possibleCardCosts = new ArrayList<>();
 
     }
 
+    /**
+     *
+     * questo costruttore non ha senso, il parametro discount ma usato, è uguale al costruttore precedente.
+
     public TowerAction(FamilyPawn pawnSelected,
-                       ActionType actionSelected,
+                       ZoneType actionSelected,
                        int workersSelected,
                        boolean realAction,
                        PlayerStatus playerStatus,
@@ -52,7 +55,7 @@ public class TowerAction extends Action {
                        int floorIndex,
                        GoodSet discount) {
 
-        super(pawnSelected, actionSelected, workersSelected, realAction, playerStatus);
+        super(pawnSelected, actionSelected, workersSelected, playerStatus);
         this.towerChosen = towerChosen;
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
@@ -61,7 +64,7 @@ public class TowerAction extends Action {
         this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
         this.towerCost = new GoodSet();
         this.possibleCardCosts = new ArrayList<>();
-    }
+    }*/
 
     @Override
     public void execute() {
@@ -141,6 +144,8 @@ public class TowerAction extends Action {
      */
     private void setActionSpaceEffect() {
 
+        // TODO: inserire assertion sul tipo dell'effetto, in modo da assicurarci a livello di debug che il tipo sia un ObtainEffect
+
         ObtainEffect effect = (ObtainEffect) this.actionSpaceSelected.getEffect();
         GoodSet actionSpaceGoodSet = effect.getGoodsObtained();
         Filter.apply(this.playerStatus, actionSpaceGoodSet);
@@ -161,7 +166,7 @@ public class TowerAction extends Action {
         setActionSpaceEffect();
         
         ArrayList<Cost> costList = new ArrayList<Cost>();
-        Filter.apply(playerStatus, cardCost, costList, actionType);
+        Filter.apply(playerStatus, cardCost, costList, zoneType);
 
         GoodSet playerGoodSet = new GoodSet(playerStatus.getActualGoodSet());
         GoodSet necessaryGoodSet;
@@ -192,7 +197,7 @@ public class TowerAction extends Action {
     private boolean checkTerritorySlotAvailability() {
         TerritoryLane lane = playerStatus.getPersonalBoard().getTerritoryLane();
         int index = lane.getFirstFreeSlotIndex();
-        return playerStatus.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS) == lane.getSlot(index).getMilitaryPointsNeeded();
+        return playerStatus.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS) >= lane.getSlot(index).getMilitaryPointsNeeded();
     }
 
     /**
@@ -206,14 +211,13 @@ public class TowerAction extends Action {
     private boolean laneAvailable() {
 
         boolean var1 = true;
-        CardColor actualColor = towerChosen.getCardType();
-        if (actualColor == CardColor.GREEN) {
+        CardColor type = towerChosen.getCardType();
+        if (type == CardColor.GREEN) {
             var1 = checkTerritorySlotAvailability();
         }
 
         return var1
-                && playerStatus.getPersonalBoard().getLane(actualColor).isFree();
-
+                && playerStatus.getPersonalBoard().getLane(type).isFree();
     }
 
     private void payCard() {

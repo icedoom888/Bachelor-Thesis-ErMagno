@@ -1,8 +1,5 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 
 /**
@@ -10,45 +7,45 @@ import it.polimi.ingsw.GC_29.Components.GoodSet;
  */
 
 public class BonusAndMalusOnAction {
-    private ActionType actionType;
+    private ZoneType zoneType;
     private int diceIncrementOrReduction;
     private GoodSet goodSetDiscountOrIncrement;
     private boolean actionAllowed;
 
 
     public BonusAndMalusOnAction(
-            ActionType actionType,
+            ZoneType zoneType,
             int diceIncrementOrReduction,
             GoodSet goodSetDiscountOrIncrement) {
 
-        this.actionType = actionType;
+        this.zoneType = zoneType;
         this.diceIncrementOrReduction = diceIncrementOrReduction;
         this.goodSetDiscountOrIncrement = goodSetDiscountOrIncrement;
         this.actionAllowed = true;
     }
 
     public BonusAndMalusOnAction(
-            ActionType actionType,
+            ZoneType zoneType,
             int diceIncrementOrReduction) {
 
-        this.actionType = actionType;
+        this.zoneType = zoneType;
         this.diceIncrementOrReduction = diceIncrementOrReduction;
         this.goodSetDiscountOrIncrement = new GoodSet();
         this.actionAllowed = true;
     }
 
 
-    public BonusAndMalusOnAction(ActionType actionType,
+    public BonusAndMalusOnAction(ZoneType zoneType,
                                  boolean actionAllowed) {
 
-        this.actionType = actionType;
+        this.zoneType = zoneType;
         this.actionAllowed = actionAllowed;
         this.diceIncrementOrReduction = 0;
         this.goodSetDiscountOrIncrement = null;
     }
 
-    public ActionType getActionType() {
-        return actionType;
+    public ZoneType getZoneType() {
+        return zoneType;
     }
 
     public int getDiceIncrementOrReduction() {
@@ -70,6 +67,6 @@ public class BonusAndMalusOnAction {
 
     @Override
     public String toString() {
-        return "BonusAndMalusOnAction{" + "actionType=" + actionType + ", diceIncrementOrReduction=" + diceIncrementOrReduction + ", goodSetDiscountOrIncrement=" + goodSetDiscountOrIncrement + ", actionAllowed=" + actionAllowed + '}';
+        return "BonusAndMalusOnAction{" + "zoneType=" + zoneType + ", diceIncrementOrReduction=" + diceIncrementOrReduction + ", goodSetDiscountOrIncrement=" + goodSetDiscountOrIncrement + ", actionAllowed=" + actionAllowed + '}';
     }
 }
