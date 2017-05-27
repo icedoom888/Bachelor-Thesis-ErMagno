@@ -24,10 +24,12 @@ public class CouncilPalaceAction extends Action {
     @Override
     public void execute() {
 
+        super.payWorkers();
         super.addPawn();
         setOrder();
         super.update();
     }
+
 
     /**
      * setOrder sets the turn order only if the familyPawnType is not Neutral and the Action that

@@ -1,9 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.ActionSpace;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.GoodType;
+import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -12,34 +9,20 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public class Action {
 
     private int workers;
-
     private FamilyPawn temporaryPawn;
-
-    protected FamilyPawn pawnSelected;
-
     protected ZoneType zoneType;
-
     protected ActionSpace actionSpaceSelected;
-
     protected PlayerStatus playerStatus;
-
 
     public Action(FamilyPawn pawnSelected,
                   ZoneType zoneType,
                   PlayerStatus playerStatus) {
 
-        this.pawnSelected = pawnSelected;
-
         this.zoneType = zoneType;
-
         this.temporaryPawn = new FamilyPawn(pawnSelected);
-
         this.playerStatus = playerStatus;
     }
 
-    public FamilyPawn getPawnSelected() {
-        return pawnSelected;
-    }
 
     public ZoneType getZoneType() {
         return zoneType;
@@ -56,10 +39,21 @@ public class Action {
 
     public void execute() {
 
+        payWorkers();
         addPawn();
-
         update();
     }
+
+
+
+    /**
+     * During the execute, this method make the player pay to increase the value of his pawn
+     */
+    protected void payWorkers() {
+        playerStatus.getActualGoodSet().subGoodSet(new GoodSet(0,0,0,workers,0,0,0));
+    }
+
+
 
     /**
      * if it is a real action, update:
@@ -108,7 +102,7 @@ public class Action {
 
         executeBonusAndMalusOnAction();
 
-        if (pawnSelected.getActualValue() < actionSpaceSelected.getActionCost()) {
+        if (temporaryPawn.getActualValue() < actionSpaceSelected.getActionCost()) {
             int workersNeeded = workersNeeded();
 
             if (workersNeeded > playerStatus.getActualGoodSet().getGoodAmount(GoodType.WORKERS)) {
@@ -128,7 +122,7 @@ public class Action {
      * executeBonusAndMalusOnAction calls the Filter.apply that can change the value
      * of the pawnSelected
      */
-    private void executeBonusAndMalusOnAction() { // serve per controllare che con B&M il valore della pawn vada bene o meno
+    private void executeBonusAndMalusOnAction() {
 
         Filter.apply(playerStatus, zoneType, temporaryPawn.getActualValue());
     }
@@ -137,7 +131,7 @@ public class Action {
 
     private int workersNeeded() {
 
-        return pawnSelected.getActualValue() - actionSpaceSelected.getActionCost();
+        return temporaryPawn.getActualValue() - actionSpaceSelected.getActionCost();
     }
 
 
@@ -154,9 +148,11 @@ public class Action {
      * @return true if the pawn hasn't been used during the turn, false otherwise
      */
     private boolean checkFamilyPawn() {
-        FamilyPawnType familyPawnType = pawnSelected.getType();
+        FamilyPawnType familyPawnType = temporaryPawn.getType();
         return playerStatus.getFamilyPawnAvailability().get(familyPawnType);
     }
+
+
 
 
     /**
@@ -166,12 +162,13 @@ public class Action {
      */
     protected void addPawn() {
 
-        if(pawnSelected.getType() != FamilyPawnType.BONUS){
+        if(temporaryPawn.getType() != FamilyPawnType.BONUS){
 
-            actionSpaceSelected.addPawn(pawnSelected);
+            actionSpaceSelected.addPawn(temporaryPawn);
         }
 
         // TODO: inserire la pawnSelected nella mappa fi pawn usate del gameStatus
+        // TODO: non lo fa l'azione ma il player Controller prima della execute
 
         Effect effect = actionSpaceSelected.getEffect();
 
@@ -183,7 +180,7 @@ public class Action {
 
     protected void update() {
 
-        FamilyPawnType familyPawnType = pawnSelected.getType();
+        FamilyPawnType familyPawnType = temporaryPawn.getType();
 
         if (familyPawnType != FamilyPawnType.BONUS) {
 

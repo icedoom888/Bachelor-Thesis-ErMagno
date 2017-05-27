@@ -44,6 +44,7 @@ public class TowerAction extends Action {
     @Override
     public void execute() {
 
+        super.payWorkers();
         super.addPawn();
         payCard();
         giveCard();

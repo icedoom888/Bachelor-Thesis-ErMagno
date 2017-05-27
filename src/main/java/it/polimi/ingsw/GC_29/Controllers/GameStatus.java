@@ -1,9 +1,9 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.Dice;
-import it.polimi.ingsw.GC_29.Components.Era;
-import it.polimi.ingsw.GC_29.Components.GameBoard;
+import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Player.Player;
+
+import java.util.HashMap;
 
 /**
  * Created by Icedoom on 19/05/2017.
@@ -20,6 +20,7 @@ public class  GameStatus {
     //private final int numberOfPlayers = COSTANTEDAFILE; TODO: bisogna creare delle costanti da file da usare, come in questo caso
     private Player[] turnOrder;
     private Dice[] currentDices;
+    private HashMap<FamilyPawn, ActionSpace> pawnsOnActionSpace;
 
     private GameStatus() {
 
@@ -30,6 +31,10 @@ public class  GameStatus {
             instance = new GameStatus();
         }
         return instance;
+    }
+
+    public HashMap<FamilyPawn, ActionSpace> getPawnsOnActionSpace() {
+        return pawnsOnActionSpace;
     }
 
     public GameBoard getGameBoard() {
