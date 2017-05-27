@@ -72,6 +72,8 @@ public final class Filter {
         for (BonusAndMalusOnCost bonusAndMalusOnCost : currentPlayerBonusAndMalusOnCost) {
             bonusAndMalusOnCost.filter(playerStatus, costs, zoneType);
         }
+
+        //TODO:
     }
 
 

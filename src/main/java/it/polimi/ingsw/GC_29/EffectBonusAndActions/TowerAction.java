@@ -294,6 +294,10 @@ public class TowerAction extends Action {
 
         ArrayList<Effect> immediateEffects = this.cardSelected.getImmediateEffect();
         for (Effect immediateEffect : immediateEffects) {
+            if (immediateEffect.getClass() == ActionEffect.class) {
+                ActionEffect newEffect = (ActionEffect) immediateEffect;
+                playerStatus.getBonusAndMalusOnCost().add(newEffect.getBonusAndMalusOnCost());
+            }
             immediateEffect.execute(playerStatus);
         }
     }
