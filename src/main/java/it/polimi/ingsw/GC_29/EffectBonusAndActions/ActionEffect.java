@@ -10,7 +10,7 @@ public class ActionEffect implements Effect{
 
     private ZoneType type;
 
-    private int actionValue; //TODO: qui metterei direttamente la bonusPawn
+    private int actionValue;
 
     private BonusAndMalusOnCost bonusAndMalusOnCost;
 
@@ -59,15 +59,12 @@ public class ActionEffect implements Effect{
                 '}';
     }
 
-    /*@Override
-    public void execute(PlayerStatus status) {
-        // devo passare al builder realAction false
-        // chiedo al player che bonusAndMalusOnCost vuole
-    }*/
+
 
     @Override
     public void execute(PlayerStatus playerStatus) {
 
+        playerStatus.getCurrentBonusActionList().add(this);
     }
 
 }

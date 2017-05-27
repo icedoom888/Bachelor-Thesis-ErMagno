@@ -14,6 +14,9 @@ public class ExecuteActionState implements State {
             wrapper.setCurrentState(new BonusActionState());
         }
 
-        wrapper.setCurrentState(new EndTurnState());
+        else{
+
+            wrapper.setCurrentState(new EndTurnState());
+        }
     }
 }

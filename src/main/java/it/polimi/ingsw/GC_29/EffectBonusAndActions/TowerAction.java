@@ -41,30 +41,6 @@ public class TowerAction extends Action {
 
     }
 
-    /**
-     *
-     * questo costruttore non ha senso, il parametro discount ma usato, è uguale al costruttore precedente.
-
-    public TowerAction(FamilyPawn pawnSelected,
-                       ZoneType actionSelected,
-                       int workersSelected,
-                       boolean realAction,
-                       PlayerStatus playerStatus,
-                       Tower towerChosen,
-                       int floorIndex,
-                       GoodSet discount) {
-
-        super(pawnSelected, actionSelected, workersSelected, playerStatus);
-        this.towerChosen = towerChosen;
-        this.floorIndex = floorIndex;
-        this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
-        this.temporaryGoodSet = new GoodSet();
-        this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
-        this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
-        this.towerCost = new GoodSet();
-        this.possibleCardCosts = new ArrayList<>();
-    }*/
-
     @Override
     public void execute() {
 
@@ -293,12 +269,10 @@ public class TowerAction extends Action {
     private void activateCardEffects() {
 
         ArrayList<Effect> immediateEffects = this.cardSelected.getImmediateEffect();
+
         for (Effect immediateEffect : immediateEffects) {
-            if (immediateEffect.getClass() == ActionEffect.class) {
-                ActionEffect newEffect = (ActionEffect) immediateEffect;
-                playerStatus.getBonusAndMalusOnCost().add(newEffect.getBonusAndMalusOnCost());
-            }
-            immediateEffect.execute(playerStatus);
+
+            immediateEffect.execute(playerStatus); // la execute dell'actionEffect salva l'effetto nella lista di azioni bonus per il player
         }
     }
 

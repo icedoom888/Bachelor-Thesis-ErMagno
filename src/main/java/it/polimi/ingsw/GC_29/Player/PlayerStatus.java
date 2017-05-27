@@ -25,6 +25,7 @@ public class PlayerStatus {
     private HashMap<CardColor, Integer> cardsOwned;
     private Action currentAction;
     private LinkedList<ActionEffect> currentBonusActionList;
+    private LinkedList<BonusAndMalusOnCost>currentBonusActionBonusMalusOnCostList;
 
 
     public PlayerStatus() {
@@ -39,6 +40,7 @@ public class PlayerStatus {
         }
 
         currentBonusActionList = new LinkedList<ActionEffect>();
+        currentBonusActionBonusMalusOnCostList = new LinkedList<BonusAndMalusOnCost>();
         this.familyPawnAvailability = new HashMap<FamilyPawnType, Boolean>();
         familyPawnAvailability.put(FamilyPawnType.BLACK, true);
         familyPawnAvailability.put(FamilyPawnType.ORANGE, true);
@@ -109,6 +111,10 @@ public class PlayerStatus {
     public LinkedList<ActionEffect> getCurrentBonusActionList() {
 
         return currentBonusActionList;
+    }
+
+    public LinkedList<BonusAndMalusOnCost> getCurrentBonusActionBonusMalusOnCostList() {
+        return currentBonusActionBonusMalusOnCostList;
     }
 
     public void setCurrentAction(Action currentAction) {

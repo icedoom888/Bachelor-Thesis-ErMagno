@@ -22,19 +22,20 @@ public class BonusActionState implements State {
 
         ActionEffect currentBonusAction = wrapper.getBonusActionEffect();
 
+        // temporary bonusMalusOn cost setted in the playerStatus
+        if(currentBonusAction.getBonusAndMalusOnCost() != null){
+
+            wrapper.getPlayerStatus().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
+
+        }
+
         while (!validAction) {
 
             if (wrapper.isPlaceFamilyMemberAction()) {
+                
+                FamilyPawn familyPawn = new FamilyPawn(wrapper.getPlayerStatus().getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
 
-                ActionEffect processedBonusAction = new ActionEffect(currentBonusAction);
-
-                processedBonusAction.execute(wrapper.getPlayerStatus()); // chiedo cosa vuole se ho alternative
-
-                //wrapper.setActionBuilder(processedBonusAction); // costruttore con overloading
-
-                FamilyPawn familyPawn = new FamilyPawn(wrapper.getPlayerStatus().getPlayerColor(), FamilyPawnType.BONUS, processedBonusAction.getActionValue());
-
-                ZoneType zoneType = processedBonusAction.getType();
+                ZoneType zoneType = currentBonusAction.getType();
 
                 currentAction = FactoryAction.getAction(zoneType, familyPawn, wrapper.getPlayerStatus());
 
