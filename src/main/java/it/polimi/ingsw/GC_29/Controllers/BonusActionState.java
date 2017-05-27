@@ -11,6 +11,14 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
  */
 public class BonusActionState implements State {
 
+    /**
+     * this method creates an action from an ActionEffect gained by the currentPlayer. If the action is valid the method sets the new state for the PlayerController,
+     * that is the executeActionState. If the player decides to skip the action (with the method isPlaceFamilyMemberAction)
+     * this method brings the playerController into the EndTurnState if there no more bonusAction for the player, otherwise (if the player skipped the BonusAction and there are
+     * other BonusAction for the currentPlayer) the state of the playerController remains in the BonusActionState and the next bonusAction is processed.
+     *
+     * @param wrapper the playerController reference
+     */
     @Override
     public void executeState(PlayerController wrapper) {
 
@@ -32,14 +40,12 @@ public class BonusActionState implements State {
         while (!validAction) {
 
             if (wrapper.isPlaceFamilyMemberAction()) {
-                
+
                 FamilyPawn familyPawn = new FamilyPawn(wrapper.getPlayerStatus().getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
 
                 ZoneType zoneType = currentBonusAction.getType();
 
                 currentAction = FactoryAction.getAction(zoneType, familyPawn, wrapper.getPlayerStatus());
-
-                // TODO: se vi è un bonus sul costo dato dall'effetto azione bonus, salvarlo in attributo temporaryBonusMalusOnCost del playerStatus (da utilizzare nel filtraggio dei costi)
 
                 validAction = currentAction.isPossible();
 

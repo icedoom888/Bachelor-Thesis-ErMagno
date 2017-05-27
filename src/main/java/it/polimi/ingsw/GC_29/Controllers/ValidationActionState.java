@@ -11,6 +11,14 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
  */
 public class ValidationActionState implements State {
 
+
+    /**
+     * this method creates an action and if the action is valid the method sets the new state for the PlayerController,
+     * that is the executeActionState. If the player decides to skip the action (with the method isPlaceFamilyMemberAction)
+     * this method brings the playerController into the EndTurnState.
+     *
+     * @param wrapper the playerController reference
+     */
     @Override
     public void executeState(PlayerController wrapper) {
 
@@ -63,7 +71,6 @@ public class ValidationActionState implements State {
      * ask if the player wants to place a family member or skip his round
      * @return
      */
-
     private FamilyPawn AskFamilyPawn() {
 
         return new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 4); // metodo di interfaccia, questo return è fasullo
