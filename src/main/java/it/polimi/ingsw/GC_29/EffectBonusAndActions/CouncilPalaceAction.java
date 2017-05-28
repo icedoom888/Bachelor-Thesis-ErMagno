@@ -37,9 +37,9 @@ public class CouncilPalaceAction extends Action {
      * the pawn is put in the first free space.
      */
     private void setOrder() {
-        if (pawnSelected.getType() != FamilyPawnType.NEUTRAL && pawnSelected.getType() != FamilyPawnType.BONUS) {
+        if (temporaryPawn.getType() != FamilyPawnType.NEUTRAL && temporaryPawn.getType() != FamilyPawnType.BONUS) {
             PlayerColor[] turnOrder = councilPalace.getTurnOrder();
-            PlayerColor currentPlayerColor = pawnSelected.getPlayerColor();
+            PlayerColor currentPlayerColor = temporaryPawn.getPlayerColor();
 
             int firstFreeSpace = 0;
             for (PlayerColor playerColor : turnOrder) {

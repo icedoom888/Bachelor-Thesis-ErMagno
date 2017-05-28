@@ -80,7 +80,7 @@ public class TowerAction extends Action {
         for (Floor floor : towerChosen.getFloors()) {
             ActionSpace actionSpace = floor.getActionSpace();
             if (actionSpace.isOccupied()) {
-                familiarPresent = actionSpace.getPawnPlaced().searchFamiliar(this.pawnSelected);
+                familiarPresent = actionSpace.getPawnPlaced().searchFamiliar(this.temporaryPawn);
             }
         }
         return familiarPresent;

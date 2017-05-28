@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+import it.polimi.ingsw.GC_29.Components.ShopName;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
@@ -29,7 +30,7 @@ public class FactoryAction {
 
         if(zoneType == ZoneType.MARKET){
 
-            int houseSelected = askWichHouse();
+            ShopName houseSelected = askWichHouse();
 
             return new MarketAction(familyPawn, playerStatus, houseSelected);
         }
@@ -44,9 +45,9 @@ public class FactoryAction {
         }
     }
 
-    private static int askWichHouse() {
+    private static ShopName askWichHouse() {
 
-        return 0;
+        return null;
     }
 
     private static int askWichField() {
