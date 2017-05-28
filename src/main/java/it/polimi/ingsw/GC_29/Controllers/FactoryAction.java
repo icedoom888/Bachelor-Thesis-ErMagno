@@ -56,6 +56,11 @@ public class FactoryAction {
 
     private static int askWichFloor() {
 
-        return floor++;
+        return floor++ ;
+    }
+
+    //metodo per test PlayerController. Mi serve solo per resettare la variabile di test floor
+    public static void resetFloor(){
+        floor = 0;
     }
 }

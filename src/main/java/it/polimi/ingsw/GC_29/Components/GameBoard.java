@@ -20,16 +20,26 @@ public class GameBoard {
     private Market market;
     private Dice[] diceLane;
 
-    public GameBoard(int numberOfPlayers,ExcommunicationTile tile_1,ExcommunicationTile tile_2,ExcommunicationTile tile_3){
+    public GameBoard(int numberOfPlayers){
 
         this.victoryPointsTrack = new Track(numberOfPlayers, 100);
+
         this.venturesPointsTrack = new Track(numberOfPlayers,26);
+
         this.turnOrderTrack = new Track(1,numberOfPlayers);
+
         int[] victoryPointsForFaithTrack = {0,1,2,3,4,5,7,9,11,13,15,17,19,22,25,30};
+
         this.faithPointsTrack = new FaithPointsTrack(numberOfPlayers,16,victoryPointsForFaithTrack);
+
+        this.excommunicationLane = new ExcommunicationLane(numberOfPlayers);
+
         this.towerMap = new HashMap<ZoneType,Tower>();
+
         this.workAreaMap = new HashMap<ZoneType, Workspace>();
+
         createZones(numberOfPlayers);
+
         this.diceLane = new Dice[3];
 
     }
@@ -128,6 +138,7 @@ public class GameBoard {
     public Dice[] getDiceLane() {
         return diceLane;
     }
+
 
     /**
      *

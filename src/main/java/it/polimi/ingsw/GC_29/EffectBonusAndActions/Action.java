@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public class Action {
 
     private int workers;
-    private FamilyPawn temporaryPawn;
+    protected FamilyPawn temporaryPawn;
     protected ZoneType zoneType;
     protected ActionSpace actionSpaceSelected;
     protected PlayerStatus playerStatus;

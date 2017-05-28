@@ -44,7 +44,10 @@ public class GameBoardCreator {
         ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
         ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
 
-        GameBoard gameBoard = new GameBoard(4, tile1, tile2, tile3);
+        GameBoard gameBoard = new GameBoard(4);
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tile1, tile2, tile3);
+
         gameBoard.getTowerMap().get(CardColor.BLUE).getFloor(3).setDevelopmentCard(ospitareIMendicanti);
 
         // to Json

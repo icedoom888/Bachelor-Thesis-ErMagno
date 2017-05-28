@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Components.GoodSet;
  */
 
 public class BonusAndMalusOnAction {
+
     private ZoneType zoneType;
     private int diceIncrementOrReduction;
     private GoodSet goodSetDiscountOrIncrement;

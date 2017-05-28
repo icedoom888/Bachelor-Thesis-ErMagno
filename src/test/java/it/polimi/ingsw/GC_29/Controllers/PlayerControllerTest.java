@@ -38,7 +38,9 @@ class PlayerControllerTest {
         ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
         ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
 
-        GameBoard gameBoard = new GameBoard(4, tile1, tile2, tile3);
+        GameBoard gameBoard = new GameBoard(4);
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tile1, tile2, tile3);
 
         GameStatus.getInstance().setGameBoard(gameBoard);
 
@@ -51,6 +53,8 @@ class PlayerControllerTest {
         PlayerController testController = new PlayerController();
 
         testController.init();
+
+        FactoryAction.resetFloor();
     }
 
     @Test
@@ -83,7 +87,9 @@ class PlayerControllerTest {
         ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
         ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
 
-        GameBoard gameBoard = new GameBoard(4, tile1, tile2, tile3);
+        GameBoard gameBoard = new GameBoard(4);
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tile1, tile2, tile3);
 
         GameStatus.getInstance().setGameBoard(gameBoard);
 
@@ -96,6 +102,8 @@ class PlayerControllerTest {
         PlayerController testController = new PlayerController();
 
         testController.init();
+
+        FactoryAction.resetFloor();
     }
 
 
@@ -133,7 +141,9 @@ class PlayerControllerTest {
         ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
         ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
 
-        GameBoard gameBoard = new GameBoard(4, tile1, tile2, tile3);
+        GameBoard gameBoard = new GameBoard(4);
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tile1, tile2, tile3);
 
         GameStatus.getInstance().setGameBoard(gameBoard);
 
@@ -146,6 +156,8 @@ class PlayerControllerTest {
         PlayerController testController = new PlayerController();
 
         testController.init();
+
+        FactoryAction.resetFloor();
     }
 
 
