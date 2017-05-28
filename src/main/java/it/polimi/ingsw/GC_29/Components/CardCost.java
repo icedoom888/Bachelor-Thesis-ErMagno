@@ -42,6 +42,7 @@ public class CardCost {
     public CardCost(CardCost cardCost) { // immutable object
         this.withPrice = cardCost.withPrice;
         this.mainCost = cardCost.mainCost;
+        this.alternativeCost = cardCost.alternativeCost;
         this.alternative = cardCost.alternative;
         this.withPrice = cardCost.withPrice;
     }
