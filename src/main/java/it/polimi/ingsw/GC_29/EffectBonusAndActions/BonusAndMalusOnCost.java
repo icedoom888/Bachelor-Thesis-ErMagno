@@ -41,7 +41,17 @@ public class BonusAndMalusOnCost {
         if (this.zoneType == cardZoneType) {
 
             int listLength = costs.size();
-            int cont = 0;
+
+            for (int i = 0; i < listLength ; i++) {
+                if (alternative) {
+                    Cost newCost = new Cost(costs.get(i));
+                    changeCost(newCost,secondDiscount);
+                    costs.add(newCost);
+                }
+                changeCost(costs.get(i), firstDiscount);
+            }
+
+            /*int cont = 0;
             for (Cost cost : costs) {
                 if (cont >= listLength) break;
                 if (alternative) {
@@ -51,7 +61,7 @@ public class BonusAndMalusOnCost {
                 }
                 changeCost(cost, firstDiscount);
                 cont++;
-            }
+            }*/
         }
     }
 

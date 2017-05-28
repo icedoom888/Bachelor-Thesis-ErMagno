@@ -17,7 +17,7 @@ public class ObtainOnConditionEffectTest {
         ObtainOnConditionEffect test_1 = new ObtainOnConditionEffect(goodsForEachCondition_1, CardColor.GREEN);
         ObtainOnConditionEffect test_2 = new ObtainOnConditionEffect(goodsForEachCondition_2, goodsCondition_2);
 
-        PlayerStatus testStatus = new PlayerStatus();
+        PlayerStatus testStatus = new PlayerStatus(null, null);
         GoodSet actualGoodSet = new GoodSet(9,0,0,0,0,0,0);
         testStatus.updateGoodSet(actualGoodSet);
         for (int i=0; i<5; i++) {

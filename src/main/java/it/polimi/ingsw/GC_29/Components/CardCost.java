@@ -14,6 +14,15 @@ public class CardCost {
     private Cost mainCost; // mainCost - one of the alternatives and the alternative chosen by the player
     private Cost alternativeCost;
 
+    public CardCost(){
+
+        this.alternative = false;
+        this.withPrice = false;
+        this.mainCost = new Cost();
+        this.alternativeCost = new Cost();
+
+    }
+
     public CardCost(
             boolean alternative,
             boolean withPrice,

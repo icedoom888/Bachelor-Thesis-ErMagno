@@ -12,8 +12,6 @@ import java.util.Scanner;
  */
 public class TowerAction extends Action {
 
-    //TODO testing per nuove condizioni di isPossible
-    //TODO gestire il costo della carta sia per controlli (con le alternative) sia per l'esecuzione
 
     private Tower towerChosen;
     private int floorIndex;
@@ -42,32 +40,35 @@ public class TowerAction extends Action {
     }
 
     /**
-     *
-     * questo costruttore non ha senso, il parametro discount ma usato, è uguale al costruttore precedente.
+     * esclusivamente per testing
+     * @param pawnSelected
+     * @param actionSelected
+     * @param playerStatus
+     * @param floorIndex
+     */
+    public TowerAction(
+            FamilyPawn pawnSelected,
+            ZoneType actionSelected,
+            PlayerStatus playerStatus,
+            int floorIndex,
+            Tower towerChosen) {
 
-    public TowerAction(FamilyPawn pawnSelected,
-                       ZoneType actionSelected,
-                       int workersSelected,
-                       boolean realAction,
-                       PlayerStatus playerStatus,
-                       Tower towerChosen,
-                       int floorIndex,
-                       GoodSet discount) {
-
-        super(pawnSelected, actionSelected, workersSelected, playerStatus);
+        super(pawnSelected, actionSelected, playerStatus);
         this.towerChosen = towerChosen;
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.temporaryGoodSet = new GoodSet();
         this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
-        this.cardCost = towerChosen.getFloor(floorIndex).getDevelopmentCard().getCardCost();
+        this.cardCost = cardSelected.getCardCost();
         this.towerCost = new GoodSet();
         this.possibleCardCosts = new ArrayList<>();
-    }*/
+
+    }
 
     @Override
     public void execute() {
 
+        super.payWorkers();
         super.addPawn();
         payCard();
         giveCard();
@@ -103,7 +104,7 @@ public class TowerAction extends Action {
         for (Floor floor : towerChosen.getFloors()) {
             ActionSpace actionSpace = floor.getActionSpace();
             if (actionSpace.isOccupied()) {
-                familiarPresent = actionSpace.getPawnPlaced().searchFamiliar(this.pawnSelected);
+                familiarPresent = actionSpace.getPawnPlaced().searchFamiliar(this.temporaryPawn);
             }
         }
         return familiarPresent;
@@ -177,14 +178,16 @@ public class TowerAction extends Action {
         boolean value = false;
         for (Cost cost : costList) {
 
-            necessaryGoodSet = cost.getNecessaryResources();
-            realCost = cost.getCost();
+            if (cost != null) {
+                necessaryGoodSet = cost.getNecessaryResources();
+                realCost = cost.getCost();
 
-            if (playerGoodSet.enoughResources(necessaryGoodSet)
-                    && playerGoodSet.enoughResources(realCost)) {
+                if (playerGoodSet.enoughResources(necessaryGoodSet)
+                        && playerGoodSet.enoughResources(realCost)) {
 
-                possibleCardCosts.add(cost);
-                value = true;
+                    possibleCardCosts.add(cost);
+                    value = true;
+                }
             }
         }
 
@@ -293,8 +296,10 @@ public class TowerAction extends Action {
     private void activateCardEffects() {
 
         ArrayList<Effect> immediateEffects = this.cardSelected.getImmediateEffect();
+
         for (Effect immediateEffect : immediateEffects) {
-            immediateEffect.execute(playerStatus);
+
+            immediateEffect.execute(playerStatus); // la execute dell'actionEffect salva l'effetto nella lista di azioni bonus per il player
         }
     }
 
@@ -326,5 +331,34 @@ public class TowerAction extends Action {
 
     }
 
+    // metodi per testing
 
+
+    public Tower getTowerChosen() {
+        return towerChosen;
+    }
+
+    public int getFloorIndex() {
+        return floorIndex;
+    }
+
+    public GoodSet getTemporaryGoodSet() {
+        return temporaryGoodSet;
+    }
+
+    public GoodSet getTowerCost() {
+        return towerCost;
+    }
+
+    public CardCost getCardCost() {
+        return cardCost;
+    }
+
+    public ArrayList<Cost> getPossibleCardCosts() {
+        return possibleCardCosts;
+    }
+
+    public DevelopmentCard getCardSelected() {
+        return cardSelected;
+    }
 }

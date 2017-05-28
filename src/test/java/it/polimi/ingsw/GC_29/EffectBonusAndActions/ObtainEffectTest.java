@@ -18,7 +18,7 @@ public class ObtainEffectTest {
         ObtainEffect testEffect = new ObtainEffect(4,2,0,0,5,0,1);
         BonusAndMalusOnGoods bonus = new BonusAndMalusOnGoods(new GoodSet(3,0,6,0,0,0,0));
         BonusAndMalusOnGoods malus = new BonusAndMalusOnGoods(new GoodSet(-1,0,-5,0,-4,0,-1000));
-        PlayerStatus status = new PlayerStatus();
+        PlayerStatus status = new PlayerStatus(null, null);
         status.getActualGoodSet().addGoodSet(statusGoodset);
         status.getBonusAndMalusOnGoods().add(bonus);
         status.getBonusAndMalusOnGoods().add(malus);

@@ -1,9 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.ActionSpace;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.GoodType;
+import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -12,34 +9,20 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public class Action {
 
     private int workers;
-
-    private FamilyPawn temporaryPawn;
-
-    protected FamilyPawn pawnSelected;
-
+    protected FamilyPawn temporaryPawn;
     protected ZoneType zoneType;
-
     protected ActionSpace actionSpaceSelected;
-
     protected PlayerStatus playerStatus;
-
 
     public Action(FamilyPawn pawnSelected,
                   ZoneType zoneType,
                   PlayerStatus playerStatus) {
 
-        this.pawnSelected = pawnSelected;
-
         this.zoneType = zoneType;
-
         this.temporaryPawn = new FamilyPawn(pawnSelected);
-
         this.playerStatus = playerStatus;
     }
 
-    public FamilyPawn getPawnSelected() {
-        return pawnSelected;
-    }
 
     public ZoneType getZoneType() {
         return zoneType;
@@ -56,10 +39,21 @@ public class Action {
 
     public void execute() {
 
+        payWorkers();
         addPawn();
-
         update();
     }
+
+
+
+    /**
+     * During the execute, this method make the player pay to increase the value of his pawn
+     */
+    protected void payWorkers() {
+        playerStatus.getActualGoodSet().subGoodSet(new GoodSet(0,0,0,workers,0,0,0));
+    }
+
+
 
     /**
      * if it is a real action, update:
@@ -108,7 +102,7 @@ public class Action {
 
         executeBonusAndMalusOnAction();
 
-        if (pawnSelected.getActualValue() < actionSpaceSelected.getActionCost()) {
+        if (temporaryPawn.getActualValue() < actionSpaceSelected.getActionCost()) {
             int workersNeeded = workersNeeded();
 
             if (workersNeeded > playerStatus.getActualGoodSet().getGoodAmount(GoodType.WORKERS)) {
@@ -116,6 +110,7 @@ public class Action {
 
             } else {
                 setWorkers(workersNeeded);
+                return true;
             }
 
         }
@@ -137,7 +132,7 @@ public class Action {
 
     private int workersNeeded() {
 
-        return pawnSelected.getActualValue() - actionSpaceSelected.getActionCost();
+        return actionSpaceSelected.getActionCost() - temporaryPawn.getActualValue(); //TODO inverti
     }
 
 
@@ -154,8 +149,18 @@ public class Action {
      * @return true if the pawn hasn't been used during the turn, false otherwise
      */
     private boolean checkFamilyPawn() {
-        FamilyPawnType familyPawnType = pawnSelected.getType();
-        return playerStatus.getFamilyPawnAvailability().get(familyPawnType);
+
+        if(temporaryPawn.getType() != FamilyPawnType.BONUS) {
+
+            FamilyPawnType familyPawnType = temporaryPawn.getType();
+            return playerStatus.getFamilyPawnAvailability().get(familyPawnType);
+
+        }
+
+        else{
+
+            return true;
+        }
     }
 
 
@@ -166,12 +171,13 @@ public class Action {
      */
     protected void addPawn() {
 
-        if(pawnSelected.getType() != FamilyPawnType.BONUS){
+        if(temporaryPawn.getType() != FamilyPawnType.BONUS){
 
-            actionSpaceSelected.addPawn(pawnSelected);
+            actionSpaceSelected.addPawn(temporaryPawn);
         }
 
         // TODO: inserire la pawnSelected nella mappa fi pawn usate del gameStatus
+        // TODO: Gamastatus.getInstance()
 
         Effect effect = actionSpaceSelected.getEffect();
 
@@ -183,7 +189,7 @@ public class Action {
 
     protected void update() {
 
-        FamilyPawnType familyPawnType = pawnSelected.getType();
+        FamilyPawnType familyPawnType = temporaryPawn.getType();
 
         if (familyPawnType != FamilyPawnType.BONUS) {
 
@@ -195,4 +201,14 @@ public class Action {
 
     }
 
+    //metodi per testing
+
+
+    public ActionSpace getActionSpaceSelected() {
+        return actionSpaceSelected;
+    }
+
+    public PlayerStatus getPlayerStatus() {
+        return playerStatus;
+    }
 }

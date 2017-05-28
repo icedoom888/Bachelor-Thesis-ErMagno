@@ -15,19 +15,24 @@ import java.util.LinkedList;
  */
 public class PlayerStatus {
 
+    //TODO: tra player e player status ci sono due ripetizioni: la personalBoard e il playerColor. Bisogna pensare se passare direttamente il player, dal momento che le azioni accedono al suo colore
+
     private PlayerColor playerColor;
     private HashMap<FamilyPawnType, Boolean> familyPawnAvailability;
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction;
     private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
     private ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCost;
-    private PersonalBoard personalBoard; // TODO: aggiunto perchè dalle azioni
+    private PersonalBoard personalBoard;
     private GoodSet actualGoodSet;
     private HashMap<CardColor, Integer> cardsOwned;
     private Action currentAction;
     private LinkedList<ActionEffect> currentBonusActionList;
+    private LinkedList<BonusAndMalusOnCost>currentBonusActionBonusMalusOnCostList;
 
 
-    public PlayerStatus() {
+    public PlayerStatus(PlayerColor playerColor, PersonalBoard personalBoard) {
+        this.playerColor = playerColor;
+        this.personalBoard = personalBoard;
         bonusAndMalusOnAction = new ArrayList<BonusAndMalusOnAction>();
         bonusAndMalusOnGoods = new ArrayList<BonusAndMalusOnGoods>();
         bonusAndMalusOnCost = new ArrayList<BonusAndMalusOnCost>();
@@ -39,6 +44,7 @@ public class PlayerStatus {
         }
 
         currentBonusActionList = new LinkedList<ActionEffect>();
+        currentBonusActionBonusMalusOnCostList = new LinkedList<BonusAndMalusOnCost>();
         this.familyPawnAvailability = new HashMap<FamilyPawnType, Boolean>();
         familyPawnAvailability.put(FamilyPawnType.BLACK, true);
         familyPawnAvailability.put(FamilyPawnType.ORANGE, true);
@@ -109,6 +115,14 @@ public class PlayerStatus {
     public LinkedList<ActionEffect> getCurrentBonusActionList() {
 
         return currentBonusActionList;
+    }
+
+    public LinkedList<BonusAndMalusOnCost> getCurrentBonusActionBonusMalusOnCostList() {
+        return currentBonusActionBonusMalusOnCostList;
+    }
+
+    public void setPersonalBoard(PersonalBoard personalBoard) {
+        this.personalBoard = personalBoard;
     }
 
     public void setCurrentAction(Action currentAction) {

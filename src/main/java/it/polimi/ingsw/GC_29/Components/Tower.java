@@ -17,7 +17,7 @@ public class Tower implements Cleanable {
 
     public Tower(ZoneType zoneType){
 
-        if (zoneType != ZoneType.GREENTOWER || zoneType != ZoneType.YELLOWTOWER || zoneType != ZoneType.BLUETOWER || zoneType != ZoneType.PURPLETOWER){
+        if (zoneType != ZoneType.GREENTOWER && zoneType != ZoneType.YELLOWTOWER && zoneType != ZoneType.BLUETOWER && zoneType != ZoneType.PURPLETOWER){
             throw new IllegalArgumentException("Illegal tower type: " + zoneType);
         }
 

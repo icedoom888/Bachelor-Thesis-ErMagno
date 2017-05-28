@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.Discount;
-import it.polimi.ingsw.GC_29.Controllers.ActionBuilder;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
@@ -12,21 +10,28 @@ public class ActionEffect implements Effect{
 
     private ZoneType type;
 
-    private int actionValue; //TODO: qui metterei direttamente la bonusPawn
+    private int actionValue;
 
-    private Discount discount;
+    private BonusAndMalusOnCost bonusAndMalusOnCost;
 
     public ActionEffect(
             ZoneType type,
             int actionValue,
-            Discount discount) {
+            BonusAndMalusOnCost bonusAndMalusOnCost) {
 
-        this.type = type;
+        this(type, actionValue);
+
+        this.bonusAndMalusOnCost = bonusAndMalusOnCost;
+    }
+
+
+    public ActionEffect(ZoneType zoneType, int actionValue){
+
+        this.type = zoneType;
 
         this.actionValue = actionValue;
-
-        this.discount = discount;
     }
+
 
     public ActionEffect(ActionEffect actionEffect) {
 
@@ -34,7 +39,7 @@ public class ActionEffect implements Effect{
 
         this.actionValue = actionEffect.actionValue;
 
-        this.discount = actionEffect.discount;
+        this.bonusAndMalusOnCost = actionEffect.bonusAndMalusOnCost;
     }
 
     public ZoneType getType() {
@@ -47,9 +52,9 @@ public class ActionEffect implements Effect{
         return actionValue;
     }
 
-    public Discount getDiscount() {
+    public BonusAndMalusOnCost getBonusAndMalusOnCost() {
 
-        return discount;
+        return bonusAndMalusOnCost;
     }
 
     @Override
@@ -57,19 +62,16 @@ public class ActionEffect implements Effect{
         return "ActionEffect{" +
                 "type=" + type +
                 ", actionValue=" + actionValue +
-                ", discount=" + discount +
+                ", bonusAndMalusOnCost=" + bonusAndMalusOnCost +
                 '}';
     }
 
-    /*@Override
-    public void execute(PlayerStatus status) {
-        // devo passare al builder realAction false
-        // chiedo al player che discount vuole
-    }*/
+
 
     @Override
     public void execute(PlayerStatus playerStatus) {
 
+        playerStatus.getCurrentBonusActionList().add(this);
     }
 
 }

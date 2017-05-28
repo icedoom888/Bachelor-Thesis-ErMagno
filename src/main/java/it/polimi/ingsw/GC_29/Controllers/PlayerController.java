@@ -13,6 +13,9 @@ public class PlayerController {
     private State currentState;
     private PlayerStatus playerStatus;
 
+    ///variabile per test
+    private boolean commute = false;
+
     public PlayerController() {
 
         this.playerStatus = GameStatus.getInstance().getCurrentPlayer().getStatus();
@@ -38,24 +41,7 @@ public class PlayerController {
             executeState();
         }
 
-        executeState();
-
-        /**
-         * boolean valid = false;
-
-        while(!valid){ // per il test su PlayerController
-            ZoneType typeSelected = askForAction();
-            setActionBuilder(typeSelected);
-            Action actionCreated = actionBuilder.build();
-            valid = actionCreated.isPossible(); // dovrebbe prendere il metodo del tipo dinamico
-        }
-
-
-         * ciclo while(ActionExecutionSuccess)
-         * chiamo askForAction e ciò che mi arriva lo sparo a setActionBuilde
-         * actionBuilder chiama build(), in questo metodo viene creata e lanciata l'azione, il metodo build ritorna true se l'azione
-         */
-
+        executeState(); // endTurnState
     }
 
 
@@ -74,8 +60,16 @@ public class PlayerController {
     }
 
 
+    /**
+     * in this method, the player decides to place a family pawn or to skip the turn (the action)
+     * It is a method that comunicates with player, so the Adapter pattern must be used to implement
+     * the connection (socket and RMI)
+     * @return
+     */
     public boolean isPlaceFamilyMemberAction() {
 
-        return true;
+        commute = commute==false;
+
+        return commute;
     }
 }
