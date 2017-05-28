@@ -20,7 +20,7 @@ class PlayerControllerTest {
     void init() {
 
 
-        PlayerStatus currentPlayerStatus = new PlayerStatus();
+        PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
 
         PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
 
@@ -57,7 +57,7 @@ class PlayerControllerTest {
     void init1() {
 
 
-        PlayerStatus currentPlayerStatus = new PlayerStatus();
+        PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
 
         PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
 
@@ -103,7 +103,7 @@ class PlayerControllerTest {
     void init2() {
 
 
-        PlayerStatus currentPlayerStatus = new PlayerStatus();
+        PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
 
         PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
 

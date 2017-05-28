@@ -15,12 +15,14 @@ import java.util.LinkedList;
  */
 public class PlayerStatus {
 
+    //TODO: tra player e player status ci sono due ripetizioni: la personalBoard e il playerColor. Bisogna pensare se passare direttamente il player, dal momento che le azioni accedono al suo colore
+
     private PlayerColor playerColor;
     private HashMap<FamilyPawnType, Boolean> familyPawnAvailability;
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction;
     private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
     private ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCost;
-    private PersonalBoard personalBoard; // TODO: aggiunto perchè dalle azioni
+    private PersonalBoard personalBoard;
     private GoodSet actualGoodSet;
     private HashMap<CardColor, Integer> cardsOwned;
     private Action currentAction;
@@ -28,7 +30,9 @@ public class PlayerStatus {
     private LinkedList<BonusAndMalusOnCost>currentBonusActionBonusMalusOnCostList;
 
 
-    public PlayerStatus() {
+    public PlayerStatus(PlayerColor playerColor, PersonalBoard personalBoard) {
+        this.playerColor = playerColor;
+        this.personalBoard = personalBoard;
         bonusAndMalusOnAction = new ArrayList<BonusAndMalusOnAction>();
         bonusAndMalusOnGoods = new ArrayList<BonusAndMalusOnGoods>();
         bonusAndMalusOnCost = new ArrayList<BonusAndMalusOnCost>();

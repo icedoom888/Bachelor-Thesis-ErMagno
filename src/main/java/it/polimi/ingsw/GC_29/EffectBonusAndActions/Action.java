@@ -110,6 +110,7 @@ public class Action {
 
             } else {
                 setWorkers(workersNeeded);
+                return true;
             }
 
         }
@@ -131,7 +132,7 @@ public class Action {
 
     private int workersNeeded() {
 
-        return temporaryPawn.getActualValue() - actionSpaceSelected.getActionCost();
+        return actionSpaceSelected.getActionCost() - temporaryPawn.getActualValue(); //TODO inverti
     }
 
 
@@ -176,7 +177,7 @@ public class Action {
         }
 
         // TODO: inserire la pawnSelected nella mappa fi pawn usate del gameStatus
-        // TODO: non lo fa l'azione ma il player Controller prima della execute
+        // TODO: Gamastatus.getInstance()
 
         Effect effect = actionSpaceSelected.getEffect();
 
@@ -200,4 +201,14 @@ public class Action {
 
     }
 
+    //metodi per testing
+
+
+    public ActionSpace getActionSpaceSelected() {
+        return actionSpaceSelected;
+    }
+
+    public PlayerStatus getPlayerStatus() {
+        return playerStatus;
+    }
 }

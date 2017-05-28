@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by Christian on 21/05/2017.
@@ -62,6 +63,7 @@ public final class Filter {
      */
     public static void apply(PlayerStatus playerStatus, CardCost cardCost, ArrayList<Cost> costs, ZoneType zoneType) {
         ArrayList<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCost = playerStatus.getBonusAndMalusOnCost();
+        LinkedList<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCostTemporary = playerStatus.getCurrentBonusActionBonusMalusOnCostList();
 
         costs.add(cardCost.getMainCost());
 
@@ -73,7 +75,11 @@ public final class Filter {
             bonusAndMalusOnCost.filter(playerStatus, costs, zoneType);
         }
 
-        //TODO:
+        for (BonusAndMalusOnCost bonusAndMalusOnCost : currentPlayerBonusAndMalusOnCostTemporary) {
+            bonusAndMalusOnCost.filter(playerStatus,costs, zoneType);
+            currentPlayerBonusAndMalusOnCostTemporary.removeFirst();
+        }
+
     }
 
 

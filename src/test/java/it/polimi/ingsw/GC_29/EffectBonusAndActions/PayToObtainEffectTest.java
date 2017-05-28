@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class PayToObtainEffectTest {
     @Test
     public void testExecute() throws Exception{
-        PlayerStatus testStatus = new PlayerStatus();
+        PlayerStatus testStatus = new PlayerStatus(null, null);
         GoodSet statusGoodSet = new GoodSet(5,5,5,5,5,5,5);
         testStatus.updateGoodSet(statusGoodSet);
         System.out.println(testStatus.getActualGoodSet());
