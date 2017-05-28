@@ -100,7 +100,7 @@ public class GameBoard {
     }
 
     public Tower getTower(ZoneType zoneType){
-        if (zoneType != ZoneType.GREENTOWER || zoneType != ZoneType.YELLOWTOWER || zoneType != ZoneType.BLUETOWER || zoneType != ZoneType.PURPLETOWER){
+        if (zoneType != ZoneType.GREENTOWER && zoneType != ZoneType.YELLOWTOWER && zoneType != ZoneType.BLUETOWER && zoneType != ZoneType.PURPLETOWER){
             throw new IllegalArgumentException("Illegal tower equest: " + zoneType);
         }
 
@@ -111,7 +111,7 @@ public class GameBoard {
     }
 
     public Workspace getWorkArea(ZoneType area){
-        if (area != ZoneType.HARVEST || area != ZoneType.PRODUCTION){
+        if (area != ZoneType.HARVEST && area != ZoneType.PRODUCTION){
             throw new IllegalArgumentException("Illegal areaRequest: " + area);
         }
         else {

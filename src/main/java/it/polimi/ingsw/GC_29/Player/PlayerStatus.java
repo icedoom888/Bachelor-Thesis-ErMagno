@@ -117,6 +117,10 @@ public class PlayerStatus {
         return currentBonusActionBonusMalusOnCostList;
     }
 
+    public void setPersonalBoard(PersonalBoard personalBoard) {
+        this.personalBoard = personalBoard;
+    }
+
     public void setCurrentAction(Action currentAction) {
 
         this.currentAction = currentAction;

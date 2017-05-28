@@ -154,8 +154,18 @@ public class Action {
      * @return true if the pawn hasn't been used during the turn, false otherwise
      */
     private boolean checkFamilyPawn() {
-        FamilyPawnType familyPawnType = pawnSelected.getType();
-        return playerStatus.getFamilyPawnAvailability().get(familyPawnType);
+
+        if(pawnSelected.getType() != FamilyPawnType.BONUS) {
+
+            FamilyPawnType familyPawnType = pawnSelected.getType();
+            return playerStatus.getFamilyPawnAvailability().get(familyPawnType);
+
+        }
+
+        else{
+
+            return true;
+        }
     }
 
 

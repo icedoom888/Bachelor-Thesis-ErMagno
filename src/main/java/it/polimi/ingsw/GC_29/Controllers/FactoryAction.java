@@ -9,6 +9,8 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  */
 public class FactoryAction {
 
+    private static int floor; // for playerControllerTest
+
     public static Action getAction(ZoneType zoneType, FamilyPawn familyPawn, PlayerStatus playerStatus){
 
         if(zoneType == ZoneType.GREENTOWER || zoneType == ZoneType.YELLOWTOWER || zoneType == ZoneType.BLUETOWER || zoneType == ZoneType.PURPLETOWER){
@@ -54,6 +56,6 @@ public class FactoryAction {
 
     private static int askWichFloor() {
 
-        return 0;
+        return floor++;
     }
 }

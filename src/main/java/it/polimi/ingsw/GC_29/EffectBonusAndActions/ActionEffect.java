@@ -19,12 +19,19 @@ public class ActionEffect implements Effect{
             int actionValue,
             BonusAndMalusOnCost bonusAndMalusOnCost) {
 
-        this.type = type;
-
-        this.actionValue = actionValue;
+        this(type, actionValue);
 
         this.bonusAndMalusOnCost = bonusAndMalusOnCost;
     }
+
+
+    public ActionEffect(ZoneType zoneType, int actionValue){
+
+        this.type = zoneType;
+
+        this.actionValue = actionValue;
+    }
+
 
     public ActionEffect(ActionEffect actionEffect) {
 

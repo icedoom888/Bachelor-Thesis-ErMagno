@@ -13,6 +13,9 @@ public class PlayerController {
     private State currentState;
     private PlayerStatus playerStatus;
 
+    ///variabile per test
+    private boolean commute = false;
+
     public PlayerController() {
 
         this.playerStatus = GameStatus.getInstance().getCurrentPlayer().getStatus();
@@ -65,6 +68,8 @@ public class PlayerController {
      */
     public boolean isPlaceFamilyMemberAction() {
 
-        return true;
+        commute = commute==false;
+
+        return commute;
     }
 }

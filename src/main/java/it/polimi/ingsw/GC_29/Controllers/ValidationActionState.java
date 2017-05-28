@@ -78,7 +78,7 @@ public class ValidationActionState implements State {
 
 
     private ZoneType askForAction() {
-        return ZoneType.BLUETOWER; // prova
+        return ZoneType.GREENTOWER; // prova
     }
 
 

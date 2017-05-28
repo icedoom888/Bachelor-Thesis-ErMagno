@@ -7,13 +7,35 @@ import it.polimi.ingsw.GC_29.Components.*;
  */
 public class Player {
     private String playerID;
+    private PlayerColor playerColor;
     private GameBoard gameboard;
     private PersonalBoard personalBoard;
     private PlayerStatus status;
     private LeaderCard[] leaderCards;
-    private FamilyPawn[] relativePawns;
+    private FamilyPawn[] familyPawns;
     private Pawn[] excommunicationPawns;
     private Pawn[] markerDiscs;
+
+    public Player(String playerID, PlayerColor playerColor, GameBoard gameboard, PersonalBoard personalBoard, PlayerStatus status) {
+
+        this.playerID = playerID;
+        this.playerColor = playerColor;
+        this.gameboard = gameboard;
+        this.personalBoard = personalBoard;
+        this.status = status;
+
+        leaderCards = new LeaderCard[4]; // TODO: decidere se rendere parametrico numero leader card
+
+        familyPawns = new FamilyPawn[] {new FamilyPawn(playerColor, FamilyPawnType.BLACK, 0),
+                                        new FamilyPawn(playerColor, FamilyPawnType.ORANGE, 0),
+                                        new FamilyPawn(playerColor, FamilyPawnType.WHITE, 0),
+                                        new FamilyPawn(playerColor, FamilyPawnType.NEUTRAL, 0)};
+
+        excommunicationPawns = new Pawn[] {new Pawn(playerColor), new Pawn(playerColor), new Pawn(playerColor)};
+
+        markerDiscs = new Pawn[] {new Pawn(playerColor), new Pawn(playerColor), new Pawn(playerColor)};
+
+    }
 
     public String getPlayerID() {
         return playerID;
@@ -35,8 +57,8 @@ public class Player {
         return leaderCards;
     }
 
-    public FamilyPawn[] getRelativePawns() {
-        return relativePawns;
+    public FamilyPawn[] getFamilyPawns() {
+        return familyPawns;
     }
 
     public Pawn[] getExcommunicationPawns() {

@@ -1,38 +1,152 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.CardColor;
-import it.polimi.ingsw.GC_29.Components.GameBoard;
-import it.polimi.ingsw.GC_29.Components.Tower;
+import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Created by Christian on 21/05/2017.
+ * Created by Christian on 28/05/2017.
  */
-public class PlayerControllerTest {
+class PlayerControllerTest {
+
     @Test
-    public void testInit() throws Exception {
+    void init() {
 
-        /*PlayerStatus playerStatus = new PlayerStatus();
-        Player player = new Player();
-        player.setStatus(playerStatus);
-        HashMap<CardColor, Tower> towerHashMap = new HashMap<CardColor, Tower>();
-        towerHashMap.put(CardColor.GREEN, new Tower());
-        towerHashMap.put(CardColor.YELLOW, new Tower());
-        towerHashMap.put(CardColor.BLUE, new Tower());
-        towerHashMap.put(CardColor.PURPLE, new Tower());
 
-        GameStatus.getInstance().setCurrentPlayer(player);
-        GameStatus.getInstance().setGameBoard(new GameBoard());
-        GameStatus.getInstance().getGameBoard().setTowerMap(towerHashMap);
+        PlayerStatus currentPlayerStatus = new PlayerStatus();
 
-        PlayerController playerController = new PlayerController();
-        playerController.init(); */
+        PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
+
+        currentPlayerStatus.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
+
+        currentPlayerStatus.setPersonalBoard(testPersonalBoard);
+
+        DevelopmentCard testCard = new DevelopmentCard("test", Era.FIRST, new CardCost(), CardColor.GREEN, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0);
+
+        Tower testTower = new Tower(ZoneType.GREENTOWER);
+
+        testTower.getFloor(0).setDevelopmentCard(testCard);
+
+        ExcommunicationTile tile1 = new ExcommunicationTile(Era.FIRST, "name1", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom1");
+        ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
+        ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
+
+        GameBoard gameBoard = new GameBoard(4, tile1, tile2, tile3);
+
+        GameStatus.getInstance().setGameBoard(gameBoard);
+
+        GameStatus.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
+
+        Player testPlayer = new Player("pippo", PlayerColor.BLUE, gameBoard, testPersonalBoard, currentPlayerStatus );
+
+        GameStatus.getInstance().setCurrentPlayer(testPlayer);
+
+        PlayerController testController = new PlayerController();
+
+        testController.init();
     }
+
+    @Test
+    void init1() {
+
+
+        PlayerStatus currentPlayerStatus = new PlayerStatus();
+
+        PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
+
+        currentPlayerStatus.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
+
+        currentPlayerStatus.setPersonalBoard(testPersonalBoard);
+
+        ArrayList<Effect> immediateEffect = new ArrayList<Effect>();
+
+        immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
+
+        DevelopmentCard testCard = new DevelopmentCard("test", Era.FIRST, new CardCost(), CardColor.GREEN, immediateEffect, new ArrayList<Effect>() , false, 0);
+
+        DevelopmentCard testCard1 = new DevelopmentCard("test2", Era.FIRST, new CardCost(), CardColor.GREEN, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0);
+
+        Tower testTower = new Tower(ZoneType.GREENTOWER);
+
+        testTower.getFloor(0).setDevelopmentCard(testCard);
+        testTower.getFloor(1).setDevelopmentCard(testCard1);
+
+
+        ExcommunicationTile tile1 = new ExcommunicationTile(Era.FIRST, "name1", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom1");
+        ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
+        ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
+
+        GameBoard gameBoard = new GameBoard(4, tile1, tile2, tile3);
+
+        GameStatus.getInstance().setGameBoard(gameBoard);
+
+        GameStatus.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
+
+        Player testPlayer = new Player("pippo", PlayerColor.BLUE, gameBoard, testPersonalBoard, currentPlayerStatus );
+
+        GameStatus.getInstance().setCurrentPlayer(testPlayer);
+
+        PlayerController testController = new PlayerController();
+
+        testController.init();
+    }
+
+
+    @Test
+    void init2() {
+
+
+        PlayerStatus currentPlayerStatus = new PlayerStatus();
+
+        PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
+
+        currentPlayerStatus.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
+
+        currentPlayerStatus.setPersonalBoard(testPersonalBoard);
+
+        ArrayList<Effect> immediateEffect = new ArrayList<Effect>();
+
+        immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
+
+        immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
+
+        immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
+
+        DevelopmentCard testCard = new DevelopmentCard("test", Era.FIRST, new CardCost(), CardColor.GREEN, immediateEffect, new ArrayList<Effect>() , false, 0);
+
+        DevelopmentCard testCard1 = new DevelopmentCard("test2", Era.FIRST, new CardCost(), CardColor.GREEN, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0);
+
+        Tower testTower = new Tower(ZoneType.GREENTOWER);
+
+        testTower.getFloor(0).setDevelopmentCard(testCard);
+        testTower.getFloor(1).setDevelopmentCard(testCard1);
+
+
+        ExcommunicationTile tile1 = new ExcommunicationTile(Era.FIRST, "name1", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom1");
+        ExcommunicationTile tile2 = new ExcommunicationTile(Era.FIRST, "name2", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom2");
+        ExcommunicationTile tile3 = new ExcommunicationTile(Era.FIRST, "name3", new BonusAndMalusOnAction(ZoneType.BLUETOWER, 3), new BonusAndMalusOnGoods(new GoodSet()), "descriptiom3");
+
+        GameBoard gameBoard = new GameBoard(4, tile1, tile2, tile3);
+
+        GameStatus.getInstance().setGameBoard(gameBoard);
+
+        GameStatus.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
+
+        Player testPlayer = new Player("pippo", PlayerColor.BLUE, gameBoard, testPersonalBoard, currentPlayerStatus );
+
+        GameStatus.getInstance().setCurrentPlayer(testPlayer);
+
+        PlayerController testController = new PlayerController();
+
+        testController.init();
+    }
+
 
 }

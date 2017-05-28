@@ -13,6 +13,11 @@ public class Cost {
         this.necessaryResources = necessaryResources;
     }
 
+    public Cost(){
+        this.cost = new GoodSet();
+        this.necessaryResources = new GoodSet();
+    }
+
     public Cost(Cost cost) {
         this.cost = cost.cost;
         this.necessaryResources = cost.necessaryResources;

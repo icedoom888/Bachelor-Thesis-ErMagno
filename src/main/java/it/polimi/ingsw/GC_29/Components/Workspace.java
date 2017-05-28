@@ -15,7 +15,7 @@ public class Workspace implements Cleanable {
     public Workspace (ZoneType type,
                      int numberOfPlayers) {
 
-        if (type != ZoneType.HARVEST || type != ZoneType.PRODUCTION){
+        if (type != ZoneType.HARVEST && type != ZoneType.PRODUCTION){
             throw new IllegalArgumentException("Illegal area type: " + type);
         }
 
