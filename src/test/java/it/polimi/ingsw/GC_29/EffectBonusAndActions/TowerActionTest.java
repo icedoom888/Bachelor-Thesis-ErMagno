@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 
 import static it.polimi.ingsw.GC_29.Player.PlayerColor.*;
 
@@ -106,7 +106,7 @@ public class TowerActionTest {
         FamilyPawn familyPawnRedBlack = new FamilyPawn(GREEN, FamilyPawnType.BLACK, 3);
         ZoneType zoneType = ZoneType.BLUETOWER;
         boolean realAction = true;
-        PlayerStatus playerStatus = new PlayerStatus(PlayerColor.BLUE, new ArrayList<BonusAndMalusOnAction>(), new ArrayList<BonusAndMalusOnGoods>(), null, new GoodSet(1,2,3,4,5,6,7), new HashMap<CardColor, Integer>(), true, true,true,true);
+        PlayerStatus playerStatus = new PlayerStatus(PlayerColor.BLUE, new ArrayList<BonusAndMalusOnAction>(), new ArrayList<BonusAndMalusOnGoods>(), null, new GoodSet(1,2,3,4,5,6,7), new EnumMap<CardColor, Integer>(CardColor.class));
         Tower tower = new Tower(ZoneType.BLUETOWER);
         int floorIndex = 2;
         tower.getFloors()[floorIndex].setDevelopmentCard(new DevelopmentCard("a", Era.FIRST, new CardCost(false, true, new Cost(new GoodSet(4,0,0,0,0,0,0), new GoodSet()), new Cost(new GoodSet(), new GoodSet())), CardColor.BLUE, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0));

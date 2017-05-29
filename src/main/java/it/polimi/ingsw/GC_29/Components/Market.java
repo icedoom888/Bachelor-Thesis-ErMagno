@@ -4,15 +4,19 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 
 /**
  * Created by Lorenzotara on 17/05/17.
  */
 public class Market implements Cleanable {
-    private HashMap<ShopName, ActionSpace> houses;
+
+    private EnumMap<ShopName, ActionSpace> houses;
+
     public Market(int numberOfPlayers){
-        this.houses = new HashMap<ShopName,ActionSpace>();
+
+        this.houses = new EnumMap<ShopName, ActionSpace>(ShopName.class);
         houses.put(ShopName.MONEYSHOP,new ActionSpace(new ObtainEffect(0,0,5,0,0,0,0),1,new PawnSlot(1,true),true,false));
         houses.put(ShopName.WORKERSHOP,new ActionSpace(new ObtainEffect(0,0,0,5,0,0,0),1,new PawnSlot(1,true),true,false));
         if (numberOfPlayers>=4){
@@ -25,11 +29,9 @@ public class Market implements Cleanable {
             houses.put(ShopName.PRIVILEGESHOP,null);
         }
     }
-    public void ShopsInformation(){
-        for(ShopName shopName : ShopName.values()) {
-            System.out.print(shopName.toString()+":");
-            System.out.println(houses.get(shopName));
-        }
+
+    public EnumMap<ShopName, ActionSpace> getHouses() {
+        return houses;
     }
 
     public ActionSpace getShop(ShopName shopName) {
@@ -38,6 +40,6 @@ public class Market implements Cleanable {
 
     @Override
     public void clean() {
-
+        //TODO: implementare
     }
 }

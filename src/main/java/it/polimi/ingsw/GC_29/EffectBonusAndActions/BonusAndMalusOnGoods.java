@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 
 import static java.lang.Math.max;
 
@@ -23,13 +23,13 @@ public class BonusAndMalusOnGoods {
 
     public void filter(GoodSet goodsObtained){
 
-        HashMap<GoodType, Integer> temporaryHashMapGoodSet = goodsObtained.getHashMapGoodSet();
+        EnumMap<GoodType, Integer> temporaryHashMapGoodSet = goodsObtained.getEnumMapGoodSet();
 
         for(GoodType type : GoodType.values()) { // il doppio ciclo for mi sta bene poiché la dimensione del secondo for è costante, dunque complessità O(n)
 
             int goodObtainedAmount = temporaryHashMapGoodSet.get(type);
 
-            int BonusMalusOnGoodAmount = goodSetBonusMalus.getHashMapGoodSet().get(type);
+            int BonusMalusOnGoodAmount = goodSetBonusMalus.getEnumMapGoodSet().get(type);
 
             if(goodObtainedAmount*BonusMalusOnGoodAmount !=0) {
 

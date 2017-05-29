@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**
