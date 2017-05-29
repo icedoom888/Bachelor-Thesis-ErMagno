@@ -179,6 +179,7 @@ public abstract class Action {
         }
 
 
+        //TODO: decommenta ( commentato per testing)
         GameStatus.getInstance().getPawnsOnActionSpace().put(temporaryPawn, actionSpaceSelected);
 
         Effect effect = actionSpaceSelected.getEffect();

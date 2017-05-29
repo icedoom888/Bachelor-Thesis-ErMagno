@@ -5,7 +5,6 @@ import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Created by Lorenzotara on 19/05/17.
@@ -15,7 +14,7 @@ public class TowerAction extends Action {
 
     private Tower towerChosen;
     private int floorIndex;
-    private GoodSet temporaryGoodSet; // accumula il bonus dell'actionSpace
+    private GoodSet actionSpaceGoodSet; // accumula il bonus dell'actionSpace
     private GoodSet towerCost; // 3 coins
     private CardCost cardCost;
     private ArrayList<Cost> possibleCardCosts;
@@ -31,7 +30,7 @@ public class TowerAction extends Action {
         this.towerChosen = GameStatus.getInstance().getGameBoard().getTower(zoneType);
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
-        this.temporaryGoodSet = new GoodSet();
+        this.actionSpaceGoodSet = new GoodSet();
         this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
         this.cardCost = cardSelected.getCardCost();
         this.towerCost = new GoodSet();
@@ -57,7 +56,7 @@ public class TowerAction extends Action {
         this.towerChosen = towerChosen;
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
-        this.temporaryGoodSet = new GoodSet();
+        this.actionSpaceGoodSet = new GoodSet();
         this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
         this.cardCost = cardSelected.getCardCost();
         this.towerCost = new GoodSet();
@@ -152,7 +151,7 @@ public class TowerAction extends Action {
         ObtainEffect effect = (ObtainEffect) this.actionSpaceSelected.getEffect();
         GoodSet actionSpaceGoodSet = effect.getGoodsObtained();
         Filter.apply(this.playerStatus, actionSpaceGoodSet);
-        temporaryGoodSet = actionSpaceGoodSet;
+        this.actionSpaceGoodSet = actionSpaceGoodSet;
 
     }
 
@@ -176,7 +175,7 @@ public class TowerAction extends Action {
         GoodSet realCost;
 
         playerGoodSet.subGoodSet(towerCost);
-        playerGoodSet.addGoodSet(temporaryGoodSet);
+        playerGoodSet.addGoodSet(actionSpaceGoodSet);
 
         boolean value = false;
         for (Cost cost : costList) {
@@ -250,7 +249,7 @@ public class TowerAction extends Action {
             System.out.println("Write the number of the option chosen");
             /*Scanner scanner = new Scanner(System.in);
             int answer = scanner.nextInt();*/
-            int answer = 1; // random
+            int answer = 0; // random
             playerStatus.getActualGoodSet().subGoodSet(possibleCardCosts.get(answer).getCost());
             System.out.println("The card has been paid");
             return;
@@ -323,9 +322,12 @@ public class TowerAction extends Action {
 
         super.update();
 
-        if (cardSelected.getColor() == CardColor.BLUE) {
-            for (Effect effect : cardSelected.getPermanentEffect()) {
-                playerStatus.getBonusAndMalusOnAction().add((BonusAndMalusOnAction) effect); //cast obbligatorio
+        for (Effect effect : cardSelected.getPermanentEffect()) {
+            if (effect.getClass() == BonusEffect.class) {
+                BonusEffect effect1 = (BonusEffect)effect;
+                playerStatus.getBonusAndMalusOnAction().add(effect1.getBonusAndMalusOnAction());
+                playerStatus.getBonusAndMalusOnCost().add(effect1.getBonusAndMalusOnCost());
+                playerStatus.getBonusAndMalusOnGoods().add(effect1.getBonusAndMalusOnGoods());
             }
         }
 
@@ -346,8 +348,8 @@ public class TowerAction extends Action {
         return floorIndex;
     }
 
-    public GoodSet getTemporaryGoodSet() {
-        return temporaryGoodSet;
+    public GoodSet getActionSpaceGoodSet() {
+        return actionSpaceGoodSet;
     }
 
     public GoodSet getTowerCost() {

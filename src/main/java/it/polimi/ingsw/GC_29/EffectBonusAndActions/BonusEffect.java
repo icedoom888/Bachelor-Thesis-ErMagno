@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
@@ -32,16 +33,23 @@ public class BonusEffect implements Effect {
      */
     public void execute(PlayerStatus status) {
 
-        System.out.println("You received a Bonus! It will be added to your Bonus List");
+        //TODO: decommenta solo per testing
+        Action currentAction = GameStatus.getInstance().getCurrentAction();
+        bonusAndMalusOnAction.filter(currentAction.getTemporaryPawn(), currentAction.getZoneType());
 
-        ArrayList<BonusAndMalusOnAction> bonusOnActionList = status.getBonusAndMalusOnAction();
-        ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoodsList = status.getBonusAndMalusOnGoods();
-        ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCostList = status.getBonusAndMalusOnCost();
 
-        bonusOnActionList.add(bonusAndMalusOnAction);
-        bonusAndMalusOnGoodsList.add(bonusAndMalusOnGoods);
-        bonusAndMalusOnCostList.add(bonusAndMalusOnCost);
+    }
 
+    public BonusAndMalusOnAction getBonusAndMalusOnAction() {
+        return bonusAndMalusOnAction;
+    }
+
+    public BonusAndMalusOnGoods getBonusAndMalusOnGoods() {
+        return bonusAndMalusOnGoods;
+    }
+
+    public BonusAndMalusOnCost getBonusAndMalusOnCost() {
+        return bonusAndMalusOnCost;
     }
 
     @Override

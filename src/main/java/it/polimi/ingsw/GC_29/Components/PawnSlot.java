@@ -83,7 +83,8 @@ public class PawnSlot{
         boolean familiarPresent = false;
         for (Pawn playerPawn : playerPawns) {
             if (playerPawn.getPlayerColor() == familyPawn.getPlayerColor()
-                    && familyPawn.getType() != FamilyPawnType.NEUTRAL)
+                    && familyPawn.getType() != FamilyPawnType.NEUTRAL
+                    && familyPawn.getType() != FamilyPawnType.BONUS)
                 familiarPresent = true;
         }
         return familiarPresent;
