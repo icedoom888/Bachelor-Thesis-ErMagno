@@ -4,7 +4,7 @@ import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +26,8 @@ public class TowerActionTest {
         ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,"su ogni");
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,"cosa");
         GameBoard gameBoard = new GameBoard(numberOfPlayers1);
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
 
         // Creation of personalBoard1
 

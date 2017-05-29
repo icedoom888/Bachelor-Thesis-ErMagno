@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by Christian on 28/05/2017.
  */
-class PlayerControllerTest {
+public class PlayerControllerTest {
 
     @Test
-    void init() {
+    public void testInit() {
 
 
         PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
@@ -58,7 +58,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void init1() {
+    public void testInit1() {
 
 
         PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
@@ -108,7 +108,7 @@ class PlayerControllerTest {
 
 
     @Test
-    void init2() {
+    public void testInit2() {
 
 
         PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);

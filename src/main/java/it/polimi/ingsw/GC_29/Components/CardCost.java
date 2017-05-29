@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by Lorenzotara on 21/05/17.
