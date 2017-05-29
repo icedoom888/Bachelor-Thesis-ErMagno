@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+
+import static java.lang.Math.max;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -10,20 +12,6 @@ public class BonusAndMalusOnAction {
 
     private ZoneType zoneType;
     private int diceIncrementOrReduction;
-    private GoodSet goodSetDiscountOrIncrement;
-    private boolean actionAllowed;
-
-
-    public BonusAndMalusOnAction(
-            ZoneType zoneType,
-            int diceIncrementOrReduction,
-            GoodSet goodSetDiscountOrIncrement) {
-
-        this.zoneType = zoneType;
-        this.diceIncrementOrReduction = diceIncrementOrReduction;
-        this.goodSetDiscountOrIncrement = goodSetDiscountOrIncrement;
-        this.actionAllowed = true;
-    }
 
     public BonusAndMalusOnAction(
             ZoneType zoneType,
@@ -31,19 +19,9 @@ public class BonusAndMalusOnAction {
 
         this.zoneType = zoneType;
         this.diceIncrementOrReduction = diceIncrementOrReduction;
-        this.goodSetDiscountOrIncrement = new GoodSet();
-        this.actionAllowed = true;
     }
 
 
-    public BonusAndMalusOnAction(ZoneType zoneType,
-                                 boolean actionAllowed) {
-
-        this.zoneType = zoneType;
-        this.actionAllowed = actionAllowed;
-        this.diceIncrementOrReduction = 0;
-        this.goodSetDiscountOrIncrement = null;
-    }
 
     public ZoneType getZoneType() {
         return zoneType;
@@ -53,21 +31,28 @@ public class BonusAndMalusOnAction {
         return diceIncrementOrReduction;
     }
 
-    public GoodSet getGoodSetDiscountOrIncrement() {
-        return goodSetDiscountOrIncrement;
-    }
 
-    public boolean isActionAllowed() {
-        return actionAllowed;
-    }
+    /**
+     *
+     * this method apply the bonusMalus to the value of the familyPawn if the zoneType of the bonusMalus matches
+     * with the ZoneType passed to the method
+     */
+    public void filter(FamilyPawn familyPawn, ZoneType zoneType){
 
-    // Questo metodo era un boolean, ma non aveva tanto senso
-    public void filter(int actionValue, GoodSet actualGoodset){
+        if(zoneType == this.zoneType){
 
+            int newActionValue = familyPawn.getActualValue() + diceIncrementOrReduction;
+
+            familyPawn.setActualValue(newActionValue);
+
+        }
     }
 
     @Override
     public String toString() {
-        return "BonusAndMalusOnAction{" + "zoneType=" + zoneType + ", diceIncrementOrReduction=" + diceIncrementOrReduction + ", goodSetDiscountOrIncrement=" + goodSetDiscountOrIncrement + ", actionAllowed=" + actionAllowed + '}';
+        return "BonusAndMalusOnAction{"
+                + "zoneType=" + zoneType
+                + ", diceIncrementOrReduction=" + diceIncrementOrReduction
+                + '}';
     }
 }

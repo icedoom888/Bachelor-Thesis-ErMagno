@@ -1,12 +1,11 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.ActionSpace;
-import it.polimi.ingsw.GC_29.Components.CardCost;
-import it.polimi.ingsw.GC_29.Components.Cost;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
+
+import static java.lang.Math.max;
 
 /**
  * Created by Christian on 21/05/2017.
@@ -25,6 +24,8 @@ public final class Filter {
 
     /**
      *
+     * this method filters the gooSet obtained from an effect through all the bonus and malus regarding the Goodsets,
+     * at the end it sets to zero all the goods of the goodset that have a negative amount due to the malus
      * @param goodsObtained GoodSet to be filtered through the bonusMalusOnGoodsList
      */
     public static void apply(PlayerStatus playerStatus, GoodSet goodsObtained){
@@ -34,21 +35,37 @@ public final class Filter {
         for (BonusAndMalusOnGoods playerBonusMalus : currentPLayerBonusMalusOnGoods) {
 
             if (playerBonusMalus != null) {
+
                 playerBonusMalus.filter(goodsObtained);
             }
         }
+
+        goodsObtained.setNonNegative();
     }
 
 
+    /**
+     *
+     * this method filters the familyPawn actionValue through all the bonus or malus regarding the specific action.
+     * At the end it sets the actionValue to zero if the actionValue has a negative value due to the malus
+     */
+    public static void apply(PlayerStatus playerStatus, FamilyPawn familyPawn, ZoneType zoneType){
 
-    public static void apply(PlayerStatus playerStatus, ZoneType zoneType, int actionValue){
         ArrayList<BonusAndMalusOnAction> currentPlayerBonusMalusOnAction = playerStatus.getBonusAndMalusOnAction();
 
         for (BonusAndMalusOnAction playerBonusMalus : currentPlayerBonusMalusOnAction){
-            if(playerBonusMalus.getZoneType()== zoneType){
-                playerBonusMalus.filter(actionValue,playerStatus.getActualGoodSet());
+
+            if(playerBonusMalus != null){
+
+                playerBonusMalus.filter(familyPawn, zoneType);
+
             }
+
         }
+
+        int actualValue = max(0, familyPawn.getActualValue());
+
+        familyPawn.setActualValue(actualValue);
     }
 
 

@@ -124,7 +124,7 @@ public class Action {
      */
     private void executeBonusAndMalusOnAction() { // serve per controllare che con B&M il valore della pawn vada bene o meno
 
-        Filter.apply(playerStatus, zoneType, temporaryPawn.getActualValue());
+        Filter.apply(playerStatus, temporaryPawn, zoneType);
     }
 
 

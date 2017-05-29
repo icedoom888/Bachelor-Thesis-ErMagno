@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_29.Components;
 
 import java.util.HashMap;
 
+import static java.lang.Math.max;
+
 /**
  * Created by Christian on 17/05/2017.
  */
@@ -50,6 +52,11 @@ public class GoodSet {
         return goodSet.get(type);
     }
 
+    public void setGoodAmount(GoodType type, int newAmount){
+
+        goodSet.put(type, newAmount);
+    }
+
     public void addGoodSet(GoodSet goodSetToAdd){
         for (GoodType type: GoodType.values()){
             this.goodSet.put(type, this.goodSet.get(type)+ goodSetToAdd.getHashMapGoodSet().get(type));
@@ -76,9 +83,12 @@ public class GoodSet {
         return enough;
     }
 
-    public void printGoodSet(){
+    public void setNonNegative(){
         for(GoodType type : GoodType.values()){
-            System.out.print(type+": "+getGoodAmount(type)+"/n");
+
+            int goodAmount = max(0, this.getGoodAmount(type));
+
+            this.setGoodAmount(type, goodAmount);
         }
     }
 

@@ -33,7 +33,7 @@ public class BonusAndMalusOnGoods {
 
             if(goodObtainedAmount*BonusMalusOnGoodAmount !=0) {
 
-                int temporaryAmount = max(0,goodObtainedAmount + BonusMalusOnGoodAmount);
+                int temporaryAmount = goodObtainedAmount + BonusMalusOnGoodAmount;
 
                 temporaryHashMapGoodSet.put(type, temporaryAmount);
             }
