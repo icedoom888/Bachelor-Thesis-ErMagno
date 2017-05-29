@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 public class BonusEffect implements Effect {
 
+    //TODO: cambiare execute non come permanent
+
     private BonusAndMalusOnAction bonusAndMalusOnAction;
     private BonusAndMalusOnGoods bonusAndMalusOnGoods;
     private BonusAndMalusOnCost bonusAndMalusOnCost;

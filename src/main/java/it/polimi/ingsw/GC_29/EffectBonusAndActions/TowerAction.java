@@ -94,11 +94,14 @@ public class TowerAction extends Action {
         return false;
     }
 
+
     /**
      * This method checks if there already is a player's familiar in the tower
      * @return true if there is a player's familiar, false otherwise
      */
     private boolean checkFamilyPresence() { // va a controllare nella torre se c'è un familiare del player
+
+        // TODO: bonus e neutra
 
         boolean familiarPresent = false;
         for (Floor floor : towerChosen.getFloors()) {
@@ -245,8 +248,9 @@ public class TowerAction extends Action {
             }
 
             System.out.println("Write the number of the option chosen");
-            Scanner scanner = new Scanner(System.in);
-            int answer = scanner.nextInt();
+            /*Scanner scanner = new Scanner(System.in);
+            int answer = scanner.nextInt();*/
+            int answer = 1; // random
             playerStatus.getActualGoodSet().subGoodSet(possibleCardCosts.get(answer).getCost());
             System.out.println("The card has been paid");
             return;

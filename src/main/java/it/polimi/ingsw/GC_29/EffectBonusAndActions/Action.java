@@ -1,12 +1,14 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Lorenzotara on 19/05/17.
  */
-public class Action {
+public abstract class Action {
+
 
     private int workers;
     protected FamilyPawn temporaryPawn;
@@ -133,7 +135,7 @@ public class Action {
 
     private int workersNeeded() {
 
-        return actionSpaceSelected.getActionCost() - temporaryPawn.getActualValue(); //TODO inverti
+        return actionSpaceSelected.getActionCost() - temporaryPawn.getActualValue();
     }
 
 
@@ -159,7 +161,6 @@ public class Action {
         }
 
         else{
-
             return true;
         }
     }
@@ -177,8 +178,8 @@ public class Action {
             actionSpaceSelected.addPawn(temporaryPawn);
         }
 
-        // TODO: inserire la pawnSelected nella mappa fi pawn usate del gameStatus
-        // TODO: Gamastatus.getInstance()
+
+        GameStatus.getInstance().getPawnsOnActionSpace().put(temporaryPawn, actionSpaceSelected);
 
         Effect effect = actionSpaceSelected.getEffect();
 
@@ -201,6 +202,7 @@ public class Action {
         }
 
     }
+
 
     //metodi per testing
 
