@@ -35,6 +35,10 @@ public class  Lane implements Cleanable {
         return cards[position];
     }
 
+    public DevelopmentCard[] getCards() {
+        return cards;
+    }
+
     private void removeCard(int position) {
         this.cards[position] = null;
     }

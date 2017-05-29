@@ -83,7 +83,6 @@ public final class Filter {
     }
 
 
-
     /**
      * The method checks if the player has a bonusAndMalus that can make him access to the actionSpace
      * even if the actionSpace is occupied. This method returns true if the player has that particular bonusAndMalus,

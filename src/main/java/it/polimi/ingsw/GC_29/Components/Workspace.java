@@ -21,12 +21,12 @@ public class Workspace implements Cleanable {
 
         this.type = type;
         this.fields = new HashMap<Integer,ActionSpace>(2);
-        fields.put(0,new ActionSpace(null,1, new PawnSlot(1,true),true,false));
+        fields.put(1,new ActionSpace(null,1, new PawnSlot(1,true),true,false));
         if(numberOfPlayers>=3) {
-            fields.put(1,new ActionSpace(null,1, new PawnSlot(numberOfPlayers,true),false,false));
+            fields.put(2,new ActionSpace(null,1, new PawnSlot(numberOfPlayers,true),false,false));
         }
         else{
-            fields.put(1,null);
+            fields.put(2,null);
         }
     }
 

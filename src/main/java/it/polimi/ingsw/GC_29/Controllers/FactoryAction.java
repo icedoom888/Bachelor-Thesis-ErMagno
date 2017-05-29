@@ -25,7 +25,7 @@ public class FactoryAction {
 
             int fieldSelected = askWichField();
 
-            return new WorkAction(familyPawn, zoneType, playerStatus, fieldSelected);
+            //return new WorkAction(familyPawn, zoneType, playerStatus, fieldSelected);
         }
 
         if(zoneType == ZoneType.MARKET){

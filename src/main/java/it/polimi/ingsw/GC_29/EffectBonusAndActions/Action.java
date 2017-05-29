@@ -49,6 +49,7 @@ public class Action {
     /**
      * During the execute, this method make the player pay to increase the value of his pawn
      */
+    //TODO: utilizare un filtraggio speciale su bonus e malus per il malus che fa pagare doppi o i workers
     protected void payWorkers() {
         playerStatus.getActualGoodSet().subGoodSet(new GoodSet(0,0,0,workers,0,0,0));
     }
