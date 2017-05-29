@@ -1,11 +1,10 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.testng.Assert.*;
 
 /**
  * Created by Lorenzotara on 20/05/17.

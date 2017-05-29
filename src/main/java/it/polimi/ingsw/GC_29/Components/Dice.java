@@ -5,22 +5,28 @@ package it.polimi.ingsw.GC_29.Components;
  */
 public class Dice {
     private int face;
-    private DiceType color;
+    private FamilyPawnType color;
 
     public int getFace() {
         return face;
     }
 
-    public DiceType getColor() {
+    public FamilyPawnType getColor() {
         return color;
     }
 
-    public Dice(DiceType dicetype) {
-        this.face = 0;
+    public Dice(FamilyPawnType dicetype) {
+
+        if (dicetype != FamilyPawnType.BLACK && dicetype != FamilyPawnType.ORANGE && dicetype != FamilyPawnType.WHITE){
+            throw new IllegalArgumentException("Illegal dice type: " + dicetype);
+        }
+
+        this.face = 1;
         this.color= dicetype;
     }
 
     public void roll(){
+
         face = (int)(Math.random()*6) + 1;
     }
 

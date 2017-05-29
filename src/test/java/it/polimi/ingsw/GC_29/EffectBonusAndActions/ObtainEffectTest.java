@@ -2,11 +2,9 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 
-import static org.testng.Assert.*;
 
 /**
  * Created by Christian on 20/05/2017.

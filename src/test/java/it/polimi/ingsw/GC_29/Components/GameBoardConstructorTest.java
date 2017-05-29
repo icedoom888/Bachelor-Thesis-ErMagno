@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created by AlbertoPennino on 21/05/2017.

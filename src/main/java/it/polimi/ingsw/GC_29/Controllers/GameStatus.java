@@ -3,6 +3,9 @@ package it.polimi.ingsw.GC_29.Controllers;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 
 /**
@@ -14,12 +17,12 @@ public class  GameStatus {
 
     // Mancano i controller da inserire in futuro
     private GameBoard gameBoard;
+    EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks;
     private Player currentPlayer;
     private Era currentEra;
     private int currentTurn;
     //private final int numberOfPlayers = COSTANTEDAFILE; TODO: bisogna creare delle costanti da file da usare, come in questo caso
-    private Player[] turnOrder;
-    private Dice[] currentDices;
+    private ArrayList<Player> turnOrder;
     private HashMap<FamilyPawn, ActionSpace> pawnsOnActionSpace;
 
     private GameStatus() {
@@ -34,32 +37,55 @@ public class  GameStatus {
     }
 
     public HashMap<FamilyPawn, ActionSpace> getPawnsOnActionSpace() {
+
         return pawnsOnActionSpace;
     }
 
+
     public GameBoard getGameBoard() {
+
         return gameBoard;
     }
 
+
+    public EnumMap<CardColor, ArrayDeque<DevelopmentCard>> getOrderedDecks() {
+
+        return orderedDecks;
+    }
+
+
+    public void setOrderedDecks(EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks) {
+
+        this.orderedDecks = orderedDecks;
+    }
+
+
     public Player getCurrentPlayer() {
+
         return currentPlayer;
     }
 
+
     public void setCurrentPlayer(Player currentPlayer) {
+
         this.currentPlayer = currentPlayer;
     }
+
 
     public Era getCurrentEra() {
         return currentEra;
     }
 
+
     public void setCurrentEra(Era currentEra) {
         this.currentEra = currentEra;
     }
 
+
     public int getCurrentTurn() {
         return currentTurn;
     }
+
 
     public void setCurrentTurn(int currentTurn) {
         this.currentTurn = currentTurn;
@@ -69,27 +95,21 @@ public class  GameStatus {
         return numberOfPlayers;
     }*/
 
-    public Player[] getTurnOrder() {
+
+    public ArrayList<Player> getTurnOrder() {
+
         return turnOrder;
     }
 
-    public void setTurnOrder(Player[] turnOrder) {
+
+    public void setTurnOrder(ArrayList<Player> turnOrder) {
+
         this.turnOrder = turnOrder;
     }
 
-    public Dice[] getCurrentDices() {
-        return currentDices;
-    }
-
-    public void setcurrentDices(){
-        currentDices=getGameBoard().getDiceLane();
-    }
 
     public void setGameBoard(GameBoard gameBoard) {
-        this.gameBoard = gameBoard;
-    }
 
-    public void setCurrentDices(Dice[] currentDices) {
-        this.currentDices = currentDices;
+        this.gameBoard = gameBoard;
     }
 }

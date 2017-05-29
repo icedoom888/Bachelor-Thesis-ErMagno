@@ -23,68 +23,50 @@ public class GameSetup {
 
     private EnumMap<Era, ArrayList<ExcommunicationTile>> excommunicationTileMap;
 
-    private Player players[];
+    private ArrayList<Player> players;
 
+    // TODO: possibile refactor: rendo classe singleton e rendo init statico passandogli l'arraylist dei players
 
-    public GameSetup(int numberOfPlayers) {
+    public GameSetup(ArrayList<Player> players) {
 
         this.numberOfPlayers = numberOfPlayers;
         this.gameBoard = new GameBoard(numberOfPlayers);
         this.gameStatus = GameStatus.getInstance();
-        this.players = new Player[numberOfPlayers];
+        this.players = players;
 
         this.orderedDecks = new EnumMap<>(CardColor.class);
         this.excommunicationTileMap = new EnumMap<>(Era.class);
     }
 
 
-
+    /**
+     * from the main the init method will be called, it will setup all the gameStatus, at the end the main method
+     * will call the GameManager (manager for the setting of the currentPlayer, the management of the begin round, the end round
+     * and the end era (relationship with the church is managed there)
+     */
     public void init(){
 
-
         gameBoard = getGameBoardFromFile(numberOfPlayers);
-
-        gameStatus.setGameBoard(gameBoard);
 
         for(CardColor color : CardColor.values()){
             this.orderedDecks.put(color, getDeckFromFile(color));
         }
 
-        for(Era era : Era.values()){
-            this.excommunicationTileMap.put(era, getExcommunicationTilesFromFile(era));
-        }
+        setExcommunicationTiles();
 
-        ExcommunicationTile tilefirsEra = getRandomTile(Era.FIRST);
-        ExcommunicationTile tileSecondEra = getRandomTile(Era.SECOND);
-        ExcommunicationTile tileThirdEra = getRandomTile(Era.THIRD);
+        Collections.shuffle(players);
 
-        gameBoard.getExcommunicationLane().setExcommunicationLane(tilefirsEra, tileSecondEra, tileThirdEra);
-
-
-
+        setGameStatus();
 
     }
 
-    private ExcommunicationTile getRandomTile(Era era) {
-
-        Random randomGenerator = new Random();
-
-        int size = excommunicationTileMap.get(era).size();
-
-        int randomIndex = randomGenerator.nextInt(size);
-
-        return excommunicationTileMap.get(era).get(randomIndex);
-    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     private GameBoard getGameBoardFromFile(int numberOfPlayers) {
 
         //TODO: carica con Gson in base al numero di giocatori, abbiamo 3 file ognuno con una gameboard già pronta in base al numero di giocatori
 
-        return null;
-    }
-
-    public DevelopmentCard[] getCardsFromFile() { // TODO: implementare con Gson
         return null;
     }
 
@@ -129,5 +111,42 @@ public class GameSetup {
         return null;
 
     }
+
+    private void setExcommunicationTiles(){
+
+        for(Era era : Era.values()){
+            this.excommunicationTileMap.put(era, getExcommunicationTilesFromFile(era));
+        }
+
+        ExcommunicationTile tilefirsEra = getRandomTile(Era.FIRST);
+        ExcommunicationTile tileSecondEra = getRandomTile(Era.SECOND);
+        ExcommunicationTile tileThirdEra = getRandomTile(Era.THIRD);
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tilefirsEra, tileSecondEra, tileThirdEra);
+    }
+
+    private ExcommunicationTile getRandomTile(Era era) {
+
+        Random randomGenerator = new Random();
+
+        int size = excommunicationTileMap.get(era).size();
+
+        int randomIndex = randomGenerator.nextInt(size);
+
+        return excommunicationTileMap.get(era).get(randomIndex);
+    }
+
+    private void setGameStatus() {
+
+        gameStatus.setGameBoard(gameBoard);
+
+        gameStatus.setOrderedDecks(orderedDecks);
+
+        gameStatus.setTurnOrder(players);
+
+        gameStatus.setCurrentPlayer(players.get(0));
+
+    }
+
 
 }

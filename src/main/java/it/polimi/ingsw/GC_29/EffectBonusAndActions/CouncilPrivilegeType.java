@@ -1,8 +1,5 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import it.polimi.ingsw.GC_29.Components.Good;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 
 /**

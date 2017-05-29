@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -18,7 +18,7 @@ public class GameBoard {
     private ExcommunicationLane excommunicationLane;
     private CouncilPalaceActionSpace councilPalace;
     private Market market;
-    private Dice[] diceLane;
+    private ArrayList<Dice> diceLane;
 
     public GameBoard(int numberOfPlayers){
 
@@ -40,7 +40,10 @@ public class GameBoard {
 
         createZones(numberOfPlayers);
 
-        this.diceLane = new Dice[3];
+        this.diceLane = new ArrayList<Dice>();
+        this.diceLane.add(new Dice(FamilyPawnType.BLACK));
+        this.diceLane.add(new Dice(FamilyPawnType.WHITE));
+        this.diceLane.add(new Dice(FamilyPawnType.ORANGE));
 
     }
 
@@ -135,7 +138,7 @@ public class GameBoard {
         return market;
     }
 
-    public Dice[] getDiceLane() {
+    public ArrayList<Dice> getDiceLane() {
         return diceLane;
     }
 
@@ -185,7 +188,7 @@ public class GameBoard {
                 ", excommunicationLane=" + excommunicationLane +
                 ", councilPalace=" + councilPalace +
                 ", market=" + market +
-                ", diceLane=" + Arrays.toString(diceLane) +
+                ", diceLane=" + diceLane +
                 '}';
     }
 }

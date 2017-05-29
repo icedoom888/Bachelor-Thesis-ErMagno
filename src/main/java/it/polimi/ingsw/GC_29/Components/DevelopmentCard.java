@@ -1,8 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 
 import java.util.ArrayList;
