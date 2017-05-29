@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.Cost;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.GoodType;
+import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
@@ -41,7 +43,17 @@ public class BonusAndMalusOnCost {
         if (this.zoneType == cardZoneType) {
 
             int listLength = costs.size();
-            int cont = 0;
+
+            for (int i = 0; i < listLength ; i++) {
+                if (alternative) {
+                    Cost newCost = new Cost(costs.get(i));
+                    changeCost(newCost,secondDiscount);
+                    costs.add(newCost);
+                }
+                changeCost(costs.get(i), firstDiscount);
+            }
+
+            /*int cont = 0;
             for (Cost cost : costs) {
                 if (cont >= listLength) break;
                 if (alternative) {
@@ -51,9 +63,16 @@ public class BonusAndMalusOnCost {
                 }
                 changeCost(cost, firstDiscount);
                 cont++;
-            }
+            }*/
         }
     }
+
+    /*public void filter(PlayerStatus playerStatus, Action action){
+        if (this.zoneType==action.getZoneType()){
+            action.setWorkers(action.getWorkers()*firstDiscount.getGoodAmount(GoodType.WORKERS));
+        }
+    }
+    */
 
     public void changeCost(Cost cost, GoodSet discount) {
         cost.getCost().addGoodSet(discount);

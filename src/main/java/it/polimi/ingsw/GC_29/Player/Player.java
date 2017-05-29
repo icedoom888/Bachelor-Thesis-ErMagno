@@ -12,7 +12,7 @@ public class Player {
     private PersonalBoard personalBoard;
     private PlayerStatus status;
     private LeaderCard[] leaderCards;
-    private FamilyPawn[] familyPawns;
+    private FamilyPawn[] familyPawns; // TODO: sbagliato, deve essere una hashmap
     private Pawn[] excommunicationPawns;
     private Pawn[] markerDiscs;
 
