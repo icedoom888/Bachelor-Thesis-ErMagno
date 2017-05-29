@@ -89,7 +89,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
             multiplier = status.getNumberOfCardsOwned(CardColor.GREEN);
         }
         for(GoodType type : GoodType.values()) {
-            goodsObtained.getHashMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
+            goodsObtained.getEnumMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
         }
     }
 
@@ -119,7 +119,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
         }
         for(GoodType type : GoodType.values()) {
 
-            goodsObtained.getHashMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
+            goodsObtained.getEnumMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
         }
     }
 

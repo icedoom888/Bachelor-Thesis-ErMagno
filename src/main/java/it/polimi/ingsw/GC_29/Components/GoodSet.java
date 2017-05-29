@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 
 import static java.lang.Math.max;
 
@@ -9,10 +9,11 @@ import static java.lang.Math.max;
  */
 public class GoodSet {
 
-    private HashMap<GoodType,Integer> goodSet;
+    private EnumMap<GoodType,Integer> goodSet;
 
     public GoodSet(int wood, int stone, int coins, int workers, int victoryPoints, int militaryPoints, int faithPoints) {
-        this.goodSet = new HashMap<GoodType,Integer>();
+
+        this.goodSet = new EnumMap<>(GoodType.class);
         this.goodSet.put(GoodType.WOOD, wood);
         this.goodSet.put(GoodType.STONE, stone);
         this.goodSet.put(GoodType.COINS, coins);
@@ -22,7 +23,7 @@ public class GoodSet {
         this.goodSet.put(GoodType.FAITHPOINTS, faithPoints);
     }
 
-    public GoodSet(HashMap<GoodType,Integer> goodSet){
+    public GoodSet(EnumMap<GoodType,Integer> goodSet){
         this.goodSet=goodSet;
     }
 
@@ -31,10 +32,10 @@ public class GoodSet {
     }
 
     public GoodSet(GoodSet oldset){
-        this.goodSet = new HashMap<GoodType, Integer>(oldset.goodSet);
+        this.goodSet = new EnumMap<>(oldset.goodSet);
     }
 
-    public HashMap<GoodType, Integer> getHashMapGoodSet() {
+    public EnumMap<GoodType, Integer> getEnumMapGoodSet() {
         return goodSet;
     }
 
@@ -44,7 +45,7 @@ public class GoodSet {
         return newGood;
     }
 
-    public void setGoodSet(HashMap<GoodType, Integer> goodSet) {
+    public void setGoodSet(EnumMap<GoodType, Integer> goodSet) {
         this.goodSet = goodSet;
     }
 
@@ -59,13 +60,13 @@ public class GoodSet {
 
     public void addGoodSet(GoodSet goodSetToAdd){
         for (GoodType type: GoodType.values()){
-            this.goodSet.put(type, this.goodSet.get(type)+ goodSetToAdd.getHashMapGoodSet().get(type));
+            this.goodSet.put(type, this.goodSet.get(type)+ goodSetToAdd.getEnumMapGoodSet().get(type));
         }
     }
 
     public void subGoodSet(GoodSet goodSetToSub){
         for (GoodType type: GoodType.values()) {
-            this.goodSet.put(type, this.goodSet.get(type) - goodSetToSub.getHashMapGoodSet().get(type));
+            this.goodSet.put(type, this.goodSet.get(type) - goodSetToSub.getEnumMapGoodSet().get(type));
         }
     }
 
@@ -78,7 +79,7 @@ public class GoodSet {
     public boolean enoughResources (GoodSet compareSet) {
         boolean enough = true;
         for (GoodType type : GoodType.values()) {
-            enough = enough && this.goodSet.get(type) >= compareSet.getHashMapGoodSet().get(type);
+            enough = enough && this.goodSet.get(type) >= compareSet.getEnumMapGoodSet().get(type);
         }
         return enough;
     }

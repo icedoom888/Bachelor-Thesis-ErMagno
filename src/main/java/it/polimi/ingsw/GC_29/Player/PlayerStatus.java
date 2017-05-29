@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_29.Components.PersonalBoard;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.LinkedList;
 
 /**
@@ -18,13 +18,13 @@ public class PlayerStatus {
     //TODO: tra player e player status ci sono due ripetizioni: la personalBoard e il playerColor. Bisogna pensare se passare direttamente il player, dal momento che le azioni accedono al suo colore
 
     private PlayerColor playerColor;
-    private HashMap<FamilyPawnType, Boolean> familyPawnAvailability;
+    private EnumMap<FamilyPawnType, Boolean> familyPawnAvailability;
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction;
     private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
     private ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCost;
     private PersonalBoard personalBoard;
     private GoodSet actualGoodSet;
-    private HashMap<CardColor, Integer> cardsOwned;
+    private EnumMap<CardColor, Integer> cardsOwned;
     private Action currentAction;
     private LinkedList<ActionEffect> currentBonusActionList;
     private LinkedList<BonusAndMalusOnCost>currentBonusActionBonusMalusOnCostList;
@@ -33,19 +33,19 @@ public class PlayerStatus {
     public PlayerStatus(PlayerColor playerColor, PersonalBoard personalBoard) {
         this.playerColor = playerColor;
         this.personalBoard = personalBoard;
-        bonusAndMalusOnAction = new ArrayList<BonusAndMalusOnAction>();
-        bonusAndMalusOnGoods = new ArrayList<BonusAndMalusOnGoods>();
-        bonusAndMalusOnCost = new ArrayList<BonusAndMalusOnCost>();
+        bonusAndMalusOnAction = new ArrayList<>();
+        bonusAndMalusOnGoods = new ArrayList<>();
+        bonusAndMalusOnCost = new ArrayList<>();
         actualGoodSet = new GoodSet();
-        cardsOwned = new HashMap<CardColor, Integer>();
+        cardsOwned = new EnumMap<>(CardColor.class);
 
         for(CardColor color : CardColor.values()){
             cardsOwned.put(color,0);
         }
 
-        currentBonusActionList = new LinkedList<ActionEffect>();
-        currentBonusActionBonusMalusOnCostList = new LinkedList<BonusAndMalusOnCost>();
-        this.familyPawnAvailability = new HashMap<FamilyPawnType, Boolean>();
+        currentBonusActionList = new LinkedList<>();
+        currentBonusActionBonusMalusOnCostList = new LinkedList<>();
+        this.familyPawnAvailability = new EnumMap<FamilyPawnType, Boolean>(FamilyPawnType.class);
         familyPawnAvailability.put(FamilyPawnType.BLACK, true);
         familyPawnAvailability.put(FamilyPawnType.ORANGE, true);
         familyPawnAvailability.put(FamilyPawnType.WHITE, true);
@@ -56,11 +56,9 @@ public class PlayerStatus {
                         ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction,
                         ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods,
                         ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCost,
-                        GoodSet actualGoodSet, HashMap<CardColor, Integer> cardsOwned,
-                        boolean blackPawnAvailability,
-                        boolean whitePawnAvailability,
-                        boolean orangePawnAvailability,
-                        boolean neutralPawnAvailability) {
+                        GoodSet actualGoodSet,
+                        EnumMap<CardColor, Integer> cardsOwned
+                        ) {
 
         this.playerColor = playerColor;
         this.bonusAndMalusOnAction = bonusAndMalusOnAction;
@@ -68,7 +66,7 @@ public class PlayerStatus {
         this.bonusAndMalusOnCost = bonusAndMalusOnCost;
         this.actualGoodSet = actualGoodSet;
         this.cardsOwned = cardsOwned;
-        this.familyPawnAvailability = new HashMap<FamilyPawnType, Boolean>();
+        this.familyPawnAvailability = new EnumMap<FamilyPawnType, Boolean>(FamilyPawnType.class);
         familyPawnAvailability.put(FamilyPawnType.BLACK, true);
         familyPawnAvailability.put(FamilyPawnType.ORANGE, true);
         familyPawnAvailability.put(FamilyPawnType.WHITE, true);
@@ -99,7 +97,7 @@ public class PlayerStatus {
         return actualGoodSet;
     }
 
-    public HashMap<CardColor, Integer> getCardsOwned() {
+    public EnumMap<CardColor, Integer> getCardsOwned() {
         return cardsOwned;
     }
 
@@ -142,7 +140,7 @@ public class PlayerStatus {
         this.actualGoodSet.addGoodSet(newGoodSet);
     }
 
-    public HashMap<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
+    public EnumMap<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
         return familyPawnAvailability;
     }
 

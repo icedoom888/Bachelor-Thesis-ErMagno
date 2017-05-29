@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Components;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 
 /**
@@ -13,8 +14,8 @@ public class GameBoard {
     private Track venturesPointsTrack;
     private Track turnOrderTrack;
     private FaithPointsTrack faithPointsTrack;
-    private HashMap<ZoneType,Tower> towerMap;
-    private HashMap<ZoneType, Workspace> workAreaMap;
+    private EnumMap<ZoneType,Tower> towerMap;
+    private EnumMap<ZoneType, Workspace> workAreaMap;
     private ExcommunicationLane excommunicationLane;
     private CouncilPalaceActionSpace councilPalace;
     private Market market;
@@ -34,13 +35,13 @@ public class GameBoard {
 
         this.excommunicationLane = new ExcommunicationLane(numberOfPlayers);
 
-        this.towerMap = new HashMap<ZoneType,Tower>();
+        this.towerMap = new EnumMap<>(ZoneType.class);
 
-        this.workAreaMap = new HashMap<ZoneType, Workspace>();
+        this.workAreaMap = new EnumMap<>(ZoneType.class);
 
         createZones(numberOfPlayers);
 
-        this.diceLane = new ArrayList<Dice>();
+        this.diceLane = new ArrayList<>();
         this.diceLane.add(new Dice(FamilyPawnType.BLACK));
         this.diceLane.add(new Dice(FamilyPawnType.WHITE));
         this.diceLane.add(new Dice(FamilyPawnType.ORANGE));
@@ -90,8 +91,12 @@ public class GameBoard {
         return faithPointsTrack;
     }
 
-    public HashMap<ZoneType,Tower> getTowerMap() {
+    public EnumMap<ZoneType,Tower> getTowerMap() {
         return towerMap;
+    }
+
+    public EnumMap<ZoneType, Workspace> getWorkAreaMap() {
+        return workAreaMap;
     }
 
     public ExcommunicationLane getExcommunicationLane() {
