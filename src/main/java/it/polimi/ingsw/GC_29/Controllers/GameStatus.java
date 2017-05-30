@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.util.ArrayDeque;
@@ -21,6 +22,7 @@ public class  GameStatus {
     private Player currentPlayer;
     private Era currentEra;
     private int currentTurn;
+    private Action currentAction;
     //private final int numberOfPlayers = COSTANTEDAFILE; TODO: bisogna creare delle costanti da file da usare, come in questo caso
     private ArrayList<Player> turnOrder;
     private HashMap<FamilyPawn, ActionSpace> pawnsOnActionSpace;
@@ -28,6 +30,7 @@ public class  GameStatus {
     private GameStatus() {
 
     }
+
 
     public static GameStatus getInstance(){
         if(instance == null){
@@ -111,5 +114,9 @@ public class  GameStatus {
     public void setGameBoard(GameBoard gameBoard) {
 
         this.gameBoard = gameBoard;
+    }
+
+    public Action getCurrentAction() {
+        return currentAction;
     }
 }

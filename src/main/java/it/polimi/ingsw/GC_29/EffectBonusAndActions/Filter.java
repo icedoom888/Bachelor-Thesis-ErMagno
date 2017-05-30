@@ -97,6 +97,10 @@ public final class Filter {
             currentPlayerBonusAndMalusOnCostTemporary.removeFirst();
         }
 
+        for (Cost cost : costs) {
+            cost.getCost().setNonNegative();
+        }
+
     }
 
 

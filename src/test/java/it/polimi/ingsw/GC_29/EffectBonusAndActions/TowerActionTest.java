@@ -1,10 +1,14 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -27,20 +31,26 @@ public class TowerActionTest {
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,"cosa");
         GameBoard gameBoard = new GameBoard(numberOfPlayers1);
 
-        gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
 
-        // Creation of personalBoard1
+        // Creation of personalBoards
 
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
         PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
+        PersonalBoard personalBoard2 = new PersonalBoard(bonusTile, 6);
 
-        // Creation of playerStatus1
+
+
+        // Creation of playerStatuses
 
         PlayerStatus playerStatus1 = new PlayerStatus(PlayerColor.BLUE, personalBoard1);
         Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
-        playerStatus1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
 
-        // Creation of the TowerAction
+        PlayerStatus playerStatus2 = new PlayerStatus(PlayerColor.GREEN, personalBoard2);
+        Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
+
+
+
+        // Creation of the components
 
         FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 3);
 
@@ -48,16 +58,19 @@ public class TowerActionTest {
         ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
         CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
 
-        immediateEffectsBlueCard.add(purpleSix);
-        immediateEffectsBlueCard.add(councilPrivilegeEffect);
+        BonusAndMalusOnAction bonusAndMalusOnAction1 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
+        BonusAndMalusOnCost bonusAndMalusOnCost1 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,1,1,1,1,1,1), new GoodSet(), false);
+        BonusAndMalusOnGoods bonusAndMalusOnGoods1 = new BonusAndMalusOnGoods(new GoodSet(1,2,3,4,5,6,7));
+
+        BonusEffect bonusEffect1 = new BonusEffect(bonusAndMalusOnAction1, bonusAndMalusOnGoods1, bonusAndMalusOnCost1);
+
+
 
         ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
-        BonusAndMalusOnAction bonusAndMalusOnAction = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
-        BonusAndMalusOnCost bonusAndMalusOnCost = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
-        BonusEffect bonusEffect = new BonusEffect(bonusAndMalusOnAction, null, bonusAndMalusOnCost);
-        permanentEffectsBlueCard.add(bonusEffect);
+        BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
+        BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
+        BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);
 
-        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost);
 
         DevelopmentCard blueCard = new DevelopmentCard("Costruttore Fake",
                 Era.FIRST,
@@ -69,6 +82,223 @@ public class TowerActionTest {
                 permanentEffectsBlueCard,
                 false,
                 0);
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
+        playerStatus1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
+
+        immediateEffectsBlueCard.add(purpleSix);
+        immediateEffectsBlueCard.add(councilPrivilegeEffect);
+        immediateEffectsBlueCard.add(bonusEffect1);
+        permanentEffectsBlueCard.add(bonusEffect2);
+
+        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
+        //gameBoard.getTower(ZoneType.BLUETOWER)
+
+        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, playerStatus1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+
+        System.out.println("The player has to pay: \n" +
+                "cost of the tower: " + towerAction.getTowerCost() + "\n" +
+                "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
+                "The player has in his actual goodset: " + towerAction.getPlayerStatus().getActualGoodSet().toString() +"\n" +
+                "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
+                "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
+                "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
+
+        System.out.println(towerAction.isPossible());
+        System.out.println("Workers to pay: " + towerAction.getWorkers());
+        System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
+        System.out.println(towerAction.getPossibleCardCosts());
+
+        return;
+    }
+
+    @Test
+    public void testIsPossible2() throws Exception {
+
+        // Creation of the gameboard
+
+        int numberOfPlayers1 = 4;
+        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null,"777");
+        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,"su ogni");
+        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,"cosa");
+        GameBoard gameBoard = new GameBoard(numberOfPlayers1);
+
+
+        // Creation of personalBoards
+
+        BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
+        PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
+        PersonalBoard personalBoard2 = new PersonalBoard(bonusTile, 6);
+
+
+
+        // Creation of playerStatuses
+
+        PlayerStatus playerStatus1 = new PlayerStatus(PlayerColor.BLUE, personalBoard1);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
+
+        PlayerStatus playerStatus2 = new PlayerStatus(PlayerColor.GREEN, personalBoard2);
+        Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
+
+
+
+        // Creation of the components
+
+        FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 0);
+
+        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<Effect>();
+        ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
+        CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
+
+        BonusAndMalusOnAction bonusAndMalusOnAction1 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
+        BonusAndMalusOnCost bonusAndMalusOnCost1 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,1,1,1,1,1,1), new GoodSet(), false);
+        BonusAndMalusOnGoods bonusAndMalusOnGoods1 = new BonusAndMalusOnGoods(new GoodSet(1,2,3,4,5,6,7));
+
+        BonusEffect bonusEffect1 = new BonusEffect(bonusAndMalusOnAction1, bonusAndMalusOnGoods1, bonusAndMalusOnCost1);
+
+
+
+        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
+        BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
+        BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
+        BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);
+
+
+        DevelopmentCard blueCard = new DevelopmentCard("Costruttore Fake",
+                Era.FIRST,
+                new CardCost(true, true,
+                        new Cost(new GoodSet(4,0,0,0,0,0,0), new GoodSet(1,1,1,1,1,1,1)),
+                        new Cost(new GoodSet(0,0,4,0,0,0,0), new GoodSet(1,1,1,1,1,1,1))),
+                CardColor.BLUE,
+                immediateEffectsBlueCard,
+                permanentEffectsBlueCard,
+                false,
+                0);
+
+        immediateEffectsBlueCard.add(purpleSix);
+        immediateEffectsBlueCard.add(councilPrivilegeEffect);
+        immediateEffectsBlueCard.add(bonusEffect1);
+        permanentEffectsBlueCard.add(bonusEffect2);
+
+        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+        playerStatus1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
+
+
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
+
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(1).getActionSpace().addPawn(new FamilyPawn(PlayerColor.GREEN, FamilyPawnType.BLACK, 6));
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(2).getActionSpace().addPawn(new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 6));
+
+
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
+        //gameBoard.getTower(ZoneType.BLUETOWER)
+
+        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, playerStatus1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+
+        System.out.println("The player has to pay: \n" +
+                "cost of the tower: " + towerAction.getTowerCost() + "\n" +
+                "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
+                "The player has in his actual goodset: " + towerAction.getPlayerStatus().getActualGoodSet().toString() +"\n" +
+                "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
+                "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
+                "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
+
+        System.out.println(towerAction.isPossible());
+        System.out.println("Workers to pay: " + towerAction.getWorkers());
+        System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
+        System.out.println(towerAction.getPossibleCardCosts());
+
+        return;
+    }
+
+    @Test
+    public void testIsPossible3() {
+        // Creation of the gameboard
+
+        int numberOfPlayers1 = 4;
+        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null,"777");
+        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,"su ogni");
+        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,"cosa");
+        GameBoard gameBoard = new GameBoard(numberOfPlayers1);
+
+
+        // Creation of personalBoards
+
+        BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
+        PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
+        PersonalBoard personalBoard2 = new PersonalBoard(bonusTile, 6);
+
+
+
+        // Creation of playerStatuses
+
+        PlayerStatus playerStatus1 = new PlayerStatus(PlayerColor.BLUE, personalBoard1);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
+
+        PlayerStatus playerStatus2 = new PlayerStatus(PlayerColor.GREEN, personalBoard2);
+        Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
+
+
+
+        // Creation of the components
+
+        FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 3);
+
+        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<Effect>();
+        ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
+        CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
+
+        BonusAndMalusOnAction bonusAndMalusOnAction1 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
+        BonusAndMalusOnCost bonusAndMalusOnCost1 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,1,1,1,1,1,1), new GoodSet(), false);
+        BonusAndMalusOnGoods bonusAndMalusOnGoods1 = new BonusAndMalusOnGoods(new GoodSet(1,2,3,4,5,6,7));
+
+        BonusEffect bonusEffect1 = new BonusEffect(bonusAndMalusOnAction1, bonusAndMalusOnGoods1, bonusAndMalusOnCost1);
+
+
+
+        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
+        BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
+        BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
+        BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);
+
+
+        DevelopmentCard blueCard = new DevelopmentCard("Costruttore Fake",
+                Era.FIRST,
+                new CardCost(true, true,
+                        new Cost(new GoodSet(4,0,0,0,0,0,0), new GoodSet(1,1,1,1,1,1,1)),
+                        new Cost(new GoodSet(0,0,4,0,0,0,0), new GoodSet(1,1,1,1,1,1,1))),
+                CardColor.BLUE,
+                immediateEffectsBlueCard,
+                permanentEffectsBlueCard,
+                false,
+                0);
+
+        immediateEffectsBlueCard.add(purpleSix);
+        immediateEffectsBlueCard.add(councilPrivilegeEffect);
+        immediateEffectsBlueCard.add(bonusEffect1);
+        permanentEffectsBlueCard.add(bonusEffect2);
+
+        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+        playerStatus1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,0,10,10,10));
+
+
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
+
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(1).getActionSpace().addPawn(new FamilyPawn(PlayerColor.GREEN, FamilyPawnType.BLACK, 6));
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(2).getActionSpace().addPawn(new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 6));
+
+        immediateEffectsBlueCard.add(purpleSix);
+        immediateEffectsBlueCard.add(councilPrivilegeEffect);
+        immediateEffectsBlueCard.add(bonusEffect1);
+        permanentEffectsBlueCard.add(bonusEffect2);
+
+        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
 
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
         //gameBoard.getTower(ZoneType.BLUETOWER)
@@ -93,28 +323,105 @@ public class TowerActionTest {
 
     @Test
     public void testUpdate() throws Exception {
+
     }
 
     @Test
     public void testExecute() throws Exception {
 
-    }
+        // Creation of the gameboard
 
-    @Test
-    public void testIsPossible() throws Exception {
-        FamilyPawn familyPawnBlueOrange = new FamilyPawn(BLUE, FamilyPawnType.ORANGE, 3);
-        FamilyPawn familyPawnRedBlack = new FamilyPawn(GREEN, FamilyPawnType.BLACK, 3);
-        ZoneType zoneType = ZoneType.BLUETOWER;
-        boolean realAction = true;
-        PlayerStatus playerStatus = new PlayerStatus(PlayerColor.BLUE, new ArrayList<BonusAndMalusOnAction>(), new ArrayList<BonusAndMalusOnGoods>(), null, new GoodSet(1,2,3,4,5,6,7), new EnumMap<CardColor, Integer>(CardColor.class));
-        Tower tower = new Tower(ZoneType.BLUETOWER);
-        int floorIndex = 2;
-        tower.getFloors()[floorIndex].setDevelopmentCard(new DevelopmentCard("a", Era.FIRST, new CardCost(false, true, new Cost(new GoodSet(4,0,0,0,0,0,0), new GoodSet()), new Cost(new GoodSet(), new GoodSet())), CardColor.BLUE, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0));
-        TowerAction towerAction = new TowerAction(familyPawnBlueOrange, zoneType, playerStatus, floorIndex);
+        int numberOfPlayers1 = 4;
+        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null,"777");
+        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,"su ogni");
+        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,"cosa");
+        GameBoard gameBoard = new GameBoard(numberOfPlayers1);
 
-        tower.getFloor(floorIndex-1).getActionSpace().addPawn(familyPawnRedBlack);
+
+        // Creation of personalBoards
+
+        BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
+        PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
+        PersonalBoard personalBoard2 = new PersonalBoard(bonusTile, 6);
+
+
+
+        // Creation of playerStatuses
+
+        PlayerStatus playerStatus1 = new PlayerStatus(PlayerColor.BLUE, personalBoard1);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
+
+        PlayerStatus playerStatus2 = new PlayerStatus(PlayerColor.GREEN, personalBoard2);
+        Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
+
+
+
+        // Creation of the components
+
+        FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 3);
+
+        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<Effect>();
+        ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
+        CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
+
+        BonusAndMalusOnAction bonusAndMalusOnAction1 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
+        BonusAndMalusOnCost bonusAndMalusOnCost1 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,1,1,1,1,1,1), new GoodSet(), false);
+        BonusAndMalusOnGoods bonusAndMalusOnGoods1 = new BonusAndMalusOnGoods(new GoodSet(1,2,3,4,5,6,7));
+
+        BonusEffect bonusEffect1 = new BonusEffect(bonusAndMalusOnAction1, bonusAndMalusOnGoods1, bonusAndMalusOnCost1);
+
+
+
+        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
+        BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
+        BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
+        BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);
+
+
+        DevelopmentCard blueCard = new DevelopmentCard("Costruttore Fake",
+                Era.FIRST,
+                new CardCost(true, true,
+                        new Cost(new GoodSet(4,0,0,0,0,0,0), new GoodSet(1,1,1,1,1,1,1)),
+                        new Cost(new GoodSet(0,0,4,0,0,0,0), new GoodSet(1,1,1,1,1,1,1))),
+                CardColor.BLUE,
+                immediateEffectsBlueCard,
+                permanentEffectsBlueCard,
+                false,
+                0);
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
+        playerStatus1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
+
+        immediateEffectsBlueCard.add(purpleSix);
+        immediateEffectsBlueCard.add(councilPrivilegeEffect);
+        immediateEffectsBlueCard.add(bonusEffect1);
+        permanentEffectsBlueCard.add(bonusEffect2);
+
+        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
+        //gameBoard.getTower(ZoneType.BLUETOWER)
+
+        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, playerStatus1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+
+        System.out.println("The player has to pay: \n" +
+                "cost of the tower: " + towerAction.getTowerCost() + "\n" +
+                "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
+                "The player has in his actual goodset: " + towerAction.getPlayerStatus().getActualGoodSet().toString() +"\n" +
+                "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
+                "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
+                "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
 
         System.out.println(towerAction.isPossible());
+        System.out.println("Workers to pay: " + towerAction.getWorkers());
+        System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
+        System.out.println(towerAction.getPossibleCardCosts());
+
+        towerAction.execute();
+        towerAction.update();
+
+
     }
 
 }

@@ -56,9 +56,7 @@ public class PawnSlot{
     protected Pawn findPawn(Pawn pawn) {
 
         if (playerPawns.contains(pawn)) {
-
             int index = playerPawns.indexOf(pawn);
-
             return playerPawns.get(index);
         }
 
@@ -84,7 +82,10 @@ public class PawnSlot{
 
         boolean familiarPresent = false;
         for (Pawn playerPawn : playerPawns) {
-            if (playerPawn.getPlayerColor() == familyPawn.getPlayerColor()) familiarPresent = true;
+            if (playerPawn.getPlayerColor() == familyPawn.getPlayerColor()
+                    && familyPawn.getType() != FamilyPawnType.NEUTRAL
+                    && familyPawn.getType() != FamilyPawnType.BONUS)
+                familiarPresent = true;
         }
         return familiarPresent;
     }

@@ -65,6 +65,7 @@ public class ActionSpace implements Cleanable {
 
     public void addPawn(FamilyPawn pawnPlaced) {
         this.pawnPlaced.addPawn(pawnPlaced);
+        occupied = true;
     }
 
     public void removePawn(FamilyPawn familyPawn){

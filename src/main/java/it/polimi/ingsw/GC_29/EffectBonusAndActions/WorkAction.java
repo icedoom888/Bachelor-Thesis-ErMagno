@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static java.lang.Math.max;
+
 /**
  * Created by AlbertoPennino on 22/05/2017.
  */
 
 public class WorkAction extends Action {
 
+    //TODO: modellare la reduction come bonusEffect interno al secondo actionspace
     private Workspace workspaceSelected;
     private int fieldSelected; // quando costruito sarà posto a 0 per il primo field e 1 per il secondo
     private int reductionOnSecondField; // -3 sull'action value
@@ -66,7 +69,7 @@ public class WorkAction extends Action {
      * This methods checks if there is already a pawn of the same Player in the selected ActionSpace, even if the actionSpace is multiple
      * @return true if there aren't any player's pawns into the actionSpace, false otherwise
      */
-    private boolean checkFamilyPresenceInField() {
+    private boolean checkFamilyPresenceInField() { //TODO: bonus pawn
         for(Pawn pawnPresent : workspaceSelected.getFields().get(fieldSelected).getPawnPlaced().getPlayerPawns()){
             if(!(temporaryPawn.getPlayerColor() == pawnPresent.getPlayerColor())){
                 return false;
@@ -82,10 +85,10 @@ public class WorkAction extends Action {
      * @return true if the neutral rule is respected, false otherwise
      */
     private boolean checkNeutralRule() {
-        if(temporaryPawn.getType()==FamilyPawnType.NEUTRAL){
+        if(temporaryPawn.getType()==FamilyPawnType.NEUTRAL){ //TODO: bonus pawn
             return true;
         }
-        if(fieldSelected==1){
+        if(fieldSelected==1){ //TODO unisci i due for
             for (Pawn pawnPresent : workspaceSelected.getFields().get(2).getPawnPlaced().getPlayerPawns()){
                 if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && pawnPresent.getType()!=FamilyPawnType.NEUTRAL){
                     return false;
@@ -139,7 +142,7 @@ public class WorkAction extends Action {
 
         for(DevelopmentCard card : lane.getCards()){
 
-            if(fieldSelected==2){
+            if(fieldSelected==2){ //TODO metti insieme if e else
                 workersNeeded = card.getActionValue() + reductionOnSecondField - temporaryPawn.getActualValue();
             }
             else{
@@ -153,15 +156,12 @@ public class WorkAction extends Action {
         }
         workersNeeded = 0;
         while(workersNeeded<=maxWorkersNeeded){
-            if (workersNeeded==0) {
-                finalHash.put(workersNeeded, temporaryHash.get(workersNeeded));
+
+            finalHash.put(workersNeeded,finalHash.get(max(workersNeeded-1,0)));
+            for (DevelopmentCard cardPresent : temporaryHash.get(workersNeeded)){
+                finalHash.get(workersNeeded).add(cardPresent);
             }
-            else{
-                finalHash.put(workersNeeded,finalHash.get(workersNeeded-1));
-                for (DevelopmentCard cardPresent : temporaryHash.get(workersNeeded)){
-                    finalHash.get(workersNeeded).add(cardPresent);
-                }
-            }
+
             workersNeeded=workersNeeded+1;
         }
         cardsForWorkers = finalHash;
@@ -181,48 +181,56 @@ public class WorkAction extends Action {
 
         Effect effectChosen;
         for (DevelopmentCard card : cardsChosen){
-            if (askForCardActivation(card)){
-                if(card.getPermanentEffect().size()>1) {
-                    effectChosen = askForEffect(card);
+
+            if (!card.getPermanentEffect().isEmpty()) {
+                if (askForCardActivation(card)){ //TODO: solo se hai payToObtain
+                    if(card.getPermanentEffect().size()>1) {
+                        effectChosen = askForEffect(card);
+                    }
+                    else{
+                        effectChosen = card.getPermanentEffect().get(0);
+                    }
+                    effectsToActivate.add(effectChosen);
                 }
-                else{
-                    effectChosen = card.getPermanentEffect().get(0);
-                }
-                effectsToActivate.add(effectChosen);
             }
         }
     }
 
 
+
     //Solo per testing, sarà poi nello speaker
     private boolean askForCardActivation(DevelopmentCard card) {
-        Scanner in = new Scanner(System.in);
+        /*Scanner in = new Scanner(System.in);
         System.out.println("Vuoi attivare questa carta: "+ card +"\n?");
         System.out.println("Digita y o n!");
         String answer = in.nextLine();
         if ("y".equals(answer)){
             return true;
-        }
+        }*/
         return false;
     }
 
+
     //Solo per testing, sarà poi nello speaker
     private Effect askForEffect(DevelopmentCard card) {
-        Scanner in = new Scanner(System.in);
+       /* Scanner in = new Scanner(System.in);
         System.out.println("La carta offre diverse possibilità: "+ card.getPermanentEffect());
         System.out.println("Digita il numero dell'effetto desiderato!");
         int answer = (in.nextInt())-1;
-        return card.getPermanentEffect().get(answer);
+        return card.getPermanentEffect().get(answer);*/
+        return card.getPermanentEffect().get(3);
+
     }
 
     //Solo per testing, sarà poi nello speaker
     private int askForWorkers() {
-        Scanner in = new Scanner(System.in);
+        /*Scanner in = new Scanner(System.in);
         System.out.println("A seconda del numero di workers che aggiungerai alla tua azione" +
                 "\n" + "ti sarà possibile attivare diversi effetti: \n" + cardsForWorkers);
         System.out.println("Digita il numero di workers che vuoi aggiungere!");
         int answer = (in.nextInt());
-        return answer;
+        return answer;*/
+        return 0;
     }
 
 

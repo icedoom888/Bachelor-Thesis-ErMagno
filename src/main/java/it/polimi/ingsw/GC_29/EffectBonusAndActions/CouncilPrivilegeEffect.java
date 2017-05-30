@@ -80,9 +80,12 @@ public class CouncilPrivilegeEffect implements Effect {
 
             }
 
-            Scanner scanner = new Scanner(System.in);
+            // Scanner scanner = new Scanner(System.in);
 
-            String answer = scanner.nextLine();
+            // String answer = scanner.nextLine();
+
+            int answer1 = i+1;
+            String answer = Integer.toString(answer1);
 
             switch (answer) {
 
