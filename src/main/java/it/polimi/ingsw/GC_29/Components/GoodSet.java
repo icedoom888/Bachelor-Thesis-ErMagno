@@ -101,4 +101,27 @@ public class GoodSet {
        }
        return result;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GoodSet goodSet1 = (GoodSet) o;
+
+        for(GoodType goodType : GoodType.values()){
+
+            if(goodSet.get(goodType) != goodSet1.getGoodAmount(goodType)){
+
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return goodSet.hashCode();
+    }
 }

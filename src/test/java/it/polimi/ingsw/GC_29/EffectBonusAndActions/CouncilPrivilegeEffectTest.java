@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 
 /**

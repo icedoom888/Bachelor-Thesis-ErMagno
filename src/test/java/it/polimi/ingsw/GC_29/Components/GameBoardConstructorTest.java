@@ -1,11 +1,12 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 /**
  * Created by AlbertoPennino on 21/05/2017.
  */
 public class GameBoardConstructorTest {
+
     @Test
     public void testGameBoard() throws Exception{
         int numberOfPlayers_1 = 4;

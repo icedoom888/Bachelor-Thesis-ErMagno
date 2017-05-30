@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 /**
  * Created by AlbertoPennino on 20/05/2017.

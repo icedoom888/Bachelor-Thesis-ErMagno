@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Created by Lorenzotara on 20/05/17.
  */
 public class TrackTest {
+
     @Test
     public void testMovePawn() throws Exception {
 

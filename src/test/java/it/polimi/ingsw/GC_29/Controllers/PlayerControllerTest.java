@@ -1,24 +1,23 @@
-/*package it.polimi.ingsw.GC_29.Controllers;
+package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.testng.Assert.*;
 
-*
- * Created by Christian on 28/05/2017.
-
+/**
+ * Created by Christian on 30/05/2017.
+ */
 public class PlayerControllerTest {
 
     @Test
-    public void testInit() {
-
+    public void testInit() throws Exception {
 
         PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
 
@@ -55,11 +54,12 @@ public class PlayerControllerTest {
         testController.init();
 
         FactoryAction.resetFloor();
+
     }
 
-    @Test
-    public void testInit1() {
 
+    @Test
+    public void testInit1() throws Exception {
 
         PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
 
@@ -106,10 +106,8 @@ public class PlayerControllerTest {
         FactoryAction.resetFloor();
     }
 
-
     @Test
-    public void testInit2() {
-
+    public void testInit2() throws Exception {
 
         PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
 
@@ -160,5 +158,4 @@ public class PlayerControllerTest {
         FactoryAction.resetFloor();
     }
 
-
-}*/
+}

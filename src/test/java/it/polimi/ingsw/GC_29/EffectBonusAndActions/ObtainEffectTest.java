@@ -2,7 +2,8 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 
 
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
  * Created by Christian on 20/05/2017.
  */
 public class ObtainEffectTest {
+
     @Test
     public void testExecute() throws Exception {
         GoodSet statusGoodset = new GoodSet(2,0,1,0,4,1,3);
@@ -23,11 +25,12 @@ public class ObtainEffectTest {
 
         testEffect.execute(status);
         System.out.println(status.getActualGoodSet());
-    }
 
-    @Test
-    public void testActivateBonusMalusOnGoods() throws Exception {
+        GoodSet expectedGoodset = new GoodSet(8,2,1,0,5,1,3);
 
+        boolean verify = status.getActualGoodSet().equals(expectedGoodset);
+
+        Assert.assertTrue(verify);
     }
 
 }
