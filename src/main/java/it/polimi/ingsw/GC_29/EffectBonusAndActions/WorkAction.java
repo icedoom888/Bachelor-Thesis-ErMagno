@@ -17,8 +17,7 @@ public class WorkAction extends Action {
 
     //TODO: modellare la reduction come bonusEffect interno al secondo actionspace
     private Workspace workspaceSelected;
-    private int fieldSelected; // quando costruito sarà posto a 0 per il primo field e 1 per il secondo
-    private int reductionOnSecondField; // -3 sull'action value
+    private FieldType fieldSelected;
     private HashMap<Integer,ArrayList<DevelopmentCard>> cardsForWorkers;
     private ArrayList<Effect> effectsToActivate;
 
@@ -26,14 +25,13 @@ public class WorkAction extends Action {
                       ZoneType zoneType,
                       PlayerStatus playerStatus,
                       Workspace workspaceSelected,
-                      int fieldSelected,
-                      int reductionOnSecondField){
+                      FieldType fieldSelected){
 
         super(familyPawn, zoneType, playerStatus);
 
+        this.actionSpaceSelected = workspaceSelected.getActionspace(fieldSelected);
         this.workspaceSelected = workspaceSelected;
         this.fieldSelected = fieldSelected;
-        this.reductionOnSecondField = reductionOnSecondField;
         this.cardsForWorkers = new HashMap<Integer,ArrayList<DevelopmentCard>>();
         this.effectsToActivate = new ArrayList<Effect>();
     }
@@ -58,8 +56,8 @@ public class WorkAction extends Action {
      * @return true if first field is either selected or occupied, false otherwise
      */
     private boolean isFieldAccessible() {
-        if (fieldSelected==1){return true;}
-        if(workspaceSelected.getFields().get(1).isOccupied()){
+        if (fieldSelected==FieldType.FIRST){return true;}
+        if(workspaceSelected.getActionspace(fieldSelected).isOccupied()){
             return true;
         }
         return false;
@@ -69,9 +67,12 @@ public class WorkAction extends Action {
      * This methods checks if there is already a pawn of the same Player in the selected ActionSpace, even if the actionSpace is multiple
      * @return true if there aren't any player's pawns into the actionSpace, false otherwise
      */
-    private boolean checkFamilyPresenceInField() { //TODO: bonus pawn
-        for(Pawn pawnPresent : workspaceSelected.getFields().get(fieldSelected).getPawnPlaced().getPlayerPawns()){
-            if(!(temporaryPawn.getPlayerColor() == pawnPresent.getPlayerColor())){
+    private boolean checkFamilyPresenceInField() {
+        for(Pawn pawnPresent : workspaceSelected.getActionspace(fieldSelected).getPawnPlaced().getPlayerPawns()){
+            if(pawnPresent.getType()==FamilyPawnType.BONUS){
+
+            }
+            else if(!(temporaryPawn.getPlayerColor() == pawnPresent.getPlayerColor())){
                 return false;
             }
         }
@@ -85,27 +86,23 @@ public class WorkAction extends Action {
      * @return true if the neutral rule is respected, false otherwise
      */
     private boolean checkNeutralRule() {
-        if(temporaryPawn.getType()==FamilyPawnType.NEUTRAL){ //TODO: bonus pawn
-            return true;
-        }
-        if(fieldSelected==1){ //TODO unisci i due for
-            for (Pawn pawnPresent : workspaceSelected.getFields().get(2).getPawnPlaced().getPlayerPawns()){
-                if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && pawnPresent.getType()!=FamilyPawnType.NEUTRAL){
-                    return false;
-                }
-            }
-            return true;
-        }
-        if(fieldSelected==2){
-            for (Pawn pawnPresent : workspaceSelected.getFields().get(1).getPawnPlaced().getPlayerPawns()){
-                if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && pawnPresent.getType()!=FamilyPawnType.NEUTRAL){
-                    return false;
-                }
-            }
+        if(temporaryPawn.getType()==FamilyPawnType.NEUTRAL && temporaryPawn.getType()==FamilyPawnType.BONUS){
             return true;
         }
 
-        return false;
+        FieldType otherField;
+        if(fieldSelected == FieldType.FIRST){
+            otherField = FieldType.SECOND;
+        }
+        else{
+            otherField = FieldType.FIRST;
+        }
+        for (Pawn pawnPresent : workspaceSelected.getActionspace(otherField).getPawnPlaced().getPlayerPawns()){
+            if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && pawnPresent.getType()!=FamilyPawnType.NEUTRAL){
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -140,16 +137,12 @@ public class WorkAction extends Action {
         int maxWorkersNeeded = 0;
         int workersNeeded;
 
+        actionSpaceSelected.getEffect().execute(playerStatus);
+
         for(DevelopmentCard card : lane.getCards()){
 
-            if(fieldSelected==2){ //TODO metti insieme if e else
-                workersNeeded = card.getActionValue() + reductionOnSecondField - temporaryPawn.getActualValue();
-            }
-            else{
-                workersNeeded = card.getActionValue() - temporaryPawn.getActualValue();
-            }
-
-            if (workersNeeded<=playerStatus.getActualGoodSet().getGoodAmount(GoodType.WORKERS)){
+            workersNeeded = card.getActionValue() - temporaryPawn.getActualValue();
+            if (workersNeeded<=playerStatus.getActualGoodSet().getGoodAmount(GoodType.WORKERS)-workers){
                 temporaryHash.get(workersNeeded).add(card);
                 if (workersNeeded>maxWorkersNeeded){maxWorkersNeeded = workersNeeded;}
             }
@@ -176,21 +169,29 @@ public class WorkAction extends Action {
     private void makeChoice() {
         //TODO: filtraggio sul costo in workers una volta ottenuto
         int choice = askForWorkers();
-        setWorkers(choice);
+        setWorkers(workers + choice); //TODO: rivedi controlli sulla disponibilità dei workers del player
         ArrayList<DevelopmentCard> cardsChosen = cardsForWorkers.get(choice);
 
         Effect effectChosen;
         for (DevelopmentCard card : cardsChosen){
 
             if (!card.getPermanentEffect().isEmpty()) {
-                if (askForCardActivation(card)){ //TODO: solo se hai payToObtain
-                    if(card.getPermanentEffect().size()>1) {
-                        effectChosen = askForEffect(card);
+
+                if (zoneType==ZoneType.PRODUCTION) {
+                    if (askForCardActivation(card)){
+                            if(card.getPermanentEffect().size()>1) {
+                                effectChosen = askForEffect(card);
+                            }
+                            else{
+                                effectChosen = card.getPermanentEffect().get(0);
+                            }
+                            effectsToActivate.add(effectChosen);
                     }
-                    else{
-                        effectChosen = card.getPermanentEffect().get(0);
+                }
+                else{
+                    for(Effect effect : card.getPermanentEffect()){
+                        effectsToActivate.add(effect);
                     }
-                    effectsToActivate.add(effectChosen);
                 }
             }
         }
@@ -238,12 +239,15 @@ public class WorkAction extends Action {
      * This method activates all the effects selected by the player
      */
     private void activateEffects() {
+
+        GoodSet goodSet= null;
         if (zoneType==ZoneType.HARVEST) {
             playerStatus.getPersonalBoard().getBonusTile().getHarvestEffect().execute(playerStatus);
         }
         if (zoneType==ZoneType.PRODUCTION) {
             playerStatus.getPersonalBoard().getBonusTile().getProductionEffect().execute(playerStatus);
         }
+
         for(Effect effect : effectsToActivate){
             effect.execute(playerStatus);
         }

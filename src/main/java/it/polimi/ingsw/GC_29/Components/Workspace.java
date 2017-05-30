@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 
 /**
@@ -10,7 +11,7 @@ import java.util.HashMap;
 
 //TODO: rivedere costruttore fatto per togliere errori a caso
 public class Workspace implements Cleanable {
-    private HashMap<Integer,ActionSpace> fields;
+    private EnumMap<FieldType,ActionSpace> fields;
     private ZoneType type;
 
     public Workspace (ZoneType type,int numberOfPlayers) {
@@ -20,13 +21,13 @@ public class Workspace implements Cleanable {
         }
 
         this.type = type;
-        this.fields = new HashMap<Integer,ActionSpace>(2);
-        fields.put(1,new ActionSpace(null,1, new PawnSlot(1,true),true,false));
+        this.fields = new EnumMap<FieldType, ActionSpace>(FieldType.class);
+        fields.put(FieldType.FIRST,new ActionSpace(null,1, new PawnSlot(1,true),true,false));
         if(numberOfPlayers>=3) {
-            fields.put(2,new ActionSpace(null,1, new PawnSlot(numberOfPlayers,true),false,false));
+            fields.put(FieldType.SECOND,new ActionSpace(null,1, new PawnSlot(numberOfPlayers,true),false,false));
         }
         else{
-            fields.put(2,null);
+            fields.put(FieldType.SECOND,null);
         }
     }
 
@@ -35,12 +36,17 @@ public class Workspace implements Cleanable {
 
     }
 
-    public HashMap<Integer, ActionSpace> getFields() {
+    public EnumMap<FieldType, ActionSpace> getFields() {
         return fields;
     }
 
     public ZoneType getType() {
         return type;
+    }
+
+    public ActionSpace getActionspace(FieldType fieldType){
+        fields.get(fieldType);
+        return null;
     }
 
     @Override
