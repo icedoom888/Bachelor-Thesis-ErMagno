@@ -95,7 +95,7 @@ public class GoodSet {
 
     @Override
     public String toString() {
-        String result = new String();
+        String result = "";
         for(GoodType type : GoodType.values()){
             result = result + type + ": " + getGoodAmount(type) + " ";
        }

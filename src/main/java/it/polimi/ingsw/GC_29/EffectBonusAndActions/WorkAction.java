@@ -200,7 +200,7 @@ public class WorkAction extends Action {
         System.out.println("Vuoi attivare questa carta: "+ card +"\n?");
         System.out.println("Digita y o n!");
         String answer = in.nextLine();
-        if (answer.equals("y")){
+        if ("y".equals(answer)){
             return true;
         }
         return false;

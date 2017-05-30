@@ -4,7 +4,8 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -91,11 +92,11 @@ public class GameBoard {
         return faithPointsTrack;
     }
 
-    public EnumMap<ZoneType,Tower> getTowerMap() {
+    public Map<ZoneType,Tower> getTowerMap() {
         return towerMap;
     }
 
-    public EnumMap<ZoneType, Workspace> getWorkAreaMap() {
+    public Map<ZoneType, Workspace> getWorkAreaMap() {
         return workAreaMap;
     }
 
@@ -143,7 +144,7 @@ public class GameBoard {
         return market;
     }
 
-    public ArrayList<Dice> getDiceLane() {
+    public List<Dice> getDiceLane() {
         return diceLane;
     }
 

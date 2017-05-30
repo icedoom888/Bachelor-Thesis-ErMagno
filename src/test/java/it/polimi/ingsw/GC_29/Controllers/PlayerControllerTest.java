@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Controllers;
+/*package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
+*
  * Created by Christian on 28/05/2017.
- */
+
 public class PlayerControllerTest {
 
     @Test
@@ -161,4 +161,4 @@ public class PlayerControllerTest {
     }
 
 
-}
+}*/

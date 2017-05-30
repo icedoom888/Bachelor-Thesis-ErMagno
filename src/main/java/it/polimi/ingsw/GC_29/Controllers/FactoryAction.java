@@ -23,7 +23,7 @@ public class FactoryAction {
 
         if(zoneType == ZoneType.HARVEST || zoneType == ZoneType.PRODUCTION){
 
-            int fieldSelected = askWichField();
+            //int fieldSelected = askWichField();
 
             //return new WorkAction(familyPawn, zoneType, playerStatus, fieldSelected);
         }
