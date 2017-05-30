@@ -326,7 +326,7 @@ public class TowerActionTest {
 
     }
 
-    @Test
+    /*@Test
     public void testExecute() throws Exception {
 
         // Creation of the gameboard
@@ -422,6 +422,6 @@ public class TowerActionTest {
         towerAction.update();
 
 
-    }
+    }*/
 
 }

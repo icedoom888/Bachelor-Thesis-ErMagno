@@ -29,6 +29,8 @@ public class  GameStatus {
 
     private GameStatus() {
 
+        orderedDecks = new EnumMap<>(CardColor.class);
+        pawnsOnActionSpace = new HashMap<>();
     }
 
 
