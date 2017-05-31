@@ -34,6 +34,10 @@ public class Floor {
         return card;
     }
 
+    public void addCard(DevelopmentCard developmentCard) {
+        this.developmentCard = developmentCard;
+    }
+
     @Override
     public String toString() {
         return "Floor{" + "developmentCard=" + developmentCard + ", actionSpace=" + actionSpace + '}';

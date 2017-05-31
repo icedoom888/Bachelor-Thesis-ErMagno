@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -7,12 +8,12 @@ import java.util.HashMap;
  */
 public class ExcommunicationLane implements Cleanable {
 
-    private HashMap<ExcommunicationTile, PawnSlot> tileAndPawns;
+    private HashMap<Era, ExcommunicationSlot> tileAndPawns;
     private int maxNumberOfPawns;
 
     public ExcommunicationLane(int maxNumberOfPawns) {
 
-        this.tileAndPawns = new HashMap<ExcommunicationTile,PawnSlot>(3);
+        this.tileAndPawns = new HashMap<Era,ExcommunicationSlot>(3);
         this.maxNumberOfPawns = maxNumberOfPawns;
     }
 
@@ -20,9 +21,9 @@ public class ExcommunicationLane implements Cleanable {
                                        ExcommunicationTile tile_2,
                                        ExcommunicationTile tile_3){
 
-        tileAndPawns.put(tile_1,new PawnSlot(maxNumberOfPawns,true));
-        tileAndPawns.put(tile_2,new PawnSlot(maxNumberOfPawns,true));
-        tileAndPawns.put(tile_3,new PawnSlot(maxNumberOfPawns,true));
+        tileAndPawns.put(Era.FIRST,new ExcommunicationSlot(maxNumberOfPawns,true, tile_1));
+        tileAndPawns.put(Era.SECOND,new ExcommunicationSlot(maxNumberOfPawns,true, tile_2));
+        tileAndPawns.put(Era.THIRD,new ExcommunicationSlot(maxNumberOfPawns,true, tile_3));
     }
 
 
@@ -31,21 +32,21 @@ public class ExcommunicationLane implements Cleanable {
 
     }
 
-    public PawnSlot getExcommunicatedPawns(ExcommunicationTile excommunicationTile) {
-        return tileAndPawns.get(excommunicationTile);
+    public ArrayList<Pawn> getExcommunicatedPawns(Era era) {
+        return tileAndPawns.get(era).getPlayerPawns();
+
+    }
+
+    public ExcommunicationTile getExcommunicationTile(Era era) {
+        return tileAndPawns.get(era).getExcommunicationTile();
+    }
+
+    public void addPawn(Era era, Pawn pawn) {
+        PawnSlot slot = tileAndPawns.get(era);
+        slot.addPawn(pawn);
     }
 
 
-    /**
-     * This method sets all the Excommunication Tiles when the game starts
-     * The tiles will be the keys of the HashMap, the PawnSlots will be the excommunicated Players
-     * for that specific Excommunication Tile
-
-    public void setExcommunicationTiles(ExcommunicationTile excommunicationTile1, ExcommunicationTile excommunicationTile2, ExcommunicationTile excommunicationTile3, int maxNumberOfPawns) {
-        tileAndPawns.put(excommunicationTile1, pawnSlots[1]);
-        tileAndPawns.put(excommunicationTile2, pawnSlots[2]);
-        tileAndPawns.put(excommunicationTile3, pawnSlots[3]);
-    }*/
 
     @Override
     public String toString() {
