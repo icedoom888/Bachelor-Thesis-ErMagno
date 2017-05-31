@@ -56,12 +56,6 @@ public class ExcommunicationTile {
 
     @Override
     public String toString() {
-        return "ExcommunicationTile{" + "era=" + era + ", name='" + name + '\'' + ", malusOnAction=" + malusOnAction + ", malusOnGoods=" + malusOnGoods + ", description='" + description + '\'' + '}';
+        return "ExcommunicationTile{" + "era=" + era + ", name='" + name + '\'' + ", malusOnAction=" + malusOnAction + ", malusOnGoods=" + malusOnGoods + ", malusOnCost=" + malusOnCost + ", description='" + description + '\'' + '}';
     }
-
-    /*
-    @Override
-    public String toString() {
-        return "ExcommunicationTile{" + "era=" + era + ", name='" + name + '\'' + ", malusOnAction=" + malusOnAction + ", malusOnGoods=" + malusOnGoods + ", description='" + description + '\'' + '}';
-    }*/
 }
