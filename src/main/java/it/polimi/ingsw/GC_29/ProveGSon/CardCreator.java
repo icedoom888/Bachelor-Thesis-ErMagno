@@ -53,12 +53,7 @@ public class CardCreator {
 
 
                 DevelopmentCard cardCreated = new DevelopmentCard(name,era,cardCost,color,immediateEffect,permanentEffect,withActionValue,actionValue);
-                System.out.println("Do you want to add the card?");
-                System.out.println(cardCreated);
-                String answer3 = in.nextLine();
-                if (answer3.equals("y")) {
-                    cards.add(cardCreated);
-                }
+                cards.add(cardCreated);
             }
             if(answer.equals("n")){
                loop = false;
@@ -295,6 +290,13 @@ public class CardCreator {
                         ActionEffect actionEffect = new ActionEffect(actionType,actionValue,bonusAndMalusOnCost1);
                         effectlist.add(actionEffect);
                         break;
+                    case "CouncilPrivilegeEffect":
+                        System.out.println("Insert numberOfCouncilPrivileges int:");
+                        int numberOfCouncilPrivileges = in.nextInt();
+                        CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(numberOfCouncilPrivileges);
+                        effectlist.add(councilPrivilegeEffect);
+                        break;
+
                 }
             }
             if(answer.equals("n")){
