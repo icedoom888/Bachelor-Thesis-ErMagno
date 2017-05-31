@@ -53,26 +53,9 @@ public class BonusAndMalusOnCost {
                 changeCost(costs.get(i), firstDiscount);
             }
 
-            /*int cont = 0;
-            for (Cost cost : costs) {
-                if (cont >= listLength) break;
-                if (alternative) {
-                    Cost newCost = new Cost(cost);
-                    changeCost(newCost,secondDiscount);
-                    costs.add(newCost);
-                }
-                changeCost(cost, firstDiscount);
-                cont++;
-            }*/
         }
     }
 
-    /*public void filter(PlayerStatus playerStatus, Action action){
-        if (this.zoneType==action.getZoneType()){
-            action.setWorkers(action.getWorkers()*firstDiscount.getGoodAmount(GoodType.WORKERS));
-        }
-    }
-    */
 
     public void changeCost(Cost cost, GoodSet discount) {
         cost.getCost().addGoodSet(discount);

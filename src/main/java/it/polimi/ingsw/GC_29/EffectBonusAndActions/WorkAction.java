@@ -62,6 +62,7 @@ public class WorkAction extends Action {
      * @return true if there aren't any player's pawns into the actionSpace, false otherwise
      */
     private boolean checkFamilyPresenceInField() {
+
         for(Pawn pawnPresent : workspaceSelected.getActionspace(fieldSelected).getPawnPlaced().getPlayerPawns()){
             if(((FamilyPawn)pawnPresent).getType()==FamilyPawnType.BONUS){
 
