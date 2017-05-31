@@ -68,7 +68,7 @@ public class WorkAction extends Action {
      */
     private boolean checkFamilyPresenceInField() {
         for(Pawn pawnPresent : workspaceSelected.getActionspace(fieldSelected).getPawnPlaced().getPlayerPawns()){
-            if(pawnPresent.getType()==FamilyPawnType.BONUS){
+            if(((FamilyPawn)pawnPresent).getType()==FamilyPawnType.BONUS){
 
             }
             else if(!(temporaryPawn.getPlayerColor() == pawnPresent.getPlayerColor())){
@@ -97,7 +97,7 @@ public class WorkAction extends Action {
             otherField = FieldType.FIRST;
         }
         for (Pawn pawnPresent : workspaceSelected.getActionspace(otherField).getPawnPlaced().getPlayerPawns()){
-            if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && pawnPresent.getType()!=FamilyPawnType.NEUTRAL){
+            if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && ((FamilyPawn)pawnPresent).getType()!=FamilyPawnType.NEUTRAL){
                 return false;
             }
         }
