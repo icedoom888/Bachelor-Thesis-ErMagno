@@ -33,7 +33,7 @@ public class GoodSet {
     }
 
     public GoodSet(GoodSet oldset){
-        this.goodSetMap = new EnumMap<>(oldset.getMapGoodSet());
+        this.goodSetMap = new EnumMap<>(oldset.goodSetMap);
     }
 
     public Map<GoodType, Integer> getMapGoodSet() {

@@ -12,9 +12,9 @@ public class GameBoardConstructorTest {
         int numberOfPlayers_1 = 4;
         int numberOfPlayers_2 = 3;
         int numberOfPlayers_3 = 2;
-        ExcommunicationTile tile1 = new ExcommunicationTile(Era.FIRST,"sei",null,null,"777");
-        ExcommunicationTile tile2 = new ExcommunicationTile(Era.SECOND,"un",null,null,"su ogni");
-        ExcommunicationTile tile3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,"cosa");
+        ExcommunicationTile tile1 = new ExcommunicationTile(Era.FIRST,"sei",null,null,null,"777");
+        ExcommunicationTile tile2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
+        ExcommunicationTile tile3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
 
 
 

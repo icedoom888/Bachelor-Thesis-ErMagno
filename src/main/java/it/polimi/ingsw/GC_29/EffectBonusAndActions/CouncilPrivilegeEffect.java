@@ -84,6 +84,7 @@ public class CouncilPrivilegeEffect implements Effect {
 
             // String answer = scanner.nextLine();
 
+            //TODO: adapter
             int answer1 = i+1;
             String answer = Integer.toString(answer1);
 

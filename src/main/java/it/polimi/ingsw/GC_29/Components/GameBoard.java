@@ -13,7 +13,7 @@ import java.util.Map;
 public class GameBoard {
     private Track victoryPointsTrack;
     private Track venturesPointsTrack;
-    private Track turnOrderTrack;
+    /* private Track turnOrderTrack; */
     private FaithPointsTrack faithPointsTrack;
     private EnumMap<ZoneType,Tower> towerMap;
     private EnumMap<ZoneType, Workspace> workAreaMap;
@@ -28,7 +28,7 @@ public class GameBoard {
 
         this.venturesPointsTrack = new Track(numberOfPlayers,26);
 
-        this.turnOrderTrack = new Track(1,numberOfPlayers);
+        /* this.turnOrderTrack = new Track(1,numberOfPlayers); */
 
         int[] victoryPointsForFaithTrack = {0,1,2,3,4,5,7,9,11,13,15,17,19,22,25,30};
 
@@ -84,9 +84,9 @@ public class GameBoard {
         return venturesPointsTrack;
     }
 
-    public Track getTurnOrderTrack() {
+    /* public Track getTurnOrderTrack() {
         return turnOrderTrack;
-    }
+    } */
 
     public FaithPointsTrack getFaithPointsTrack() {
         return faithPointsTrack;
@@ -149,17 +149,16 @@ public class GameBoard {
     }
 
 
-    /**
-     *
-     * TODO: completare i metodi clean, ci sono metodi chiamati che sono vuoti
-     *
-    public void clearAll() {
+
+
+
+    public void clearAll(){
 
         victoryPointsTrack.clean();
 
         venturesPointsTrack.clean();
 
-        turnOrderTrack.clean();
+        /* turnOrderTrack.clean(); */
 
         faithPointsTrack.clean();
 
@@ -174,12 +173,12 @@ public class GameBoard {
         excommunicationLane.clean();
 
         market.clean();
-        // councilPalace.clean()
+        councilPalace.clean();
 
         for (Dice dice : diceLane) {
             dice = null;
         }
-    }*/
+    }
 
 
     @Override
@@ -187,7 +186,7 @@ public class GameBoard {
         return "GameBoard{" +
                 "victoryPointsTrack=" + victoryPointsTrack +
                 ", venturesPointsTrack=" + venturesPointsTrack +
-                ", turnOrderTrack=" + turnOrderTrack +
+                /* ", turnOrderTrack=" + turnOrderTrack +*/
                 ", faithPointsTrack=" + faithPointsTrack +
                 ", towerMap=" + towerMap +
                 ", workAreaMap=" + workAreaMap +
@@ -196,5 +195,24 @@ public class GameBoard {
                 ", market=" + market +
                 ", diceLane=" + diceLane +
                 '}';
+    }
+
+
+    /**
+     * setTurn add all the cards to the right towers
+     * @param greenDeck
+     * @param blueDeck
+     * @param yellowDeck
+     * @param purpleDeck
+     */
+    public void setTurn(DevelopmentCard[] greenDeck, DevelopmentCard[] blueDeck, DevelopmentCard[] yellowDeck, DevelopmentCard[] purpleDeck) {
+
+        for (int i = 0; i < greenDeck.length; i++) {
+            towerMap.get(ZoneType.GREENTOWER).getFloor(i).addCard(greenDeck[i]);
+            towerMap.get(ZoneType.BLUETOWER).getFloor(i).addCard(blueDeck[i]);
+            towerMap.get(ZoneType.YELLOWTOWER).getFloor(i).addCard(yellowDeck[i]);
+            towerMap.get(ZoneType.PURPLETOWER).getFloor(i).addCard(purpleDeck[i]);
+        }
+
     }
 }

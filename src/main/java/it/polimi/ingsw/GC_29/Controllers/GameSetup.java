@@ -26,6 +26,7 @@ public class GameSetup {
     private ArrayList<Player> players;
 
     // TODO: possibile refactor: rendo classe singleton e rendo init statico passandogli l'arraylist dei players
+    // TODO: nel setup settare era, turno e round come first, 1, 1
 
     public GameSetup(ArrayList<Player> players) {
 

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.ProveGSon;
 
-        import com.google.gson.Gson;
+import com.google.gson.Gson;
         import com.google.gson.GsonBuilder;
         import it.polimi.ingsw.GC_29.Components.*;
         import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
@@ -13,7 +13,7 @@ package it.polimi.ingsw.GC_29.ProveGSon;
 
 
 public class CardCreator {
-   /* public static void main(String[] args) throws IOException {
+   public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
         ArrayList<DevelopmentCard> cards = new ArrayList<>();
         boolean loop = true;
@@ -98,31 +98,31 @@ public class CardCreator {
         String withPrice_in = in.nextLine();
         Boolean withPrice = Boolean.parseBoolean(withPrice_in);
 
-        GoodSet mainCost = null;
+
+        Cost mainCost = null;
         if (withPrice) {
-            System.out.println("Creation mainCost GoodSet..");
-            mainCost = createGoodSet(in);
+            System.out.println("Creation mainCost ..");
+            mainCost = createCost(in);
         }
 
-        GoodSet alternativeCost = null;
+        Cost alternativeCost = null;
         if (alternative) {
-            System.out.println("Creation alternativeCost GoodSet..");
-            alternativeCost = createGoodSet(in);
+            System.out.println("Creation alternativeCost ..");
+            alternativeCost = createCost(in);
         }
-
-        System.out.println("Insert necessaryGoodSetForMainCost boolean:");
-        String necessaryGoodSetForMainCost_in = in.nextLine();
-        Boolean necessaryGoodSetForMainCost = Boolean.parseBoolean(necessaryGoodSetForMainCost_in);
-
-        GoodSet necessaryGoodset = null;
-        if (necessaryGoodSetForMainCost) {
-            System.out.println("Creation necessaryGoodSet GoodSet..");
-            necessaryGoodset = createGoodSet(in);
-        }
-
-        CardCost cardCost = new CardCost(alternative, withPrice, mainCost, alternativeCost, necessaryGoodSetForMainCost, necessaryGoodset);
+        CardCost cardCost = new CardCost(alternative,withPrice,mainCost,alternativeCost);
         return cardCost;
     }
+
+    public static Cost createCost(Scanner in) {
+        System.out.println("Insert Cost Goodset:");
+        GoodSet price = createGoodSet(in);
+        System.out.println("Insert NecessaryResources Goodset:");
+        GoodSet necessaryResources = createGoodSet(in);
+        Cost cost = new Cost(price,necessaryResources);
+        return cost;
+    }
+
 
 
     public static GoodSet createGoodSet(Scanner in){
@@ -146,20 +146,60 @@ public class CardCreator {
 
     }
 
+    public static ZoneType createZoneType (Scanner in){
+        System.out.println("Insert zoneType:");
+        String zoneType_in = in.nextLine();
+        ZoneType actionType = null;
+        switch (zoneType_in){
+            case "greenTower":
+                actionType = ZoneType.GREENTOWER;
+                break;
+            case "yellowTower":
+                actionType = ZoneType.YELLOWTOWER;
+                break;
+            case "blueTower":
+                actionType = ZoneType.BLUETOWER;
+                break;
+            case "purpleTower":
+                actionType = ZoneType.PURPLETOWER;
+                break;
+            case "market":
+                actionType = ZoneType.MARKET;
+                break;
+            case "councilPalace":
+                actionType = ZoneType.COUNCILPALACE;
+                break;
+            case "harvest":
+                actionType = ZoneType.HARVEST;
+                break;
+            case "production":
+                actionType = ZoneType.PRODUCTION;
+                break;
+            default:
+                actionType = createZoneType(in);
+        }
+        return actionType;
+    }
+
     public static ArrayList<Effect> createEffectList(Scanner in){
         ArrayList<Effect> effectlist = new ArrayList<Effect>();
         while (true) {
+
             System.out.println("Do you want to add an effect to the list?");
             String answer = in.nextLine();
+
             if (answer.equals("y")){
+
                 System.out.println("Insert effect type:");
                 String effectType = in.nextLine();
                 switch (effectType){
+
                     case "ObtainEffect":
                         System.out.println("Creation goodsObtained GoodSet..");
                         ObtainEffect obtainEffect = new ObtainEffect(createGoodSet(in));
                         effectlist.add(obtainEffect);
                         break;
+
                     case "PayToObtainEffect":
                         System.out.println("Creation cost goodset..");
                         GoodSet cost = createGoodSet(in);
@@ -168,6 +208,7 @@ public class CardCreator {
                         PayToObtainEffect payToObtainEffect = new PayToObtainEffect(cost,goodsObtained);
                         effectlist.add(payToObtainEffect);
                         break;
+
                     case "ObtainOnConditionEffect":
                         System.out.println("Creation goodsForEachCondition GoodSet..");
                         GoodSet goodsForEachCondition = createGoodSet(in);
@@ -203,122 +244,55 @@ public class CardCreator {
                                 break;
                         }
                         break;
+
                     case "BonusEffect":
-                        System.out.println("Creation BonusAndMalusOnAction..");
-                        System.out.println("Insert actionType:");
-                        String actionType_in = in.nextLine();
-                        ActionType actionType = null;
-                        switch (actionType_in){
-                            case "greenTower":
-                                actionType = ActionType.GREENTOWER;
-                                break;
-                            case "yellowTower":
-                                actionType = ActionType.YELLOWTOWER;
-                                break;
-                            case "blueTower":
-                                actionType = ActionType.BLUETOWER;
-                                break;
-                            case "purpleTower":
-                                actionType = ActionType.PURPLETOWER;
-                                break;
-                            case "market":
-                                actionType = ActionType.MARKET;
-                                break;
-                            case "councilPalace":
-                                actionType = ActionType.COUNCILPALACE;
-                                break;
-                            case "harvest":
-                                actionType = ActionType.HARVEST;
-                                break;
-                            case "production":
-                                actionType = ActionType.PRODUCTION;
-                                break;
+                        BonusAndMalusOnAction bonusAndMalusOnAction = null;
+                        BonusAndMalusOnCost bonusAndMalusOnCost = null;
+                        BonusAndMalusOnGoods bonusAndMalusOnGoods = null;
+
+                        System.out.println("Does it have a BonusAndMalusOnAction?");
+                        String answer1 = in.nextLine();
+                        if (answer1.equals("y")){
+                            System.out.println("Creation BonusAndMalusOnAction..");
+                            ZoneType actionType = createZoneType(in);
+                            System.out.println("Insert diceIncrementOrReduction:");
+                            int diceIncrementOrReduction = in.nextInt();
+                            bonusAndMalusOnAction = new BonusAndMalusOnAction(actionType,diceIncrementOrReduction);
                         }
 
-                        System.out.println("Insert diceIncrementOrReduction:");
-                        int diceIncrementOrReduction = in.nextInt();
-
-                        System.out.println("esiste un goodSetDiscountOrIncrement?");
-                        String existDiscount_in = in.nextLine();
-                        Boolean existDiscount = Boolean.parseBoolean(existDiscount_in);
-
-                        GoodSet goodSetDiscountOrIncrement = null;
-                        if (existDiscount) {
-                            System.out.println("Creation goodSetDiscountOrIncrement GoodSet..");
-                            goodSetDiscountOrIncrement = createGoodSet(in);
+                        System.out.println("Does it have a BonusAndMalusOnGoods?");
+                        String answer2 = in.nextLine();
+                        if(answer2.equals("y")){
+                            System.out.println("Creation BonusAndMalusOnGoods..");
+                            System.out.println("Creation goodSetBonusMalus GoodSet..");
+                            GoodSet goodSetBonusMalus = createGoodSet(in);
+                            bonusAndMalusOnGoods = new BonusAndMalusOnGoods(goodSetBonusMalus);
                         }
 
-                        System.out.println("Insert actionAllowed bool:");
-                        String actionAllawed_in = in.nextLine();
-                        Boolean actionAllawed = Boolean.parseBoolean(actionAllawed_in);
-
-                        BonusAndMalusOnAction bonus = null;
-                        if (actionAllawed) {
-                            if(existDiscount){
-                                bonus = new BonusAndMalusOnAction(actionType,diceIncrementOrReduction,goodSetDiscountOrIncrement);
-                            }
-                            else{
-                                bonus = new BonusAndMalusOnAction(actionType,diceIncrementOrReduction);
-                            }
-                        }
-                        else {
-                            bonus = new BonusAndMalusOnAction(actionType,actionAllawed);
+                        System.out.println("Does it have a BonusAndMalusOnCost?");
+                        String answer3 = in.nextLine();
+                        if(answer3.equals("y")) {
+                            bonusAndMalusOnCost = createBonusAndMalusOnCost(in);
                         }
 
-                        BonusEffect bonusEffect = new BonusEffect(bonus);
+                        BonusEffect bonusEffect = new BonusEffect(bonusAndMalusOnAction,bonusAndMalusOnGoods,bonusAndMalusOnCost);
                         effectlist.add(bonusEffect);
                         break;
+
                     case "ActionEffect":
-                        System.out.println("Insert actionType:");
-                        String actionType_in2 = in.nextLine();
-                        ActionType actionType2 = null;
-                        switch (actionType_in2){
-                            case "greenTower":
-                                actionType2 = ActionType.GREENTOWER;
-                                break;
-                            case "yellowTower":
-                                actionType2 = ActionType.YELLOWTOWER;
-                                break;
-                            case "blueTower":
-                                actionType2 = ActionType.BLUETOWER;
-                                break;
-                            case "purpleTower":
-                                actionType2 = ActionType.PURPLETOWER;
-                                break;
-                            case "market":
-                                actionType2 = ActionType.MARKET;
-                                break;
-                            case "councilPalace":
-                                actionType2 = ActionType.COUNCILPALACE;
-                                break;
-                            case "harvest":
-                                actionType2 = ActionType.HARVEST;
-                                break;
-                            case "production":
-                                actionType2 = ActionType.PRODUCTION;
-                                break;
-                        }
+                        ZoneType actionType = createZoneType(in);
 
                         System.out.println("Insert actionValue int:");
                         int actionValue = in.nextInt();
 
-                        System.out.println("Creation Discount ..");
-                        System.out.println("Creation firstDiscount ..");
-                        GoodSet firstDiscount = createGoodSet(in);
-
-                        System.out.println("Insert alternativeDiscount bool:");
-                        Boolean alternativeDiscount = in.nextBoolean();
-                        Discount discount = null;
-                        if(alternativeDiscount){
-                            System.out.println("Creation secondDiscount ..");
-                            GoodSet secondDiscount = createGoodSet(in);
-                            discount = new Discount(firstDiscount,secondDiscount,alternativeDiscount);
-                        }
-                        else{
-                            discount = new Discount(firstDiscount,null,alternativeDiscount);
+                        BonusAndMalusOnCost bonusAndMalusOnCost1 = null;
+                        System.out.println("Does it have a BonusAndMalusOnCost?");
+                        String answer4 = in.nextLine();
+                        if(answer4.equals("y")) {
+                            bonusAndMalusOnCost1 = createBonusAndMalusOnCost(in);
                         }
 
-                        ActionEffect actionEffect = new ActionEffect(actionType2,actionValue,discount);
+                        ActionEffect actionEffect = new ActionEffect(actionType,actionValue,bonusAndMalusOnCost1);
                         effectlist.add(actionEffect);
                         break;
                 }
@@ -327,7 +301,23 @@ public class CardCreator {
                 return effectlist;
             }
         }
+    }
 
+    public static BonusAndMalusOnCost createBonusAndMalusOnCost(Scanner in){
+        System.out.println("Creation BonusAndMalusOnCost..");
+        ZoneType actionType = createZoneType(in);
+        System.out.println("Creation firstDiscount..");
+        GoodSet firstDiscount = createGoodSet(in);
+        System.out.println("Insert alternative boolean:");
+        String alternative_in = in.nextLine();
+        Boolean alternative = Boolean.parseBoolean(alternative_in);
+        GoodSet secondDiscount = null;
+        if (alternative){
+            System.out.println("Creation secondDiscount..");
+            secondDiscount= createGoodSet(in);
+        }
+        BonusAndMalusOnCost bonusAndMalusOnCost = new BonusAndMalusOnCost(actionType,firstDiscount,secondDiscount,alternative);
+        return bonusAndMalusOnCost;
     }
 
     public static CardColor createColor(Scanner in){
@@ -371,5 +361,5 @@ public class CardCreator {
                 era = createEra(in);
         }
         return era;
-    }*/
+    }
 }

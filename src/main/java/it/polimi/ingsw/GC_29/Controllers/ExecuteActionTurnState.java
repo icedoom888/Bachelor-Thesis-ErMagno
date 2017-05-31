@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 /**
  * Created by Christian on 21/05/2017.
  */
-public class ExecuteActionState implements State {
+public class ExecuteActionTurnState implements TurnState {
     @Override
     public void executeState(PlayerController wrapper) {
 
@@ -11,12 +11,12 @@ public class ExecuteActionState implements State {
         
         if(wrapper.checkPresenceBonusActionEffect()){
 
-            wrapper.setCurrentState(new BonusActionState());
+            wrapper.setCurrentTurnState(new BonusActionTurnState());
         }
 
         else{
 
-            wrapper.setCurrentState(new EndTurnState());
+            wrapper.setCurrentTurnState(new EndTurnTurnState());
         }
     }
 }

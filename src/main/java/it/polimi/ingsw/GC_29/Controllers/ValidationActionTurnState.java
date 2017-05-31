@@ -9,13 +9,13 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 /**
  * Created by Christian on 21/05/2017.
  */
-public class ValidationActionState implements State {
+public class ValidationActionTurnState implements TurnState {
 
 
     /**
      * this method creates an action and if the action is valid the method sets the new state for the PlayerController,
      * that is the executeActionState. If the player decides to skip the action (with the method isPlaceFamilyMemberAction)
-     * this method brings the playerController into the EndTurnState.
+     * this method brings the playerController into the EndTurnTurnState.
      *
      * @param wrapper the playerController reference
      */
@@ -57,11 +57,11 @@ public class ValidationActionState implements State {
 
             wrapper.getPlayerStatus().setCurrentAction(currentAction);
 
-            wrapper.setCurrentState(new ExecuteActionState());
+            wrapper.setCurrentTurnState(new ExecuteActionTurnState());
         }
 
         else {
-            wrapper.setCurrentState(new EndTurnState());
+            wrapper.setCurrentTurnState(new EndTurnTurnState());
         }
 
     }

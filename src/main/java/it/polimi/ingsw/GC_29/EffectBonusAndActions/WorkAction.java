@@ -15,7 +15,6 @@ import static java.lang.Math.max;
 
 public class WorkAction extends Action {
 
-    //TODO: modellare la reduction come bonusEffect interno al secondo actionspace
     private Workspace workspaceSelected;
     private FieldType fieldSelected;
     private HashMap<Integer,ArrayList<DevelopmentCard>> cardsForWorkers;
@@ -64,7 +63,7 @@ public class WorkAction extends Action {
      */
     private boolean checkFamilyPresenceInField() {
         for(Pawn pawnPresent : workspaceSelected.getActionspace(fieldSelected).getPawnPlaced().getPlayerPawns()){
-            if(pawnPresent.getType()==FamilyPawnType.BONUS){
+            if(((FamilyPawn)pawnPresent).getType()==FamilyPawnType.BONUS){
 
             }
             else if(!(temporaryPawn.getPlayerColor() == pawnPresent.getPlayerColor())){
@@ -93,7 +92,7 @@ public class WorkAction extends Action {
             otherField = FieldType.FIRST;
         }
         for (Pawn pawnPresent : workspaceSelected.getActionspace(otherField).getPawnPlaced().getPlayerPawns()){
-            if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && pawnPresent.getType()!=FamilyPawnType.NEUTRAL){
+            if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && ((FamilyPawn)pawnPresent).getType()!=FamilyPawnType.NEUTRAL){
                 return false;
             }
         }
@@ -164,7 +163,7 @@ public class WorkAction extends Action {
     private void makeChoice() {
         //TODO: filtraggio sul costo in workers una volta ottenuto
         int choice = askForWorkers();
-        setWorkers(workers + choice); //TODO: rivedi controlli sulla disponibilità dei workers del player
+        setWorkers(workers + choice);
         ArrayList<DevelopmentCard> cardsChosen = cardsForWorkers.get(choice);
 
         Effect effectChosen;
@@ -173,14 +172,23 @@ public class WorkAction extends Action {
             if (!card.getPermanentEffect().isEmpty()) {
 
                 if (zoneType==ZoneType.PRODUCTION) {
-                    if (askForCardActivation(card)){
-                            if(card.getPermanentEffect().size()>1) {
-                                effectChosen = askForEffect(card);
-                            }
-                            else{
-                                effectChosen = card.getPermanentEffect().get(0);
-                            }
-                            effectsToActivate.add(effectChosen);
+                    boolean ask = true;
+                    for(Effect effect: card.getPermanentEffect()) {
+                        if (!(effect.getClass().getName() == "PayToObtainEffect")){
+                            ask = false;
+                        }
+                    }
+
+                    if (ask) {
+                        if (askForCardActivation(card)){
+                                if(card.getPermanentEffect().size()>1) {
+                                    effectChosen = askForEffect(card);
+                                }
+                                else{
+                                    effectChosen = card.getPermanentEffect().get(0);
+                                }
+                                effectsToActivate.add(effectChosen);
+                        }
                     }
                 }
                 else{

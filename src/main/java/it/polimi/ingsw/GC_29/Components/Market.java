@@ -40,7 +40,9 @@ public class Market implements Cleanable {
     }
 
     @Override
-    public void clean() {
-        //TODO: implementare
+    public void clean(){
+        for(ShopName name : ShopName.values()){
+            houses.get(name).clean();
+        }
     }
 }

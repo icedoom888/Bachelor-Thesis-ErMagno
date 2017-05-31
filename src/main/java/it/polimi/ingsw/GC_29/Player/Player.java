@@ -2,6 +2,9 @@ package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Lorenzotara on 18/05/17.
  */
@@ -49,6 +52,10 @@ public class Player {
         return personalBoard;
     }
 
+    public PlayerColor getPlayerColor() {
+        return playerColor;
+    }
+
     public PlayerStatus getStatus() {
         return status;
     }
@@ -75,5 +82,18 @@ public class Player {
 
     public void removeLeaderCard(LeaderCard leaderCard) {
         //TODO: scelta la carta leader da rimuovere, questo metodo la rimuove
+    }
+
+    public void throwDices() {
+        System.out.println("You threw dices!");
+        List<Dice> diceLane = gameboard.getDiceLane();
+
+        for (int i = 0; i < diceLane.size(); i++) {
+            Dice dice = diceLane.get(i);
+            dice.roll();
+            System.out.println(dice.getColor() + ": " + dice.getFace());
+        }
+
+
     }
 }

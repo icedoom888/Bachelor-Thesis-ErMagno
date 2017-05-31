@@ -14,14 +14,17 @@ public class  GameStatus {
     private static GameStatus instance = null;
 
     // Mancano i controller da inserire in futuro
+    private PlayerController playerController;
     private GameBoard gameBoard;
     EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks;
     private Player currentPlayer;
     private Era currentEra;
     private int currentTurn;
+    private int currentRound;
     private Action currentAction;
     //private final int numberOfPlayers = COSTANTEDAFILE; TODO: bisogna creare delle costanti da file da usare, come in questo caso
     private ArrayList<Player> turnOrder;
+    private ArrayList<Player> skippedTurnPlayers;
     private HashMap<FamilyPawn, ActionSpace> pawnsOnActionSpace;
 
     private GameStatus() {
@@ -55,6 +58,13 @@ public class  GameStatus {
         return orderedDecks;
     }
 
+    public PlayerController getPlayerController() {
+        return playerController;
+    }
+
+    public void setPlayerController(PlayerController playerController) {
+        this.playerController = playerController;
+    }
 
     public void setOrderedDecks(EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks) {
 
@@ -73,6 +83,17 @@ public class  GameStatus {
         this.currentPlayer = currentPlayer;
     }
 
+    public int getCurrentRound() {
+        return currentRound;
+    }
+
+    public void setCurrentRound(int currentRound) {
+        this.currentRound = currentRound;
+    }
+
+    public void setCurrentAction(Action currentAction) {
+        this.currentAction = currentAction;
+    }
 
     public Era getCurrentEra() {
         return currentEra;
@@ -118,4 +139,13 @@ public class  GameStatus {
     public Action getCurrentAction() {
         return currentAction;
     }
+
+    public ArrayList<Player> getSkippedTurnPlayers() {
+        return skippedTurnPlayers;
+    }
+
+    public void setSkippedTurnPlayers(ArrayList<Player> skippedTurnPlayers) {
+        this.skippedTurnPlayers = skippedTurnPlayers;
+    }
 }
+

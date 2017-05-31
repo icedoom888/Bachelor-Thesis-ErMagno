@@ -9,13 +9,13 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 /**
  * Created by Christian on 21/05/2017.
  */
-public class BonusActionState implements State {
+public class BonusActionTurnState implements TurnState {
 
     /**
      * this method creates an action from an ActionEffect gained by the currentPlayer. If the action is valid the method sets the new state for the PlayerController,
      * that is the executeActionState. If the player decides to skip the action (with the method isPlaceFamilyMemberAction)
-     * this method brings the playerController into the EndTurnState if there no more bonusAction for the player, otherwise (if the player skipped the BonusAction and there are
-     * other BonusAction for the currentPlayer) the state of the playerController remains in the BonusActionState and the next bonusAction is processed.
+     * this method brings the playerController into the EndTurnTurnState if there no more bonusAction for the player, otherwise (if the player skipped the BonusAction and there are
+     * other BonusAction for the currentPlayer) the state of the playerController remains in the BonusActionTurnState and the next bonusAction is processed.
      *
      * @param wrapper the playerController reference
      */
@@ -64,16 +64,16 @@ public class BonusActionState implements State {
 
             wrapper.getPlayerStatus().setCurrentAction(currentAction);
 
-            wrapper.setCurrentState(new ExecuteActionState());
+            wrapper.setCurrentTurnState(new ExecuteActionTurnState());
 
         }
 
         else if(!wrapper.checkPresenceBonusActionEffect()) {
 
-            wrapper.setCurrentState(new EndTurnState());
+            wrapper.setCurrentTurnState(new EndTurnTurnState());
         }
 
-        // altrimenti il currentState rimane il BonusActionState!
+        // altrimenti il currentState rimane il BonusActionTurnState!
     }
 
         /*

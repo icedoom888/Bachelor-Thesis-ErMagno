@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 public class PlayerController {
 
-    private State currentState;
+    private TurnState currentTurnState;
     private PlayerStatus playerStatus;
 
     ///variabile per test
@@ -19,7 +19,7 @@ public class PlayerController {
     public PlayerController() {
 
         this.playerStatus = GameStatus.getInstance().getCurrentPlayer().getStatus();
-        currentState = new BeginTurnState();
+        currentTurnState = new BeginTurnTurnState();
 
     }
 
@@ -27,17 +27,17 @@ public class PlayerController {
         return playerStatus;
     }
 
-    public void setCurrentState(State newState){
-        currentState = newState;
+    public void setCurrentTurnState(TurnState newTurnState){
+        currentTurnState = newTurnState;
     }
 
     public void executeState(){
-        currentState.executeState(this);
+        currentTurnState.executeState(this);
     }
 
     public void init(){
 
-        while(currentState.getClass() != EndTurnState.class){ // finché non arrivo all'utlimo stato del turno continuo ad eseguire gli stati intermedi
+        while(currentTurnState.getClass() != EndTurnTurnState.class){ // finché non arrivo all'utlimo stato del turno continuo ad eseguire gli stati intermedi
             executeState();
         }
 

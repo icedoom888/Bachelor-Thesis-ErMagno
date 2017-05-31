@@ -65,9 +65,6 @@ public final class Filter {
 
         }
 
-        int actualValue = max(0, familyPawn.getActualValue());
-
-        familyPawn.setActualValue(actualValue);
     }
 
 

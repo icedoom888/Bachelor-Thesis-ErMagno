@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Components;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
+import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.util.Arrays;
@@ -48,11 +49,25 @@ public class CouncilPalaceActionSpace extends ActionSpace {
     }
 
     @Override
-    public void removePawn(FamilyPawn familyPawn) {
-        // TODO: impl -> rimuove sia da actionSpace che da turnOrder
+    public void removePawn(FamilyPawn familyPawn){
+        super.removePawn(familyPawn);
+        for(int r=0; r<turnOrder.length; r++){
+            if (turnOrder[r]==familyPawn.getPlayerColor()){
+                turnOrder[r] = null;
+            }
+        }
+    }
+
+    @Override
+    public void clean(){
+        super.clean();
+        for (int r=0;r<turnOrder.length;r++){
+            turnOrder[r]= null;
+        }
     }
 
     public void setTurnOrder(PlayerColor pawnColor) {
         // TODO: ciclo for
     }
+
 }

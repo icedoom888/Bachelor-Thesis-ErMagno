@@ -37,6 +37,10 @@ public class Track implements Cleanable {
         return track;
     }
 
+    public PawnSlot getPawnSlot(int index) {
+        return track[index];
+    }
+
     public int findPawn(Pawn pawn) {
 
         return pawnMap.get(pawn);
