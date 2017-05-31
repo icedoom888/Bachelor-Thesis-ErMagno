@@ -26,7 +26,6 @@ public class FamilyPawn extends Pawn {
         this(familyPawn.getPlayerColor(), familyPawn.getType(), familyPawn.getActualValue());
     }
 
-    @Override
     public FamilyPawnType getType() {
         return type;
     }

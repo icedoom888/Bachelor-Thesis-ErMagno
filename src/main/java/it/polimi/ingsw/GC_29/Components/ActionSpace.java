@@ -69,16 +69,11 @@ public class ActionSpace implements Cleanable {
         occupied = true;
     }
 
-    public void removePawn(FamilyPawn familyPawn) throws NoSuchMethodException {
+    public void removePawn(FamilyPawn familyPawn){
         for(Pawn pawn : pawnPlaced.getPlayerPawns()){
-            if (pawn.getPlayerColor()==familyPawn.getPlayerColor()) {
-                if(pawn.getClass().getName()=="FamilyPawn"){
-                    pawn.getClass().getDeclaredMethod("getType");
-                    if(pawn.getType()== familyPawn.getType()){
-                        pawnPlaced.removePawn(pawn);
-                        break;
-                    }
-                }
+            if (pawn.getPlayerColor()==familyPawn.getPlayerColor() && ((FamilyPawn)pawn).getType()== familyPawn.getType()) {
+                pawnPlaced.removePawn(pawn);
+                break;
             }
         }
     }

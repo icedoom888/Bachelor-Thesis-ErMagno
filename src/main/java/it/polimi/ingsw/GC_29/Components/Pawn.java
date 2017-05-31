@@ -18,10 +18,6 @@ public class Pawn {
         return playerColor;
     }
 
-    public FamilyPawnType getType(){
-        return null;
-    }
-
     @Override
     public String toString() {
         return "Pawn{" +
