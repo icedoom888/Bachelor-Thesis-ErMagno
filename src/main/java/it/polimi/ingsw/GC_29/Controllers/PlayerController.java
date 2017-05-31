@@ -8,6 +8,9 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 /**
  * Created by Christian on 19/05/2017.
  */
+
+// TODO: possibile refactor degli stati considerando il nuovo checkerAction
+    
 public class PlayerController {
 
     private State currentState;

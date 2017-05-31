@@ -8,5 +8,6 @@ public class EndTurnState implements State {
     @Override
     public void executeState(PlayerController wrapper) {
 
+        wrapper.setCurrentState(new BeginTurnState());
     }
 }
