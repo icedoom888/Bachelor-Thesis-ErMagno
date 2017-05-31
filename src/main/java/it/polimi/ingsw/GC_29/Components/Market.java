@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -30,7 +31,7 @@ public class Market implements Cleanable {
         }
     }
 
-    public EnumMap<ShopName, ActionSpace> getHouses() {
+    public Map<ShopName, ActionSpace> getHouses() {
         return houses;
     }
 

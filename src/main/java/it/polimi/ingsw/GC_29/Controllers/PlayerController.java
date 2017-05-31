@@ -1,16 +1,13 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Christian on 19/05/2017.
  */
 
-// TODO: possibile refactor degli stati considerando il nuovo checkerAction
-    
 public class PlayerController {
 
     private State currentState;

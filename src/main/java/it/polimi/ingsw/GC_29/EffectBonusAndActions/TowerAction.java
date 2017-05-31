@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lorenzotara on 19/05/17.
@@ -77,20 +78,12 @@ public class TowerAction extends Action {
 
     @Override
     public boolean isPossible() {
-
-        if(super.isPossible()){
-            if(!checkFamilyPresence()){
-                if (isTowerAccessPossible()) {
-                    if (laneAvailable()) {
-                        if (cardCost.isWithPrice()) {
-                            if (checkSufficientGoodsForCard()) return true;
-                        }
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        
+        return super.isPossible()
+                && !checkFamilyPresence()
+                && isTowerAccessPossible()
+                && laneAvailable()
+                && checkSufficientGoodsForCard();
     }
 
 
@@ -165,9 +158,13 @@ public class TowerAction extends Action {
      */
     private boolean checkSufficientGoodsForCard() {
         
+        if(cardCost.isWithPrice()){
+            return true;
+        }
+
         setActionSpaceEffect();
         
-        ArrayList<Cost> costList = new ArrayList<Cost>();
+        ArrayList<Cost> costList = new ArrayList<>();
         Filter.apply(playerStatus, cardCost, costList, zoneType);
 
         GoodSet playerGoodSet = new GoodSet(playerStatus.getActualGoodSet());
@@ -298,7 +295,7 @@ public class TowerAction extends Action {
      */
     private void activateCardEffects() {
 
-        ArrayList<Effect> immediateEffects = this.cardSelected.getImmediateEffect();
+        List<Effect> immediateEffects = this.cardSelected.getImmediateEffect();
 
         for (Effect immediateEffect : immediateEffects) {
 
@@ -360,7 +357,7 @@ public class TowerAction extends Action {
         return cardCost;
     }
 
-    public ArrayList<Cost> getPossibleCardCosts() {
+    public List<Cost> getPossibleCardCosts() {
         return possibleCardCosts;
     }
 

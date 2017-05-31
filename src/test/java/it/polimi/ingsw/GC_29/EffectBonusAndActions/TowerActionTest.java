@@ -54,7 +54,7 @@ public class TowerActionTest {
 
         FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 3);
 
-        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<Effect>();
+        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<>();
         ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
         CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
 
@@ -66,7 +66,7 @@ public class TowerActionTest {
 
 
 
-        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
+        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<>();
         BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
         BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
         BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);
@@ -149,7 +149,7 @@ public class TowerActionTest {
 
         FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 0);
 
-        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<Effect>();
+        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<>();
         ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
         CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
 
@@ -161,7 +161,7 @@ public class TowerActionTest {
 
 
 
-        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
+        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<>();
         BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
         BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
         BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);
@@ -248,7 +248,7 @@ public class TowerActionTest {
 
         FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 3);
 
-        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<Effect>();
+        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<>();
         ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
         CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
 
@@ -260,7 +260,7 @@ public class TowerActionTest {
 
 
 
-        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
+        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<>();
         BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
         BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
         BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);

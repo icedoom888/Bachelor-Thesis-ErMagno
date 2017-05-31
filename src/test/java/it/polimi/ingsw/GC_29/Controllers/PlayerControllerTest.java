@@ -69,7 +69,7 @@ public class PlayerControllerTest {
 
         currentPlayerStatus.setPersonalBoard(testPersonalBoard);
 
-        ArrayList<Effect> immediateEffect = new ArrayList<Effect>();
+        ArrayList<Effect> immediateEffect = new ArrayList<>();
 
         immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
 
@@ -117,7 +117,7 @@ public class PlayerControllerTest {
 
         currentPlayerStatus.setPersonalBoard(testPersonalBoard);
 
-        ArrayList<Effect> immediateEffect = new ArrayList<Effect>();
+        ArrayList<Effect> immediateEffect = new ArrayList<>();
 
         immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
 

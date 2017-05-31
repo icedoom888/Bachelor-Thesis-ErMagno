@@ -4,6 +4,7 @@ package it.polimi.ingsw.GC_29.Components;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -56,11 +57,11 @@ public class DevelopmentCard {
         return color;
     }
 
-    public ArrayList<Effect> getImmediateEffect() {
+    public List<Effect> getImmediateEffect() {
         return immediateEffect;
     }
 
-    public ArrayList<Effect> getPermanentEffect() {
+    public List<Effect> getPermanentEffect() {
         return permanentEffect;
     }
 
@@ -74,6 +75,15 @@ public class DevelopmentCard {
 
     @Override
     public String toString() {
-        return "DevelopmentCard{" + "name='" + name + ", era=" + era + ", cardCost=" + cardCost + ", color=" + color + ", immediateEffect=" + immediateEffect + ", permanentEffect=" + permanentEffect + ", withActionValue=" + withActionValue + ", actionValue=" + actionValue + '}';
+        return "DevelopmentCard{"
+                + "name='" + name
+                + ", era=" + era
+                + ", cardCost=" + cardCost
+                + ", color=" + color
+                + ", immediateEffect=" + immediateEffect
+                + ", permanentEffect=" + permanentEffect
+                + ", withActionValue=" + withActionValue
+                + ", actionValue=" + actionValue
+                + '}';
     }
 }

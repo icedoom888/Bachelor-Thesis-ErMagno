@@ -6,9 +6,7 @@ import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.PersonalBoard;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Created by Christian on 17/05/2017.
@@ -45,7 +43,7 @@ public class PlayerStatus {
 
         currentBonusActionList = new LinkedList<>();
         currentBonusActionBonusMalusOnCostList = new LinkedList<>();
-        this.familyPawnAvailability = new EnumMap<FamilyPawnType, Boolean>(FamilyPawnType.class);
+        this.familyPawnAvailability = new EnumMap<>(FamilyPawnType.class);
         familyPawnAvailability.put(FamilyPawnType.BLACK, true);
         familyPawnAvailability.put(FamilyPawnType.ORANGE, true);
         familyPawnAvailability.put(FamilyPawnType.WHITE, true);
@@ -66,7 +64,7 @@ public class PlayerStatus {
         this.bonusAndMalusOnCost = bonusAndMalusOnCost;
         this.actualGoodSet = actualGoodSet;
         this.cardsOwned = cardsOwned;
-        this.familyPawnAvailability = new EnumMap<FamilyPawnType, Boolean>(FamilyPawnType.class);
+        this.familyPawnAvailability = new EnumMap<>(FamilyPawnType.class);
         familyPawnAvailability.put(FamilyPawnType.BLACK, true);
         familyPawnAvailability.put(FamilyPawnType.ORANGE, true);
         familyPawnAvailability.put(FamilyPawnType.WHITE, true);
@@ -79,11 +77,11 @@ public class PlayerStatus {
         return playerColor;
     }
 
-    public ArrayList<BonusAndMalusOnAction> getBonusAndMalusOnAction() {
+    public List<BonusAndMalusOnAction> getBonusAndMalusOnAction() {
         return bonusAndMalusOnAction;
     }
 
-    public ArrayList<BonusAndMalusOnGoods> getBonusAndMalusOnGoods() {
+    public List<BonusAndMalusOnGoods> getBonusAndMalusOnGoods() {
 
         return bonusAndMalusOnGoods;
     }
@@ -97,7 +95,7 @@ public class PlayerStatus {
         return actualGoodSet;
     }
 
-    public EnumMap<CardColor, Integer> getCardsOwned() {
+    public Map<CardColor, Integer> getCardsOwned() {
         return cardsOwned;
     }
 
@@ -140,11 +138,11 @@ public class PlayerStatus {
         this.actualGoodSet.addGoodSet(newGoodSet);
     }
 
-    public EnumMap<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
+    public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
         return familyPawnAvailability;
     }
 
-    public ArrayList<BonusAndMalusOnCost> getBonusAndMalusOnCost() {
+    public List<BonusAndMalusOnCost> getBonusAndMalusOnCost() {
         return bonusAndMalusOnCost;
     }
 }

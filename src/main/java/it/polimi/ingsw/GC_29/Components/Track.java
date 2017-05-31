@@ -29,7 +29,7 @@ public class Track implements Cleanable {
             track[i] = new PawnSlot(maxNumberOfPawns, true);
         }
 
-        this.pawnMap = new HashMap<Pawn, Integer>();
+        this.pawnMap = new HashMap<>();
     }
 
     public PawnSlot[] getTrack() {

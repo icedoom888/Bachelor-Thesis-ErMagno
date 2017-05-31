@@ -79,9 +79,7 @@ public class GameSetup {
 
         ArrayDeque<DevelopmentCard> deck = new ArrayDeque<DevelopmentCard>();
 
-        // TODO: assegna al deck il deck caricato con Gson
-
-        EnumMap<Era, ArrayList<DevelopmentCard>> eraCardMap = new EnumMap<>(Era.class);
+        EnumMap<Era, ArrayList<DevelopmentCard>> eraCardMap = new EnumMap<>(Era.class); // TODO: assegna al deck il deck caricato con Gson
 
         for(DevelopmentCard card : deck){
 
@@ -115,6 +113,7 @@ public class GameSetup {
     private void setExcommunicationTiles(){
 
         for(Era era : Era.values()){
+
             this.excommunicationTileMap.put(era, getExcommunicationTilesFromFile(era));
         }
 

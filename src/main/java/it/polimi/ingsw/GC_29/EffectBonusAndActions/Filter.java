@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import static java.lang.Math.max;
 
@@ -31,7 +32,7 @@ public final class Filter {
      */
     public static void apply(PlayerStatus playerStatus, GoodSet goodsObtained){
 
-        ArrayList<BonusAndMalusOnGoods> currentPLayerBonusMalusOnGoods = playerStatus.getBonusAndMalusOnGoods();
+        List<BonusAndMalusOnGoods> currentPLayerBonusMalusOnGoods = playerStatus.getBonusAndMalusOnGoods();
 
         for (BonusAndMalusOnGoods playerBonusMalus : currentPLayerBonusMalusOnGoods) {
 
@@ -52,7 +53,7 @@ public final class Filter {
      */
     public static void apply(PlayerStatus playerStatus, FamilyPawn familyPawn, ZoneType zoneType){
 
-        ArrayList<BonusAndMalusOnAction> currentPlayerBonusMalusOnAction = playerStatus.getBonusAndMalusOnAction();
+        List<BonusAndMalusOnAction> currentPlayerBonusMalusOnAction = playerStatus.getBonusAndMalusOnAction();
 
         for (BonusAndMalusOnAction playerBonusMalus : currentPlayerBonusMalusOnAction){
 
@@ -79,7 +80,7 @@ public final class Filter {
      * @param zoneType
      */
     public static void apply(PlayerStatus playerStatus, CardCost cardCost, ArrayList<Cost> costs, ZoneType zoneType) {
-        ArrayList<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCost = playerStatus.getBonusAndMalusOnCost();
+        List<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCost = playerStatus.getBonusAndMalusOnCost();
         LinkedList<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCostTemporary = playerStatus.getCurrentBonusActionBonusMalusOnCostList();
 
         costs.add(cardCost.getMainCost());

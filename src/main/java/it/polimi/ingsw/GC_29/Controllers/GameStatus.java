@@ -4,10 +4,7 @@ import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.Player;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Icedoom on 19/05/2017.
@@ -41,7 +38,7 @@ public class  GameStatus {
         return instance;
     }
 
-    public HashMap<FamilyPawn, ActionSpace> getPawnsOnActionSpace() {
+    public Map<FamilyPawn, ActionSpace> getPawnsOnActionSpace() {
 
         return pawnsOnActionSpace;
     }
@@ -53,7 +50,7 @@ public class  GameStatus {
     }
 
 
-    public EnumMap<CardColor, ArrayDeque<DevelopmentCard>> getOrderedDecks() {
+    public Map<CardColor, ArrayDeque<DevelopmentCard>> getOrderedDecks() {
 
         return orderedDecks;
     }
@@ -101,7 +98,7 @@ public class  GameStatus {
     }*/
 
 
-    public ArrayList<Player> getTurnOrder() {
+    public List<Player> getTurnOrder() {
 
         return turnOrder;
     }

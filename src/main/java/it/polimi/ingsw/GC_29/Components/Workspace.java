@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -36,7 +37,7 @@ public class Workspace implements Cleanable {
 
     }
 
-    public EnumMap<FieldType, ActionSpace> getFields() {
+    public Map<FieldType, ActionSpace> getFields() {
         return fields;
     }
 

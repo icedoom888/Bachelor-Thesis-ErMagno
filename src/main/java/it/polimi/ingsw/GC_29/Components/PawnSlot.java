@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -17,13 +18,13 @@ public class PawnSlot{
     private boolean free;
 
     public PawnSlot(int maxNumberOfPawns, boolean free) {
-        this.playerPawns = new ArrayList<Pawn>(); // correct use of arrayList, we need to be capable of altering the length of the list
+        this.playerPawns = new ArrayList<>(); // correct use of arrayList, we need to be capable of altering the length of the list
         this.maxNumberOfPawns = maxNumberOfPawns;
         this.free = free;
     }
 
 
-    public ArrayList<Pawn> getPlayerPawns() {
+    public List<Pawn> getPlayerPawns() {
         return playerPawns;
     }
 
