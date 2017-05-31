@@ -151,9 +151,8 @@ public class GameBoard {
 
 
 
-    //TODO: completare i metodi clean, ci sono metodi chiamati che sono vuoti
 
-    public void clearAll() {
+    public void clearAll(){
 
         victoryPointsTrack.clean();
 
@@ -174,7 +173,7 @@ public class GameBoard {
         excommunicationLane.clean();
 
         market.clean();
-        // councilPalace.clean()
+        councilPalace.clean();
 
         for (Dice dice : diceLane) {
             dice = null;

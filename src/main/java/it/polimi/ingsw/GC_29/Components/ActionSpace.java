@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.FieldType;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
@@ -9,7 +10,7 @@ import it.polimi.ingsw.GC_29.Player.Player;
 public class ActionSpace implements Cleanable {
     private Effect effect;
     private int actionCost;
-    private PawnSlot pawnPlaced;
+    protected PawnSlot pawnPlaced;
     private boolean single;
     private boolean occupied;
 
@@ -68,7 +69,18 @@ public class ActionSpace implements Cleanable {
         occupied = true;
     }
 
-    public void removePawn(FamilyPawn familyPawn){
+    public void removePawn(FamilyPawn familyPawn) throws NoSuchMethodException {
+        for(Pawn pawn : pawnPlaced.getPlayerPawns()){
+            if (pawn.getPlayerColor()==familyPawn.getPlayerColor()) {
+                if(pawn.getClass().getName()=="FamilyPawn"){
+                    pawn.getClass().getDeclaredMethod("getType");
+                    if(pawn.getType()== familyPawn.getType()){
+                        pawnPlaced.removePawn(pawn);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     @Override

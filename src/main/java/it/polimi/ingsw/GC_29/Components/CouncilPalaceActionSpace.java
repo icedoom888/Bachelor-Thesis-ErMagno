@@ -49,8 +49,21 @@ public class CouncilPalaceActionSpace extends ActionSpace {
     }
 
     @Override
-    public void removePawn(FamilyPawn familyPawn) {
-        // TODO: impl -> rimuove sia da actionSpace che da turnOrder
+    public void removePawn(FamilyPawn familyPawn) throws NoSuchMethodException {
+        super.removePawn(familyPawn);
+        for(int r=0; r<turnOrder.length; r++){
+            if (turnOrder[r]==familyPawn.getPlayerColor()){
+                turnOrder[r] = null;
+            }
+        }
+    }
+
+    @Override
+    public void clean(){
+        super.clean();
+        for (int r=0;r<turnOrder.length;r++){
+            turnOrder[r]= null;
+        }
     }
 
     public void setTurnOrder(PlayerColor pawnColor) {

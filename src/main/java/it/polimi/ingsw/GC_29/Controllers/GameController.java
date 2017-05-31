@@ -20,7 +20,7 @@ public class GameController {
         this.gameStatus = GameStatus.getInstance();
     }
 
-    public void init() {
+    public void init(){
 
         DevelopmentCard[] greenDeck = new DevelopmentCard[4];
         DevelopmentCard[] blueDeck = new DevelopmentCard[4];

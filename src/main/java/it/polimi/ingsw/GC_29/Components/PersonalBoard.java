@@ -20,10 +20,10 @@ public class PersonalBoard {
 
     public PersonalBoard(BonusTile chosenTile, int laneDimension){
         bonusTile = chosenTile;
-        buildingLane = new Lane(CardColor.YELLOW, laneDimension);
-        venturesLane = new Lane(CardColor.PURPLE, laneDimension);
-        familyLane = new Lane(CardColor.BLUE, laneDimension);
-        territoryLane = new TerritoryLane(CardColor.GREEN, laneDimension);
+        buildingLane = new Lane(laneDimension);
+        venturesLane = new Lane(laneDimension);
+        familyLane = new Lane(laneDimension);
+        territoryLane = new TerritoryLane(laneDimension);
         laneHashMap = new EnumMap<CardColor, Lane>(CardColor.class);
         laneHashMap.put(CardColor.YELLOW, buildingLane);
         laneHashMap.put(CardColor.PURPLE, venturesLane);

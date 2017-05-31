@@ -5,20 +5,14 @@ package it.polimi.ingsw.GC_29.Components;
 public class  Lane implements Cleanable {
     protected DevelopmentCard[] cards;
     protected int firstFreeSlotIndex;
-    protected CardColor color;
 
-    public Lane(CardColor color, int laneDimension){
+    public Lane(int laneDimension){
         cards = new DevelopmentCard[laneDimension];
         firstFreeSlotIndex =0;
-        this.color= color;
     }
 
     public int getFirstFreeSlotIndex() {
         return firstFreeSlotIndex;
-    }
-
-    public CardColor getColor() {
-        return color;
     }
 
     public void addCard(DevelopmentCard newCard) {

@@ -29,7 +29,9 @@ public class ExcommunicationLane implements Cleanable {
 
     @Override
     public void clean() {
-
+        for(Era era : Era.values()){
+            tileAndPawns.put(era,null);
+        }
     }
 
     public ArrayList<Pawn> getExcommunicatedPawns(Era era) {
