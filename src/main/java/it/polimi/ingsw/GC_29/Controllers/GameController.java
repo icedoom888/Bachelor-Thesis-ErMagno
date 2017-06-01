@@ -5,8 +5,8 @@ import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by AlbertoPennino on 22/05/2017.
@@ -46,7 +46,7 @@ public class GameController {
             while (gameStatus.getCurrentRound() < 4) {
 
                 //TODO: chiedere se coerente con modello di Christian - così non andrebbe nel costruttore di player controller
-                gameStatus.getPlayerController().setCurrentTurnState(new BeginTurnTurnState());
+                gameStatus.getPlayerController().setCurrentTurnState(new BeginTurnState());
 
                 gameStatus.setCurrentPlayer(gameStatus.getTurnOrder().get(gameStatus.getCurrentRound()-1));
                 gameStatus.getPlayerController().init();
@@ -111,8 +111,8 @@ public class GameController {
         ExcommunicationTile tileToExecute = gameStatus.getGameBoard().getExcommunicationLane().getExcommunicationTile(currentEra);
         FaithPointsTrack faithPointsTrack = gameStatus.getGameBoard().getFaithPointsTrack();
 
-        ArrayList<Player> players = gameStatus.getTurnOrder();
-        ArrayList<Pawn> excommunicatedPawns = new ArrayList<Pawn>();
+        List<Player> players = gameStatus.getTurnOrder();
+        ArrayList<Pawn> excommunicatedPawns = new ArrayList<>();
 
         for (int i = 0; i < threshold; i++) {
             PawnSlot pawnSlot = faithPointsTrack.getPawnSlot(i);
@@ -152,9 +152,9 @@ public class GameController {
      */
     private void setNewTurnOrder() {
         PlayerColor[] newTurnOrder = gameStatus.getGameBoard().getCouncilPalace().getTurnOrder();
-        ArrayList<Player> oldTurnOrder = gameStatus.getTurnOrder();
-        ArrayList<Player> temporaryTurnOrder = new ArrayList<Player>();
-        ArrayList<Integer> indices = new ArrayList<Integer>();
+        List<Player> oldTurnOrder = gameStatus.getTurnOrder();
+        ArrayList<Player> temporaryTurnOrder = new ArrayList<>();
+        ArrayList<Integer> indices = new ArrayList<>();
 
         for (PlayerColor playerColor : newTurnOrder) {
 

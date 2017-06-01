@@ -15,7 +15,7 @@ public class ValidationActionTurnState implements TurnState {
     /**
      * this method creates an action and if the action is valid the method sets the new state for the PlayerController,
      * that is the executeActionState. If the player decides to skip the action (with the method isPlaceFamilyMemberAction)
-     * this method brings the playerController into the EndTurnTurnState.
+     * this method brings the playerController into the EndTurnState.
      *
      * @param wrapper the playerController reference
      */
@@ -61,7 +61,7 @@ public class ValidationActionTurnState implements TurnState {
         }
 
         else {
-            wrapper.setCurrentTurnState(new EndTurnTurnState());
+            wrapper.setCurrentTurnState(new EndTurnState());
         }
 
     }

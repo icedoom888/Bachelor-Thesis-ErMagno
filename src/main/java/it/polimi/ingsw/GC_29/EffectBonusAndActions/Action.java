@@ -35,7 +35,13 @@ public abstract class Action {
     }
 
     public FamilyPawn getTemporaryPawn() {
+
         return temporaryPawn;
+    }
+
+    public void setFamiliyPawn(FamilyPawn familiyPawnChosen){
+
+        this.temporaryPawn = familiyPawnChosen;
     }
 
 

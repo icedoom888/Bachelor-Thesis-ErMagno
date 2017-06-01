@@ -16,7 +16,7 @@ public class ExecuteActionTurnState implements TurnState {
 
         else{
 
-            wrapper.setCurrentTurnState(new EndTurnTurnState());
+            wrapper.setCurrentTurnState(new EndTurnState());
         }
     }
 }

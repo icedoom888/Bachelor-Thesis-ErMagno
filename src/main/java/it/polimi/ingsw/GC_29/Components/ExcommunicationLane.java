@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Components;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -34,7 +35,7 @@ public class ExcommunicationLane implements Cleanable {
         }
     }
 
-    public ArrayList<Pawn> getExcommunicatedPawns(Era era) {
+    public List<Pawn> getExcommunicatedPawns(Era era) {
         return tileAndPawns.get(era).getPlayerPawns();
 
     }

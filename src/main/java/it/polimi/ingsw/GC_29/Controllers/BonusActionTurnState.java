@@ -14,7 +14,7 @@ public class BonusActionTurnState implements TurnState {
     /**
      * this method creates an action from an ActionEffect gained by the currentPlayer. If the action is valid the method sets the new state for the PlayerController,
      * that is the executeActionState. If the player decides to skip the action (with the method isPlaceFamilyMemberAction)
-     * this method brings the playerController into the EndTurnTurnState if there no more bonusAction for the player, otherwise (if the player skipped the BonusAction and there are
+     * this method brings the playerController into the EndTurnState if there no more bonusAction for the player, otherwise (if the player skipped the BonusAction and there are
      * other BonusAction for the currentPlayer) the state of the playerController remains in the BonusActionTurnState and the next bonusAction is processed.
      *
      * @param wrapper the playerController reference
@@ -70,7 +70,7 @@ public class BonusActionTurnState implements TurnState {
 
         else if(!wrapper.checkPresenceBonusActionEffect()) {
 
-            wrapper.setCurrentTurnState(new EndTurnTurnState());
+            wrapper.setCurrentTurnState(new EndTurnState());
         }
 
         // altrimenti il currentState rimane il BonusActionTurnState!
