@@ -31,22 +31,17 @@ public class WorkAction extends Action {
         this.actionSpaceSelected = workspaceSelected.getActionspace(fieldSelected);
         this.workspaceSelected = workspaceSelected;
         this.fieldSelected = fieldSelected;
-        this.cardsForWorkers = new HashMap<Integer,ArrayList<DevelopmentCard>>();
-        this.effectsToActivate = new ArrayList<Effect>();
+        this.cardsForWorkers = new HashMap<>();
+        this.effectsToActivate = new ArrayList<>();
     }
 
     @Override
     public boolean isPossible(){
-        if(super.isPossible()){
-            if(isFieldAccessible()){
-                if(checkFamilyPresenceInField()) {
-                    if(checkNeutralRule()){
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+
+        return super.isPossible()
+                && isFieldAccessible()
+                && checkFamilyPresenceInField()
+                && checkNeutralRule();
     }
 
 
@@ -67,6 +62,7 @@ public class WorkAction extends Action {
      * @return true if there aren't any player's pawns into the actionSpace, false otherwise
      */
     private boolean checkFamilyPresenceInField() {
+
         for(Pawn pawnPresent : workspaceSelected.getActionspace(fieldSelected).getPawnPlaced().getPlayerPawns()){
             if(((FamilyPawn)pawnPresent).getType()==FamilyPawnType.BONUS){
 
@@ -131,8 +127,8 @@ public class WorkAction extends Action {
             lane = playerStatus.getPersonalBoard().getLane(CardColor.YELLOW);
         }
 
-        HashMap<Integer,ArrayList<DevelopmentCard>> temporaryHash = new HashMap<Integer,ArrayList<DevelopmentCard>>();
-        HashMap<Integer,ArrayList<DevelopmentCard>> finalHash = new HashMap<Integer,ArrayList<DevelopmentCard>>();
+        HashMap<Integer,ArrayList<DevelopmentCard>> temporaryHash = new HashMap<>();
+        HashMap<Integer,ArrayList<DevelopmentCard>> finalHash = new HashMap<>();
         int maxWorkersNeeded = 0;
         int workersNeeded;
 

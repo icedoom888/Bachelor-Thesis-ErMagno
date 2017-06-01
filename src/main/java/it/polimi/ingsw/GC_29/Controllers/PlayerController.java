@@ -1,11 +1,13 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Christian on 19/05/2017.
  */
+
 public class PlayerController {
 
     private TurnState currentTurnState;
@@ -17,7 +19,7 @@ public class PlayerController {
     public PlayerController() {
 
         this.playerStatus = GameStatus.getInstance().getCurrentPlayer().getStatus();
-        currentTurnState = new BeginTurnTurnState();
+        currentTurnState = new BeginTurnState();
 
     }
 
@@ -35,7 +37,7 @@ public class PlayerController {
 
     public void init(){
 
-        while(currentTurnState.getClass() != EndTurnTurnState.class){ // finché non arrivo all'utlimo stato del turno continuo ad eseguire gli stati intermedi
+        while(currentTurnState.getClass() != EndTurnState.class){ // finché non arrivo all'utlimo stato del turno continuo ad eseguire gli stati intermedi
             executeState();
         }
 

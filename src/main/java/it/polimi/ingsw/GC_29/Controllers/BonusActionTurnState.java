@@ -70,7 +70,7 @@ public class BonusActionTurnState implements TurnState {
 
         else if(!wrapper.checkPresenceBonusActionEffect()) {
 
-            wrapper.setCurrentTurnState(new EndTurnTurnState());
+            wrapper.setCurrentTurnState(new EndTurnState());
         }
 
         // altrimenti il currentState rimane il BonusActionTurnState!

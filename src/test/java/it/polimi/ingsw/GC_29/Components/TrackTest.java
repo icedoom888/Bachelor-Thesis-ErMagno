@@ -19,7 +19,7 @@ public class TrackTest {
         Pawn redPawn = new Pawn(PlayerColor.RED);
         Pawn bluePawn = new Pawn(PlayerColor.BLUE);
 
-        ArrayList<Pawn> pawns = new ArrayList<Pawn>();
+        ArrayList<Pawn> pawns = new ArrayList<>();
         pawns.add(redPawn);
         pawns.add(bluePawn);
 

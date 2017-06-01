@@ -61,7 +61,7 @@ public class ValidationActionTurnState implements TurnState {
         }
 
         else {
-            wrapper.setCurrentTurnState(new EndTurnTurnState());
+            wrapper.setCurrentTurnState(new EndTurnState());
         }
 
     }

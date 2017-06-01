@@ -74,7 +74,7 @@ public abstract class Action {
     }
 
     private boolean isActionAvailable() {
-        return Filter.applySpecia(playerStatus, zoneType);
+        return Filter.applySpecial(playerStatus, zoneType);
     }
 
 

@@ -1,8 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 
 /**
  * Created by icedoom on 18/05/17.
@@ -16,7 +14,7 @@ public class PersonalBoard {
     private Lane venturesLane;
     private Lane familyLane;
     private TerritoryLane territoryLane;
-    private EnumMap<CardColor, Lane> laneHashMap;
+    private EnumMap<CardColor, Lane> laneMap;
 
     public PersonalBoard(BonusTile chosenTile, int laneDimension){
         bonusTile = chosenTile;
@@ -24,11 +22,11 @@ public class PersonalBoard {
         venturesLane = new Lane(laneDimension);
         familyLane = new Lane(laneDimension);
         territoryLane = new TerritoryLane(laneDimension);
-        laneHashMap = new EnumMap<CardColor, Lane>(CardColor.class);
-        laneHashMap.put(CardColor.YELLOW, buildingLane);
-        laneHashMap.put(CardColor.PURPLE, venturesLane);
-        laneHashMap.put(CardColor.GREEN, territoryLane);
-        laneHashMap.put(CardColor.BLUE, familyLane);
+        laneMap = new EnumMap<CardColor, Lane>(CardColor.class);
+        laneMap.put(CardColor.YELLOW, buildingLane);
+        laneMap.put(CardColor.PURPLE, venturesLane);
+        laneMap.put(CardColor.GREEN, territoryLane);
+        laneMap.put(CardColor.BLUE, familyLane);
     }
 
     public BonusTile getBonusTile() {
@@ -52,7 +50,7 @@ public class PersonalBoard {
     }
 
     public Lane getLane(CardColor cardColor) {
-        return laneHashMap.get(cardColor);
+        return laneMap.get(cardColor);
     }
 
 }

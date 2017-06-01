@@ -19,13 +19,13 @@ public class GameBoardCreator {
 
         // Ospitare i mendicanti
 
-        ArrayList<Effect> immediateEffectsOIM = new ArrayList<Effect>();
+        ArrayList<Effect> immediateEffectsOIM = new ArrayList<>();
         immediateEffectsOIM.add(new ObtainOnConditionEffect(new GoodSet(1,1,1,1,1,1,1), CardColor.BLUE));
         immediateEffectsOIM.add(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)));
 
 
 
-        ArrayList<Effect> permanentEffectsOIM = new ArrayList<Effect>();
+        ArrayList<Effect> permanentEffectsOIM = new ArrayList<>();
         //permanentEffectsOIM.add(new ActionEffect(ZoneType.SKIPTURN, 4, new Discount(new GoodSet(), new GoodSet(),false)));
 
 

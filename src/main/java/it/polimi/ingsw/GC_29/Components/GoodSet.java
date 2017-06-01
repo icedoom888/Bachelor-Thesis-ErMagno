@@ -36,17 +36,13 @@ public class GoodSet {
         this.goodSetMap = new EnumMap<>(oldset.goodSetMap);
     }
 
-    public EnumMap<GoodType, Integer> getEnumMapGoodSet() {
+    public Map<GoodType, Integer> getMapGoodSet() {
         return goodSetMap;
     }
 
     public Good getGood(GoodType type){
         int amount = goodSetMap.get(type);
         return new Good(type, amount);
-    }
-
-    public void setGoodSetMap(EnumMap<GoodType, Integer> goodSetMap) {
-        this.goodSetMap = goodSetMap;
     }
 
     public int getGoodAmount(GoodType type){
@@ -60,13 +56,13 @@ public class GoodSet {
 
     public void addGoodSet(GoodSet goodSetToAdd){
         for (GoodType type: GoodType.values()){
-            this.goodSetMap.put(type, this.goodSetMap.get(type)+ goodSetToAdd.getEnumMapGoodSet().get(type));
+            this.goodSetMap.put(type, this.goodSetMap.get(type)+ goodSetToAdd.getMapGoodSet().get(type));
         }
     }
 
     public void subGoodSet(GoodSet goodSetToSub){
         for (GoodType type: GoodType.values()) {
-            this.goodSetMap.put(type, this.goodSetMap.get(type) - goodSetToSub.getEnumMapGoodSet().get(type));
+            this.goodSetMap.put(type, this.goodSetMap.get(type) - goodSetToSub.getMapGoodSet().get(type));
         }
     }
 
@@ -79,7 +75,7 @@ public class GoodSet {
     public boolean enoughResources (GoodSet compareSet) {
         boolean enough = true;
         for (GoodType type : GoodType.values()) {
-            enough = enough && this.goodSetMap.get(type) >= compareSet.getEnumMapGoodSet().get(type);
+            enough = enough && this.goodSetMap.get(type) >= compareSet.getMapGoodSet().get(type);
         }
         return enough;
     }

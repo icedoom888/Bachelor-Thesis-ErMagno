@@ -1,12 +1,16 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Filter;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by AlbertoPennino on 22/05/2017.
@@ -46,7 +50,7 @@ public class GameController {
             while (gameStatus.getCurrentRound() < 4) {
 
                 //TODO: chiedere se coerente con modello di Christian - così non andrebbe nel costruttore di player controller
-                gameStatus.getPlayerController().setCurrentTurnState(new BeginTurnTurnState());
+                gameStatus.getPlayerController().setCurrentTurnState(new BeginTurnState());
 
                 gameStatus.setCurrentPlayer(gameStatus.getTurnOrder().get(gameStatus.getCurrentRound()-1));
                 gameStatus.getPlayerController().init();
@@ -78,10 +82,44 @@ public class GameController {
     }
 
 
-
+    /**
+     * endGame calculates the vicotryPoints of all the players and chooses the winner
+     */
     private void endGame() {
 
-        //TODO - impl
+        List<Player> players = gameStatus.getTurnOrder();
+        GameBoard gameBoard = gameStatus.getGameBoard();
+
+        Player winner = null;
+        int winningPoints = 0;
+
+        for (Player player : players) {
+            PlayerStatus playerStatus = player.getStatus();
+
+            if (!Filter.applySpecial(playerStatus, CardColor.PURPLE)) {
+                DevelopmentCard[] cards =  playerStatus.getPersonalBoard().getLane(CardColor.PURPLE).getCards();
+
+                for (DevelopmentCard card : cards) {
+
+                    for (Effect effect : card.getPermanentEffect()) {
+                        effect.execute(playerStatus);
+                    }
+                }
+            }
+
+            /* non mi piace
+            Pawn pawn = player.getMarkerDiscs()[0];
+            playersVictoryPoints.put(player, pawnMap.get(pawn)); */
+
+            if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS) > winningPoints) {
+                winner = player;
+            }
+        }
+
+        System.out.println("The winner is... " + winner);
+
+        //TODO: clear game
+
     }
 
 
@@ -111,7 +149,7 @@ public class GameController {
         ExcommunicationTile tileToExecute = gameStatus.getGameBoard().getExcommunicationLane().getExcommunicationTile(currentEra);
         FaithPointsTrack faithPointsTrack = gameStatus.getGameBoard().getFaithPointsTrack();
 
-        ArrayList<Player> players = gameStatus.getTurnOrder();
+        List<Player> players = gameStatus.getTurnOrder();
         ArrayList<Pawn> excommunicatedPawns = new ArrayList<Pawn>();
 
         for (int i = 0; i < threshold; i++) {
@@ -127,9 +165,9 @@ public class GameController {
                     if (excommunicatedPawn.getPlayerColor() == player.getPlayerColor()) {
                         PlayerStatus playerStatus = player.getStatus();
 
-                        if (tileToExecute.getMalusOnAction() != null) playerStatus.getBonusAndMalusOnAction().add(tileToExecute.getMalusOnAction());
-                        if (tileToExecute.getMalusOnGoods() != null) playerStatus.getBonusAndMalusOnGoods().add(tileToExecute.getMalusOnGoods());
-                        if (tileToExecute.getMalusOnCost() != null) playerStatus.getBonusAndMalusOnCost().add(tileToExecute.getMalusOnCost());
+                        tileToExecute.execute(playerStatus);
+
+
                     }
                 }
 
@@ -152,7 +190,7 @@ public class GameController {
      */
     private void setNewTurnOrder() {
         PlayerColor[] newTurnOrder = gameStatus.getGameBoard().getCouncilPalace().getTurnOrder();
-        ArrayList<Player> oldTurnOrder = gameStatus.getTurnOrder();
+        List<Player> oldTurnOrder = gameStatus.getTurnOrder();
         ArrayList<Player> temporaryTurnOrder = new ArrayList<Player>();
         ArrayList<Integer> indices = new ArrayList<Integer>();
 
