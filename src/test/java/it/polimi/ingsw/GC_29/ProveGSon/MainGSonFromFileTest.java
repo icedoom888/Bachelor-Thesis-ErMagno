@@ -3,22 +3,21 @@ package it.polimi.ingsw.GC_29.ProveGSon;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import java.awt.*;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
+
+import static org.testng.Assert.*;
 
 /**
- * Created by Lorenzotara on 22/05/17.
+ * Created by AlbertoPennino on 01/06/2017.
  */
-public class MainGSonFromFile {
+public class MainGSonFromFileTest {
 
-    public static void main(String[] args) throws FileNotFoundException {
-
+    @Test
+    public void testMain() throws Exception {
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
                 .registerSubtype(ObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect")
@@ -52,7 +51,5 @@ public class MainGSonFromFile {
         System.out.println(card);
 
     }
-
-
 
 }
