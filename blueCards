@@ -1,0 +1,1299 @@
+[
+{
+    "name": "Artigiano",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "bonusAndMalusOnAction": {
+          "zoneType": "PRODUCTION",
+          "diceIncrementOrReduction": 2
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Condottiero",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 2,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 3,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "bonusAndMalusOnAction": {
+          "zoneType": "GREENTOWER",
+          "diceIncrementOrReduction": 2
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+{
+    "name": "Badessa",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "ANYTOWER",
+        "actionValue": 4
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Dama",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "bonusAndMalusOnAction": {
+          "zoneType": "BLUETOWER",
+          "diceIncrementOrReduction": 2
+        },
+        "bonusAndMalusOnCost": {
+          "zoneType": "BLUETOWER",
+          "firstDiscount": {
+            "goodSetMap": {
+              "WOOD": 0,
+              "STONE": 0,
+              "COINS": 1,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 0,
+              "MILITARYPOINTS": 0,
+              "FAITHPOINTS": 0
+            }
+          },
+          "alternative": false
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Costruttore",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "bonusAndMalusOnAction": {
+          "zoneType": "YELLOWTOWER",
+          "diceIncrementOrReduction": 2
+        },
+        "bonusAndMalusOnCost": {
+          "zoneType": "YELLOWTOWER",
+          "firstDiscount": {
+            "goodSetMap": {
+              "WOOD": 1,
+              "STONE": 0,
+              "COINS": 0,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 0,
+              "MILITARYPOINTS": 0,
+              "FAITHPOINTS": 0
+            }
+          },
+          "secondDiscount": {
+            "goodSetMap": {
+              "WOOD": 0,
+              "STONE": 1,
+              "COINS": 0,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 0,
+              "MILITARYPOINTS": 0,
+              "FAITHPOINTS": 0
+            }
+          },
+          "alternative": true
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Cavaliere",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 2,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "bonusAndMalusOnAction": {
+          "zoneType": "PURPLETOWER",
+          "diceIncrementOrReduction": 2
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Contadino",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "bonusAndMalusOnAction": {
+          "zoneType": "HARVEST",
+          "diceIncrementOrReduction": 2
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+ {
+    "name": "Messo Papale",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 5,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 3
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Fattore",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "bonusAndMalusOnAction": {
+          "zoneType": "HARVEST",
+          "diceIncrementOrReduction": 3
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Studioso",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "bonusAndMalusOnAction": {
+          "zoneType": "PRODUCTION",
+          "diceIncrementOrReduction": 3
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Capitano",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "GREENTOWER",
+        "actionValue": 6
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Architetto",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "YELLOWTOWER",
+        "actionValue": 6,
+        "bonusAndMalusOnCost": {
+          "zoneType": "YELLOWTOWER",
+          "firstDiscount": {
+            "goodSetMap": {
+              "WOOD": 1,
+              "STONE": 1,
+              "COINS": 0,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 0,
+              "MILITARYPOINTS": 0,
+              "FAITHPOINTS": 0
+            }
+          },
+          "alternative": false
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Eroe",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "PURPLETOWER",
+        "actionValue": 6
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Mecenate",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "BLUETOWER",
+        "actionValue": 6,
+        "bonusAndMalusOnCost": {
+          "zoneType": "BLUETOWER",
+          "firstDiscount": {
+            "goodSetMap": {
+              "WOOD": 0,
+              "STONE": 0,
+              "COINS": 2,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 0,
+              "MILITARYPOINTS": 0,
+              "FAITHPOINTS": 0
+            }
+          },
+          "alternative": false
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Messo Reale",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 5,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 3,
+        "effectsChosen": [
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+{
+    "name": "Ambasciatore",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 6,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "ANYTOWER",
+        "actionValue": 7
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Vescovo",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 5,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "PRODUCTION",
+        "actionValue": 4
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": “Cardinale”,
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "HARVEST",
+        "actionValue": 4
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 2
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Nobile",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 6,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "goodsForEachCondition": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 2,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "cardCondition": "GREEN",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Governatore",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 6,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "goodsForEachCondition": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 2,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "cardCondition": "YELLOW",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Cortigiana",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 7,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "goodsForEachCondition": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 2,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "cardCondition": "BLUE",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Araldo",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 6,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "goodsForEachCondition": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 2,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "cardCondition": "PURPLE",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Generale",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 5,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "goodsForEachCondition": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 1,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "goodsCondition": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        },
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  }
+]
