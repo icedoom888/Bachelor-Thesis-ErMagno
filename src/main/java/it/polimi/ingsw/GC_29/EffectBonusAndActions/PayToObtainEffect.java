@@ -8,15 +8,14 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 /**
  * Created by Icedoom on 18/05/2017.
  */
-public class PayToObtainEffect extends ObtainEffect {
+public class PayToObtainEffect implements Effect{
 
     private GoodSet cost;
+    private Effect effect;
 
-    public PayToObtainEffect(GoodSet cost, GoodSet goodsObtained) {
-
-        super(goodsObtained); // va chiamato poichè non esiste costruttore di defaut classe padre
-
+    public PayToObtainEffect(GoodSet cost, Effect effect) {
         this.cost = cost;
+        this.effect= effect;
     }
 
     /** The execute of a @PayToObtainEffect first check's if the cost is payable based on the player's ActualGoodSet
@@ -35,7 +34,7 @@ public class PayToObtainEffect extends ObtainEffect {
 
             System.out.println("The actualGoodSet after the detraction is: "+ "\n"+status.getActualGoodSet());
 
-            super.execute(status);
+            effect.execute(status);
         }
 
         else{
@@ -78,7 +77,7 @@ public class PayToObtainEffect extends ObtainEffect {
     public String toString() {
         return "PayToObtainEffect{" +
                 "cost=" + cost +
-                ", goodsObtained=" + goodsObtained +
+                ", effect=" + effect +
                 '}';
     }
 }

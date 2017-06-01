@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.EffectBonusAndActions;
+/**package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Player.PlayerStatus;
@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 /**
  * Created by AlbertoPennino on 20/05/2017.
  */
-public class PayToObtainEffectTest {
+/**public class PayToObtainEffectTest {
     @Test
     public void testExecute() throws Exception{
         PlayerStatus testStatus = new PlayerStatus(null, null);
@@ -34,3 +34,4 @@ public class PayToObtainEffectTest {
 
     }
 }
+*/

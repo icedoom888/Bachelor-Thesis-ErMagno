@@ -188,115 +188,117 @@ public class CardCreator {
             String answer = in.nextLine();
 
             if (answer.equals("y")){
-
-                System.out.println("Insert effect type:");
-                String effectType = in.nextLine();
-                switch (effectType){
-
-                    case "ObtainEffect":
-                        System.out.println("Creation goodsObtained GoodSet..");
-                        ObtainEffect obtainEffect = new ObtainEffect(createGoodSet(in));
-                        effectlist.add(obtainEffect);
-                        break;
-
-                    case "PayToObtainEffect":
-                        System.out.println("Creation cost goodset..");
-                        GoodSet cost = createGoodSet(in);
-                        System.out.println("Creation goodsObtained GoodSet..");
-                        GoodSet goodsObtained = createGoodSet(in);
-                        PayToObtainEffect payToObtainEffect = new PayToObtainEffect(cost,goodsObtained);
-                        effectlist.add(payToObtainEffect);
-                        break;
-
-                    case "ObtainOnConditionEffect":
-                        System.out.println("Creation goodsForEachCondition GoodSet..");
-                        GoodSet goodsForEachCondition = createGoodSet(in);
-                        System.out.println("Which kind of condition?");
-                        Scanner in_3 = new Scanner(System.in);
-                        String condition = in_3.nextLine();
-                        CardColor color = null;
-                        switch(condition){
-                            case "card":
-                                color = createColor(in);
-                                ObtainOnConditionEffect obtainOnConditionEffect1 = new ObtainOnConditionEffect(goodsForEachCondition,color);
-                                effectlist.add(obtainOnConditionEffect1);
-                                break;
-                            case "goods":
-                                System.out.println("Creation goodsCondition GoodSet..");
-                                GoodSet goodsOnCondition = createGoodSet(in);
-                                ObtainOnConditionEffect obtainOnConditionEffect2 = new ObtainOnConditionEffect(goodsForEachCondition,goodsOnCondition);
-                                effectlist.add(obtainOnConditionEffect2);
-                                break;
-                        }
-                        break;
-
-                    case "BonusEffect":
-                        BonusAndMalusOnAction bonusAndMalusOnAction = null;
-                        BonusAndMalusOnGoods bonusAndMalusOnGoods = null;
-                        BonusAndMalusOnCost bonusAndMalusOnCost = null;
-
-
-                        System.out.println("Does it have a BonusAndMalusOnAction?");
-                        String answer1 = in.nextLine();
-                        if (answer1.equals("y")){
-                            System.out.println("Creation BonusAndMalusOnAction..");
-                            ZoneType actionType = createZoneType(in);
-                            System.out.println("Insert diceIncrementOrReduction:");
-                            int diceIncrementOrReduction = in.nextInt();
-                            bonusAndMalusOnAction = new BonusAndMalusOnAction(actionType,diceIncrementOrReduction);
-                        }
-
-                        System.out.println("Does it have a BonusAndMalusOnGoods?");
-                        Scanner in_1 = new Scanner(System.in);
-                        String answer2 = in_1.nextLine();
-                        if(answer2.equals("y")){
-                            System.out.println("Creation BonusAndMalusOnGoods..");
-                            System.out.println("Creation goodSetBonusMalus GoodSet..");
-                            GoodSet goodSetBonusMalus = createGoodSet(in);
-                            bonusAndMalusOnGoods = new BonusAndMalusOnGoods(goodSetBonusMalus);
-                        }
-
-                        System.out.println("Does it have a BonusAndMalusOnCost?");
-                        Scanner in_2 = new Scanner(System.in);
-                        String answer3 = in_2.nextLine();
-                        if(answer3.equals("y")) {
-                            bonusAndMalusOnCost = createBonusAndMalusOnCost(in);
-                        }
-
-                        BonusEffect bonusEffect = new BonusEffect(bonusAndMalusOnAction,bonusAndMalusOnGoods,bonusAndMalusOnCost);
-                        effectlist.add(bonusEffect);
-                        break;
-
-                    case "ActionEffect":
-                        ZoneType actionType = createZoneType(in);
-
-                        System.out.println("Insert actionValue int:");
-                        int actionValue = in.nextInt();
-
-                        BonusAndMalusOnCost bonusAndMalusOnCost1 = null;
-                        System.out.println("Does it have a BonusAndMalusOnCost?");
-                        Scanner in_4 = new Scanner(System.in);
-                        String answer4 = in_4.nextLine();
-                        if(answer4.equals("y")) {
-                            bonusAndMalusOnCost1 = createBonusAndMalusOnCost(in);
-                        }
-
-                        ActionEffect actionEffect = new ActionEffect(actionType,actionValue,bonusAndMalusOnCost1);
-                        effectlist.add(actionEffect);
-                        break;
-                    case "CouncilPrivilegeEffect":
-                        System.out.println("Insert numberOfCouncilPrivileges int:");
-                        int numberOfCouncilPrivileges = in.nextInt();
-                        CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(numberOfCouncilPrivileges);
-                        effectlist.add(councilPrivilegeEffect);
-                        break;
-
-                }
+                effectlist.add(createEffect(in));
             }
             if(answer.equals("n")){
                 return effectlist;
             }
         }
+    }
+
+    public static Effect createEffect(Scanner in) {
+        System.out.println("Insert effect type:");
+        String effectType = in.nextLine();
+        switch (effectType) {
+
+            case "ObtainEffect":
+                System.out.println("Creation goodsObtained GoodSet..");
+                ObtainEffect obtainEffect = new ObtainEffect(createGoodSet(in));
+                return obtainEffect;
+
+            case "PayToObtainEffect":
+                System.out.println("Creation cost goodset..");
+                GoodSet cost = createGoodSet(in);
+                System.out.println("Creation effect..");
+                Effect effect = createEffect(in);
+                PayToObtainEffect payToObtainEffect = new PayToObtainEffect(cost, effect);
+                return payToObtainEffect;
+
+
+            case "ObtainOnConditionEffect":
+                System.out.println("Creation goodsForEachCondition GoodSet..");
+                GoodSet goodsForEachCondition = createGoodSet(in);
+                System.out.println("Which kind of condition?");
+                Scanner in_3 = new Scanner(System.in);
+                String condition = in_3.nextLine();
+                CardColor color = null;
+                switch (condition) {
+                    case "card":
+                        color = createColor(in);
+                        ObtainOnConditionEffect obtainOnConditionEffect1 = new ObtainOnConditionEffect(goodsForEachCondition, color);
+                        return obtainOnConditionEffect1;
+
+                    case "goods":
+                        System.out.println("Creation goodsCondition GoodSet..");
+                        GoodSet goodsOnCondition = createGoodSet(in);
+                        ObtainOnConditionEffect obtainOnConditionEffect2 = new ObtainOnConditionEffect(goodsForEachCondition, goodsOnCondition);
+                        return obtainOnConditionEffect2;
+                }
+                break;
+
+            case "BonusEffect":
+                BonusAndMalusOnAction bonusAndMalusOnAction = null;
+                BonusAndMalusOnGoods bonusAndMalusOnGoods = null;
+                BonusAndMalusOnCost bonusAndMalusOnCost = null;
+
+
+                System.out.println("Does it have a BonusAndMalusOnAction?");
+                String answer1 = in.nextLine();
+                if (answer1.equals("y")) {
+                    System.out.println("Creation BonusAndMalusOnAction..");
+                    ZoneType actionType = createZoneType(in);
+                    System.out.println("Insert diceIncrementOrReduction:");
+                    int diceIncrementOrReduction = in.nextInt();
+                    bonusAndMalusOnAction = new BonusAndMalusOnAction(actionType, diceIncrementOrReduction);
+                }
+
+                System.out.println("Does it have a BonusAndMalusOnGoods?");
+                Scanner in_1 = new Scanner(System.in);
+                String answer2 = in_1.nextLine();
+                if (answer2.equals("y")) {
+                    System.out.println("Creation BonusAndMalusOnGoods..");
+                    System.out.println("Creation goodSetBonusMalus GoodSet..");
+                    GoodSet goodSetBonusMalus = createGoodSet(in);
+                    bonusAndMalusOnGoods = new BonusAndMalusOnGoods(goodSetBonusMalus);
+                }
+
+                System.out.println("Does it have a BonusAndMalusOnCost?");
+                Scanner in_2 = new Scanner(System.in);
+                String answer3 = in_2.nextLine();
+                if (answer3.equals("y")) {
+                    bonusAndMalusOnCost = createBonusAndMalusOnCost(in);
+                }
+
+                BonusEffect bonusEffect = new BonusEffect(bonusAndMalusOnAction, bonusAndMalusOnGoods, bonusAndMalusOnCost);
+                return bonusEffect;
+
+            case "ActionEffect":
+                ZoneType actionType = createZoneType(in);
+
+                System.out.println("Insert actionValue int:");
+                int actionValue = in.nextInt();
+
+                BonusAndMalusOnCost bonusAndMalusOnCost1 = null;
+                System.out.println("Does it have a BonusAndMalusOnCost?");
+                Scanner in_4 = new Scanner(System.in);
+                String answer4 = in_4.nextLine();
+                if (answer4.equals("y")) {
+                    bonusAndMalusOnCost1 = createBonusAndMalusOnCost(in);
+                }
+
+                ActionEffect actionEffect = new ActionEffect(actionType, actionValue, bonusAndMalusOnCost1);
+                return actionEffect;
+
+            case "CouncilPrivilegeEffect":
+                System.out.println("Insert numberOfCouncilPrivileges int:");
+                int numberOfCouncilPrivileges = in.nextInt();
+                CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(numberOfCouncilPrivileges);
+                return councilPrivilegeEffect;
+
+            default:
+                return createEffect(in);
+        }
+        return null;
     }
 
     public static BonusAndMalusOnCost createBonusAndMalusOnCost(Scanner in){
