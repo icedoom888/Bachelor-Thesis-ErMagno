@@ -30,7 +30,7 @@ public class PayToObtainEffect implements Effect{
 
             System.out.println("Resources sufficient to activate!");
 
-            status.updateGoodSet(cost);
+            status.getActualGoodSet().subGoodSet(cost);
 
             System.out.println("The actualGoodSet after the detraction is: "+ "\n"+status.getActualGoodSet());
 
@@ -53,23 +53,11 @@ public class PayToObtainEffect implements Effect{
      */
     private boolean checkSufficientGoods(PlayerStatus status){
 
-        GoodSet newGoodset = new GoodSet();
+        GoodSet playerGoodSet = status.getActualGoodSet();
 
-        newGoodset.addGoodSet(status.getActualGoodSet());
-
-        newGoodset.addGoodSet(cost);
-
-        for(GoodType type : GoodType.values()){
-
-            if(newGoodset.getGoodAmount(type)<0){
-
-                return false;
-
-            }
-
-        }
-
-        return true;
+        if (playerGoodSet.enoughResources(cost)){
+            return true;
+        } else return false;
 
     }
 

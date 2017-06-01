@@ -216,8 +216,8 @@ public class CardCreator {
 
 
             case "ObtainOnConditionEffect":
-                System.out.println("Creation goodsForEachCondition GoodSet..");
-                GoodSet goodsForEachCondition = createGoodSet(in);
+                System.out.println("Creation effectOnCondition GoodSet..");
+                Effect effectOnCondition = createEffect(in);
                 System.out.println("Which kind of condition?");
                 Scanner in_3 = new Scanner(System.in);
                 String condition = in_3.nextLine();
@@ -225,13 +225,13 @@ public class CardCreator {
                 switch (condition) {
                     case "card":
                         color = createColor(in);
-                        ObtainOnConditionEffect obtainOnConditionEffect1 = new ObtainOnConditionEffect(goodsForEachCondition, color);
+                        ObtainOnConditionEffect obtainOnConditionEffect1 = new ObtainOnConditionEffect(effectOnCondition, color);
                         return obtainOnConditionEffect1;
 
                     case "goods":
                         System.out.println("Creation goodsCondition GoodSet..");
                         GoodSet goodsOnCondition = createGoodSet(in);
-                        ObtainOnConditionEffect obtainOnConditionEffect2 = new ObtainOnConditionEffect(goodsForEachCondition, goodsOnCondition);
+                        ObtainOnConditionEffect obtainOnConditionEffect2 = new ObtainOnConditionEffect(effectOnCondition, goodsOnCondition);
                         return obtainOnConditionEffect2;
                 }
                 break;

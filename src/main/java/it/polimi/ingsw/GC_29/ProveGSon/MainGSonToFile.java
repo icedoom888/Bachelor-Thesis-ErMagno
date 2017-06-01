@@ -26,7 +26,7 @@ public class MainGSonToFile {
         // Ospitare i mendicanti
 
         ArrayList<Effect> immediateEffectsOIM = new ArrayList<>();
-        immediateEffectsOIM.add(new ObtainOnConditionEffect(new GoodSet(1,1,1,1,1,1,1), CardColor.BLUE));
+        immediateEffectsOIM.add(new ObtainOnConditionEffect(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)), CardColor.BLUE));
         immediateEffectsOIM.add(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)));
 
 

@@ -11,11 +11,11 @@ import org.testng.annotations.Test;
 public class ObtainOnConditionEffectTest {
     @Test
     public void testExecute() throws Exception{
-        GoodSet goodsForEachCondition_1 = new GoodSet(0,2,0,0,0,0,0);
-        GoodSet goodsForEachCondition_2 = new GoodSet(1,1,1,1,1,1,1);
+        Effect effectForEachCondition_1 = new ObtainEffect(new GoodSet(0,2,0,0,0,0,0));
+        Effect effectForEachCondition_2 = new ObtainEffect(new GoodSet(1,1,1,1,1,1,1));
         GoodSet goodsCondition_2 = new GoodSet(4,0,0,0,0,0,0);
-        ObtainOnConditionEffect test_1 = new ObtainOnConditionEffect(goodsForEachCondition_1, CardColor.GREEN);
-        ObtainOnConditionEffect test_2 = new ObtainOnConditionEffect(goodsForEachCondition_2, goodsCondition_2);
+        ObtainOnConditionEffect test_1 = new ObtainOnConditionEffect(effectForEachCondition_1, CardColor.GREEN);
+        ObtainOnConditionEffect test_2 = new ObtainOnConditionEffect(effectForEachCondition_2, goodsCondition_2);
 
         PlayerStatus testStatus = new PlayerStatus(null, null);
         GoodSet actualGoodSet = new GoodSet(9,0,0,0,0,0,0);

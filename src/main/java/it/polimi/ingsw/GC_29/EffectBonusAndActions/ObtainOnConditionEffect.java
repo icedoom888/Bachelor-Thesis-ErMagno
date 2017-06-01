@@ -11,28 +11,30 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
  */
 public class ObtainOnConditionEffect extends ObtainEffect{
 
-    private GoodSet goodsForEachCondition;
+    //TODO da rivedere, i metodi di evaluate sono da unire, c'è un multiplier = 100 che non deve esistere
+
+    private Effect effectForEachCondition;
     private CardColor cardCondition;
     private GoodSet goodsCondition;
 
 
 
-    public ObtainOnConditionEffect(GoodSet goodsForEachCondition, CardColor cardCondition) {
+    public ObtainOnConditionEffect(Effect effectForEachCondition, CardColor cardCondition) {
 
         super();
 
-        this.goodsForEachCondition = goodsForEachCondition;
+        this.effectForEachCondition = effectForEachCondition;
 
         this.cardCondition = cardCondition;
 
         this.goodsCondition = null;
     }
 
-    public ObtainOnConditionEffect(GoodSet goodsForEachCondition, GoodSet goodsCondition){
+    public ObtainOnConditionEffect(Effect effectForEachCondition, GoodSet goodsCondition){
 
         super();
 
-        this.goodsForEachCondition = goodsForEachCondition;
+        this.effectForEachCondition = effectForEachCondition;
 
         this.cardCondition = null;
 
@@ -67,7 +69,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
 
     /** evaluateCardCondition looks in the playerstatus at the number of cards of the same color as the cardCondition,
      * that number is the multiplier.
-     * The multiplier will be multiplied for the @goodsForEachCondition attribute in order to calculate the goodsObtain attribute
+     * The multiplier will be multiplied for the @effectForEachCondition attribute in order to calculate the goodsObtain attribute
      * @param status
      */
     private void evaluateCardCondition(PlayerStatus status){
@@ -88,15 +90,15 @@ public class ObtainOnConditionEffect extends ObtainEffect{
         if(cardCondition==CardColor.GREEN){
             multiplier = status.getNumberOfCardsOwned(CardColor.GREEN);
         }
-        for(GoodType type : GoodType.values()) {
-            goodsObtained.getMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
+        for (int i = 0; i < multiplier; i++) {
+            effectForEachCondition.execute(status);
         }
     }
 
     /**evaluateGoodsCondition looks in the playerstatus at the @actualGoodSet attribute
      * By dividing it by the @goodsCondition attribute it calculates the multiplier:
      * the multiplier is the lowest number got from the division.
-     * The multiplier will be multiplied for the @goodsForEachCondition attribute in order to calculate the goodsObtain attribute
+     * The multiplier will be multiplied for the @effectForEachCondition attribute in order to calculate the goodsObtain attribute
      * @param status
      */
     private void evaluateGoodsCondition(PlayerStatus status){
@@ -117,16 +119,15 @@ public class ObtainOnConditionEffect extends ObtainEffect{
                 }
             }
         }
-        for(GoodType type : GoodType.values()) {
-
-            goodsObtained.getMapGoodSet().put(type,goodsForEachCondition.getGoodAmount(type)*multiplier);
+        for (int i = 0; i < multiplier; i++) {
+            effectForEachCondition.execute(status);
         }
     }
 
     @Override
     public String toString() {
         return "ObtainOnConditionEffect{" +
-                "goodsForEachCondition=" + goodsForEachCondition +
+                "effectForEachCondition=" + effectForEachCondition +
                 ", cardCondition=" + cardCondition +
                 ", goodsCondition=" + goodsCondition +
                 ", goodsObtained=" + goodsObtained +

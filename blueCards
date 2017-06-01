@@ -1001,7 +1001,7 @@
     "immediateEffect": [
       {
         "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "goodsForEachCondition": {
+        "effectForEachCondition": {
           "goodSetMap": {
             "WOOD": 0,
             "STONE": 0,
@@ -1065,7 +1065,7 @@
     "immediateEffect": [
       {
         "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "goodsForEachCondition": {
+        "effectForEachCondition": {
           "goodSetMap": {
             "WOOD": 0,
             "STONE": 0,
@@ -1129,7 +1129,7 @@
     "immediateEffect": [
       {
         "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "goodsForEachCondition": {
+        "effectForEachCondition": {
           "goodSetMap": {
             "WOOD": 0,
             "STONE": 0,
@@ -1193,7 +1193,7 @@
     "immediateEffect": [
       {
         "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "goodsForEachCondition": {
+        "effectForEachCondition": {
           "goodSetMap": {
             "WOOD": 0,
             "STONE": 0,
@@ -1257,7 +1257,7 @@
     "immediateEffect": [
       {
         "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "goodsForEachCondition": {
+        "effectForEachCondition": {
           "goodSetMap": {
             "WOOD": 0,
             "STONE": 0,
