@@ -104,7 +104,59 @@
     "withActionValue": false,
     "actionValue": 0
   },
-{
+  {
+    "name": "Predicatore",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 2,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 4
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
     "name": "Badessa",
     "era": "FIRST",
     "cardCost": {
@@ -390,7 +442,7 @@
     "withActionValue": false,
     "actionValue": 0
   },
- {
+  {
     "name": "Messo Papale",
     "era": "SECOND",
     "cardCost": {
@@ -802,8 +854,8 @@
     "withActionValue": false,
     "actionValue": 0
   },
-{
-    "name": "Ambasciatore",
+  {
+    "name": "Nobile",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -836,16 +888,291 @@
     "color": "BLUE",
     "immediateEffect": [
       {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "effectForEachCondition": {
+          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "goodsObtained": {
+            "goodSetMap": {
+              "WOOD": 0,
+              "STONE": 0,
+              "COINS": 0,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 2,
+              "MILITARYPOINTS": 0,
+              "FAITHPOINTS": 0
+            }
+          }
+        },
+        "cardCondition": "GREEN",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Governatore",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 6,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "effectForEachCondition": {
+          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "goodsObtained": {
+            "goodSetMap": {
+              "WOOD": 0,
+              "STONE": 0,
+              "COINS": 0,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 2,
+              "MILITARYPOINTS": 0,
+              "FAITHPOINTS": 0
+            }
+          }
+        },
+        "cardCondition": "YELLOW",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Cortigiana",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 7,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "effectForEachCondition": {
+          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "goodsObtained": {
+            "goodSetMap": {
+              "WOOD": 0,
+              "STONE": 0,
+              "COINS": 0,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 2,
+              "MILITARYPOINTS": 0,
+              "FAITHPOINTS": 0
+            }
+          }
+        },
+        "cardCondition": "BLUE",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Araldo",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 6,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "effectForEachCondition": {
+          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "goodsObtained": {
+            "goodSetMap": {
+              "WOOD": 0,
+              "STONE": 0,
+              "COINS": 0,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 2,
+              "MILITARYPOINTS": 0,
+              "FAITHPOINTS": 0
+            }
+          }
+        },
+        "cardCondition": "PURPLE",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Cardinale",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
         "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
-        "type": "ANYTOWER",
-        "actionValue": 7
+        "type": "HARVEST",
+        "actionValue": 4
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
-        "numberOfCouncilPrivileges": 1,
-        "effectsChosen": [
-          null
-        ]
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 2
+          }
+        }
       }
     ],
     "permanentEffect": [],
@@ -910,319 +1237,6 @@
     "actionValue": 0
   },
   {
-    "name": “Cardinale”,
-    "era": "THIRD",
-    "cardCost": {
-      "withPrice": true,
-      "alternative": false,
-      "mainCost": {
-        "cost": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 4,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        },
-        "necessaryResources": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        }
-      }
-    },
-    "color": "BLUE",
-    "immediateEffect": [
-      {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
-        "type": "HARVEST",
-        "actionValue": 4
-      },
-      {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
-        "goodsObtained": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 2
-          }
-        }
-      }
-    ],
-    "permanentEffect": [],
-    "withActionValue": false,
-    "actionValue": 0
-  },
-  {
-    "name": "Nobile",
-    "era": "THIRD",
-    "cardCost": {
-      "withPrice": true,
-      "alternative": false,
-      "mainCost": {
-        "cost": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 6,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        },
-        "necessaryResources": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        }
-      }
-    },
-    "color": "BLUE",
-    "immediateEffect": [
-      {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "effectForEachCondition": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 2,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        },
-        "cardCondition": "GREEN",
-        "goodsObtained": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        }
-      }
-    ],
-    "permanentEffect": [],
-    "withActionValue": false,
-    "actionValue": 0
-  },
-  {
-    "name": "Governatore",
-    "era": "THIRD",
-    "cardCost": {
-      "withPrice": true,
-      "alternative": false,
-      "mainCost": {
-        "cost": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 6,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        },
-        "necessaryResources": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        }
-      }
-    },
-    "color": "BLUE",
-    "immediateEffect": [
-      {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "effectForEachCondition": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 2,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        },
-        "cardCondition": "YELLOW",
-        "goodsObtained": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        }
-      }
-    ],
-    "permanentEffect": [],
-    "withActionValue": false,
-    "actionValue": 0
-  },
-  {
-    "name": "Cortigiana",
-    "era": "THIRD",
-    "cardCost": {
-      "withPrice": true,
-      "alternative": false,
-      "mainCost": {
-        "cost": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 7,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        },
-        "necessaryResources": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        }
-      }
-    },
-    "color": "BLUE",
-    "immediateEffect": [
-      {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "effectForEachCondition": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 2,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        },
-        "cardCondition": "BLUE",
-        "goodsObtained": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        }
-      }
-    ],
-    "permanentEffect": [],
-    "withActionValue": false,
-    "actionValue": 0
-  },
-  {
-    "name": "Araldo",
-    "era": "THIRD",
-    "cardCost": {
-      "withPrice": true,
-      "alternative": false,
-      "mainCost": {
-        "cost": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 6,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        },
-        "necessaryResources": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        }
-      }
-    },
-    "color": "BLUE",
-    "immediateEffect": [
-      {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "effectForEachCondition": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 2,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        },
-        "cardCondition": "PURPLE",
-        "goodsObtained": {
-          "goodSetMap": {
-            "WOOD": 0,
-            "STONE": 0,
-            "COINS": 0,
-            "WORKERS": 0,
-            "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 0,
-            "FAITHPOINTS": 0
-          }
-        }
-      }
-    ],
-    "permanentEffect": [],
-    "withActionValue": false,
-    "actionValue": 0
-  },
-  {
     "name": "Generale",
     "era": "THIRD",
     "cardCost": {
@@ -1256,8 +1270,8 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
-        "effectForEachCondition": {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "cost": {
           "goodSetMap": {
             "WOOD": 0,
             "STONE": 0,
@@ -1268,18 +1282,45 @@
             "FAITHPOINTS": 0
           }
         },
-        "goodsCondition": {
+        "effect": {
+          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "goodsObtained": {
+            "goodSetMap": {
+              "WOOD": 0,
+              "STONE": 0,
+              "COINS": 0,
+              "WORKERS": 0,
+              "VICTORYPOINTS": 0,
+              "MILITARYPOINTS": 2,
+              "FAITHPOINTS": 0
+            }
+          }
+        }
+      }
+    ],
+    "permanentEffect": [],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Ambasciatore",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
           "goodSetMap": {
             "WOOD": 0,
             "STONE": 0,
-            "COINS": 0,
+            "COINS": 6,
             "WORKERS": 0,
             "VICTORYPOINTS": 0,
-            "MILITARYPOINTS": 2,
+            "MILITARYPOINTS": 0,
             "FAITHPOINTS": 0
           }
         },
-        "goodsObtained": {
+        "necessaryResources": {
           "goodSetMap": {
             "WOOD": 0,
             "STONE": 0,
@@ -1290,6 +1331,21 @@
             "FAITHPOINTS": 0
           }
         }
+      }
+    },
+    "color": "BLUE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "ANYTOWER",
+        "actionValue": 7
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
       }
     ],
     "permanentEffect": [],
