@@ -111,7 +111,10 @@ public class GameController {
             Pawn pawn = player.getMarkerDiscs()[0];
             playersVictoryPoints.put(player, pawnMap.get(pawn)); */
 
-            if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS) > winningPoints) {
+            int playerPoints = playerStatus.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS);
+
+            if (playerPoints > winningPoints) {
+                winningPoints = playerPoints;
                 winner = player;
             }
         }

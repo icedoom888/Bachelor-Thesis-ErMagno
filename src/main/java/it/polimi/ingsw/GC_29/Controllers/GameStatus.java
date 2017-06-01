@@ -16,7 +16,7 @@ public class  GameStatus {
     // Mancano i controller da inserire in futuro
     private PlayerController playerController;
     private GameBoard gameBoard;
-    EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks;
+    private EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks;
     private Player currentPlayer;
     private Era currentEra;
     private int currentTurn;
@@ -147,5 +147,7 @@ public class  GameStatus {
     public void setSkippedTurnPlayers(ArrayList<Player> skippedTurnPlayers) {
         this.skippedTurnPlayers = skippedTurnPlayers;
     }
+
+
 }
 

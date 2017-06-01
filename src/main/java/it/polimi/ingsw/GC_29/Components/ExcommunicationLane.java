@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,12 +10,12 @@ import java.util.List;
  */
 public class ExcommunicationLane implements Cleanable {
 
-    private HashMap<Era, ExcommunicationSlot> tileAndPawns;
+    private EnumMap<Era, ExcommunicationSlot> tileAndPawns;
     private int maxNumberOfPawns;
 
     public ExcommunicationLane(int maxNumberOfPawns) {
 
-        this.tileAndPawns = new HashMap<Era,ExcommunicationSlot>(3);
+        this.tileAndPawns = new EnumMap<Era, ExcommunicationSlot>(Era.class);
         this.maxNumberOfPawns = maxNumberOfPawns;
     }
 
