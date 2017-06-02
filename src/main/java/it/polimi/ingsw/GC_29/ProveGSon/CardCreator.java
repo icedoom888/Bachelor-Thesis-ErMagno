@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.ProveGSon;
+/**package it.polimi.ingsw.GC_29.ProveGSon;
 
 import com.google.gson.Gson;
         import com.google.gson.GsonBuilder;
@@ -363,3 +363,4 @@ public class CardCreator {
         return era;
     }
 }
+*/
