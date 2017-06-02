@@ -111,6 +111,8 @@ public class TowerActionTest {
         System.out.println("Workers to pay: " + towerAction.getWorkers());
         System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
         System.out.println(towerAction.getPossibleCardCosts());
+        System.out.println("cost of the card: " + towerAction.getCardSelected().getCardCost());
+
 
         return;
     }

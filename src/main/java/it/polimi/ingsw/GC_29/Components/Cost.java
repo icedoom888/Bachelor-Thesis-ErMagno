@@ -19,8 +19,8 @@ public class Cost {
     }
 
     public Cost(Cost cost) {
-        this.cost = cost.cost;
-        this.necessaryResources = cost.necessaryResources;
+        this.cost = new GoodSet(cost.cost);
+        this.necessaryResources = new GoodSet(cost.necessaryResources);
     }
 
     public GoodSet getCost() {

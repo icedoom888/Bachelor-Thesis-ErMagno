@@ -28,7 +28,6 @@ public class ActionEffect implements Effect{
     public ActionEffect(ZoneType zoneType, int actionValue){
 
         this.type = zoneType;
-
         this.actionValue = actionValue;
     }
 

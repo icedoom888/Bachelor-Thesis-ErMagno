@@ -3,12 +3,16 @@ package it.polimi.ingsw.GC_29.Components;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnCost;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
+import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Lorenzotara on 17/05/17.
  */
 
 public class ExcommunicationTile {
+
+    //TODO: malus a fine partita
+
     private Era era;
     private String name;
     private BonusAndMalusOnAction malusOnAction;
@@ -52,6 +56,13 @@ public class ExcommunicationTile {
 
     public String getDescription() {
         return description;
+    }
+
+    public void execute(PlayerStatus playerStatus) {
+        if (this.getMalusOnAction() != null) playerStatus.getBonusAndMalusOnAction().add(this.getMalusOnAction());
+        if (this.getMalusOnGoods() != null) playerStatus.getBonusAndMalusOnGoods().add(this.getMalusOnGoods());
+        if (this.getMalusOnCost() != null) playerStatus.getBonusAndMalusOnCost().add(this.getMalusOnCost());
+
     }
 
     @Override

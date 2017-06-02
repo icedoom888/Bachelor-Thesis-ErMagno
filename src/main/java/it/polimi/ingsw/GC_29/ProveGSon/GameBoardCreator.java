@@ -2,13 +2,16 @@ package it.polimi.ingsw.GC_29.ProveGSon;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.EnumMap;
 
 /**
  * Created by Lorenzotara on 25/05/17.
@@ -20,7 +23,7 @@ public class GameBoardCreator {
         // Ospitare i mendicanti
 
         ArrayList<Effect> immediateEffectsOIM = new ArrayList<>();
-        immediateEffectsOIM.add(new ObtainOnConditionEffect(new GoodSet(1,1,1,1,1,1,1), CardColor.BLUE));
+        immediateEffectsOIM.add(new ObtainOnConditionEffect(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)), CardColor.BLUE));
         immediateEffectsOIM.add(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)));
 
 
@@ -69,10 +72,54 @@ public class GameBoardCreator {
 
 
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapterFactory(typeFactory);
-        //gsonBuilder.registerTypeAdapterFactory(typeFactory1);
-        gsonBuilder.enableComplexMapKeySerialization();
+        GsonBuilder gsonBuilder = new GsonBuilder()
+                .registerTypeAdapterFactory(typeFactory)
+                .enableComplexMapKeySerialization();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<ZoneType, Tower>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<ZoneType, Tower>(ZoneType.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<Era, ExcommunicationSlot>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<Era, ExcommunicationSlot>(Era.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<ZoneType, Workspace>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<ZoneType, Workspace>(ZoneType.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<GoodType, Integer>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<GoodType, Integer>(GoodType.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<ShopName, ActionSpace>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<ShopName, ActionSpace>(ShopName.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<CardColor, Lane>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<CardColor, Lane>(CardColor.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<FieldType, ActionSpace>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<FieldType, ActionSpace>(FieldType.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<CardColor, ArrayDeque<DevelopmentCard>>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<CardColor, ArrayDeque<DevelopmentCard>>(CardColor.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<Era, ArrayList<ExcommunicationTile>>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<Era,ArrayList<ExcommunicationTile>>(Era.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<CardColor, Integer>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<CardColor, Integer>(CardColor.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<FamilyPawnType, Boolean>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<FamilyPawnType, Boolean>(FamilyPawnType.class)).create();
+
 
 
         Gson gson = gsonBuilder.setPrettyPrinting().create();

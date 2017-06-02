@@ -1,0 +1,974 @@
+[
+  {
+    "name": "Borgo",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 1,
+            "WORKERS": 1,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 3
+  },
+  {
+    "name": "Bosco",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 2
+  },
+  {
+    "name": "Città",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 6
+  },
+  {
+    "name": "Rocca",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 1,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 5
+  },
+  {
+    "name": "Cava di Ghiaia",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 2,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 2,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 4
+  },
+  {
+    "name": "Foresta",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 3,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 5
+  },
+  {
+    "name": "Avamposto Commerciale",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 1,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 1
+  },
+  {
+    "name": "Monastero",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 1,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 1,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 6
+  },
+  {
+    "name": "Villaggio Minerario",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 1,
+            "COINS": 0,
+            "WORKERS": 2,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 2,
+            "COINS": 0,
+            "WORKERS": 1,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 4
+  },
+  {
+    "name": "Maniero",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 2,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 5
+  },
+  {
+    "name": "Cava di Pietra",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 3,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 3
+  },
+  {
+    "name": "Ducato",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 2,
+            "STONE": 1,
+            "COINS": 1,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 6
+  },
+  {
+    "name": "Miniera d\u0027Oro",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 1,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 2,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 1
+  },
+  {
+    "name": "Eremo",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 2
+  },
+  {
+    "name": "Possedimento",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 2,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 2,
+            "STONE": 0,
+            "COINS": 1,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 4
+  },
+  {
+    "name": "Villaggio Montano",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 1,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 2,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 1,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 3
+  },
+  {
+    "name": "Colonia",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 4,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 5
+  },
+  {
+    "name": "Cava di Marmo",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 3,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 2,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 1,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 2
+  },
+  {
+    "name": "Città Mercantile",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 1,
+            "WORKERS": 1,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 1
+  },
+  {
+    "name": "Città Fortificata",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 1,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 2,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 1,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 2
+  },
+  {
+    "name": "Castello",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 2,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 2,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 1,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 3,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 4
+  },
+  {
+    "name": "Tenuta",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 1,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 2,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 2,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 3
+  },
+  {
+    "name": "Santuario",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 1,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 1
+  },
+  {
+    "name": "Provincia",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": false,
+      "alternative": false
+    },
+    "color": "GREEN",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 1,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 1,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 4,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": true,
+    "actionValue": 6
+  }
+]

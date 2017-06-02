@@ -15,4 +15,9 @@ public class ExcommunicationSlot extends PawnSlot {
     public ExcommunicationTile getExcommunicationTile() {
         return excommunicationTile;
     }
+
+    @Override
+    public String toString() {
+        return "ExcommunicationSlot{" + "excommunicationTile=" + excommunicationTile + ", playerPawns=" + playerPawns + '}';
+    }
 }

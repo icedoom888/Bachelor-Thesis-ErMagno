@@ -2,15 +2,18 @@ package it.polimi.ingsw.GC_29.ProveGSon;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
+import com.google.gson.reflect.TypeToken;
+import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.lang.reflect.Type;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.EnumMap;
 
 /**
  * Created by Lorenzotara on 22/05/17.
@@ -35,19 +38,66 @@ public class MainGSonFromFile {
 
 
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapterFactory(typeFactory);
-        //gsonBuilder.registerTypeAdapterFactory(typeFactory1);
+        GsonBuilder gsonBuilder = new GsonBuilder()
+                .registerTypeAdapterFactory(typeFactory)
+                .enableComplexMapKeySerialization();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<ZoneType, Tower>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<ZoneType, Tower>(ZoneType.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<Era, ExcommunicationSlot>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<Era, ExcommunicationSlot>(Era.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<ZoneType, Workspace>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<ZoneType, Workspace>(ZoneType.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<GoodType, Integer>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<GoodType, Integer>(GoodType.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<ShopName, ActionSpace>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<ShopName, ActionSpace>(ShopName.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<CardColor, Lane>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<CardColor, Lane>(CardColor.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<FieldType, ActionSpace>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<FieldType, ActionSpace>(FieldType.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<CardColor, ArrayDeque<DevelopmentCard>>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<CardColor, ArrayDeque<DevelopmentCard>>(CardColor.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<Era, ArrayList<ExcommunicationTile>>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<Era,ArrayList<ExcommunicationTile>>(Era.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<CardColor, Integer>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<CardColor, Integer>(CardColor.class)).create();
+
+        gsonBuilder.registerTypeAdapter(new TypeToken<EnumMap<FamilyPawnType, Boolean>>() {
+                }.getType(),
+                new EnumMapInstanceCreator<FamilyPawnType, Boolean>(FamilyPawnType.class)).create();
+
 
         final Gson gson = gsonBuilder.create();
 
-        FileReader fileReader = new FileReader("/Users/Lorenzotara/Desktop/cartaprova");
+        FileReader fileReader = new FileReader("C:\\Users\\Christian\\Desktop\\lorenzoMagnificoGrafica\\purpleCards");
 
-        DevelopmentCard card;
+
 
         //ObtainEffectInstanceCreator creator = new ObtainEffectInstanceCreator();
 
-        card = gson.fromJson(fileReader, DevelopmentCard.class);
+        Type listType = new TypeToken<ArrayList<DevelopmentCard>>(){}.getType();
+
+        ArrayList<DevelopmentCard> card = gson.fromJson(fileReader, listType);
 
         System.out.println(card);
 

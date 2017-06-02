@@ -1,0 +1,1691 @@
+[
+  {
+    "name": "Hiring Recruits",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 5,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 4,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Repairing the Church",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 1,
+            "COINS": 1,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 5,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Building the Walls",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 3,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        }
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 3,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Raising a Statue",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 2,
+            "STONE": 2,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 2,
+        "effectsChosen": [
+          null,
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 4,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Military Campaign",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 3,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 5,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Hosting Panhandlers",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 3,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 4,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 4,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Fighting Heresies",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 3,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 5,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 2
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 5,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Support to the Bishop",
+    "era": "FIRST",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": true,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 2,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 4,
+            "FAITHPOINTS": 0
+          }
+        }
+      },
+      "alternativeCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 1,
+            "COINS": 2,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 3
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 1,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Hiring Soldiers",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 6,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 6,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 5,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Repairing the Abbey",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 2,
+            "STONE": 2,
+            "COINS": 2,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 2
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 6,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Building the Bastions",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 4,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 3,
+            "FAITHPOINTS": 0
+          }
+        }
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 2,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Support to the King",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 3,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 6,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 5,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 3,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Improving the Canals",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 3,
+            "WORKERS": 2,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "HARVEST",
+        "actionValue": 4
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 5,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Hosting Foreigners",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 4,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 5,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 4,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Crusade",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 4,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 8,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 5,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 5,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Support to the Cardinal",
+    "era": "SECOND",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": true,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 4,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 7,
+            "FAITHPOINTS": 0
+          }
+        }
+      },
+      "alternativeCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 2,
+            "STONE": 2,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 3
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 4,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Hiring Mercenaries",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 8,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 7,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 6,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Repairing the Cathedral",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 3,
+            "STONE": 3,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "ANYTOWER",
+        "actionValue": 7
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 1
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 5,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Building the Towers",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 6,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 4,
+            "FAITHPOINTS": 0
+          }
+        }
+      },
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+        "numberOfCouncilPrivileges": 1,
+        "effectsChosen": [
+          null
+        ]
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 4,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Promoting Sacred Art",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 6,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 3
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 3,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Improving the Roads",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 4,
+            "WORKERS": 3,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "type": "PRODUCTION",
+        "actionValue": 3
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 5,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Sacred War",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 8,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 15,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 4
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 8,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Military Conquest",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": false,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 6,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 12,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 3,
+            "STONE": 3,
+            "COINS": 3,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 7,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  },
+  {
+    "name": "Support to the Pope",
+    "era": "THIRD",
+    "cardCost": {
+      "withPrice": true,
+      "alternative": true,
+      "mainCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 5,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 10,
+            "FAITHPOINTS": 0
+          }
+        }
+      },
+      "alternativeCost": {
+        "cost": {
+          "goodSetMap": {
+            "WOOD": 3,
+            "STONE": 3,
+            "COINS": 4,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        },
+        "necessaryResources": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    },
+    "color": "PURPLE",
+    "immediateEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 2
+          }
+        }
+      }
+    ],
+    "permanentEffect": [
+      {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 10,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          }
+        }
+      }
+    ],
+    "withActionValue": false,
+    "actionValue": 0
+  }
+]
