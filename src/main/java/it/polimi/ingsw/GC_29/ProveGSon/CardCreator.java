@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.ProveGSon;
+/**package it.polimi.ingsw.GC_29.ProveGSon;
 
 import com.google.gson.Gson;
         import com.google.gson.GsonBuilder;
@@ -51,7 +51,9 @@ public class CardCreator {
                     actionValue = in.nextInt();
                 }
 
-
+                ;
+                System.out.println("DO YOU REALLY WANT TO ADD THE CARD?");
+                String sure = in.nextLine();
                 DevelopmentCard cardCreated = new DevelopmentCard(name,era,cardCost,color,immediateEffect,permanentEffect,withActionValue,actionValue);
                 cards.add(cardCreated);
             }
@@ -59,7 +61,7 @@ public class CardCreator {
                loop = false;
             }
         }
-        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\purpleCards");
+        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/bluEra1_Predicatore");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
@@ -361,3 +363,4 @@ public class CardCreator {
         return era;
     }
 }
+*/
