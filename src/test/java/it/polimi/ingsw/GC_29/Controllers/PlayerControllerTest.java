@@ -3,13 +3,9 @@ package it.polimi.ingsw.GC_29.Controllers;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-
-import static org.testng.Assert.*;
 
 /**
  * Created by Christian on 30/05/2017.
@@ -19,13 +15,11 @@ public class PlayerControllerTest {
     @Test
     public void testInit() throws Exception {
 
-        PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
-
         PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
 
-        currentPlayerStatus.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
+        Player currentPlayer = new Player(null, null, testPersonalBoard);
 
-        currentPlayerStatus.setPersonalBoard(testPersonalBoard);
+        currentPlayer.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
 
         DevelopmentCard testCard = new DevelopmentCard("test", Era.FIRST, new CardCost(), CardColor.GREEN, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0);
 
@@ -45,9 +39,7 @@ public class PlayerControllerTest {
 
         GameStatus.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
 
-        Player testPlayer = new Player("pippo", PlayerColor.BLUE, gameBoard, testPersonalBoard, currentPlayerStatus );
-
-        GameStatus.getInstance().setCurrentPlayer(testPlayer);
+        GameStatus.getInstance().setCurrentPlayer(currentPlayer);
 
         PlayerController testController = new PlayerController();
 
@@ -61,13 +53,13 @@ public class PlayerControllerTest {
     @Test
     public void testInit1() throws Exception {
 
-        PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
-
         PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
 
-        currentPlayerStatus.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
+        Player currentPlayer = new Player(null, null, testPersonalBoard);
 
-        currentPlayerStatus.setPersonalBoard(testPersonalBoard);
+        currentPlayer.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
+
+        currentPlayer.setPersonalBoard(testPersonalBoard);
 
         ArrayList<Effect> immediateEffect = new ArrayList<>();
 
@@ -95,9 +87,7 @@ public class PlayerControllerTest {
 
         GameStatus.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
 
-        Player testPlayer = new Player("pippo", PlayerColor.BLUE, gameBoard, testPersonalBoard, currentPlayerStatus );
-
-        GameStatus.getInstance().setCurrentPlayer(testPlayer);
+        GameStatus.getInstance().setCurrentPlayer(currentPlayer);
 
         PlayerController testController = new PlayerController();
 
@@ -109,13 +99,11 @@ public class PlayerControllerTest {
     @Test
     public void testInit2() throws Exception {
 
-        PlayerStatus currentPlayerStatus = new PlayerStatus(null, null);
-
         PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
 
-        currentPlayerStatus.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
+        Player currentPlayer = new Player(null, null, testPersonalBoard);currentPlayer.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
 
-        currentPlayerStatus.setPersonalBoard(testPersonalBoard);
+        currentPlayer.setPersonalBoard(testPersonalBoard);
 
         ArrayList<Effect> immediateEffect = new ArrayList<>();
 
@@ -147,9 +135,7 @@ public class PlayerControllerTest {
 
         GameStatus.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
 
-        Player testPlayer = new Player("pippo", PlayerColor.BLUE, gameBoard, testPersonalBoard, currentPlayerStatus );
-
-        GameStatus.getInstance().setCurrentPlayer(testPlayer);
+        GameStatus.getInstance().setCurrentPlayer(currentPlayer);
 
         PlayerController testController = new PlayerController();
 

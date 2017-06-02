@@ -2,8 +2,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Components.GoodType;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Icedoom on 18/05/2017.
@@ -24,7 +23,7 @@ public class PayToObtainEffect implements Effect{
      * if the cost isn't payable the execution stops: the cost isn't detracted from the status and the @goodsObtained are not added either
      */
     @Override
-    public void execute(PlayerStatus status) {
+    public void execute(Player status) {
 
         if(checkSufficientGoods(status)){
 
@@ -51,7 +50,7 @@ public class PayToObtainEffect implements Effect{
      * @param status
      * @return boolean that indicates if the player's resources are enough to activate the effect
      */
-    private boolean checkSufficientGoods(PlayerStatus status){
+    private boolean checkSufficientGoods(Player status){
 
         GoodSet playerGoodSet = status.getActualGoodSet();
 

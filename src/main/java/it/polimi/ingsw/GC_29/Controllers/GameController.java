@@ -5,11 +5,8 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Filter;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -45,7 +42,7 @@ public class GameController {
             gameStatus.getGameBoard().setTurn(greenDeck,blueDeck,yellowDeck,purpleDeck);
 
             Player firstPlayer = gameStatus.getTurnOrder().get(0);
-            firstPlayer.throwDices(); // così vengono già settati
+           // firstPlayer.throwDices(); // così vengono già settati
 
             while (gameStatus.getCurrentRound() < 4) {
 
@@ -94,15 +91,14 @@ public class GameController {
         int winningPoints = 0;
 
         for (Player player : players) {
-            PlayerStatus playerStatus = player.getStatus();
 
-            if (!Filter.applySpecial(playerStatus, CardColor.PURPLE)) {
-                DevelopmentCard[] cards =  playerStatus.getPersonalBoard().getLane(CardColor.PURPLE).getCards();
+            if (!Filter.applySpecial(player, CardColor.PURPLE)) {
+                DevelopmentCard[] cards =  player.getPersonalBoard().getLane(CardColor.PURPLE).getCards();
 
                 for (DevelopmentCard card : cards) {
 
                     for (Effect effect : card.getPermanentEffect()) {
-                        effect.execute(playerStatus);
+                        effect.execute(player);
                     }
                 }
             }
@@ -111,7 +107,7 @@ public class GameController {
             Pawn pawn = player.getMarkerDiscs()[0];
             playersVictoryPoints.put(player, pawnMap.get(pawn)); */
 
-            int playerPoints = playerStatus.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS);
+            int playerPoints = player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS);
 
             if (playerPoints > winningPoints) {
                 winningPoints = playerPoints;
@@ -166,10 +162,8 @@ public class GameController {
                 for (Player player : players) {
 
                     if (excommunicatedPawn.getPlayerColor() == player.getPlayerColor()) {
-                        PlayerStatus playerStatus = player.getStatus();
 
-                        tileToExecute.execute(playerStatus);
-
+                        tileToExecute.execute(player);
 
                     }
                 }
@@ -194,8 +188,8 @@ public class GameController {
     private void setNewTurnOrder() {
         PlayerColor[] newTurnOrder = gameStatus.getGameBoard().getCouncilPalace().getTurnOrder();
         List<Player> oldTurnOrder = gameStatus.getTurnOrder();
-        ArrayList<Player> temporaryTurnOrder = new ArrayList<Player>();
-        ArrayList<Integer> indices = new ArrayList<Integer>();
+        ArrayList<Player> temporaryTurnOrder = new ArrayList<>();
+        ArrayList<Integer> indices = new ArrayList<>();
 
         for (PlayerColor playerColor : newTurnOrder) {
 

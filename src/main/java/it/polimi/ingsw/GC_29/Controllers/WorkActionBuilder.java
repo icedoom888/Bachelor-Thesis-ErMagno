@@ -1,11 +1,5 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.Workspace;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-
 /**
  * Created by Christian on 19/05/2017.
 
@@ -13,16 +7,16 @@ public class WorkActionBuilder implements ActionBuilder {
 
     private FamilyPawn familyPawnSelected;
     private ZoneType zoneType;
-    private PlayerStatus playerStatus;
+    private Player player;
     private Workspace workZoneSelected;
 
 
 
-    public WorkActionBuilder(ZoneType zoneType, FamilyPawn familyPawnSelected, PlayerStatus playerStatus) {
+    public WorkActionBuilder(ZoneType zoneType, FamilyPawn familyPawnSelected, Player player) {
 
         this.familyPawnSelected = familyPawnSelected;
         this.zoneType = zoneType;
-        this.playerStatus = playerStatus;
+        this.player = player;
     }
 
     @Override
@@ -32,7 +26,7 @@ public class WorkActionBuilder implements ActionBuilder {
 
         int workersSelected = askForWorkers();
 
-        return WorkAction(familyPawnSelected, workersSelected, playerStatus, zoneType, field);
+        return WorkAction(familyPawnSelected, workersSelected, player, zoneType, field);
     }
 
 

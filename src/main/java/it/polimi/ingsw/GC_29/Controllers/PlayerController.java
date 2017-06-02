@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Christian on 19/05/2017.
@@ -11,20 +11,20 @@ import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 public class PlayerController {
 
     private TurnState currentTurnState;
-    private PlayerStatus playerStatus;
+    private Player player;
 
     ///variabile per test
     private boolean commute = false;
 
     public PlayerController() {
 
-        this.playerStatus = GameStatus.getInstance().getCurrentPlayer().getStatus();
+        this.player = GameStatus.getInstance().getCurrentPlayer();
         currentTurnState = new BeginTurnState();
 
     }
 
-    public PlayerStatus getPlayerStatus() {
-        return playerStatus;
+    public Player getPlayerStatus() {
+        return player;
     }
 
     public void setCurrentTurnState(TurnState newTurnState){
@@ -51,12 +51,12 @@ public class PlayerController {
      */
     public boolean checkPresenceBonusActionEffect() {
 
-       return !playerStatus.getCurrentBonusActionList().isEmpty();
+       return !player.getCurrentBonusActionList().isEmpty();
     }
 
     public ActionEffect getBonusActionEffect(){
 
-        return playerStatus.getCurrentBonusActionList().removeFirst();
+        return player.getCurrentBonusActionList().removeFirst();
     }
 
 

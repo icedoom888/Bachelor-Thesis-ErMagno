@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,16 +23,15 @@ public final class Filter {
     }
 
 
-
     /**
      *
      * this method filters the gooSet obtained from an effect through all the bonus and malus regarding the Goodsets,
      * at the end it sets to zero all the goods of the goodset that have a negative amount due to the malus
      * @param goodsObtained GoodSet to be filtered through the bonusMalusOnGoodsList
      */
-    public static void apply(PlayerStatus playerStatus, GoodSet goodsObtained){
+    public static void apply(Player player, GoodSet goodsObtained){
 
-        List<BonusAndMalusOnGoods> currentPLayerBonusMalusOnGoods = playerStatus.getBonusAndMalusOnGoods();
+        List<BonusAndMalusOnGoods> currentPLayerBonusMalusOnGoods = player.getBonusAndMalusOnGoods();
 
         for (BonusAndMalusOnGoods playerBonusMalus : currentPLayerBonusMalusOnGoods) {
 
@@ -52,9 +50,9 @@ public final class Filter {
      * this method filters the familyPawn actionValue through all the bonus or malus regarding the specific action.
      * At the end it sets the actionValue to zero if the actionValue has a negative value due to the malus
      */
-    public static void apply(PlayerStatus playerStatus, FamilyPawn familyPawn, ZoneType zoneType){
+    public static void apply(Player player, FamilyPawn familyPawn, ZoneType zoneType){
 
-        List<BonusAndMalusOnAction> currentPlayerBonusMalusOnAction = playerStatus.getBonusAndMalusOnAction();
+        List<BonusAndMalusOnAction> currentPlayerBonusMalusOnAction = player.getBonusAndMalusOnAction();
 
         for (BonusAndMalusOnAction playerBonusMalus : currentPlayerBonusMalusOnAction){
 
@@ -72,14 +70,14 @@ public final class Filter {
     /**
      * This method divides the cardCost in its two components (if present) and put them in a list.
      * Then it calls the filter of bonusAndMalusOnCost on the list.
-     * @param playerStatus
+     * @param player
      * @param cardCost
      * @param costs
      * @param zoneType
      */
-    public static void apply(PlayerStatus playerStatus, CardCost cardCost, ArrayList<Cost> costs, ZoneType zoneType) {
-        List<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCost = playerStatus.getBonusAndMalusOnCost();
-        LinkedList<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCostTemporary = playerStatus.getCurrentBonusActionBonusMalusOnCostList();
+    public static void apply(Player player, CardCost cardCost, ArrayList<Cost> costs, ZoneType zoneType) {
+        List<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCost = player.getBonusAndMalusOnCost();
+        LinkedList<BonusAndMalusOnCost> currentPlayerBonusAndMalusOnCostTemporary = player.getCurrentBonusActionBonusMalusOnCostList();
 
         costs.add(cardCost.getMainCost());
 
@@ -88,11 +86,11 @@ public final class Filter {
         }
 
         for (BonusAndMalusOnCost bonusAndMalusOnCost : currentPlayerBonusAndMalusOnCost) {
-            bonusAndMalusOnCost.filter(playerStatus, costs, zoneType);
+            bonusAndMalusOnCost.filter(player, costs, zoneType);
         }
 
         for (BonusAndMalusOnCost bonusAndMalusOnCost : currentPlayerBonusAndMalusOnCostTemporary) {
-            bonusAndMalusOnCost.filter(playerStatus,costs, zoneType);
+            bonusAndMalusOnCost.filter(player,costs, zoneType);
             currentPlayerBonusAndMalusOnCostTemporary.removeFirst();
         }
 
@@ -105,11 +103,11 @@ public final class Filter {
     /**
      * The method checks if the player has a bonusAndMalus that forbids him to collect his end victory points from cards.
      * This method returns true if the player has that particular bonusAndMalus, false otherwise.
-     * @param playerStatus
+     * @param player
      * @param cardColor
      * @return
      */
-    public static boolean applySpecial(PlayerStatus playerStatus, CardColor cardColor) {
+    public static boolean applySpecial(Player player, CardColor cardColor) {
         if (cardColor == CardColor.PURPLE) return true; // prerequisito
         return true;
     }
@@ -119,10 +117,10 @@ public final class Filter {
      * The method checks if the player has a bonusAndMalus that can make him access to the actionSpace
      * even if the actionSpace is occupied. This method returns true if the player has that particular bonusAndMalus,
      * false otherwise.
-     * @param playerStatus
+     * @param player
      * @return boolean value: true if the player can access the actionSpace, false otherwise
      */
-    public static boolean applySpecial(PlayerStatus playerStatus, ActionSpace actionSpace) {
+    public static boolean applySpecial(Player player, ActionSpace actionSpace) {
         return true;
     }
 
@@ -131,20 +129,20 @@ public final class Filter {
     /**
      * The method checks if the player has a bonusAndMalus that can make him not pay the tower if occupied.
      * This method returns true if the player has that particular bonusAndMalus, false otherwise.
-     * @param playerStatus
+     * @param player
      * @return boolean value: true if the player can avoid to pay the towerCost, false otherwise
      */
-    public static boolean applySpecial(PlayerStatus playerStatus, GoodSet towerCost) { return true; }
+    public static boolean applySpecial(Player player, GoodSet towerCost) { return true; }
 
 
 
     /**
      * The method checks if the player has a bonusAndMalus that denies him to make the action. It returns
      * true if the player DOES NOT have it, false otherwise
-     * @param playerStatus
+     * @param player
      * @param zoneType
      * @return boolean value: true if the player can try to make the action, false otherwise
      */
-    public static boolean applySpecial(PlayerStatus playerStatus, ZoneType zoneType) { return true; }
+    public static boolean applySpecial(Player player, ZoneType zoneType) { return true; }
 
 }

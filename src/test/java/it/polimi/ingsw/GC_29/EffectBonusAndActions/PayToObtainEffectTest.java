@@ -1,7 +1,7 @@
 /**package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 import org.testng.annotations.Test;
 
 /**
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**public class PayToObtainEffectTest {
     @Test
     public void testExecute() throws Exception{
-        PlayerStatus testStatus = new PlayerStatus(null, null);
+        Player testStatus = new Player(null, null);
         GoodSet statusGoodSet = new GoodSet(5,5,5,5,5,5,5);
         testStatus.updateGoodSet(statusGoodSet);
         System.out.println(testStatus.getActualGoodSet());

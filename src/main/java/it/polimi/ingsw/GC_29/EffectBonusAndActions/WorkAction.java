@@ -1,11 +1,10 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 import static java.lang.Math.max;
 
@@ -22,11 +21,11 @@ public class WorkAction extends Action {
 
     public WorkAction(FamilyPawn familyPawn,
                       ZoneType zoneType,
-                      PlayerStatus playerStatus,
+                      Player player,
                       Workspace workspaceSelected,
                       FieldType fieldSelected){
 
-        super(familyPawn, zoneType, playerStatus);
+        super(familyPawn, zoneType, player);
 
         this.actionSpaceSelected = workspaceSelected.getActionspace(fieldSelected);
         this.workspaceSelected = workspaceSelected;
@@ -121,10 +120,10 @@ public class WorkAction extends Action {
     private void buildDifferentChoices() {
         Lane lane = null;
         if(zoneType==ZoneType.HARVEST){
-            lane = playerStatus.getPersonalBoard().getLane(CardColor.GREEN);
+            lane = player.getPersonalBoard().getLane(CardColor.GREEN);
         }
         if (zoneType==ZoneType.PRODUCTION){
-            lane = playerStatus.getPersonalBoard().getLane(CardColor.YELLOW);
+            lane = player.getPersonalBoard().getLane(CardColor.YELLOW);
         }
 
         HashMap<Integer,ArrayList<DevelopmentCard>> temporaryHash = new HashMap<>();
@@ -132,12 +131,12 @@ public class WorkAction extends Action {
         int maxWorkersNeeded = 0;
         int workersNeeded;
 
-        actionSpaceSelected.getEffect().execute(playerStatus);
+        actionSpaceSelected.getEffect().execute(player);
 
         for(DevelopmentCard card : lane.getCards()){
 
             workersNeeded = card.getActionValue() - temporaryPawn.getActualValue();
-            if (workersNeeded<=playerStatus.getActualGoodSet().getGoodAmount(GoodType.WORKERS)-workers){
+            if (workersNeeded<= player.getActualGoodSet().getGoodAmount(GoodType.WORKERS)-workers){
                 temporaryHash.get(workersNeeded).add(card);
                 if (workersNeeded>maxWorkersNeeded){maxWorkersNeeded = workersNeeded;}
             }
@@ -246,14 +245,14 @@ public class WorkAction extends Action {
 
         GoodSet goodSet= null;
         if (zoneType==ZoneType.HARVEST) {
-            playerStatus.getPersonalBoard().getBonusTile().getHarvestEffect().execute(playerStatus);
+            player.getPersonalBoard().getBonusTile().getHarvestEffect().execute(player);
         }
         if (zoneType==ZoneType.PRODUCTION) {
-            playerStatus.getPersonalBoard().getBonusTile().getProductionEffect().execute(playerStatus);
+            player.getPersonalBoard().getBonusTile().getProductionEffect().execute(player);
         }
 
         for(Effect effect : effectsToActivate){
-            effect.execute(playerStatus);
+            effect.execute(player);
         }
     }
 

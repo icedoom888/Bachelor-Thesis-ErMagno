@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import it.polimi.ingsw.GC_29.Components.BonusTile;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Components.PersonalBoard;
+import it.polimi.ingsw.GC_29.Player.Player;
 import org.testng.annotations.Test;
 
 /**
@@ -17,7 +19,7 @@ public class ObtainOnConditionEffectTest {
         ObtainOnConditionEffect test_1 = new ObtainOnConditionEffect(effectForEachCondition_1, CardColor.GREEN);
         ObtainOnConditionEffect test_2 = new ObtainOnConditionEffect(effectForEachCondition_2, goodsCondition_2);
 
-        PlayerStatus testStatus = new PlayerStatus(null, null);
+        Player testStatus = new Player(null, null, new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6));
         GoodSet actualGoodSet = new GoodSet(9,0,0,0,0,0,0);
         testStatus.updateGoodSet(actualGoodSet);
         for (int i=0; i<5; i++) {

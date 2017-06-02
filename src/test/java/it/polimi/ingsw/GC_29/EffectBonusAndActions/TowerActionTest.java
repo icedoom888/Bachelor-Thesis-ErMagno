@@ -1,23 +1,8 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.EnumMap;
-
-import static it.polimi.ingsw.GC_29.Player.PlayerColor.*;
-
 /**
  * Created by Lorenzotara on 22/05/17.
- */
+
 public class TowerActionTest {
 
     @Test
@@ -42,10 +27,10 @@ public class TowerActionTest {
 
         // Creation of playerStatuses
 
-        PlayerStatus playerStatus1 = new PlayerStatus(PlayerColor.BLUE, personalBoard1);
+        Player playerStatus1 = new Player(PlayerColor.BLUE, personalBoard1);
         Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
 
-        PlayerStatus playerStatus2 = new PlayerStatus(PlayerColor.GREEN, personalBoard2);
+        Player playerStatus2 = new Player(PlayerColor.GREEN, personalBoard2);
         Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
 
 
@@ -102,7 +87,7 @@ public class TowerActionTest {
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
                 "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
-                "The player has in his actual goodset: " + towerAction.getPlayerStatus().getActualGoodSet().toString() +"\n" +
+                "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
                 "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
                 "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
@@ -139,10 +124,10 @@ public class TowerActionTest {
 
         // Creation of playerStatuses
 
-        PlayerStatus playerStatus1 = new PlayerStatus(PlayerColor.BLUE, personalBoard1);
+        Player playerStatus1 = new Player(PlayerColor.BLUE, personalBoard1);
         Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
 
-        PlayerStatus playerStatus2 = new PlayerStatus(PlayerColor.GREEN, personalBoard2);
+        Player playerStatus2 = new Player(PlayerColor.GREEN, personalBoard2);
         Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
 
 
@@ -204,7 +189,7 @@ public class TowerActionTest {
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
                 "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
-                "The player has in his actual goodset: " + towerAction.getPlayerStatus().getActualGoodSet().toString() +"\n" +
+                "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
                 "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
                 "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
@@ -238,10 +223,10 @@ public class TowerActionTest {
 
         // Creation of playerStatuses
 
-        PlayerStatus playerStatus1 = new PlayerStatus(PlayerColor.BLUE, personalBoard1);
+        Player playerStatus1 = new Player(PlayerColor.BLUE, personalBoard1);
         Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
 
-        PlayerStatus playerStatus2 = new PlayerStatus(PlayerColor.GREEN, personalBoard2);
+        Player playerStatus2 = new Player(PlayerColor.GREEN, personalBoard2);
         Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
 
 
@@ -310,7 +295,7 @@ public class TowerActionTest {
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
                 "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
-                "The player has in his actual goodset: " + towerAction.getPlayerStatus().getActualGoodSet().toString() +"\n" +
+                "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
                 "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
                 "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
@@ -350,10 +335,10 @@ public class TowerActionTest {
 
         // Creation of playerStatuses
 
-        PlayerStatus playerStatus1 = new PlayerStatus(PlayerColor.BLUE, personalBoard1);
+        Player playerStatus1 = new Player(PlayerColor.BLUE, personalBoard1);
         Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
 
-        PlayerStatus playerStatus2 = new PlayerStatus(PlayerColor.GREEN, personalBoard2);
+        Player playerStatus2 = new Player(PlayerColor.GREEN, personalBoard2);
         Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
 
 
@@ -410,7 +395,7 @@ public class TowerActionTest {
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
                 "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
-                "The player has in his actual goodset: " + towerAction.getPlayerStatus().getActualGoodSet().toString() +"\n" +
+                "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
                 "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
                 "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
@@ -424,6 +409,6 @@ public class TowerActionTest {
         towerAction.update();
 
 
-    }*/
+    }
 
-}
+}*/

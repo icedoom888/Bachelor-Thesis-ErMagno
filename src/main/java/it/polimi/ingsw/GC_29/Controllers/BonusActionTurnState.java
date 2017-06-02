@@ -30,7 +30,7 @@ public class BonusActionTurnState implements TurnState {
 
         ActionEffect currentBonusAction = wrapper.getBonusActionEffect();
 
-        // temporary bonusMalusOn cost setted in the playerStatus
+        // temporary bonusMalusOn cost setted in the player
         if(currentBonusAction.getBonusAndMalusOnCost() != null){
 
             wrapper.getPlayerStatus().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());

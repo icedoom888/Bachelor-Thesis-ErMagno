@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.FieldType;
-import it.polimi.ingsw.GC_29.Player.Player;
+
 
 /**
  * Created by Lorenzotara on 17/05/17.

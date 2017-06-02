@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Christian on 18/05/2017.
@@ -68,9 +68,9 @@ public class ActionEffect implements Effect{
 
 
     @Override
-    public void execute(PlayerStatus playerStatus) {
+    public void execute(Player player) {
 
-        playerStatus.getCurrentBonusActionList().add(this);
+        player.getCurrentBonusActionList().add(this);
     }
 
 }

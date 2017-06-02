@@ -4,7 +4,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Icedoom on 18/05/2017.
@@ -48,7 +48,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      * @param status
      */
     @Override
-    public void execute(PlayerStatus status) {
+    public void execute(Player status) {
 
         evaluateActualGoodsObtained(status);
 
@@ -60,7 +60,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
     /** evaluateActualGoodsObtain builds the @goodsObtained attribute evaluating the 2 conditions
      * @param status
      */
-    public void evaluateActualGoodsObtained(PlayerStatus status){
+    public void evaluateActualGoodsObtained(Player status){
 
         evaluateCardCondition(status);
 
@@ -72,7 +72,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      * The multiplier will be multiplied for the @effectForEachCondition attribute in order to calculate the goodsObtain attribute
      * @param status
      */
-    private void evaluateCardCondition(PlayerStatus status){
+    private void evaluateCardCondition(Player status){
 
         if(cardCondition==null){return;}
 
@@ -101,7 +101,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      * The multiplier will be multiplied for the @effectForEachCondition attribute in order to calculate the goodsObtain attribute
      * @param status
      */
-    private void evaluateGoodsCondition(PlayerStatus status){
+    private void evaluateGoodsCondition(Player status){
 
         if(goodsCondition==null){return;}
 

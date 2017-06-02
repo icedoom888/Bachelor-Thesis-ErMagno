@@ -1,7 +1,9 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import it.polimi.ingsw.GC_29.Components.BonusTile;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Components.PersonalBoard;
+import it.polimi.ingsw.GC_29.Player.Player;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,7 +20,7 @@ public class ObtainEffectTest {
         ObtainEffect testEffect = new ObtainEffect(4,2,0,0,5,0,1);
         BonusAndMalusOnGoods bonus = new BonusAndMalusOnGoods(new GoodSet(3,0,6,0,0,0,0));
         BonusAndMalusOnGoods malus = new BonusAndMalusOnGoods(new GoodSet(-1,0,-5,0,-4,0,-1000));
-        PlayerStatus status = new PlayerStatus(null, null);
+        Player status = new Player(null, null, new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6));
         status.getActualGoodSet().addGoodSet(statusGoodset);
         status.getBonusAndMalusOnGoods().add(bonus);
         status.getBonusAndMalusOnGoods().add(malus);

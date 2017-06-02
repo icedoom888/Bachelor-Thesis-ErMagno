@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +24,10 @@ public class TowerAction extends Action {
     public TowerAction(
             FamilyPawn pawnSelected,
             ZoneType actionSelected,
-            PlayerStatus playerStatus,
+            Player player,
             int floorIndex) {
 
-        super(pawnSelected, actionSelected, playerStatus);
+        super(pawnSelected, actionSelected, player);
         this.towerChosen = GameStatus.getInstance().getGameBoard().getTower(zoneType);
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
@@ -43,17 +43,17 @@ public class TowerAction extends Action {
      * esclusivamente per testing
      * @param pawnSelected
      * @param actionSelected
-     * @param playerStatus
+     * @param player
      * @param floorIndex
      */
     public TowerAction(
             FamilyPawn pawnSelected,
             ZoneType actionSelected,
-            PlayerStatus playerStatus,
+            Player player,
             int floorIndex,
             Tower towerChosen) {
 
-        super(pawnSelected, actionSelected, playerStatus);
+        super(pawnSelected, actionSelected, player);
         this.towerChosen = towerChosen;
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
@@ -115,10 +115,10 @@ public class TowerAction extends Action {
 
         if (towerChosen.isOccupied()) {
 
-            if (!Filter.applySpecial(playerStatus, towerCost)) {
+            if (!Filter.applySpecial(player, towerCost)) {
                 int goldCost = towerChosen.getCostIfOccupied();
 
-                if (playerStatus.getActualGoodSet().getGoodAmount(GoodType.COINS) >= goldCost) {
+                if (player.getActualGoodSet().getGoodAmount(GoodType.COINS) >= goldCost) {
                     //This branch is taken if the player have enough coins to pay the access to the occupied tower
                     towerCost = new GoodSet(0,0,goldCost,0,0,0,0);
                     return true;
@@ -143,7 +143,7 @@ public class TowerAction extends Action {
 
         ObtainEffect effect = (ObtainEffect) this.actionSpaceSelected.getEffect();
         GoodSet actionSpaceGoodSet = effect.getGoodsObtained();
-        Filter.apply(this.playerStatus, actionSpaceGoodSet);
+        Filter.apply(this.player, actionSpaceGoodSet);
         this.actionSpaceGoodSet = actionSpaceGoodSet;
 
     }
@@ -165,9 +165,9 @@ public class TowerAction extends Action {
         setActionSpaceEffect();
         
         ArrayList<Cost> costList = new ArrayList<>();
-        Filter.apply(playerStatus, cardCost, costList, zoneType);
+        Filter.apply(player, cardCost, costList, zoneType);
 
-        GoodSet playerGoodSet = new GoodSet(playerStatus.getActualGoodSet());
+        GoodSet playerGoodSet = new GoodSet(player.getActualGoodSet());
         GoodSet necessaryGoodSet;
         GoodSet realCost;
 
@@ -196,9 +196,9 @@ public class TowerAction extends Action {
     
     
     private boolean checkTerritorySlotAvailability() {
-        TerritoryLane lane = playerStatus.getPersonalBoard().getTerritoryLane();
+        TerritoryLane lane = player.getPersonalBoard().getTerritoryLane();
         int index = lane.getFirstFreeSlotIndex();
-        return playerStatus.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS) >= lane.getSlot(index).getMilitaryPointsNeeded();
+        return player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS) >= lane.getSlot(index).getMilitaryPointsNeeded();
     }
 
     /**
@@ -218,7 +218,7 @@ public class TowerAction extends Action {
         }
 
         return var1
-                && playerStatus.getPersonalBoard().getLane(type).isFree();
+                && player.getPersonalBoard().getLane(type).isFree();
     }
 
     private void payCard() {
@@ -247,7 +247,7 @@ public class TowerAction extends Action {
             /*Scanner scanner = new Scanner(System.in);
             int answer = scanner.nextInt();*/
             int answer = 0; // random
-            playerStatus.getActualGoodSet().subGoodSet(possibleCardCosts.get(answer).getCost());
+            player.getActualGoodSet().subGoodSet(possibleCardCosts.get(answer).getCost());
             System.out.println("The card has been paid");
             return;
         }
@@ -255,7 +255,7 @@ public class TowerAction extends Action {
         System.out.println("Applying your bonusAndMalus you have to pay: ");
         System.out.println(possibleCardCosts.get(0));
 
-        playerStatus.getActualGoodSet().subGoodSet(possibleCardCosts.get(0).getCost());
+        player.getActualGoodSet().subGoodSet(possibleCardCosts.get(0).getCost());
         System.out.println("The card has been paid");
     }
 
@@ -269,7 +269,7 @@ public class TowerAction extends Action {
     private void giveCard() {
 
         DevelopmentCard card = towerChosen.getFloor(floorIndex).removeCard();
-        PersonalBoard playerBoard = playerStatus.getPersonalBoard();
+        PersonalBoard playerBoard = player.getPersonalBoard();
         switch (card.getColor()) {
             case GREEN:
                 playerBoard.getTerritoryLane().addCard(card);
@@ -299,7 +299,7 @@ public class TowerAction extends Action {
 
         for (Effect immediateEffect : immediateEffects) {
 
-            immediateEffect.execute(playerStatus); // la execute dell'actionEffect salva l'effetto nella lista di azioni bonus per il player
+            immediateEffect.execute(player); // la execute dell'actionEffect salva l'effetto nella lista di azioni bonus per il player
         }
     }
 
@@ -308,8 +308,8 @@ public class TowerAction extends Action {
      * This method update:
      * sets availability false for the pawn used (super)
      * sets the actionSpace as occupied (super)
-     * sets permanent effects of the card in playerStatus
-     * updates number of card per colour in playerStatus
+     * sets permanent effects of the card in player
+     * updates number of card per colour in player
      * ...
      */
     protected void update() {
@@ -322,15 +322,15 @@ public class TowerAction extends Action {
         for (Effect effect : cardSelected.getPermanentEffect()) {
             if (effect.getClass() == BonusEffect.class) {
                 BonusEffect effect1 = (BonusEffect)effect;
-                playerStatus.getBonusAndMalusOnAction().add(effect1.getBonusAndMalusOnAction());
-                playerStatus.getBonusAndMalusOnCost().add(effect1.getBonusAndMalusOnCost());
-                playerStatus.getBonusAndMalusOnGoods().add(effect1.getBonusAndMalusOnGoods());
+                player.getBonusAndMalusOnAction().add(effect1.getBonusAndMalusOnAction());
+                player.getBonusAndMalusOnCost().add(effect1.getBonusAndMalusOnCost());
+                player.getBonusAndMalusOnGoods().add(effect1.getBonusAndMalusOnGoods());
             }
         }
 
-        int numberOfCards = playerStatus.getCardsOwned().get(cardSelected.getColor());
+        int numberOfCards = player.getCardsOwned().get(cardSelected.getColor());
         numberOfCards++;
-        playerStatus.getCardsOwned().put(cardSelected.getColor(), numberOfCards);
+        player.getCardsOwned().put(cardSelected.getColor(), numberOfCards);
 
     }
 

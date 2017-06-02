@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 
 /**
@@ -36,7 +36,7 @@ public class ObtainEffect implements Effect {
 
 
     @Override
-    public void execute(PlayerStatus status) {
+    public void execute(Player status) {
 
         //GoodSet newGoodsObtained = activateBonusMalusOnGoods(status,goodsObtained);
         Filter.apply(status, goodsObtained);

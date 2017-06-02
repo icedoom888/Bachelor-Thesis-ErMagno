@@ -1,0 +1,46 @@
+[
+  {
+    "goodSetMap": {
+      "WOOD": 2,
+      "STONE": 2,
+      "COINS": 5,
+      "WORKERS": 3,
+      "VICTORYPOINTS": 0,
+      "MILITARYPOINTS": 0,
+      "FAITHPOINTS": 0
+    }
+  },
+  {
+    "goodSetMap": {
+      "WOOD": 2,
+      "STONE": 2,
+      "COINS": 6,
+      "WORKERS": 3,
+      "VICTORYPOINTS": 0,
+      "MILITARYPOINTS": 0,
+      "FAITHPOINTS": 0
+    }
+  },
+  {
+    "goodSetMap": {
+      "WOOD": 2,
+      "STONE": 2,
+      "COINS": 7,
+      "WORKERS": 3,
+      "VICTORYPOINTS": 0,
+      "MILITARYPOINTS": 0,
+      "FAITHPOINTS": 0
+    }
+  },
+  {
+    "goodSetMap": {
+      "WOOD": 2,
+      "STONE": 2,
+      "COINS": 8,
+      "WORKERS": 3,
+      "VICTORYPOINTS": 0,
+      "MILITARYPOINTS": 0,
+      "FAITHPOINTS": 0
+    }
+  }
+]

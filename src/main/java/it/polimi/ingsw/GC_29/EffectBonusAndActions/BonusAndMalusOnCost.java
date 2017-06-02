@@ -2,9 +2,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.Cost;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 import java.util.ArrayList;
 
@@ -34,11 +32,11 @@ public class BonusAndMalusOnCost {
      * This method creates the list of all the possible costs that card can assume taking into
      * account all the bonusAndMalusOnCost of the player and all the possible alternatives of the
      * cardCost
-     * @param playerStatus
+     * @param player
      * @param costs
      * @param cardZoneType
      */
-    public void filter(PlayerStatus playerStatus, ArrayList<Cost> costs, ZoneType cardZoneType) {
+    public void filter(Player player, ArrayList<Cost> costs, ZoneType cardZoneType) {
 
         if (this.zoneType == cardZoneType) {
 

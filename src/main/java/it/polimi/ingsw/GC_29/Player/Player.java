@@ -1,63 +1,81 @@
 package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
- * Created by Lorenzotara on 18/05/17.
+ * Created by Christian on 17/05/2017.
  */
 public class Player {
+
+    //TODO: tra player e player status ci sono due ripetizioni: la personalBoard e il playerColor. Bisogna pensare se passare direttamente il player, dal momento che le azioni accedono al suo colore
+
     private String playerID;
-    private PlayerColor playerColor;
-    private GameBoard gameboard;
     private PersonalBoard personalBoard;
-    private PlayerStatus status;
     private LeaderCard[] leaderCards;
     private FamilyPawn[] familyPawns; // TODO: sbagliato, deve essere una hashmap
     private Pawn[] excommunicationPawns;
     private Pawn[] markerDiscs;
+    private PlayerColor playerColor;
+    private EnumMap<FamilyPawnType, Boolean> familyPawnAvailability;
 
-    public Player(String playerID, PlayerColor playerColor, GameBoard gameboard, PersonalBoard personalBoard, PlayerStatus status) {
+    private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction;
+    private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
+    private ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCost;
+
+    private GoodSet actualGoodSet;
+    private EnumMap<CardColor, Integer> cardsOwned;
+    private Action currentAction;
+    private LinkedList<ActionEffect> currentBonusActionList;
+    private LinkedList<BonusAndMalusOnCost>currentBonusActionBonusMalusOnCostList;
+
+
+    public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
 
         this.playerID = playerID;
         this.playerColor = playerColor;
-        this.gameboard = gameboard;
         this.personalBoard = personalBoard;
-        this.status = status;
 
         leaderCards = new LeaderCard[4]; // TODO: decidere se rendere parametrico numero leader card
 
         familyPawns = new FamilyPawn[] {new FamilyPawn(playerColor, FamilyPawnType.BLACK, 0),
-                                        new FamilyPawn(playerColor, FamilyPawnType.ORANGE, 0),
-                                        new FamilyPawn(playerColor, FamilyPawnType.WHITE, 0),
-                                        new FamilyPawn(playerColor, FamilyPawnType.NEUTRAL, 0)};
+                new FamilyPawn(playerColor, FamilyPawnType.ORANGE, 0),
+                new FamilyPawn(playerColor, FamilyPawnType.WHITE, 0),
+                new FamilyPawn(playerColor, FamilyPawnType.NEUTRAL, 0)};
 
         excommunicationPawns = new Pawn[] {new Pawn(playerColor), new Pawn(playerColor), new Pawn(playerColor)};
 
         markerDiscs = new Pawn[] {new Pawn(playerColor), new Pawn(playerColor), new Pawn(playerColor)};
 
+        bonusAndMalusOnAction = new ArrayList<>();
+        bonusAndMalusOnGoods = new ArrayList<>();
+        bonusAndMalusOnCost = new ArrayList<>();
+        actualGoodSet = new GoodSet();
+        cardsOwned = new EnumMap<>(CardColor.class);
+
+        for(CardColor color : CardColor.values()){
+            cardsOwned.put(color,0);
+        }
+
+        currentBonusActionList = new LinkedList<>();
+        currentBonusActionBonusMalusOnCostList = new LinkedList<>();
+        this.familyPawnAvailability = new EnumMap<>(FamilyPawnType.class);
+        familyPawnAvailability.put(FamilyPawnType.BLACK, true);
+        familyPawnAvailability.put(FamilyPawnType.ORANGE, true);
+        familyPawnAvailability.put(FamilyPawnType.WHITE, true);
+        familyPawnAvailability.put(FamilyPawnType.NEUTRAL, true);
+
+    }
+
+    public PlayerColor getPlayerColor() {
+
+        return playerColor;
     }
 
     public String getPlayerID() {
         return playerID;
-    }
-    
-    public GameBoard getGameboard() {
-        return gameboard;
-    }
-
-    public PersonalBoard getPersonalBoard() {
-        return personalBoard;
-    }
-
-    public PlayerColor getPlayerColor() {
-        return playerColor;
-    }
-
-    public PlayerStatus getStatus() {
-        return status;
     }
 
     public LeaderCard[] getLeaderCards() {
@@ -76,24 +94,80 @@ public class Player {
         return markerDiscs;
     }
 
-    public void setStatus(PlayerStatus status){ // per il test su PlayerController
-        this.status = status;
-    }
-
     public void removeLeaderCard(LeaderCard leaderCard) {
         //TODO: scelta la carta leader da rimuovere, questo metodo la rimuove
     }
 
-    public void throwDices() {
-        System.out.println("You threw dices!");
-        List<Dice> diceLane = gameboard.getDiceLane();
 
-        for (int i = 0; i < diceLane.size(); i++) {
-            Dice dice = diceLane.get(i);
-            dice.roll();
-            System.out.println(dice.getColor() + ": " + dice.getFace());
-        }
-
-
+    public List<BonusAndMalusOnAction> getBonusAndMalusOnAction() {
+        return bonusAndMalusOnAction;
     }
+
+    public List<BonusAndMalusOnGoods> getBonusAndMalusOnGoods() {
+
+        return bonusAndMalusOnGoods;
+    }
+
+    public PersonalBoard getPersonalBoard() {
+        return personalBoard;
+    }
+
+    public GoodSet getActualGoodSet() {
+
+        return actualGoodSet;
+    }
+
+    public Map<CardColor, Integer> getCardsOwned() {
+        return cardsOwned;
+    }
+
+    public int getNumberOfCardsOwned(CardColor cardColor){
+        return cardsOwned.get(cardColor);
+    }
+
+    public Action getCurrentAction() {
+
+        return currentAction;
+    }
+
+    public LinkedList<ActionEffect> getCurrentBonusActionList() {
+
+        return currentBonusActionList;
+    }
+
+    public LinkedList<BonusAndMalusOnCost> getCurrentBonusActionBonusMalusOnCostList() {
+        return currentBonusActionBonusMalusOnCostList;
+    }
+
+    public void setPersonalBoard(PersonalBoard personalBoard) {
+        this.personalBoard = personalBoard;
+    }
+
+    public void setCurrentAction(Action currentAction) {
+
+        this.currentAction = currentAction;
+    }
+
+    public void updateCardsOwned(CardColor cardColor){
+        /* durante una towerAction nel momento in cui la carta sarà
+          aggiunta alla PersonalBoard dovrà essere chiamato anche questo metodo
+         */
+        this.cardsOwned.put(cardColor,(this.getNumberOfCardsOwned(cardColor)+1));
+    }
+
+    public void updateGoodSet(GoodSet newGoodSet) {
+
+        this.actualGoodSet.addGoodSet(newGoodSet);
+    }
+
+    public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
+        return familyPawnAvailability;
+    }
+
+    public List<BonusAndMalusOnCost> getBonusAndMalusOnCost() {
+        return bonusAndMalusOnCost;
+    }
+
 }
+
+

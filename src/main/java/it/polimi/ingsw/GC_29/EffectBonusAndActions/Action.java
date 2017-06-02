@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Lorenzotara on 19/05/17.
@@ -14,15 +14,15 @@ public abstract class Action {
     protected FamilyPawn temporaryPawn;
     protected ZoneType zoneType;
     protected ActionSpace actionSpaceSelected;
-    protected PlayerStatus playerStatus;
+    protected Player player;
 
     public Action(FamilyPawn pawnSelected,
                   ZoneType zoneType,
-                  PlayerStatus playerStatus) {
+                  Player player) {
 
         this.zoneType = zoneType;
         this.temporaryPawn = new FamilyPawn(pawnSelected);
-        this.playerStatus = playerStatus;
+        this.player = player;
     }
 
 
@@ -59,7 +59,7 @@ public abstract class Action {
      */
     //TODO: utilizare un filtraggio speciale su bonus e malus per il malus che fa pagare doppi o i workers
     protected void payWorkers() {
-        playerStatus.getActualGoodSet().subGoodSet(new GoodSet(0,0,0,workers,0,0,0));
+        player.getActualGoodSet().subGoodSet(new GoodSet(0,0,0,workers,0,0,0));
     }
 
 
@@ -80,7 +80,7 @@ public abstract class Action {
     }
 
     private boolean isActionAvailable() {
-        return Filter.applySpecial(playerStatus, zoneType);
+        return Filter.applySpecial(player, zoneType);
     }
 
 
@@ -93,7 +93,7 @@ public abstract class Action {
     private boolean checkActionSpaceAvailability() {
 
         if (actionSpaceSelected.isSingle() && actionSpaceSelected.isOccupied()) {
-            return Filter.applySpecial(playerStatus, actionSpaceSelected);
+            return Filter.applySpecial(player, actionSpaceSelected);
         }
 
         return true;
@@ -114,7 +114,7 @@ public abstract class Action {
         if (temporaryPawn.getActualValue() < actionSpaceSelected.getActionCost()) {
             int workersNeeded = workersNeeded();
 
-            if (workersNeeded > playerStatus.getActualGoodSet().getGoodAmount(GoodType.WORKERS)) {
+            if (workersNeeded > player.getActualGoodSet().getGoodAmount(GoodType.WORKERS)) {
                 return false;
 
             } else {
@@ -134,7 +134,7 @@ public abstract class Action {
      */
     private void executeBonusAndMalusOnAction() { // serve per controllare che con B&M il valore della pawn vada bene o meno
 
-        Filter.apply(playerStatus, temporaryPawn, zoneType);
+        Filter.apply(player, temporaryPawn, zoneType);
     }
 
 
@@ -162,7 +162,7 @@ public abstract class Action {
         if(temporaryPawn.getType() != FamilyPawnType.BONUS) {
 
             FamilyPawnType familyPawnType = temporaryPawn.getType();
-            return playerStatus.getFamilyPawnAvailability().get(familyPawnType);
+            return player.getFamilyPawnAvailability().get(familyPawnType);
 
         }
 
@@ -192,7 +192,7 @@ public abstract class Action {
 
         if (effect != null){
 
-            effect.execute(playerStatus);
+            effect.execute(player);
         }
     }
 
@@ -202,7 +202,7 @@ public abstract class Action {
 
         if (familyPawnType != FamilyPawnType.BONUS) {
 
-            playerStatus.getFamilyPawnAvailability().put(familyPawnType, false);
+            player.getFamilyPawnAvailability().put(familyPawnType, false);
 
             if (actionSpaceSelected.isSingle()) actionSpaceSelected.setOccupied(true);
 
@@ -218,7 +218,7 @@ public abstract class Action {
         return actionSpaceSelected;
     }
 
-    public PlayerStatus getPlayerStatus() {
-        return playerStatus;
+    public Player getPlayer() {
+        return player;
     }
 }

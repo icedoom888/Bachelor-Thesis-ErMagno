@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
 
 /**
  * Created by Lorenzotara on 18/05/17.
@@ -16,7 +15,7 @@ public class CardRequirement extends Requirement {
     }
 
     @Override
-    public boolean check(PlayerStatus status) {
+    public boolean check(Player status) {
         if(status.getNumberOfCardsOwned(cardColor)>=number){return true;}
         else{return false;}
     }

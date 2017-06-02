@@ -1,10 +1,8 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 import static it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeType.*;
 
@@ -30,7 +28,7 @@ public class CouncilPrivilegeEffect implements Effect {
      * sums all the bonuses.
      * Then it updates the player's goodSet.
      */
-    public void execute(PlayerStatus status) {
+    public void execute(Player status) {
 
         System.out.println("You received a Council Privilege Effect!");
 

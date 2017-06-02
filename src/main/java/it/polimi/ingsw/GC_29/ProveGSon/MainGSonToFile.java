@@ -50,7 +50,7 @@ public class MainGSonToFile {
 
         // toJson
 
-        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/cartaprova");
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\goodsForPlayerSetup");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
@@ -120,37 +120,16 @@ public class MainGSonToFile {
 
         Gson gson = gsonBuilder.setPrettyPrinting().create();
 
-        ArrayList<DevelopmentCard> cards = new ArrayList<DevelopmentCard>();
+        ArrayList<GoodSet> goodSets = new ArrayList<>();
+        goodSets.add(new GoodSet(2,2,5,3,0,0,0));
+        goodSets.add(new GoodSet(2,2,6,3,0,0,0));
+        goodSets.add(new GoodSet(2,2,7,3,0,0,0));
+        goodSets.add(new GoodSet(2,2,8,3,0,0,0));
 
-        cards.add(ospitareIMendicanti);
-        cards.add(ospitareIMendicanti);
-
-        gson.toJson(cards, fileWriter);
+        gson.toJson(goodSets, fileWriter);
 
         fileWriter.close();
 
-        // from Json
-
-        FileReader fileReader = new FileReader("/Users/Lorenzotara/Desktop/cartaprova");
-
-
-
-        Type listType = new TypeToken<ArrayList<DevelopmentCard>>(){}.getType();
-
-        ArrayList<DevelopmentCard> newCards = gson.fromJson(fileReader, listType);
-
-        //DevelopmentCard newCards;
-
-        //newCards = gson.fromJson(fileReader, new TypeToken<ArrayList<DevelopmentCard>>(){}.getType());
-        //newCards = gson.fromJson(fileReader, ArrayList.class);
-        //newCards = gson.fromJson(fileReader, DevelopmentCard().class);
-
-        DevelopmentCard card;
-
-        System.out.println(newCards + "\n\n\n\n\n");
-        card = newCards.get(0);
-        System.out.println(card + "\n\n\n\n\n");
-        System.out.println(card.getCardCost());
 
     }
 

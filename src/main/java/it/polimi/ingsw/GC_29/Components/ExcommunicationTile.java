@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_29.Components;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnCost;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -58,10 +58,10 @@ public class ExcommunicationTile {
         return description;
     }
 
-    public void execute(PlayerStatus playerStatus) {
-        if (this.getMalusOnAction() != null) playerStatus.getBonusAndMalusOnAction().add(this.getMalusOnAction());
-        if (this.getMalusOnGoods() != null) playerStatus.getBonusAndMalusOnGoods().add(this.getMalusOnGoods());
-        if (this.getMalusOnCost() != null) playerStatus.getBonusAndMalusOnCost().add(this.getMalusOnCost());
+    public void execute(Player player) {
+        if (this.getMalusOnAction() != null) player.getBonusAndMalusOnAction().add(this.getMalusOnAction());
+        if (this.getMalusOnGoods() != null) player.getBonusAndMalusOnGoods().add(this.getMalusOnGoods());
+        if (this.getMalusOnCost() != null) player.getBonusAndMalusOnCost().add(this.getMalusOnCost());
 
     }
 

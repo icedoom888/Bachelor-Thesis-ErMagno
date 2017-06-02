@@ -4,7 +4,7 @@ import it.polimi.ingsw.GC_29.Components.CouncilPalaceActionSpace;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Lorenzotara on 19/05/17.
@@ -14,9 +14,9 @@ public class CouncilPalaceAction extends Action {
     private CouncilPalaceActionSpace councilPalace;
 
     public CouncilPalaceAction(FamilyPawn pawnSelected,
-                               PlayerStatus playerStatus) {
+                               Player player) {
 
-        super(pawnSelected, ZoneType.COUNCILPALACE, playerStatus);
+        super(pawnSelected, ZoneType.COUNCILPALACE, player);
 
     }
 

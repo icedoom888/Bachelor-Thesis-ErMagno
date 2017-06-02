@@ -1,9 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Player.PlayerStatus;
-
-import java.util.ArrayList;
+import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Lorenzotara on 19/05/17.
@@ -31,7 +29,7 @@ public class BonusEffect implements Effect {
      * This effect add the bonusAndMalusOnAction in the list of
      * bonusAndMalusOnAction of the player
      */
-    public void execute(PlayerStatus status) {
+    public void execute(Player status) {
 
         //TODO: decommenta solo per testing
         Action currentAction = GameStatus.getInstance().getCurrentAction();
