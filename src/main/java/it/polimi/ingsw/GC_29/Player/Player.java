@@ -168,6 +168,10 @@ public class Player {
         return bonusAndMalusOnCost;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" + "playerID='" + playerID + '\'' + ", playerColor=" + playerColor + '}';
+    }
 }
 
 

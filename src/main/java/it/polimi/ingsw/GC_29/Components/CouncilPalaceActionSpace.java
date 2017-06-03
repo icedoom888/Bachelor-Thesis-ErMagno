@@ -44,7 +44,8 @@ public class CouncilPalaceActionSpace extends ActionSpace {
 
     @Override
     public void addPawn(FamilyPawn pawn) {
-        // TODO: impl -> metodo che aggiunge pawn a actionSpace e turnOrder
+        super.addPawn(pawn);
+        setTurnOrder(pawn.getPlayerColor());
     }
 
     @Override
@@ -66,7 +67,12 @@ public class CouncilPalaceActionSpace extends ActionSpace {
     }
 
     public void setTurnOrder(PlayerColor pawnColor) {
-        // TODO: ciclo for
+        for (int i = 0; i < turnOrder.length; i++) {
+            if (turnOrder[i] == null) {
+                turnOrder[i] = pawnColor;
+                break;
+            }
+        }
     }
 
 }

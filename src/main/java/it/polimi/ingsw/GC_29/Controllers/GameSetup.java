@@ -88,22 +88,22 @@ public class GameSetup {
         switch (color) {
             case GREEN:
 
-                cardFileReader = new FileReader("C:\\Users\\Christian\\Documents\\workspaces\\eclipse\\prova-finale-template\\greenCards");
+                cardFileReader = new FileReader("greenCards");
                 break;
 
             case YELLOW:
 
-                cardFileReader = new FileReader("C:\\Users\\Christian\\Documents\\workspaces\\eclipse\\prova-finale-template\\yellowCards");
+                cardFileReader = new FileReader("yellowCards");
                 break;
 
             case BLUE:
 
-                cardFileReader = new FileReader("C:\\Users\\Christian\\Documents\\workspaces\\eclipse\\prova-finale-template\\blueCards");
+                cardFileReader = new FileReader("blueCards");
                 break;
 
             case PURPLE:
 
-                cardFileReader = new FileReader("C:\\Users\\Christian\\Documents\\workspaces\\eclipse\\prova-finale-template\\purpleCards");
+                cardFileReader = new FileReader("purpleCards");
                 break;
 
             default:
@@ -177,7 +177,7 @@ public class GameSetup {
 
     private void setGoodsForPlayers() throws FileNotFoundException {
 
-        FileReader fileReader = new FileReader("C:\\Users\\Christian\\Documents\\workspaces\\eclipse\\prova-finale-template\\goodsForPlayerSetup");
+        FileReader fileReader = new FileReader("goodsForPlayerSetup");
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 

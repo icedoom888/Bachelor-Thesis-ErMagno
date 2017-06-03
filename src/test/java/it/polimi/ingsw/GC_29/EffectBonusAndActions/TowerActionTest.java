@@ -1,8 +1,14 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
+import it.polimi.ingsw.GC_29.Components.*;
+import org.testng.annotations.Test;
+import it.polimi.ingsw.GC_29.Player.*;
+
+import java.util.ArrayList;
+
 /**
  * Created by Lorenzotara on 22/05/17.
-
+*/
 public class TowerActionTest {
 
     @Test
@@ -27,11 +33,8 @@ public class TowerActionTest {
 
         // Creation of playerStatuses
 
-        Player playerStatus1 = new Player(PlayerColor.BLUE, personalBoard1);
-        Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
-
-        Player playerStatus2 = new Player(PlayerColor.GREEN, personalBoard2);
-        Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
+        Player player2 = new Player("Player2", PlayerColor.GREEN, personalBoard2);
 
 
 
@@ -69,20 +72,20 @@ public class TowerActionTest {
                 0);
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
-        playerStatus1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
+        player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
 
         immediateEffectsBlueCard.add(purpleSix);
         immediateEffectsBlueCard.add(councilPrivilegeEffect);
         immediateEffectsBlueCard.add(bonusEffect1);
         permanentEffectsBlueCard.add(bonusEffect2);
 
-        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
-        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+        player1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        player1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
 
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
         //gameBoard.getTower(ZoneType.BLUETOWER)
 
-        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, playerStatus1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, player1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
 
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
@@ -90,7 +93,7 @@ public class TowerActionTest {
                 "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
                 "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
-                "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
+                "The number of workers of the player is: " + player1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
 
         System.out.println(towerAction.isPossible());
         System.out.println("Workers to pay: " + towerAction.getWorkers());
@@ -124,11 +127,9 @@ public class TowerActionTest {
 
         // Creation of playerStatuses
 
-        Player playerStatus1 = new Player(PlayerColor.BLUE, personalBoard1);
-        Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
+        Player player2 = new Player("Player2", PlayerColor.GREEN, personalBoard2);
 
-        Player playerStatus2 = new Player(PlayerColor.GREEN, personalBoard2);
-        Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
 
 
 
@@ -170,9 +171,9 @@ public class TowerActionTest {
         immediateEffectsBlueCard.add(bonusEffect1);
         permanentEffectsBlueCard.add(bonusEffect2);
 
-        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
-        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
-        playerStatus1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
+        player1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        player1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+        player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
 
 
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
@@ -184,7 +185,7 @@ public class TowerActionTest {
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
         //gameBoard.getTower(ZoneType.BLUETOWER)
 
-        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, playerStatus1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, player1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
 
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
@@ -192,7 +193,7 @@ public class TowerActionTest {
                 "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
                 "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
-                "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
+                "The number of workers of the player is: " + player1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
 
         System.out.println(towerAction.isPossible());
         System.out.println("Workers to pay: " + towerAction.getWorkers());
@@ -223,11 +224,8 @@ public class TowerActionTest {
 
         // Creation of playerStatuses
 
-        Player playerStatus1 = new Player(PlayerColor.BLUE, personalBoard1);
-        Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
-
-        Player playerStatus2 = new Player(PlayerColor.GREEN, personalBoard2);
-        Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
+        Player player2 = new Player("Player2", PlayerColor.GREEN, personalBoard2);
 
 
 
@@ -269,9 +267,9 @@ public class TowerActionTest {
         immediateEffectsBlueCard.add(bonusEffect1);
         permanentEffectsBlueCard.add(bonusEffect2);
 
-        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
-        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
-        playerStatus1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,0,10,10,10));
+        player1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        player1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+        player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,0,10,10,10));
 
 
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
@@ -284,13 +282,13 @@ public class TowerActionTest {
         immediateEffectsBlueCard.add(bonusEffect1);
         permanentEffectsBlueCard.add(bonusEffect2);
 
-        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
-        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+        player1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        player1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
 
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
         //gameBoard.getTower(ZoneType.BLUETOWER)
 
-        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, playerStatus1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, player1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
 
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
@@ -298,7 +296,7 @@ public class TowerActionTest {
                 "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
                 "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
-                "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
+                "The number of workers of the player is: " + player1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
 
         System.out.println(towerAction.isPossible());
         System.out.println("Workers to pay: " + towerAction.getWorkers());
@@ -313,15 +311,15 @@ public class TowerActionTest {
 
     }
 
-    /*@Test
+    @Test
     public void testExecute() throws Exception {
 
         // Creation of the gameboard
 
         int numberOfPlayers1 = 4;
-        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null,"777");
-        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,"su ogni");
-        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,"cosa");
+        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
+        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
+        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
         GameBoard gameBoard = new GameBoard(numberOfPlayers1);
 
 
@@ -335,11 +333,8 @@ public class TowerActionTest {
 
         // Creation of playerStatuses
 
-        Player playerStatus1 = new Player(PlayerColor.BLUE, personalBoard1);
-        Player player1 = new Player("Player1", PlayerColor.BLUE, gameBoard, personalBoard1, playerStatus1);
-
-        Player playerStatus2 = new Player(PlayerColor.GREEN, personalBoard2);
-        Player player2 = new Player("Player2", PlayerColor.GREEN, gameBoard, personalBoard2, playerStatus2);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
+        Player player2 = new Player("Player2", PlayerColor.GREEN, personalBoard2);
 
 
 
@@ -377,20 +372,20 @@ public class TowerActionTest {
                 0);
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
-        playerStatus1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
+        player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
 
         immediateEffectsBlueCard.add(purpleSix);
         immediateEffectsBlueCard.add(councilPrivilegeEffect);
         immediateEffectsBlueCard.add(bonusEffect1);
         permanentEffectsBlueCard.add(bonusEffect2);
 
-        playerStatus1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
-        playerStatus1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+        player1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
+        player1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
 
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
         //gameBoard.getTower(ZoneType.BLUETOWER)
 
-        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, playerStatus1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, player1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
 
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
@@ -398,7 +393,7 @@ public class TowerActionTest {
                 "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
                 "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
-                "The number of workers of the player is: " + playerStatus1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
+                "The number of workers of the player is: " + player1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
 
         System.out.println(towerAction.isPossible());
         System.out.println("Workers to pay: " + towerAction.getWorkers());
@@ -411,4 +406,4 @@ public class TowerActionTest {
 
     }
 
-}*/
+}

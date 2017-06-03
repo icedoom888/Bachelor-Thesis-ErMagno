@@ -61,7 +61,7 @@ public class CardCreator {
                loop = false;
             }
         }
-        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/bluEra1_Predicatore");
+        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/mamma");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
