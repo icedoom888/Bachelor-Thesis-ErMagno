@@ -22,25 +22,25 @@ public class ValidationActionTurnState implements TurnState {
     @Override
     public void executeState(PlayerController wrapper) {
 
-        boolean validAction = false;
+        boolean actionSelected = false;
 
         boolean skipTurn = false;
 
         Action currentAction = null;
 
-        while (!validAction){
+        while (!actionSelected){
+
+            ActionChecker.getInstance().resetActionListExceptPlayer();
 
             if(wrapper.isPlaceFamilyMemberAction()){
 
                 // TODO: da inserire richiesta di attivazione carta leader
 
-                ZoneType typeSelected = askForAction();
-
                 FamilyPawn pawnSelected = AskFamilyPawn();
 
-               // currentAction = FactoryAction.getAction(typeSelected, pawnSelected, wrapper.getPlayerStatus());
+                ActionChecker.getInstance().setValidActionForFamilyPawn(pawnSelected);
 
-              //  validAction = currentAction.isPossible();
+                actionSelected = wrapper.choseAction();
 
             }
 
@@ -55,7 +55,7 @@ public class ValidationActionTurnState implements TurnState {
 
         if(!skipTurn){
 
-            wrapper.getPlayerStatus().setCurrentAction(currentAction);
+            //wrapper.getPlayerStatus().setCurrentAction(currentAction);
 
             wrapper.setCurrentTurnState(new ExecuteActionTurnState());
         }
@@ -66,11 +66,6 @@ public class ValidationActionTurnState implements TurnState {
 
     }
 
-
-    /**
-     * ask if the player wants to place a family member or skip his round
-     * @return
-     */
     private FamilyPawn AskFamilyPawn() {
 
         return new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 4); // metodo di interfaccia, questo return è fasullo

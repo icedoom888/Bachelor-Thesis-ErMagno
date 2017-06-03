@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
 import it.polimi.ingsw.GC_29.Player.Player;
 
@@ -71,5 +72,22 @@ public class PlayerController {
         commute = commute==false;
 
         return commute;
+    }
+
+
+    public boolean choseAction() {
+
+        // TODO: metodo di interfaccia, qui vi è distribuzione --> chiede quale azione vuole tra le disponibili o se il player vuole vedere le azioni possibili rispetto ad un altra pedina.
+
+        for(Action action : ActionChecker.getInstance().getValidActionList()){
+
+            System.out.println(action);
+        }
+
+        Action actionChosen = ActionChecker.getInstance().getValidActionList().get(0);
+
+        player.setCurrentAction(actionChosen);
+
+        return  true;
     }
 }

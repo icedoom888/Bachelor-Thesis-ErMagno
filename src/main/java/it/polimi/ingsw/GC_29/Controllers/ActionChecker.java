@@ -29,6 +29,7 @@ public class ActionChecker {
     private ActionChecker(){
 
         actionList = new ArrayList<>();
+        validActionList = new ArrayList<>();
     }
 
     public static ActionChecker getInstance(){
@@ -46,14 +47,18 @@ public class ActionChecker {
         return actionList;
     }
 
+    public ArrayList<Action> getValidActionList() {
+        return validActionList;
+    }
+
     public void setActionList(ArrayList<Action> actionList){
 
         this.actionList = actionList;
     }
 
-    public void setCurrentPlayer(Player currentPlayer) throws NullPointerException{
+    public void setCurrentPlayer() throws NullPointerException{
 
-        this.currentPlayer = currentPlayer;
+        this.currentPlayer = GameStatus.getInstance().getCurrentPlayer();
 
         for(Action action : actionList){
 
@@ -124,6 +129,22 @@ public class ActionChecker {
         }
 
         return filteredActionList;
+    }
+
+    public void resetActionList(){
+
+        for(Action action : actionList){
+
+            action.reset();
+        }
+    }
+
+    public void resetActionListExceptPlayer(){
+
+        for(Action action : actionList){
+
+            action.resetExceptPlayer();
+        }
     }
 
     //////////////////////////////////////////////////////////////////

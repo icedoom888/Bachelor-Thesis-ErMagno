@@ -75,10 +75,12 @@ public abstract class Action {
 
     public boolean isPossible() {
 
-        return isActionAvailable()
+        return  enable
+                && isActionAvailable()
                 && checkActionSpaceAvailability()
                 && checkSufficientActionValue()
                 && checkFamilyPawn();
+
     }
 
     private boolean isActionAvailable() {
@@ -212,9 +214,13 @@ public abstract class Action {
     }
 
     public void reset() {
+        resetExceptPlayer();
+        this.player = null;
+    }
+
+    public void resetExceptPlayer(){
         this.workers = 0;
         this.temporaryPawn = null;
-        this.player = null;
     }
 
     public Boolean getEnable() {

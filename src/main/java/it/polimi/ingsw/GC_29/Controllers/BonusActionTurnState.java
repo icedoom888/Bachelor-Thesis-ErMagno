@@ -22,11 +22,9 @@ public class BonusActionTurnState implements TurnState {
     @Override
     public void executeState(PlayerController wrapper) {
 
-        boolean validAction = false;
+        boolean actionSelected = false;
 
         boolean skipBonusAction = false;
-
-        Action currentAction = null;
 
         ActionEffect currentBonusAction = wrapper.getBonusActionEffect();
 
@@ -37,17 +35,17 @@ public class BonusActionTurnState implements TurnState {
 
         }
 
-        while (!validAction) {
+        while (!actionSelected) {
 
             if (wrapper.isPlaceFamilyMemberAction()) {
 
+                ActionChecker.getInstance().resetActionListExceptPlayer();
+
                 FamilyPawn familyPawn = new FamilyPawn(wrapper.getPlayerStatus().getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
 
-                ZoneType zoneType = currentBonusAction.getType();
+                ActionChecker.getInstance().setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
 
-                //currentAction = FactoryAction.getAction(zoneType, familyPawn, wrapper.getPlayerStatus());
-
-                //validAction = currentAction.isPossible();
+                actionSelected = wrapper.choseAction();
 
             }
 
@@ -61,8 +59,6 @@ public class BonusActionTurnState implements TurnState {
         }
 
         if (!skipBonusAction) {
-
-            wrapper.getPlayerStatus().setCurrentAction(currentAction);
 
             wrapper.setCurrentTurnState(new ExecuteActionTurnState());
 

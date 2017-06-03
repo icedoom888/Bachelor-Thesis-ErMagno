@@ -8,6 +8,8 @@ public class EndTurnState implements TurnState {
     @Override
     public void executeState(PlayerController wrapper) {
 
+        ActionChecker.getInstance().resetActionList();
+
         wrapper.setCurrentTurnState(new BeginTurnState());
     }
 }

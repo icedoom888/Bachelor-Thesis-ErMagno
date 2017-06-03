@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -11,6 +12,41 @@ import java.util.ArrayList;
  * Created by Christian on 30/05/2017.
  */
 public class PlayerControllerTest {
+
+    @Test
+    public void testInitCheck() throws Exception {
+
+        ArrayList<Player> playerArrayList = new ArrayList<>();
+
+        BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
+
+        Player player = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+        player.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
+
+        playerArrayList.add(player);
+
+        GameSetup gameSetup = new GameSetup(playerArrayList);
+
+        gameSetup.init();
+
+        ArrayList<Effect> immediateEffect = new ArrayList<>();
+
+        immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
+
+        DevelopmentCard testCard = new DevelopmentCard("test", Era.FIRST, new CardCost(), CardColor.GREEN, immediateEffect, new ArrayList<Effect>() , false, 0);
+
+        DevelopmentCard testCard1 = new DevelopmentCard("test2", Era.FIRST, new CardCost(), CardColor.GREEN, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0);
+
+        GameStatus.getInstance().getGameBoard().getTower(ZoneType.GREENTOWER).getFloor(0).setDevelopmentCard(testCard);
+        GameStatus.getInstance().getGameBoard().getTower(ZoneType.GREENTOWER).getFloor(1).setDevelopmentCard(testCard1);
+
+        GameStatus.getInstance().setCurrentPlayer(player);
+
+        PlayerController testController = new PlayerController();
+
+        testController.init();
+
+    }
 
     @Test
     public void testInit() throws Exception {
