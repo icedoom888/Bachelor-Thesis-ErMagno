@@ -11,10 +11,18 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public class MarketAction extends Action {
 
+    private ShopName shopName;
+
     public MarketAction(ShopName houseSelected) {
         super(ZoneType.MARKET);
 
-        this.actionSpaceSelected = GameStatus.getInstance().getGameBoard().getMarket().getShop(houseSelected);
+        this.shopName = houseSelected;
+
+        this.actionSpaceSelected = GameStatus.getInstance().getGameBoard().getMarket().getShop(shopName);
     }
 
+    @Override
+    public String toString() {
+        return "MarketAction{" + super.toString() + ", shopName = " + shopName + "}";
+    }
 }

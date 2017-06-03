@@ -55,5 +55,9 @@ public class CouncilPalaceAction extends Action {
         ((CouncilPalaceActionSpace) actionSpaceSelected).getEffect_2().execute(player);
     }
 
+    @Override
+    public String toString() {
+        return "CouncilPalaceAction{" + super.toString() + "}";
+    }
 
 }

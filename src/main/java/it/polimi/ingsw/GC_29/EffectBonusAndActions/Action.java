@@ -240,8 +240,8 @@ public abstract class Action {
 
     @Override
     public String toString() {
-        return " zoneType=" + zoneType
-                + "workers=" + workers
-                +  "enable=" + enable + '}';
+        return " zoneType= " + zoneType
+                + ", workers= " + workers
+                +  ", enable= " + enable ;
     }
 }

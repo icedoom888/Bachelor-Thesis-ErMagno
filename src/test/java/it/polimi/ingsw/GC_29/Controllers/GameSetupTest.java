@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import org.testng.annotations.Test;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
@@ -54,17 +55,16 @@ public class GameSetupTest {
     @Test
     public void testCreateActions() throws Exception {
 
-        BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
+    for(int i = 2; i<5; i++){
 
-        Player player1 = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+        createActions(i);
+    }
 
-        Player player2 = new Player("Alberto", PlayerColor.RED, new PersonalBoard(bonusTile, 6));
+    }
 
-        ArrayList<Player> players = new ArrayList<>();
+    private void createActions(int numberOfPlayers) throws FileNotFoundException {
 
-        players.add(player1);
-
-        players.add(player2);
+        ArrayList<Player> players = createPlayers(numberOfPlayers);
 
         GameSetup testGameSetup = new GameSetup(players);
 
@@ -75,6 +75,21 @@ public class GameSetupTest {
             System.out.println(action);
         }
 
+    }
+    private ArrayList<Player> createPlayers(int numberOfPlayers){
+
+        ArrayList<Player> playerArrayList = new ArrayList<>();
+
+        for(int i = 0; i < numberOfPlayers; i++){
+
+            BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
+
+            Player player = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+
+            playerArrayList.add(player);
+        }
+
+        return playerArrayList;
     }
 
 }
