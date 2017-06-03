@@ -80,12 +80,11 @@ public class GameController {
 
 
     /**
-     * endGame calculates the vicotryPoints of all the players and chooses the winner
+     * endGame calculates the victoryPoints of all the players and chooses the winner
      */
-    private void endGame() {
+    public void endGame() { //TODO: make private
 
         List<Player> players = gameStatus.getTurnOrder();
-        GameBoard gameBoard = gameStatus.getGameBoard();
 
         Player winner = null;
         int winningPoints = 0;
@@ -185,7 +184,7 @@ public class GameController {
      * After this first step, all the players of the oldTurnOrder are added to the temporary arrayList, skipping the
      * ones who have already been copied. Then the TurnOrder in the GameStatus is set.
      */
-    private void setNewTurnOrder() {
+    public void setNewTurnOrder() {  //Todo: make private
         PlayerColor[] newTurnOrder = gameStatus.getGameBoard().getCouncilPalace().getTurnOrder();
         List<Player> oldTurnOrder = gameStatus.getTurnOrder();
         ArrayList<Player> temporaryTurnOrder = new ArrayList<>();

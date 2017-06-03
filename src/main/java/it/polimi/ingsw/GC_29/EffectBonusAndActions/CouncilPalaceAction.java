@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 import it.polimi.ingsw.GC_29.Components.CouncilPalaceActionSpace;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Player.Player;
 
@@ -11,11 +12,11 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public class CouncilPalaceAction extends Action {
 
-    private CouncilPalaceActionSpace councilPalace;
+    public CouncilPalaceAction(FamilyPawn pawnSelected,
+                               Player player) {
 
-    public CouncilPalaceAction() {
-
-        super(ZoneType.COUNCILPALACE);
+        super(pawnSelected, ZoneType.COUNCILPALACE, player);
+        this.actionSpaceSelected = GameStatus.getInstance().getGameBoard().getCouncilPalace();
 
     }
 
@@ -25,6 +26,7 @@ public class CouncilPalaceAction extends Action {
 
         super.payWorkers();
         super.addPawn();
+        executeCouncilPrivilegeEffect();
         setOrder();
         super.update();
     }
@@ -37,7 +39,7 @@ public class CouncilPalaceAction extends Action {
      */
     private void setOrder() {
         if (temporaryPawn.getType() != FamilyPawnType.NEUTRAL && temporaryPawn.getType() != FamilyPawnType.BONUS) {
-            PlayerColor[] turnOrder = councilPalace.getTurnOrder();
+            PlayerColor[] turnOrder = ((CouncilPalaceActionSpace) actionSpaceSelected).getTurnOrder();
             PlayerColor currentPlayerColor = temporaryPawn.getPlayerColor();
 
             int firstFreeSpace = 0;
@@ -48,5 +50,9 @@ public class CouncilPalaceAction extends Action {
 
             turnOrder[firstFreeSpace] = currentPlayerColor;
         }
+    }
+
+    private void executeCouncilPrivilegeEffect() {
+        ((CouncilPalaceActionSpace) actionSpaceSelected).getEffect_2().execute(player);
     }
 }
