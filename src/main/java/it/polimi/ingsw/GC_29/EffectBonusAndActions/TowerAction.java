@@ -367,4 +367,9 @@ public class TowerAction extends Action {
     public DevelopmentCard getCardSelected() {
         return cardSelected;
     }
+
+    @Override
+    public String toString() {
+        return "TowerAction{"+ super.toString() + "towerChosen=" + towerChosen + ", floorIndex=" + floorIndex + ", actionSpaceGoodSet=" + actionSpaceGoodSet + ", towerCost=" + towerCost + ", cardCost=" + cardCost + ", possibleCardCosts=" + possibleCardCosts + ", cardSelected=" + cardSelected + '}';
+    }
 }

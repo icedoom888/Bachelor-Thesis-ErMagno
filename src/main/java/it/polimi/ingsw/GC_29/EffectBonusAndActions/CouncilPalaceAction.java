@@ -54,4 +54,6 @@ public class CouncilPalaceAction extends Action {
     private void executeCouncilPrivilegeEffect() {
         ((CouncilPalaceActionSpace) actionSpaceSelected).getEffect_2().execute(player);
     }
+
+
 }

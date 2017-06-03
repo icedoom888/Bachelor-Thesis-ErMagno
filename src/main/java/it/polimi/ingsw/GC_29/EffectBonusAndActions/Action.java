@@ -238,4 +238,8 @@ public abstract class Action {
     }
 
 
+    @Override
+    public String toString() {
+        return "workers=" + workers + ", temporaryPawn=" + temporaryPawn + ", zoneType=" + zoneType + ", actionSpaceSelected=" + actionSpaceSelected + ", player=" + player + ", enable=" + enable + '}';
+    }
 }
