@@ -20,11 +20,8 @@ public class ActionChecker {
     private static ActionChecker instance = null;
 
     private ArrayList<Action> actionList;
-    private HashMap<FamilyPawn, ArrayList<Action>> validActionForFamilyPawnMap;
     private Player currentPlayer;
-    private int numberOfPlayers;
-
-
+    private ArrayList<Action> validActionList;
 
     //test variable
     private boolean testVariable = false;
@@ -32,7 +29,6 @@ public class ActionChecker {
     private ActionChecker(){
 
         actionList = new ArrayList<>();
-        validActionForFamilyPawnMap = new HashMap<>();
     }
 
     public static ActionChecker getInstance(){
@@ -50,41 +46,19 @@ public class ActionChecker {
         this.actionList = actionList;
     }
 
-    public void setNumberOfPlayers(int numberOfPlayers){
-
-        this.numberOfPlayers = numberOfPlayers;
-    }
-
     public void setCurrentPlayer(Player currentPlayer) throws NullPointerException{
 
         this.currentPlayer = currentPlayer;
 
-        initializeActionMap(currentPlayer);
-    }
+        for(Action action : actionList){
 
-    public void initializeActionMap(Player currentPlayer) throws NullPointerException{
-
-        for(FamilyPawn pawn : currentPlayer.getFamilyPawns()){
-
-            validActionForFamilyPawnMap.put(pawn, new ArrayList<>());
+            action.setPlayer(currentPlayer);
         }
     }
-
-    public void initializeBonusPawn(FamilyPawn familyPawn) throws NullPointerException{
-
-        if(familyPawn.getType() != FamilyPawnType.BONUS){
-            throw new IllegalArgumentException("Illegal type type: " + familyPawn.getType());
-        }
-
-        validActionForFamilyPawnMap.put(familyPawn, new ArrayList<>());
-    }
-
 
     public void setValidActionForFamilyPawn(FamilyPawn familyPawn){
 
-        ArrayList<Action> temporaryActionList = loadActionListFromFile();
-
-        checkActionOnPawn(familyPawn, temporaryActionList);
+        checkActionOnPawn(familyPawn, actionList);
 
     }
 
@@ -109,33 +83,20 @@ public class ActionChecker {
 
             if(action.isPossible()){
 
-                validActionForFamilyPawnMap.get(familyPawnChosen).add(action);
+                validActionList.add(action);
 
             }
         }
     }
 
-    /**
-     * this method cleans the valid action Map for the current player.
-     * It should be called before the end of the current player's turn.
-     */
-    public void cleanValidActionMap(){
 
-        for(ArrayList<Action> list : validActionForFamilyPawnMap.values()){
-
-            list.clear();
-        }
-    }
-
-    public ArrayList<Action> filterActionListPerZoneType(ZoneType zoneType){
-
-        ArrayList<Action> loadedActionList = loadActionListFromFile();
+    private ArrayList<Action> filterActionListPerZoneType(ZoneType zoneType){
 
         ArrayList<Action> filteredActionList = new ArrayList<>();
 
         if(zoneType == ZoneType.ANYTOWER){
 
-            for(Action action : loadedActionList){
+            for(Action action : actionList){
                 if(action.getZoneType() == ZoneType.GREENTOWER
                     || action.getZoneType() == ZoneType.YELLOWTOWER
                     || action.getZoneType() == ZoneType.BLUETOWER
@@ -148,7 +109,7 @@ public class ActionChecker {
 
         else{
 
-            for(Action action : loadedActionList){
+            for(Action action : actionList){
 
                 if(action.getZoneType() == zoneType){
 
@@ -159,6 +120,8 @@ public class ActionChecker {
 
         return filteredActionList;
     }
+
+    //////////////////////////////////////////////////////////////////
 
     private ArrayList<Action> loadActionListFromFile(){
 
@@ -188,7 +151,7 @@ public class ActionChecker {
     }
 
 
-    public void fakeAddValidActionMap(FamilyPawn familyPawnChosen){
+    /*public void fakeAddValidActionMap(FamilyPawn familyPawnChosen){
 
         ArrayList<Action> temporaryActionList = fakeloadActionListFromFile(familyPawnChosen);
 
@@ -233,6 +196,6 @@ public class ActionChecker {
             return list2;
         }
 
-    }
+    }*/
 
 }
