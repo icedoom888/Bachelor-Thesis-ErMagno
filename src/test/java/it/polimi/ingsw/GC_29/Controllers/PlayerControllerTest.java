@@ -45,7 +45,7 @@ public class PlayerControllerTest {
 
         testController.init();
 
-        FactoryAction.resetFloor();
+        //FactoryAction.resetFloor();
 
     }
 
@@ -93,7 +93,7 @@ public class PlayerControllerTest {
 
         testController.init();
 
-        FactoryAction.resetFloor();
+       // FactoryAction.resetFloor();
     }
 
     @Test
@@ -141,7 +141,7 @@ public class PlayerControllerTest {
 
         testController.init();
 
-        FactoryAction.resetFloor();
+      //  FactoryAction.resetFloor();
     }
 
 }

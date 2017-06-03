@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
  * Created by Christian on 27/05/2017.
- */
+
 public class FactoryAction {
 
     private static int floor; // for playerControllerTest
@@ -64,4 +64,4 @@ public class FactoryAction {
     public static void resetFloor(){
         floor = 0;
     }
-}
+}*/

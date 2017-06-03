@@ -38,9 +38,9 @@ public class ValidationActionTurnState implements TurnState {
 
                 FamilyPawn pawnSelected = AskFamilyPawn();
 
-                currentAction = FactoryAction.getAction(typeSelected, pawnSelected, wrapper.getPlayerStatus());
+               // currentAction = FactoryAction.getAction(typeSelected, pawnSelected, wrapper.getPlayerStatus());
 
-                validAction = currentAction.isPossible();
+              //  validAction = currentAction.isPossible();
 
             }
 

@@ -45,9 +45,9 @@ public class BonusActionTurnState implements TurnState {
 
                 ZoneType zoneType = currentBonusAction.getType();
 
-                currentAction = FactoryAction.getAction(zoneType, familyPawn, wrapper.getPlayerStatus());
+                //currentAction = FactoryAction.getAction(zoneType, familyPawn, wrapper.getPlayerStatus());
 
-                validAction = currentAction.isPossible();
+                //validAction = currentAction.isPossible();
 
             }
 

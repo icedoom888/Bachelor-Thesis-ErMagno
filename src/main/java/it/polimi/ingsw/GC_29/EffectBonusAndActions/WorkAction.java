@@ -12,6 +12,7 @@ import static java.lang.Math.max;
  * Created by AlbertoPennino on 22/05/2017.
  */
 
+/*
 public class WorkAction extends Action {
 
     private Workspace workspaceSelected;
@@ -47,7 +48,7 @@ public class WorkAction extends Action {
     /**
      * This method checks that the first Field is occupied if the fieldSelected is the second
      * @return true if first field is either selected or occupied, false otherwise
-     */
+
     private boolean isFieldAccessible() {
         if (fieldSelected==FieldType.FIRST){return true;}
         if(workspaceSelected.getActionspace(fieldSelected).isOccupied()){
@@ -59,7 +60,7 @@ public class WorkAction extends Action {
     /**
      * This methods checks if there is already a pawn of the same Player in the selected ActionSpace, even if the actionSpace is multiple
      * @return true if there aren't any player's pawns into the actionSpace, false otherwise
-     */
+
     private boolean checkFamilyPresenceInField() {
 
         for(Pawn pawnPresent : workspaceSelected.getActionspace(fieldSelected).getPawnPlaced().getPlayerPawns()){
@@ -78,7 +79,7 @@ public class WorkAction extends Action {
      * there isn't a pawn of the same color into the other one
      * if there is one of the two pawns must be the neutral one;
      * @return true if the neutral rule is respected, false otherwise
-     */
+
     private boolean checkNeutralRule() {
         if(temporaryPawn.getType()==FamilyPawnType.NEUTRAL && temporaryPawn.getType()==FamilyPawnType.BONUS){
             return true;
@@ -116,7 +117,7 @@ public class WorkAction extends Action {
      * This method builds different arrays of cards associated to the number of workers that
      * the player would need to pay to activate their effects,
      * the arrays are created only if the resources of the player are enough to pay hte workersNeeded
-     */
+
     private void buildDifferentChoices() {
         Lane lane = null;
         if(zoneType==ZoneType.HARVEST){
@@ -159,7 +160,7 @@ public class WorkAction extends Action {
      * then asks the player which effects he wants to activate for each card in case of alternatives,
      * only if the player wants activate the card at all.
      * The method generates then a list of effects that need to be activated
-     */
+
     private void makeChoice() {
         //TODO: filtraggio sul costo in workers una volta ottenuto
         int choice = askForWorkers();
@@ -210,7 +211,7 @@ public class WorkAction extends Action {
         String answer = in.nextLine();
         if ("y".equals(answer)){
             return true;
-        }*/
+        }
         return false;
     }
 
@@ -221,7 +222,7 @@ public class WorkAction extends Action {
         System.out.println("La carta offre diverse possibilità: "+ card.getPermanentEffect());
         System.out.println("Digita il numero dell'effetto desiderato!");
         int answer = (in.nextInt())-1;
-        return card.getPermanentEffect().get(answer);*/
+        return card.getPermanentEffect().get(answer);
         return card.getPermanentEffect().get(3);
 
     }
@@ -233,14 +234,14 @@ public class WorkAction extends Action {
                 "\n" + "ti sarà possibile attivare diversi effetti: \n" + cardsForWorkers);
         System.out.println("Digita il numero di workers che vuoi aggiungere!");
         int answer = (in.nextInt());
-        return answer;*/
+        return answer;
         return 0;
     }
 
 
     /**
      * This method activates all the effects selected by the player
-     */
+
     private void activateEffects() {
 
         GoodSet goodSet= null;
@@ -258,5 +259,5 @@ public class WorkAction extends Action {
 
 
 
-}
+}*/
 

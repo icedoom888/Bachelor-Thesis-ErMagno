@@ -13,10 +13,9 @@ public class CouncilPalaceAction extends Action {
 
     private CouncilPalaceActionSpace councilPalace;
 
-    public CouncilPalaceAction(FamilyPawn pawnSelected,
-                               Player player) {
+    public CouncilPalaceAction() {
 
-        super(pawnSelected, ZoneType.COUNCILPALACE, player);
+        super(ZoneType.COUNCILPALACE);
 
     }
 

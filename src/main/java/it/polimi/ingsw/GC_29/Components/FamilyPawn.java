@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
  * Created by Lorenzotara on 17/05/17.
  */
 public class FamilyPawn extends Pawn {
+
     private FamilyPawnType type;
     private int actualValue;
 

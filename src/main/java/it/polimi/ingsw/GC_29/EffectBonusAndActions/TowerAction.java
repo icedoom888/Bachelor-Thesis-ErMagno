@@ -22,12 +22,10 @@ public class TowerAction extends Action {
     private DevelopmentCard cardSelected;
 
     public TowerAction(
-            FamilyPawn pawnSelected,
             ZoneType actionSelected,
-            Player player,
             int floorIndex) {
 
-        super(pawnSelected, actionSelected, player);
+        super(actionSelected);
         this.towerChosen = GameStatus.getInstance().getGameBoard().getTower(zoneType);
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
@@ -41,19 +39,15 @@ public class TowerAction extends Action {
 
     /**
      * esclusivamente per testing
-     * @param pawnSelected
      * @param actionSelected
-     * @param player
      * @param floorIndex
      */
     public TowerAction(
-            FamilyPawn pawnSelected,
             ZoneType actionSelected,
-            Player player,
             int floorIndex,
             Tower towerChosen) {
 
-        super(pawnSelected, actionSelected, player);
+        super(actionSelected);
         this.towerChosen = towerChosen;
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();

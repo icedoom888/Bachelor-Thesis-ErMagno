@@ -15,7 +15,7 @@ public class Player {
     private String playerID;
     private PersonalBoard personalBoard;
     private LeaderCard[] leaderCards;
-    private FamilyPawn[] familyPawns; // TODO: sbagliato, deve essere una hashmap
+    private FamilyPawn[] familyPawns;
     private Pawn[] excommunicationPawns;
     private Pawn[] markerDiscs;
     private PlayerColor playerColor;
@@ -84,6 +84,18 @@ public class Player {
 
     public FamilyPawn[] getFamilyPawns() {
         return familyPawns;
+    }
+
+    public FamilyPawn getFamilyPawn(FamilyPawnType familyPawnType){
+
+        for(FamilyPawn familyPawn : familyPawns){
+
+            if(familyPawn.getType() == familyPawnType){
+                return familyPawn;
+            }
+        }
+
+        throw new IllegalArgumentException("wrong type" + familyPawnType);
     }
 
     public Pawn[] getExcommunicationPawns() {

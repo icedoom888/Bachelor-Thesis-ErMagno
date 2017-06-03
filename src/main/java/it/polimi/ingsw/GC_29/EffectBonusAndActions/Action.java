@@ -16,13 +16,9 @@ public abstract class Action {
     protected ActionSpace actionSpaceSelected;
     protected Player player;
 
-    public Action(FamilyPawn pawnSelected,
-                  ZoneType zoneType,
-                  Player player) {
+    public Action(ZoneType zoneType) {
 
         this.zoneType = zoneType;
-        this.temporaryPawn = new FamilyPawn(pawnSelected);
-        this.player = player;
     }
 
 
@@ -42,6 +38,11 @@ public abstract class Action {
     public void setFamiliyPawn(FamilyPawn familiyPawnChosen){
 
         this.temporaryPawn = familiyPawnChosen;
+    }
+
+    public void setPlayer(Player player){
+
+        this.player = player;
     }
 
 

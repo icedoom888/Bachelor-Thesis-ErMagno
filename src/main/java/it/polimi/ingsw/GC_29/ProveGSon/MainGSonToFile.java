@@ -50,7 +50,7 @@ public class MainGSonToFile {
 
         // toJson
 
-        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\goodsForPlayerSetup");
+        /*FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\goodsForPlayerSetup");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
@@ -60,11 +60,6 @@ public class MainGSonToFile {
                 .registerSubtype(CouncilPrivilegeEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect")
                 .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
                 .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect");
-
-        /*final RuntimeTypeAdapterFactory<ObtainEffect> typeFactory1 = RuntimeTypeAdapterFactory
-                .of(ObtainEffect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
-                .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
-                .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect");*/
 
 
 
@@ -128,7 +123,36 @@ public class MainGSonToFile {
 
         gson.toJson(goodSets, fileWriter);
 
-        fileWriter.close();
+        fileWriter.close();*/
+
+
+
+        ArrayList<Action> actionList = new ArrayList<>();
+
+        actionList.add(new TowerAction(ZoneType.GREENTOWER, 0));
+        actionList.add(new TowerAction(ZoneType.GREENTOWER, 1));
+        actionList.add(new TowerAction(ZoneType.GREENTOWER, 2));
+        actionList.add(new TowerAction(ZoneType.GREENTOWER, 3));
+        actionList.add(new TowerAction(ZoneType.YELLOWTOWER, 0));
+        actionList.add(new TowerAction(ZoneType.YELLOWTOWER, 1));
+        actionList.add(new TowerAction(ZoneType.YELLOWTOWER, 2));
+        actionList.add(new TowerAction(ZoneType.YELLOWTOWER, 3));
+        actionList.add(new TowerAction(ZoneType.BLUETOWER, 0));
+        actionList.add(new TowerAction(ZoneType.BLUETOWER, 1));
+        actionList.add(new TowerAction(ZoneType.BLUETOWER, 2));
+        actionList.add(new TowerAction(ZoneType.BLUETOWER, 3));
+        actionList.add(new TowerAction(ZoneType.PURPLETOWER, 0));
+        actionList.add(new TowerAction(ZoneType.PURPLETOWER, 1));
+        actionList.add(new TowerAction(ZoneType.PURPLETOWER, 2));
+        actionList.add(new TowerAction(ZoneType.PURPLETOWER, 3));
+
+        actionList.add(new CouncilPalaceAction());
+
+        actionList.add(new MarketAction(ShopName.MONEYSHOP));
+        actionList.add(new MarketAction(ShopName.BONUSSHOP));
+        actionList.add(new MarketAction(ShopName.PRIVILEGESHOP));
+        actionList.add(new MarketAction(ShopName.WORKERSHOP));
+
 
 
     }

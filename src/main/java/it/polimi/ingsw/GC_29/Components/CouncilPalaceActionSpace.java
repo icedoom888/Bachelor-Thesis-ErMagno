@@ -11,6 +11,7 @@ import java.util.Arrays;
  * Created by Lorenzotara on 17/05/17.
  */
 public class CouncilPalaceActionSpace extends ActionSpace {
+
     private Effect effect_2;
     private int numberOfPlayers;
     private PlayerColor[] turnOrder;
