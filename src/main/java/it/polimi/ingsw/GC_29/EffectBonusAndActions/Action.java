@@ -15,7 +15,7 @@ public abstract class Action {
     protected ZoneType zoneType;
     protected ActionSpace actionSpaceSelected;
     protected Player player;
-    protected Boolean enable;
+    protected Boolean enable = true;
 
     public Action(ZoneType zoneType) {
 

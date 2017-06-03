@@ -6,7 +6,7 @@ package it.polimi.ingsw.GC_29.Components;
 public enum ShopName {
     MONEYSHOP,
     WORKERSHOP,
-    BONUSSHOP,
+    MILITARYANDCOINSSHOP,
     PRIVILEGESHOP;
 
 }
