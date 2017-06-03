@@ -15,6 +15,7 @@ public abstract class Action {
     protected ZoneType zoneType;
     protected ActionSpace actionSpaceSelected;
     protected Player player;
+    protected Boolean enable;
 
     public Action(ZoneType zoneType) {
 
@@ -210,6 +211,20 @@ public abstract class Action {
 
     }
 
+    public void reset() {
+        this.workers = 0;
+        this.temporaryPawn = null;
+        this.player = null;
+    }
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
+
 
     //metodi per testing
 
@@ -221,4 +236,6 @@ public abstract class Action {
     public Player getPlayer() {
         return player;
     }
+
+
 }
