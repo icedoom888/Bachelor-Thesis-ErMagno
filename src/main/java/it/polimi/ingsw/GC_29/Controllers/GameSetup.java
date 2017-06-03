@@ -67,6 +67,8 @@ public class GameSetup {
 
         setGameStatus();
 
+        createActions();
+
     }
 
 
@@ -215,7 +217,7 @@ public class GameSetup {
 
     }
 
-    private void createActions() {
+    public void createActions() {
 
         ArrayList<Action> actionList = new ArrayList<>();
 
@@ -255,6 +257,8 @@ public class GameSetup {
             }
 
         }
+
+        ActionChecker.getInstance().setActionList(actionList);
     }
 
 

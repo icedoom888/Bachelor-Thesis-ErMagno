@@ -21,12 +21,12 @@ public class Market implements Cleanable {
         houses.put(ShopName.MONEYSHOP,new ActionSpace(new ObtainEffect(0,0,5,0,0,0,0),1,new PawnSlot(1,true),true,false));
         houses.put(ShopName.WORKERSHOP,new ActionSpace(new ObtainEffect(0,0,0,5,0,0,0),1,new PawnSlot(1,true),true,false));
         if (numberOfPlayers>=4){
-            houses.put(ShopName.BONUSSHOP,new ActionSpace(new ObtainEffect(0,0,2,0,0,3,0),1,new PawnSlot(1,true),true,false));
+            houses.put(ShopName.MILITARYANDCOINSSHOP,new ActionSpace(new ObtainEffect(0,0,2,0,0,3,0),1,new PawnSlot(1,true),true,false));
             houses.put(ShopName.PRIVILEGESHOP,new ActionSpace(new CouncilPrivilegeEffect(1),1,new PawnSlot(1,true),true,false));
 
         }
         else{
-            houses.put(ShopName.BONUSSHOP,null);
+            houses.put(ShopName.MILITARYANDCOINSSHOP,null);
             houses.put(ShopName.PRIVILEGESHOP,null);
         }
     }

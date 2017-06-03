@@ -125,36 +125,6 @@ public class MainGSonToFile {
 
         fileWriter.close();*/
 
-
-
-        ArrayList<Action> actionList = new ArrayList<>();
-
-        actionList.add(new TowerAction(ZoneType.GREENTOWER, 0));
-        actionList.add(new TowerAction(ZoneType.GREENTOWER, 1));
-        actionList.add(new TowerAction(ZoneType.GREENTOWER, 2));
-        actionList.add(new TowerAction(ZoneType.GREENTOWER, 3));
-        actionList.add(new TowerAction(ZoneType.YELLOWTOWER, 0));
-        actionList.add(new TowerAction(ZoneType.YELLOWTOWER, 1));
-        actionList.add(new TowerAction(ZoneType.YELLOWTOWER, 2));
-        actionList.add(new TowerAction(ZoneType.YELLOWTOWER, 3));
-        actionList.add(new TowerAction(ZoneType.BLUETOWER, 0));
-        actionList.add(new TowerAction(ZoneType.BLUETOWER, 1));
-        actionList.add(new TowerAction(ZoneType.BLUETOWER, 2));
-        actionList.add(new TowerAction(ZoneType.BLUETOWER, 3));
-        actionList.add(new TowerAction(ZoneType.PURPLETOWER, 0));
-        actionList.add(new TowerAction(ZoneType.PURPLETOWER, 1));
-        actionList.add(new TowerAction(ZoneType.PURPLETOWER, 2));
-        actionList.add(new TowerAction(ZoneType.PURPLETOWER, 3));
-
-        actionList.add(new CouncilPalaceAction());
-
-        actionList.add(new MarketAction(ShopName.MONEYSHOP));
-        actionList.add(new MarketAction(ShopName.BONUSSHOP));
-        actionList.add(new MarketAction(ShopName.PRIVILEGESHOP));
-        actionList.add(new MarketAction(ShopName.WORKERSHOP));
-
-
-
     }
 
 

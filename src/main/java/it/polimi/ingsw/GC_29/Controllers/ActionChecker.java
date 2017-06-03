@@ -41,6 +41,11 @@ public class ActionChecker {
 
     }
 
+    public ArrayList<Action> getActionList(){
+
+        return actionList;
+    }
+
     public void setActionList(ArrayList<Action> actionList){
 
         this.actionList = actionList;

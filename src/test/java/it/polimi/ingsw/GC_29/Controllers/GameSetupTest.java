@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -48,6 +49,31 @@ public class GameSetupTest {
 
         }
 
+    }
+
+    @Test
+    public void testCreateActions() throws Exception {
+
+        BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
+
+        Player player1 = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+
+        Player player2 = new Player("Alberto", PlayerColor.RED, new PersonalBoard(bonusTile, 6));
+
+        ArrayList<Player> players = new ArrayList<>();
+
+        players.add(player1);
+
+        players.add(player2);
+
+        GameSetup testGameSetup = new GameSetup(players);
+
+        testGameSetup.init();
+
+        for(Action action : ActionChecker.getInstance().getActionList()){
+
+            System.out.println(action);
+        }
 
     }
 
