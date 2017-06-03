@@ -15,7 +15,7 @@ public abstract class Action {
     protected ZoneType zoneType;
     protected ActionSpace actionSpaceSelected;
     protected Player player;
-    protected Boolean enable;
+    protected Boolean enable = true;
 
     public Action(ZoneType zoneType) {
 
@@ -238,4 +238,8 @@ public abstract class Action {
     }
 
 
+    @Override
+    public String toString() {
+        return "workers=" + workers + ", temporaryPawn=" + temporaryPawn + ", zoneType=" + zoneType + ", actionSpaceSelected=" + actionSpaceSelected + ", player=" + player + ", enable=" + enable + '}';
+    }
 }

@@ -73,6 +73,7 @@ public class GameController {
             }
 
             gameStatus.getGameBoard().clearAll();
+            gameStatus.setCurrentRound(1);
             gameStatus.setCurrentTurn(gameStatus.getCurrentTurn()+1);
 
         }

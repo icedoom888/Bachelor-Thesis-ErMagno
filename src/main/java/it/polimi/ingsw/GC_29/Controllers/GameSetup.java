@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.ProveGSon.EnumMapInstanceCreator;
 
@@ -207,9 +207,55 @@ public class GameSetup {
 
         gameStatus.setCurrentPlayer(players.get(0));
 
+        gameStatus.setCurrentEra(Era.FIRST);
+
+        gameStatus.setCurrentRound(1);
+
+        gameStatus.setCurrentTurn(1);
+
     }
 
-    private void createActions() {}
+    private void createActions() {
+
+        ArrayList<Action> actionList = new ArrayList<>();
+
+        final int NUMBER_OF_FLOORS = 4;
+
+        for(ZoneType zoneType : ZoneType.values()){
+
+            if(zoneType == ZoneType.GREENTOWER || zoneType == ZoneType.YELLOWTOWER || zoneType == ZoneType.BLUETOWER || zoneType == ZoneType.PURPLETOWER){
+
+                for (int i = 0; i < NUMBER_OF_FLOORS; i++){
+                    actionList.add(new TowerAction(zoneType, i));
+                }
+
+            } else if(zoneType == ZoneType.MARKET) {
+
+                for (ShopName shopName : ShopName.values()) {
+                    MarketAction marketAction = new MarketAction(shopName);
+
+                    if ((shopName == ShopName.MILITARYANDCOINSSHOP || shopName == ShopName.PRIVILEGESHOP) && numberOfPlayers < 4) {
+                        marketAction.setEnable(false);
+                    }
+
+                    actionList.add(marketAction);
+                }
+
+            } else if (zoneType == ZoneType.COUNCILPALACE) {
+                actionList.add(new CouncilPalaceAction());
+
+            } else if (zoneType == ZoneType.HARVEST) {
+
+                //TODO: impl
+
+            } else if (zoneType == ZoneType.PRODUCTION) {
+
+                //TODO: impl
+
+            }
+
+        }
+    }
 
 
 }
