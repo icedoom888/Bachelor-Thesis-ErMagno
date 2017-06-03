@@ -255,6 +255,9 @@ public class GameSetup {
             }
 
         }
+
+        ActionChecker.getInstance().setActionList(actionList);
+
     }
 
 
