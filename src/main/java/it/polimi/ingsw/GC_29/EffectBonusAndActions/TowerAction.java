@@ -30,8 +30,6 @@ public class TowerAction extends Action {
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.actionSpaceGoodSet = new GoodSet();
-        this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
-        this.cardCost = cardSelected.getCardCost();
         this.towerCost = new GoodSet();
         this.possibleCardCosts = new ArrayList<>();
 
@@ -52,8 +50,6 @@ public class TowerAction extends Action {
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.actionSpaceGoodSet = new GoodSet();
-        this.cardSelected = towerChosen.getFloor(floorIndex).getDevelopmentCard();
-        this.cardCost = cardSelected.getCardCost();
         this.towerCost = new GoodSet();
         this.possibleCardCosts = new ArrayList<>();
 
@@ -152,6 +148,12 @@ public class TowerAction extends Action {
      */
     private boolean checkSufficientGoodsForCard() {
         
+        setCardSelected(towerChosen.getFloor(floorIndex).getDevelopmentCard());
+
+        if (cardSelected == null) return false;
+
+        setCardCost(cardSelected.getCardCost());
+
         if(cardCost.isWithPrice()){
             return true;
         }
@@ -334,7 +336,14 @@ public class TowerAction extends Action {
         this.actionSpaceGoodSet = new GoodSet();
         this.towerCost = new GoodSet();
         this.possibleCardCosts = null;
+    }
 
+    public void setCardCost(CardCost cardCost) {
+        this.cardCost = cardCost;
+    }
+
+    public void setCardSelected(DevelopmentCard cardSelected) {
+        this.cardSelected = cardSelected;
     }
 
     // metodi per testing
