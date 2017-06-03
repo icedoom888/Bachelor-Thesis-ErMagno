@@ -12,10 +12,9 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public class CouncilPalaceAction extends Action {
 
-    public CouncilPalaceAction(FamilyPawn pawnSelected,
-                               Player player) {
+    public CouncilPalaceAction() {
 
-        super(pawnSelected, ZoneType.COUNCILPALACE, player);
+        super(ZoneType.COUNCILPALACE);
         this.actionSpaceSelected = GameStatus.getInstance().getGameBoard().getCouncilPalace();
 
     }

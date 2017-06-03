@@ -11,8 +11,8 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public class MarketAction extends Action {
 
-    public MarketAction(FamilyPawn pawnSelected, Player player, ShopName houseSelected) {
-        super(pawnSelected, ZoneType.MARKET, player);
+    public MarketAction(ShopName houseSelected) {
+        super(ZoneType.MARKET);
 
         this.actionSpaceSelected = GameStatus.getInstance().getGameBoard().getMarket().getShop(houseSelected);
     }
