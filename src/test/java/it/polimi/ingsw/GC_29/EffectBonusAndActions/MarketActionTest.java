@@ -36,7 +36,9 @@ public class MarketActionTest {
 
         testGameSetup.init();
 
-        MarketAction testMarketAction = new MarketAction(player1.getFamilyPawns()[1], player1, ShopName.MONEYSHOP);
+        MarketAction testMarketAction = new MarketAction(ShopName.MONEYSHOP);
+        testMarketAction.setFamiliyPawn(player1.getFamilyPawns()[1]);
+        testMarketAction.setPlayer(player1);
 
         Boolean possible = testMarketAction.isPossible();
 

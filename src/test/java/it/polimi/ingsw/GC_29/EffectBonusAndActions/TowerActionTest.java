@@ -85,7 +85,10 @@ public class TowerActionTest {
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
         //gameBoard.getTower(ZoneType.BLUETOWER)
 
-        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, player1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        TowerAction towerAction = new TowerAction(ZoneType.BLUETOWER, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+
+        towerAction.setFamiliyPawn(familyPawnSelected);
+        towerAction.setPlayer(player1);
 
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
@@ -185,7 +188,9 @@ public class TowerActionTest {
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
         //gameBoard.getTower(ZoneType.BLUETOWER)
 
-        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, player1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        TowerAction towerAction = new TowerAction(ZoneType.BLUETOWER, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        towerAction.setFamiliyPawn(familyPawnSelected);
+        towerAction.setPlayer(player1);
 
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
@@ -288,7 +293,9 @@ public class TowerActionTest {
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
         //gameBoard.getTower(ZoneType.BLUETOWER)
 
-        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, player1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        TowerAction towerAction = new TowerAction(ZoneType.BLUETOWER, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        towerAction.setFamiliyPawn(familyPawnSelected);
+        towerAction.setPlayer(player1);
 
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
@@ -385,7 +392,10 @@ public class TowerActionTest {
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
         //gameBoard.getTower(ZoneType.BLUETOWER)
 
-        TowerAction towerAction = new TowerAction(familyPawnSelected, ZoneType.BLUETOWER, player1, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+        TowerAction towerAction = new TowerAction(ZoneType.BLUETOWER, 3, gameBoard.getTower(ZoneType.BLUETOWER));
+
+        towerAction.setFamiliyPawn(familyPawnSelected);
+        towerAction.setPlayer(player1);
 
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +

@@ -35,7 +35,9 @@ public class CouncilPalaceActionTest {
 
         testGameSetup.init();
 
-        CouncilPalaceAction testCouncilPalaceAction = new CouncilPalaceAction(player1.getFamilyPawns()[0], player1);
+        CouncilPalaceAction testCouncilPalaceAction = new CouncilPalaceAction();
+        testCouncilPalaceAction.setFamiliyPawn(player1.getFamilyPawns()[0]);
+        testCouncilPalaceAction.setPlayer(player1);
 
         Boolean possible = testCouncilPalaceAction.isPossible();
 
