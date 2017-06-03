@@ -328,6 +328,15 @@ public class TowerAction extends Action {
 
     }
 
+    @Override
+    public void reset(){
+        super.reset();
+        this.actionSpaceGoodSet = new GoodSet();
+        this.towerCost = new GoodSet();
+        this.possibleCardCosts = null;
+
+    }
+
     // metodi per testing
 
 
