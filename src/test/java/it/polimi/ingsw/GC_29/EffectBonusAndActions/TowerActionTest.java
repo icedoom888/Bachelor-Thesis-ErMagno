@@ -1,9 +1,12 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.Controllers.GameSetup;
+import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import org.testng.annotations.Test;
 import it.polimi.ingsw.GC_29.Player.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
@@ -296,32 +299,24 @@ public class TowerActionTest {
 
     }
 
+
     @Test
     public void testExecute() throws Exception {
 
-        // Creation of the gameboard
-
-        int numberOfPlayers1 = 4;
-        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
-        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
-        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
-        GameBoard gameBoard = new GameBoard(numberOfPlayers1);
-
-
-        // Creation of personalBoards
-
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
+
+
         PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
-        PersonalBoard personalBoard2 = new PersonalBoard(bonusTile, 6);
-
-
-
-        // Creation of playerStatuses
 
         Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
-        Player player2 = new Player("Player2", PlayerColor.GREEN, personalBoard2);
 
+        ArrayList<Player> players = new ArrayList<Player>();
 
+        players.add(player1);
+
+        GameSetup testGameSetup = new GameSetup(players);
+
+        testGameSetup.init();
 
         // Creation of the components
 
@@ -355,6 +350,12 @@ public class TowerActionTest {
                 permanentEffectsBlueCard,
                 false,
                 0);
+
+        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
+        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
+        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
+
+        GameBoard gameBoard = GameStatus.getInstance().getGameBoard();
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
         player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
@@ -390,9 +391,10 @@ public class TowerActionTest {
         System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
         System.out.println(towerAction.getPossibleCardCosts());
 
+        GameStatus.getInstance().setCurrentAction(towerAction);
+
         towerAction.execute();
         towerAction.update();
-
 
     }
 

@@ -155,38 +155,42 @@ public class TowerAction extends Action {
         setCardCost(cardSelected.getCardCost());
 
         if(cardCost.isWithPrice()){
-            return true;
-        }
 
-        setActionSpaceEffect();
-        
-        ArrayList<Cost> costList = new ArrayList<>();
-        Filter.apply(player, cardCost, costList, zoneType);
+            setActionSpaceEffect();
 
-        GoodSet playerGoodSet = new GoodSet(player.getActualGoodSet());
-        GoodSet necessaryGoodSet;
-        GoodSet realCost;
+            ArrayList<Cost> costList = new ArrayList<>();
+            Filter.apply(player, cardCost, costList, zoneType);
 
-        playerGoodSet.subGoodSet(towerCost);
-        playerGoodSet.addGoodSet(actionSpaceGoodSet);
+            GoodSet playerGoodSet = new GoodSet(player.getActualGoodSet());
+            GoodSet necessaryGoodSet;
+            GoodSet realCost;
 
-        boolean value = false;
-        for (Cost cost : costList) {
+            playerGoodSet.subGoodSet(towerCost);
+            playerGoodSet.addGoodSet(actionSpaceGoodSet);
 
-            if (cost != null) {
-                necessaryGoodSet = cost.getNecessaryResources();
-                realCost = cost.getCost();
+            boolean value = false;
+            for (Cost cost : costList) {
 
-                if (playerGoodSet.enoughResources(necessaryGoodSet)
-                        && playerGoodSet.enoughResources(realCost)) {
+                if (cost != null) {
+                    necessaryGoodSet = cost.getNecessaryResources();
+                    realCost = cost.getCost();
 
-                    possibleCardCosts.add(cost);
-                    value = true;
+                    if (playerGoodSet.enoughResources(necessaryGoodSet)
+                            && playerGoodSet.enoughResources(realCost)) {
+
+                        possibleCardCosts.add(cost);
+                        value = true;
+                    }
                 }
             }
+
+            return value;
+
         }
 
-        return value;
+        return true;
+
+
     }
 
     

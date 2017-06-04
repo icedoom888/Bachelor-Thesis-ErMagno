@@ -90,22 +90,22 @@ public class GameSetup {
         switch (color) {
             case GREEN:
 
-                cardFileReader = new FileReader("greenCards");
+                cardFileReader = new FileReader("cards/greenCards");
                 break;
 
             case YELLOW:
 
-                cardFileReader = new FileReader("yellowCards");
+                cardFileReader = new FileReader("cards/yellowCards");
                 break;
 
             case BLUE:
 
-                cardFileReader = new FileReader("blueCards");
+                cardFileReader = new FileReader("cards/blueCards");
                 break;
 
             case PURPLE:
 
-                cardFileReader = new FileReader("purpleCards");
+                cardFileReader = new FileReader("cards/purpleCards");
                 break;
 
             default:

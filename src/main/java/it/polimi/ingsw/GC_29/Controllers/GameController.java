@@ -29,7 +29,7 @@ public class GameController {
         DevelopmentCard[] purpleDeck = new DevelopmentCard[4];
 
 
-        while (gameStatus.getCurrentTurn() <= 6) {
+        while (gameStatus.getCurrentRound() <= 6) {
 
             for (int i = 0; i < 4; i++) {
                 greenDeck[i] = gameStatus.getOrderedDecks().get(CardColor.GREEN).pop();
@@ -41,23 +41,23 @@ public class GameController {
 
             gameStatus.getGameBoard().setTurn(greenDeck,blueDeck,yellowDeck,purpleDeck);
 
-            Player firstPlayer = gameStatus.getTurnOrder().get(0);
-           // firstPlayer.throwDices(); // così vengono già settati
+            //Player firstPlayer = gameStatus.getTurnOrder().get(0);
+            //firstPlayer.throwDices(); // così vengono già settati
 
-            while (gameStatus.getCurrentRound() < 4) {
+            while (gameStatus.getCurrentTurn() < 4) {
 
-                gameStatus.setCurrentPlayer(gameStatus.getTurnOrder().get(gameStatus.getCurrentRound()-1));
+                gameStatus.setCurrentPlayer(gameStatus.getTurnOrder().get(gameStatus.getCurrentTurn()-1));
                 gameStatus.getPlayerController().init();
-                gameStatus.setCurrentRound(gameStatus.getCurrentRound()+1);
+                gameStatus.setCurrentTurn(gameStatus.getCurrentTurn()+1);
             }
 
-            gameStatus.setCurrentPlayer(gameStatus.getTurnOrder().get(gameStatus.getCurrentRound()-1));
+            gameStatus.setCurrentPlayer(gameStatus.getTurnOrder().get(gameStatus.getCurrentTurn()-1));
             gameStatus.getPlayerController().init();
 
             checkSkipTurn();
             setNewTurnOrder();
 
-            if (gameStatus.getCurrentTurn()%2 == 0) {
+            if (gameStatus.getCurrentRound()%2 == 0) {
                 executeTiles();
 
                 if (gameStatus.getCurrentEra() == Era.FIRST) {
@@ -70,9 +70,19 @@ public class GameController {
             }
 
             gameStatus.getGameBoard().clearAll();
-            gameStatus.setCurrentRound(1);
-            //TODO: availability sulle pawn
-            gameStatus.setCurrentTurn(gameStatus.getCurrentTurn()+1);
+            gameStatus.setCurrentTurn(1);
+
+            // Setting availability on every pawn
+
+            for (Player player : gameStatus.getTurnOrder()) {
+
+                for (FamilyPawnType familyPawnType : FamilyPawnType.values()){
+
+                    if (familyPawnType != FamilyPawnType.BONUS)  player.getFamilyPawnAvailability().put(familyPawnType, true);
+                }
+            }
+
+            gameStatus.setCurrentRound(gameStatus.getCurrentRound()+1);
 
         }
     }
