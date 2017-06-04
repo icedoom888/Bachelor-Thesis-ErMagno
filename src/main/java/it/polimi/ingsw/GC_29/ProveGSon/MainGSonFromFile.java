@@ -20,7 +20,7 @@ import java.util.EnumMap;
  */
 public class MainGSonFromFile {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static EnumMap<CardColor, ArrayList<DevelopmentCard>> cards() throws FileNotFoundException {
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
@@ -89,7 +89,10 @@ public class MainGSonFromFile {
 
         final Gson gson = gsonBuilder.create();
 
-        FileReader fileReader = new FileReader("C:\\Users\\Christian\\Desktop\\lorenzoMagnificoGrafica\\purpleCards");
+        FileReader fileReader1 = new FileReader("/Users/icedoom/Desktop/Progetto IS/ErMagno/greenCards");
+        FileReader fileReader2 = new FileReader("/Users/icedoom/Desktop/Progetto IS/ErMagno/yellowCards");
+        FileReader fileReader3 = new FileReader("/Users/icedoom/Desktop/Progetto IS/ErMagno/purpleCards");
+        FileReader fileReader4 = new FileReader("/Users/icedoom/Desktop/Progetto IS/ErMagno/blueCards");
 
 
 
@@ -97,10 +100,18 @@ public class MainGSonFromFile {
 
         Type listType = new TypeToken<ArrayList<DevelopmentCard>>(){}.getType();
 
-        ArrayList<DevelopmentCard> card = gson.fromJson(fileReader, listType);
+        ArrayList<DevelopmentCard> greenCards = gson.fromJson(fileReader1, listType);
+        ArrayList<DevelopmentCard> yellowCards = gson.fromJson(fileReader2, listType);
+        ArrayList<DevelopmentCard> purpleCards = gson.fromJson(fileReader3, listType);
+        ArrayList<DevelopmentCard> blueCards = gson.fromJson(fileReader4, listType);
 
-        System.out.println(card);
+        EnumMap<CardColor,ArrayList<DevelopmentCard>> cards = new EnumMap<CardColor, ArrayList<DevelopmentCard>>(CardColor.class);
+        cards.put(CardColor.GREEN,greenCards);
+        cards.put(CardColor.YELLOW,yellowCards);
+        cards.put(CardColor.PURPLE,purpleCards);
+        cards.put(CardColor.BLUE,blueCards);
 
+        return cards;
     }
 
 

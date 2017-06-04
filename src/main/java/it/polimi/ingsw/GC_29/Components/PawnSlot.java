@@ -32,6 +32,7 @@ public class PawnSlot{
         return maxNumberOfPawns;
     }
 
+
     protected void addPawn(Pawn pawn) {
 
         if (playerPawns.size() < maxNumberOfPawns) {
@@ -91,7 +92,7 @@ public class PawnSlot{
         return familiarPresent;
     }
 
-    protected boolean isFree() {
+    public boolean isFree() {
         return free;
     }
 

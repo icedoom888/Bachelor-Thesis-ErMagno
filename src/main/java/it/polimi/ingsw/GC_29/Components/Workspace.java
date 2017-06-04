@@ -25,7 +25,7 @@ public class Workspace implements Cleanable {
         this.fields = new EnumMap<FieldType, ActionSpace>(FieldType.class);
         fields.put(FieldType.FIRST,new ActionSpace(null,1, new PawnSlot(1,true),true,false));
         if(numberOfPlayers>=3) {
-            fields.put(FieldType.SECOND,new ActionSpace(null,1, new PawnSlot(numberOfPlayers,true),false,false));
+            fields.put(FieldType.SECOND,new ActionSpace(new BonusEffect(new BonusAndMalusOnAction(type,-3),null,null),1, new PawnSlot(numberOfPlayers,true),false,false));
         }
         else{
             fields.put(FieldType.SECOND,null);
@@ -34,7 +34,9 @@ public class Workspace implements Cleanable {
 
     @Override
     public void clean() {
-
+        for(FieldType type: FieldType.values()){
+            fields.get(type).clean();
+        }
     }
 
     public Map<FieldType, ActionSpace> getFields() {
@@ -46,8 +48,7 @@ public class Workspace implements Cleanable {
     }
 
     public ActionSpace getActionspace(FieldType fieldType){
-        fields.get(fieldType);
-        return null;
+        return fields.get(fieldType);
     }
 
     @Override

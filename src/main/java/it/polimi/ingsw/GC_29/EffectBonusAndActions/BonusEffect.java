@@ -29,12 +29,11 @@ public class BonusEffect implements Effect {
      * This effect add the bonusAndMalusOnAction in the list of
      * bonusAndMalusOnAction of the player
      */
-    public void execute(Player status) {
+    public void execute(Player status){
 
         //TODO: decommenta solo per testing
         Action currentAction = GameStatus.getInstance().getCurrentAction();
         bonusAndMalusOnAction.filter(currentAction.getTemporaryPawn(), currentAction.getZoneType());
-
 
     }
 
