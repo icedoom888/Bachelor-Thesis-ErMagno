@@ -159,11 +159,11 @@ public class GameSetup {
         ExcommunicationTile tileSecondEra = getRandomTile(Era.SECOND);
         ExcommunicationTile tileThirdEra = getRandomTile(Era.THIRD);*/
 
-        ExcommunicationTile tilefirsEra = new ExcommunicationTile(Era.FIRST, "prova1",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
+        ExcommunicationTile tileFirstEra = new ExcommunicationTile(Era.FIRST, "prova1",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
         ExcommunicationTile tileSecondEra = new ExcommunicationTile(Era.SECOND, "prova2",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
         ExcommunicationTile tileThirdEra = new ExcommunicationTile(Era.THIRD, "prova3",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
 
-        gameBoard.getExcommunicationLane().setExcommunicationLane(tilefirsEra, tileSecondEra, tileThirdEra);
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tileFirstEra, tileSecondEra, tileThirdEra);
     }
 
     private ExcommunicationTile getRandomTile(Era era) {

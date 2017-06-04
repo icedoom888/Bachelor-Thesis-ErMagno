@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Track implements Cleanable {
     protected PawnSlot[] track;
     protected int maxNumberOfPawns;
-    protected int trackLenght;
+    protected int trackLength;
 
     /*
     * This HashMap is good to keep track of all the pawns
@@ -20,12 +20,12 @@ public class Track implements Cleanable {
      */
     protected HashMap<Pawn, Integer> pawnMap;
 
-    public Track(int maxNumberOfPawns, int trackLenght) {
+    public Track(int maxNumberOfPawns, int trackLength) {
         this.maxNumberOfPawns = maxNumberOfPawns;
-        this.trackLenght = trackLenght;
-        this.track = new PawnSlot[trackLenght];
+        this.trackLength = trackLength;
+        this.track = new PawnSlot[trackLength];
 
-        for (int i = 0; i < trackLenght ; i++) {
+        for (int i = 0; i < trackLength; i++) {
             track[i] = new PawnSlot(maxNumberOfPawns, true);
         }
 
@@ -95,7 +95,7 @@ public class Track implements Cleanable {
         return "Track{" +
                 "track=" + Arrays.toString(track) +
                 ", maxNumberOfPawns=" + maxNumberOfPawns +
-                ", trackLenght=" + trackLenght +
+                ", trackLength=" + trackLength +
                 ", pawnMap=" + pawnMap +
                 '}';
     }

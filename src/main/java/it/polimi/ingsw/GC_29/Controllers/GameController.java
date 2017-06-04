@@ -46,9 +46,6 @@ public class GameController {
 
             while (gameStatus.getCurrentRound() < 4) {
 
-                //TODO: chiedere se coerente con modello di Christian - così non andrebbe nel costruttore di player controller
-                gameStatus.getPlayerController().setCurrentTurnState(new BeginTurnState());
-
                 gameStatus.setCurrentPlayer(gameStatus.getTurnOrder().get(gameStatus.getCurrentRound()-1));
                 gameStatus.getPlayerController().init();
                 gameStatus.setCurrentRound(gameStatus.getCurrentRound()+1);
@@ -74,6 +71,7 @@ public class GameController {
 
             gameStatus.getGameBoard().clearAll();
             gameStatus.setCurrentRound(1);
+            //TODO: availability sulle pawn
             gameStatus.setCurrentTurn(gameStatus.getCurrentTurn()+1);
 
         }

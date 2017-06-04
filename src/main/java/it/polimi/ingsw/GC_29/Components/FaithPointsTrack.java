@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -25,7 +24,7 @@ public class FaithPointsTrack extends Track {
         return "FaithPointsTrack{" +
                 "victoryPointsPerSlot=" + Arrays.toString(victoryPointsPerSlot) +
                 ", track=" + Arrays.toString(track) +
-                ", trackLenght=" + trackLenght +
+                ", trackLength=" + trackLength +
                 ", pawnMap=" + pawnMap +
                 '}';
     }

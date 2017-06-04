@@ -89,6 +89,7 @@ public class TowerActionTest {
 
         towerAction.setFamiliyPawn(familyPawnSelected);
         towerAction.setPlayer(player1);
+        System.out.println(towerAction.isPossible());
 
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
@@ -98,7 +99,6 @@ public class TowerActionTest {
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
                 "The number of workers of the player is: " + player1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
 
-        System.out.println(towerAction.isPossible());
         System.out.println("Workers to pay: " + towerAction.getWorkers());
         System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
         System.out.println(towerAction.getPossibleCardCosts());
@@ -192,18 +192,7 @@ public class TowerActionTest {
         towerAction.setFamiliyPawn(familyPawnSelected);
         towerAction.setPlayer(player1);
 
-        System.out.println("The player has to pay: \n" +
-                "cost of the tower: " + towerAction.getTowerCost() + "\n" +
-                "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
-                "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
-                "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
-                "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
-                "The number of workers of the player is: " + player1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
-
         System.out.println(towerAction.isPossible());
-        System.out.println("Workers to pay: " + towerAction.getWorkers());
-        System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
-        System.out.println(towerAction.getPossibleCardCosts());
 
         return;
     }
@@ -297,18 +286,7 @@ public class TowerActionTest {
         towerAction.setFamiliyPawn(familyPawnSelected);
         towerAction.setPlayer(player1);
 
-        System.out.println("The player has to pay: \n" +
-                "cost of the tower: " + towerAction.getTowerCost() + "\n" +
-                "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
-                "The player has in his actual goodset: " + towerAction.getPlayer().getActualGoodSet().toString() +"\n" +
-                "The value of the action is: " + towerAction.getActionSpaceSelected().getActionCost() + "\n" +
-                "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
-                "The number of workers of the player is: " + player1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
-
         System.out.println(towerAction.isPossible());
-        System.out.println("Workers to pay: " + towerAction.getWorkers());
-        System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
-        System.out.println(towerAction.getPossibleCardCosts());
 
         return;
     }
@@ -397,6 +375,9 @@ public class TowerActionTest {
         towerAction.setFamiliyPawn(familyPawnSelected);
         towerAction.setPlayer(player1);
 
+        System.out.println(towerAction.isPossible());
+
+
         System.out.println("The player has to pay: \n" +
                 "cost of the tower: " + towerAction.getTowerCost() + "\n" +
                 "cost of the card: " + towerAction.getCardSelected().getCardCost() + "\n\n" +
@@ -405,7 +386,6 @@ public class TowerActionTest {
                 "The value of the pawnSelected is: " + towerAction.getTemporaryPawn().getActualValue() + "\n" +
                 "The number of workers of the player is: " + player1.getActualGoodSet().getGoodAmount(GoodType.WORKERS));
 
-        System.out.println(towerAction.isPossible());
         System.out.println("Workers to pay: " + towerAction.getWorkers());
         System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
         System.out.println(towerAction.getPossibleCardCosts());

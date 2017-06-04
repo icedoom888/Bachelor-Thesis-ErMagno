@@ -12,6 +12,7 @@ import java.util.Arrays;
  */
 public class CouncilPalaceActionSpace extends ActionSpace {
 
+    //TODO: cambia turnOrder in ArrayList
     private Effect effect_2;
     private int numberOfPlayers;
     private PlayerColor[] turnOrder;

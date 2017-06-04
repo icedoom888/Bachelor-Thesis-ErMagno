@@ -23,34 +23,13 @@ public class MainGSonToFile {
     public static void main(String[] args) throws IOException {
 
 
-        // Ospitare i mendicanti
+        // GameBoard
 
-        ArrayList<Effect> immediateEffectsOIM = new ArrayList<>();
-        immediateEffectsOIM.add(new ObtainOnConditionEffect(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)), CardColor.BLUE));
-        immediateEffectsOIM.add(new ObtainEffect(new GoodSet(1,1,1,1,1,1,1)));
-
-
-
-        ArrayList<Effect> permanentEffectsOIM = new ArrayList<>();
-        //permanentEffectsOIM.add(new ActionEffect(ZoneType.SKIPTURN,4,new Discount(new GoodSet(), new GoodSet(), false)));
-        permanentEffectsOIM.add(new ObtainEffect(new GoodSet()));
-        //permanentEffectsOIM.add(new ActionEffect(ZoneType.SKIPTURN, 4, new Discount(new GoodSet(), new GoodSet(),false)));
-
-
-
-        DevelopmentCard ospitareIMendicanti = new DevelopmentCard(
-                "Ospitare i Mendicanti",
-                Era.FIRST,
-                new CardCost(false, true, new Cost(new GoodSet(4,0,0,0,0,0,0), new GoodSet()), new Cost(new GoodSet(), new GoodSet())),
-                CardColor.PURPLE,
-                immediateEffectsOIM,
-                permanentEffectsOIM,
-                false,
-                0);
+        GameBoard gameBoard = new GameBoard(5);
 
         // toJson
 
-        /*FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\goodsForPlayerSetup");
+        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/gameBoard5Players");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
@@ -115,15 +94,10 @@ public class MainGSonToFile {
 
         Gson gson = gsonBuilder.setPrettyPrinting().create();
 
-        ArrayList<GoodSet> goodSets = new ArrayList<>();
-        goodSets.add(new GoodSet(2,2,5,3,0,0,0));
-        goodSets.add(new GoodSet(2,2,6,3,0,0,0));
-        goodSets.add(new GoodSet(2,2,7,3,0,0,0));
-        goodSets.add(new GoodSet(2,2,8,3,0,0,0));
 
-        gson.toJson(goodSets, fileWriter);
+        gson.toJson(gameBoard, fileWriter);
 
-        fileWriter.close();*/
+        fileWriter.close();
 
     }
 
