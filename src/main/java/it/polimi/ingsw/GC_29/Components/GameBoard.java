@@ -175,9 +175,11 @@ public class GameBoard {
         market.clean();
         councilPalace.clean();
 
-        for (Dice dice : diceLane) {
+
+        // perchè questa cosa?
+        /*for (Dice dice : diceLane) {
             dice = null;
-        }
+        }*/
     }
 
 

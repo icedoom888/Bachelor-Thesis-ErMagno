@@ -26,7 +26,7 @@ public class ValidationActionTurnState implements TurnState {
 
         boolean skipTurn = false;
 
-        Action currentAction = null;
+        //Action currentAction = null;
 
         while (!actionSelected){
 

@@ -44,7 +44,7 @@ public class CouncilPalaceAction extends Action {
             int firstFreeSpace = 0;
             for (PlayerColor playerColor : turnOrder) {
                 if (playerColor == currentPlayerColor || playerColor == null) return;
-                if (playerColor != null) firstFreeSpace++;
+                firstFreeSpace++;
             }
 
             turnOrder[firstFreeSpace] = currentPlayerColor;

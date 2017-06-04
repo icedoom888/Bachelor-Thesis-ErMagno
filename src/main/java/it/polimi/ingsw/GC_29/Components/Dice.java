@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Created by Lorenzotara on 17/05/17.
  */
@@ -27,7 +30,7 @@ public class Dice {
 
     public void roll(){
 
-        face = (int)(Math.random()*6) + 1;
+        face = ThreadLocalRandom.current().nextInt(1,7);
     }
 
     @Override

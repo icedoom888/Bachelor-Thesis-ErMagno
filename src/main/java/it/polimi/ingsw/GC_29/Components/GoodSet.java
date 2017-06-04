@@ -91,11 +91,11 @@ public class GoodSet {
 
     @Override
     public String toString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for(GoodType type : GoodType.values()){
-            result = result + type + ": " + getGoodAmount(type) + " ";
+            result.append(type + ": " + getGoodAmount(type) + " ");
        }
-       return result;
+       return result.toString();
     }
 
     @Override

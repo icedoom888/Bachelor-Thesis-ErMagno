@@ -164,7 +164,7 @@ public class GameController {
             excommunicatedPawns.addAll(pawnSlot.getPlayerPawns());
         }
 
-        if (excommunicatedPawns.size() != 0) {
+        if (!excommunicatedPawns.isEmpty()) {
 
             for (Pawn excommunicatedPawn : excommunicatedPawns) {
                 for (Player player : players) {
@@ -227,7 +227,7 @@ public class GameController {
 
         ArrayList<Player> players = gameStatus.getSkippedTurnPlayers();
 
-        if (players.size() != 0) {
+        if (!players.isEmpty()) {
             for (Player player : players) {
                 gameStatus.setCurrentPlayer(player);
                 gameStatus.getPlayerController().init();
