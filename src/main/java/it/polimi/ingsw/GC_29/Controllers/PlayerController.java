@@ -16,6 +16,7 @@ public class PlayerController {
 
     ///variabile per test
     private boolean commute = false;
+    private int index = 0;
 
     public PlayerController() {
 
@@ -83,6 +84,8 @@ public class PlayerController {
 
             System.out.println(action);
         }
+
+        System.out.println("");
 
         Action actionChosen = ActionChecker.getInstance().getValidActionList().get(0);
 

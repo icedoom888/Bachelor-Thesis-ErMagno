@@ -33,12 +33,30 @@ public class PlayerControllerTest {
 
         immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
 
+        immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
+
+        immediateEffect.add(new ActionEffect(ZoneType.GREENTOWER, 6));
+
+        immediateEffect.add(new ActionEffect(ZoneType.ANYTOWER, 6));
+
         DevelopmentCard testCard = new DevelopmentCard("test", Era.FIRST, new CardCost(), CardColor.GREEN, immediateEffect, new ArrayList<Effect>() , false, 0);
 
         DevelopmentCard testCard1 = new DevelopmentCard("test2", Era.FIRST, new CardCost(), CardColor.GREEN, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0);
 
+        DevelopmentCard testCard2 = new DevelopmentCard("test2", Era.FIRST, new CardCost(), CardColor.YELLOW, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0);
+
+        DevelopmentCard testCard3 = new DevelopmentCard("test2", Era.FIRST, new CardCost(), CardColor.BLUE, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0);
+
+        DevelopmentCard testCard4 = new DevelopmentCard("test2", Era.FIRST, new CardCost(), CardColor.PURPLE, new ArrayList<Effect>(), new ArrayList<Effect>(), false, 0);
+
+
+
         GameStatus.getInstance().getGameBoard().getTower(ZoneType.GREENTOWER).getFloor(0).setDevelopmentCard(testCard);
         GameStatus.getInstance().getGameBoard().getTower(ZoneType.GREENTOWER).getFloor(1).setDevelopmentCard(testCard1);
+        GameStatus.getInstance().getGameBoard().getTower(ZoneType.YELLOWTOWER).getFloor(1).setDevelopmentCard(testCard1);
+        GameStatus.getInstance().getGameBoard().getTower(ZoneType.BLUETOWER).getFloor(1).setDevelopmentCard(testCard1);
+        GameStatus.getInstance().getGameBoard().getTower(ZoneType.PURPLETOWER).getFloor(1).setDevelopmentCard(testCard1);
+
 
         GameStatus.getInstance().setCurrentPlayer(player);
 

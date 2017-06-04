@@ -137,6 +137,8 @@ public class ActionChecker {
 
             action.reset();
         }
+
+        validActionList.clear();
     }
 
     public void resetActionListExceptPlayer(){
@@ -145,6 +147,8 @@ public class ActionChecker {
 
             action.resetExceptPlayer();
         }
+
+        validActionList.clear();
     }
 
     //////////////////////////////////////////////////////////////////

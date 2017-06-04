@@ -26,7 +26,7 @@ public class GameControllerTest {
 
     Player player4 = new Player("Gianmario", PlayerColor.GREEN, new PersonalBoard(bonusTile, 6));
 
-    ArrayList<Player> players = new ArrayList<Player>();
+    ArrayList<Player> players = new ArrayList<>();
 
     @Test
     public void testEndGame() throws Exception {
@@ -52,6 +52,8 @@ public class GameControllerTest {
         player4.getActualGoodSet().addGoodSet(new GoodSet(1,1,1,1,4,1,1));
 
         testGameController.endGame();
+
+        GameStatus.getInstance().getTurnOrder().clear();
 
     }
 
@@ -93,6 +95,7 @@ public class GameControllerTest {
 
         System.out.println("New TurnOrder: " + gameStatus.getTurnOrder());
 
+        GameStatus.getInstance().getTurnOrder().clear();
 
     }
 
