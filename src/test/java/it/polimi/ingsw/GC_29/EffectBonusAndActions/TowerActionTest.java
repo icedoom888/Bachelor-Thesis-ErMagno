@@ -17,38 +17,26 @@ public class TowerActionTest {
     @Test
     public void testIsPossible1() throws Exception {
 
-        // Creation of the gameboard
-
-        int numberOfPlayers1 = 4;
-        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
-        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
-        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
-
-        FaithPointsTrack faithPointsTrack = new FaithPointsTrack(2, 16, new int[]{});
-
-        GameBoard gameBoard = new GameBoard(numberOfPlayers1, faithPointsTrack);
-
-
-        // Creation of personalBoards
-
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
+
+
         PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
-        PersonalBoard personalBoard2 = new PersonalBoard(bonusTile, 6);
-
-
-
-        // Creation of playerStatuses
 
         Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
-        Player player2 = new Player("Player2", PlayerColor.GREEN, personalBoard2);
 
+        ArrayList<Player> players = new ArrayList<Player>();
 
+        players.add(player1);
+
+        GameSetup testGameSetup = new GameSetup(players);
+
+        testGameSetup.init();
 
         // Creation of the components
 
         FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 3);
 
-        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<>();
+        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<Effect>();
         ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
         CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
 
@@ -60,7 +48,7 @@ public class TowerActionTest {
 
 
 
-        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<>();
+        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
         BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
         BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
         BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);
@@ -77,20 +65,15 @@ public class TowerActionTest {
                 false,
                 0);
 
+        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
+        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
+        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
+
+        GameBoard gameBoard = GameStatus.getInstance().getGameBoard();
+
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
+
         player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
-
-        immediateEffectsBlueCard.add(purpleSix);
-        immediateEffectsBlueCard.add(councilPrivilegeEffect);
-        immediateEffectsBlueCard.add(bonusEffect1);
-        permanentEffectsBlueCard.add(bonusEffect2);
-
-        player1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
-        player1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
-
-        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
-        //gameBoard.getTower(ZoneType.BLUETOWER)
-
         TowerAction towerAction = new TowerAction(ZoneType.BLUETOWER, 3, gameBoard.getTower(ZoneType.BLUETOWER));
 
         towerAction.setFamiliyPawn(familyPawnSelected);
@@ -117,37 +100,26 @@ public class TowerActionTest {
     @Test
     public void testIsPossible2() throws Exception {
 
-        // Creation of the gameboard
-
-        int numberOfPlayers1 = 4;
-        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
-        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
-        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
-        FaithPointsTrack faithPointsTrack = new FaithPointsTrack(2, 16, new int[]{});
-
-        GameBoard gameBoard = new GameBoard(numberOfPlayers1, faithPointsTrack);
-
-        // Creation of personalBoards
-
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
+
+
         PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
-        PersonalBoard personalBoard2 = new PersonalBoard(bonusTile, 6);
-
-
-
-        // Creation of playerStatuses
 
         Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
-        Player player2 = new Player("Player2", PlayerColor.GREEN, personalBoard2);
 
+        ArrayList<Player> players = new ArrayList<Player>();
 
+        players.add(player1);
 
+        GameSetup testGameSetup = new GameSetup(players);
+
+        testGameSetup.init();
 
         // Creation of the components
 
-        FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 0);
+        FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 3);
 
-        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<>();
+        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<Effect>();
         ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
         CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
 
@@ -159,7 +131,7 @@ public class TowerActionTest {
 
 
 
-        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<>();
+        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
         BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
         BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
         BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);
@@ -176,25 +148,15 @@ public class TowerActionTest {
                 false,
                 0);
 
-        immediateEffectsBlueCard.add(purpleSix);
-        immediateEffectsBlueCard.add(councilPrivilegeEffect);
-        immediateEffectsBlueCard.add(bonusEffect1);
-        permanentEffectsBlueCard.add(bonusEffect2);
+        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
+        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
+        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
 
-        player1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
-        player1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+        GameBoard gameBoard = GameStatus.getInstance().getGameBoard();
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
+
         player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
-
-
-        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
-
-        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(1).getActionSpace().addPawn(new FamilyPawn(PlayerColor.GREEN, FamilyPawnType.BLACK, 6));
-        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(2).getActionSpace().addPawn(new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 6));
-
-
-        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
-        //gameBoard.getTower(ZoneType.BLUETOWER)
-
         TowerAction towerAction = new TowerAction(ZoneType.BLUETOWER, 3, gameBoard.getTower(ZoneType.BLUETOWER));
         towerAction.setFamiliyPawn(familyPawnSelected);
         towerAction.setPlayer(player1);
@@ -205,37 +167,27 @@ public class TowerActionTest {
     }
 
     @Test
-    public void testIsPossible3() {
-        // Creation of the gameboard
-
-        int numberOfPlayers1 = 4;
-        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
-        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
-        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
-        FaithPointsTrack faithPointsTrack = new FaithPointsTrack(2, 16, new int[]{});
-
-        GameBoard gameBoard = new GameBoard(numberOfPlayers1, faithPointsTrack);
-
-        // Creation of personalBoards
-
+    public void testIsPossible3() throws FileNotFoundException {
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
+
+
         PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
-        PersonalBoard personalBoard2 = new PersonalBoard(bonusTile, 6);
-
-
-
-        // Creation of playerStatuses
 
         Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
-        Player player2 = new Player("Player2", PlayerColor.GREEN, personalBoard2);
 
+        ArrayList<Player> players = new ArrayList<Player>();
 
+        players.add(player1);
+
+        GameSetup testGameSetup = new GameSetup(players);
+
+        testGameSetup.init();
 
         // Creation of the components
 
         FamilyPawn familyPawnSelected = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 3);
 
-        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<>();
+        ArrayList<Effect> immediateEffectsBlueCard = new ArrayList<Effect>();
         ActionEffect purpleSix = new ActionEffect(ZoneType.PURPLETOWER, 6);
         CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
 
@@ -247,7 +199,7 @@ public class TowerActionTest {
 
 
 
-        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<>();
+        ArrayList<Effect> permanentEffectsBlueCard = new ArrayList<Effect>();
         BonusAndMalusOnAction bonusAndMalusOnAction2 = new BonusAndMalusOnAction(ZoneType.BLUETOWER, 2);
         BonusAndMalusOnCost bonusAndMalusOnCost2 = new BonusAndMalusOnCost(ZoneType.BLUETOWER, new GoodSet(1,0,0,0,0,0,0), new GoodSet(0,1,0,0,0,0,0), true);
         BonusEffect bonusEffect2 = new BonusEffect(bonusAndMalusOnAction2, null, bonusAndMalusOnCost2);
@@ -264,20 +216,14 @@ public class TowerActionTest {
                 false,
                 0);
 
-        immediateEffectsBlueCard.add(purpleSix);
-        immediateEffectsBlueCard.add(councilPrivilegeEffect);
-        immediateEffectsBlueCard.add(bonusEffect1);
-        permanentEffectsBlueCard.add(bonusEffect2);
+        ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
+        ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
+        ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
 
-        player1.getBonusAndMalusOnCost().add(bonusAndMalusOnCost1);
-        player1.getBonusAndMalusOnAction().add(bonusAndMalusOnAction1);
+        GameBoard gameBoard = GameStatus.getInstance().getGameBoard();
+
+        gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
         player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,0,10,10,10));
-
-
-        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
-
-        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(1).getActionSpace().addPawn(new FamilyPawn(PlayerColor.GREEN, FamilyPawnType.BLACK, 6));
-        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(2).getActionSpace().addPawn(new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 6));
 
         immediateEffectsBlueCard.add(purpleSix);
         immediateEffectsBlueCard.add(councilPrivilegeEffect);

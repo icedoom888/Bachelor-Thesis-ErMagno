@@ -148,6 +148,21 @@ public class GameBoard {
         return diceLane;
     }
 
+    public Dice getDice(FamilyPawnType familyPawnType) throws Exception {
+
+        if (familyPawnType==FamilyPawnType.BONUS || familyPawnType==FamilyPawnType.NEUTRAL) {
+            throw new Exception("Wrong FamilyType");
+        }
+
+        for (Dice dice : diceLane) {
+
+            if (dice.getColor() == familyPawnType) {
+                return dice;
+            }
+        }
+        return null;
+    }
+
 
 
 

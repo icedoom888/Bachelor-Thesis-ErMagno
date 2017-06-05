@@ -223,6 +223,8 @@ public class TowerAction extends Action {
 
     private void payCard() {
 
+        GoodSet goodSetToPay;
+
         if(!cardCost.isWithPrice()){
             return;
         }
@@ -247,15 +249,24 @@ public class TowerAction extends Action {
             /*Scanner scanner = new Scanner(System.in);
             int answer = scanner.nextInt();*/
             int answer = 0; // random
-            player.getActualGoodSet().subGoodSet(possibleCardCosts.get(answer).getCost());
+
+            goodSetToPay = possibleCardCosts.get(answer).getCost();
+            goodSetToPay.setNegative();
+
+            player.updateGoodSet(goodSetToPay);
             System.out.println("The card has been paid");
             return;
         }
 
         System.out.println("Applying your bonusAndMalus you have to pay: ");
-        System.out.println(possibleCardCosts.get(0));
 
-        player.getActualGoodSet().subGoodSet(possibleCardCosts.get(0).getCost());
+        goodSetToPay = possibleCardCosts.get(0).getCost();
+
+        System.out.println(goodSetToPay);
+
+        goodSetToPay.setNegative();
+
+        player.updateGoodSet(goodSetToPay);
         System.out.println("The card has been paid");
     }
 

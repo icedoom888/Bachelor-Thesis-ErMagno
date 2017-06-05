@@ -33,6 +33,7 @@ public class Dice {
         face = ThreadLocalRandom.current().nextInt(1,7);
     }
 
+
     @Override
     public String toString() {
         return "Dice{" +

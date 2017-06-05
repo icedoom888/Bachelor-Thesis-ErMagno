@@ -29,7 +29,9 @@ public class PayToObtainEffect implements Effect{
 
             System.out.println("Resources sufficient to activate!");
 
-            status.getActualGoodSet().subGoodSet(cost);
+            cost.setNegative();
+
+            status.updateGoodSet(cost);
 
             System.out.println("The actualGoodSet after the detraction is: "+ "\n"+status.getActualGoodSet());
 
