@@ -66,6 +66,12 @@ public class GoodSet {
         }
     }
 
+    public void setNegative() {
+        for (GoodType type: GoodType.values()) {
+            this.goodSetMap.put(type, -(this.goodSetMap.get(type)));
+        }
+    }
+
     /**
      * This method compare two goodSets in order to see if the one which calls
      * has equal or more resources than the one called

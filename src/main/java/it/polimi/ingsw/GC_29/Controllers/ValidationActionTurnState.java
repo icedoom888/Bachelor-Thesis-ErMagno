@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
@@ -40,7 +39,7 @@ public class ValidationActionTurnState implements TurnState {
 
                 ActionChecker.getInstance().setValidActionForFamilyPawn(pawnSelected);
 
-                actionSelected = wrapper.choseAction();
+                actionSelected = wrapper.chooseAction();
 
             }
 

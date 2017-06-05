@@ -61,7 +61,8 @@ public abstract class Action {
      */
     //TODO: utilizare un filtraggio speciale su bonus e malus per il malus che fa pagare doppi o i workers
     protected void payWorkers() {
-        player.getActualGoodSet().subGoodSet(new GoodSet(0,0,0,workers,0,0,0));
+
+        player.updateGoodSet(new GoodSet(0,0,0,-workers,0,0,0));
     }
 
 

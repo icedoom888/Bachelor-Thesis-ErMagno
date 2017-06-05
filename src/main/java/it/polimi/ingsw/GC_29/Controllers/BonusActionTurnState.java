@@ -2,9 +2,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 
 /**
  * Created by Christian on 21/05/2017.
@@ -45,7 +43,7 @@ public class BonusActionTurnState implements TurnState {
 
                 ActionChecker.getInstance().setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
 
-                actionSelected = wrapper.choseAction();
+                actionSelected = wrapper.chooseAction();
 
             }
 

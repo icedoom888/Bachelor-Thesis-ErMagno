@@ -180,6 +180,16 @@ public class Player {
         return bonusAndMalusOnCost;
     }
 
+    public void setFamilyPawnValue(FamilyPawnType familyPawnType, int familyPawnValue) {
+
+        for (FamilyPawn familyPawn : familyPawns) {
+
+            if (familyPawn.getType() == familyPawnType) {
+                familyPawn.setActualValue(familyPawnValue);
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "Player{" + "playerID='" + playerID + '\'' + ", playerColor=" + playerColor + '}';

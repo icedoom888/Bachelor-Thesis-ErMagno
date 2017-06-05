@@ -21,7 +21,7 @@ public class GameController {
         this.gameStatus = GameStatus.getInstance();
     }
 
-    public void init(){
+    public void init() throws Exception {
 
         DevelopmentCard[] greenDeck = new DevelopmentCard[4];
         DevelopmentCard[] blueDeck = new DevelopmentCard[4];
@@ -30,6 +30,10 @@ public class GameController {
 
 
         while (gameStatus.getCurrentRound() <= 6) {
+
+            // throwDices(); TODO: metodo di interfaccia
+
+            setFamilyPawnsValues();
 
             for (int i = 0; i < 4; i++) {
                 greenDeck[i] = gameStatus.getOrderedDecks().get(CardColor.GREEN).pop();
@@ -44,15 +48,17 @@ public class GameController {
             //Player firstPlayer = gameStatus.getTurnOrder().get(0);
             //firstPlayer.throwDices(); // così vengono già settati
 
-            while (gameStatus.getCurrentTurn() < 4) {
+            while (gameStatus.getCurrentTurn() <= 4) {
 
-                gameStatus.setCurrentPlayer(gameStatus.getTurnOrder().get(gameStatus.getCurrentTurn()-1));
-                gameStatus.getPlayerController().init();
+                for (Player player : gameStatus.getTurnOrder()) {
+                    gameStatus.setCurrentPlayer(player);
+                    gameStatus.getPlayerController().init();
+                }
+
                 gameStatus.setCurrentTurn(gameStatus.getCurrentTurn()+1);
+
             }
 
-            gameStatus.setCurrentPlayer(gameStatus.getTurnOrder().get(gameStatus.getCurrentTurn()-1));
-            gameStatus.getPlayerController().init();
 
             checkSkipTurn();
             setNewTurnOrder();
@@ -84,6 +90,24 @@ public class GameController {
 
             gameStatus.setCurrentRound(gameStatus.getCurrentRound()+1);
 
+        }
+    }
+
+
+    //TODO testing
+    private void setFamilyPawnsValues() throws Exception {
+        for (Player player : gameStatus.getTurnOrder()) {
+
+            Dice tempDice;
+
+            for (FamilyPawnType familyPawnType : FamilyPawnType.values()) {
+
+                if (familyPawnType != FamilyPawnType.BONUS && familyPawnType != FamilyPawnType.NEUTRAL) {
+                    tempDice = gameStatus.getGameBoard().getDice(familyPawnType);
+                    player.setFamilyPawnValue(familyPawnType, tempDice.getFace());
+
+                }
+            }
         }
     }
 
@@ -179,6 +203,9 @@ public class GameController {
             }
 
         }
+
+        //TODO: vuoi pregare? Se player prega torna a 0 nella track e prende i punti vittoria dello slot della fede e non viene scomunicato. Se decide di rimanere
+        //TODO: riceve la Tile e viene scomunicato
 
     }
 

@@ -76,7 +76,7 @@ public class PlayerController {
     }
 
 
-    public boolean choseAction() {
+    public boolean chooseAction() {
 
         // TODO: metodo di interfaccia, qui vi è distribuzione --> chiede quale azione vuole tra le disponibili o se il player vuole vedere le azioni possibili rispetto ad un altra pedina.
 
