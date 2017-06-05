@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.GC_29.Components.*;
@@ -10,6 +9,7 @@ import it.polimi.ingsw.GC_29.ProveGSon.EnumMapInstanceCreator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
 
@@ -39,7 +39,7 @@ public class GameSetup {
     public GameSetup(ArrayList<Player> players) {
 
         this.numberOfPlayers = players.size();
-        this.gameBoard = new GameBoard(numberOfPlayers);
+        //this.gameBoard = new GameBoard(numberOfPlayers);
         this.gameStatus = GameStatus.getInstance();
         this.players = players;
 
@@ -53,7 +53,9 @@ public class GameSetup {
      * will call the GameManager (manager for the setting of the currentPlayer, the management of the begin round, the end round
      * and the end era (relationship with the church is managed there)
      */
-    public void init() throws FileNotFoundException {
+    public void init() throws IOException {
+
+        this.gameBoard = loadGameBoardFromFile(numberOfPlayers);
 
         for(CardColor color : CardColor.values()){
             this.orderedDecks.put(color, getDeckFromFile(color));
@@ -112,7 +114,7 @@ public class GameSetup {
                 cardFileReader = null;
         }
 
-        deck = new CardDeserializer().getCardDeck(cardFileReader);
+        deck = new ObjectDeserializer().getCardDeck(cardFileReader);
 
         EnumMap<Era, ArrayList<DevelopmentCard>> eraCardMap = new EnumMap<>(Era.class);
         eraCardMap.put(Era.FIRST, new ArrayList<>());
@@ -137,6 +139,12 @@ public class GameSetup {
 
         return orderedDeck;
 
+    }
+
+
+    private GameBoard loadGameBoardFromFile(int numberOfPlayers) throws IOException {
+
+        return new ObjectDeserializer().getGameBoard(numberOfPlayers);
     }
 
 

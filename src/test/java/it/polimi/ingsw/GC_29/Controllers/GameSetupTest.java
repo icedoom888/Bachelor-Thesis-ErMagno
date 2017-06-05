@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
@@ -62,7 +63,7 @@ public class GameSetupTest {
 
     }
 
-    private void createActions(int numberOfPlayers) throws FileNotFoundException {
+    private void createActions(int numberOfPlayers) throws IOException {
 
         ArrayList<Player> players = createPlayers(numberOfPlayers);
 

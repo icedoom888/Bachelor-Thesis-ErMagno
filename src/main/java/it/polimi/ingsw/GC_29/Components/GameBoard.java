@@ -22,7 +22,7 @@ public class GameBoard {
     private Market market;
     private ArrayList<Dice> diceLane;
 
-    public GameBoard(int numberOfPlayers){
+    public GameBoard(int numberOfPlayers, FaithPointsTrack faithPointsTrack){
 
         this.victoryPointsTrack = new Track(numberOfPlayers, 100);
 
@@ -30,9 +30,7 @@ public class GameBoard {
 
         /* this.turnOrderTrack = new Track(1,numberOfPlayers); */
 
-        int[] victoryPointsForFaithTrack = {0,1,2,3,4,5,7,9,11,13,15,17,19,22,25,30};
-
-        this.faithPointsTrack = new FaithPointsTrack(numberOfPlayers,16,victoryPointsForFaithTrack);
+        this.faithPointsTrack = faithPointsTrack;
 
         this.excommunicationLane = new ExcommunicationLane(numberOfPlayers);
 
@@ -48,6 +46,8 @@ public class GameBoard {
         this.diceLane.add(new Dice(FamilyPawnType.ORANGE));
 
     }
+
+
 
     private void createZones(int numberOfPlayers) {
 

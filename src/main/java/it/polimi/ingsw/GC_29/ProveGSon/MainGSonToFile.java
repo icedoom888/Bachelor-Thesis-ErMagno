@@ -25,11 +25,16 @@ public class MainGSonToFile {
 
         // GameBoard
 
-        GameBoard gameBoard = new GameBoard(5);
+        int[] victoryPointsForFaithTrack = {0,1,2,3,4,5,7,9,11,13,15,17,19,22,25,30};
+
+        FaithPointsTrack faithPointsTrack = new FaithPointsTrack(5,16,victoryPointsForFaithTrack);
+
+
+        GameBoard gameBoard = new GameBoard(5, faithPointsTrack);
 
         // toJson
 
-        FileWriter fileWriter = new FileWriter("/Users/Lorenzotara/Desktop/gameBoard5Players");
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\prova");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.

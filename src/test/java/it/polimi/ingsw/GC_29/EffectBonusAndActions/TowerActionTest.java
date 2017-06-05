@@ -23,7 +23,10 @@ public class TowerActionTest {
         ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
         ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
-        GameBoard gameBoard = new GameBoard(numberOfPlayers1);
+
+        FaithPointsTrack faithPointsTrack = new FaithPointsTrack(2, 16, new int[]{});
+
+        GameBoard gameBoard = new GameBoard(numberOfPlayers1, faithPointsTrack);
 
 
         // Creation of personalBoards
@@ -120,8 +123,9 @@ public class TowerActionTest {
         ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
         ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
-        GameBoard gameBoard = new GameBoard(numberOfPlayers1);
+        FaithPointsTrack faithPointsTrack = new FaithPointsTrack(2, 16, new int[]{});
 
+        GameBoard gameBoard = new GameBoard(numberOfPlayers1, faithPointsTrack);
 
         // Creation of personalBoards
 
@@ -208,8 +212,9 @@ public class TowerActionTest {
         ExcommunicationTile tile_1 = new ExcommunicationTile(Era.FIRST,"sei",null,null, null,"777");
         ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
-        GameBoard gameBoard = new GameBoard(numberOfPlayers1);
+        FaithPointsTrack faithPointsTrack = new FaithPointsTrack(2, 16, new int[]{});
 
+        GameBoard gameBoard = new GameBoard(numberOfPlayers1, faithPointsTrack);
 
         // Creation of personalBoards
 

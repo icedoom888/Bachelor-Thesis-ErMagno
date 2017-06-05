@@ -66,7 +66,7 @@ public class PlayerControllerTest {
 
     }
 
-    @Test
+  /*  @Test
     public void testInit() throws Exception {
 
         PersonalBoard testPersonalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
@@ -196,6 +196,6 @@ public class PlayerControllerTest {
         testController.init();
 
       //  FactoryAction.resetFloor();
-    }
+    }*/
 
 }

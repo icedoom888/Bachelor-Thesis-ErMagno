@@ -13,7 +13,7 @@ import java.util.EnumMap;
 
 /**
  * Created by AlbertoPennino on 02/06/2017.
- */
+
 public class WorkActionTest {
 
     BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
@@ -34,7 +34,7 @@ public class WorkActionTest {
 
     /*Player player1 = new Player("Player 1",PlayerColor.BLUE,personalBoard1);
 
-    Player player2 = new Player("Player 2", PlayerColor.GREEN,personalBoard2);*/
+    Player player2 = new Player("Player 2", PlayerColor.GREEN,personalBoard2);
 
     FamilyPawn selectedPawn1 = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.BLACK, 1);
     FamilyPawn selectedPawn2 = new FamilyPawn(PlayerColor.BLUE, FamilyPawnType.ORANGE, 3);
@@ -180,4 +180,4 @@ public class WorkActionTest {
     @Test
     public void testIsPossible1() throws Exception {
     }
-}
+}*/

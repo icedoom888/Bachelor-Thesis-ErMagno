@@ -8,16 +8,19 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.ProveGSon.EnumMapInstanceCreator;
 import it.polimi.ingsw.GC_29.ProveGSon.RuntimeTypeAdapterFactory;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Created by Christian on 02/06/2017.
  */
-public class CardDeserializer {
+public class ObjectDeserializer {
 
     final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
             .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
@@ -32,9 +35,11 @@ public class CardDeserializer {
 
     Type listType = new TypeToken<ArrayList<DevelopmentCard>>(){}.getType();
 
+    private HashMap<Integer, String> gameBoardFromFileMap;
+
     private Gson gsonCardDeserializer;
 
-    public CardDeserializer(){
+    public ObjectDeserializer(){
 
         gsonBuilder = new GsonBuilder()
                 .registerTypeAdapterFactory(typeFactory)
@@ -86,10 +91,31 @@ public class CardDeserializer {
 
         gsonCardDeserializer = gsonBuilder.create();
 
+        gameBoardFromFileMap = new HashMap<>();
+
+        gameBoardFromFileMap.put(2,"gameBoards\\gameBoard2Players\\");
+        gameBoardFromFileMap.put(3,"gameBoards\\gameBoard3Players\\");
+        gameBoardFromFileMap.put(4,"gameBoards\\gameBoard4Players\\");
+        gameBoardFromFileMap.put(5,"gameBoards/gameBoard5Players");
+
     }
 
     public ArrayList<DevelopmentCard> getCardDeck(FileReader fileReader){
 
         return gsonCardDeserializer.fromJson(fileReader, listType);
     }
+
+    public GameBoard getGameBoard(int numberOfPlayers) throws IOException {
+
+        String filePath = gameBoardFromFileMap.get(numberOfPlayers);
+
+        FileReader fileReader = new FileReader(filePath);
+
+        GameBoard gameBoard = gsonBuilder.create().fromJson(fileReader, GameBoard.class);
+
+        fileReader.close();
+
+        return gameBoard;
+    }
 }
+
