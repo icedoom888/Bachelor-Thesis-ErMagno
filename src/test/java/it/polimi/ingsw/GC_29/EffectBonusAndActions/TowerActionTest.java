@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import it.polimi.ingsw.GC_29.Player.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -167,7 +168,7 @@ public class TowerActionTest {
     }
 
     @Test
-    public void testIsPossible3() throws FileNotFoundException {
+    public void testIsPossible3() throws IOException {
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
 
 

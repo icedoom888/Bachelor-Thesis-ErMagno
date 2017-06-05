@@ -93,10 +93,10 @@ public class ObjectDeserializer {
 
         gameBoardFromFileMap = new HashMap<>();
 
-        gameBoardFromFileMap.put(2,"gameBoards\\gameBoard2Players\\");
-        gameBoardFromFileMap.put(3,"gameBoards\\gameBoard3Players\\");
-        gameBoardFromFileMap.put(4,"gameBoards\\gameBoard4Players\\");
-        gameBoardFromFileMap.put(5,"gameBoards/gameBoard5Players");
+        gameBoardFromFileMap.put(2,"gameBoards\\gameBoard2Players");
+        gameBoardFromFileMap.put(3,"gameBoards\\gameBoard3Players");
+        gameBoardFromFileMap.put(4,"gameBoards\\gameBoard4Players");
+        gameBoardFromFileMap.put(5,"gameBoards\\gameBoard5Players");
 
     }
 
