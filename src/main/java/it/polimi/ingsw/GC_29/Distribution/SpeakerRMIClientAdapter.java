@@ -56,12 +56,12 @@ public class SpeakerRMIClientAdapter implements DistributionAdapter {
     }
 
     @Override
-    public void chooseAction(int i) {
+    public void chooseAction(int i) { // SBAGLIATO riceve un intero, non ha senso
 
-        Scanner in = new Scanner(System.in);
-        int answer = in.nextInt();
+        //Scanner in = new Scanner(System.in);
+        //int answer = in.nextInt();
 
-        speaker.chooseAction(answer);
+        //speaker.chooseAction(answer);
 
 
     }
