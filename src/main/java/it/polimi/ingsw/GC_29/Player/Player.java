@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.Distribution.Common.DistributionAdapter;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.util.*;
@@ -30,6 +31,7 @@ public class Player {
     private Action currentAction;
     private LinkedList<ActionEffect> currentBonusActionList;
     private LinkedList<BonusAndMalusOnCost>currentBonusActionBonusMalusOnCostList;
+    private DistributionAdapter adapter;
 
 
     public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
@@ -194,6 +196,15 @@ public class Player {
     public String toString() {
         return "Player{" + "playerID='" + playerID + '\'' + ", playerColor=" + playerColor + '}';
     }
+
+    public DistributionAdapter getAdapter() {
+        return adapter;
+    }
+
+    public void setAdapter(DistributionAdapter adapter) {
+        this.adapter = adapter;
+    }
+
 }
 
 

@@ -70,7 +70,7 @@ public class PlayerController {
      */
     public boolean isPlaceFamilyMemberAction() {
 
-        commute = commute==false;
+        commute = !commute; //commute = commute==false
 
         return commute;
     }
@@ -80,10 +80,8 @@ public class PlayerController {
 
         // TODO: metodo di interfaccia, qui vi è distribuzione --> chiede quale azione vuole tra le disponibili o se il player vuole vedere le azioni possibili rispetto ad un altra pedina.
 
-        for(Action action : ActionChecker.getInstance().getValidActionList()){
+        player.getAdapter().showValidActions();
 
-            System.out.println(action);
-        }
 
         System.out.println("");
 

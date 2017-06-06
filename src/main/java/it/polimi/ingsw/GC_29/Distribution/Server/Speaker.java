@@ -1,7 +1,8 @@
-package it.polimi.ingsw.GC_29.Distribution;
+package it.polimi.ingsw.GC_29.Distribution.Server;
 
 import it.polimi.ingsw.GC_29.Controllers.ActionChecker;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Distribution.Common.DistributionAdapter;
 
 /**
  * Created by Lorenzotara on 05/06/17.

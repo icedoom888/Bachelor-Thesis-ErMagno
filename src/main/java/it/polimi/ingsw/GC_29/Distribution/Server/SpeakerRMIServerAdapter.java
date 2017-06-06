@@ -1,4 +1,7 @@
-package it.polimi.ingsw.GC_29.Distribution;
+package it.polimi.ingsw.GC_29.Distribution.Server;
+
+import it.polimi.ingsw.GC_29.Distribution.Common.DistributionAdapter;
+import it.polimi.ingsw.GC_29.Distribution.Server.DistributionRmiServerAdapter;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
@@ -9,7 +12,7 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * Created by Lorenzotara on 05/06/17.
  */
-public class SpeakerRMIServerAdapter extends UnicastRemoteObject implements DistributionRmiServerAdapter{
+public class SpeakerRMIServerAdapter extends UnicastRemoteObject implements DistributionRmiServerAdapter {
 
     private DistributionAdapter speaker;
 

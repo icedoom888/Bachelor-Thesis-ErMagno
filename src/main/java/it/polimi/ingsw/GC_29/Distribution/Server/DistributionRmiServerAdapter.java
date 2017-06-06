@@ -1,16 +1,20 @@
-package it.polimi.ingsw.GC_29.Distribution;
+package it.polimi.ingsw.GC_29.Distribution.Server;
+
+import java.rmi.Remote;
 
 /**
  * Created by Lorenzotara on 05/06/17.
  */
-public interface DistributionAdapter {
+public interface DistributionRmiServerAdapter extends Remote {
+
+    // Secondo me questo  si dovrebbe chiamare DistributionServerAdapter
 
     void doAction(); //vuoi fare l'azione?
     void choosePawn(int i);
     void doLeaderAction(); // vuoi fare azione leader?
     void chooseLeaderCard(int i);
     void useLeaderCard(int i); // scarta o attiva effetto
-    String showValidActions(); // mostra le azioni possibili
+    String showValidAction();
     void chooseAction(int i);
     void payCard(int i); // quale costo vuoi pagare? TowerAction
     void chooseWorkers(int i); // quanti workers vuoi usare? WorkAction

@@ -1,4 +1,7 @@
-package it.polimi.ingsw.GC_29.Distribution;
+package it.polimi.ingsw.GC_29.Distribution.Client;
+
+import it.polimi.ingsw.GC_29.Distribution.Common.DistributionAdapter;
+import it.polimi.ingsw.GC_29.Distribution.Server.DistributionRmiServerAdapter;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
