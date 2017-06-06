@@ -70,9 +70,11 @@ public class PlayerController {
      */
     public boolean isPlaceFamilyMemberAction() {
 
-        commute = !commute; //commute = commute==false
+        Boolean answer = player.getAdapter().doAction();
 
-        return commute;
+        // commute = !commute; //commute = commute==false
+
+        return answer;
     }
 
 

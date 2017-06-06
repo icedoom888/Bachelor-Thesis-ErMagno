@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_29.Distribution.Server;
 
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Distribution.Common.DistributionAdapter;
-import it.polimi.ingsw.GC_29.Distribution.Server.DistributionRmiServerAdapter;
+import it.polimi.ingsw.GC_29.Distribution.Common.RegisterClient;
 
+import javax.management.remote.rmi.RMIServer;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -12,24 +14,29 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * Created by Lorenzotara on 05/06/17.
  */
-public class SpeakerRMIServerAdapter extends UnicastRemoteObject implements DistributionRmiServerAdapter {
+public class SpeakerRMIServerAdapter extends UnicastRemoteObject implements DistributionAdapter {
 
-    private DistributionAdapter speaker;
+    private DistributionAdapter clientStub;
 
-    protected SpeakerRMIServerAdapter(DistributionAdapter speaker) throws RemoteException, AlreadyBoundException {
+    protected SpeakerRMIServerAdapter(DistributionAdapter clientStub) throws RemoteException, AlreadyBoundException {
 
-        this.speaker = speaker;
+        this.clientStub = clientStub;
         Registry registry = LocateRegistry.getRegistry();
         registry.bind("Speaker", this);
     }
 
+
     @Override
-    public void doAction() {
+    public boolean doAction() {
+
+        return clientStub.doAction();
 
     }
 
     @Override
-    public void choosePawn(int i) {
+    public FamilyPawn choosePawn(String familyPawns) {
+
+        return clientStub.choosePawn(familyPawns);
 
     }
 
@@ -49,18 +56,16 @@ public class SpeakerRMIServerAdapter extends UnicastRemoteObject implements Dist
     }
 
     @Override
-    public String showValidAction() {
-
-        return speaker.showValidActions();
-
+    public String showValidActions() {
+        return null;
     }
 
     @Override
-    public void chooseAction(int i) {
-
-        speaker.chooseAction(i);
+    public void askWhichAction() {
 
     }
+
+
 
     @Override
     public void payCard(int i) {
@@ -74,6 +79,11 @@ public class SpeakerRMIServerAdapter extends UnicastRemoteObject implements Dist
 
     @Override
     public void chooseBonus(int i) {
+
+    }
+
+    @Override
+    public void askForPray() {
 
     }
 }

@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Distribution.Client;
 
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Distribution.Common.DistributionAdapter;
-import it.polimi.ingsw.GC_29.Distribution.Server.DistributionRmiServerAdapter;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class SpeakerRMIClientAdapter implements DistributionAdapter {
 
-    private DistributionRmiServerAdapter speaker;
+    private DistributionAdapter speaker;
 
     public SpeakerRMIClientAdapter(String nameRemoteObject) throws RemoteException, NotBoundException {
         connect(nameRemoteObject);
@@ -24,16 +24,38 @@ public class SpeakerRMIClientAdapter implements DistributionAdapter {
 
         Registry registry = LocateRegistry.getRegistry();
 
-        this.speaker = (DistributionRmiServerAdapter) registry.lookup(nameRemoteObject);
+        this.speaker = (DistributionAdapter) registry.lookup(nameRemoteObject);
     }
 
     @Override
-    public void doAction() {
+    public boolean doAction() {
+
+        Boolean answer = null;
+        while (answer == null) {
+            System.out.println("Do you want to do an action? (true/false)");
+            Scanner in = new Scanner(System.in);
+            answer = in.nextBoolean();
+        }
+
+        return answer;
 
     }
 
+
     @Override
-    public void choosePawn(int i) {
+    public FamilyPawn choosePawn(String familyPawns) {
+
+        String answer = null;
+        System.out.println("These are your pawns.");
+        System.out.println(familyPawns);
+        System.out.println("Choose the type of the one that you want");
+        while (answer != "red" && answer != "orange" && answer != "black" && answer != "neutral") {
+            Scanner in = new Scanner(System.in);
+            answer = in.nextLine();
+        }
+
+        //return answer;
+        return null;
 
     }
 
@@ -54,17 +76,16 @@ public class SpeakerRMIClientAdapter implements DistributionAdapter {
 
     @Override
     public String showValidActions() {
-        return speaker.showValidAction();
+        return speaker.showValidActions();
 
     }
 
     @Override
-    public void chooseAction(int i) { // SBAGLIATO riceve un intero, non ha senso
+    public void askWhichAction() { // SBAGLIATO riceve un intero, non ha senso
 
-        //Scanner in = new Scanner(System.in);
-        //int answer = in.nextInt();
+        Scanner in = new Scanner(System.in);
+        int answer = in.nextInt();
 
-        //speaker.chooseAction(answer);
 
 
     }
@@ -81,6 +102,11 @@ public class SpeakerRMIClientAdapter implements DistributionAdapter {
 
     @Override
     public void chooseBonus(int i) {
+
+    }
+
+    @Override
+    public void askForPray() {
 
     }
 }
