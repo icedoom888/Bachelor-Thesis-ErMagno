@@ -23,7 +23,11 @@ public class PlayerControllerTest {
         Player player = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
         player.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
 
+        Player player2 = new Player("Alberto", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+        player.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
+
         playerArrayList.add(player);
+        playerArrayList.add(player2);
 
         GameSetup gameSetup = new GameSetup(playerArrayList);
 

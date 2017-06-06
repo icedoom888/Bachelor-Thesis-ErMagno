@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import it.polimi.ingsw.GC_29.Player.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -24,9 +25,13 @@ public class TowerActionTest {
 
         Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
 
+        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1);
+
         ArrayList<Player> players = new ArrayList<Player>();
 
         players.add(player1);
+
+        players.add(player2);
 
         GameSetup testGameSetup = new GameSetup(players);
 
@@ -70,6 +75,8 @@ public class TowerActionTest {
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
 
         GameBoard gameBoard = GameStatus.getInstance().getGameBoard();
+
+        gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
 
@@ -100,6 +107,7 @@ public class TowerActionTest {
     @Test
     public void testIsPossible2() throws Exception {
 
+
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
 
 
@@ -107,9 +115,13 @@ public class TowerActionTest {
 
         Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
 
+        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1);
+
         ArrayList<Player> players = new ArrayList<Player>();
 
         players.add(player1);
+
+        players.add(player2);
 
         GameSetup testGameSetup = new GameSetup(players);
 
@@ -167,7 +179,8 @@ public class TowerActionTest {
     }
 
     @Test
-    public void testIsPossible3() throws FileNotFoundException {
+    public void testIsPossible3() throws IOException {
+
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
 
 
@@ -175,9 +188,13 @@ public class TowerActionTest {
 
         Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
 
+        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1);
+
         ArrayList<Player> players = new ArrayList<Player>();
 
         players.add(player1);
+
+        players.add(player2);
 
         GameSetup testGameSetup = new GameSetup(players);
 
@@ -254,6 +271,7 @@ public class TowerActionTest {
     @Test
     public void testExecute() throws Exception {
 
+
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
 
 
@@ -261,9 +279,13 @@ public class TowerActionTest {
 
         Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
 
+        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1);
+
         ArrayList<Player> players = new ArrayList<Player>();
 
         players.add(player1);
+
+        players.add(player2);
 
         GameSetup testGameSetup = new GameSetup(players);
 
