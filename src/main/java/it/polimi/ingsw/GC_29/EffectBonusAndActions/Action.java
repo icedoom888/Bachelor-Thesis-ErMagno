@@ -4,17 +4,19 @@ import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.Player;
 
+import java.io.Serializable;
+
 /**
  * Created by Lorenzotara on 19/05/17.
  */
-public abstract class Action {
+public abstract class Action implements Serializable{
 
 
     protected int workers;
-    protected FamilyPawn temporaryPawn;
+    protected transient FamilyPawn temporaryPawn;
     protected ZoneType zoneType;
-    protected ActionSpace actionSpaceSelected;
-    protected Player player;
+    protected transient ActionSpace actionSpaceSelected;
+    protected transient Player player;
     protected Boolean enable = true;
 
     public Action(ZoneType zoneType) {

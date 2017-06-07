@@ -13,13 +13,13 @@ import java.util.List;
 public class TowerAction extends Action {
 
 
-    private Tower towerChosen;
+    private transient Tower towerChosen;
     private int floorIndex;
-    private GoodSet actionSpaceGoodSet; // accumula il bonus dell'actionSpace
-    private GoodSet towerCost; // 3 coins
-    private CardCost cardCost;
-    private ArrayList<Cost> possibleCardCosts;
-    private DevelopmentCard cardSelected;
+    private transient GoodSet actionSpaceGoodSet; // accumula il bonus dell'actionSpace
+    private transient GoodSet towerCost; // 3 coins
+    private transient CardCost cardCost;
+    private transient ArrayList<Cost> possibleCardCosts;
+    private transient DevelopmentCard cardSelected;
 
     public TowerAction(
             ZoneType actionSelected,

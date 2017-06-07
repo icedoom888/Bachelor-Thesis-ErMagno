@@ -2,16 +2,21 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.GameState;
 import it.polimi.ingsw.GC_29.Player.Player;
+import  it.polimi.ingsw.GC_29.Server.Observable;
 
+import java.rmi.RemoteException;
 import java.util.*;
 
 /**
  * Created by Icedoom on 19/05/2017.
  */
-public class  GameStatus {
+public class  GameStatus extends Observable<Change>{
 
     private static GameStatus instance = null;
+
+    private GameEvent gameEvent;
 
     // Mancano i controller da inserire in futuro
     private PlayerController playerController;
@@ -52,6 +57,14 @@ public class  GameStatus {
         return gameBoard;
     }
 
+    /**
+     * this method notify all the player's view that a change in the game is happened, so the view can update
+     * @param gameEvent
+     */
+    public void setGameEvent(GameEvent gameEvent) throws RemoteException {
+        this.gameEvent = gameEvent;
+        notifyObserver(new GameChange(this.gameEvent));
+    }
 
     public Map<CardColor, ArrayDeque<DevelopmentCard>> getOrderedDecks() {
 

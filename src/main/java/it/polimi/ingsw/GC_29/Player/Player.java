@@ -1,16 +1,21 @@
 package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.Controllers.Change;
+import it.polimi.ingsw.GC_29.Controllers.PlayerState;
+import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
+import it.polimi.ingsw.GC_29.Server.Observable;
 
+import java.rmi.RemoteException;
 import java.util.*;
 
 /**
  * Created by Christian on 17/05/2017.
  */
-public class Player {
+public class Player extends Observable<Change>{
 
-    //TODO: tra player e player status ci sono due ripetizioni: la personalBoard e il playerColor. Bisogna pensare se passare direttamente il player, dal momento che le azioni accedono al suo colore
+    private PlayerState playerState;
 
     private String playerID;
     private PersonalBoard personalBoard;
@@ -31,8 +36,12 @@ public class Player {
     private LinkedList<ActionEffect> currentBonusActionList;
     private LinkedList<BonusAndMalusOnCost>currentBonusActionBonusMalusOnCostList;
 
+    private ArrayList<Action> currentValidActionsList;
+
 
     public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
+
+        this.playerState = PlayerState.TURNTERMINATED;
 
         this.playerID = playerID;
         this.playerColor = playerColor;
@@ -67,11 +76,26 @@ public class Player {
         familyPawnAvailability.put(FamilyPawnType.WHITE, true);
         familyPawnAvailability.put(FamilyPawnType.NEUTRAL, true);
 
+        currentValidActionsList = new ArrayList<>();
+
+    }
+
+    public ArrayList<Action> getCurrentValidActionsList() {
+        return currentValidActionsList;
+    }
+
+    public void setCurrentValidActionsList(ArrayList<Action> currentValidActionsList) {
+        this.currentValidActionsList = currentValidActionsList;
     }
 
     public PlayerColor getPlayerColor() {
 
         return playerColor;
+    }
+
+    public void setPlayerState(PlayerState playerState) throws RemoteException {
+        this.playerState = playerState;
+        notifyObserver(new PlayerStateChange(this.playerState));
     }
 
     public String getPlayerID() {

@@ -54,6 +54,7 @@ public class ActionChecker {
     public void setActionList(ArrayList<Action> actionList){
 
         this.actionList = actionList;
+
     }
 
     public void setCurrentPlayer() throws NullPointerException{
@@ -97,6 +98,8 @@ public class ActionChecker {
 
             }
         }
+
+        currentPlayer.setCurrentValidActionsList(validActionList);
     }
 
 
