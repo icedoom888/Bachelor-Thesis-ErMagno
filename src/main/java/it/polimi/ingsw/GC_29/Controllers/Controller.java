@@ -7,6 +7,12 @@ import java.rmi.RemoteException;
 /**
  * Created by Christian on 07/06/2017.
  */
+
+/**
+ * the controller class is an Observer of Input Objects, it observes the views of server side and when the views call
+ * a notifyObserver(Input input) the update(Input input) of the controller is called and it performs the "esegui" method
+ * of the Input Object
+ */
 public class Controller implements Observer<Input>{
 
     private final GameStatus gioco;
@@ -23,7 +29,7 @@ public class Controller implements Observer<Input>{
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
+        // Auto-generated method stub
 
     }
 
