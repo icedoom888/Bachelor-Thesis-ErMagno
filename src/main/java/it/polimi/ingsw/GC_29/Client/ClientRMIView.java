@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemote, Serializable {
 
 
+    //TODO playerColor
+
     private FamilyPawnType familyPawnChosen;
 
     private int actionIndex;
@@ -49,6 +51,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
         if(c instanceof GameChange){
             currentGameEvent = ((GameChange)c).getNewGameEvent();
+            //TODO: if relation with the church chiedo se questo player è stato scomunicato passando dallo stub e poi printo quello che devo
         }
     }
 
