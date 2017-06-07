@@ -34,7 +34,7 @@ public class CouncilPrivilegeEffect implements Effect {
 
         boolean decisionDone = false;
 
-        while (decisionDone == false) {
+        while (!decisionDone) {
 
             whichPrivileges();
 

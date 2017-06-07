@@ -1,7 +1,11 @@
-package it.polimi.ingsw.GC_29.Distribution;
+package it.polimi.ingsw.GC_29.Distribution.Server;
 
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Controllers.ActionChecker;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Distribution.Common.DistributionAdapter;
+
+import java.util.Scanner;
 
 /**
  * Created by Lorenzotara on 05/06/17.
@@ -22,12 +26,16 @@ public class Speaker implements DistributionAdapter {
     }
 
     @Override
-    public void doAction() {
+    public boolean doAction() {
+
+        return true;
 
     }
 
     @Override
-    public void choosePawn(int i) {
+    public FamilyPawn choosePawn(String string) {
+
+        return null;
 
     }
 
@@ -54,9 +62,9 @@ public class Speaker implements DistributionAdapter {
     }
 
     @Override
-    public void chooseAction(int i) {
+    public void askWhichAction() {
 
-        GameStatus.getInstance().getCurrentPlayer().setCurrentAction(ActionChecker.getInstance().getActionList().get(i));
+        GameStatus.getInstance().getCurrentPlayer().setCurrentAction(ActionChecker.getInstance().getActionList().get(0));
 
     }
 
@@ -72,6 +80,11 @@ public class Speaker implements DistributionAdapter {
 
     @Override
     public void chooseBonus(int i) {
+
+    }
+
+    @Override
+    public void askForPray() {
 
     }
 }

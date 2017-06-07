@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class GameController {
 
+    //TODO: move delle pawn sulle track a fine turno
 
     private GameStatus gameStatus;
 
@@ -44,9 +45,6 @@ public class GameController {
             }
 
             gameStatus.getGameBoard().setTurn(greenDeck,blueDeck,yellowDeck,purpleDeck);
-
-            //Player firstPlayer = gameStatus.getTurnOrder().get(0);
-            //firstPlayer.throwDices(); // così vengono già settati
 
             while (gameStatus.getCurrentTurn() <= 4) {
 
