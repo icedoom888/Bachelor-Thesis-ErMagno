@@ -52,7 +52,7 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public void doAction(int index) throws RemoteException {
 
-        notifyObserver(new DoAction(index));
+        notifyObserver(new ExecuteAction(index));
 
     }
 

@@ -15,6 +15,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +33,11 @@ public class ClientRMI {
     private final static int PORT = 52365;
 
     private static final String NAME = "lorenzo";
+
+    private static final String error = "Input not allowed for your current state";
+
+    private static final ArrayList<String> parseredAnswerList = new ArrayList<>();
+
 
 
     public static void main(String[] args) throws RemoteException, NotBoundException, AlreadyBoundException {
@@ -70,12 +76,14 @@ public class ClientRMI {
                         break;
                     case "use family pawn":
                         serverStub.usePawnChosen(rmiView.getFamilyPawnChosen());
+                        rmiView.setValidActionList(serverStub.getValidActionList());
+                        System.out.println(rmiView.getValidActionList());
                         break;
                     case "get valid action":
                         rmiView.setValidActionList(serverStub.getValidActionList());
                         System.out.println(rmiView.getValidActionList());
                         break;
-                    case "do action":
+                    case "execute action":
                         serverStub.doAction(rmiView.getActionIndex());
                         break;
 
@@ -95,24 +103,93 @@ public class ClientRMI {
 
         //TODO: controlli sull'input grazie a regular expressions e al playerState e GameChange
 
-        String error = "input not allowed for your current state";
 
-        Pattern pattern = Pattern.compile("\bskip\b && \baction\b");
+        parseredAnswerList.add(skipActionParser(inputLine, rmiView));
+        parseredAnswerList.add(pawnParser(inputLine, rmiView));
 
-        Matcher matcher = pattern.matcher(inputLine);
+        return null;
 
-        if(matcher.find()){
+    }
+
+    private static String skipActionParser(String inputLine, ClientRMIView rmiView) {
+
+        String newInput = inputLine;
+
+        Pattern patternSkipAction = Pattern.compile("\bskip\b && \baction\b");
+
+        Matcher matcherSkipAction = patternSkipAction.matcher(inputLine);
+
+        if(matcherSkipAction.find()){
             if(rmiView.getCurrentPlayerState() != PlayerState.DOACTION){
-                return error;
+                newInput = error;
             }
             else{
-                inputLine = "skip action";
-                return inputLine;
+                newInput = "skip action";
             }
         }
-        else {
-            return error;
+        return newInput;
+    }
+
+    private static String pawnParser(String inputLine, ClientRMIView rmiView) {
+
+        String newInput = inputLine;
+
+        Pattern patternChooseBlackPawn = Pattern.compile("\bred\b && \bpawn\b");
+        Pattern patternChooseWhitePawn = Pattern.compile("\bblue\b && \bpawn\b");
+        Pattern patternChooseOrangePawn = Pattern.compile("\bgreen\b && \bpawn\b");
+        Pattern patternChooseNeutralPawn = Pattern.compile("\bneutral\b && \bpawn\b");
+
+        Matcher matcherChooseBlackPawn = patternChooseBlackPawn.matcher(inputLine);
+        Matcher matcherChooseWhitePawn = patternChooseWhitePawn.matcher(inputLine);
+        Matcher matcherChooseOrangePawn = patternChooseOrangePawn.matcher(inputLine);
+        Matcher matcherChooseNeutralPawn = patternChooseNeutralPawn.matcher(inputLine);
+
+        if (matcherChooseBlackPawn.find()) {
+            if (rmiView.getCurrentPlayerState() != PlayerState.DOACTION || rmiView.getCurrentPlayerState() != PlayerState.CHOOSEACTION) {
+                newInput = error;
+
+            }
+            else {
+                rmiView.setFamilyPawnChosen(FamilyPawnType.BLACK);
+                newInput = "use family pawn";
+            }
         }
+
+        if (matcherChooseWhitePawn.find()) {
+            if (rmiView.getCurrentPlayerState() != PlayerState.DOACTION || rmiView.getCurrentPlayerState() != PlayerState.CHOOSEACTION) {
+                newInput = error;
+
+            }
+            else {
+                rmiView.setFamilyPawnChosen(FamilyPawnType.WHITE);
+                newInput = "use family pawn";
+            }
+        }
+
+        if (matcherChooseOrangePawn.find()) {
+            if (rmiView.getCurrentPlayerState() != PlayerState.DOACTION || rmiView.getCurrentPlayerState() != PlayerState.CHOOSEACTION) {
+                newInput = error;
+
+            }
+            else {
+                rmiView.setFamilyPawnChosen(FamilyPawnType.ORANGE);
+                newInput = "use family pawn";
+            }
+        }
+
+        if (matcherChooseNeutralPawn.find()) {
+            if (rmiView.getCurrentPlayerState() != PlayerState.DOACTION || rmiView.getCurrentPlayerState() != PlayerState.CHOOSEACTION) {
+                newInput = error;
+
+            }
+            else {
+                rmiView.setFamilyPawnChosen(FamilyPawnType.NEUTRAL);
+                newInput = "use family pawn";
+            }
+        }
+
+
+        return newInput;
 
     }
 }
