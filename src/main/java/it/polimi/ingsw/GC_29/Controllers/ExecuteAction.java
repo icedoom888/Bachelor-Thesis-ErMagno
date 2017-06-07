@@ -8,19 +8,19 @@ import java.rmi.RemoteException;
 /**
  * Created by Christian on 07/06/2017.
  */
-public class DoAction extends Input {
+public class ExecuteAction extends Input {
 
     int actionIndex;
 
     Player currentPlayer;
 
-    public DoAction(int actionIndex){
+    public ExecuteAction(int actionIndex){
 
         this.actionIndex = actionIndex;
     }
 
     /**
-     * The DoAction class extends the Input class. the "esegui" method is a polimorphic method that in this Concrete Input class executes
+     * The ExecuteAction class extends the Input class. the "esegui" method is a polimorphic method that in this Concrete Input class executes
      * the chosen action (actionIndex) and than change the current player "PlayerState" --> due to this change the view of the specific player
      * will be notified about this change ( because each view observes the model and the specific PLayer associated with the client
      *

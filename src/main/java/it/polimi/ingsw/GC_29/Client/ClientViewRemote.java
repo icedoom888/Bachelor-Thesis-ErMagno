@@ -12,6 +12,6 @@ public interface ClientViewRemote // serve solo per rmi poiché in socket l'upda
         extends Remote {
     // Interface to receive information from the server
 
-    public void updateClient(Change c)
+     void updateClient(Change c)
             throws RemoteException;
 }

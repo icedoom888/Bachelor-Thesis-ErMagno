@@ -15,6 +15,7 @@ import java.util.List;
 public class GameController {
 
     //TODO: move delle pawn sulle track a fine turno
+    //TODO: traduzione risorse punti vittoria
 
     private GameStatus gameStatus;
 
@@ -46,7 +47,7 @@ public class GameController {
 
             gameStatus.getGameBoard().setTurn(greenDeck,blueDeck,yellowDeck,purpleDeck);
 
-            while (gameStatus.getCurrentTurn() <= 4) {
+            while (gameStatus.getCurrentTurn() <= gameStatus.getTurnOrder().size()) {
 
                 for (Player player : gameStatus.getTurnOrder()) {
                     gameStatus.setCurrentPlayer(player);
