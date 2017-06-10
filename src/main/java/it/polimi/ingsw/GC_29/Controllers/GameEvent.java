@@ -5,6 +5,7 @@ package it.polimi.ingsw.GC_29.Controllers;
  */
 public enum GameEvent {
 
+    RUNNING,
     GAMEBOARD_CHANGED,
     ROUND_CHANGED,
     ERA_CHANGED,

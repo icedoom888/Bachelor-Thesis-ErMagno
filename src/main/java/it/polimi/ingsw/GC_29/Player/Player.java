@@ -41,7 +41,7 @@ public class Player extends Observable<Change>{
 
     public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
 
-        this.playerState = PlayerState.TURNTERMINATED;
+        this.playerState = PlayerState.WAITING;
 
         this.playerID = playerID;
         this.playerColor = playerColor;
@@ -93,7 +93,7 @@ public class Player extends Observable<Change>{
         return playerColor;
     }
 
-    public void setPlayerState(PlayerState playerState) throws RemoteException {
+    public void setPlayerState(PlayerState playerState) throws Exception {
         this.playerState = playerState;
         notifyObserver(new PlayerStateChange(this.playerState));
     }

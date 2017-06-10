@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Server.Observer;
 
 import java.rmi.RemoteException;
 
@@ -11,7 +10,7 @@ import java.rmi.RemoteException;
 public class SkipAction extends Input {
 
     @Override
-    public void esegui(GameStatus model) throws RemoteException {
+    public void esegui(GameStatus model, Controller controller) throws Exception {
 
         Player currentPlayer = model.getCurrentPlayer();
 
@@ -25,7 +24,7 @@ public class SkipAction extends Input {
 
             // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
 
-            currentPlayer.setPlayerState(PlayerState.TURNTERMINATED);
+            currentPlayer.setPlayerState(PlayerState.ENDTURN);
 
             int index = (model.getTurnOrder().indexOf(currentPlayer) + 1) % model.getTurnOrder().size() ;
 

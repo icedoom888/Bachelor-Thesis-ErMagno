@@ -197,6 +197,20 @@ public class GameBoard {
         }*/
     }
 
+    public void clearRound(){
+
+        for (Tower tower : towerMap.values()){
+            tower.clean();
+        }
+
+        for (Workspace workspace : workAreaMap.values()){
+            workspace.clean();
+        }
+
+        market.clean();
+        councilPalace.clean();
+    }
+
 
     @Override
     public String toString() {

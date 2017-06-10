@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Client;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -25,7 +26,9 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
     private PlayerState currentPlayerState;
 
-    private GameEvent currentGameEvent;
+    private GameState currentGameState;
+
+    private PlayerColor playerColor;
 
 
     protected ClientRMIView() throws RemoteException {
@@ -50,7 +53,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
         }
 
         if(c instanceof GameChange){
-            currentGameEvent = ((GameChange)c).getNewGameEvent();
+            currentGameState = ((GameChange)c).getNewGameState();
             //TODO: if relation with the church chiedo se questo player è stato scomunicato passando dallo stub e poi printo quello che devo
         }
     }
@@ -87,11 +90,19 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
         this.currentPlayerState = currentPlayerState;
     }
 
-    public GameEvent getGameEvent() {
-        return currentGameEvent;
+    public GameState getGameEvent() {
+        return currentGameState;
     }
 
-    public void setGameEvent(GameEvent gameEvent) {
-        this.currentGameEvent = gameEvent;
+    public void setGameEvent(GameState gameEvent) {
+        this.currentGameState = gameEvent;
+    }
+
+    public PlayerColor getPlayerColor() {
+        return playerColor;
+    }
+
+    public void setPlayerColor(PlayerColor playerColor) {
+        this.playerColor = playerColor;
     }
 }

@@ -86,6 +86,15 @@ public class ClientRMI {
                     case "execute action":
                         serverStub.doAction(rmiView.getActionIndex());
                         break;
+                    case "end turn":
+                        serverStub.endTurn();
+                        break;
+                    case "I want to pray":
+                        serverStub.pray(true, rmiView.getPlayerColor());
+                        break;
+                    case "I don't want to pray":
+                        serverStub.pray(false, rmiView.getPlayerColor());
+                        break;
 
                     default:
                         break;
@@ -94,6 +103,8 @@ public class ClientRMI {
             } catch (IOException e1) {
 
                 e1.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             break; // TODO: gestione client disconnesso!
         }

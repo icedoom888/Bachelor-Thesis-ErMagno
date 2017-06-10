@@ -10,14 +10,14 @@ public class GameChange extends Change {
      */
    // private static final long serialVersionUID = 5551223529797237865L;
 
-    private final GameEvent newGameEvent;
+    private final GameState newGameState;
 
-    public GameChange(GameEvent newPlayerState){
-        this.newGameEvent = newPlayerState;
+    public GameChange(GameState newGameState){
+        this.newGameState = newGameState;
     }
 
-    public GameEvent getNewGameEvent() {
-        return newGameEvent;
+    public GameState getNewGameState() {
+        return newGameState;
     }
 
     /* (non-Javadoc)
@@ -25,7 +25,7 @@ public class GameChange extends Change {
          */
     @Override
     public String toString() {
-        return "StateChange [newGameChange=" + newGameEvent + "]";
+        return "StateChange [newGameChange=" + newGameState + "]";
     }
 
     /**

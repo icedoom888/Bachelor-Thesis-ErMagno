@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
  */
 public interface Observer<C> {
 
-    public default void update(C o) throws RemoteException {
+    public default void update(C o) throws Exception {
         System.out.println("I am the" + this.getClass().getSimpleName() +
                 " I have been notified with the "+o.getClass().getSimpleName());
     }

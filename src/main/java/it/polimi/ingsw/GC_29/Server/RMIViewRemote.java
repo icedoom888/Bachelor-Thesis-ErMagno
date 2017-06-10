@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Server;
 import it.polimi.ingsw.GC_29.Client.ClientViewRemote;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -13,13 +14,13 @@ import java.util.ArrayList;
  */
 public interface RMIViewRemote extends Remote {
 
-    public void registerClient(
+    void registerClient(
             ClientViewRemote clientStub)
             throws RemoteException;
 
-    public void skipAction() throws RemoteException;
+    void skipAction() throws Exception;
 
-    public void usePawnChosen(FamilyPawnType familyPawnType) throws RemoteException;
+    void usePawnChosen(FamilyPawnType familyPawnType) throws Exception;
 
 
     /**
@@ -27,8 +28,11 @@ public interface RMIViewRemote extends Remote {
      * @return
      * @throws RemoteException
      */
-    public ArrayList<Action> getValidActionList() throws RemoteException;
+    ArrayList<Action> getValidActionList() throws RemoteException;
 
-    public void doAction(int index) throws RemoteException;
+    void doAction(int index) throws Exception;
 
+    void endTurn() throws Exception;
+
+    void pray(boolean b, PlayerColor playerColor) throws Exception;
 }

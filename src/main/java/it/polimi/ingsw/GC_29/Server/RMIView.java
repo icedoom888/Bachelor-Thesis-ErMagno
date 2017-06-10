@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_29.Client.ClientViewRemote;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -33,14 +34,24 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
-    public void skipAction() throws RemoteException {
+    public void skipAction() throws Exception {
         notifyObserver(new SkipAction());
     }
 
     @Override
-    public void usePawnChosen(FamilyPawnType familyPawnType) throws RemoteException {
+    public void usePawnChosen(FamilyPawnType familyPawnType) throws Exception {
         notifyObserver(new UsePawnChosen(familyPawnType));
 
+    }
+
+    @Override
+    public void endTurn() throws Exception {
+        notifyObserver(new EndTurn());
+    }
+
+    @Override
+    public void pray(boolean b, PlayerColor playerColor) throws Exception {
+        notifyObserver(new Pray(b, playerColor));
     }
 
     @Override
@@ -50,7 +61,7 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
-    public void doAction(int index) throws RemoteException {
+    public void doAction(int index) throws Exception {
 
         notifyObserver(new ExecuteAction(index));
 

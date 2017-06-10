@@ -38,9 +38,9 @@ public abstract class Action implements Serializable{
         return temporaryPawn;
     }
 
-    public void setFamiliyPawn(FamilyPawn familiyPawnChosen){
+    public void setFamiliyPawn(FamilyPawn familyPawnChosen){
 
-        this.temporaryPawn = familiyPawnChosen;
+        this.temporaryPawn = familyPawnChosen;
     }
 
     public void setPlayer(Player player){

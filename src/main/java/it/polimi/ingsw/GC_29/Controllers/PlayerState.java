@@ -5,8 +5,11 @@ package it.polimi.ingsw.GC_29.Controllers;
  */
 public enum PlayerState {
 
+    THROWDICES,
     DOACTION,
     CHOOSEACTION,
     BONUSACTION,
-    TURNTERMINATED
+    ENDTURN,
+    PRAY,
+    WAITING
 }

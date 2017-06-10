@@ -27,7 +27,7 @@ public class ExecuteAction extends Input {
      * @throws RemoteException
      */
     @Override
-    public void esegui(GameStatus model) throws RemoteException {
+    public void esegui(GameStatus model, Controller controller) throws Exception {
 
         currentPlayer = model.getCurrentPlayer();
 
@@ -49,7 +49,7 @@ public class ExecuteAction extends Input {
 
             // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
 
-            currentPlayer.setPlayerState(PlayerState.TURNTERMINATED);
+            currentPlayer.setPlayerState(PlayerState.ENDTURN);
 
             int index = (model.getTurnOrder().indexOf(currentPlayer) + 1) % model.getTurnOrder().size() ;
 

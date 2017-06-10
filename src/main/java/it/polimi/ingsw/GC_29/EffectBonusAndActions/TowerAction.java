@@ -77,6 +77,7 @@ public class TowerAction extends Action {
     }
 
 
+
     /**
      * This method checks if there already is a player's familiar in the tower
      * @return true if there is a player's familiar, false otherwise
@@ -98,7 +99,7 @@ public class TowerAction extends Action {
     /**
      * This method checks if the tower is occupied: in this case it controls if the player
      * has a BM that makes him access the tower; if the player has it return true, otherwise it checks if the player has enough coins
-     * to enter the tower
+     * to enter the tower.
      * @return true if you can access the tower, false otherwise
      */
     private boolean isTowerAccessPossible() {

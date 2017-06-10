@@ -30,10 +30,8 @@ public class GameController {
         DevelopmentCard[] yellowDeck = new DevelopmentCard[4];
         DevelopmentCard[] purpleDeck = new DevelopmentCard[4];
 
-
         while (gameStatus.getCurrentRound() <= 6) {
 
-            // throwDices(); TODO: metodo di interfaccia
 
             setFamilyPawnsValues();
 
@@ -46,6 +44,9 @@ public class GameController {
             }
 
             gameStatus.getGameBoard().setTurn(greenDeck,blueDeck,yellowDeck,purpleDeck);
+
+            // throwDices(); TODO: metodo di interfaccia
+
 
             while (gameStatus.getCurrentTurn() <= gameStatus.getTurnOrder().size()) {
 
@@ -251,7 +252,7 @@ public class GameController {
      */
     private void checkSkipTurn() {
 
-        ArrayList<Player> players = gameStatus.getSkippedTurnPlayers();
+        List<Player> players = gameStatus.getSkippedTurnPlayers();
 
         if (!players.isEmpty()) {
             for (Player player : players) {

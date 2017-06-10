@@ -10,5 +10,5 @@ public abstract class Input implements Serializable{
 
     private static final long serialVersionUID = -4334191184999875154L;
 
-    public abstract void esegui(GameStatus model) throws RemoteException;
+    public abstract void esegui(GameStatus model, Controller controller) throws Exception;
 }
