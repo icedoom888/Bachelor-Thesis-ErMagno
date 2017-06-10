@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 public class SkipAction extends Input {
 
     @Override
-    public void esegui(GameStatus model, Controller controller) throws Exception {
+    public void perform(GameStatus model) throws Exception {
 
         Player currentPlayer = model.getCurrentPlayer();
 
@@ -24,7 +24,7 @@ public class SkipAction extends Input {
 
             // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
 
-            currentPlayer.setPlayerState(PlayerState.ENDTURN);
+            currentPlayer.setPlayerState(PlayerState.WAITINGTURN);
 
             int index = (model.getTurnOrder().indexOf(currentPlayer) + 1) % model.getTurnOrder().size() ;
 

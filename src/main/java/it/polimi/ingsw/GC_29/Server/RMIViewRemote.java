@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -20,6 +21,7 @@ public interface RMIViewRemote extends Remote {
 
     void skipAction() throws Exception;
 
+
     void usePawnChosen(FamilyPawnType familyPawnType) throws Exception;
 
 
@@ -31,6 +33,9 @@ public interface RMIViewRemote extends Remote {
     ArrayList<Action> getValidActionList() throws RemoteException;
 
     void doAction(int index) throws Exception;
+
+    Map<FamilyPawnType,Boolean> getFamilyPawnAvailability();
+
 
     void endTurn() throws Exception;
 

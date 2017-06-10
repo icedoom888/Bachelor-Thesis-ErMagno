@@ -21,7 +21,7 @@ public class UsePawnChosen extends Input {
     }
 
     @Override
-    public void esegui(GameStatus model, Controller controller) throws Exception {
+    public void perform(GameStatus model) throws Exception {
 
         player = model.getCurrentPlayer();
 
@@ -29,7 +29,7 @@ public class UsePawnChosen extends Input {
 
         FamilyPawn familyPawn = player.getFamilyPawn(familyPawnType);
 
-        // TODO: reset delle azioni valide
+        ActionChecker.getInstance().resetActionListExceptPlayer();
 
         ActionChecker.getInstance().setValidActionForFamilyPawn(familyPawn);
 

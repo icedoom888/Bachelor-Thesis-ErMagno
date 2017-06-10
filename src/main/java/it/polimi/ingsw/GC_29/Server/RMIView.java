@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -67,6 +68,10 @@ public class RMIView extends View implements RMIViewRemote {
 
     }
 
+    @Override
+    public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
+        return gameStatus.getCurrentPlayer().getFamilyPawnAvailability();
+    }
 
 
     @Override

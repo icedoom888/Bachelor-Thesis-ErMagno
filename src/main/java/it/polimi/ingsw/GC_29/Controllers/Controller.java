@@ -36,7 +36,7 @@ public class Controller implements Observer<Input>{
     public void update(Input input) throws Exception {
         System.out.println("I AM THE CONTROLLER UPDATING THE MODEL");
         Observer.super.update(input);
-        input.esegui(model, this);
+        input.perform(model, this);
     }
 
     @Override
