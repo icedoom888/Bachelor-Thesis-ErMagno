@@ -41,7 +41,7 @@ public class Player extends Observable<Change>{
 
     public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
 
-        this.playerState = PlayerState.WAITINGTURN;
+        this.playerState = PlayerState.WAITING;
 
         this.playerID = playerID;
         this.playerColor = playerColor;

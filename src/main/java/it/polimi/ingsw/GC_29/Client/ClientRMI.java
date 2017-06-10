@@ -92,9 +92,6 @@ public class ClientRMI {
                     case "execute action":
                         serverStub.doAction(rmiView.getActionIndex());
                         break;
-                    case "end turn":
-                        serverStub.endTurn();
-                        break;
                     case "I want to pray":
                         serverStub.pray(true, rmiView.getPlayerColor());
                         break;

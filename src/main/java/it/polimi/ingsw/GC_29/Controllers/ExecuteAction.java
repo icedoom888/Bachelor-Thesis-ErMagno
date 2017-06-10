@@ -49,7 +49,7 @@ public class ExecuteAction extends Input {
 
             // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
 
-            currentPlayer.setPlayerState(PlayerState.WAITINGTURN);
+            currentPlayer.setPlayerState(PlayerState.WAITING);
 
             int index = (model.getTurnOrder().indexOf(currentPlayer) + 1) % model.getTurnOrder().size() ;
 

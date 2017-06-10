@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class EndTurn extends Input {
     @Override
-    public void esegui(GameStatus model, Controller controller) throws Exception {
+    public void perform(GameStatus model, Controller controller) throws Exception {
 
         Player currentPlayer = model.getCurrentPlayer();
         currentPlayer.setPlayerState(PlayerState.WAITING);
