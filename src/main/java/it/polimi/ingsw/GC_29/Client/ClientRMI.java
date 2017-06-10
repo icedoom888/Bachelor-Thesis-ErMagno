@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.Market;
 import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Server.Query;
 import it.polimi.ingsw.GC_29.Server.RMIView;
 import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
@@ -17,6 +18,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -68,21 +70,24 @@ public class ClientRMI {
 
 
                 //vedi il commento nel metodo inputParser
-                inputLine = inputParser(inputLine, rmiView);
+                inputLine = inputChecker(inputLine, rmiView, serverStub);
 
                 // Call the appropriate method in the server
                 switch (inputLine) {
                     case "skip action":
                         serverStub.skipAction();
                         break;
+                    case "end turn":
+                        serverStub.endTurn();
+                        break;
                     case "use family pawn":
                         serverStub.usePawnChosen(rmiView.getFamilyPawnChosen());
                         rmiView.setValidActionList(serverStub.getValidActionList());
                         System.out.println(rmiView.getValidActionList());
                         break;
-                    case "get valid action":
+                    case "see valid action list":
                         rmiView.setValidActionList(serverStub.getValidActionList());
-                        System.out.println(rmiView.getValidActionList());
+                        rmiView.printValidActionList();
                         break;
                     case "execute action":
                         serverStub.doAction(rmiView.getActionIndex());
@@ -109,7 +114,7 @@ public class ClientRMI {
 
 
 
-    private String inputChecker(String inputLine, ClientRMIView rmiView){
+    private static String inputChecker(String inputLine, ClientRMIView rmiView, RMIViewRemote serverStub){
 
         String checkedString = inputLine;
 
@@ -126,7 +131,9 @@ public class ClientRMI {
 
                 if(matcher.find()){
 
-                    checkedString = handleRegex(checkedString, instruction);
+                    checkedString = handleRegex(checkedString, instruction, rmiView, serverStub);
+
+                    return checkedString;
                 }
             }
 
@@ -144,13 +151,86 @@ public class ClientRMI {
 
 
 
-    private String handleRegex(String inputLine, Instruction instruction) {
+    private static String handleRegex(String inputLine, Instruction instruction, ClientRMIView rmiView, RMIViewRemote serverStub) {
+
+
+
+        String[] parts = inputLine.split(" ");
+        String lastWord = parts[parts.length - 1];
+
+        switch (instruction.getInstruction()){
+
+            case ("use family pawn (insert type)"):
+
+                return handleUseFamilyPawn(lastWord, rmiView, serverStub);
+
+            case ("activate leader card (insert index)"):
+
+                return handleLeaderCard(lastWord, true, rmiView);
+
+            case ("discard leader card (insert index)"):
+
+                return handleLeaderCard(lastWord, false, rmiView);
+
+            case ("execute action (insert index)"):
+
+                return handleExecuteAction(lastWord, rmiView);
+
+        }
+
+        Integer.parseInt(lastWord);
 
         return null;
     }
 
+    private static String handleExecuteAction(String lastWord, ClientRMIView rmiView){
 
-    private static String inputParser(String inputLine, ClientRMIView rmiView) {
+        int index = Integer.parseInt(lastWord);
+
+        ArrayList<Action> validActionList = rmiView.getValidActionList();
+
+        if( index < validActionList.size() && validActionList.get(index).getValid()){
+
+            rmiView.setActionIndex(index);
+
+            return "execute action";
+        }
+
+        else {
+
+            return "invalid input";
+        }
+
+    }
+
+    private static String handleLeaderCard(String lastWord, boolean b, ClientRMIView rmiView) {
+
+        // TODO: implementa quando fai Leader Card
+
+        return "";
+    }
+
+    private static String handleUseFamilyPawn(String lastWord,ClientRMIView rmiView, RMIViewRemote serverStub) {
+
+        lastWord = lastWord.toUpperCase();
+
+        Map<FamilyPawnType, Boolean> pawnAvailability = serverStub.getFamilyPawnAvailability();
+
+        for(FamilyPawnType familyPawnType : FamilyPawnType.values()){
+
+            if(FamilyPawnType.valueOf(lastWord) == familyPawnType && pawnAvailability.get(familyPawnType)){
+
+                rmiView.setFamilyPawnChosen(familyPawnType);
+
+                return "use family pawn";
+            }
+        }
+
+        return "invalid input";
+    }
+
+
+    /*private static String inputParser(String inputLine, ClientRMIView rmiView) {
 
         //TODO: controlli sull'input grazie a regular expressions e al playerState e GameChange
 
@@ -242,5 +322,5 @@ public class ClientRMI {
 
         return newInput;
 
-    }
+    }*/
 }

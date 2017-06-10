@@ -19,6 +19,16 @@ public abstract class Action implements Serializable{
     protected transient Player player;
     protected Boolean enable = true;
 
+    public Boolean getValid() {
+        return isValid;
+    }
+
+    public void setValid(Boolean valid) {
+        isValid = valid;
+    }
+
+    protected Boolean isValid = true;
+
     public Action(ZoneType zoneType) {
 
         this.zoneType = zoneType;

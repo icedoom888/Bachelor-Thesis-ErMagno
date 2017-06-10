@@ -7,19 +7,22 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by Christian on 07/06/2017.
  */
 public interface RMIViewRemote extends Remote {
 
-    public void registerClient(
+    void registerClient(
             ClientViewRemote clientStub)
             throws RemoteException;
 
-    public void skipAction() throws RemoteException;
+    void skipAction() throws RemoteException;
 
-    public void usePawnChosen(FamilyPawnType familyPawnType) throws RemoteException;
+    void usePawnChosen(FamilyPawnType familyPawnType) throws RemoteException;
+
+    void endTurn();
 
 
     /**
@@ -27,8 +30,10 @@ public interface RMIViewRemote extends Remote {
      * @return
      * @throws RemoteException
      */
-    public ArrayList<Action> getValidActionList() throws RemoteException;
+    ArrayList<Action> getValidActionList() throws RemoteException;
 
-    public void doAction(int index) throws RemoteException;
+    void doAction(int index) throws RemoteException;
+
+    Map<FamilyPawnType,Boolean> getFamilyPawnAvailability();
 
 }

@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -115,5 +116,15 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
     public InstructionSet getInstructionSet() {
         return instructionSet;
+    }
+
+    
+    public void printValidActionList() {
+
+        for (Action action : validActionList) {
+            if(action.getValid()){
+                System.out.println("action index:" + validActionList.indexOf(action) + ") " + action);
+            }
+        }
     }
 }

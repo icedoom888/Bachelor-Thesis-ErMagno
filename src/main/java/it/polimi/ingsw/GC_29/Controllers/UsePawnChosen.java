@@ -29,7 +29,7 @@ public class UsePawnChosen extends Input {
 
         FamilyPawn familyPawn = player.getFamilyPawn(familyPawnType);
 
-        // TODO: reset delle azioni valide
+        ActionChecker.getInstance().resetActionListExceptPlayer();
 
         ActionChecker.getInstance().setValidActionForFamilyPawn(familyPawn);
 

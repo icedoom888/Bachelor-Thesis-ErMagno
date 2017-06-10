@@ -32,7 +32,13 @@ public class InstructionSet {
     private final Instruction doAction = new Instruction("execute action (insert index)",
             new ArrayList<>(Arrays.asList(PlayerState.CHOOSEACTION, PlayerState.BONUSACTION)), "execute action \\d+");
 
-    private final Instruction seeCards = new Instruction("see my cards (insert type: development, leader, excommunication)",
+    private final Instruction seeCardsDevelopment = new Instruction("see my development cards",
+            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITINGTURN)), "see my cards \\w+");
+
+    private final Instruction seeCardsLeader = new Instruction("see my leader cards",
+            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITINGTURN)), "see my cards \\w+");
+
+    private final Instruction seeCardsExcommunication = new Instruction("see my excommunication cards",
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITINGTURN)), "see my cards \\w+");
 
     private final Instruction seeGameBoard = new Instruction("see game board",
@@ -44,7 +50,10 @@ public class InstructionSet {
     private final Instruction seePersonalBoard = new Instruction("see personal board",
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITINGTURN)));
 
-    private final Instruction seeGameBoardCards = new Instruction("see game board cards (insert type: development, leader, excommunication)",
+    private final Instruction seeGameBoardDevelopmentCards = new Instruction("see development cards",
+            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITINGTURN)), "see game board cards \\w+");
+
+    private final Instruction seeGameBoardExcommunicationCards = new Instruction("see excommunication cards",
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITINGTURN)), "see game board cards \\w+");
 
     private final Instruction seeMyGoodSet = new Instruction("see my goodset",
@@ -53,8 +62,8 @@ public class InstructionSet {
 
     private final List<Instruction> instructionList = new ArrayList<>(Arrays.asList(
             skipAction, endTurn, useFamilyPawn, activateLeaderCard,
-            discardLeaderCard, seeValidActionList, doAction, seeCards, seeGameBoard,
-            seeTracks, seePersonalBoard, seeGameBoardCards, seeMyGoodSet));
+            discardLeaderCard, seeValidActionList, doAction, seeCardsDevelopment, seeCardsExcommunication, seeCardsLeader, seeGameBoard,
+            seeTracks, seePersonalBoard, seeGameBoardDevelopmentCards, seeGameBoardExcommunicationCards, seeMyGoodSet));
 
 
     /////////////////////////////////////////////////////////////////////7
