@@ -20,14 +20,14 @@ public class ExecuteAction extends Input {
     }
 
     /**
-     * The ExecuteAction class extends the Input class. the "esegui" method is a polimorphic method that in this Concrete Input class executes
+     * The ExecuteAction class extends the Input class. the "perform" method is a polimorphic method that in this Concrete Input class executes
      * the chosen action (actionIndex) and than change the current player "PlayerState" --> due to this change the view of the specific player
      * will be notified about this change ( because each view observes the model and the specific PLayer associated with the client
      *
      * @throws RemoteException
      */
     @Override
-    public void esegui(GameStatus model) throws RemoteException {
+    public void perform(GameStatus model) throws RemoteException {
 
         currentPlayer = model.getCurrentPlayer();
 
@@ -49,7 +49,7 @@ public class ExecuteAction extends Input {
 
             // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
 
-            currentPlayer.setPlayerState(PlayerState.TURNTERMINATED);
+            currentPlayer.setPlayerState(PlayerState.WAITINGTURN);
 
             int index = (model.getTurnOrder().indexOf(currentPlayer) + 1) % model.getTurnOrder().size() ;
 

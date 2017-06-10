@@ -8,5 +8,7 @@ public enum PlayerState {
     DOACTION,
     CHOOSEACTION,
     BONUSACTION,
-    TURNTERMINATED
+    ENDTURN,
+    WAITINGTURN
+
 }

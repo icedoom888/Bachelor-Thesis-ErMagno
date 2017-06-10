@@ -16,6 +16,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -87,7 +88,12 @@ public class ClientRMI {
                         serverStub.doAction(rmiView.getActionIndex());
                         break;
 
+                    case "help":
+                        rmiView.handleHelp();
+                        break;
+
                     default:
+                        rmiView.handleHelp();
                         break;
                 }
 
@@ -98,6 +104,51 @@ public class ClientRMI {
             break; // TODO: gestione client disconnesso!
         }
     }
+
+
+
+
+
+    private String inputChecker(String inputLine, ClientRMIView rmiView){
+
+        String checkedString = inputLine;
+
+        PlayerState currentPlayerState = rmiView.getCurrentPlayerState();
+
+        List<Instruction> instructionList = rmiView.getInstructionSet().getInstructions(currentPlayerState);
+
+        for(Instruction instruction : instructionList){
+
+            if(instruction.isRegex()){
+
+                Pattern pattern = Pattern.compile(instruction.getRegex());
+                Matcher matcher = pattern.matcher(inputLine);
+
+                if(matcher.find()){
+
+                    checkedString = handleRegex(checkedString, instruction);
+                }
+            }
+
+            else if(instruction.getInstruction().equals(checkedString)){
+
+                return checkedString;
+
+            }
+        }
+
+        checkedString = "invalid input";
+
+        return checkedString;
+    }
+
+
+
+    private String handleRegex(String inputLine, Instruction instruction) {
+
+        return null;
+    }
+
 
     private static String inputParser(String inputLine, ClientRMIView rmiView) {
 

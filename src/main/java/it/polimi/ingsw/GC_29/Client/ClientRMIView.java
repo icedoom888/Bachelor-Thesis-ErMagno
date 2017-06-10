@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -26,6 +27,8 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
     private PlayerState currentPlayerState;
 
     private GameEvent currentGameEvent;
+
+    private InstructionSet instructionSet;
 
 
     protected ClientRMIView() throws RemoteException {
@@ -47,6 +50,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
         if(c instanceof PlayerStateChange){
 
             currentPlayerState = ((PlayerStateChange)c).getNewPlayerState();
+            System.out.println("if you want to see your valid input for this current state insert : help");
         }
 
         if(c instanceof GameChange){
@@ -93,5 +97,23 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
     public void setGameEvent(GameEvent gameEvent) {
         this.currentGameEvent = gameEvent;
+    }
+
+    public void handleHelp(){
+
+        List<Instruction> instructionList = instructionSet.getInstructions(currentPlayerState);
+
+        System.out.println("your valid input in this current state are:");
+
+        for (Instruction instruction : instructionList) {
+
+            System.out.println("");
+            System.out.println(instruction.getInstruction());
+
+        }
+    }
+
+    public InstructionSet getInstructionSet() {
+        return instructionSet;
     }
 }

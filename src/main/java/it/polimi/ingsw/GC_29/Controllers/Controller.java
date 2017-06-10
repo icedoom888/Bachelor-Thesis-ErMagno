@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 
 /**
  * the controller class is an Observer of Input Objects, it observes the views of server side and when the views call
- * a notifyObserver(Input input) the update(Input input) of the controller is called and it performs the "esegui" method
+ * a notifyObserver(Input input) the update(Input input) of the controller is called and it performs the "perform" method
  * of the Input Object
  */
 public class Controller implements Observer<Input>{
@@ -24,7 +24,7 @@ public class Controller implements Observer<Input>{
     public void update(Input input) throws RemoteException {
         System.out.println("I AM THE CONTROLLER UPDATING THE MODEL");
         Observer.super.update(input);
-        input.esegui(gioco);
+        input.perform(gioco);
     }
 
     @Override

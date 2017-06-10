@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
  */
 public abstract class Input implements Serializable{
 
-    private static final long serialVersionUID = -4334191184999875154L;
+    //private static final long serialVersionUID = -4334191184999875154L;
 
-    public abstract void esegui(GameStatus model) throws RemoteException;
+    public abstract void perform(GameStatus model) throws RemoteException;
 }
