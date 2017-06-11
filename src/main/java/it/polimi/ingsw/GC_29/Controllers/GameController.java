@@ -115,7 +115,7 @@ public class GameController {
     /**
      * endGame calculates the victoryPoints of all the players and chooses the winner
      */
-    public void endGame() { //TODO: make private
+    public void endGame() throws Exception { //TODO: make private
 
         List<Player> players = gameStatus.getTurnOrder();
 
@@ -250,7 +250,7 @@ public class GameController {
     /**
      * checkSkipTurn takes all the players who have skipped the turn and make them execute their action
      */
-    private void checkSkipTurn() {
+    private void checkSkipTurn() throws Exception {
 
         List<Player> players = gameStatus.getSkippedTurnPlayers();
 

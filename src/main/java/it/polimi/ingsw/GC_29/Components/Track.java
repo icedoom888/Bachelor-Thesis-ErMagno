@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -46,20 +48,17 @@ public class Track implements Cleanable {
         return pawnMap.get(pawn);
     }
 
+    public int findPawn(PlayerColor playerColor) {
+
+        return pawnMap.get(new Pawn(playerColor)); //TODO: va bene?
+    }
+
     public HashMap<Pawn, Integer> getPawnMap() {
         return pawnMap;
     }
 
-    /**
-    * movePawn search the position of the pawn in the HashMap,
-    * then search the pawn in the right PawnSlot.
-    * If the Pawn is really there, it changes its position from the index
-    * provided by pawnMap to the new given position, if not it prints
-    * that there has been an error
-     * @param position int where to move the pawn
-     * @param pawn Pawn pawn to move
-     */
-    public void movePawn(int position, Pawn pawn) {
+
+    public void movePawn(int increment, Pawn pawn) {
 
         int index = findPawn(pawn);
         PawnSlot pawnSlot = track[index];
@@ -67,8 +66,32 @@ public class Track implements Cleanable {
 
         if (realPawn != null) {
             track[index].removePawn(realPawn);
-            track[position].addPawn(realPawn);
-            pawnMap.put(realPawn,position);
+            track[index + increment].addPawn(realPawn);
+            pawnMap.put(realPawn,index + increment);
+
+        } else {
+            System.out.println("Error: Wrong Pawn");
+        }
+    }
+    /**
+     * movePawn search the position of the pawn in the HashMap,
+     * then search the pawn in the right PawnSlot.
+     * If the Pawn is really there, it changes its position from the index
+     * provided by pawnMap to the new given position, if not it prints
+     * that there has been an error
+     * @param increment int where to move the pawn
+     * @param playerColor playerColor of the pawn to move
+     */
+    public void movePawn(int increment, PlayerColor playerColor) {
+
+        int index = findPawn(playerColor);
+        PawnSlot pawnSlot = track[index];
+        Pawn realPawn = pawnSlot.findPawn(playerColor);
+
+        if (realPawn != null) {
+            track[index].removePawn(realPawn);
+            track[index + increment].addPawn(realPawn);
+            pawnMap.put(realPawn,index + increment);
 
         } else {
             System.out.println("Error: Wrong Pawn");

@@ -48,7 +48,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      * @param status
      */
     @Override
-    public void execute(Player status) {
+    public void execute(Player status) throws Exception {
 
         evaluateActualGoodsObtained(status);
 
@@ -60,7 +60,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
     /** evaluateActualGoodsObtain builds the @goodsObtained attribute evaluating the 2 conditions
      * @param status
      */
-    public void evaluateActualGoodsObtained(Player status){
+    public void evaluateActualGoodsObtained(Player status) throws Exception {
 
         evaluateCardCondition(status);
 
@@ -72,7 +72,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      * The multiplier will be multiplied for the @effectForEachCondition attribute in order to calculate the goodsObtain attribute
      * @param status
      */
-    private void evaluateCardCondition(Player status){
+    private void evaluateCardCondition(Player status) throws Exception {
 
         if(cardCondition==null){return;}
 
@@ -101,7 +101,7 @@ public class ObtainOnConditionEffect extends ObtainEffect{
      * The multiplier will be multiplied for the @effectForEachCondition attribute in order to calculate the goodsObtain attribute
      * @param status
      */
-    private void evaluateGoodsCondition(Player status){
+    private void evaluateGoodsCondition(Player status) throws Exception {
 
         if(goodsCondition==null){return;}
 

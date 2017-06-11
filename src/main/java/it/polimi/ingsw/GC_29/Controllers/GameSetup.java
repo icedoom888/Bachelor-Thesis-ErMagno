@@ -53,7 +53,7 @@ public class GameSetup {
      * will call the GameManager (manager for the setting of the currentPlayer, the management of the begin round, the end round
      * and the end era (relationship with the church is managed there)
      */
-    public void init() throws IOException {
+    public void init() throws Exception {
 
         this.gameBoard = loadGameBoardFromFile(numberOfPlayers);
 
@@ -185,7 +185,7 @@ public class GameSetup {
         return excommunicationTileMap.get(era).get(randomIndex);
     }
 
-    private void setGoodsForPlayers() throws FileNotFoundException {
+    private void setGoodsForPlayers() throws Exception {
 
         FileReader fileReader = new FileReader("goodsForPlayerSetup");
 

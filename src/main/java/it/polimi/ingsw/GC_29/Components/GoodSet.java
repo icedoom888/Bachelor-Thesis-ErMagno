@@ -1,5 +1,12 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.Controllers.FaithMove;
+import it.polimi.ingsw.GC_29.Controllers.MilitaryMove;
+import it.polimi.ingsw.GC_29.Controllers.MovePawn;
+import it.polimi.ingsw.GC_29.Controllers.VictoryMove;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Server.Observable;
+
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -8,7 +15,7 @@ import static java.lang.Math.max;
 /**
  * Created by Christian on 17/05/2017.
  */
-public class GoodSet {
+public class GoodSet extends Observable<MovePawn> {
 
     private EnumMap<GoodType,Integer> goodSetMap;
 
@@ -56,8 +63,19 @@ public class GoodSet {
 
     public void addGoodSet(GoodSet goodSetToAdd){
         for (GoodType type: GoodType.values()){
-            this.goodSetMap.put(type, this.goodSetMap.get(type)+ goodSetToAdd.getMapGoodSet().get(type));
+            this.goodSetMap.put(type, this.goodSetMap.get(type) + goodSetToAdd.getMapGoodSet().get(type));
         }
+    }
+
+    public void updateGoodSet(GoodSet goodSetToAdd, PlayerColor playerColor) throws Exception {
+        addGoodSet(goodSetToAdd);
+        int victoryPoints = goodSetToAdd.getGoodAmount(GoodType.VICTORYPOINTS);
+        int militaryPoints = goodSetToAdd.getGoodAmount(GoodType.MILITARYPOINTS);
+        int faithPoints = goodSetToAdd.getGoodAmount(GoodType.FAITHPOINTS);
+
+        if (victoryPoints != 0) notifyObserver(new VictoryMove(playerColor, victoryPoints));
+        if (militaryPoints != 0) notifyObserver(new MilitaryMove(playerColor, militaryPoints));
+        if (faithPoints != 0) notifyObserver(new FaithMove(playerColor, militaryPoints));
     }
 
     public void subGoodSet(GoodSet goodSetToSub){

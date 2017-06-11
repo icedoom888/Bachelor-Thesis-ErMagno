@@ -63,7 +63,7 @@ public class GameSetupTest {
 
     }
 
-    private void createActions(int numberOfPlayers) throws IOException {
+    private void createActions(int numberOfPlayers) throws Exception {
 
         ArrayList<Player> players = createPlayers(numberOfPlayers);
 

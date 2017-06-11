@@ -29,8 +29,8 @@ public class TrackTest {
 
         System.out.println(track.getTrack()[5]);
 
-        track.movePawn(4,redPawn);
-        track.movePawn(4,bluePawn);
+        track.movePawn(4,PlayerColor.RED);
+        track.movePawn(4,PlayerColor.BLUE);
 
         System.out.println(track);
     }

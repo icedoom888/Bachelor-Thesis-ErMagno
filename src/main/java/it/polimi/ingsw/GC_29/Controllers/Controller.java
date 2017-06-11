@@ -22,7 +22,7 @@ import java.util.List;
  * a notifyObserver(Input input) the update(Input input) of the controller is called and it performs the "perform" method
  * of the Input Object
  */
-public class Controller implements Observer<Input> {
+public class Controller implements Observer<Input>  {
 
     private final GameStatus model;
     private Integer playersPraying;
@@ -213,7 +213,7 @@ public class Controller implements Observer<Input> {
     /**
      * endGame calculates the victoryPoints of all the players and chooses the winner
      */
-    public void endGame() {
+    public void endGame() throws Exception {
 
         List<Player> players = model.getTurnOrder();
         Player winner = null;
@@ -252,7 +252,7 @@ public class Controller implements Observer<Input> {
 
     }
 
-    private void transformResourcesInPoints(Player player) {
+    private void transformResourcesInPoints(Player player) throws Exception {
         int totalResource = 0;
 
         GoodSet playerGoodSet = player.getActualGoodSet();
@@ -269,7 +269,7 @@ public class Controller implements Observer<Input> {
 
     }
 
-    private void pointsFromMilitaryPoints() {
+    private void pointsFromMilitaryPoints() throws Exception {
         ArrayList<Player> players = new ArrayList<>();
 
         players.addAll(model.getTurnOrder());
@@ -312,7 +312,7 @@ public class Controller implements Observer<Input> {
 
     }
 
-    private void pointsFromPurpleCards(Player player) {
+    private void pointsFromPurpleCards(Player player) throws Exception {
 
         if (!Filter.applySpecial(player, CardColor.PURPLE)) {
             DevelopmentCard[] cards =  player.getPersonalBoard().getLane(CardColor.PURPLE).getCards();
@@ -331,7 +331,7 @@ public class Controller implements Observer<Input> {
      * This method calculates how many points the player receives from the number of his blue cards
      * @param player
      */
-    private void pointsFromBlueCards(Player player) {
+    private void pointsFromBlueCards(Player player) throws Exception {
 
         int numberOfBlueCards = player.getCardsOwned().get(CardColor.BLUE);
 
@@ -365,7 +365,7 @@ public class Controller implements Observer<Input> {
      * This method calculates how many points the player receives from the number of his green cards
      * @param player
      */
-    private void pointsFromGreenCards(Player player) {
+    private void pointsFromGreenCards(Player player) throws Exception {
         int numberOfGreenCards = player.getCardsOwned().get(CardColor.GREEN);
         player.updateGoodSet(new GoodSet(0,0,0,0,player.getPersonalBoard().getTerritoryLane().getSlot(numberOfGreenCards-1).getVictoryPointsGiven(),0,0));
     }

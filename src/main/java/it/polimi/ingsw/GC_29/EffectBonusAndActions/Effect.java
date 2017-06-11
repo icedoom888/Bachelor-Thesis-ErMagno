@@ -7,5 +7,5 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public interface Effect {
 
-    void execute(Player status);
+    void execute(Player status) throws Exception;
 }

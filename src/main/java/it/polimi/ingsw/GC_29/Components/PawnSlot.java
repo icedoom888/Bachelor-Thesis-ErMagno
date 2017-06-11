@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +65,15 @@ public class PawnSlot{
         }
 
         else return null;
+    }
+
+    protected Pawn findPawn(PlayerColor playerColor) {
+
+        for (Pawn playerPawn : playerPawns) {
+            if (playerPawn.getPlayerColor() == playerColor) return playerPawn;
+        }
+
+        return null;
     }
 
 

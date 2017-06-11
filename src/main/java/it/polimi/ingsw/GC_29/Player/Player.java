@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * Created by Christian on 17/05/2017.
  */
-public class Player extends Observable<Change>{
+public class Player extends Observable<Change> {
 
     private PlayerState playerState;
 
@@ -191,9 +191,9 @@ public class Player extends Observable<Change>{
         this.cardsOwned.put(cardColor,(this.getNumberOfCardsOwned(cardColor)+1));
     }
 
-    public void updateGoodSet(GoodSet newGoodSet) {
+    public void updateGoodSet(GoodSet newGoodSet) throws Exception {
 
-        this.actualGoodSet.addGoodSet(newGoodSet);
+        this.actualGoodSet.updateGoodSet(newGoodSet, playerColor);
     }
 
     public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() {

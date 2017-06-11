@@ -23,7 +23,7 @@ public class PayToObtainEffect implements Effect{
      * if the cost isn't payable the execution stops: the cost isn't detracted from the status and the @goodsObtained are not added either
      */
     @Override
-    public void execute(Player status) {
+    public void execute(Player status) throws Exception {
 
         if(checkSufficientGoods(status)){
 

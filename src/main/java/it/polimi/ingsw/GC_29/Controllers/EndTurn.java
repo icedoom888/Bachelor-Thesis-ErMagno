@@ -15,18 +15,23 @@ public class EndTurn extends Input {
 
         Player currentPlayer = model.getCurrentPlayer();
         currentPlayer.setPlayerState(PlayerState.WAITING);
+        List<Player> turnOrder = model.getTurnOrder();
 
-        if (model.getGameState() != GameState.CHECKONSKIPPED) {
-            List<Player> turnOrder = model.getTurnOrder();
+        if (model.getGameState() == GameState.CHECKONSKIPPED) {
+            setSkippedPlayer(model, controller);
+        }
 
-            if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) { // è l'ultimo giocatore del turno
+        else if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) {
+            if (model.getCurrentTurn() < 4) {
+                model.setCurrentTurn(model.getCurrentTurn()+1);
+            }
 
+            if (model.getCurrentTurn() == 4  && model.getGameState() != GameState.CHECKONSKIPPED) {
                 model.setGameState(GameState.CHECKONSKIPPED);
+                setSkippedPlayer(model, controller);
 
             }
         }
-
-        setSkippedPlayer(model, controller);
 
     }
 

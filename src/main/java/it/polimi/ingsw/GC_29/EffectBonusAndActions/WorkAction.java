@@ -123,7 +123,7 @@ public class WorkAction extends Action {
 
 
     @Override
-    public void execute(){
+    public void execute() throws Exception {
         if (isPossible()){
             System.out.println("The action is Possible");
             buildDifferentChoices();
@@ -145,7 +145,7 @@ public class WorkAction extends Action {
      * the player would need to pay to activate their effects,
      * the arrays are created only if the resources of the player are enough to pay hte workersNeeded
      */
-    private void buildDifferentChoices() throws NullPointerException{
+    private void buildDifferentChoices() throws Exception {
         Lane lane = null;
         if(zoneType==ZoneType.HARVEST){
             lane = player.getPersonalBoard().getTerritoryLane();
@@ -302,7 +302,7 @@ public class WorkAction extends Action {
     /**
      * This method activates all the effects selected by the player
      */
-    private void activateEffects() {
+    private void activateEffects() throws Exception {
 
         GoodSet goodSet= null;
         if (zoneType==ZoneType.HARVEST) {

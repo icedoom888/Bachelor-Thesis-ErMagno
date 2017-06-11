@@ -5,7 +5,7 @@ package it.polimi.ingsw.GC_29.Controllers;
  */
 public class ExecuteActionTurnState implements TurnState {
     @Override
-    public void executeState(PlayerController wrapper) {
+    public void executeState(PlayerController wrapper) throws Exception {
 
         wrapper.getPlayerStatus().getCurrentAction().execute();
         

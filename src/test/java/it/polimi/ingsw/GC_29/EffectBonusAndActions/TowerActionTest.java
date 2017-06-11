@@ -179,7 +179,7 @@ public class TowerActionTest {
     }
 
     @Test
-    public void testIsPossible3() throws IOException {
+    public void testIsPossible3() throws Exception {
 
         BonusTile bonusTile = new BonusTile(new ObtainEffect(1,0,0,0,0,0,0),new ObtainEffect(0,1,0,0,0,0,0));
 

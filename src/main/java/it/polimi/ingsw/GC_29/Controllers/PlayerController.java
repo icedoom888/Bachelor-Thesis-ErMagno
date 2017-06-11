@@ -33,11 +33,11 @@ public class PlayerController {
         currentTurnState = newTurnState;
     }
 
-    public void executeState(){
+    public void executeState() throws Exception {
         currentTurnState.executeState(this);
     }
 
-    public void init(){
+    public void init() throws Exception {
 
         while(currentTurnState.getClass() != EndTurnState.class){ // finché non arrivo all'utlimo stato del turno continuo ad eseguire gli stati intermedi
             executeState();

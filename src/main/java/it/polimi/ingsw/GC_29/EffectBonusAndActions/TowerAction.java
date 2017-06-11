@@ -56,7 +56,7 @@ public class TowerAction extends Action {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws Exception {
 
         super.payWorkers();
         super.addPawn();
@@ -222,7 +222,7 @@ public class TowerAction extends Action {
                 && player.getPersonalBoard().getLane(type).isFree();
     }
 
-    private void payCard() {
+    private void payCard() throws Exception {
 
         GoodSet goodSetToPay;
 
@@ -305,7 +305,7 @@ public class TowerAction extends Action {
     /**
      * This method activates all the immediate effects of the selected card
      */
-    private void activateCardEffects() {
+    private void activateCardEffects() throws Exception {
 
         List<Effect> immediateEffects = this.cardSelected.getImmediateEffect();
 
