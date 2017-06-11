@@ -22,7 +22,7 @@ import java.util.List;
  * a notifyObserver(Input input) the update(Input input) of the controller is called and it performs the "perform" method
  * of the Input Object
  */
-public class Controller implements Observer<Input>{
+public class Controller implements Observer<Input> {
 
     private final GameStatus model;
     private Integer playersPraying;
@@ -180,7 +180,7 @@ public class Controller implements Observer<Input>{
      * setThreshold finds the right threshold for the FaithPointsTrack of the currentEra.
      * @return an integer - the threshold
      */
-    private int setThreshold(){
+    private int setThreshold() {
 
         int threshold=0;
         Era currentEra = model.getCurrentEra();
@@ -248,7 +248,7 @@ public class Controller implements Observer<Input>{
 
         System.out.println("The winner is... " + winner);
 
-        //TODO: clear game
+        model.getGameBoard().clearAll();
 
     }
 
@@ -410,7 +410,7 @@ public class Controller implements Observer<Input>{
      * After this first step, all the players of the oldTurnOrder are added to the temporary arrayList, skipping the
      * ones who have already been copied. Then the TurnOrder in the GameStatus is set.
      */
-    private void setNewTurnOrder() {  //Todo: make private
+    private void setNewTurnOrder() {
         PlayerColor[] newTurnOrder = model.getGameBoard().getCouncilPalace().getTurnOrder();
         List<Player> oldTurnOrder = model.getTurnOrder();
         ArrayList<Player> temporaryTurnOrder = new ArrayList<>();

@@ -9,6 +9,7 @@ import java.util.List;
  * Created by Lorenzotara on 10/06/17.
  */
 public class EndTurn extends Input {
+
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 

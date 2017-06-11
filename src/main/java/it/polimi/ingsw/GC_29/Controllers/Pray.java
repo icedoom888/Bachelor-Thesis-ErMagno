@@ -40,7 +40,8 @@ public class Pray extends Input {
         player.setPlayerState(PlayerState.WAITING);
 
         if (controller.getPlayersPraying() == 0) {
-            if (model.getCurrentEra() != Era.THIRD) controller.setNewRound();
+            model.setGameState(GameState.RUNNING);
+            if (model.getCurrentEra() != Era.THIRD) controller.setNewRound(); //TODO: o handleEndRound?
             else controller.endGame();
         }
 

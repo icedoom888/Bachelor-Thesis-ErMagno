@@ -60,7 +60,7 @@ public class Track implements Cleanable {
      * @param pawn Pawn pawn to move
      */
     public void movePawn(int position, Pawn pawn) {
-        // TODO: testing
+
         int index = findPawn(pawn);
         PawnSlot pawnSlot = track[index];
         Pawn realPawn = pawnSlot.findPawn(pawn);
