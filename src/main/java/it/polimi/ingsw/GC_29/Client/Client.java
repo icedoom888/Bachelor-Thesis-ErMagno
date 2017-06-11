@@ -8,12 +8,13 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 /**
  * Created by Christian on 11/06/2017.
  */
-public class Client implements ClientRemoteInterface {
+public class Client extends UnicastRemoteObject implements ClientRemoteInterface {
 
     private Boolean gameBegun = false;
     private Distribution distribution;
@@ -23,7 +24,8 @@ public class Client implements ClientRemoteInterface {
 
     private ConnectionInterface connectionStub;
 
-    public Client(){
+    public Client() throws RemoteException {
+        super();
 
         askWichConnection();
 
