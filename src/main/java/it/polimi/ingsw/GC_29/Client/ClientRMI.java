@@ -35,15 +35,15 @@ public class ClientRMI {
 
     private final static int PORT = 52365;
 
-    private static final String NAME = "lorenzo";
+    private static final String NAME = "rmiView";
 
     private static final String error = "Input not allowed for your current state";
 
-    private static final ArrayList<String> parseredAnswerList = new ArrayList<>();
+    //private static final ArrayList<String> parseredAnswerList = new ArrayList<>();
 
 
 
-    public static void main(String[] args) throws RemoteException, NotBoundException, AlreadyBoundException {
+    public void run() throws RemoteException, NotBoundException, AlreadyBoundException {
 
         //Get the remote registry
         Registry registry = LocateRegistry.getRegistry(HOST, PORT);
