@@ -22,7 +22,7 @@ public class Player extends Observable<Change> {
     private LeaderCard[] leaderCards;
     private FamilyPawn[] familyPawns;
     private Pawn[] excommunicationPawns;
-    private Pawn[] markerDiscs;
+    private Pawn markerDiscs;
     private PlayerColor playerColor;
     private EnumMap<FamilyPawnType, Boolean> familyPawnAvailability;
 
@@ -56,7 +56,7 @@ public class Player extends Observable<Change> {
 
         excommunicationPawns = new Pawn[] {new Pawn(playerColor), new Pawn(playerColor), new Pawn(playerColor)};
 
-        markerDiscs = new Pawn[] {new Pawn(playerColor), new Pawn(playerColor), new Pawn(playerColor)};
+        markerDiscs = new Pawn(playerColor);
 
         bonusAndMalusOnAction = new ArrayList<>();
         bonusAndMalusOnGoods = new ArrayList<>();
@@ -126,7 +126,7 @@ public class Player extends Observable<Change> {
         return excommunicationPawns;
     }
 
-    public Pawn[] getMarkerDiscs() {
+    public Pawn getMarkerDiscs() {
         return markerDiscs;
     }
 
@@ -193,7 +193,7 @@ public class Player extends Observable<Change> {
 
     public void updateGoodSet(GoodSet newGoodSet) throws Exception {
 
-        this.actualGoodSet.updateGoodSet(newGoodSet, playerColor);
+        this.actualGoodSet.updateGoodSet(newGoodSet);
     }
 
     public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() {

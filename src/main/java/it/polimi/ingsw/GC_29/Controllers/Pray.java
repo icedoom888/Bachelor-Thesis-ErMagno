@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 import it.polimi.ingsw.GC_29.Components.Era;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Filter;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
@@ -26,11 +27,14 @@ public class Pray extends Input {
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 
-        Player player = searchPlayer(model);
+        Player player = controller.searchPlayer(playerColor);
 
         if (answer) {
             int playerFaithPoints = player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS);
-            player.updateGoodSet(new GoodSet(0,0,0,0,model.getGameBoard().getFaithPointsTrack().getVictoryPointsPerSlot()[playerFaithPoints], 0, -playerFaithPoints));
+            GoodSet goodSet = new GoodSet(0,0,0,0,model.getGameBoard().getFaithPointsTrack().getVictoryPointsPerSlot()[playerFaithPoints],0,0);
+            Filter.apply(player, goodSet);
+            goodSet.addGoodSet(new GoodSet(0,0,0,0, 0, 0, -playerFaithPoints));
+            player.updateGoodSet(goodSet);
         }
 
         else controller.executeTiles(player);
@@ -41,19 +45,11 @@ public class Pray extends Input {
 
         if (controller.getPlayersPraying() == 0) {
             model.setGameState(GameState.RUNNING);
-            if (model.getCurrentEra() != Era.THIRD) controller.setNewRound(); //TODO: o handleEndRound?
+            if (model.getCurrentEra() != Era.THIRD) controller.setNewRound();
             else controller.endGame();
         }
 
     }
 
-    private Player searchPlayer(GameStatus model) {
-        List<Player> turnOrder = model.getTurnOrder();
 
-        for (Player player : turnOrder) {
-            if (player.getPlayerColor() == playerColor) return player;
-        }
-
-        return null;
-    }
 }

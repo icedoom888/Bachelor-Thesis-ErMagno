@@ -49,7 +49,7 @@ public class Controller implements Observer<Input>  {
 
         int round = model.getCurrentRound();
         if (round%2 == 0) {
-            //TODO: messaggio di scomunica
+            //TODO: messaggio di scomunica - GAMESTATE = RELATIONSHIP
             List<Player> safePlayers = excommunicatePlayers();
 
             for (Player safePlayer : safePlayers) {
@@ -246,6 +246,8 @@ public class Controller implements Observer<Input>  {
             }
         }
 
+        //TODO: GAMESTATE = ENDED
+
         System.out.println("The winner is... " + winner);
 
         model.getGameBoard().clearAll();
@@ -433,6 +435,16 @@ public class Controller implements Observer<Input>  {
 
         model.setTurnOrder(temporaryTurnOrder);
 
+    }
+
+    public Player searchPlayer(PlayerColor playerColor) {
+        List<Player> turnOrder = model.getTurnOrder();
+
+        for (Player player : turnOrder) {
+            if (player.getPlayerColor() == playerColor) return player;
+        }
+
+        return null;
     }
 
 
