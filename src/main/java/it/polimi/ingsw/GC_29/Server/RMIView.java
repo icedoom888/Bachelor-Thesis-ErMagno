@@ -35,24 +35,40 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
-    public void skipAction() throws Exception {
-        notifyObserver(new SkipAction());
+    public void skipAction() throws RemoteException{
+        try {
+            notifyObserver(new SkipAction());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void usePawnChosen(FamilyPawnType familyPawnType) throws Exception {
-        notifyObserver(new UsePawnChosen(familyPawnType));
+    public void usePawnChosen(FamilyPawnType familyPawnType) throws RemoteException{
+        try {
+            notifyObserver(new UsePawnChosen(familyPawnType));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
-    public void endTurn() throws Exception {
-        notifyObserver(new EndTurn());
+    public void endTurn() throws RemoteException{
+        try {
+            notifyObserver(new EndTurn());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void pray(boolean b, PlayerColor playerColor) throws Exception {
-        notifyObserver(new Pray(b, playerColor));
+    public void pray(boolean b, PlayerColor playerColor) throws RemoteException{
+        try {
+            notifyObserver(new Pray(b, playerColor));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -62,14 +78,18 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
-    public void doAction(int index) throws Exception {
+    public void doAction(int index) throws RemoteException {
 
-        notifyObserver(new ExecuteAction(index));
+        try {
+            notifyObserver(new ExecuteAction(index));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
-    public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
+    public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() throws RemoteException{
         return gameStatus.getCurrentPlayer().getFamilyPawnAvailability();
     }
 

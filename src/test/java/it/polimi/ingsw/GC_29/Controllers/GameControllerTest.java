@@ -13,7 +13,7 @@ import static org.testng.Assert.*;
 
 /**
  * Created by Lorenzotara on 01/06/17.
- */
+
 public class GameControllerTest {
 
     BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
@@ -99,4 +99,4 @@ public class GameControllerTest {
 
     }
 
-}
+}*/

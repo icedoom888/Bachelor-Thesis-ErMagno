@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Lorenzotara on 22/05/17.
-*/
+
 public class TowerActionTest {
 
     @Test
@@ -371,4 +371,4 @@ public class TowerActionTest {
 
     }
 
-}
+}*/

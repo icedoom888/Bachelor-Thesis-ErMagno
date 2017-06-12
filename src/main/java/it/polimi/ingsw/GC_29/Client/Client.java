@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Client;
 
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.ConnectionInterface;
+import org.w3c.dom.ranges.RangeException;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
@@ -14,11 +16,19 @@ import java.util.Scanner;
 /**
  * Created by Christian on 11/06/2017.
  */
-public class Client extends UnicastRemoteObject implements ClientRemoteInterface {
+public class Client {
 
-    private Boolean gameBegun = false;
+
+    private final static String HOST = "127.0.0.1";
+
+    private final static int PORT = 52365;
+
+    private static final String NAME = "connection";
+
     private Distribution distribution;
     private boolean connectionChosen;
+
+    private ClientRemoteInterfaceImpl clientRemote;
 
     private ClientRMI gameRMI;
 
@@ -44,7 +54,7 @@ public class Client extends UnicastRemoteObject implements ClientRemoteInterface
 
         Scanner stdIn = new Scanner(System.in);
 
-        while(connectionChosen){
+        while(!connectionChosen){
 
             System.out.println("which connection do you want to use?");
             System.out.println("rmi --> rmi connection");
@@ -115,28 +125,10 @@ public class Client extends UnicastRemoteObject implements ClientRemoteInterface
     }
 
 
-    private void connect() throws Exception {
-
-        switch (distribution){
-
-            case RMI:
-                connectServerRMI();
-                break;
-
-            case SOCKET:
-                connectServerSocket();
-                break;
-
-            default:
-                throw new Exception("Illegal distribution type: " + distribution);
-        }
-    }
-
-
     private void connectServerRMI() throws RemoteException, NotBoundException {
 
-        Registry reg = LocateRegistry.getRegistry();
-        connectionStub = (ConnectionInterface)reg.lookup("connection");
+        Registry reg = LocateRegistry.getRegistry(HOST, PORT);
+        connectionStub = (ConnectionInterface)reg.lookup(NAME);
 
         /* method calls
         Scanner in = new Scanner(System.in);
@@ -148,19 +140,23 @@ public class Client extends UnicastRemoteObject implements ClientRemoteInterface
     }
 
 
-    private void loginRMI() {
+    private void loginRMI() throws RemoteException {
 
         Scanner stdIn = new Scanner(System.in);
 
         Boolean logged = false;
 
+        String userName = "";
+
+        String password;
+
         while (!logged){
 
             System.out.println("Insert your username");
-            String userName = stdIn.nextLine();
+            userName = stdIn.nextLine();
 
             System.out.println("Insert your password");
-            String password = stdIn.nextLine();
+            password = stdIn.nextLine();
 
             logged = connectionStub.login(userName, password);
 
@@ -174,14 +170,33 @@ public class Client extends UnicastRemoteObject implements ClientRemoteInterface
 
         System.out.println(" login successful");
 
-        connectionStub.addClient(this);
+        clientRemote = new ClientRemoteInterfaceImpl();
+
+        clientRemote.setUsername(userName);
+
+        connectionStub.addClient(clientRemote);
 
     }
 
 
     private void playNewGameRMI() throws RemoteException, NotBoundException, AlreadyBoundException {
 
-        while (gameBegun){} // aspetta che il server lanci una nuova partita
+        long i = 0;
+
+        long var = 213999999;
+
+        while (!clientRemote.getGameBegun()){
+
+            if(i % var == 0){
+
+                System.out.println("sono dentro PLAY" + i);
+            }
+
+            i++;
+            if(i == 1283999994){
+                i=0;
+            }
+        } // aspetta che il server lanci una nuova partita
 
         gameRMI = new ClientRMI();
 
@@ -199,12 +214,6 @@ public class Client extends UnicastRemoteObject implements ClientRemoteInterface
     }
 
 
-
-    @Override
-    public void initializeNewGame() {
-
-        gameBegun = true;
-    }
 
 
     public static void main(String[] args) throws IOException, InterruptedException {

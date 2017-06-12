@@ -19,10 +19,10 @@ public interface RMIViewRemote extends Remote {
             ClientViewRemote clientStub)
             throws RemoteException;
 
-    void skipAction() throws Exception;
+    void skipAction() throws RemoteException;
 
 
-    void usePawnChosen(FamilyPawnType familyPawnType) throws Exception;
+    void usePawnChosen(FamilyPawnType familyPawnType) throws RemoteException;
 
 
     /**
@@ -32,12 +32,12 @@ public interface RMIViewRemote extends Remote {
      */
     ArrayList<Action> getValidActionList() throws RemoteException;
 
-    void doAction(int index) throws Exception;
+    void doAction(int index) throws RemoteException;
 
-    Map<FamilyPawnType,Boolean> getFamilyPawnAvailability();
+    Map<FamilyPawnType,Boolean> getFamilyPawnAvailability() throws RemoteException;
 
 
-    void endTurn() throws Exception;
+    void endTurn() throws RemoteException;
 
-    void pray(boolean b, PlayerColor playerColor) throws Exception;
+    void pray(boolean b, PlayerColor playerColor) throws RemoteException;
 }

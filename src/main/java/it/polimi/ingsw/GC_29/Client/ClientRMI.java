@@ -28,12 +28,12 @@ import java.util.regex.Pattern;
  */
 public class ClientRMI {
 
-    private final static int RMI_PORT = 52365;
+    //private final static int RMI_PORT = 52365;
 
 
     private final static String HOST = "127.0.0.1";
 
-    private final static int PORT = 52365;
+    private final static int PORT = 29999;
 
     private static final String NAME = "rmiView";
 
@@ -48,6 +48,8 @@ public class ClientRMI {
         //Get the remote registry
         Registry registry = LocateRegistry.getRegistry(HOST, PORT);
 
+        System.out.println("registry localizzato");
+
         //get the stub (local object) of the remote view
         RMIViewRemote serverStub = (RMIViewRemote) registry.lookup(NAME);
 
@@ -59,7 +61,9 @@ public class ClientRMI {
 
         Scanner stdIn = new Scanner(System.in);
 
-        while (true) {
+        Boolean b = true;
+
+        while (b) {
             //Capture input from user
             String inputLine = stdIn.nextLine();
             System.out.println("SENDING "+inputLine);
@@ -114,7 +118,7 @@ public class ClientRMI {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            break; // TODO: gestione client disconnesso!
+            // TODO: gestione client disconnesso!
         }
     }
 
@@ -122,7 +126,7 @@ public class ClientRMI {
 
 
 
-    private static String inputChecker(String inputLine, ClientRMIView rmiView, RMIViewRemote serverStub){
+    private static String inputChecker(String inputLine, ClientRMIView rmiView, RMIViewRemote serverStub) throws RemoteException {
 
         String checkedString = inputLine;
 
@@ -159,7 +163,7 @@ public class ClientRMI {
 
 
 
-    private static String handleRegex(String inputLine, Instruction instruction, ClientRMIView rmiView, RMIViewRemote serverStub) {
+    private static String handleRegex(String inputLine, Instruction instruction, ClientRMIView rmiView, RMIViewRemote serverStub) throws RemoteException {
 
 
 
@@ -218,7 +222,7 @@ public class ClientRMI {
         return "";
     }
 
-    private static String handleUseFamilyPawn(String lastWord,ClientRMIView rmiView, RMIViewRemote serverStub) {
+    private static String handleUseFamilyPawn(String lastWord,ClientRMIView rmiView, RMIViewRemote serverStub) throws RemoteException {
 
         lastWord = lastWord.toUpperCase();
 

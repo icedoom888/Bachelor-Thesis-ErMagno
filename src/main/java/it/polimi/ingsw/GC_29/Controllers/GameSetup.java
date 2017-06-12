@@ -2,15 +2,18 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import it.polimi.ingsw.GC_29.Client.ClientRemoteInterface;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.ProveGSon.EnumMapInstanceCreator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.rmi.RemoteException;
 import java.util.*;
 
 /**
@@ -36,15 +39,35 @@ public class GameSetup {
     // TODO: possibile refactor: rendo classe singleton e rendo init statico passandogli l'arraylist dei players
     // TODO: nel setup settare era, turno e round come first, 1, 1
 
-    public GameSetup(ArrayList<Player> players) {
+    public GameSetup(ArrayList<ClientRemoteInterface> clientList) throws RemoteException {
 
-        this.numberOfPlayers = players.size();
-        //this.gameBoard = new GameBoard(numberOfPlayers);
+
+        setPlayers(clientList);
+
         this.gameStatus = GameStatus.getInstance();
-        this.players = players;
 
         this.orderedDecks = new EnumMap<>(CardColor.class);
         this.excommunicationTileMap = new EnumMap<>(Era.class);
+    }
+
+    public void setPlayers(ArrayList<ClientRemoteInterface> clientList) throws RemoteException {
+
+        players = new ArrayList<>();
+
+        for (ClientRemoteInterface clientRemoteInterface : clientList) {
+
+            String name = clientRemoteInterface.getUserName();
+            PlayerColor playerColor = clientRemoteInterface.getPlayerColor();
+
+            PersonalBoard personalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
+
+            Player player = new Player(name, playerColor, personalBoard);
+
+            players.add(player);
+        }
+
+        this.numberOfPlayers = players.size();
+
     }
 
 
@@ -269,5 +292,7 @@ public class GameSetup {
         ActionChecker.getInstance().setActionList(actionList);
     }
 
-
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
 }

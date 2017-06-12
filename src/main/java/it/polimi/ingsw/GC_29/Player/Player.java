@@ -93,9 +93,15 @@ public class Player extends Observable<Change> {
         return playerColor;
     }
 
-    public void setPlayerState(PlayerState playerState) throws Exception {
+    public void setPlayerState(PlayerState playerState) {
         this.playerState = playerState;
-        notifyObserver(new PlayerStateChange(this.playerState));
+
+        try {
+            notifyObserver(new PlayerStateChange(this.playerState));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String getPlayerID() {

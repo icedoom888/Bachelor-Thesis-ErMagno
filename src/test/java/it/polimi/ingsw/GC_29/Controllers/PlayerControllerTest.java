@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Christian on 30/05/2017.
- */
+
 public class PlayerControllerTest {
 
     @Test
@@ -200,6 +200,6 @@ public class PlayerControllerTest {
         testController.init();
 
       //  FactoryAction.resetFloor();
-    }*/
+    }
 
-}
+}*/

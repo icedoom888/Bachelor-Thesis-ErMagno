@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Client;
 
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -9,4 +11,10 @@ import java.rmi.RemoteException;
 public interface ClientRemoteInterface extends Remote{
 
     void initializeNewGame() throws RemoteException;
+
+    void setPlayerColor(PlayerColor playerColor) throws RemoteException;
+
+    PlayerColor getPlayerColor() throws RemoteException;
+
+    String getUserName() throws RemoteException;
 }

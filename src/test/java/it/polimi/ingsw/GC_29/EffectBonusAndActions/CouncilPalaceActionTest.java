@@ -14,7 +14,7 @@ import static org.testng.Assert.*;
 
 /**
  * Created by Lorenzotara on 03/06/17.
- */
+
 public class CouncilPalaceActionTest {
     @Test
     public void testExecute() throws Exception {
@@ -47,4 +47,4 @@ public class CouncilPalaceActionTest {
 
     }
 
-}
+}*/

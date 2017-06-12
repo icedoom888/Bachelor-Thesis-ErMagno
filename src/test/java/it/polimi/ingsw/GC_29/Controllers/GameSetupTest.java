@@ -16,7 +16,7 @@ import static org.testng.Assert.*;
 
 /**
  * Created by Christian on 02/06/2017.
- */
+
 public class GameSetupTest {
     @Test
     public void testInit() throws Exception {
@@ -93,4 +93,4 @@ public class GameSetupTest {
         return playerArrayList;
     }
 
-}
+}*/

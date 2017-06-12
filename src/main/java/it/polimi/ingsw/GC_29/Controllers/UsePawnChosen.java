@@ -21,7 +21,7 @@ public class UsePawnChosen extends Input {
     }
 
     @Override
-    public void perform(GameStatus model, Controller controller) throws Exception {
+    public void perform(GameStatus model, Controller controller) throws RemoteException {
 
         player = model.getCurrentPlayer();
 

@@ -37,6 +37,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
     protected ClientRMIView() throws RemoteException {
         super();
+
     }
 
     /**
