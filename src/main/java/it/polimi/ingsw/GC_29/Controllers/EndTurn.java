@@ -33,7 +33,8 @@ public class EndTurn extends Input {
             setSkippedPlayer(model, controller);
         }
 
-        else if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) {
+
+        if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) {
 
             if (model.getCurrentTurn() < 4) {
                 model.setCurrentTurn(model.getCurrentTurn()+1);
@@ -42,7 +43,7 @@ public class EndTurn extends Input {
             }
 
             if (model.getCurrentTurn() == 4) {
-                model.setGameState(GameState.CHECKONSKIPPED);
+
                 setSkippedPlayer(model, controller);
 
             }
@@ -63,6 +64,7 @@ public class EndTurn extends Input {
         }
 
         else {
+            model.setGameState(GameState.CHECKONSKIPPED);
             Player newCurrentPlayer = model.getSkippedTurnPlayers().remove(0);
             model.setCurrentPlayer(newCurrentPlayer);
             newCurrentPlayer.setPlayerState(PlayerState.DOACTION);

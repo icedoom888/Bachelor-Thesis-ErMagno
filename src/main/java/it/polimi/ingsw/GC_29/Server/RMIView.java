@@ -28,6 +28,8 @@ public class RMIView extends View implements RMIViewRemote {
     public RMIView(GameStatus gameStatus){
 
         this.gameStatus = gameStatus;
+
+        this.validActionQuery = new GetValidActions();
     }
 
 

@@ -58,6 +58,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
     public void updateClient(Change c) throws RemoteException {
         // Just prints what was received from the server
         System.out.println(c);
+        System.out.println(playerColor);
 
         if(c instanceof PlayerStateChange){
 

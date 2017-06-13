@@ -29,6 +29,8 @@ public class Controller implements Observer<Input>  {
         this.model = model;
         playersPraying = 0;
         actionChecker = new ActionChecker(model);
+
+        createActions();
     }
 
     public void update(Input input) throws Exception {
@@ -89,7 +91,7 @@ public class Controller implements Observer<Input>  {
             }
         }
 
-        model.setCurrentTurn(1);
+        model.setCurrentTurn(0);
         model.setCurrentRound(model.getCurrentRound()+1);
 
         setSkippingTurnPlayers();
@@ -128,10 +130,17 @@ public class Controller implements Observer<Input>  {
     public void chooseCurrentPlayer(Integer index) throws Exception {
         Player firstPlayer = model.getTurnOrder().get(index);
 
+        model.setCurrentPlayer(firstPlayer);
+
         if (Filter.applySpecial(firstPlayer, SpecialBonusAndMalus.SKIPFIRSTTURN)) {
             firstPlayer.setPlayerState(PlayerState.ENDTURN);
         }
-        else firstPlayer.setPlayerState(PlayerState.DOACTION);
+
+
+        else
+        {
+            firstPlayer.setPlayerState(PlayerState.DOACTION);
+        }
     }
 
     /**

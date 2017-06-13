@@ -94,6 +94,8 @@ public class Player extends Observable<Change> {
 
         currentValidActionsList = new ArrayList<>();
 
+        specialBonusAndMaluses = new ArrayList<>();
+
     }
 
     public ArrayList<Action> getCurrentValidActionsList() {

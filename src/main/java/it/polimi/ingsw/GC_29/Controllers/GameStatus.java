@@ -36,6 +36,8 @@ public class  GameStatus extends Observable<Change>{
         orderedDecks = new EnumMap<>(CardColor.class);
         pawnsOnActionSpace = new HashMap<>();
         gameState = GameState.RUNNING;
+        skippedTurnPlayers = new ArrayList<>();
+        turnOrder = new ArrayList<>();
     }
 
 

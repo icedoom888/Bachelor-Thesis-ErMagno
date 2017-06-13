@@ -242,7 +242,7 @@ public class GameSetup {
 
         gameStatus.setCurrentRound(1);
 
-        gameStatus.setCurrentTurn(1);
+        gameStatus.setCurrentTurn(0);
 
     }
 
