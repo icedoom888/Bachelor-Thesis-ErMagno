@@ -8,13 +8,13 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
  */
 public class MilitaryMove extends MovePawn {
 
-    public MilitaryMove(PlayerColor playerColor, int numberOfPoints) {
-        super(playerColor, numberOfPoints);
+    public MilitaryMove(int numberOfPoints) {
+        super(numberOfPoints);
     }
 
     @Override
     public void moveOnTrack(GameStatus model) {
         Track militaryPointsTrack = model.getGameBoard().getVenturesPointsTrack();
-        militaryPointsTrack.movePawn(numberOfPoints, playerColor);
+        militaryPointsTrack.movePawn(numberOfPoints, super.playerPawn(model));
     }
 }

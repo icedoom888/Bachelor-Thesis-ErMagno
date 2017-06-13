@@ -251,9 +251,9 @@ public class WorkAction extends Action {
                     }
                 }
                 else{
-                    for(Effect effect : card.getPermanentEffect()){
-                        effectsToActivate.add(effect);
-                    }
+
+                    effectsToActivate.addAll(card.getPermanentEffect());
+
                 }
             }
         }

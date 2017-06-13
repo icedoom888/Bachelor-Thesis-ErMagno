@@ -67,15 +67,15 @@ public class GoodSet extends Observable<MovePawn> {
         }
     }
 
-    public void updateGoodSet(GoodSet goodSetToAdd, PlayerColor playerColor) throws Exception {
+    public void updateGoodSet(GoodSet goodSetToAdd) throws Exception {
         addGoodSet(goodSetToAdd);
         int victoryPoints = goodSetToAdd.getGoodAmount(GoodType.VICTORYPOINTS);
         int militaryPoints = goodSetToAdd.getGoodAmount(GoodType.MILITARYPOINTS);
         int faithPoints = goodSetToAdd.getGoodAmount(GoodType.FAITHPOINTS);
 
-        if (victoryPoints != 0) notifyObserver(new VictoryMove(playerColor, victoryPoints));
-        if (militaryPoints != 0) notifyObserver(new MilitaryMove(playerColor, militaryPoints));
-        if (faithPoints != 0) notifyObserver(new FaithMove(playerColor, militaryPoints));
+        if (victoryPoints != 0) notifyObserver(new VictoryMove(victoryPoints));
+        if (militaryPoints != 0) notifyObserver(new MilitaryMove(militaryPoints));
+        if (faithPoints != 0) notifyObserver(new FaithMove(militaryPoints));
     }
 
     public void subGoodSet(GoodSet goodSetToSub){

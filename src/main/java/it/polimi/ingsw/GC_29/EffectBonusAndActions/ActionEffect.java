@@ -8,11 +8,15 @@ import it.polimi.ingsw.GC_29.Player.Player;
 public class ActionEffect implements Effect{
 
 
+    //TODO: ricordarsi di onlyWorkers quando viene attivata
+
     private ZoneType type;
 
     private int actionValue;
 
     private BonusAndMalusOnCost bonusAndMalusOnCost;
+
+    private Boolean onlyWorkers = false;
 
     public ActionEffect(
             ZoneType type,
@@ -22,6 +26,19 @@ public class ActionEffect implements Effect{
         this(type, actionValue);
 
         this.bonusAndMalusOnCost = bonusAndMalusOnCost;
+    }
+
+    public ActionEffect(
+            ZoneType type,
+            int actionValue,
+            BonusAndMalusOnCost bonusAndMalusOnCost,
+            Boolean onlyWorkers) {
+
+        this(type, actionValue);
+
+        this.bonusAndMalusOnCost = bonusAndMalusOnCost;
+
+        this.onlyWorkers = onlyWorkers;
     }
 
 
@@ -54,6 +71,10 @@ public class ActionEffect implements Effect{
     public BonusAndMalusOnCost getBonusAndMalusOnCost() {
 
         return bonusAndMalusOnCost;
+    }
+
+    public Boolean getOnlyWorkers() {
+        return onlyWorkers;
     }
 
     @Override

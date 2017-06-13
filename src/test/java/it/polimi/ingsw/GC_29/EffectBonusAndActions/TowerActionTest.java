@@ -23,9 +23,9 @@ public class TowerActionTest {
 
         PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
 
-        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1, null);
 
-        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1);
+        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1, null);
 
         ArrayList<Player> players = new ArrayList<Player>();
 
@@ -113,9 +113,9 @@ public class TowerActionTest {
 
         PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
 
-        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1, null);
 
-        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1);
+        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1, null);
 
         ArrayList<Player> players = new ArrayList<Player>();
 
@@ -186,9 +186,9 @@ public class TowerActionTest {
 
         PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
 
-        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1, null);
 
-        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1);
+        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1, null);
 
         ArrayList<Player> players = new ArrayList<Player>();
 
@@ -277,9 +277,9 @@ public class TowerActionTest {
 
         PersonalBoard personalBoard1 = new PersonalBoard(bonusTile,6);
 
-        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1);
+        Player player1 = new Player("Player1", PlayerColor.BLUE, personalBoard1, null);
 
-        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1);
+        Player player2 = new Player("Player1", PlayerColor.RED, personalBoard1, null);
 
         ArrayList<Player> players = new ArrayList<Player>();
 

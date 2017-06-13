@@ -3,7 +3,10 @@ package it.polimi.ingsw.GC_29.Components;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnCost;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.Player.Player;
+
+import static com.sun.tools.doclets.formats.html.markup.HtmlStyle.description;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -14,31 +17,35 @@ public class ExcommunicationTile {
     //TODO: malus a fine partita
 
     private Era era;
-    private String name;
+    private SpecialBonusAndMalus name;
     private BonusAndMalusOnAction malusOnAction;
     private BonusAndMalusOnGoods malusOnGoods;
     private BonusAndMalusOnCost malusOnCost;
-    private String description;
+    private Effect effect;
 
     public ExcommunicationTile(Era era,
-                               String name,
+                               SpecialBonusAndMalus name,
                                BonusAndMalusOnAction malusOnAction,
                                BonusAndMalusOnGoods malusOnGoods,
                                BonusAndMalusOnCost malusOnCost,
-                               String description) {
+                               Effect effect) {
         this.era = era;
         this.name = name;
         this.malusOnAction = malusOnAction;
         this.malusOnGoods = malusOnGoods;
         this.malusOnCost = malusOnCost;
-        this.description = description;
+        this.effect = effect;
+    }
+
+    public ExcommunicationTile(Era first, String prova1, Object malusOnAction, BonusAndMalusOnGoods malusOnGoods, Object malusOnCost, String s) {
+        //TODO: c'è in test
     }
 
     public Era getEra() {
         return era;
     }
 
-    public String getName() {
+    public SpecialBonusAndMalus getName() {
         return name;
     }
 
@@ -54,14 +61,15 @@ public class ExcommunicationTile {
         return malusOnCost;
     }
 
-    public String getDescription() {
-        return description;
+    public Effect getEffect() {
+        return effect;
     }
 
-    public void execute(Player player) {
-        if (this.getMalusOnAction() != null) player.getBonusAndMalusOnAction().add(this.getMalusOnAction());
-        if (this.getMalusOnGoods() != null) player.getBonusAndMalusOnGoods().add(this.getMalusOnGoods());
-        if (this.getMalusOnCost() != null) player.getBonusAndMalusOnCost().add(this.getMalusOnCost());
+    public void execute(Player player) throws Exception {
+        if (malusOnAction != null) player.getBonusAndMalusOnAction().add(this.getMalusOnAction());
+        if (malusOnGoods != null) player.getBonusAndMalusOnGoods().add(this.getMalusOnGoods());
+        if (malusOnCost != null) player.getBonusAndMalusOnCost().add(this.getMalusOnCost());
+        if (effect != null) effect.execute(player);
 
     }
 

@@ -19,16 +19,21 @@ public class Player extends Observable<Change> {
 
     private String playerID;
     private PersonalBoard personalBoard;
-    private LeaderCard[] leaderCards;
+
+    private ArrayList<LeaderCard> leaderCards;
+    private HashMap<LeaderCard, Boolean> permanentLeaders;
+    private HashMap<LeaderCard, Boolean> oncePerRoundLeaders;
+
     private FamilyPawn[] familyPawns;
-    private Pawn[] excommunicationPawns;
-    private Pawn[] markerDiscs;
+    private Pawn excommunicationPawns;
+    private Pawn markerDiscs;
     private PlayerColor playerColor;
     private EnumMap<FamilyPawnType, Boolean> familyPawnAvailability;
 
     private ArrayList<BonusAndMalusOnAction> bonusAndMalusOnAction;
     private ArrayList<BonusAndMalusOnGoods> bonusAndMalusOnGoods;
     private ArrayList<BonusAndMalusOnCost> bonusAndMalusOnCost;
+    private ArrayList<SpecialBonusAndMalus> specialBonusAndMaluses;
 
     private GoodSet actualGoodSet;
     private EnumMap<CardColor, Integer> cardsOwned;
@@ -39,7 +44,7 @@ public class Player extends Observable<Change> {
     private ArrayList<Action> currentValidActionsList;
 
 
-    public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
+    public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard, ArrayList<LeaderCard> leaderCards) {
 
         this.playerState = PlayerState.WAITING;
 
@@ -47,16 +52,24 @@ public class Player extends Observable<Change> {
         this.playerColor = playerColor;
         this.personalBoard = personalBoard;
 
-        leaderCards = new LeaderCard[4]; // TODO: decidere se rendere parametrico numero leader card
+        this.leaderCards = leaderCards; // TODO: decidere se rendere parametrico numero leader card
+        this.oncePerRoundLeaders = new HashMap<LeaderCard, Boolean>();
+        this.permanentLeaders = new HashMap<LeaderCard, Boolean>();
+        for (LeaderCard leaderCard : this.leaderCards) {
+            if (leaderCard.isPermanent()) {
+                this.permanentLeaders.put(leaderCard, true);
+            }
+            else this.oncePerRoundLeaders.put(leaderCard, true);
+        }
 
         familyPawns = new FamilyPawn[] {new FamilyPawn(playerColor, FamilyPawnType.BLACK, 0),
                 new FamilyPawn(playerColor, FamilyPawnType.ORANGE, 0),
                 new FamilyPawn(playerColor, FamilyPawnType.WHITE, 0),
                 new FamilyPawn(playerColor, FamilyPawnType.NEUTRAL, 0)};
 
-        excommunicationPawns = new Pawn[] {new Pawn(playerColor), new Pawn(playerColor), new Pawn(playerColor)};
+        excommunicationPawns = new Pawn(playerColor);
 
-        markerDiscs = new Pawn[] {new Pawn(playerColor), new Pawn(playerColor), new Pawn(playerColor)};
+        markerDiscs = new Pawn(playerColor);
 
         bonusAndMalusOnAction = new ArrayList<>();
         bonusAndMalusOnGoods = new ArrayList<>();
@@ -108,8 +121,16 @@ public class Player extends Observable<Change> {
         return playerID;
     }
 
-    public LeaderCard[] getLeaderCards() {
+    public ArrayList<LeaderCard> getLeaderCards() {
         return leaderCards;
+    }
+
+    public HashMap<LeaderCard, Boolean> getPermanentLeaders() {
+        return permanentLeaders;
+    }
+
+    public HashMap<LeaderCard, Boolean> getOncePerRoundLeaders() {
+        return oncePerRoundLeaders;
     }
 
     public FamilyPawn[] getFamilyPawns() {
@@ -128,11 +149,12 @@ public class Player extends Observable<Change> {
         throw new IllegalArgumentException("wrong type" + familyPawnType);
     }
 
-    public Pawn[] getExcommunicationPawns() {
+
+    public Pawn getExcommunicationPawns() {
         return excommunicationPawns;
     }
 
-    public Pawn[] getMarkerDiscs() {
+    public Pawn getMarkerDiscs() {
         return markerDiscs;
     }
 
@@ -148,6 +170,10 @@ public class Player extends Observable<Change> {
     public List<BonusAndMalusOnGoods> getBonusAndMalusOnGoods() {
 
         return bonusAndMalusOnGoods;
+    }
+
+    public List<SpecialBonusAndMalus> getSpecialBonusAndMaluses() {
+        return specialBonusAndMaluses;
     }
 
     public PersonalBoard getPersonalBoard() {
@@ -199,7 +225,7 @@ public class Player extends Observable<Change> {
 
     public void updateGoodSet(GoodSet newGoodSet) throws Exception {
 
-        this.actualGoodSet.updateGoodSet(newGoodSet, playerColor);
+        this.actualGoodSet.updateGoodSet(newGoodSet);
     }
 
     public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() {

@@ -18,13 +18,13 @@ public class GameControllerTest {
 
     BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
 
-    Player player1 = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+    Player player1 = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6), null);
 
-    Player player2 = new Player("Alberto", PlayerColor.RED, new PersonalBoard(bonusTile, 6));
+    Player player2 = new Player("Alberto", PlayerColor.RED, new PersonalBoard(bonusTile, 6), null);
 
-    Player player3 = new Player("Christian", PlayerColor.YELLOW, new PersonalBoard(bonusTile, 6));
+    Player player3 = new Player("Christian", PlayerColor.YELLOW, new PersonalBoard(bonusTile, 6), null);
 
-    Player player4 = new Player("Gianmario", PlayerColor.GREEN, new PersonalBoard(bonusTile, 6));
+    Player player4 = new Player("Gianmario", PlayerColor.GREEN, new PersonalBoard(bonusTile, 6), null);
 
     ArrayList<Player> players = new ArrayList<>();
 

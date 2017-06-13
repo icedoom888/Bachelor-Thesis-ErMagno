@@ -2,11 +2,41 @@ package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.Player.Player;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Lorenzotara on 18/05/17.
  */
-public abstract class Requirement {
-    public boolean check(Player status) {
-        return true;
+public class Requirement {
+    private GoodSet goodSetRequired;
+    private HashMap<CardColor, Integer> cardsRequired;
+
+    public Requirement(GoodSet goodSetRequired, HashMap<CardColor, Integer> cardsRequired) {
+        this.goodSetRequired = goodSetRequired;
+        this.cardsRequired = cardsRequired;
+    }
+
+    public GoodSet getGoodSetRequired() {
+        return goodSetRequired;
+    }
+
+    public HashMap<CardColor, Integer> getCardsRequired() {
+        return cardsRequired;
+    }
+
+    public boolean isPossible(Map<CardColor, Integer> playerCards, GoodSet playerGoodSet) {
+
+        boolean isPossible = true;
+
+        for (CardColor cardColor : cardsRequired.keySet()) {
+            isPossible = isPossible && (cardsRequired.get(cardColor) <= playerCards.get(cardColor));
+        }
+
+        for (GoodType goodType : GoodType.values()) {
+            isPossible = isPossible && (getGoodSetRequired().getGoodAmount(goodType) <= playerGoodSet.getGoodAmount(goodType));
+        }
+
+        return isPossible;
     }
 }

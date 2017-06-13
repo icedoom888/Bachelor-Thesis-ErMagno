@@ -8,7 +8,7 @@ public class  Lane implements Cleanable {
 
     public Lane(int laneDimension){
         cards = new DevelopmentCard[laneDimension];
-        firstFreeSlotIndex =0;
+        firstFreeSlotIndex = 0;
     }
 
     public int getFirstFreeSlotIndex() {

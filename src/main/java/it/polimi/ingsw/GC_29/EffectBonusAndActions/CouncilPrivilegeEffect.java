@@ -13,6 +13,7 @@ public class CouncilPrivilegeEffect implements Effect {
 
     private int numberOfCouncilPrivileges;
     private CouncilPrivilegeType[] effectsChosen;
+    private Boolean modified = false; //TODO: da rivedere, orribile
 
     public CouncilPrivilegeEffect(int numberOfCouncilPrivileges) {
 
@@ -46,6 +47,8 @@ public class CouncilPrivilegeEffect implements Effect {
         System.out.println("You received the following effects: ");
 
         for (ObtainEffect effect : effects) {
+
+            if (modified) effect.doubleResources();
 
             effect.execute(status);
 
@@ -164,5 +167,9 @@ public class CouncilPrivilegeEffect implements Effect {
     @Override
     public String toString() {
         return "CouncilPrivilegeEffect{" + "numberOfCouncilPrivileges=" + numberOfCouncilPrivileges + ", effectsChosen=" + Arrays.toString(effectsChosen) + '}';
+    }
+
+    public void doubleResources() {
+        this.modified = true;
     }
 }

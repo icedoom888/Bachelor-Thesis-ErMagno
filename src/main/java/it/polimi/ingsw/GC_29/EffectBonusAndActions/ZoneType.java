@@ -15,5 +15,6 @@ public enum ZoneType {
     COUNCILPALACE,
     HARVEST,
     PRODUCTION,
-    ANYTOWER
+    ANYTOWER,
+    ANYZONE
 }

@@ -106,7 +106,7 @@ public class TowerAction extends Action {
 
         if (towerChosen.isOccupied()) {
 
-            if (!Filter.applySpecial(player, towerCost)) {
+            if (!Filter.applySpecial(player, SpecialBonusAndMalus.FREETOWER)) {
                 int goldCost = towerChosen.getCostIfOccupied();
 
                 if (player.getActualGoodSet().getGoodAmount(GoodType.COINS) >= goldCost) {
@@ -214,7 +214,9 @@ public class TowerAction extends Action {
 
         boolean var1 = true;
         CardColor type = towerChosen.getCardType();
-        if (type == CardColor.GREEN) {
+        if (type == CardColor.GREEN
+                && !Filter.applySpecial(player, SpecialBonusAndMalus.NOMILITARYFORTERRITORY)) {
+
             var1 = checkTerritorySlotAvailability();
         }
 
@@ -327,16 +329,19 @@ public class TowerAction extends Action {
     protected void update() {
         
         //TODO: dividi in più metodi
-        //TODO: magari il controllo al posto che sul cardColor fallo su BonusEffect
 
         super.update();
 
         for (Effect effect : cardSelected.getPermanentEffect()) {
-            if (effect.getClass() == BonusEffect.class) {
+            if (effect instanceof BonusEffect) {
                 BonusEffect effect1 = (BonusEffect)effect;
                 player.getBonusAndMalusOnAction().add(effect1.getBonusAndMalusOnAction());
                 player.getBonusAndMalusOnCost().add(effect1.getBonusAndMalusOnCost());
                 player.getBonusAndMalusOnGoods().add(effect1.getBonusAndMalusOnGoods());
+
+                if (effect1.getBonusAndMalusOnAction() != null) player.getBonusAndMalusOnAction().add(effect1.getBonusAndMalusOnAction());
+                if (effect1.getBonusAndMalusOnGoods() != null) player.getBonusAndMalusOnGoods().add(effect1.getBonusAndMalusOnGoods());
+                if (effect1.getBonusAndMalusOnCost() != null) player.getBonusAndMalusOnCost().add(effect1.getBonusAndMalusOnCost());
             }
         }
 

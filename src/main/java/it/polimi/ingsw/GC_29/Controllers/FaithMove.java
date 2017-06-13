@@ -8,13 +8,13 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
  */
 public class FaithMove extends MovePawn {
 
-    public FaithMove(PlayerColor playerColor, int numberOfPoints) {
-        super(playerColor, numberOfPoints);
+    public FaithMove(int numberOfPoints) {
+        super(numberOfPoints);
     }
 
     @Override
     public void moveOnTrack(GameStatus model) {
         Track faithPointsTrack = model.getGameBoard().getFaithPointsTrack();
-        faithPointsTrack.movePawn(numberOfPoints, playerColor);
+        faithPointsTrack.movePawn(numberOfPoints, super.playerPawn(model));
     }
 }
