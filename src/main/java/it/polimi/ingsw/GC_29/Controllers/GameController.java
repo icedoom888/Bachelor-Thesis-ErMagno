@@ -124,7 +124,7 @@ public class GameController {
 
         for (Player player : players) {
 
-            if (!Filter.applySpecial(player, CardColor.PURPLE)) {
+            if (true) { //c'era una filter
                 DevelopmentCard[] cards =  player.getPersonalBoard().getLane(CardColor.PURPLE).getCards();
 
                 for (DevelopmentCard card : cards) {
@@ -161,7 +161,7 @@ public class GameController {
      * color of the pawns with the color of the players in the turnOrderTrack) add all the maluses present in the Tile
      * to every player excommunicated.
      */
-    private void executeTiles() {
+    private void executeTiles() throws Exception {
 
         int threshold=0;
         Era currentEra = gameStatus.getCurrentEra();

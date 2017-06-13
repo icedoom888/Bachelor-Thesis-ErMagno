@@ -101,48 +101,45 @@ public final class Filter {
     }
 
     /**
-     * The method checks if the player has a bonusAndMalus that forbids him to collect his end victory points from cards.
-     * This method returns true if the player has that particular bonusAndMalus, false otherwise.
+     * aplySpecial return true if the player has the special bonusAndMals, false otherwise
      * @param player
-     * @param cardColor
-     * @return
+     * @param special
      */
-    public static boolean applySpecial(Player player, CardColor cardColor) {
-        if (cardColor == CardColor.PURPLE) return true; // prerequisito
-        return true;
+    public static boolean applySpecial(Player player, SpecialBonusAndMalus special) {
+
+        return player.getSpecialBonusAndMaluses().contains(special);
     }
 
+    public static boolean applySpecial(Player player, ZoneType zoneType) {
 
-    /**
-     * The method checks if the player has a bonusAndMalus that can make him access to the actionSpace
-     * even if the actionSpace is occupied. This method returns true if the player has that particular bonusAndMalus,
-     * false otherwise.
-     * @param player
-     * @return boolean value: true if the player can access the actionSpace, false otherwise
-     */
-    public static boolean applySpecial(Player player, ActionSpace actionSpace) {
-        return true;
+        switch (zoneType) {
+            case GREENTOWER:
+                return applySpecial(player, SpecialBonusAndMalus.NOGREENTOWER);
+
+            case YELLOWTOWER:
+                return applySpecial(player, SpecialBonusAndMalus.NOYELLOWTOWER);
+
+            case BLUETOWER:
+                return applySpecial(player, SpecialBonusAndMalus.NOBLUETOWER);
+
+            case PURPLETOWER:
+                return applySpecial(player, SpecialBonusAndMalus.NOPURPLETOWER);
+
+            case MARKET:
+                return applySpecial(player, SpecialBonusAndMalus.NOMARKET);
+
+            case COUNCILPALACE:
+                return applySpecial(player, SpecialBonusAndMalus.NOCOUNCILPALACE);
+
+            case HARVEST:
+                return applySpecial(player, SpecialBonusAndMalus.NOHARVEST);
+
+            case PRODUCTION:
+                return applySpecial(player, SpecialBonusAndMalus.NOPRODUCTION);
+
+            default:
+                return false;
+        }
     }
-
-
-
-    /**
-     * The method checks if the player has a bonusAndMalus that can make him not pay the tower if occupied.
-     * This method returns true if the player has that particular bonusAndMalus, false otherwise.
-     * @param player
-     * @return boolean value: true if the player can avoid to pay the towerCost, false otherwise
-     */
-    public static boolean applySpecial(Player player, GoodSet towerCost) { return true; }
-
-
-
-    /**
-     * The method checks if the player has a bonusAndMalus that denies him to make the action. It returns
-     * true if the player DOES NOT have it, false otherwise
-     * @param player
-     * @param zoneType
-     * @return boolean value: true if the player can try to make the action, false otherwise
-     */
-    public static boolean applySpecial(Player player, ZoneType zoneType) { return true; }
 
 }

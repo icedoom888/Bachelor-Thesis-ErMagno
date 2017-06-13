@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 import it.polimi.ingsw.GC_29.Components.Era;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
+import it.polimi.ingsw.GC_29.Components.SpecialBonusAndMalus;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Filter;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -32,6 +33,11 @@ public class Pray extends Input {
         if (answer) {
             int playerFaithPoints = player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS);
             GoodSet goodSet = new GoodSet(0,0,0,0,model.getGameBoard().getFaithPointsTrack().getVictoryPointsPerSlot()[playerFaithPoints],0,0);
+
+            if (Filter.applySpecial(player, SpecialBonusAndMalus.FIVEVICTORYPOINTSIFPRAY)) {
+                goodSet.addGoodSet(new GoodSet(0,0,0,0,5,0,0));
+            }
+
             Filter.apply(player, goodSet);
             goodSet.addGoodSet(new GoodSet(0,0,0,0, 0, 0, -playerFaithPoints));
             player.updateGoodSet(goodSet);

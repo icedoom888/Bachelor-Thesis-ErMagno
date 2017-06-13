@@ -18,6 +18,7 @@ public abstract class Action implements Serializable{
     protected transient ActionSpace actionSpaceSelected;
     protected transient Player player;
     protected Boolean enable = true;
+    protected Boolean onlyWorkers = false; // TODO: patch per leader cardsss
 
     public Boolean getValid() {
         return isValid;
@@ -25,6 +26,14 @@ public abstract class Action implements Serializable{
 
     public void setValid(Boolean valid) {
         isValid = valid;
+    }
+
+    public Boolean getOnlyWorkers() {
+        return onlyWorkers;
+    }
+
+    public void setOnlyWorkers(Boolean onlyWorkers) {
+        this.onlyWorkers = onlyWorkers;
     }
 
     protected Boolean isValid = true;
@@ -110,7 +119,7 @@ public abstract class Action implements Serializable{
     private boolean checkActionSpaceAvailability() {
 
         if (actionSpaceSelected.isSingle() && actionSpaceSelected.isOccupied()) {
-            return Filter.applySpecial(player, actionSpaceSelected);
+            return Filter.applySpecial(player, SpecialBonusAndMalus.PAWNONOCCUPIEDSPACE);
         }
 
         return true;
@@ -126,7 +135,10 @@ public abstract class Action implements Serializable{
      */
     private boolean checkSufficientActionValue() {
 
-        executeBonusAndMalusOnAction();
+        //TODO: filter ONLYWORKERS
+        if (!onlyWorkers) {
+            executeBonusAndMalusOnAction();
+        }
 
         if (temporaryPawn.getActualValue() < actionSpaceSelected.getActionCost()) {
             int workersNeeded = workersNeeded();
@@ -158,7 +170,13 @@ public abstract class Action implements Serializable{
 
     private int workersNeeded() {
 
-        return actionSpaceSelected.getActionCost() - temporaryPawn.getActualValue();
+        int workersNeeded = actionSpaceSelected.getActionCost() - temporaryPawn.getActualValue();
+
+        if (Filter.applySpecial(player, SpecialBonusAndMalus.TWOWORKERS)) {
+            return workersNeeded*2;
+        }
+
+        return workersNeeded;
     }
 
 
@@ -234,6 +252,7 @@ public abstract class Action implements Serializable{
     public void resetExceptPlayer(){
         this.workers = 0;
         this.temporaryPawn = null;
+        this.onlyWorkers = false;
     }
 
     public Boolean getEnable() {

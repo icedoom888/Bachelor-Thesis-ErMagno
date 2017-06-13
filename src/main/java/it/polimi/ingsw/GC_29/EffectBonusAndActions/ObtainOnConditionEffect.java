@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_29.Player.Player;
 /**
  * Created by Icedoom on 18/05/2017.
  */
-public class ObtainOnConditionEffect extends ObtainEffect{
+public class ObtainOnConditionEffect implements Effect {
 
     //TODO da rivedere, i metodi di evaluate sono da unire, c'è un multiplier = 100 che non deve esistere
 
@@ -21,7 +21,6 @@ public class ObtainOnConditionEffect extends ObtainEffect{
 
     public ObtainOnConditionEffect(Effect effectForEachCondition, CardColor cardCondition) {
 
-        super();
 
         this.effectForEachCondition = effectForEachCondition;
 
@@ -32,7 +31,6 @@ public class ObtainOnConditionEffect extends ObtainEffect{
 
     public ObtainOnConditionEffect(Effect effectForEachCondition, GoodSet goodsCondition){
 
-        super();
 
         this.effectForEachCondition = effectForEachCondition;
 
@@ -51,10 +49,6 @@ public class ObtainOnConditionEffect extends ObtainEffect{
     public void execute(Player status) throws Exception {
 
         evaluateActualGoodsObtained(status);
-
-        System.out.println("With your current resources the goodset you will acquire is:"+"\n"+goodsObtained);
-
-        super.execute(status);
     }
 
     /** evaluateActualGoodsObtain builds the @goodsObtained attribute evaluating the 2 conditions
@@ -124,13 +118,24 @@ public class ObtainOnConditionEffect extends ObtainEffect{
         }
     }
 
+    public void doubleResources() {
+        if (effectForEachCondition instanceof ObtainEffect) {
+            ((ObtainEffect)effectForEachCondition).doubleResources();
+        }
+
+        else if (effectForEachCondition instanceof CouncilPrivilegeEffect) {
+            ((CouncilPrivilegeEffect)effectForEachCondition).doubleResources();
+        }
+    }
+
+
+
     @Override
     public String toString() {
         return "ObtainOnConditionEffect{" +
                 "effectForEachCondition=" + effectForEachCondition +
                 ", cardCondition=" + cardCondition +
                 ", goodsCondition=" + goodsCondition +
-                ", goodsObtained=" + goodsObtained +
                 '}';
     }
 }

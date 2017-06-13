@@ -23,9 +23,9 @@ public class GameSetupTest {
 
         BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
 
-        Player player1 = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+        Player player1 = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6), null);
 
-        Player player2 = new Player("Alberto", PlayerColor.RED, new PersonalBoard(bonusTile, 6));
+        Player player2 = new Player("Alberto", PlayerColor.RED, new PersonalBoard(bonusTile, 6), null);
 
         ArrayList<Player> players = new ArrayList<Player>();
 
@@ -85,7 +85,7 @@ public class GameSetupTest {
 
             BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
 
-            Player player = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+            Player player = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6), null);
 
             playerArrayList.add(player);
         }

@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 
@@ -46,6 +47,13 @@ public class ObtainEffect implements Effect {
     @Override
     public String toString() {
         return "ObtainEffect{" + "goodsObtained=" + goodsObtained + '}';
+    }
+
+    public void doubleResources() {
+        goodsObtained.setGoodAmount(GoodType.WOOD, goodsObtained.getGoodAmount(GoodType.WOOD)*2);
+        goodsObtained.setGoodAmount(GoodType.STONE, goodsObtained.getGoodAmount(GoodType.STONE)*2);
+        goodsObtained.setGoodAmount(GoodType.COINS, goodsObtained.getGoodAmount(GoodType.COINS)*2);
+        goodsObtained.setGoodAmount(GoodType.WORKERS, goodsObtained.getGoodAmount(GoodType.WORKERS)*2);
     }
 
 

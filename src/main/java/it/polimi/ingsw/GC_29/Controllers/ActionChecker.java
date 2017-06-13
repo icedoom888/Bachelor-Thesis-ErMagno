@@ -154,4 +154,11 @@ public class ActionChecker {
         validActionList.clear();
     }
 
+    public void setOnlyWorkers() {
+
+        for (Action action : actionList) {
+            action.setOnlyWorkers(true);
+        }
+    }
+
 }

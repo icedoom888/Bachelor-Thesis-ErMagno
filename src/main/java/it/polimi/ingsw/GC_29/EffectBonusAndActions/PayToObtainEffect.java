@@ -62,6 +62,16 @@ public class PayToObtainEffect implements Effect{
 
     }
 
+    public void doubleResource() {
+        if (effect instanceof ObtainEffect) {
+            ((ObtainEffect)effect).doubleResources();
+        }
+
+        else if (effect instanceof CouncilPrivilegeEffect) {
+            ((CouncilPrivilegeEffect)effect).doubleResources();
+        }
+    }
+
     @Override
     public String toString() {
         return "PayToObtainEffect{" +

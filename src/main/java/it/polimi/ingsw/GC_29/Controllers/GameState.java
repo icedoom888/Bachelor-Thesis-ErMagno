@@ -6,5 +6,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 public enum GameState {
 
     RUNNING,
+    CHURCHRELATION,
+    ENDED,
     CHECKONSKIPPED
 }

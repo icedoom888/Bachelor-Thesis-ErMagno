@@ -20,10 +20,10 @@ public class PlayerControllerTest {
 
         BonusTile bonusTile = new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet()) );
 
-        Player player = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+        Player player = new Player("Lorenzo", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6), null);
         player.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
 
-        Player player2 = new Player("Alberto", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6));
+        Player player2 = new Player("Alberto", PlayerColor.BLUE, new PersonalBoard(bonusTile, 6), null);
         player.updateGoodSet(new GoodSet(100,100,100,100,100,100,100));
 
         playerArrayList.add(player);

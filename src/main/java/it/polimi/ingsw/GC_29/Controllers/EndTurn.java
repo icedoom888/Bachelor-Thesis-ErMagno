@@ -10,6 +10,18 @@ import java.util.List;
  */
 public class EndTurn extends Input {
 
+    /**
+     * During the EndTurn, the current PlayerState is set to WAITING. Then, if the player that was playing was
+     * playing because he skipped a turn, the method chooses another player from the ones who skipped. If the list
+     * of skipped players is empty, the GameStatus is set to RUNNING and it is the end of the Round. On the other hand,
+     * if it was a normal player, if he is not the last one, the controller chooses the next player. In case he was the
+     * last player, but it was not the last turn, the first player in order starts to play. In the event that the turn
+     * was the 4th, the GameState is set to CheckOnSkipped and, if there are players who have skipped the turn, they
+     * start playing, if not, controller.endRound() is called.
+     * @param model
+     * @param controller
+     * @throws Exception
+     */
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 
@@ -25,7 +37,7 @@ public class EndTurn extends Input {
 
             if (model.getCurrentTurn() < 4) {
                 model.setCurrentTurn(model.getCurrentTurn()+1);
-                model.setCurrentPlayer(model.getTurnOrder().get(model.getCurrentTurn()-1));
+                model.setCurrentPlayer(model.getTurnOrder().get(0));
                 model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);
             }
 
@@ -34,6 +46,11 @@ public class EndTurn extends Input {
                 setSkippedPlayer(model, controller);
 
             }
+        }
+
+        else {
+            int indexOfNextPlayer = turnOrder.indexOf(currentPlayer) + 1;
+            controller.chooseCurrentPlayer(indexOfNextPlayer);
         }
     }
 

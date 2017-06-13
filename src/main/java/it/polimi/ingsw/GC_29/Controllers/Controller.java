@@ -8,10 +8,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -49,7 +46,7 @@ public class Controller implements Observer<Input>  {
 
         int round = model.getCurrentRound();
         if (round%2 == 0) {
-            //TODO: messaggio di scomunica - GAMESTATE = RELATIONSHIP
+            model.setGameState(GameState.CHURCHRELATION);
             List<Player> safePlayers = excommunicatePlayers();
 
             for (Player safePlayer : safePlayers) {
@@ -71,7 +68,7 @@ public class Controller implements Observer<Input>  {
         DevelopmentCard[] yellowDeck = new DevelopmentCard[4];
         DevelopmentCard[] purpleDeck = new DevelopmentCard[4];
 
-        setFamilyPawnsValues();
+        setFamilyPawnsAndLeaderValues();
         setNewTurnOrder();
 
         if (model.getCurrentRound()%2 == 0) {
@@ -86,7 +83,8 @@ public class Controller implements Observer<Input>  {
                     break;
                 case THIRD:
                     endGame();
-                    break;
+                    return;
+
             }
         }
 
@@ -106,9 +104,33 @@ public class Controller implements Observer<Input>  {
 
         model.getGameBoard().setTurn(greenDeck, blueDeck, yellowDeck, purpleDeck);
 
-        model.setCurrentPlayer(model.getTurnOrder().get(0));
         //TODO: lancio dei dadi
-        model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);
+
+        chooseCurrentPlayer(0);
+
+        //TODO: al posto che queste ultime righe usare chooseCurrentPlayer(0), ma si creano problemi.
+        /*List<Player> turnOrder = model.getTurnOrder();
+
+        model.setCurrentPlayer(turnOrder.get(0));
+        model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);*/
+    }
+
+    private void setLeaderValues(Player player) {
+
+        HashMap<LeaderCard, Boolean> playerLeaderCards = player.getOncePerRoundLeaders();
+
+        for (LeaderCard leaderCard : playerLeaderCards.keySet()) {
+            playerLeaderCards.put(leaderCard, true);
+        }
+    }
+
+    public void chooseCurrentPlayer(Integer index) throws Exception {
+        Player firstPlayer = model.getTurnOrder().get(index);
+
+        if (Filter.applySpecial(firstPlayer, SpecialBonusAndMalus.SKIPFIRSTTURN)) {
+            firstPlayer.setPlayerState(PlayerState.ENDTURN);
+        }
+        else firstPlayer.setPlayerState(PlayerState.DOACTION);
     }
 
     /**
@@ -119,8 +141,7 @@ public class Controller implements Observer<Input>  {
         List<Player> players = model.getTurnOrder();
 
         for (Player player : players) {
-            //TODO: fare bonus and malus special di turno skippato
-            if (true) {
+            if (Filter.applySpecial(player, SpecialBonusAndMalus.SKIPFIRSTTURN)) {
                 model.getSkippedTurnPlayers().add(player);
             }
         }
@@ -140,14 +161,12 @@ public class Controller implements Observer<Input>  {
         int faithPointsNeeded = model.getGameBoard().getFaithPointsTrack().getVictoryPointsPerSlot()[threshold];
 
         List<Player> players = model.getTurnOrder();
-        int[] victoryPoints = model.getGameBoard().getFaithPointsTrack().getVictoryPointsPerSlot();
 
         for (int i = 0; i < threshold; i++) {
 
             for (Player player : players) {
 
                 if (player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS) < faithPointsNeeded) {
-                    player.updateGoodSet(new GoodSet(0,0,0,0,victoryPoints[i], 0, -player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS)));
                     executeTiles(player);
                 }
 
@@ -246,7 +265,7 @@ public class Controller implements Observer<Input>  {
             }
         }
 
-        //TODO: GAMESTATE = ENDED
+        model.setGameState(GameState.ENDED);
 
         System.out.println("The winner is... " + winner);
 
@@ -316,7 +335,7 @@ public class Controller implements Observer<Input>  {
 
     private void pointsFromPurpleCards(Player player) throws Exception {
 
-        if (!Filter.applySpecial(player, CardColor.PURPLE)) {
+        if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMPURPLE)) {
             DevelopmentCard[] cards =  player.getPersonalBoard().getLane(CardColor.PURPLE).getCards();
 
             for (DevelopmentCard card : cards) {
@@ -335,30 +354,32 @@ public class Controller implements Observer<Input>  {
      */
     private void pointsFromBlueCards(Player player) throws Exception {
 
-        int numberOfBlueCards = player.getCardsOwned().get(CardColor.BLUE);
+        if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMBLUE)) {
+            int numberOfBlueCards = player.getCardsOwned().get(CardColor.BLUE);
 
-        switch (numberOfBlueCards) {
+            switch (numberOfBlueCards) {
 
-            case 1:
-                player.updateGoodSet(new GoodSet(0,0,0,0,1,0,0));
-                break;
-            case 2:
-                player.updateGoodSet(new GoodSet(0,0,0,0,3,0,0));
-                break;
-            case 3:
-                player.updateGoodSet(new GoodSet(0,0,0,0,6,0,0));
-                break;
-            case 4:
-                player.updateGoodSet(new GoodSet(0,0,0,0,10,0,0));
-                break;
-            case 5:
-                player.updateGoodSet(new GoodSet(0,0,0,0,15,0,0));
-                break;
-            case 6:
-                player.updateGoodSet(new GoodSet(0,0,0,0,21,0,0));
-                break;
-            default:
-                break;
+                case 1:
+                    player.updateGoodSet(new GoodSet(0,0,0,0,1,0,0));
+                    break;
+                case 2:
+                    player.updateGoodSet(new GoodSet(0,0,0,0,3,0,0));
+                    break;
+                case 3:
+                    player.updateGoodSet(new GoodSet(0,0,0,0,6,0,0));
+                    break;
+                case 4:
+                    player.updateGoodSet(new GoodSet(0,0,0,0,10,0,0));
+                    break;
+                case 5:
+                    player.updateGoodSet(new GoodSet(0,0,0,0,15,0,0));
+                    break;
+                case 6:
+                    player.updateGoodSet(new GoodSet(0,0,0,0,21,0,0));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -368,8 +389,10 @@ public class Controller implements Observer<Input>  {
      * @param player
      */
     private void pointsFromGreenCards(Player player) throws Exception {
-        int numberOfGreenCards = player.getCardsOwned().get(CardColor.GREEN);
-        player.updateGoodSet(new GoodSet(0,0,0,0,player.getPersonalBoard().getTerritoryLane().getSlot(numberOfGreenCards-1).getVictoryPointsGiven(),0,0));
+        if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMGREEN)) {
+            int numberOfGreenCards = player.getCardsOwned().get(CardColor.GREEN);
+            player.updateGoodSet(new GoodSet(0,0,0,0,player.getPersonalBoard().getTerritoryLane().getSlot(numberOfGreenCards-1).getVictoryPointsGiven(),0,0));
+        }
     }
 
 
@@ -379,26 +402,45 @@ public class Controller implements Observer<Input>  {
      * this method set all the availabilities of the family pawns to true and give them the right action value
      * @throws Exception
      */
-    private void setFamilyPawnsValues() throws Exception {
+    private void setFamilyPawnsAndLeaderValues() throws Exception {
 
         for (Player player : model.getTurnOrder()) {
 
-            Dice tempDice;
+            if (Filter.applySpecial(player, SpecialBonusAndMalus.CHANGEVALUEOFEVERYPAWN)) {
+                player.getFamilyPawnAvailability().put(FamilyPawnType.BLACK, true);
+                player.getFamilyPawnAvailability().put(FamilyPawnType.ORANGE, true);
+                player.getFamilyPawnAvailability().put(FamilyPawnType.WHITE, true);
+                player.getFamilyPawnAvailability().put(FamilyPawnType.NEUTRAL, true);
 
-            for (FamilyPawnType familyPawnType : FamilyPawnType.values()){
+                player.setFamilyPawnValue(FamilyPawnType.BLACK, 5);
+                player.setFamilyPawnValue(FamilyPawnType.ORANGE, 5);
+                player.setFamilyPawnValue(FamilyPawnType.WHITE, 5);
+                player.setFamilyPawnValue(FamilyPawnType.NEUTRAL, 1);
+            }
 
-                if (familyPawnType != FamilyPawnType.BONUS)  {
-                    player.getFamilyPawnAvailability().put(familyPawnType, true);
 
-                    if (familyPawnType != FamilyPawnType.NEUTRAL) {
-                        tempDice = model.getGameBoard().getDice(familyPawnType);
-                        player.setFamilyPawnValue(familyPawnType, tempDice.getFace());
+
+            else {
+
+                Dice tempDice;
+
+                for (FamilyPawnType familyPawnType : FamilyPawnType.values()){
+
+                    if (familyPawnType != FamilyPawnType.BONUS && familyPawnType != FamilyPawnType.ANY)  {
+                        player.getFamilyPawnAvailability().put(familyPawnType, true);
+
+                        if (familyPawnType != FamilyPawnType.NEUTRAL) {
+                            tempDice = model.getGameBoard().getDice(familyPawnType);
+                            player.setFamilyPawnValue(familyPawnType, tempDice.getFace());
+                        }
+
+                        else player.setFamilyPawnValue(familyPawnType, 1); // neutral case
+
                     }
-
-                    else player.setFamilyPawnValue(familyPawnType, 1); // neutral case
-
                 }
             }
+
+            setLeaderValues(player);
         }
     }
 
