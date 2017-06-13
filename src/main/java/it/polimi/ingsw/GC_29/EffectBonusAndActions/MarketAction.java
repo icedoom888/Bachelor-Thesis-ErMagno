@@ -13,12 +13,13 @@ public class MarketAction extends Action {
 
     private ShopName shopName;
 
-    public MarketAction(ShopName houseSelected) {
-        super(ZoneType.MARKET);
+    public MarketAction(ShopName houseSelected,
+                        GameStatus gameStatus) {
+        super(ZoneType.MARKET, gameStatus);
 
         this.shopName = houseSelected;
 
-        this.actionSpaceSelected = GameStatus.getInstance().getGameBoard().getMarket().getShop(shopName);
+        this.actionSpaceSelected = this.gameStatus.getGameBoard().getMarket().getShop(shopName);
     }
 
     @Override

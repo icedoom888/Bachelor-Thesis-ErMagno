@@ -14,13 +14,11 @@ import java.util.*;
  */
 public class  GameStatus extends Observable<Change>{
 
-    private static GameStatus instance = null;
 
     /*private GameEvent gameEvent;*/
     private GameState gameState;
 
     // Mancano i controller da inserire in futuro
-    private PlayerController playerController;
     private GameBoard gameBoard;
     private EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks;
     private Player currentPlayer;
@@ -33,20 +31,13 @@ public class  GameStatus extends Observable<Change>{
     private ArrayList<Player> skippedTurnPlayers;
     private HashMap<FamilyPawn, ActionSpace> pawnsOnActionSpace;
 
-    private GameStatus() {
+    public GameStatus() {
 
         orderedDecks = new EnumMap<>(CardColor.class);
         pawnsOnActionSpace = new HashMap<>();
         gameState = GameState.RUNNING;
     }
 
-
-    public static GameStatus getInstance(){
-        if(instance == null){
-            instance = new GameStatus();
-        }
-        return instance;
-    }
 
     public Map<FamilyPawn, ActionSpace> getPawnsOnActionSpace() {
 
@@ -71,14 +62,6 @@ public class  GameStatus extends Observable<Change>{
     public Map<CardColor, ArrayDeque<DevelopmentCard>> getOrderedDecks() {
 
         return orderedDecks;
-    }
-
-    public PlayerController getPlayerController() {
-        return playerController;
-    }
-
-    public void setPlayerController(PlayerController playerController) {
-        this.playerController = playerController;
     }
 
     public void setOrderedDecks(EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks) {

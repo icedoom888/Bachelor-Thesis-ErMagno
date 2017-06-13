@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRemoteInterface;
+import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -68,23 +69,56 @@ public class ServerNewGame implements Runnable {
 
         Controller controller = new Controller(gameSetup.getGameStatus());
 
-        try {
+        /*try {
             startRMIView(gameSetup.getGameStatus(), controller);
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (AlreadyBoundException e) {
             e.printStackTrace();
-        }
+        }*/
+
         //startSocketView();
 
         for (ClientRemoteInterface clientRemoteInterface : clientList) {
 
+
             try {
-                clientRemoteInterface.initializeNewGame();
-                System.out.println("CLIENT AVVISATI NUOVA PARTITA");
+                if (clientRemoteInterface.getDistribution() == Distribution.RMI) {
+                    // Create the RMI View, that will be shared with the client
+                    RMIView rmiView = new RMIView(gameSetup.getGameStatus());
+
+                    RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
+                            exportObject(rmiView, 0);
+
+                    //controller observes this view
+                    rmiView.registerObserver(controller);
+
+                    //this view observes the model
+                    gameSetup.getGameStatus().registerObserver(rmiView);
+                    gameSetup.getGameStatus().getPlayer(clientRemoteInterface.getPlayerColor()).registerObserver(rmiView);
+
+                    try {
+                        RMIViewRemote rmiViewStub = rmiView;
+                        clientRemoteInterface.initializeNewGame(rmiViewStub);
+                        System.out.println("CLIENT AVVISATI NUOVA PARTITA");
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    //La passo al client
+                }
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
+
+            try {
+                if (clientRemoteInterface.getDistribution() == Distribution.SOCKET) {
+                    //TODO: impl socket
+                }
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+
         }
 
         Boolean b = true;
@@ -100,7 +134,7 @@ public class ServerNewGame implements Runnable {
         while (b){}
     }
 
-    private void startRMIView(GameStatus gameStatus, Controller controller) throws RemoteException, AlreadyBoundException {
+    /*private void startRMIView(GameStatus gameStatus, Controller controller) throws RemoteException, AlreadyBoundException {
 
         //create the registry to publish remote objects
         Registry registry = LocateRegistry.createRegistry(PORT);
@@ -121,7 +155,7 @@ public class ServerNewGame implements Runnable {
 
         System.out.println("Binding the server implementation to the registry");
         registry.bind(NAME, rmiView); // TODO: il bind verrà chiamato ad ogni inizio partita --> ti darà eccezione AlreadyBound, sistema
-    }
+    }*/
 
     public void addClient(ClientRemoteInterface clientStub) throws RemoteException {
 

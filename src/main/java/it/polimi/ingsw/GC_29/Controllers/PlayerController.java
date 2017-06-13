@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_29.Player.Player;
  * Created by Christian on 19/05/2017.
  */
 
-public class PlayerController {
+/*public class PlayerController {
 
     private TurnState currentTurnState;
     private Player player;
@@ -20,7 +20,7 @@ public class PlayerController {
 
     public PlayerController() {
 
-        this.player = GameStatus.getInstance().getCurrentPlayer();
+        //this.player = GameStatus.getInstance().getCurrentPlayer();
         currentTurnState = new BeginTurnState();
 
     }
@@ -51,7 +51,7 @@ public class PlayerController {
      *
      * @return check if the current player has a bonusAction to be executed
      */
-    public boolean checkPresenceBonusActionEffect() {
+    /*public boolean checkPresenceBonusActionEffect() {
 
        return !player.getCurrentBonusActionList().isEmpty();
     }
@@ -68,7 +68,7 @@ public class PlayerController {
      * the connection (socket and RMI)
      * @return
      */
-    public boolean isPlaceFamilyMemberAction() {
+    /*public boolean isPlaceFamilyMemberAction() {
 
         //Boolean answer = player.getAdapter().doAction();
 
@@ -93,4 +93,4 @@ public class PlayerController {
 
         return  true;
     }
-}
+}*/

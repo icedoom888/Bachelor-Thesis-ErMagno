@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Filter;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
@@ -23,11 +22,13 @@ public class Controller implements Observer<Input>  {
 
     private final GameStatus model;
     private Integer playersPraying;
+    private ActionChecker actionChecker;
 
 
     public Controller(GameStatus model){
         this.model = model;
         playersPraying = 0;
+        actionChecker = new ActionChecker(model);
     }
 
     public void update(Input input) throws Exception {
@@ -490,5 +491,51 @@ public class Controller implements Observer<Input>  {
     }
 
 
+    public ActionChecker getActionChecker() {
+        return actionChecker;
+    }
 
+    private void createActions() {
+
+        ArrayList<Action> actionList = new ArrayList<>();
+
+        final int NUMBER_OF_FLOORS = 4;
+
+        for(ZoneType zoneType : ZoneType.values()){
+
+            if(zoneType == ZoneType.GREENTOWER || zoneType == ZoneType.YELLOWTOWER || zoneType == ZoneType.BLUETOWER || zoneType == ZoneType.PURPLETOWER){
+
+                for (int i = 0; i < NUMBER_OF_FLOORS; i++){
+                    actionList.add(new TowerAction(zoneType, model, i));
+                }
+
+            } else if(zoneType == ZoneType.MARKET) {
+
+                for (ShopName shopName : ShopName.values()) {
+                    MarketAction marketAction = new MarketAction(shopName, model);
+
+                    if ((shopName == ShopName.MILITARYANDCOINSSHOP || shopName == ShopName.PRIVILEGESHOP) && model.getTurnOrder().size() < 4) {
+                        marketAction.setEnable(false);
+                    }
+
+                    actionList.add(marketAction);
+                }
+
+            } else if (zoneType == ZoneType.COUNCILPALACE) {
+                actionList.add(new CouncilPalaceAction(model));
+
+            } else if (zoneType == ZoneType.HARVEST) {
+
+                //TODO: impl
+
+            } else if (zoneType == ZoneType.PRODUCTION) {
+
+                //TODO: impl
+
+            }
+
+        }
+
+        actionChecker.setActionList(actionList);
+    }
 }

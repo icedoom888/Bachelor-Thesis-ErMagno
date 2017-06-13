@@ -6,7 +6,9 @@ import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -20,7 +22,13 @@ public class RMIView extends View implements RMIViewRemote {
 
     private GetValidActions validActionQuery;
 
-    private GameStatus gameStatus = GameStatus.getInstance();
+    private GameStatus gameStatus;
+
+
+    public RMIView(GameStatus gameStatus){
+
+        this.gameStatus = gameStatus;
+    }
 
 
     @Override

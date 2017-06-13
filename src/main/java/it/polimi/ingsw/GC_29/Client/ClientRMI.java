@@ -42,32 +42,29 @@ public class ClientRMI {
 
     private final PlayerColor playerColor;
 
+    private RMIViewRemote serverViewStub;
+
     //private static final ArrayList<String> parseredAnswerList = new ArrayList<>();
 
 
-    public ClientRMI(PlayerColor playerColor){
+    public ClientRMI(PlayerColor playerColor, RMIViewRemote serverViewStub){
 
         this.playerColor = playerColor;
+        this.serverViewStub = serverViewStub;
     }
 
 
 
     public void run() throws RemoteException, NotBoundException, AlreadyBoundException {
 
-        //Get the remote registry
-        Registry registry = LocateRegistry.getRegistry(HOST, PORT);
-
-        System.out.println("registry localizzato");
-
         //get the stub (local object) of the remote view
-        RMIViewRemote serverStub = (RMIViewRemote) registry.lookup(NAME);
 
         ClientRMIView rmiView=new ClientRMIView(playerColor);
 
         // register the client view in the server side (to receive messages from the server)
-        serverStub.registerClient(rmiView);
+        serverViewStub.registerClient(rmiView);
 
-        serverStub.initialize(playerColor);
+        serverViewStub.initialize(playerColor);
 
 
         Scanner stdIn = new Scanner(System.in);
@@ -85,33 +82,33 @@ public class ClientRMI {
 
 
                 //vedi il commento nel metodo inputParser
-                inputLine = inputChecker(inputLine, rmiView, serverStub);
+                inputLine = inputChecker(inputLine, rmiView, serverViewStub);
 
                 // Call the appropriate method in the server
                 switch (inputLine) {
                     case "skip action":
-                        serverStub.skipAction();
+                        serverViewStub.skipAction();
                         break;
                     case "end turn":
-                        serverStub.endTurn();
+                        serverViewStub.endTurn();
                         break;
                     case "use family pawn":
-                        serverStub.usePawnChosen(rmiView.getFamilyPawnChosen());
-                        rmiView.setValidActionList(serverStub.getValidActionList());
+                        serverViewStub.usePawnChosen(rmiView.getFamilyPawnChosen());
+                        rmiView.setValidActionList(serverViewStub.getValidActionList());
                         System.out.println(rmiView.getValidActionList());
                         break;
                     case "see valid action list":
-                        rmiView.setValidActionList(serverStub.getValidActionList());
+                        rmiView.setValidActionList(serverViewStub.getValidActionList());
                         rmiView.printValidActionList();
                         break;
                     case "execute action":
-                        serverStub.doAction(rmiView.getActionIndex());
+                        serverViewStub.doAction(rmiView.getActionIndex());
                         break;
                     case "I want to pray":
-                        serverStub.pray(true, rmiView.getPlayerColor());
+                        serverViewStub.pray(true, rmiView.getPlayerColor());
                         break;
                     case "I don't want to pray":
-                        serverStub.pray(false, rmiView.getPlayerColor());
+                        serverViewStub.pray(false, rmiView.getPlayerColor());
                         break;
 
                     case "help":

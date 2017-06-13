@@ -44,7 +44,7 @@ public class GameSetup {
 
         setPlayers(clientList);
 
-        this.gameStatus = GameStatus.getInstance();
+        this.gameStatus = new GameStatus();
 
         this.orderedDecks = new EnumMap<>(CardColor.class);
         this.excommunicationTileMap = new EnumMap<>(Era.class);
@@ -91,8 +91,6 @@ public class GameSetup {
         setGoodsForPlayers();
 
         setGameStatus();
-
-        createActions();
 
     }
 
@@ -248,49 +246,7 @@ public class GameSetup {
 
     }
 
-    public void createActions() {
 
-        ArrayList<Action> actionList = new ArrayList<>();
-
-        final int NUMBER_OF_FLOORS = 4;
-
-        for(ZoneType zoneType : ZoneType.values()){
-
-            if(zoneType == ZoneType.GREENTOWER || zoneType == ZoneType.YELLOWTOWER || zoneType == ZoneType.BLUETOWER || zoneType == ZoneType.PURPLETOWER){
-
-                for (int i = 0; i < NUMBER_OF_FLOORS; i++){
-                    actionList.add(new TowerAction(zoneType, i));
-                }
-
-            } else if(zoneType == ZoneType.MARKET) {
-
-                for (ShopName shopName : ShopName.values()) {
-                    MarketAction marketAction = new MarketAction(shopName);
-
-                    if ((shopName == ShopName.MILITARYANDCOINSSHOP || shopName == ShopName.PRIVILEGESHOP) && numberOfPlayers < 4) {
-                        marketAction.setEnable(false);
-                    }
-
-                    actionList.add(marketAction);
-                }
-
-            } else if (zoneType == ZoneType.COUNCILPALACE) {
-                actionList.add(new CouncilPalaceAction());
-
-            } else if (zoneType == ZoneType.HARVEST) {
-
-                //TODO: impl
-
-            } else if (zoneType == ZoneType.PRODUCTION) {
-
-                //TODO: impl
-
-            }
-
-        }
-
-        ActionChecker.getInstance().setActionList(actionList);
-    }
 
     public GameStatus getGameStatus() {
         return gameStatus;

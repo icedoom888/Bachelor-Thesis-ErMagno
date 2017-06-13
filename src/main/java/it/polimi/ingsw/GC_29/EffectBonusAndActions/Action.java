@@ -14,6 +14,7 @@ public abstract class Action implements Serializable{
 
     protected int workers;
     protected transient FamilyPawn temporaryPawn;
+    protected transient GameStatus gameStatus;
     protected ZoneType zoneType;
     protected transient ActionSpace actionSpaceSelected;
     protected transient Player player;
@@ -38,9 +39,10 @@ public abstract class Action implements Serializable{
 
     protected Boolean isValid = true;
 
-    public Action(ZoneType zoneType) {
+    public Action(ZoneType zoneType, GameStatus gameStatus) {
 
         this.zoneType = zoneType;
+        this.gameStatus = gameStatus;
     }
 
 
@@ -220,7 +222,7 @@ public abstract class Action implements Serializable{
         }
 
 
-        GameStatus.getInstance().getPawnsOnActionSpace().put(temporaryPawn, actionSpaceSelected);
+        gameStatus.getPawnsOnActionSpace().put(temporaryPawn, actionSpaceSelected);
 
         Effect effect = actionSpaceSelected.getEffect();
 

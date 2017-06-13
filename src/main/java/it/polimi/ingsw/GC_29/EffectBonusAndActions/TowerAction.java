@@ -23,10 +23,11 @@ public class TowerAction extends Action {
 
     public TowerAction(
             ZoneType actionSelected,
+            GameStatus gameStatus,
             int floorIndex) {
 
-        super(actionSelected);
-        this.towerChosen = GameStatus.getInstance().getGameBoard().getTower(zoneType);
+        super(actionSelected, gameStatus);
+        this.towerChosen = this.gameStatus.getGameBoard().getTower(zoneType);
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.actionSpaceGoodSet = new GoodSet();
@@ -35,25 +36,6 @@ public class TowerAction extends Action {
 
     }
 
-    /**
-     * esclusivamente per testing
-     * @param actionSelected
-     * @param floorIndex
-     */
-    public TowerAction(
-            ZoneType actionSelected,
-            int floorIndex,
-            Tower towerChosen) {
-
-        super(actionSelected);
-        this.towerChosen = towerChosen;
-        this.floorIndex = floorIndex;
-        this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
-        this.actionSpaceGoodSet = new GoodSet();
-        this.towerCost = new GoodSet();
-        this.possibleCardCosts = new ArrayList<>();
-
-    }
 
     @Override
     public void execute() throws Exception {

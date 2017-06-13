@@ -29,9 +29,11 @@ public class UsePawnChosen extends Input {
 
         FamilyPawn familyPawn = player.getFamilyPawn(familyPawnType);
 
-        ActionChecker.getInstance().resetActionListExceptPlayer();
+        ActionChecker actionChecker = controller.getActionChecker();
 
-        ActionChecker.getInstance().setValidActionForFamilyPawn(familyPawn);
+        actionChecker.resetActionListExceptPlayer();
+
+        actionChecker.setValidActionForFamilyPawn(familyPawn);
 
         player.setPlayerState(PlayerState.CHOOSEACTION);
 

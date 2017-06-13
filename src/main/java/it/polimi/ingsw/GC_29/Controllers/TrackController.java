@@ -7,7 +7,11 @@ import it.polimi.ingsw.GC_29.Server.Observer;
  */
 public class TrackController implements Observer<MovePawn> {
 
-    private GameStatus model = GameStatus.getInstance();
+    private GameStatus model;
+
+    public TrackController(GameStatus model) {
+        this.model = model;
+    }
 
     @Override
     public void update(MovePawn movePawn) throws Exception {

@@ -31,8 +31,7 @@ public class BonusEffect implements Effect {
      */
     public void execute(Player status){
 
-        //TODO: decommenta solo per testing
-        Action currentAction = GameStatus.getInstance().getCurrentAction();
+        Action currentAction = status.getCurrentAction();
         bonusAndMalusOnAction.filter(currentAction.getTemporaryPawn(), currentAction.getZoneType());
 
     }

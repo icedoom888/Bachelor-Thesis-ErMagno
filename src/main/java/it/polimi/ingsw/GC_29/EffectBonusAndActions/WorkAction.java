@@ -23,10 +23,11 @@ public class WorkAction extends Action {
     private ArrayList<Effect> effectsToActivate;
 
     public WorkAction(ZoneType zoneType,
+                      GameStatus gameStatus,
                       FieldType fieldSelected){
 
-        super(zoneType);
-        this.workspaceSelected = GameStatus.getInstance().getGameBoard().getWorkArea(zoneType);
+        super(zoneType, gameStatus);
+        this.workspaceSelected = this.gameStatus.getGameBoard().getWorkArea(zoneType);
 
         this.actionSpaceSelected = workspaceSelected.getActionspace(fieldSelected);
         this.fieldSelected = fieldSelected;

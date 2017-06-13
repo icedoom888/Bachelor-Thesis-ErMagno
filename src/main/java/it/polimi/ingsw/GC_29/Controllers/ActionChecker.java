@@ -17,30 +17,22 @@ import java.util.HashMap;
  */
 public class ActionChecker {
 
-    private static ActionChecker instance = null;
 
     private ArrayList<Action> actionList;
     private Player currentPlayer;
     private ArrayList<Action> validActionList;
+    private GameStatus gameStatus;
 
     //test variable
     private boolean testVariable = false;
 
-    private ActionChecker(){
+    public ActionChecker(GameStatus gameStatus){
 
         actionList = new ArrayList<>();
         validActionList = new ArrayList<>();
+        this.gameStatus = gameStatus;
     }
 
-    public static ActionChecker getInstance(){
-
-        if(instance == null){
-            instance = new ActionChecker();
-        }
-
-        return instance;
-
-    }
 
     public ArrayList<Action> getActionList(){
 
@@ -59,7 +51,7 @@ public class ActionChecker {
 
     public void setCurrentPlayer() throws NullPointerException{
 
-        this.currentPlayer = GameStatus.getInstance().getCurrentPlayer();
+        this.currentPlayer = gameStatus.getCurrentPlayer();
 
         for(Action action : actionList){
 

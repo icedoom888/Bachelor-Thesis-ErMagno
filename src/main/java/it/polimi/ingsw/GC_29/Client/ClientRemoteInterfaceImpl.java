@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Client;
 
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Server.RMIView;
+import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -16,16 +18,22 @@ public class ClientRemoteInterfaceImpl extends UnicastRemoteObject implements Cl
 
     private String userName;
 
+    private RMIViewRemote serverViewStub;
 
-    protected ClientRemoteInterfaceImpl() throws RemoteException {
+    private Distribution distribution;
+
+    protected ClientRemoteInterfaceImpl(Distribution distribution) throws RemoteException {
         super();
+        this.distribution = distribution;
     }
 
     @Override
-    public void initializeNewGame() {
+    public void initializeNewGame(RMIViewRemote serverViewStub) {
 
         gameBegun = true;
         System.out.println("GAME BEGUN TRUE");
+        this.serverViewStub = serverViewStub;
+
     }
 
 
@@ -57,4 +65,15 @@ public class ClientRemoteInterfaceImpl extends UnicastRemoteObject implements Cl
     public Boolean getGameBegun() {
         return gameBegun;
     }
+
+    public RMIViewRemote getServerViewStub() {
+        return serverViewStub;
+    }
+
+    @Override
+    public Distribution getDistribution() throws RemoteException {
+        return distribution;
+    }
+
+
 }

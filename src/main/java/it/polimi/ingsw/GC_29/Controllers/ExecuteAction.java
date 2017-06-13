@@ -34,6 +34,8 @@ public class ExecuteAction extends Input {
 
         currentPlayer = model.getCurrentPlayer();
 
+        ActionChecker actionChecker = controller.getActionChecker();
+
         //TODO: qui o lato client controllare che l'input sia valido (actionIndex)
 
         Action actionSelected = currentPlayer.getCurrentValidActionsList().get(actionIndex);
@@ -53,11 +55,12 @@ public class ExecuteAction extends Input {
 
             }
 
-            ActionChecker.getInstance().resetActionListExceptPlayer();
+
+            actionChecker.resetActionListExceptPlayer();
 
             FamilyPawn familyPawn = new FamilyPawn(model.getCurrentPlayer().getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
 
-            ActionChecker.getInstance().setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
+            actionChecker.setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
 
             model.getCurrentPlayer().setPlayerState(PlayerState.BONUSACTION);
 
@@ -77,9 +80,9 @@ public class ExecuteAction extends Input {
 
             currentPlayer = model.getCurrentPlayer();
 
-            ActionChecker.getInstance().resetActionList();
+            actionChecker.resetActionList();
 
-            ActionChecker.getInstance().setCurrentPlayer();
+            actionChecker.setCurrentPlayer();
 
             currentPlayer.setPlayerState(PlayerState.DOACTION);
         }

@@ -170,7 +170,7 @@ public class Client {
 
         System.out.println(" login successful");
 
-        clientRemote = new ClientRemoteInterfaceImpl();
+        clientRemote = new ClientRemoteInterfaceImpl(distribution);
 
         clientRemote.setUsername(userName);
 
@@ -198,7 +198,7 @@ public class Client {
             }
         } // aspetta che il server lanci una nuova partita
 
-        gameRMI = new ClientRMI(this.clientRemote.getPlayerColor());
+        gameRMI = new ClientRMI(this.clientRemote.getPlayerColor(), clientRemote.getServerViewStub());
 
         gameRMI.run();
 

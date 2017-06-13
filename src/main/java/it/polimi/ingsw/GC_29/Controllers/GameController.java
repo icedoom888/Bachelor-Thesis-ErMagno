@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by AlbertoPennino on 22/05/2017.
  */
-public class GameController {
+/*public class GameController {
 
     //TODO: move delle pawn sulle track a fine turno
     //TODO: traduzione risorse punti vittoria
@@ -115,7 +115,7 @@ public class GameController {
     /**
      * endGame calculates the victoryPoints of all the players and chooses the winner
      */
-    public void endGame() throws Exception { //TODO: make private
+    /*public void endGame() throws Exception { //TODO: make private
 
         List<Player> players = gameStatus.getTurnOrder();
 
@@ -139,7 +139,7 @@ public class GameController {
             Pawn pawn = player.getMarkerDiscs()[0];
             playersVictoryPoints.put(player, pawnMap.get(pawn)); */
 
-            int playerPoints = player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS);
+            /*int playerPoints = player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS);
 
             if (playerPoints > winningPoints) {
                 winningPoints = playerPoints;
@@ -161,7 +161,7 @@ public class GameController {
      * color of the pawns with the color of the players in the turnOrderTrack) add all the maluses present in the Tile
      * to every player excommunicated.
      */
-    private void executeTiles() throws Exception {
+    /*private void executeTiles() throws Exception {
 
         int threshold=0;
         Era currentEra = gameStatus.getCurrentEra();
@@ -220,7 +220,7 @@ public class GameController {
      * After this first step, all the players of the oldTurnOrder are added to the temporary arrayList, skipping the
      * ones who have already been copied. Then the TurnOrder in the GameStatus is set.
      */
-    public void setNewTurnOrder() {  //Todo: make private
+    /*public void setNewTurnOrder() {  //Todo: make private
         PlayerColor[] newTurnOrder = gameStatus.getGameBoard().getCouncilPalace().getTurnOrder();
         List<Player> oldTurnOrder = gameStatus.getTurnOrder();
         ArrayList<Player> temporaryTurnOrder = new ArrayList<>();
@@ -250,7 +250,7 @@ public class GameController {
     /**
      * checkSkipTurn takes all the players who have skipped the turn and make them execute their action
      */
-    private void checkSkipTurn() throws Exception {
+    /*private void checkSkipTurn() throws Exception {
 
         List<Player> players = gameStatus.getSkippedTurnPlayers();
 
@@ -262,4 +262,4 @@ public class GameController {
         }
     }
 
-}
+}*/

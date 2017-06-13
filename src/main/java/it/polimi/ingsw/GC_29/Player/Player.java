@@ -44,7 +44,7 @@ public class Player extends Observable<Change> {
     private ArrayList<Action> currentValidActionsList;
 
 
-    public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard, ArrayList<LeaderCard> leaderCards) {
+    public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
 
         this.playerState = PlayerState.WAITING;
 
@@ -52,15 +52,18 @@ public class Player extends Observable<Change> {
         this.playerColor = playerColor;
         this.personalBoard = personalBoard;
 
-        this.leaderCards = leaderCards; // TODO: decidere se rendere parametrico numero leader card
-        this.oncePerRoundLeaders = new HashMap<LeaderCard, Boolean>();
-        this.permanentLeaders = new HashMap<LeaderCard, Boolean>();
-        for (LeaderCard leaderCard : this.leaderCards) {
+         // TODO: decidere se rendere parametrico numero leader card
+        this.oncePerRoundLeaders = new HashMap<>();
+        this.permanentLeaders = new HashMap<>();
+
+        //TODO: decommentare quando si creano leaderCards
+
+        /*for (LeaderCard leaderCard : this.leaderCards) {
             if (leaderCard.isPermanent()) {
                 this.permanentLeaders.put(leaderCard, true);
             }
             else this.oncePerRoundLeaders.put(leaderCard, true);
-        }
+        }*/
 
         familyPawns = new FamilyPawn[] {new FamilyPawn(playerColor, FamilyPawnType.BLACK, 0),
                 new FamilyPawn(playerColor, FamilyPawnType.ORANGE, 0),
@@ -244,6 +247,10 @@ public class Player extends Observable<Change> {
                 familyPawn.setActualValue(familyPawnValue);
             }
         }
+    }
+
+    public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
+        this.leaderCards = leaderCards;
     }
 
     @Override
