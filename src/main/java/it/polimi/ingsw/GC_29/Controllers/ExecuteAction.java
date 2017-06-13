@@ -1,6 +1,9 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.rmi.RemoteException;
@@ -40,6 +43,21 @@ public class ExecuteAction extends Input {
         //TODO: ripetizione di codice --> REFACTOR
 
         if(!currentPlayer.getCurrentBonusActionList().isEmpty()){
+
+            ActionEffect currentBonusAction = model.getCurrentPlayer().getCurrentBonusActionList().removeFirst();
+
+            // temporary bonusMalusOn cost setted in the player
+            if(currentBonusAction.getBonusAndMalusOnCost() != null){
+
+                model.getCurrentPlayer().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
+
+            }
+
+            ActionChecker.getInstance().resetActionListExceptPlayer();
+
+            FamilyPawn familyPawn = new FamilyPawn(model.getCurrentPlayer().getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
+
+            ActionChecker.getInstance().setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
 
             model.getCurrentPlayer().setPlayerState(PlayerState.BONUSACTION);
 

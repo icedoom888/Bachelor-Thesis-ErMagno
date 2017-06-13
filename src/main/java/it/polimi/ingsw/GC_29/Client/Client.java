@@ -198,7 +198,7 @@ public class Client {
             }
         } // aspetta che il server lanci una nuova partita
 
-        gameRMI = new ClientRMI();
+        gameRMI = new ClientRMI(this.clientRemote.getPlayerColor());
 
         gameRMI.run();
 

@@ -40,4 +40,6 @@ public interface RMIViewRemote extends Remote {
     void endTurn() throws RemoteException;
 
     void pray(boolean b, PlayerColor playerColor) throws RemoteException;
+
+    void initialize(PlayerColor playerColor) throws RemoteException;
 }

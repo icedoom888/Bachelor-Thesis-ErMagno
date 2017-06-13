@@ -72,12 +72,23 @@ public class InstructionSet {
     public List<Instruction> getInstructions(PlayerState playerState){
 
         ArrayList<Instruction> returnList = new ArrayList<>();
+        System.out.println(playerState);
+
+        if(playerState == null){
+
+            System.out.println(" to start the game insert: start");
+        }
 
         for (Instruction instruction : instructionList) {
 
             if(instruction.getStateList().contains(playerState)){
-
+                System.out.println("istruzione aggiunta");
                 returnList.add(instruction);
+            }
+
+            else{
+
+                System.out.println("istruzione non disponibile");
             }
 
 

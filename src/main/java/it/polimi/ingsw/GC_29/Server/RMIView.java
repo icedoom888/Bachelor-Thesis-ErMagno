@@ -72,6 +72,16 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
+    public void initialize(PlayerColor playerColor) throws RemoteException {
+        try {
+            notifyObserver(new Initialize(playerColor));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
     public ArrayList<Action> getValidActionList() throws RemoteException {
 
         return validActionQuery.perform(gameStatus);

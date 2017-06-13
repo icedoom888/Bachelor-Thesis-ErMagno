@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_29.Components.Market;
 import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Query;
 import it.polimi.ingsw.GC_29.Server.RMIView;
 import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
@@ -39,7 +40,15 @@ public class ClientRMI {
 
     private static final String error = "Input not allowed for your current state";
 
+    private final PlayerColor playerColor;
+
     //private static final ArrayList<String> parseredAnswerList = new ArrayList<>();
+
+
+    public ClientRMI(PlayerColor playerColor){
+
+        this.playerColor = playerColor;
+    }
 
 
 
@@ -53,10 +62,12 @@ public class ClientRMI {
         //get the stub (local object) of the remote view
         RMIViewRemote serverStub = (RMIViewRemote) registry.lookup(NAME);
 
-        ClientRMIView rmiView=new ClientRMIView();
+        ClientRMIView rmiView=new ClientRMIView(playerColor);
 
         // register the client view in the server side (to receive messages from the server)
         serverStub.registerClient(rmiView);
+
+        serverStub.initialize(playerColor);
 
 
         Scanner stdIn = new Scanner(System.in);
@@ -121,9 +132,6 @@ public class ClientRMI {
             // TODO: gestione client disconnesso!
         }
     }
-
-
-
 
 
     private static String inputChecker(String inputLine, ClientRMIView rmiView, RMIViewRemote serverStub) throws RemoteException {

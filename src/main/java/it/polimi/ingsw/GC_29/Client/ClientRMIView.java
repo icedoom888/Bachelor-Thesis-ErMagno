@@ -35,8 +35,12 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
     private InstructionSet instructionSet;
 
 
-    protected ClientRMIView() throws RemoteException {
+    protected ClientRMIView(PlayerColor playerColor) throws RemoteException {
         super();
+
+        instructionSet = new InstructionSet();
+
+        this.playerColor = playerColor;
 
     }
 

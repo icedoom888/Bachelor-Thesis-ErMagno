@@ -67,17 +67,19 @@ public class Server {
         Thread socketThread = new Thread(socketConnection);
         socketThread.start();
 
-        Boolean b = true;
+       // Boolean b = true;
 
-        long i = 0;
+        /*long i = 0;
 
         long var = 213999999;
+
+        System.out.println("ENTRO NEL CICLO SERVER");
 
         while (b){ // TODO: rifare rispetto al runnable
 
             if(i % var == 0){
 
-                System.out.println("sono dentro main" + i);
+               // System.out.println("sono dentro main" + i);
             }
 
 
@@ -100,8 +102,9 @@ public class Server {
             if(i == 1283999994){
                 i=0;
             }
-        }
+        }*/
 
+        System.out.println("ERRORE: FUORI CICLO");
 
     }
 
@@ -131,6 +134,7 @@ public class Server {
 
         @Override
         public void run() {
+
 
         }
     }

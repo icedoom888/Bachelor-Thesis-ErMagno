@@ -7,6 +7,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Christian on 12/06/2017.
@@ -32,6 +34,7 @@ public class GameMatchHandler {
     private int currentClientListSize = 0;
 
     private final Map<String, String> userPassword = new HashMap<>();
+    private ExecutorService executor = Executors.newCachedThreadPool();
 
     public GameMatchHandler(){
 
@@ -60,12 +63,29 @@ public class GameMatchHandler {
             newGameList.get(currentMatchID).addClient(clientStub);
             currentClientListSize++;
         }
+
+        evaluateMinCondition();
+
+        if(evaluateConditionNewGame()){
+
+            System.out.println("NUOVA PARTITA!");
+
+            executor.submit(getCurrentNewGame());
+
+            lobbyCreated = false;
+
+            minClientNumberReached = false;
+
+            currentClientListSize=0;
+
+        }
+
     }
 
 
     public void evaluateMinCondition(){
 
-        if(!minClientNumberReached && currentClientListSize >= 2){
+        if(!minClientNumberReached && currentClientListSize == 2){
 
             minClientNumberReached = true;
 

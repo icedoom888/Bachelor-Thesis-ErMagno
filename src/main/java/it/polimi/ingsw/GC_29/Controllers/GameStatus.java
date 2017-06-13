@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import  it.polimi.ingsw.GC_29.Server.Observable;
 
 import java.rmi.RemoteException;
@@ -136,6 +137,16 @@ public class  GameStatus extends Observable<Change>{
     public List<Player> getTurnOrder() {
 
         return turnOrder;
+    }
+
+    public Player getPlayer(PlayerColor playerColor){
+
+        for (Player player : turnOrder) {
+            if(player.getPlayerColor() == playerColor){
+                return player;
+            }
+        }
+        throw new IllegalArgumentException("Illegal color type: " + playerColor);
     }
 
 

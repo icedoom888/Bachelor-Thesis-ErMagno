@@ -1,9 +1,8 @@
 package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRemoteInterface;
-import it.polimi.ingsw.GC_29.Controllers.Controller;
-import it.polimi.ingsw.GC_29.Controllers.GameSetup;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.*;
+import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.rmi.AlreadyBoundException;
@@ -88,6 +87,10 @@ public class ServerNewGame implements Runnable {
             }
         }
 
+        Boolean b = true;
+
+        while (b){}
+
     }
 
     private void startSocketView() {
@@ -120,8 +123,9 @@ public class ServerNewGame implements Runnable {
         registry.bind(NAME, rmiView); // TODO: il bind verrà chiamato ad ogni inizio partita --> ti darà eccezione AlreadyBound, sistema
     }
 
-    public void addClient(ClientRemoteInterface clientStub) {
+    public void addClient(ClientRemoteInterface clientStub) throws RemoteException {
 
+        clientStub.setPlayerColor(playerColors.remove(0));
         clientList.add(clientStub);
     }
 
