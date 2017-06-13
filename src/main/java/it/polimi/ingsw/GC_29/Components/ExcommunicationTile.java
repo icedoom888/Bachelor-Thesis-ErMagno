@@ -6,7 +6,6 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.Player.Player;
 
-import static com.sun.tools.doclets.formats.html.markup.HtmlStyle.description;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -75,6 +74,6 @@ public class ExcommunicationTile {
 
     @Override
     public String toString() {
-        return "ExcommunicationTile{" + "era=" + era + ", name='" + name + '\'' + ", malusOnAction=" + malusOnAction + ", malusOnGoods=" + malusOnGoods + ", malusOnCost=" + malusOnCost + ", description='" + description + '\'' + '}';
+        return "ExcommunicationTile{" + "era=" + era + ", name='" + name + '\'' + ", malusOnAction=" + malusOnAction + ", malusOnGoods=" + malusOnGoods + ", malusOnCost=" + malusOnCost +  '\'' + '}';
     }
 }
