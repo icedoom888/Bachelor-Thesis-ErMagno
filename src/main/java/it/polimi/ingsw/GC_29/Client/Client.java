@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_29.Client;
 
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterfaceImpl;
 import it.polimi.ingsw.GC_29.Server.ConnectionInterface;
-import org.w3c.dom.ranges.RangeException;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
@@ -10,7 +10,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 /**

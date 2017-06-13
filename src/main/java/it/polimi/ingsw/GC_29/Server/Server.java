@@ -1,19 +1,10 @@
 package it.polimi.ingsw.GC_29.Server;
 
-import it.polimi.ingsw.GC_29.Client.Client;
-import it.polimi.ingsw.GC_29.Client.ClientRemoteInterface;
-import it.polimi.ingsw.GC_29.Controllers.Controller;
-import it.polimi.ingsw.GC_29.Controllers.GameSetup;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
-
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

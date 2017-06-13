@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.GC_29.Client.ClientRemoteInterface;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;

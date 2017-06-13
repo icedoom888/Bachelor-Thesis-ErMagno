@@ -1,22 +1,18 @@
-package it.polimi.ingsw.GC_29.Client;
+package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Components.Market;
 import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Query;
-import it.polimi.ingsw.GC_29.Server.RMIView;
 import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

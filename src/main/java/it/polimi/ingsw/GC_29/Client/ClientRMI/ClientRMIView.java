@@ -1,5 +1,8 @@
-package it.polimi.ingsw.GC_29.Client;
+package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
+import it.polimi.ingsw.GC_29.Client.ClientViewRemote;
+import it.polimi.ingsw.GC_29.Client.Instruction;
+import it.polimi.ingsw.GC_29.Client.InstructionSet;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;

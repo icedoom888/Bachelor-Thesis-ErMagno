@@ -1,10 +1,8 @@
 package it.polimi.ingsw.GC_29.Server;
 
-import it.polimi.ingsw.GC_29.Client.ClientRemoteInterface;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 
 import java.rmi.RemoteException;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
