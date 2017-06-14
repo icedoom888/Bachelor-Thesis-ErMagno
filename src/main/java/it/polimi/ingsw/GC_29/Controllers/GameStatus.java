@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * Created by Icedoom on 19/05/2017.
  */
-public class  GameStatus extends Observable<Change>{
+public class GameStatus extends Observable<Change>{
 
 
     /*private GameEvent gameEvent;*/

@@ -2,7 +2,8 @@ package it.polimi.ingsw.GC_29.Client;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterfaceImpl;
-import it.polimi.ingsw.GC_29.Server.ConnectionInterface;
+import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientSocket;
+import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterface;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
@@ -98,7 +99,14 @@ public class Client {
 
     private void executeSocket() {
 
-        //TODO: implementazione su falsa riga di rmi
+        try {
+
+            ClientSocket clientSocket = new ClientSocket();
+            clientSocket.startClient();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Server;
+package it.polimi.ingsw.GC_29.Server.RMI;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 

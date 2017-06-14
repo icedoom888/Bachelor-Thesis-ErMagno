@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Client;
+package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Controllers.Change;
 

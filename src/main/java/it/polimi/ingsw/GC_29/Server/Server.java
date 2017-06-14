@@ -1,6 +1,12 @@
 package it.polimi.ingsw.GC_29.Server;
 
+import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterfaceImpl;
+import it.polimi.ingsw.GC_29.Server.Socket.Login;
+import it.polimi.ingsw.GC_29.Server.Socket.ServerSocketView;
+
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -34,14 +40,12 @@ public class Server {
 
     private long startTime;
 
-    private SocketConnection socketConnection;
 
     private final long elapsedTime = 300000;
 
 
-    protected Server() throws AlreadyBoundException, RemoteException {
+    protected Server() throws AlreadyBoundException, IOException {
 
-        socketConnection = new SocketConnection();
 
         gameMatchHandler = new GameMatchHandler();
 
@@ -49,14 +53,15 @@ public class Server {
 
     }
 
-    private void execute() throws AlreadyBoundException, RemoteException {
+    private void execute() throws AlreadyBoundException, IOException {
 
         System.out.println("START RMI");
         startRMI();
 
         System.out.println("START SOCKET");
-        Thread socketThread = new Thread(socketConnection);
-        socketThread.start();
+        startSocket();
+        /*Thread socketThread = new Thread(socketConnection);
+        socketThread.start();*/
 
        // Boolean b = true;
 
@@ -99,6 +104,34 @@ public class Server {
 
     }
 
+    private void startSocket() throws IOException {
+
+        // creates the thread pool to handle clients
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        //creats the socket
+        ServerSocket serverSocket = new ServerSocket(PORT);
+
+        System.out.println("SERVER SOCKET READY ON PORT: " + PORT);
+
+        while (true) {
+            //Waits for a new client to connect
+            Socket socket = serverSocket.accept();
+
+            new Login(socket, gameMatchHandler);
+
+
+/*
+            // the view observes the model
+            this.gioco.registerObserver(view);
+
+            // the controller observes the view
+            view.registerObserver(this.controller);
+*/
+
+        }
+    }
+
     public static void main(String[] args) throws IOException, AlreadyBoundException {
         Server server = new Server();
     }
@@ -120,15 +153,6 @@ public class Server {
 
     }
 
-    class SocketConnection implements Runnable{
-
-
-        @Override
-        public void run() {
-
-
-        }
-    }
 
 }
 

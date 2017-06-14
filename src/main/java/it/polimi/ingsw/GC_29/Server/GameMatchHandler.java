@@ -2,7 +2,10 @@ package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Components.PersonalBoard;
+import it.polimi.ingsw.GC_29.Player.Player;
 
+import java.net.Socket;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,23 +43,38 @@ public class GameMatchHandler {
         newGameList = new HashMap<>();
     }
 
+
+
+    synchronized public void addClient(String username, Socket socket) throws RemoteException {
+
+        if(!lobbyCreated){
+
+            lobbySettings();
+
+            newGameList.put(currentMatchID, new ServerNewGame(username, socket));
+
+        }
+
+        else if(currentClientListSize < maxNumberOfPlayers){
+
+            newGameList.get(currentMatchID).addClient(username, socket);
+            currentClientListSize++;
+        }
+
+        evaluateConditions();
+
+    }
+
+
+
     synchronized public void addClient(ClientRemoteInterface clientStub) throws RemoteException {
 
         if(!lobbyCreated){
 
-            lobbyCreated = true;
-
-            indexMatch++;
-
-            currentMatchID = "match number:" + indexMatch;
-
-            System.out.println("LOBBY CREATA");
-
-
+            lobbySettings();
 
             newGameList.put(currentMatchID, new ServerNewGame(clientStub));
 
-            currentClientListSize++;
         }
 
         else if(currentClientListSize < maxNumberOfPlayers){
@@ -64,6 +82,26 @@ public class GameMatchHandler {
             newGameList.get(currentMatchID).addClient(clientStub);
             currentClientListSize++;
         }
+
+        evaluateConditions();
+
+    }
+
+    private void lobbySettings() {
+
+        lobbyCreated = true;
+
+        indexMatch++;
+
+        currentMatchID = "match number:" + indexMatch;
+
+        System.out.println("LOBBY CREATA");
+
+        currentClientListSize++;
+
+    }
+
+    private void evaluateConditions() {
 
         evaluateMinCondition();
 
@@ -80,7 +118,6 @@ public class GameMatchHandler {
             currentClientListSize=0;
 
         }
-
     }
 
 
@@ -122,4 +159,6 @@ public class GameMatchHandler {
     public void setLobbyCreated(boolean lobbyCreated) {
         this.lobbyCreated = lobbyCreated;
     }
+
+
 }
