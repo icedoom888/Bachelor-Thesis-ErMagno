@@ -138,10 +138,13 @@ public class ServerNewGame implements Runnable {
 
                 gameSetup.getGameStatus().registerObserver(serverSocketView);
                 gameSetup.getGameStatus().getPlayer(player.getPlayerColor()).registerObserver(serverSocketView);
-                //playersSocketMap.get(player).getOutputStream().
+                //TODO: qualcosa di simile, ho provato ma ancora la view è raticamente vuota
+                // serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
                 executorService.submit(serverSocketView);
 
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

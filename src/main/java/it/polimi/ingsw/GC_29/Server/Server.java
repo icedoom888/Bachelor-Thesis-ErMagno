@@ -114,7 +114,9 @@ public class Server {
 
         System.out.println("SERVER SOCKET READY ON PORT: " + PORT);
 
-        while (true) {
+        Boolean b = true;
+
+        while (b) {
             //Waits for a new client to connect
             Socket socket = serverSocket.accept();
 
