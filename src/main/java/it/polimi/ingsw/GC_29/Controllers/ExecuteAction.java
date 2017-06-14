@@ -72,19 +72,6 @@ public class ExecuteAction extends Input {
 
             currentPlayer.setPlayerState(PlayerState.ENDTURN);
 
-            int index = (model.getTurnOrder().indexOf(currentPlayer) + 1) % model.getTurnOrder().size() ;
-
-            // controlli sull'index e eventuali chiamate
-
-            model.setCurrentPlayer(model.getTurnOrder().get(index));
-
-            currentPlayer = model.getCurrentPlayer();
-
-            actionChecker.resetActionList();
-
-            actionChecker.setCurrentPlayer();
-
-            currentPlayer.setPlayerState(PlayerState.DOACTION);
         }
 
     }

@@ -20,11 +20,11 @@ public class ClientRemoteInterfaceImpl extends UnicastRemoteObject implements Cl
 
     private RMIViewRemote serverViewStub;
 
-    private Distribution distribution;
+    private final Distribution distribution = Distribution.RMI;
 
-    public ClientRemoteInterfaceImpl(Distribution distribution) throws RemoteException {
+    public ClientRemoteInterfaceImpl() throws RemoteException {
         super();
-        this.distribution = distribution;
+
     }
 
     @Override

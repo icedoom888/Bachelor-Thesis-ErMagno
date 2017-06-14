@@ -17,6 +17,13 @@ import java.util.Scanner;
  */
 public class Client {
 
+
+    private final static String HOST = "127.0.0.1";
+
+    private final static int PORT = 52365;
+
+    private static final String NAME = "connection";
+
     private Distribution distribution;
     private boolean connectionChosen;
 
@@ -28,8 +35,6 @@ public class Client {
 
     public Client() throws RemoteException {
         super();
-
-        gameRMI = new ClientRMI();
 
         askWichConnection();
 
@@ -82,7 +87,7 @@ public class Client {
         switch (distribution) {
 
             case RMI:
-                gameRMI.executeRMI();
+                executeRMI();
                 break;
 
             case SOCKET:
@@ -100,6 +105,106 @@ public class Client {
 
         //TODO: implementazione su falsa riga di rmi
     }
+
+    private void executeRMI() {
+
+        try {
+            connectServerRMI();
+            loginRMI();
+            playNewGameRMI();
+            close();
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+            e.printStackTrace();
+        } finally {
+            // Always close it:
+            //TODO: chiudi connessione
+        }
+
+    }
+
+
+    private void connectServerRMI() throws RemoteException, NotBoundException {
+
+        Registry reg = LocateRegistry.getRegistry(HOST, PORT);
+        connectionStub = (ConnectionInterface)reg.lookup(NAME);
+
+    }
+
+
+    private void loginRMI() throws RemoteException {
+
+        Scanner stdIn = new Scanner(System.in);
+
+        Boolean logged = false;
+
+        String userName = "";
+
+        String password;
+
+        while (!logged){
+
+            System.out.println("Insert your username");
+            userName = stdIn.nextLine();
+
+            System.out.println("Insert your password");
+            password = stdIn.nextLine();
+
+            logged = connectionStub.login(userName, password);
+
+            if (!logged) {
+
+                System.out.println(" login failed!");
+
+            }
+
+        }
+
+        System.out.println(" login successful");
+
+        clientRemote = new ClientRemoteInterfaceImpl();
+
+        clientRemote.setUsername(userName);
+
+        connectionStub.addClient(clientRemote);
+
+    }
+
+
+    private void playNewGameRMI() throws RemoteException, NotBoundException, AlreadyBoundException {
+
+        long i = 0;
+
+        long var = 213999999;
+
+        while (!clientRemote.getGameBegun()){
+
+            if(i % var == 0){
+
+                System.out.println("sono dentro PLAY" + i);
+            }
+
+            i++;
+            if(i == 1283999994){
+                i=0;
+            }
+        } // aspetta che il server lanci una nuova partita
+
+        gameRMI = new ClientRMI(this.clientRemote.getPlayerColor(), clientRemote.getServerViewStub());
+
+        gameRMI.run();
+
+    }
+
+    private void connectServerSocket() {
+
+
+    }
+
+    private void close() {
+
+    }
+
 
 
 

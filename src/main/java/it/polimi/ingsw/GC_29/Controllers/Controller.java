@@ -139,6 +139,10 @@ public class Controller implements Observer<Input>  {
 
         else
         {
+            actionChecker.resetActionList();
+
+            actionChecker.setCurrentPlayer();
+
             firstPlayer.setPlayerState(PlayerState.DOACTION);
         }
     }

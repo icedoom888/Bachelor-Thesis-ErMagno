@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -26,7 +27,7 @@ public class InputChecker {
 
     private int actionIndex;
 
-    private ArrayList<Action> validActionList;
+    private HashMap<Integer,String> validActionList;
 
     private PlayerState currentPlayerState;
 
@@ -37,6 +38,8 @@ public class InputChecker {
     public InputChecker(){
 
         instructionSet = new InstructionSet();
+
+        validActionList = new HashMap<>();
 
         //TODO dalla view ad ogni update devo settare i valori giusti (pawnAvailability, playerState, gameState)
     }
@@ -114,8 +117,7 @@ public class InputChecker {
         int index = Integer.parseInt(lastWord);
 
 
-        if( index < validActionList.size() && validActionList.get(index).getValid()){
-
+        if(validActionList.keySet().contains(index)){
             actionIndex = index;
 
             return "execute action";
@@ -170,5 +172,9 @@ public class InputChecker {
 
     public int getActionIndex() {
         return actionIndex;
+    }
+
+    public void setValidActionList(HashMap<Integer,String> validActionList) {
+        this.validActionList = validActionList;
     }
 }

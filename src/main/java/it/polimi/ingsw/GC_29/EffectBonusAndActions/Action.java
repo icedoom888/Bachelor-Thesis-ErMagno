@@ -100,14 +100,14 @@ public abstract class Action implements Serializable{
     public boolean isPossible() {
 
         return  enable
-                && isActionAvailable()
+                && !isActionDenied()
                 && checkActionSpaceAvailability()
                 && checkSufficientActionValue()
                 && checkFamilyPawn();
 
     }
 
-    private boolean isActionAvailable() {
+    private boolean isActionDenied() {
         return Filter.applySpecial(player, zoneType);
     }
 
@@ -283,5 +283,9 @@ public abstract class Action implements Serializable{
         return " zoneType= " + zoneType
                 + ", workers= " + workers
                 +  ", enable= " + enable ;
+    }
+
+    public boolean isValid() {
+        return isValid;
     }
 }

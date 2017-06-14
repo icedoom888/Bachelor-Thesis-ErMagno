@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -30,7 +31,7 @@ public interface RMIViewRemote extends Remote {
      * @return
      * @throws RemoteException
      */
-    ArrayList<Action> getValidActionList() throws RemoteException;
+    HashMap<Integer, String> getValidActionList() throws RemoteException;
 
     void doAction(int index) throws RemoteException;
 

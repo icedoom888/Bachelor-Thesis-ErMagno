@@ -26,6 +26,8 @@ public class Initialize extends Input {
 
 
         if(model.getCurrentPlayer().getPlayerColor() == playerColor){
+
+            controller.getActionChecker().setCurrentPlayer();
             model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);
         }
         else {

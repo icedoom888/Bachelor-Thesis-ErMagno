@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
+import it.polimi.ingsw.GC_29.Client.Client;
 import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
@@ -32,11 +33,11 @@ public class ClientRMI {
     //private final static int RMI_PORT = 52365;
 
 
-    private final static String HOST = "127.0.0.1";
+    /*private final static String HOST = "127.0.0.1";
 
     private final static int PORT = 52365;
 
-    private static final String NAME = "connection";
+    private static final String NAME = "connection";*/
 
     private ConnectionInterface connectionStub;
 
@@ -45,6 +46,13 @@ public class ClientRMI {
     private PlayerColor playerColor;
 
     private RMIViewRemote serverViewStub;
+
+    public ClientRMI(PlayerColor playerColor, RMIViewRemote serverViewStub){
+
+        this.playerColor = playerColor;
+
+        this.serverViewStub = serverViewStub;
+    }
 
 
 
@@ -77,6 +85,8 @@ public class ClientRMI {
                 //vedi il commento nel metodo inputParser
                 inputLine = rmiView.getInputChecker().checkInput(inputLine);
 
+                System.out.println(inputLine);
+
                 // Call the appropriate method in the server
                 switch (inputLine) {
                     case "skip action":
@@ -86,9 +96,10 @@ public class ClientRMI {
                         serverViewStub.endTurn();
                         break;
                     case "use family pawn":
+
+
+                        System.out.println("colore: " + rmiView.getInputChecker().getFamilyPawnChosen());
                         serverViewStub.usePawnChosen(rmiView.getInputChecker().getFamilyPawnChosen());
-                        rmiView.setValidActionList(serverViewStub.getValidActionList());
-                        System.out.println(rmiView.getValidActionList());
                         break;
                     case "see valid action list":
                         rmiView.setValidActionList(serverViewStub.getValidActionList());
@@ -127,7 +138,7 @@ public class ClientRMI {
     ////////////////////////////////////////////////////////
 
 
-    public void executeRMI() {
+    /*public void executeRMI() {
 
         try {
             connectServerRMI();
@@ -184,7 +195,7 @@ public class ClientRMI {
 
         System.out.println(" login successful");
 
-        clientRemote = new ClientRemoteInterfaceImpl(Distribution.RMI);
+        clientRemote = new ClientRemoteInterfaceImpl();
 
         clientRemote.setUsername(userName);
 
@@ -216,6 +227,6 @@ public class ClientRMI {
 
         this.serverViewStub = clientRemote.getServerViewStub();
 
-    }
+    }*/
 
 }

@@ -13,9 +13,7 @@ import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -23,7 +21,7 @@ import java.util.Map;
 public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemote, Serializable {
 
 
-    private ArrayList<Action> validActionList;
+    private HashMap<Integer, String> validActionList;
 
     private PlayerColor playerColor;
 
@@ -47,11 +45,11 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
     }
 
-    public ArrayList<Action> getValidActionList() {
+    public HashMap<Integer, String> getValidActionList() {
         return validActionList;
     }
 
-    public void setValidActionList(ArrayList<Action> validActionList) {
+    public void setValidActionList(HashMap<Integer, String> validActionList) {
         this.validActionList = validActionList;
     }
 
@@ -95,6 +93,11 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
                 inputChecker.setFamilyPawnAvailability(serverViewStub.getFamilyPawnAvailability());
                 break;
 
+            case CHOOSEACTION:
+                validActionList = serverViewStub.getValidActionList();
+                inputChecker.setValidActionList(validActionList);
+                printValidActionList();
+                break;
 
             //TODO: inserire gestione altri stati se necessario
         }
@@ -118,11 +121,20 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
     
     public void printValidActionList() {
 
-        for (Action action : validActionList) {
-            if(action.getValid()){
-                System.out.println("action index:" + validActionList.indexOf(action) + ") " + action);
+        if(!validActionList.isEmpty()){
+
+            Set<Integer> keys = validActionList.keySet();
+
+            for (Integer key : keys) {
+
+                System.out.println("action index: " + key + ") " + validActionList.get(key));
+
             }
+
         }
+
+        else System.out.println("nessuna azione valida");
+
     }
 
 }

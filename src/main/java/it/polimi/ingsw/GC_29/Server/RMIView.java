@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -92,7 +93,7 @@ public class RMIView extends View implements RMIViewRemote {
 
 
     @Override
-    public ArrayList<Action> getValidActionList() throws RemoteException {
+    public HashMap<Integer, String> getValidActionList() throws RemoteException {
 
         return validActionQuery.perform(gameStatus);
     }

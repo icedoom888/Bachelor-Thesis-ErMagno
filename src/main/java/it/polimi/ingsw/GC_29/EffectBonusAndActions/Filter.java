@@ -107,7 +107,13 @@ public final class Filter {
      */
     public static boolean applySpecial(Player player, SpecialBonusAndMalus special) {
 
+        if(!player.getSpecialBonusAndMaluses().isEmpty()){
         return player.getSpecialBonusAndMaluses().contains(special);
+        }
+
+        else {
+            return false;
+        }
     }
 
     public static boolean applySpecial(Player player, ZoneType zoneType) {
