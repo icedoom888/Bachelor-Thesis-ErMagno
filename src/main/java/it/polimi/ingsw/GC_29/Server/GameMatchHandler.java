@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.rmi.RemoteException;
 import java.util.HashMap;
@@ -50,6 +51,8 @@ public class GameMatchHandler {
             currentMatchID = "match number:" + indexMatch;
 
             System.out.println("LOBBY CREATA");
+
+
 
             newGameList.put(currentMatchID, new ServerNewGame(clientStub));
 

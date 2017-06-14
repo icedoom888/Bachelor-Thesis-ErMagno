@@ -1,12 +1,14 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.ClientViewRemote;
+import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Client.InstructionSet;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -21,37 +23,45 @@ import java.util.Map;
 public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemote, Serializable {
 
 
-    //TODO playerColor
-
-    private FamilyPawnType familyPawnChosen;
-
-    private int actionIndex;
-
     private ArrayList<Action> validActionList;
-
-    private PlayerState currentPlayerState;
-
-    private GameState currentGameState;
 
     private PlayerColor playerColor;
 
-    private InstructionSet instructionSet;
+    PlayerState currentPlayerState;
+
+    GameState currentGameState;
+
+    private transient InputChecker inputChecker;
+
+    private transient RMIViewRemote serverViewStub;
 
 
-    protected ClientRMIView(PlayerColor playerColor) throws RemoteException {
+    protected ClientRMIView(PlayerColor playerColor, RMIViewRemote serverViewStub) throws RemoteException {
         super();
 
-        instructionSet = new InstructionSet();
+        this.serverViewStub = serverViewStub;
+
+        inputChecker = new InputChecker();
 
         this.playerColor = playerColor;
 
     }
 
-    /**
-     *
-     */
-    //private static final long serialVersionUID = 6111979881550001331L;
+    public ArrayList<Action> getValidActionList() {
+        return validActionList;
+    }
 
+    public void setValidActionList(ArrayList<Action> validActionList) {
+        this.validActionList = validActionList;
+    }
+
+    public PlayerColor getPlayerColor() {
+        return playerColor;
+    }
+
+    public InputChecker getInputChecker() {
+        return inputChecker;
+    }
 
 
     @Override
@@ -63,6 +73,9 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
         if(c instanceof PlayerStateChange){
 
             currentPlayerState = ((PlayerStateChange)c).getNewPlayerState();
+
+            handlePlayerState(currentPlayerState);
+
             System.out.println("if you want to see your valid input for this current state insert : help");
         }
 
@@ -72,57 +85,25 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
         }
     }
 
-    public FamilyPawnType getFamilyPawnChosen() {
-        return familyPawnChosen;
+    private void handlePlayerState(PlayerState currentPlayerState) throws RemoteException {
+
+        inputChecker.setCurrentPlayerState(currentPlayerState);
+
+        switch (currentPlayerState){
+
+            case DOACTION:
+                inputChecker.setFamilyPawnAvailability(serverViewStub.getFamilyPawnAvailability());
+                break;
+
+
+            //TODO: inserire gestione altri stati se necessario
+        }
     }
 
-    public void setFamilyPawnChosen(FamilyPawnType familyPawnChosen) {
-        this.familyPawnChosen = familyPawnChosen;
-    }
-
-    public int getActionIndex() {
-        return actionIndex;
-    }
-
-    public void setActionIndex(int actionIndex) {
-        this.actionIndex = actionIndex;
-    }
-
-    public ArrayList<Action> getValidActionList() {
-        return validActionList;
-    }
-
-    public void setValidActionList(ArrayList<Action> validActionList) {
-        this.validActionList = validActionList;
-    }
-
-    public PlayerState getCurrentPlayerState() {
-        return currentPlayerState;
-    }
-
-    public void setCurrentPlayerState(PlayerState currentPlayerState) {
-        this.currentPlayerState = currentPlayerState;
-    }
-
-    public GameState getGameEvent() {
-        return currentGameState;
-    }
-
-    public void setGameEvent(GameState gameEvent) {
-        this.currentGameState = gameEvent;
-    }
-
-    public PlayerColor getPlayerColor() {
-        return playerColor;
-    }
-
-    public void setPlayerColor(PlayerColor playerColor) {
-        this.playerColor = playerColor;
-    }
 
     public void handleHelp(){
 
-        List<Instruction> instructionList = instructionSet.getInstructions(currentPlayerState);
+        List<Instruction> instructionList = inputChecker.getInstructionSet().getInstructions(currentPlayerState);
 
         System.out.println("your valid input in this current state are:");
 
@@ -134,10 +115,6 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
         }
     }
 
-    public InstructionSet getInstructionSet() {
-        return instructionSet;
-    }
-
     
     public void printValidActionList() {
 
@@ -147,4 +124,5 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
             }
         }
     }
+
 }

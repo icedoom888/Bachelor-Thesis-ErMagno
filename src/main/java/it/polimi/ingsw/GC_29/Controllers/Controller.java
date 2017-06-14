@@ -489,16 +489,6 @@ public class Controller implements Observer<Input>  {
 
     }
 
-    public Player searchPlayer(PlayerColor playerColor) {
-        List<Player> turnOrder = model.getTurnOrder();
-
-        for (Player player : turnOrder) {
-            if (player.getPlayerColor() == playerColor) return player;
-        }
-
-        return null;
-    }
-
 
     public ActionChecker getActionChecker() {
         return actionChecker;

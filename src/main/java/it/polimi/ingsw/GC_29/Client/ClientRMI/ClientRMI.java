@@ -1,11 +1,13 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
+import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Server.ConnectionInterface;
 import it.polimi.ingsw.GC_29.Server.Query;
 import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
 
@@ -13,6 +15,8 @@ import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,24 +34,17 @@ public class ClientRMI {
 
     private final static String HOST = "127.0.0.1";
 
-    private final static int PORT = 29999;
+    private final static int PORT = 52365;
 
-    private static final String NAME = "rmiView";
+    private static final String NAME = "connection";
 
-    private static final String error = "Input not allowed for your current state";
+    private ConnectionInterface connectionStub;
 
-    private final PlayerColor playerColor;
+    private ClientRemoteInterfaceImpl clientRemote;
+
+    private PlayerColor playerColor;
 
     private RMIViewRemote serverViewStub;
-
-    //private static final ArrayList<String> parseredAnswerList = new ArrayList<>();
-
-
-    public ClientRMI(PlayerColor playerColor, RMIViewRemote serverViewStub){
-
-        this.playerColor = playerColor;
-        this.serverViewStub = serverViewStub;
-    }
 
 
 
@@ -55,7 +52,7 @@ public class ClientRMI {
 
         //get the stub (local object) of the remote view
 
-        ClientRMIView rmiView=new ClientRMIView(playerColor);
+        ClientRMIView rmiView=new ClientRMIView(playerColor, serverViewStub);
 
         // register the client view in the server side (to receive messages from the server)
         serverViewStub.registerClient(rmiView);
@@ -78,7 +75,7 @@ public class ClientRMI {
 
 
                 //vedi il commento nel metodo inputParser
-                inputLine = inputChecker(inputLine, rmiView, serverViewStub);
+                inputLine = rmiView.getInputChecker().checkInput(inputLine);
 
                 // Call the appropriate method in the server
                 switch (inputLine) {
@@ -89,7 +86,7 @@ public class ClientRMI {
                         serverViewStub.endTurn();
                         break;
                     case "use family pawn":
-                        serverViewStub.usePawnChosen(rmiView.getFamilyPawnChosen());
+                        serverViewStub.usePawnChosen(rmiView.getInputChecker().getFamilyPawnChosen());
                         rmiView.setValidActionList(serverViewStub.getValidActionList());
                         System.out.println(rmiView.getValidActionList());
                         break;
@@ -98,7 +95,7 @@ public class ClientRMI {
                         rmiView.printValidActionList();
                         break;
                     case "execute action":
-                        serverViewStub.doAction(rmiView.getActionIndex());
+                        serverViewStub.doAction(rmiView.getInputChecker().getActionIndex());
                         break;
                     case "I want to pray":
                         serverViewStub.pray(true, rmiView.getPlayerColor());
@@ -127,213 +124,98 @@ public class ClientRMI {
     }
 
 
-    private static String inputChecker(String inputLine, ClientRMIView rmiView, RMIViewRemote serverStub) throws RemoteException {
-
-        String checkedString = inputLine;
-
-        PlayerState currentPlayerState = rmiView.getCurrentPlayerState();
-
-        List<Instruction> instructionList = rmiView.getInstructionSet().getInstructions(currentPlayerState);
-
-        for(Instruction instruction : instructionList){
-
-            if(instruction.isRegex()){
-
-                Pattern pattern = Pattern.compile(instruction.getRegex());
-                Matcher matcher = pattern.matcher(inputLine);
-
-                if(matcher.find()){
-
-                    checkedString = handleRegex(checkedString, instruction, rmiView, serverStub);
-
-                    return checkedString;
-                }
-            }
-
-            else if(instruction.getInstruction().equals(checkedString)){
-
-                return checkedString;
-
-            }
-        }
-
-        checkedString = "invalid input";
-
-        return checkedString;
-    }
+    ////////////////////////////////////////////////////////
 
 
+    public void executeRMI() {
 
-    private static String handleRegex(String inputLine, Instruction instruction, ClientRMIView rmiView, RMIViewRemote serverStub) throws RemoteException {
-
-
-
-        String[] parts = inputLine.split(" ");
-        String lastWord = parts[parts.length - 1];
-
-        switch (instruction.getInstruction()){
-
-            case ("use family pawn (insert type)"):
-
-                return handleUseFamilyPawn(lastWord, rmiView, serverStub);
-
-            case ("activate leader card (insert index)"):
-
-                return handleLeaderCard(lastWord, true, rmiView);
-
-            case ("discard leader card (insert index)"):
-
-                return handleLeaderCard(lastWord, false, rmiView);
-
-            case ("execute action (insert index)"):
-
-                return handleExecuteAction(lastWord, rmiView);
-
-        }
-
-        Integer.parseInt(lastWord);
-
-        return null;
-    }
-
-    private static String handleExecuteAction(String lastWord, ClientRMIView rmiView){
-
-        int index = Integer.parseInt(lastWord);
-
-        ArrayList<Action> validActionList = rmiView.getValidActionList();
-
-        if( index < validActionList.size() && validActionList.get(index).getValid()){
-
-            rmiView.setActionIndex(index);
-
-            return "execute action";
-        }
-
-        else {
-
-            return "invalid input";
+        try {
+            connectServerRMI();
+            loginRMI();
+            playNewGameRMI();
+            run();
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+            e.printStackTrace();
+        } finally {
+            // Always close it:
+            //TODO: chiudi connessione
         }
 
     }
 
-    private static String handleLeaderCard(String lastWord, boolean b, ClientRMIView rmiView) {
 
-        // TODO: implementa quando fai Leader Card
+    private void connectServerRMI() throws RemoteException, NotBoundException {
 
-        return "";
-    }
+        Registry reg = LocateRegistry.getRegistry(HOST, PORT);
+        connectionStub = (ConnectionInterface)reg.lookup(NAME);
 
-    private static String handleUseFamilyPawn(String lastWord,ClientRMIView rmiView, RMIViewRemote serverStub) throws RemoteException {
 
-        lastWord = lastWord.toUpperCase();
-
-        Map<FamilyPawnType, Boolean> pawnAvailability = serverStub.getFamilyPawnAvailability();
-
-        for(FamilyPawnType familyPawnType : FamilyPawnType.values()){
-
-            if(FamilyPawnType.valueOf(lastWord) == familyPawnType && pawnAvailability.get(familyPawnType)){
-
-                rmiView.setFamilyPawnChosen(familyPawnType);
-
-                return "use family pawn";
-            }
-        }
-
-        return "invalid input";
     }
 
 
-    /*private static String inputParser(String inputLine, ClientRMIView rmiView) {
+    private void loginRMI() throws RemoteException {
 
-        //TODO: controlli sull'input grazie a regular expressions e al playerState e GameChange
+        Scanner stdIn = new Scanner(System.in);
 
+        Boolean logged = false;
 
-        parseredAnswerList.add(skipActionParser(inputLine, rmiView));
-        parseredAnswerList.add(pawnParser(inputLine, rmiView));
+        String userName = "";
 
-        return null;
+        String password;
+
+        while (!logged){
+
+            System.out.println("Insert your username");
+            userName = stdIn.nextLine();
+
+            System.out.println("Insert your password");
+            password = stdIn.nextLine();
+
+            logged = connectionStub.login(userName, password);
+
+            if (!logged) {
+
+                System.out.println(" login failed!");
+
+            }
+
+        }
+
+        System.out.println(" login successful");
+
+        clientRemote = new ClientRemoteInterfaceImpl(Distribution.RMI);
+
+        clientRemote.setUsername(userName);
+
+        connectionStub.addClient(clientRemote);
 
     }
 
-    private static String skipActionParser(String inputLine, ClientRMIView rmiView) {
 
-        String newInput = inputLine;
+    private void playNewGameRMI() throws RemoteException, NotBoundException, AlreadyBoundException {
 
-        Pattern patternSkipAction = Pattern.compile("\bskip\b && \baction\b");
+        long i = 0;
 
-        Matcher matcherSkipAction = patternSkipAction.matcher(inputLine);
+        long var = 213999999;
 
-        if(matcherSkipAction.find()){
-            if(rmiView.getCurrentPlayerState() != PlayerState.DOACTION){
-                newInput = error;
+        while (!clientRemote.getGameBegun()){
+
+            if(i % var == 0){
+
+                System.out.println("sono dentro PLAY" + i);
             }
-            else{
-                newInput = "skip action";
+
+            i++;
+            if(i == 1283999994){
+                i=0;
             }
-        }
-        return newInput;
+        } // aspetta che il server lanci una nuova partita
+
+        this.playerColor = clientRemote.getPlayerColor();
+
+        this.serverViewStub = clientRemote.getServerViewStub();
+
     }
 
-    private static String pawnParser(String inputLine, ClientRMIView rmiView) {
-
-        String newInput = inputLine;
-
-        Pattern patternChooseBlackPawn = Pattern.compile("\bred\b && \bpawn\b");
-        Pattern patternChooseWhitePawn = Pattern.compile("\bblue\b && \bpawn\b");
-        Pattern patternChooseOrangePawn = Pattern.compile("\bgreen\b && \bpawn\b");
-        Pattern patternChooseNeutralPawn = Pattern.compile("\bneutral\b && \bpawn\b");
-
-        Matcher matcherChooseBlackPawn = patternChooseBlackPawn.matcher(inputLine);
-        Matcher matcherChooseWhitePawn = patternChooseWhitePawn.matcher(inputLine);
-        Matcher matcherChooseOrangePawn = patternChooseOrangePawn.matcher(inputLine);
-        Matcher matcherChooseNeutralPawn = patternChooseNeutralPawn.matcher(inputLine);
-
-        if (matcherChooseBlackPawn.find()) {
-            if (rmiView.getCurrentPlayerState() != PlayerState.DOACTION || rmiView.getCurrentPlayerState() != PlayerState.CHOOSEACTION) {
-                newInput = error;
-
-            }
-            else {
-                rmiView.setFamilyPawnChosen(FamilyPawnType.BLACK);
-                newInput = "use family pawn";
-            }
-        }
-
-        if (matcherChooseWhitePawn.find()) {
-            if (rmiView.getCurrentPlayerState() != PlayerState.DOACTION || rmiView.getCurrentPlayerState() != PlayerState.CHOOSEACTION) {
-                newInput = error;
-
-            }
-            else {
-                rmiView.setFamilyPawnChosen(FamilyPawnType.WHITE);
-                newInput = "use family pawn";
-            }
-        }
-
-        if (matcherChooseOrangePawn.find()) {
-            if (rmiView.getCurrentPlayerState() != PlayerState.DOACTION || rmiView.getCurrentPlayerState() != PlayerState.CHOOSEACTION) {
-                newInput = error;
-
-            }
-            else {
-                rmiView.setFamilyPawnChosen(FamilyPawnType.ORANGE);
-                newInput = "use family pawn";
-            }
-        }
-
-        if (matcherChooseNeutralPawn.find()) {
-            if (rmiView.getCurrentPlayerState() != PlayerState.DOACTION || rmiView.getCurrentPlayerState() != PlayerState.CHOOSEACTION) {
-                newInput = error;
-
-            }
-            else {
-                rmiView.setFamilyPawnChosen(FamilyPawnType.NEUTRAL);
-                newInput = "use family pawn";
-            }
-        }
-
-
-        return newInput;
-
-    }*/
 }

@@ -28,7 +28,7 @@ public class Pray extends Input {
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 
-        Player player = controller.searchPlayer(playerColor);
+        Player player = model.getPlayer(playerColor);
 
         if (answer) {
             int playerFaithPoints = player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS);
