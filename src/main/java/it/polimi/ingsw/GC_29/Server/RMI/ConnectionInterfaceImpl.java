@@ -1,6 +1,7 @@
-package it.polimi.ingsw.GC_29.Server;
+package it.polimi.ingsw.GC_29.Server.RMI;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
+import it.polimi.ingsw.GC_29.Server.GameMatchHandler;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -13,7 +14,7 @@ public class ConnectionInterfaceImpl extends UnicastRemoteObject implements Conn
 
     GameMatchHandler gameMatchHandler;
 
-    protected ConnectionInterfaceImpl(GameMatchHandler gameMatchHandler) throws RemoteException {
+    public ConnectionInterfaceImpl(GameMatchHandler gameMatchHandler) throws RemoteException {
         super();
 
         this.gameMatchHandler = gameMatchHandler;

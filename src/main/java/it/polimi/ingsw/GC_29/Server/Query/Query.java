@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Server;
+package it.polimi.ingsw.GC_29.Server.Query;
 
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 

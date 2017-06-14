@@ -1,6 +1,6 @@
-package it.polimi.ingsw.GC_29.Server;
+package it.polimi.ingsw.GC_29.Server.RMI;
 
-import it.polimi.ingsw.GC_29.Client.ClientViewRemote;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;

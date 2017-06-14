@@ -251,6 +251,10 @@ public class Player extends Observable<Change> {
         }
     }
 
+    public void setPlayerColor(PlayerColor playerColor) {
+        this.playerColor = playerColor;
+    }
+
     public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
         this.leaderCards = leaderCards;
     }

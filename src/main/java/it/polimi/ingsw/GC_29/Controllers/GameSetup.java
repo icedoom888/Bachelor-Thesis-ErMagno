@@ -39,22 +39,21 @@ public class GameSetup {
     // TODO: possibile refactor: rendo classe singleton e rendo init statico passandogli l'arraylist dei players
     // TODO: nel setup settare era, turno e round come first, 1, 1
 
-    public GameSetup(ArrayList<ClientRemoteInterface> clientList) throws RemoteException {
+    public GameSetup(ArrayList<Player> clientList) throws RemoteException {
 
-
-        setPlayers(clientList);
 
         this.gameStatus = new GameStatus();
-
+        this.players = clientList;
+        this.numberOfPlayers = players.size();
         this.orderedDecks = new EnumMap<>(CardColor.class);
         this.excommunicationTileMap = new EnumMap<>(Era.class);
     }
 
-    public void setPlayers(ArrayList<ClientRemoteInterface> clientList) throws RemoteException {
+    /*public void setPlayers(ArrayList<Player> clientList) throws RemoteException {
 
         players = new ArrayList<>();
 
-        for (ClientRemoteInterface clientRemoteInterface : clientList) {
+        for (Player player : clientList) {
 
             String name = clientRemoteInterface.getUserName();
             PlayerColor playerColor = clientRemoteInterface.getPlayerColor();
@@ -68,7 +67,7 @@ public class GameSetup {
 
         this.numberOfPlayers = players.size();
 
-    }
+    }*/
 
 
     /**

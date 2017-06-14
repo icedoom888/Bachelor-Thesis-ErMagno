@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
-import it.polimi.ingsw.GC_29.Client.ClientViewRemote;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Client.InstructionSet;
@@ -8,7 +8,7 @@ import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
+import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;

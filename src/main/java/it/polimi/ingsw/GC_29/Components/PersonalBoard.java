@@ -29,6 +29,19 @@ public class PersonalBoard {
         laneMap.put(CardColor.BLUE, familyLane);
     }
 
+    public PersonalBoard(int laneDimension) {
+
+        buildingLane = new Lane(laneDimension);
+        venturesLane = new Lane(laneDimension);
+        familyLane = new Lane(laneDimension);
+        territoryLane = new TerritoryLane(laneDimension);
+        laneMap = new EnumMap<CardColor, Lane>(CardColor.class);
+        laneMap.put(CardColor.YELLOW, buildingLane);
+        laneMap.put(CardColor.PURPLE, venturesLane);
+        laneMap.put(CardColor.GREEN, territoryLane);
+        laneMap.put(CardColor.BLUE, familyLane);
+    }
+
     public BonusTile getBonusTile() {
         return bonusTile;
     }
@@ -53,4 +66,7 @@ public class PersonalBoard {
         return laneMap.get(cardColor);
     }
 
+    public void setBonusTile(BonusTile bonusTile) {
+        this.bonusTile = bonusTile;
+    }
 }

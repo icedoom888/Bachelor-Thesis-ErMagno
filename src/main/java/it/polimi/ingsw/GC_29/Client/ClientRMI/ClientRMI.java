@@ -8,9 +8,9 @@ import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Server.ConnectionInterface;
-import it.polimi.ingsw.GC_29.Server.Query;
-import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
+import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterface;
+import it.polimi.ingsw.GC_29.Server.Query.Query;
+import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;

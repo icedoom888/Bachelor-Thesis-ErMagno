@@ -14,6 +14,8 @@ public class BonusTile {
         this.harvestEffect = harvestEffect;
     }
 
+
+
     public ObtainEffect getProductionEffect() {
         return productionEffect;
     }
