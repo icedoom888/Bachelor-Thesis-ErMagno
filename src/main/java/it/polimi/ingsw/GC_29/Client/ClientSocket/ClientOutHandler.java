@@ -51,8 +51,8 @@ public class ClientOutHandler implements Runnable {
         // Handles output messages, from the client to the server
         System.out.println("CLIENT OUT HANDLER RUNNING");
 
-
-        while (true) {
+        Boolean b = true;
+        while (b) {
 
             String inputLine = null;
             try {

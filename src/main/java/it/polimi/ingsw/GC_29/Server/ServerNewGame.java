@@ -15,6 +15,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Christian on 12/06/2017.
@@ -41,6 +43,8 @@ public class ServerNewGame implements Runnable {
 
     private final String NAME = "rmiView";
 
+    private ExecutorService executorService = Executors.newCachedThreadPool();
+
 
 
     public ServerNewGame(ClientRemoteInterface client) throws RemoteException {
@@ -49,6 +53,7 @@ public class ServerNewGame implements Runnable {
         addColors();
 
         clientRMIList = new ArrayList<>();
+
         players = new ArrayList<>();
 
         client.setPlayerColor(playerColors.remove(0));
@@ -59,7 +64,7 @@ public class ServerNewGame implements Runnable {
 
         clientRMIList.add(client);
 
-
+        playersSocketMap = new HashMap<>();
 
     }
 
@@ -70,6 +75,8 @@ public class ServerNewGame implements Runnable {
         PlayerColor playerColor = playerColors.remove(0);
 
         Player player = new Player(username, playerColor, new PersonalBoard(6));
+
+        clientRMIList = new ArrayList<>();
 
         playersSocketMap = new HashMap<>();
         playersSocketMap.put(player, socket);
@@ -131,8 +138,8 @@ public class ServerNewGame implements Runnable {
 
                 gameSetup.getGameStatus().registerObserver(serverSocketView);
                 gameSetup.getGameStatus().getPlayer(player.getPlayerColor()).registerObserver(serverSocketView);
-                Thread thread = new Thread(serverSocketView);
-                thread.start();
+                //playersSocketMap.get(player).getOutputStream().
+                executorService.submit(serverSocketView);
 
             } catch (IOException e) {
                 e.printStackTrace();
