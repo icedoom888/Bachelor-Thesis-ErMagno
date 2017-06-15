@@ -7,9 +7,11 @@ import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIView;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
+import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;
 import it.polimi.ingsw.GC_29.Server.Socket.ServerSocketView;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -24,7 +26,7 @@ import java.util.concurrent.Executors;
 public class ServerNewGame implements Runnable {
 
     private ArrayList<ClientRemoteInterface> clientRMIList;
-    private HashMap<Player, Socket> playersSocketMap;
+    private HashMap<Player, PlayerSocket> playersSocketMap;
     private ArrayList<Player> players;
 
     private Boolean minClientNumberReached = false;
@@ -68,7 +70,7 @@ public class ServerNewGame implements Runnable {
 
     }
 
-    public ServerNewGame(String username, Socket socket) {
+    public ServerNewGame(String username, PlayerSocket playerSocket) {
 
         addColors();
 
@@ -79,9 +81,18 @@ public class ServerNewGame implements Runnable {
         clientRMIList = new ArrayList<>();
 
         playersSocketMap = new HashMap<>();
-        playersSocketMap.put(player, socket);
+        playersSocketMap.put(player, playerSocket);
         players = new ArrayList<>();
         players.add(player);
+
+        ObjectOutputStream socketOut = playerSocket.getSocketOut();
+
+        try {
+            socketOut.writeObject(playerColor);
+            socketOut.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -103,14 +114,11 @@ public class ServerNewGame implements Runnable {
         try {
             gameSetup = new GameSetup(players);
             gameSetup.init();
-            System.out.println("INIT");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         Controller controller = new Controller(gameSetup.getGameStatus());
-
-        System.out.println("DOVE TI BLOCCHI");
 
 
         /*try {
@@ -126,8 +134,6 @@ public class ServerNewGame implements Runnable {
 
         for (Player player : playersSocketMap.keySet()) {
 
-            System.out.println("Non entri nel for? sbagliato");
-
             try {
 
                 System.out.println("Creo server socket view");
@@ -138,16 +144,19 @@ public class ServerNewGame implements Runnable {
 
                 gameSetup.getGameStatus().registerObserver(serverSocketView);
                 gameSetup.getGameStatus().getPlayer(player.getPlayerColor()).registerObserver(serverSocketView);
-                //TODO: qualcosa di simile, ho provato ma ancora la view è raticamente vuota
-                // serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
+                serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
                 executorService.submit(serverSocketView);
 
-            } catch (IOException e) {
+            }
+
+            catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+        System.out.println("DOVE TI BLOCCHI");
 
         for (ClientRemoteInterface clientRemoteInterface : clientRMIList) {
             System.out.println("Non entri nel for? giusto");
@@ -183,9 +192,6 @@ public class ServerNewGame implements Runnable {
 
         }
 
-
-
-
         System.out.println("Qua arrivi?");
 
 
@@ -219,12 +225,21 @@ public class ServerNewGame implements Runnable {
         registry.bind(NAME, rmiView); // TODO: il bind verrà chiamato ad ogni inizio partita --> ti darà eccezione AlreadyBound, sistema
     }*/
 
-    public void addClient(String username, Socket socket) {
+    public void addClient(String username, PlayerSocket playerSocket) {
 
         PlayerColor playerColor = playerColors.remove(0);
         Player player = new Player(username, playerColor, new PersonalBoard(6));
         players.add(player);
-        playersSocketMap.put(player, socket);
+        playersSocketMap.put(player, playerSocket);
+
+        ObjectOutputStream socketOut = playerSocket.getSocketOut();
+
+        try {
+            socketOut.writeObject(playerColor);
+            socketOut.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

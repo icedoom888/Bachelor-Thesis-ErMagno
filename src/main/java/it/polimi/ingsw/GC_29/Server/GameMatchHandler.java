@@ -4,7 +4,9 @@ import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Components.PersonalBoard;
 import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;
 
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.rmi.RemoteException;
 import java.util.HashMap;
@@ -45,19 +47,19 @@ public class GameMatchHandler {
 
 
 
-    synchronized public void addClient(String username, Socket socket) throws RemoteException {
+    synchronized public void addClient(String username, PlayerSocket playerSocket) throws RemoteException {
 
         if(!lobbyCreated){
 
             lobbySettings();
 
-            newGameList.put(currentMatchID, new ServerNewGame(username, socket));
+            newGameList.put(currentMatchID, new ServerNewGame(username, playerSocket));
 
         }
 
         else if(currentClientListSize < maxNumberOfPlayers){
 
-            newGameList.get(currentMatchID).addClient(username, socket);
+            newGameList.get(currentMatchID).addClient(username, playerSocket);
             currentClientListSize++;
         }
 

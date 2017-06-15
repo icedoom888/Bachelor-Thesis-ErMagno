@@ -96,8 +96,6 @@ public class ClientRMI {
                         serverViewStub.endTurn();
                         break;
                     case "use family pawn":
-
-
                         System.out.println("colore: " + rmiView.getInputChecker().getFamilyPawnChosen());
                         serverViewStub.usePawnChosen(rmiView.getInputChecker().getFamilyPawnChosen());
                         break;

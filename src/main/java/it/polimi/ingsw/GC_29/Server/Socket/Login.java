@@ -12,22 +12,19 @@ import java.net.Socket;
  */
 public class Login {
 
-    private final Socket socket;
     private final ObjectInputStream socketIn;
     private final ObjectOutputStream socketOut;
     private final GameMatchHandler gameMatchHandler;
     private String username;
 
 
-    public Login(Socket socket, GameMatchHandler gameMatchHandler) throws IOException {
-        this.socket = socket;
-        this.socketIn = new ObjectInputStream(socket.getInputStream());
-        this.socketOut = new ObjectOutputStream(socket.getOutputStream());
+    public Login(PlayerSocket playerSocket, GameMatchHandler gameMatchHandler) throws IOException {
+        this.socketIn = playerSocket.getSocketIn();
+        this.socketOut = playerSocket.getSocketOut();
         this.gameMatchHandler = gameMatchHandler;
-        login();
     }
 
-    private void login() {
+    public String login() {
 
         Boolean logged = false;
 
@@ -59,9 +56,6 @@ public class Login {
                 socketOut.writeBoolean(logged);
                 socketOut.flush();
 
-                if (logged) {
-                    gameMatchHandler.addClient(username, socket);
-                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -69,6 +63,8 @@ public class Login {
                 e.printStackTrace();
             }
         }
+
+        return username;
 
     }
 

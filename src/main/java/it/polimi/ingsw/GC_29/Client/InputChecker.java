@@ -6,7 +6,9 @@ import it.polimi.ingsw.GC_29.Controllers.GameState;
 import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.Server.RMIViewRemote;
+import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -28,6 +30,8 @@ public class InputChecker {
     private int actionIndex;
 
     private HashMap<Integer,String> validActionList;
+
+    private PlayerColor playerColor;
 
     private PlayerState currentPlayerState;
 
@@ -176,5 +180,13 @@ public class InputChecker {
 
     public void setValidActionList(HashMap<Integer,String> validActionList) {
         this.validActionList = validActionList;
+    }
+
+    public PlayerColor getPlayerColor() {
+        return playerColor;
+    }
+
+    public void setPlayerColor(PlayerColor playerColor) {
+        this.playerColor = playerColor;
     }
 }
