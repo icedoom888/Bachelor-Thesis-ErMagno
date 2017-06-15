@@ -31,7 +31,7 @@ public interface RMIViewRemote extends Remote {
      * @return
      * @throws RemoteException
      */
-    HashMap<Integer, String> getValidActionList() throws RemoteException;
+    Map<Integer, String> getValidActionList() throws RemoteException;
 
     void doAction(int index) throws RemoteException;
 

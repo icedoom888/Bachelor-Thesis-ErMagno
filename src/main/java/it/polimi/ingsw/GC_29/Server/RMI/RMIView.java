@@ -93,7 +93,7 @@ public class RMIView extends View implements RMIViewRemote {
 
 
     @Override
-    public HashMap<Integer, String> getValidActionList() throws RemoteException {
+    public Map<Integer, String> getValidActionList() throws RemoteException {
 
         return validActionQuery.perform(gameStatus);
     }

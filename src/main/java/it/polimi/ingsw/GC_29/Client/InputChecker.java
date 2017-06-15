@@ -29,7 +29,7 @@ public class InputChecker {
 
     private int actionIndex;
 
-    private HashMap<Integer,String> validActionList;
+    private Map<Integer,String> validActionList;
 
     private PlayerColor playerColor;
 
@@ -178,7 +178,7 @@ public class InputChecker {
         return actionIndex;
     }
 
-    public void setValidActionList(HashMap<Integer,String> validActionList) {
+    public void setValidActionList(Map<Integer,String> validActionList) {
         this.validActionList = validActionList;
     }
 
@@ -188,5 +188,9 @@ public class InputChecker {
 
     public void setPlayerColor(PlayerColor playerColor) {
         this.playerColor = playerColor;
+    }
+
+    public Map<Integer, String> getValidActionList() {
+        return validActionList;
     }
 }

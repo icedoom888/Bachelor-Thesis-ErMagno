@@ -162,7 +162,7 @@ public class ServerSocketView extends View implements Runnable {
 
             GetValidActions query = (GetValidActions) q;
 
-            HashMap<Integer, String> validActions = query.perform(model);
+            Map<Integer, String> validActions = query.perform(model);
             try {
                 this.socketOut.writeObject(validActions);
                 this.socketOut.flush();

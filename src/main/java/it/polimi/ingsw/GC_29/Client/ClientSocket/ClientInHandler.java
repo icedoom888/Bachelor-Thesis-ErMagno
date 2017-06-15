@@ -46,7 +46,6 @@ public class ClientInHandler implements Runnable {
                     case "Change":
                         updateClient();
                         break;
-
                     case "Valid Actions":
                         validActions();
                         break;
@@ -128,6 +127,10 @@ public class ClientInHandler implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
+                    System.out.println("PRINT TEST");
+
+                    System.out.println(input);
+
                     if (input.contentEquals("Valid Actions")) {
                         validActions();
                     }
@@ -147,14 +150,13 @@ public class ClientInHandler implements Runnable {
 
     public void printValidActionList() {
 
-        HashMap<Integer, String> validActionList = commonView.getValidActionList();
+        Map<Integer, String> validActionList = commonView.getInputChecker().getValidActionList();
 
         if(!validActionList.isEmpty()){
 
             Set<Integer> keys = validActionList.keySet();
 
             for (Integer key : keys) {
-
                 System.out.println("action index: " + key + ") " + validActionList.get(key));
 
             }
@@ -168,7 +170,7 @@ public class ClientInHandler implements Runnable {
     private void validActions() {
 
         try {
-            HashMap<Integer, String> validActions = (HashMap<Integer, String>)socketIn.readObject();
+            Map<Integer, String> validActions = (Map<Integer, String>)socketIn.readObject();
             commonView.getInputChecker().setValidActionList(validActions);
             printValidActionList();
         } catch (IOException e) {

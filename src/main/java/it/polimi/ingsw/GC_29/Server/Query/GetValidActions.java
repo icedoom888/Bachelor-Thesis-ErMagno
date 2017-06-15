@@ -6,18 +6,19 @@ import it.polimi.ingsw.GC_29.Server.Query.Query;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Christian on 07/06/2017.
  */
-public class GetValidActions extends Query<HashMap<Integer, String>> {
+public class GetValidActions extends Query<Map<Integer, String>> {
 
     @Override
-    public HashMap<Integer, String> perform(GameStatus model) {
+    public Map<Integer, String> perform(GameStatus model) {
 
         ArrayList<Action> actionList = model.getCurrentPlayer().getCurrentValidActionsList();
 
-        HashMap<Integer, String> validActions = new HashMap<>();
+        Map<Integer, String> validActions = new HashMap<>();
 
         for (Action action : actionList) {
 

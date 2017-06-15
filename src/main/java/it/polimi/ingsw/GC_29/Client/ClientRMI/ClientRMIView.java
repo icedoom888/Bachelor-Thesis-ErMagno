@@ -21,7 +21,7 @@ import java.util.*;
 public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemote, Serializable {
 
 
-    private HashMap<Integer, String> validActionList;
+    private Map<Integer, String> validActionList;
 
     private PlayerColor playerColor;
 
@@ -45,11 +45,11 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
     }
 
-    public HashMap<Integer, String> getValidActionList() {
+    public Map<Integer, String> getValidActionList() {
         return validActionList;
     }
 
-    public void setValidActionList(HashMap<Integer, String> validActionList) {
+    public void setValidActionList(Map<Integer, String> validActionList) {
         this.validActionList = validActionList;
     }
 
