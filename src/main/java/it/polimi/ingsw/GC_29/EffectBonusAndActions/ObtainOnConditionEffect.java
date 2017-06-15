@@ -132,10 +132,19 @@ public class ObtainOnConditionEffect implements Effect {
 
     @Override
     public String toString() {
-        return "ObtainOnConditionEffect{" +
-                "effectForEachCondition=" + effectForEachCondition +
-                ", cardCondition=" + cardCondition +
-                ", goodsCondition=" + goodsCondition +
-                '}';
+
+        String string = "ObtainOnConditionEffect { " + "\n"
+                + "effectForEachCondition = " + effectForEachCondition + "\n";
+
+        if(cardCondition != null){
+             string = string + "cardCondition = " + cardCondition + "\n";
+        }
+
+        if(goodsCondition != null){
+            string = string + "goodsCondition = " + goodsCondition + "\n";
+        }
+
+
+       return string + "\n" + '}';
     }
 }

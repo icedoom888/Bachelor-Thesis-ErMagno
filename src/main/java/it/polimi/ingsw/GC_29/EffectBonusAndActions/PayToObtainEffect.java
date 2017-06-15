@@ -74,9 +74,9 @@ public class PayToObtainEffect implements Effect{
 
     @Override
     public String toString() {
-        return "PayToObtainEffect{" +
-                "cost=" + cost +
-                ", effect=" + effect +
-                '}';
+        return "PayToObtainEffect {" + "\n"
+                + "cost = " + cost + "\n"
+                + "effect = " + effect + "\n"
+                + '}';
     }
 }

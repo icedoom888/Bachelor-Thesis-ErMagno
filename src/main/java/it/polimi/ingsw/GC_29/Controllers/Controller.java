@@ -30,6 +30,8 @@ public class Controller implements Observer<Input>  {
         playersPraying = 0;
         actionChecker = new ActionChecker(model);
 
+        setCardsOnTowers();
+
         createActions();
     }
 
@@ -66,11 +68,6 @@ public class Controller implements Observer<Input>  {
      */
     public void setNewRound() throws Exception {
 
-        DevelopmentCard[] greenDeck = new DevelopmentCard[4];
-        DevelopmentCard[] blueDeck = new DevelopmentCard[4];
-        DevelopmentCard[] yellowDeck = new DevelopmentCard[4];
-        DevelopmentCard[] purpleDeck = new DevelopmentCard[4];
-
         setFamilyPawnsAndLeaderValues();
         setNewTurnOrder();
 
@@ -98,6 +95,24 @@ public class Controller implements Observer<Input>  {
 
         model.getGameBoard().clearRound();
 
+        setCardsOnTowers();
+
+        model.getTurnOrder().get(0).setPlayerState(PlayerState.THROWDICES);
+
+        //TODO: al posto che queste ultime righe usare chooseCurrentPlayer(0), ma si creano problemi.
+        /*List<Player> turnOrder = model.getTurnOrder();
+
+        model.setCurrentPlayer(turnOrder.get(0));
+        model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);*/
+    }
+
+    private void setCardsOnTowers(){
+
+        DevelopmentCard[] greenDeck = new DevelopmentCard[4];
+        DevelopmentCard[] blueDeck = new DevelopmentCard[4];
+        DevelopmentCard[] yellowDeck = new DevelopmentCard[4];
+        DevelopmentCard[] purpleDeck = new DevelopmentCard[4];
+
         for (int i = 0; i < 4; i++) {
             greenDeck[i] = model.getOrderedDecks().get(CardColor.GREEN).pop();
             blueDeck[i] = model.getOrderedDecks().get(CardColor.BLUE).pop();
@@ -107,24 +122,18 @@ public class Controller implements Observer<Input>  {
 
         model.getGameBoard().setTurn(greenDeck, blueDeck, yellowDeck, purpleDeck);
 
-        //TODO: lancio dei dadi
-
-        chooseCurrentPlayer(0);
-
-        //TODO: al posto che queste ultime righe usare chooseCurrentPlayer(0), ma si creano problemi.
-        /*List<Player> turnOrder = model.getTurnOrder();
-
-        model.setCurrentPlayer(turnOrder.get(0));
-        model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);*/
     }
 
     private void setLeaderValues(Player player) {
 
         HashMap<LeaderCard, Boolean> playerLeaderCards = player.getOncePerRoundLeaders();
 
-        for (LeaderCard leaderCard : playerLeaderCards.keySet()) {
-            playerLeaderCards.put(leaderCard, true);
+        if(!playerLeaderCards.isEmpty()){
+            for (LeaderCard leaderCard : playerLeaderCards.keySet()) {
+                playerLeaderCards.put(leaderCard, true);
+            }
         }
+
     }
 
     public void chooseCurrentPlayer(Integer index) throws Exception {
@@ -416,7 +425,7 @@ public class Controller implements Observer<Input>  {
      * this method set all the availabilities of the family pawns to true and give them the right action value
      * @throws Exception
      */
-    private void setFamilyPawnsAndLeaderValues() throws Exception {
+    public void setFamilyPawnsAndLeaderValues() throws Exception {
 
         for (Player player : model.getTurnOrder()) {
 

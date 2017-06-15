@@ -80,9 +80,9 @@ public class ActionEffect implements Effect{
     @Override
     public String toString() {
         return "ActionEffect{" +
-                "type=" + type +
-                ", actionValue=" + actionValue +
-                ", bonusAndMalusOnCost=" + bonusAndMalusOnCost +
+                "type = " + type +
+                "actionValue = " + actionValue +
+                 bonusAndMalusOnCost +
                 '}';
     }
 

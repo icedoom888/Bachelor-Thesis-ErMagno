@@ -1,12 +1,8 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
-import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
-import it.polimi.ingsw.GC_29.Client.Instruction;
-import it.polimi.ingsw.GC_29.Client.InstructionSet;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
@@ -33,6 +29,12 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
     private transient RMIViewRemote serverViewStub;
 
+    private List<String> playerDevCard;
+
+    private Map<CardColor, List<String>> towerCardsMap;
+
+
+
 
     protected ClientRMIView(PlayerColor playerColor, RMIViewRemote serverViewStub) throws RemoteException {
         super();
@@ -42,6 +44,10 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
         inputChecker = new InputChecker();
 
         this.playerColor = playerColor;
+
+        this.playerDevCard = new ArrayList<>();
+
+        this.towerCardsMap = new EnumMap<>(CardColor.class);
 
     }
 
@@ -96,7 +102,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
             case CHOOSEACTION:
                 validActionList = serverViewStub.getValidActionList();
                 inputChecker.setValidActionList(validActionList);
-                printValidActionList();
+                inputChecker.printValidActionList();
                 break;
 
             //TODO: inserire gestione altri stati se necessario
@@ -104,37 +110,24 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
     }
 
 
-    public void handleHelp(){
+    public void getPlayerDevCard() throws RemoteException {
 
-        List<Instruction> instructionList = inputChecker.getInstructionSet().getInstructions(currentPlayerState);
+        playerDevCard = serverViewStub.getDevelopmentCard(inputChecker.getPlayerCardColor());
 
-        System.out.println("your valid input in this current state are:");
-
-        for (Instruction instruction : instructionList) {
-
-            System.out.println("");
-            System.out.println(instruction.getInstruction());
-
+        for (String s : playerDevCard) {
+            System.out.println(s);
         }
     }
 
-    
-    public void printValidActionList() {
+    public void getTowerCard() throws RemoteException {
 
-        if(!validActionList.isEmpty()){
+        List<String> towerCards = serverViewStub.getTowertCards(inputChecker.getTowerCardColor());
 
-            Set<Integer> keys = validActionList.keySet();
+        towerCardsMap.put(inputChecker.getTowerCardColor(), towerCards);
 
-            for (Integer key : keys) {
-
-                System.out.println("action index: " + key + ") " + validActionList.get(key));
-
-            }
-
+        for (String towerCard : towerCards) {
+            System.out.println(towerCard);
         }
-
-        else System.out.println("nessuna azione valida");
-
     }
 
 }

@@ -243,12 +243,7 @@ public class Player extends Observable<Change> {
 
     public void setFamilyPawnValue(FamilyPawnType familyPawnType, int familyPawnValue) {
 
-        for (FamilyPawn familyPawn : familyPawns) {
-
-            if (familyPawn.getType() == familyPawnType) {
-                familyPawn.setActualValue(familyPawnValue);
-            }
-        }
+        getFamilyPawn(familyPawnType).setActualValue(familyPawnValue);
     }
 
     public void setPlayerColor(PlayerColor playerColor) {

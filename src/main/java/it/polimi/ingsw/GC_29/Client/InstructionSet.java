@@ -32,14 +32,14 @@ public class InstructionSet {
     private final Instruction doAction = new Instruction("execute action (insert index)",
             new ArrayList<>(Arrays.asList(PlayerState.CHOOSEACTION, PlayerState.BONUSACTION)), "execute action \\d+");
 
-    private final Instruction seeCardsDevelopment = new Instruction("see my development cards",
+    private final Instruction seeCardsDevelopment = new Instruction("see my development cards (insert type)",
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)), "see my cards \\w+");
 
     private final Instruction seeCardsLeader = new Instruction("see my leader cards",
-            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)), "see my cards \\w+");
+            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)));
 
     private final Instruction seeCardsExcommunication = new Instruction("see my excommunication cards",
-            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)), "see my cards \\w+");
+            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)));
 
     private final Instruction seeGameBoard = new Instruction("see game board",
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)));
@@ -50,20 +50,26 @@ public class InstructionSet {
     private final Instruction seePersonalBoard = new Instruction("see personal board",
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)));
 
-    private final Instruction seeGameBoardDevelopmentCards = new Instruction("see development cards",
-            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)), "see game board cards \\w+");
+    private final Instruction seeGameBoardDevelopmentCards = new Instruction("see tower cards (tower type)",
+            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)), "see tower cards \\w+");
 
     private final Instruction seeGameBoardExcommunicationCards = new Instruction("see excommunication cards",
-            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)), "see game board cards \\w+");
+            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)));
 
     private final Instruction seeMyGoodSet = new Instruction("see my goodset",
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)));
+
+    private final Instruction seeMyAvailablePawns = new Instruction("see my family pawns",
+            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)));
+
+    private final Instruction throwDices = new Instruction("throw dices",
+            new ArrayList<>(Arrays.asList(PlayerState.THROWDICES)));
 
 
     private final List<Instruction> instructionList = new ArrayList<>(Arrays.asList(
             skipAction, endTurn, useFamilyPawn, activateLeaderCard,
             discardLeaderCard, seeValidActionList, doAction, seeCardsDevelopment, seeCardsExcommunication, seeCardsLeader, seeGameBoard,
-            seeTracks, seePersonalBoard, seeGameBoardDevelopmentCards, seeGameBoardExcommunicationCards, seeMyGoodSet));
+            seeTracks, seePersonalBoard, seeGameBoardDevelopmentCards, seeGameBoardExcommunicationCards, seeMyGoodSet, seeMyAvailablePawns, throwDices));
 
 
     /////////////////////////////////////////////////////////////////////7

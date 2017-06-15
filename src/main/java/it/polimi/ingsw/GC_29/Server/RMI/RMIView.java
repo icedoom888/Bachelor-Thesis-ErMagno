@@ -1,7 +1,10 @@
 package it.polimi.ingsw.GC_29.Server.RMI;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
+import it.polimi.ingsw.GC_29.Components.CardColor;
+import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.Components.Floor;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -9,9 +12,7 @@ import it.polimi.ingsw.GC_29.Server.Query.GetValidActions;
 import it.polimi.ingsw.GC_29.Server.View;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -86,6 +87,45 @@ public class RMIView extends View implements RMIViewRemote {
     public void initialize(PlayerColor playerColor) throws RemoteException {
         try {
             notifyObserver(new Initialize(playerColor));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<String> getDevelopmentCard(CardColor cardColor) throws RemoteException {
+
+        List<String> returnList = new ArrayList<>();
+
+        DevelopmentCard playerCards[] = gameStatus.getCurrentPlayer().getPersonalBoard().getLane(cardColor).getCards();
+
+        for (DevelopmentCard playerCard : playerCards) {
+
+            returnList.add(playerCard.toString());
+        }
+
+        return returnList;
+    }
+
+    @Override
+    public List<String> getTowertCards(CardColor towerCardColor) throws RemoteException{
+
+        List<String> returnList = new ArrayList<>();
+
+        List<Floor> floors = Arrays.asList(gameStatus.getGameBoard().getTower(towerCardColor).getFloors());
+
+        for (Floor floor : floors) {
+
+            returnList.add( "Floor " + floors.indexOf(floor) + "\n" + floor.getDevelopmentCard().toString());
+        }
+
+        return returnList;
+    }
+
+    @Override
+    public void throwDices() throws RemoteException {
+        try {
+            notifyObserver(new ThrowDices());
         } catch (Exception e) {
             e.printStackTrace();
         }

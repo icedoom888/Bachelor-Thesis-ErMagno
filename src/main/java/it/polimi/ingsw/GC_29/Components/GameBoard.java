@@ -120,13 +120,26 @@ public class GameBoard {
 
     public Tower getTower(ZoneType zoneType){
         if (zoneType != ZoneType.GREENTOWER && zoneType != ZoneType.YELLOWTOWER && zoneType != ZoneType.BLUETOWER && zoneType != ZoneType.PURPLETOWER){
-            throw new IllegalArgumentException("Illegal tower equest: " + zoneType);
+            throw new IllegalArgumentException(String.format("Illegal tower request: %s", zoneType));
         }
 
         else{
 
             return towerMap.get(zoneType);
         }
+    }
+
+    public Tower getTower(CardColor cardColor){
+
+        for(Tower tower : towerMap.values()){
+
+            if(tower.getCardType() == cardColor){
+                return tower;
+            }
+        }
+
+        throw new IllegalArgumentException(String.format("Illegal tower request: %s", cardColor));
+
     }
 
     public Workspace getWorkArea(ZoneType area){
@@ -244,6 +257,6 @@ public class GameBoard {
             towerMap.get(ZoneType.YELLOWTOWER).getFloor(i).addCard(yellowDeck[i]);
             towerMap.get(ZoneType.PURPLETOWER).getFloor(i).addCard(purpleDeck[i]);
         }
-
+        int i = 0;
     }
 }

@@ -75,15 +75,23 @@ public class DevelopmentCard {
 
     @Override
     public String toString() {
-        return "DevelopmentCard{"
-                + "name='" + name
-                + ", era=" + era
-                + ", cardCost=" + cardCost
-                + ", color=" + color
-                + ", immediateEffect=" + immediateEffect
-                + ", permanentEffect=" + permanentEffect
-                + ", withActionValue=" + withActionValue
-                + ", actionValue=" + actionValue
-                + '}';
+
+        String returnString = "DevelopmentCard{ \n"
+                + "name = '" + name + "'\n"
+                + "era = " + era + "\n"
+                + "color = " + color + "\n"
+                + "cardCost = " + cardCost + "\n"
+                + "immediateEffect = " + immediateEffect + "\n"
+                + "permanentEffect = " + permanentEffect + "\n";
+
+        if (withActionValue) {
+
+        returnString =  returnString
+                        + "actionValue = " + actionValue + "\n"
+                        + '}';
+        }
+
+        return returnString;
+
     }
 }

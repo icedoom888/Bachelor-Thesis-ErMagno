@@ -33,6 +33,15 @@ public class Cost {
 
     @Override
     public String toString() {
-        return "Cost{" + "cost=" + cost + ", necessaryResources=" + necessaryResources + '}';
+
+        String string =  cost + "\n";
+
+        if(!necessaryResources.areAllZeroValues()){
+
+            string = string + "necessaryResources = " + necessaryResources +"\n"
+                    + '}';
+        }
+
+        return string;
     }
 }

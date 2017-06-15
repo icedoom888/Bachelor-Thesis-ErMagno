@@ -46,7 +46,9 @@ public class ObtainEffect implements Effect {
 
     @Override
     public String toString() {
-        return "ObtainEffect{" + "goodsObtained=" + goodsObtained + '}';
+
+        return "ObtainEffect { " + "\n"
+                + "goodsObtained = " + goodsObtained + "\n" + '}';
     }
 
     public void doubleResources() {

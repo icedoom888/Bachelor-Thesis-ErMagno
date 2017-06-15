@@ -63,7 +63,11 @@ public class ClientOutHandler implements Runnable {
                 inputLine = commonView.getInputChecker().checkInput(inputLine);
 
                 switch (inputLine) {
-
+                    case "throw dices":
+                        System.out.println("STAI LANCIANDO I DADI");
+                        socketOut.writeObject("throw dices");
+                        socketOut.flush();
+                        break;
                     case "skip action":
                         System.out.println("STAI SKIPPANDO L'AZIONE");
                         socketOut.writeObject("skip action");

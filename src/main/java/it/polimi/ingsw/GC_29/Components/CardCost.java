@@ -66,6 +66,19 @@ public class CardCost {
 
     @Override
     public String toString() {
-        return "CardCost{" + "withPrice=" + withPrice + ", alternative=" + alternative + ", mainCost=" + mainCost + ", alternativeCost=" + alternativeCost + '}';
+
+        if(alternative){
+            return  "mainCost = " + mainCost +"\n"
+                    + "alternativeCost = " + alternativeCost + "\n"
+                    + '}';
+        }
+
+        else if(withPrice){
+
+            return mainCost + "\n" + '}';
+        }
+        return "";
+
+
     }
 }

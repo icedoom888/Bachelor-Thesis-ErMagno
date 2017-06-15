@@ -33,7 +33,9 @@ public class ClientInHandler implements Runnable {
 
         System.out.println("Client In Running");
 
-        while(true){
+        Boolean b = true;
+
+        while(b){
 
             // handles input messages coming from the server, just showing them to the user
             try {

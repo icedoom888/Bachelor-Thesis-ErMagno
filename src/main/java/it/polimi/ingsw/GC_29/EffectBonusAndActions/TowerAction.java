@@ -338,7 +338,7 @@ public class TowerAction extends Action {
         super.reset();
         this.actionSpaceGoodSet = new GoodSet();
         this.towerCost = new GoodSet();
-        this.possibleCardCosts = null;
+        this.possibleCardCosts.clear();
     }
 
     public void setCardCost(CardCost cardCost) {

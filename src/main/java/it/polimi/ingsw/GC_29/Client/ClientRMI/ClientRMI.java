@@ -89,6 +89,9 @@ public class ClientRMI {
 
                 // Call the appropriate method in the server
                 switch (inputLine) {
+                    case "throw dices":
+                        serverViewStub.throwDices();
+                        break;
                     case "skip action":
                         serverViewStub.skipAction();
                         break;
@@ -100,25 +103,33 @@ public class ClientRMI {
                         serverViewStub.usePawnChosen(rmiView.getInputChecker().getFamilyPawnChosen());
                         break;
                     case "see valid action list":
-                        rmiView.setValidActionList(serverViewStub.getValidActionList());
-                        rmiView.printValidActionList();
+                        rmiView.getInputChecker().printValidActionList();
                         break;
                     case "execute action":
                         serverViewStub.doAction(rmiView.getInputChecker().getActionIndex());
                         break;
                     case "I want to pray":
-                        serverViewStub.pray(true, rmiView.getPlayerColor());
+                        serverViewStub.pray(true, rmiView.getInputChecker().getPlayerColor());
                         break;
                     case "I don't want to pray":
-                        serverViewStub.pray(false, rmiView.getPlayerColor());
+                        serverViewStub.pray(false, rmiView.getInputChecker().getPlayerColor());
+                        break;
+
+                    case "see development card":
+                        rmiView.getPlayerDevCard();
+                        break;
+
+                    case "see tower card":
+                        rmiView.getTowerCard();
                         break;
 
                     case "help":
-                        rmiView.handleHelp();
+                        rmiView.getInputChecker().handleHelp();
                         break;
 
                     default:
-                        rmiView.handleHelp();
+                        System.out.println(inputLine);
+                        System.out.println("if you want to see your valid input for this current state insert : help");
                         break;
                 }
 

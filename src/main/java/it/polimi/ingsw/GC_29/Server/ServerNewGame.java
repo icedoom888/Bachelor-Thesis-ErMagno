@@ -118,7 +118,12 @@ public class ServerNewGame implements Runnable {
             e.printStackTrace();
         }
 
-        Controller controller = new Controller(gameSetup.getGameStatus());
+        Controller controller = null;
+        try {
+            controller = new Controller(gameSetup.getGameStatus());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         /*try {

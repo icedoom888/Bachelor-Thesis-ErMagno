@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Server.RMI;
 
+import com.sun.org.apache.regexp.internal.RE;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
+import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -9,6 +11,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,4 +46,10 @@ public interface RMIViewRemote extends Remote {
     void pray(boolean b, PlayerColor playerColor) throws RemoteException;
 
     void initialize(PlayerColor playerColor) throws RemoteException;
+
+    List<String> getDevelopmentCard(CardColor cardColor) throws RemoteException;
+
+    List<String> getTowertCards(CardColor towerCardColor) throws RemoteException;
+
+    void throwDices() throws RemoteException;
 }

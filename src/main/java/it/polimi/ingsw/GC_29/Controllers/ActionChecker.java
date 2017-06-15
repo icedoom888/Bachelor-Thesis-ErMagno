@@ -89,9 +89,6 @@ public class ActionChecker {
 
 
             validActionList.add(action);
-
-            System.out.println(action);
-            System.out.println("");
         }
 
         currentPlayer.setCurrentValidActionsList(validActionList);

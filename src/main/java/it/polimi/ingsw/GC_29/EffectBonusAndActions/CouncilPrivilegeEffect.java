@@ -166,7 +166,9 @@ public class CouncilPrivilegeEffect implements Effect {
 
     @Override
     public String toString() {
-        return "CouncilPrivilegeEffect{" + "numberOfCouncilPrivileges=" + numberOfCouncilPrivileges + ", effectsChosen=" + Arrays.toString(effectsChosen) + '}';
+          return "CouncilPrivilegeEffect { "
+                + "numberOfCouncilPrivileges = " + numberOfCouncilPrivileges + "\n"
+                + '}';
     }
 
     public void doubleResources() {

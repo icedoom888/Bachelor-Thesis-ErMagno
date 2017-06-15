@@ -117,7 +117,9 @@ public class GoodSet extends Observable<MovePawn> {
     public String toString() {
         StringBuilder result = new StringBuilder();
         for(GoodType type : GoodType.values()){
-            result.append(type + ": " + getGoodAmount(type) + " ");
+            if(getGoodAmount(type) !=0){
+                result.append(type + ": " + getGoodAmount(type) + ", ");
+            }
        }
        return result.toString();
     }
@@ -136,6 +138,17 @@ public class GoodSet extends Observable<MovePawn> {
 
             if(goodSetMap.get(goodType) != goodSet1.getGoodAmount(goodType)){
 
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public Boolean areAllZeroValues(){
+
+        for(int i : goodSetMap.values()){
+            if(i !=0 ){
                 return false;
             }
         }

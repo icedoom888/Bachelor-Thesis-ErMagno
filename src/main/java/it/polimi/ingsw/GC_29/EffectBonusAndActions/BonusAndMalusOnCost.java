@@ -58,4 +58,28 @@ public class BonusAndMalusOnCost {
     public void changeCost(Cost cost, GoodSet discount) {
         cost.getCost().addGoodSet(discount);
     }
+
+    @Override
+    public String toString() {
+
+        if(firstDiscount.areAllZeroValues() && secondDiscount.areAllZeroValues()){
+            return "";
+        }
+
+        else{
+            String string = "BonusAndMalusOnCost { " + "\n"
+                    + "zoneType = " + zoneType + "\n"
+                    + "discount = " + firstDiscount + "\n";
+
+            if(alternative){
+
+                string = string + "secondDiscount = " + secondDiscount + "\n"
+                        +  '}';
+            }
+
+            return string;
+
+        }
+
+    }
 }

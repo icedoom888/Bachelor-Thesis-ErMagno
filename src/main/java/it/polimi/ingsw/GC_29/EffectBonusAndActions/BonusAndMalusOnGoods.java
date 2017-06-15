@@ -11,6 +11,7 @@ import static java.lang.Math.max;
  * Created by Lorenzotara on 17/05/17.
  */
 public class BonusAndMalusOnGoods {
+
     private GoodSet goodSetBonusMalus;
 
     public BonusAndMalusOnGoods(GoodSet goodSetBonusMalus) {
@@ -21,17 +22,17 @@ public class BonusAndMalusOnGoods {
         return goodSetBonusMalus;
     }
 
-    public void filter(GoodSet goodsObtained){
+    public void filter(GoodSet goodsObtained) {
 
         Map<GoodType, Integer> temporaryHashMapGoodSet = goodsObtained.getMapGoodSet();
 
-        for(GoodType type : GoodType.values()) { // il doppio ciclo for mi sta bene poiché la dimensione del secondo for è costante, dunque complessità O(n)
+        for (GoodType type : GoodType.values()) { // il doppio ciclo for mi sta bene poiché la dimensione del secondo for è costante, dunque complessità O(n)
 
             int goodObtainedAmount = temporaryHashMapGoodSet.get(type);
 
             int BonusMalusOnGoodAmount = goodSetBonusMalus.getMapGoodSet().get(type);
 
-            if(goodObtainedAmount*BonusMalusOnGoodAmount !=0) {
+            if (goodObtainedAmount * BonusMalusOnGoodAmount != 0) {
 
                 int temporaryAmount = goodObtainedAmount + BonusMalusOnGoodAmount;
 
@@ -42,6 +43,18 @@ public class BonusAndMalusOnGoods {
 
     @Override
     public String toString() {
-        return "BonusAndMalusOnGoods{" + "goodSetBonusMalus=" + goodSetBonusMalus + '}';
+
+        if (goodSetBonusMalus.areAllZeroValues()) {
+            return "";
+        }
+        else {
+
+
+            return "BonusAndMalusOnGoods { " + "\n"
+                    + "goodSetBonusMalus = " + goodSetBonusMalus + "\n"
+                    + '}';
+
+        }
+
     }
 }

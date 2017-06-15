@@ -1,20 +1,12 @@
 package it.polimi.ingsw.GC_29.Client;
 
-import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
+import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.GameState;
-import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,6 +30,9 @@ public class InputChecker {
     private Map<FamilyPawnType, Boolean> familyPawnAvailability;
 
     private GameState currentGameState;
+
+    private CardColor playerCardColor;
+    private CardColor towerCardColor;
 
     public InputChecker(){
 
@@ -109,11 +104,46 @@ public class InputChecker {
 
                 return handleExecuteAction(lastWord);
 
+            case ("see my development cards (insert type)"):
+
+                return handleQueryCards(lastWord, true);
+
+            case("see tower cards (tower type)"):
+
+                return handleQueryCards(lastWord, false);
+
         }
 
         Integer.parseInt(lastWord);
 
         return null;
+    }
+
+    private String handleQueryCards(String lastWord, Boolean isPlayerCard) {
+
+        String upperCaseWord = lastWord.toUpperCase();
+
+        Class<CardColor> cardColorClass = CardColor.class;
+
+        for (CardColor color : cardColorClass.getEnumConstants()) {
+            if(color.name().equals(upperCaseWord)){
+
+                if(isPlayerCard){
+
+                    this.playerCardColor = color;
+                    return "see development card";
+                }
+                else {
+                    this.towerCardColor = color;
+                    return "see tower card";
+                }
+
+            }
+        }
+
+        return "invalid input";
+
+        
     }
 
     private String handleExecuteAction(String lastWord){
@@ -143,20 +173,59 @@ public class InputChecker {
 
     private String handleUseFamilyPawn(String lastWord){
 
-        lastWord = lastWord.toUpperCase();
+        String upperCaseWord = lastWord.toUpperCase();
 
-        for(FamilyPawnType familyPawnType : FamilyPawnType.values()){
+        Class<FamilyPawnType> familyPawnTypeClass = FamilyPawnType.class;
 
-            if(FamilyPawnType.valueOf(lastWord) == familyPawnType && familyPawnAvailability.get(familyPawnType)){
+        for (FamilyPawnType familyPawnType : familyPawnTypeClass.getEnumConstants()) {
+
+            if(familyPawnType.name().equals(upperCaseWord)){
 
                 this.familyPawnChosen = familyPawnType;
 
                 return "use family pawn";
+
             }
         }
 
         return "invalid input";
     }
+
+
+    public void handleHelp(){
+
+        List<Instruction> instructionList = instructionSet.getInstructions(currentPlayerState);
+
+        System.out.println("your valid input in this current state are:");
+
+        for (Instruction instruction : instructionList) {
+
+            System.out.println("");
+            System.out.println(instruction.getInstruction());
+
+        }
+    }
+
+
+    public void printValidActionList() {
+
+        if(!validActionList.isEmpty()){
+
+            Set<Integer> keys = validActionList.keySet();
+
+            for (Integer key : keys) {
+
+                System.out.println("action index: " + key + ") " + validActionList.get(key));
+
+            }
+
+        }
+
+        else System.out.println("nessuna azione valida");
+
+    }
+
+
 
     public void setFamilyPawnAvailability(Map<FamilyPawnType,Boolean> familyPawnAvailability) {
         this.familyPawnAvailability = familyPawnAvailability;
@@ -192,5 +261,13 @@ public class InputChecker {
 
     public Map<Integer, String> getValidActionList() {
         return validActionList;
+    }
+
+    public CardColor getPlayerCardColor() {
+        return playerCardColor;
+    }
+
+    public CardColor getTowerCardColor() {
+        return towerCardColor;
     }
 }

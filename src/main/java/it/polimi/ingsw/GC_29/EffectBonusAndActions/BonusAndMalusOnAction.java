@@ -99,9 +99,14 @@ public class BonusAndMalusOnAction {
 
     @Override
     public String toString() {
-        return "BonusAndMalusOnAction{"
-                + "zoneType=" + zoneType
-                + ", diceIncrementOrReduction=" + diceIncrementOrReduction
-                + '}';
+
+        if(diceIncrementOrReduction != 0){
+            return "BonusAndMalusOnAction { "
+                    + "zoneType = " + zoneType + "\n"
+                    + "diceIncrementOrReduction = " + diceIncrementOrReduction +"\n"
+                    + '}';
+        }
+        else
+            return "";
     }
 }

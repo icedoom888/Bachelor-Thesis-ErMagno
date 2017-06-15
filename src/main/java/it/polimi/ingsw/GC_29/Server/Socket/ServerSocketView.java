@@ -56,7 +56,9 @@ public class ServerSocketView extends View implements Runnable {
     @Override
     public void run() {
 
-        while (true) {
+        Boolean b = true;
+
+        while (b) {
             // await for incoming data from the client
             try {
 
@@ -71,6 +73,11 @@ public class ServerSocketView extends View implements Runnable {
                     String string = (String)object;
 
                     switch (string) {
+
+                        case "throw dices":
+                            notifyObserver(new ThrowDices());
+                            break;
+
                         case "family pawn chosen":
                             FamilyPawnType familyPawnType = (FamilyPawnType) socketIn.readObject();
                             notifyObserver(new UsePawnChosen(familyPawnType));

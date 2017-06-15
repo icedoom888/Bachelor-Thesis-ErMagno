@@ -50,6 +50,10 @@ public class BonusEffect implements Effect {
 
     @Override
     public String toString() {
-        return "BonusEffect{" + "bonusAndMalusOnAction=" + bonusAndMalusOnAction + ", bonusAndMalusOnGoods=" + bonusAndMalusOnGoods + ", bonusAndMalusOnCost=" + bonusAndMalusOnCost + '}';
+        return "BonusEffect{"+"\n"
+                + bonusAndMalusOnAction +"\n"
+                + bonusAndMalusOnGoods +"\n"
+                + bonusAndMalusOnCost +"\n"
+                + '}';
     }
 }
