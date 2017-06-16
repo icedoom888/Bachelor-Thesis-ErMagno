@@ -52,4 +52,12 @@ public interface RMIViewRemote extends Remote {
     List<String> getTowertCards(CardColor towerCardColor) throws RemoteException;
 
     void throwDices() throws RemoteException;
+
+    Map<Integer,ArrayList<String>> getCardsForWorkers() throws RemoteException;
+
+    void activateCards(int workersChosen) throws RemoteException;
+
+    Map<String,HashMap<Integer,String>> getPayToObtainCards() throws RemoteException;
+
+    void payToObtainCardChosen(Map<String, Integer> activatedCardMap) throws RemoteException;
 }

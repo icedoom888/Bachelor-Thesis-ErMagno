@@ -65,11 +65,24 @@ public class InstructionSet {
     private final Instruction throwDices = new Instruction("throw dices",
             new ArrayList<>(Arrays.asList(PlayerState.THROWDICES)));
 
+    private final Instruction chooseWorkers = new Instruction("use workers (workers amount)",
+            new ArrayList<>(Arrays.asList(PlayerState.THROWDICES)), "use workers \\d+");
+
+    private final Instruction activateCard = new Instruction("activate (yes / no)",
+            new ArrayList<>(Arrays.asList(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS)), "\\w+");
+
+    private final Instruction disactivateCard = new Instruction("do not activate card",
+            new ArrayList<>(Arrays.asList(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS)));
+
+    private final Instruction chooseEffect = new Instruction("use effect (effect index)",
+            new ArrayList<>(Arrays.asList(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS)), "use effect \\d+");
+
 
     private final List<Instruction> instructionList = new ArrayList<>(Arrays.asList(
             skipAction, endTurn, useFamilyPawn, activateLeaderCard,
             discardLeaderCard, seeValidActionList, doAction, seeCardsDevelopment, seeCardsExcommunication, seeCardsLeader, seeGameBoard,
-            seeTracks, seePersonalBoard, seeGameBoardDevelopmentCards, seeGameBoardExcommunicationCards, seeMyGoodSet, seeMyAvailablePawns, throwDices));
+            seeTracks, seePersonalBoard, seeGameBoardDevelopmentCards, seeGameBoardExcommunicationCards, seeMyGoodSet, seeMyAvailablePawns,
+            throwDices, chooseWorkers, activateCard, disactivateCard, chooseEffect));
 
 
     /////////////////////////////////////////////////////////////////////7

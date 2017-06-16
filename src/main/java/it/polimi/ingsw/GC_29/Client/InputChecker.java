@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.GameState;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Server.Server;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -29,16 +30,42 @@ public class InputChecker {
 
     private Map<FamilyPawnType, Boolean> familyPawnAvailability;
 
+    ///////WORKACTION VARIABLES////
+
+    private int currentPayToObtainEffectIndex;
+    private Boolean cardIsToActivate;
+    private Map<Integer, ArrayList<String>> possibleCardsWorkActionMap;
+    private  List<String> payToObtainCardKeys;
+    private Map<String, HashMap<Integer, String >> payToObtainCardsMap;
+    private String currentPayToObtainCard;
+    private Map<Integer, String> currentPayToObtainEffectsMap;
+
     private GameState currentGameState;
 
     private CardColor playerCardColor;
     private CardColor towerCardColor;
+
+    private int workersChosen;
+
+    private Map<String, Integer> activatedCardMap;
 
     public InputChecker(){
 
         instructionSet = new InstructionSet();
 
         validActionList = new HashMap<>();
+
+        familyPawnAvailability = new EnumMap<>(FamilyPawnType.class);
+
+        possibleCardsWorkActionMap = new HashMap<>();
+
+        payToObtainCardsMap = new HashMap<>();
+
+        payToObtainCardKeys = new ArrayList<>();
+
+        currentPayToObtainEffectsMap = new HashMap<>();
+
+        activatedCardMap = new HashMap<>();
 
         //TODO dalla view ad ogni update devo settare i valori giusti (pawnAvailability, playerState, gameState)
     }
@@ -112,11 +139,76 @@ public class InputChecker {
 
                 return handleQueryCards(lastWord, false);
 
+            case ("use workers (workers amount)"):
+
+                return handleWorkersToActivateCards(lastWord);
+
+            case ("use effect (effect index)"):
+
+                return handleChooseEffect(lastWord);
+
+            case ("activate (yes / no)"):
+
+                return handleActivateCard(lastWord);
+
         }
 
         Integer.parseInt(lastWord);
 
         return null;
+    }
+
+    private String handleActivateCard(String lastWord) {
+
+        if(lastWord.equals("yes")){
+
+            cardIsToActivate = true;
+
+            return "activate card";
+        }
+        if(lastWord.equals("no")){
+            cardIsToActivate = false;
+            return "activate card";
+        }
+
+        return "invalid input";
+    }
+
+    private String handleChooseEffect(String lastWord) {
+
+        int index = Integer.parseInt(lastWord);
+
+
+        if(currentPayToObtainEffectsMap.keySet().contains(index)){
+
+            currentPayToObtainEffectIndex = index;
+
+            return "effect chosen";
+        }
+
+        else {
+
+            return "invalid input";
+        }
+    }
+
+    private String handleWorkersToActivateCards(String lastWord) {
+
+        int index = Integer.parseInt(lastWord);
+
+
+        if(possibleCardsWorkActionMap.keySet().contains(index)){
+
+            workersChosen = index;
+
+            return "use workers";
+        }
+
+        else {
+
+            return "invalid input";
+        }
+
     }
 
     private String handleQueryCards(String lastWord, Boolean isPlayerCard) {
@@ -149,7 +241,6 @@ public class InputChecker {
     private String handleExecuteAction(String lastWord){
 
         int index = Integer.parseInt(lastWord);
-
 
         if(validActionList.keySet().contains(index)){
             actionIndex = index;
@@ -269,5 +360,136 @@ public class InputChecker {
 
     public CardColor getTowerCardColor() {
         return towerCardColor;
+    }
+
+    public Map<Integer, ArrayList<String>> getPossibleCardsWorkActionMap() {
+        return possibleCardsWorkActionMap;
+    }
+
+    public void setPossibleCardsWorkActionMap(Map<Integer, ArrayList<String>> possibleCardsWorkActionMap) {
+        this.possibleCardsWorkActionMap = possibleCardsWorkActionMap;
+    }
+
+    public int getWorkersChosen() {
+        return workersChosen;
+    }
+
+
+    public void setPayToObtainCardsMap(Map<String, HashMap<Integer, String>> payToObtainCardsMap) {
+
+        this.payToObtainCardsMap = payToObtainCardsMap;
+
+        Set<String> keySet = payToObtainCardsMap.keySet();
+
+        payToObtainCardKeys = Arrays.asList(keySet.toArray(new String[keySet.size()]));
+
+        currentPayToObtainCard = payToObtainCardKeys.remove(0);
+
+    }
+
+    public void printPossibleCardsWorkAction() {
+
+        Set<Integer> workerskeys = possibleCardsWorkActionMap.keySet();
+
+        for(Integer workersAmount : workerskeys){
+
+            ArrayList<String> tempString = possibleCardsWorkActionMap.get(workersAmount);
+
+            System.out.println(" if you use this workers amount" + workersAmount + "you can activate these cards: \n");
+
+            tempString.forEach(System.out::println);
+        }
+    }
+
+    public void askActivateCard() {
+
+        System.out.println("Do you want to activate this card? \n" + currentPayToObtainCard);
+
+        System.out.println("insert valid input: yes / no");
+    }
+
+    public Boolean nextCard(){
+
+        if(!payToObtainCardKeys.isEmpty()){
+
+            currentPayToObtainCard = payToObtainCardKeys.remove(0);
+
+            return true;
+        }
+
+        else{
+
+            return false;
+        }
+
+    }
+
+    public Map<String, Integer> getActivatedCardMap() {
+        return activatedCardMap;
+    }
+
+    public int getCurrentPayToObtainEffectIndex() {
+        return currentPayToObtainEffectIndex;
+    }
+
+    public void setCurrentPayToObtainEffectIndex(int currentPayToObtainEffectIndex) {
+        this.currentPayToObtainEffectIndex = currentPayToObtainEffectIndex;
+    }
+
+    public boolean handleCardDecision() {
+
+        if(cardIsToActivate){
+
+            currentPayToObtainEffectsMap = payToObtainCardsMap.get(currentPayToObtainCard);
+
+            if(currentPayToObtainEffectsMap.size() > 1){
+
+                askWichEffect();
+
+                return false;
+            }
+
+            else{
+
+                Set<Integer> keySet = payToObtainCardsMap.get(currentPayToObtainCard).keySet();
+
+                Integer keyArray[] = keySet.toArray(new Integer[keySet.size()]);
+
+                currentPayToObtainEffectIndex = keyArray[0];
+
+                addCard();
+
+                return true;
+            }
+
+        }
+
+        return true;
+    }
+
+    public void addCard() {
+
+        activatedCardMap.put(currentPayToObtainCard, currentPayToObtainEffectIndex);
+    }
+
+    private void askWichEffect() {
+
+        if(!currentPayToObtainEffectsMap.isEmpty()){
+
+            setCurrentPlayerState(PlayerState.CHOOSE_EFFECT);
+
+            Set<Integer> keys = currentPayToObtainEffectsMap.keySet();
+
+            System.out.println("which Pay To Obtain do you want to activate?");
+
+            for (Integer key : keys) {
+
+                System.out.println("effect index: " + key + ") " + currentPayToObtainEffectsMap.get(key));
+
+            }
+
+            System.out.println("insert the effect index:");
+
+        }
     }
 }

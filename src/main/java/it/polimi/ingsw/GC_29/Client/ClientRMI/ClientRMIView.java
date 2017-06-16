@@ -34,8 +34,6 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
     private Map<CardColor, List<String>> towerCardsMap;
 
 
-
-
     protected ClientRMIView(PlayerColor playerColor, RMIViewRemote serverViewStub) throws RemoteException {
         super();
 
@@ -103,6 +101,17 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
                 validActionList = serverViewStub.getValidActionList();
                 inputChecker.setValidActionList(validActionList);
                 inputChecker.printValidActionList();
+                break;
+
+            case CHOOSEWORKERS:
+                inputChecker.setPossibleCardsWorkActionMap(serverViewStub.getCardsForWorkers());
+                inputChecker.printPossibleCardsWorkAction();
+                break;
+
+            case ACTIVATE_PAY_TO_OBTAIN_CARDS:
+                inputChecker.setPayToObtainCardsMap(serverViewStub.getPayToObtainCards());
+                inputChecker.askActivateCard();
+
                 break;
 
             //TODO: inserire gestione altri stati se necessario

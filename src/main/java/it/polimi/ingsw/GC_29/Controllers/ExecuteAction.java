@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.rmi.RemoteException;
@@ -40,37 +41,55 @@ public class ExecuteAction extends Input {
 
         Action actionSelected = currentPlayer.getCurrentValidActionsList().get(actionIndex);
 
-        actionSelected.execute();
+        if(actionSelected instanceof WorkAction){
 
-        //TODO: ripetizione di codice --> REFACTOR
+            WorkAction workAction = (WorkAction)actionSelected;
+            workAction.buildDifferentChoices();
+            currentPlayer.setCurrentAction(workAction);
 
-        if(!currentPlayer.getCurrentBonusActionList().isEmpty()){
-
-            ActionEffect currentBonusAction = model.getCurrentPlayer().getCurrentBonusActionList().removeFirst();
-
-            // temporary bonusMalusOn cost setted in the player
-            if(currentBonusAction.getBonusAndMalusOnCost() != null){
-
-                model.getCurrentPlayer().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
-
-            }
-
-
-            actionChecker.resetActionListExceptPlayer();
-
-            FamilyPawn familyPawn = new FamilyPawn(model.getCurrentPlayer().getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
-
-            actionChecker.setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
-
-            model.getCurrentPlayer().setPlayerState(PlayerState.BONUSACTION);
+            currentPlayer.setPlayerState(PlayerState.CHOOSEWORKERS);
 
         }
 
+        /////////////NORMAL ACTIONS WITHOUT DISTRIBUTION////////////////////
+
         else {
 
-            // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
+            currentPlayer.setCurrentAction(actionSelected);
 
-            currentPlayer.setPlayerState(PlayerState.ENDTURN);
+            actionSelected.execute();
+
+            controller.handleEndAction();
+
+            //TODO: ripetizione di codice --> REFACTOR
+
+            /*if (!currentPlayer.getCurrentBonusActionList().isEmpty()) {
+
+                ActionEffect currentBonusAction = model.getCurrentPlayer().getCurrentBonusActionList().removeFirst();
+
+                // temporary bonusMalusOn cost setted in the player
+                if (currentBonusAction.getBonusAndMalusOnCost() != null) {
+
+                    model.getCurrentPlayer().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
+
+                }
+
+
+                actionChecker.resetActionListExceptPlayer();
+
+                FamilyPawn familyPawn = new FamilyPawn(model.getCurrentPlayer().getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
+
+                actionChecker.setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
+
+                model.getCurrentPlayer().setPlayerState(PlayerState.BONUSACTION);
+
+            } else {
+
+                // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
+
+                currentPlayer.setPlayerState(PlayerState.ENDTURN);
+
+            }*/
 
         }
 

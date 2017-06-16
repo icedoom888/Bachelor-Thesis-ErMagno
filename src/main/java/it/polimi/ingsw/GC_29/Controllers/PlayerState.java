@@ -11,5 +11,7 @@ public enum PlayerState {
     BONUSACTION,
     ENDTURN,
     PRAY,
-    WAITING
+    WAITING,
+    CHOOSEWORKERS,
+    CHOOSE_EFFECT, ACTIVATE_PAY_TO_OBTAIN_CARDS
 }

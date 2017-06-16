@@ -550,4 +550,35 @@ public class Controller implements Observer<Input>  {
 
         actionChecker.setActionList(actionList);
     }
+
+    public void handleEndAction(){
+
+        if (!model.getCurrentPlayer().getCurrentBonusActionList().isEmpty()) {
+
+            ActionEffect currentBonusAction = model.getCurrentPlayer().getCurrentBonusActionList().removeFirst();
+
+            // temporary bonusMalusOn cost setted in the player
+            if (currentBonusAction.getBonusAndMalusOnCost() != null) {
+
+                model.getCurrentPlayer().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
+
+            }
+
+
+            actionChecker.resetActionListExceptPlayer();
+
+            FamilyPawn familyPawn = new FamilyPawn(model.getCurrentPlayer().getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
+
+            actionChecker.setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
+
+            model.getCurrentPlayer().setPlayerState(PlayerState.BONUSACTION);
+
+        } else {
+
+            // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
+
+            model.getCurrentPlayer().setPlayerState(PlayerState.ENDTURN);
+
+        }
+    }
 }

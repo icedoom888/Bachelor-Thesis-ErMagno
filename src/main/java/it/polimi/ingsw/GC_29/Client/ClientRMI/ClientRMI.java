@@ -123,6 +123,38 @@ public class ClientRMI {
                         rmiView.getTowerCard();
                         break;
 
+                    case "use workers":
+                        serverViewStub.activateCards(rmiView.getInputChecker().getWorkersChosen());
+                        break;
+
+                    case "activate card":
+                        
+                        if(rmiView.getInputChecker().handleCardDecision()){
+
+                            if(rmiView.getInputChecker().nextCard()){
+
+                                rmiView.getInputChecker().askActivateCard();
+
+                            }
+                            else {
+                                serverViewStub.payToObtainCardChosen(rmiView.getInputChecker().getActivatedCardMap());
+                            }
+
+                        }
+                        break;
+
+                    case "effect chosen":
+                        rmiView.getInputChecker().addCard();
+                        if(rmiView.getInputChecker().nextCard()){
+
+                            rmiView.getInputChecker().askActivateCard();
+
+                        }
+                        else {
+                            serverViewStub.payToObtainCardChosen(rmiView.getInputChecker().getActivatedCardMap());
+                        }
+                        break;
+
                     case "help":
                         rmiView.getInputChecker().handleHelp();
                         break;

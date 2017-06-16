@@ -2,13 +2,9 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Player.Player;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
-import static java.lang.Math.hypot;
 import static java.lang.Math.max;
 
 /**
@@ -19,8 +15,11 @@ public class WorkAction extends Action {
 
     private Workspace workspaceSelected;
     private FieldType fieldSelected;
-    private HashMap<Integer,ArrayList<DevelopmentCard>> cardsForWorkers;
+    private Map<Integer,ArrayList<DevelopmentCard>> cardsForWorkers;
     private ArrayList<Effect> effectsToActivate;
+    private int workersChosen;
+    private Map<String,DevelopmentCard> payToObtainCardsMap;
+
 
     public WorkAction(ZoneType zoneType,
                       GameStatus gameStatus,
@@ -33,6 +32,7 @@ public class WorkAction extends Action {
         this.fieldSelected = fieldSelected;
         this.cardsForWorkers = new HashMap<>();
         this.effectsToActivate = new ArrayList<>();
+        this.payToObtainCardsMap = new HashMap<>();
     }
 
     @Override
@@ -125,19 +125,11 @@ public class WorkAction extends Action {
 
     @Override
     public void execute() throws Exception {
-        if (isPossible()){
-            System.out.println("The action is Possible");
-            buildDifferentChoices();
-            if (!(cardsForWorkers.isEmpty())) {
-                makeChoice();
-            }
+
             super.payWorkers();
             super.addPawn();
             activateEffects();
-        }
-        else{
-            System.out.println("Action not possible");
-        }
+
     }
 
 
@@ -146,7 +138,7 @@ public class WorkAction extends Action {
      * the player would need to pay to activate their effects,
      * the arrays are created only if the resources of the player are enough to pay hte workersNeeded
      */
-    private void buildDifferentChoices() throws Exception {
+    public void buildDifferentChoices() throws Exception {
         Lane lane = null;
         if(zoneType==ZoneType.HARVEST){
             lane = player.getPersonalBoard().getTerritoryLane();
@@ -186,9 +178,9 @@ public class WorkAction extends Action {
 
             workersNeeded = 0;
             while (workersNeeded <= maxWorkersNeeded) {
-                finalHash.put(workersNeeded,new ArrayList<DevelopmentCard>());
+                finalHash.put(workersNeeded,new ArrayList<>());
                 if (workersNeeded!=0) {
-                    ArrayList<DevelopmentCard> temp = new ArrayList<DevelopmentCard>(finalHash.get(workersNeeded-1));
+                    ArrayList<DevelopmentCard> temp = new ArrayList<>(finalHash.get(workersNeeded-1));
                     finalHash.put(workersNeeded, temp);
                 }
                 if (temporaryHash.get(workersNeeded)!=null) {
@@ -204,6 +196,40 @@ public class WorkAction extends Action {
             }
         }
         cardsForWorkers = finalHash;
+    }
+
+
+    public Boolean handlePayToObtainCards(int workersChosen){
+
+        setWorkers(workers + workersChosen);
+
+        List<DevelopmentCard> cardsToActivateList = cardsForWorkers.get(workersChosen);
+
+        Boolean isPayToObtain = false;
+
+        for (DevelopmentCard card : cardsToActivateList) {
+
+            String cardKey = card.toString();
+
+            for(Effect effect : card.getPermanentEffect()){
+
+                if(effect instanceof PayToObtainEffect){
+
+                    payToObtainCardsMap.put(cardKey, card);
+
+                    isPayToObtain = true;
+                }
+
+                else{
+
+                    effectsToActivate.add(effect);
+                }
+
+            }
+        }
+
+        return  isPayToObtain;
+
     }
 
     /**
@@ -231,9 +257,12 @@ public class WorkAction extends Action {
 
                 if (zoneType==ZoneType.PRODUCTION) {
                     boolean ask = true;
-                    for(Effect effect: card.getPermanentEffect()) {
+                    for(Effect effect : card.getPermanentEffect()) {
+
                         System.out.println(effect.getClass().getName());
-                        if (!(effect.getClass().getName()=="it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect")){
+
+                        if(!(effect instanceof PayToObtainEffect)){ // TODO: rifare, ne basta solo uno per chiedere
+                        //if (!(effect.getClass().getName()=="it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect")){
                             ask = false;
                         }
                     }
@@ -318,7 +347,34 @@ public class WorkAction extends Action {
         }
     }
 
+    public Map<Integer, ArrayList<DevelopmentCard>> getCardsForWorkers() {
+        return cardsForWorkers;
+    }
+
+    public Map<String , DevelopmentCard> getPayToObtainCardsMap() {
+        return payToObtainCardsMap;
+    }
 
 
+
+    public void setPayToObtainCardsChosen(Map<String,Integer> payToObtainCardsChosen) {
+
+        Set<String> cardMapKeys = payToObtainCardsChosen.keySet();
+
+        for(String cardKey : cardMapKeys){
+
+            if(payToObtainCardsMap.containsKey(cardKey)){
+
+                DevelopmentCard card = payToObtainCardsMap.get(cardKey);
+
+                effectsToActivate.add(card.getPermanentEffect().get(payToObtainCardsChosen.get(cardKey)));
+            }
+
+            else{
+
+                throw new IllegalArgumentException("Illegal card key" + cardKey);
+            }
+        }
+    }
 }
 

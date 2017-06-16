@@ -6,7 +6,8 @@ import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.Floor;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Query.GetValidActions;
 import it.polimi.ingsw.GC_29.Server.View;
@@ -126,6 +127,71 @@ public class RMIView extends View implements RMIViewRemote {
     public void throwDices() throws RemoteException {
         try {
             notifyObserver(new ThrowDices());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Map<Integer, ArrayList<String>> getCardsForWorkers() throws RemoteException {
+
+        Map<Integer, ArrayList<DevelopmentCard>> cardsForWorkersMap = ((WorkAction)gameStatus.getCurrentPlayer().getCurrentAction()).getCardsForWorkers();
+
+        Map<Integer, ArrayList<String>> cardMap = new HashMap<>();
+
+        for(Integer workersIndex : cardsForWorkersMap.keySet()){
+
+            ArrayList<DevelopmentCard> cards = cardsForWorkersMap.get(workersIndex);
+
+            cardMap.put(workersIndex, new ArrayList<>());
+
+            for (DevelopmentCard card : cards) {
+
+                cardMap.get(workersIndex).add(card.toString());
+            }
+        }
+
+        return cardMap;
+
+    }
+
+    @Override
+    public void activateCards(int workersChosen) throws RemoteException {
+        try {
+            notifyObserver(new ActivateCards(workersChosen));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Map<String, HashMap<Integer, String>> getPayToObtainCards() throws RemoteException {
+
+        WorkAction workAction = (WorkAction)gameStatus.getCurrentPlayer().getCurrentAction();
+
+        Map<String, HashMap<Integer, String>> payToObtainCardMap = new HashMap<>();
+
+        for(DevelopmentCard card : workAction.getPayToObtainCardsMap().values()){
+
+            payToObtainCardMap.put(card.toString(), new HashMap<>());
+
+            for(Effect effect : card.getPermanentEffect()){
+
+                int effectIndex = card.getPermanentEffect().indexOf(effect);
+
+                payToObtainCardMap.get(card.toString()).put(effectIndex, effect.toString());
+
+            }
+        }
+
+        return payToObtainCardMap;
+    }
+
+    @Override
+    public void payToObtainCardChosen(Map<String, Integer> activatedCardMap) throws RemoteException {
+
+        try {
+            notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
         } catch (Exception e) {
             e.printStackTrace();
         }
