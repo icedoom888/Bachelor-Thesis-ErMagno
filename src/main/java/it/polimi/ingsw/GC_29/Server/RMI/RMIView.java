@@ -1,11 +1,9 @@
 package it.polimi.ingsw.GC_29.Server.RMI;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
-import it.polimi.ingsw.GC_29.Components.CardColor;
-import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Components.Floor;
+import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.*;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -195,6 +193,43 @@ public class RMIView extends View implements RMIViewRemote {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Integer> getCouncilPrivileges() throws RemoteException {
+
+        List<Integer> parchmentAmountList = new ArrayList<>();
+
+        for (CouncilPrivilegeEffect councilPrivilegeEffect : gameStatus.getCurrentPlayer().getCouncilPrivilegeEffectList()) {
+
+            parchmentAmountList.add(councilPrivilegeEffect.getNumberOfCouncilPrivileges());
+        }
+
+        gameStatus.getCurrentPlayer().getCouncilPrivilegeEffectList().clear();
+
+        return parchmentAmountList;
+
+    }
+
+    @Override
+    public void privilegesChosen(List<Integer> councilPrivilegeEffectChosenList) throws RemoteException {
+        try {
+            notifyObserver(new PrivilegeChosen(councilPrivilegeEffectChosenList));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public GoodSet getPlayerGoodset() throws RemoteException {
+
+      return gameStatus.getCurrentPlayer().getActualGoodSet();
+    }
+
+    @Override
+    public List<FamilyPawn> getPlayerPawns() throws RemoteException {
+
+        return gameStatus.getCurrentPlayer().getFamilyPawns();
     }
 
 

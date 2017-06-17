@@ -7,8 +7,10 @@ import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Server.Observable;
 
+import java.awt.*;
 import java.rmi.RemoteException;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by Christian on 17/05/2017.
@@ -24,7 +26,7 @@ public class Player extends Observable<Change> {
     private HashMap<LeaderCard, Boolean> permanentLeaders;
     private HashMap<LeaderCard, Boolean> oncePerRoundLeaders;
 
-    private FamilyPawn[] familyPawns;
+    private List<FamilyPawn> familyPawns;
     private Pawn excommunicationPawns;
     private Pawn markerDiscs;
     private PlayerColor playerColor;
@@ -42,6 +44,7 @@ public class Player extends Observable<Change> {
     private LinkedList<BonusAndMalusOnCost>currentBonusActionBonusMalusOnCostList;
 
     private ArrayList<Action> currentValidActionsList;
+    private List<CouncilPrivilegeEffect> councilPrivilegeEffectList;
 
 
     public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
@@ -56,6 +59,8 @@ public class Player extends Observable<Change> {
         this.oncePerRoundLeaders = new HashMap<>();
         this.permanentLeaders = new HashMap<>();
 
+        this.councilPrivilegeEffectList = new ArrayList<>();
+
         //TODO: decommentare quando si creano leaderCards
 
         /*for (LeaderCard leaderCard : this.leaderCards) {
@@ -65,10 +70,11 @@ public class Player extends Observable<Change> {
             else this.oncePerRoundLeaders.put(leaderCard, true);
         }*/
 
-        familyPawns = new FamilyPawn[] {new FamilyPawn(playerColor, FamilyPawnType.BLACK, 0),
-                new FamilyPawn(playerColor, FamilyPawnType.ORANGE, 0),
-                new FamilyPawn(playerColor, FamilyPawnType.WHITE, 0),
-                new FamilyPawn(playerColor, FamilyPawnType.NEUTRAL, 0)};
+        familyPawns = new ArrayList<>();
+        familyPawns.add(new FamilyPawn(playerColor, FamilyPawnType.BLACK, 0));
+        familyPawns.add(new FamilyPawn(playerColor, FamilyPawnType.ORANGE, 0));
+        familyPawns.add(new FamilyPawn(playerColor, FamilyPawnType.WHITE, 0));
+        familyPawns.add(new FamilyPawn(playerColor, FamilyPawnType.NEUTRAL, 0));
 
         excommunicationPawns = new Pawn(playerColor);
 
@@ -138,7 +144,7 @@ public class Player extends Observable<Change> {
         return oncePerRoundLeaders;
     }
 
-    public FamilyPawn[] getFamilyPawns() {
+    public List<FamilyPawn> getFamilyPawns() {
         return familyPawns;
     }
 
@@ -257,6 +263,10 @@ public class Player extends Observable<Change> {
     @Override
     public String toString() {
         return "Player{" + "playerID='" + playerID + '\'' + ", playerColor=" + playerColor + '}';
+    }
+
+    public List<CouncilPrivilegeEffect> getCouncilPrivilegeEffectList() {
+        return councilPrivilegeEffectList;
     }
 }
 

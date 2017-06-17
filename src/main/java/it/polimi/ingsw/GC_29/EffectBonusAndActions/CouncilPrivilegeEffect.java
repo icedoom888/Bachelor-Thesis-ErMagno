@@ -2,9 +2,8 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Player.Player;
 
-import java.util.Arrays;
-
-import static it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeType.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lorenzotara on 19/05/17.
@@ -12,26 +11,43 @@ import static it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeType.*
 public class CouncilPrivilegeEffect implements Effect {
 
     private int numberOfCouncilPrivileges;
-    private CouncilPrivilegeType[] effectsChosen;
+
+    private List<CouncilPrivilege> parchmentList;
+
     private Boolean modified = false; //TODO: da rivedere, orribile
 
     public CouncilPrivilegeEffect(int numberOfCouncilPrivileges) {
 
         this.numberOfCouncilPrivileges = numberOfCouncilPrivileges;
 
-        this.effectsChosen = new CouncilPrivilegeType[numberOfCouncilPrivileges];
+        this.parchmentList = new ArrayList<>(numberOfCouncilPrivileges);
+        for(int i = 0; i < numberOfCouncilPrivileges; i++){
+
+            parchmentList.add(new CouncilPrivilege());
+
+        }
+    }
+
+    public int getNumberOfCouncilPrivileges() {
+        return numberOfCouncilPrivileges;
+    }
+
+    public List<CouncilPrivilege> getParchmentList() {
+        return parchmentList;
     }
 
     @Override
     /**
-     * A player can choose between three different effects in CouncilPrivilegeType.
+     * A player can choose between three different effects in CouncilPrivilege.
      * After player's choice the collectRewards method creates a temporary goodSet in which
      * sums all the bonuses.
      * Then it updates the player's goodSet.
      */
     public void execute(Player status) throws Exception {
 
-        System.out.println("You received a Council Privilege Effect!");
+        status.getCouncilPrivilegeEffectList().add(this);
+
+       /* System.out.println("You received a Council Privilege Effect!");
 
         boolean decisionDone = false;
 
@@ -53,12 +69,12 @@ public class CouncilPrivilegeEffect implements Effect {
             effect.execute(status);
 
             System.out.println(effect.toString());
-        }
+        }*/
 
     }
 
 
-    public void whichPrivileges() {
+    /*public void whichPrivileges() {
 
         System.out.println("Choose " + numberOfCouncilPrivileges + " different priviliges between the following: ");
 
@@ -69,13 +85,13 @@ public class CouncilPrivilegeEffect implements Effect {
 
             if (i != 0 ) System.out.println("Ricorda di non sceglierne una uguale ad una già scelta!");
 
-            //System.out.println(Arrays.asList(CouncilPrivilegeType.values()));
+            //System.out.println(Arrays.asList(CouncilPrivilege.values()));
 
             int k=1;
 
-            for (CouncilPrivilegeType councilPrivilegeType : CouncilPrivilegeType.values()) {
+            for (CouncilPrivilege councilPrivilege : CouncilPrivilege.values()) {
 
-                System.out.println("Se vuoi ottenere: " + councilPrivilegeType + ", scrivi " + k);
+                System.out.println("Se vuoi ottenere: " + councilPrivilege + ", scrivi " + k);
 
                 k++;
 
@@ -92,28 +108,28 @@ public class CouncilPrivilegeEffect implements Effect {
             switch (answer) {
 
                 case "1":
-                    CouncilPrivilegeType realAnswer = ONEWOOD_ONESTONE;
-                    effectsChosen[i]=realAnswer;
+                    CouncilPrivilege realAnswer = ONEWOOD_ONESTONE;
+                    parchmentList[i]=realAnswer;
                     break;
 
                 case "2":
                     realAnswer = TWOWORKERS;
-                    effectsChosen[i]=realAnswer;
+                    parchmentList[i]=realAnswer;
                     break;
 
                 case "3":
                     realAnswer = TWOGOLDS;
-                    effectsChosen[i]=realAnswer;
+                    parchmentList[i]=realAnswer;
                     break;
 
                 case "4":
                     realAnswer = TWOMILITARYPOINTS;
-                    effectsChosen[i]=realAnswer;
+                    parchmentList[i]=realAnswer;
                     break;
 
                 case "5":
                     realAnswer = ONEFAITHPOINT;
-                    effectsChosen[i]=realAnswer;
+                    parchmentList[i]=realAnswer;
                     break;
 
                 default:
@@ -127,7 +143,7 @@ public class CouncilPrivilegeEffect implements Effect {
      * This method checks if the player chose three different priviliges and returns true
      * if everything went well
      */
-    public boolean checkDifferentPrivileges() {
+   /* public boolean checkDifferentPrivileges() {
 
         boolean duplicate = false;
 
@@ -135,7 +151,7 @@ public class CouncilPrivilegeEffect implements Effect {
 
             for (int k = i+1; k < numberOfCouncilPrivileges; k++) {
 
-                if (k != i && effectsChosen[k] == effectsChosen[i]) duplicate = true;
+                if (k != i && parchmentList[k] == parchmentList[i]) duplicate = true;
             }
         }
 
@@ -151,13 +167,13 @@ public class CouncilPrivilegeEffect implements Effect {
     /**
      * collectRewards method adds to a temporaryGoodSet all the rewards of the effect
      */
-    public ObtainEffect[] collectRewards() { // TODO: create effects
+   /* public ObtainEffect[] collectRewards() { // TODO: create effects
 
         ObtainEffect[] effects = new ObtainEffect[numberOfCouncilPrivileges];
 
         for (int i = 0; i < numberOfCouncilPrivileges; i++) {
 
-            effects[i] = new ObtainEffect(effectsChosen[i].getGoodSet());
+            effects[i] = new ObtainEffect(parchmentList[i].getGoodSet());
 
         }
 
@@ -169,7 +185,7 @@ public class CouncilPrivilegeEffect implements Effect {
           return "CouncilPrivilegeEffect { "
                 + "numberOfCouncilPrivileges = " + numberOfCouncilPrivileges + "\n"
                 + '}';
-    }
+    }*/
 
     public void doubleResources() {
         this.modified = true;

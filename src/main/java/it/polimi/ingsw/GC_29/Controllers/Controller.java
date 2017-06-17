@@ -438,7 +438,7 @@ public class Controller implements Observer<Input>  {
                 player.setFamilyPawnValue(FamilyPawnType.BLACK, 5);
                 player.setFamilyPawnValue(FamilyPawnType.ORANGE, 5);
                 player.setFamilyPawnValue(FamilyPawnType.WHITE, 5);
-                player.setFamilyPawnValue(FamilyPawnType.NEUTRAL, 1);
+                player.setFamilyPawnValue(FamilyPawnType.NEUTRAL, 0);
             }
 
 
@@ -457,7 +457,7 @@ public class Controller implements Observer<Input>  {
                             player.setFamilyPawnValue(familyPawnType, tempDice.getFace());
                         }
 
-                        else player.setFamilyPawnValue(familyPawnType, 1); // neutral case
+                        else player.setFamilyPawnValue(familyPawnType, 0); // neutral case
 
                     }
                 }
@@ -552,6 +552,12 @@ public class Controller implements Observer<Input>  {
     }
 
     public void handleEndAction(){
+
+        if(!model.getCurrentPlayer().getCouncilPrivilegeEffectList().isEmpty()){
+
+            model.getCurrentPlayer().setPlayerState(PlayerState.CHOOSE_COUNCIL_PRIVILEGE);
+            return;
+        }
 
         if (!model.getCurrentPlayer().getCurrentBonusActionList().isEmpty()) {
 

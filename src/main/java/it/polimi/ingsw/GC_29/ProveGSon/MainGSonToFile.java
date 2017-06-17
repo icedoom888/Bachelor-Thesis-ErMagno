@@ -23,18 +23,25 @@ public class MainGSonToFile {
     public static void main(String[] args) throws IOException {
 
 
-        // GameBoard
+        /* GameBoard
 
         int[] victoryPointsForFaithTrack = {0,1,2,3,4,5,7,9,11,13,15,17,19,22,25,30};
 
         FaithPointsTrack faithPointsTrack = new FaithPointsTrack(5,16,victoryPointsForFaithTrack);
 
 
-        GameBoard gameBoard = new GameBoard(5, faithPointsTrack);
+        GameBoard gameBoard = new GameBoard(5, faithPointsTrack);*/
+
+        ArrayList<Effect> immediateEffect = new ArrayList<>();
+        ArrayList<Effect> permanentEffect = new ArrayList<>();
+        immediateEffect.add(new CouncilPrivilegeEffect(3));
+
+        DevelopmentCard developmentCard = new DevelopmentCard("messo reale", Era.SECOND, new CardCost(false,true,new Cost(new GoodSet(0,0,5,0,0,0,0)
+                                                                , new GoodSet()), new Cost()), CardColor.BLUE, immediateEffect, permanentEffect, false, 0);
 
         // toJson
 
-        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\prova");
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\carta");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
@@ -100,7 +107,7 @@ public class MainGSonToFile {
         Gson gson = gsonBuilder.setPrettyPrinting().create();
 
 
-        gson.toJson(gameBoard, fileWriter);
+        gson.toJson(developmentCard, fileWriter);
 
         fileWriter.close();
 

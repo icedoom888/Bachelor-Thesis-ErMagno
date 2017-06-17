@@ -96,12 +96,86 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
-        "numberOfCouncilPrivileges": 1,
-        "effectsChosen": [
-          null
-        ]
-      }
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "numberOfCouncilPrivileges": 1,
+      "parchmentList": [
+        {
+          "possibleObtainEffect": [
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 1,
+                  "STONE": 1,
+                  "COINS": 0,
+                  "WORKERS": 0,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 0,
+                  "FAITHPOINTS": 0
+                },
+                "observers": []
+              }
+            },
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 0,
+                  "STONE": 0,
+                  "COINS": 0,
+                  "WORKERS": 2,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 0,
+                  "FAITHPOINTS": 0
+                },
+                "observers": []
+              }
+            },
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 0,
+                  "STONE": 0,
+                  "COINS": 2,
+                  "WORKERS": 0,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 0,
+                  "FAITHPOINTS": 0
+                },
+                "observers": []
+              }
+            },
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 0,
+                  "STONE": 0,
+                  "COINS": 0,
+                  "WORKERS": 0,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 2,
+                  "FAITHPOINTS": 0
+                },
+                "observers": []
+              }
+            },
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 0,
+                  "STONE": 0,
+                  "COINS": 0,
+                  "WORKERS": 0,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 0,
+                  "FAITHPOINTS": 1
+                },
+                "observers": []
+              }
+            }
+          ]
+        }
+      ],
+      "modified": false
+    }
     ],
     "withActionValue": true,
     "actionValue": 6

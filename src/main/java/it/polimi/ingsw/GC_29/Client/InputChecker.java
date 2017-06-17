@@ -4,6 +4,9 @@ import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.GameState;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilege;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Server;
 
@@ -27,6 +30,7 @@ public class InputChecker {
     private PlayerColor playerColor;
 
     private PlayerState currentPlayerState;
+    private GameState currentGameState;
 
     private Map<FamilyPawnType, Boolean> familyPawnAvailability;
 
@@ -39,15 +43,18 @@ public class InputChecker {
     private Map<String, HashMap<Integer, String >> payToObtainCardsMap;
     private String currentPayToObtainCard;
     private Map<Integer, String> currentPayToObtainEffectsMap;
-
-    private GameState currentGameState;
+    private int workersChosen;
+    private Map<String, Integer> activatedCardMap;
 
     private CardColor playerCardColor;
     private CardColor towerCardColor;
 
-    private int workersChosen;
-
-    private Map<String, Integer> activatedCardMap;
+    ///////COUNCIL_PRIVILEGE VARIABLES////
+    private List<CouncilPrivilegeEffect> councilPrivilegeEffectList;
+    CouncilPrivilegeEffect currentCouncilPrivilegeEffect;
+    List<Integer> councilPrivilegeEffectChosenList;
+    CouncilPrivilege currentParchment;
+    private List<CouncilPrivilege> currentParchmentList;
 
     public InputChecker(){
 
@@ -66,6 +73,12 @@ public class InputChecker {
         currentPayToObtainEffectsMap = new HashMap<>();
 
         activatedCardMap = new HashMap<>();
+
+        councilPrivilegeEffectList = new ArrayList<>();
+
+        councilPrivilegeEffectChosenList = new ArrayList<>();
+
+        currentParchmentList = new ArrayList<>();
 
         //TODO dalla view ad ogni update devo settare i valori giusti (pawnAvailability, playerState, gameState)
     }
@@ -151,11 +164,45 @@ public class InputChecker {
 
                 return handleActivateCard(lastWord);
 
+            case "privilege (effect index)" :
+
+                return handlePrivilegeEffect(lastWord);
+
         }
 
         Integer.parseInt(lastWord);
 
         return null;
+    }
+
+    /**
+     * this method add the effect index chosen in the last ArrayList (which is created each time a new privilegeEffect is handled)
+     * of councilPrivilegeEffectChosenList. The method removes the chosen ObtainEffect from the other Parchment in the currentParchmentList
+     * @param lastWord
+     * @return
+     */
+    private String handlePrivilegeEffect(String lastWord) {
+
+        int index = Integer.parseInt(lastWord);
+
+
+        if(index < currentParchment.getPossibleObtainEffect().size() && index >= 0){
+
+            councilPrivilegeEffectChosenList.add(index);
+
+            for (CouncilPrivilege councilPrivilege : currentParchmentList) {
+
+                councilPrivilege.getPossibleObtainEffect().remove(index);
+
+            }
+
+            return "privilege";
+        }
+
+        else {
+
+            return "invalid input";
+        }
     }
 
     private String handleActivateCard(String lastWord) {
@@ -491,5 +538,51 @@ public class InputChecker {
             System.out.println("insert the effect index:");
 
         }
+    }
+
+    public void setCouncilPrivilegeEffectList(List<Integer> councilPrivilegeEffectList) {
+
+        for (Integer integer : councilPrivilegeEffectList) {
+
+            this.councilPrivilegeEffectList.add(new CouncilPrivilegeEffect(integer));
+        }
+    }
+
+
+    public Boolean nextPrivilegeEffect() {
+
+        if (!councilPrivilegeEffectList.isEmpty()) {
+
+            currentCouncilPrivilegeEffect = councilPrivilegeEffectList.remove(0);
+            currentParchmentList = currentCouncilPrivilegeEffect.getParchmentList();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Boolean nextParchment(){
+
+        return !currentParchmentList.isEmpty();
+    }
+
+    public void askWhichPrivilege(){
+
+        currentParchment = currentCouncilPrivilegeEffect.getParchmentList().remove(0);
+
+        System.out.println("choose between these privilege effects: ");
+
+        for (ObtainEffect obtainEffect : currentParchment.getPossibleObtainEffect()) {
+
+            int index = currentParchment.getPossibleObtainEffect().indexOf(obtainEffect);
+
+            System.out.println("privilege " + index + ") " + obtainEffect);
+        }
+
+    }
+
+    public List<Integer> getCouncilPrivilegeEffectChosenList() {
+        return councilPrivilegeEffectChosenList;
     }
 }

@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Controllers.VictoryMove;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observable;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import static java.lang.Math.max;
 /**
  * Created by Christian on 17/05/2017.
  */
-public class GoodSet extends Observable<MovePawn> {
+public class GoodSet extends Observable<MovePawn> implements Serializable{
 
     private EnumMap<GoodType,Integer> goodSetMap;
 

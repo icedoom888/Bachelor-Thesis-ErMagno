@@ -2,10 +2,12 @@ package it.polimi.ingsw.GC_29.Components;
 
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
+import java.io.Serializable;
+
 /**
  * Created by Lorenzotara on 17/05/17.
  */
-public class FamilyPawn extends Pawn {
+public class FamilyPawn extends Pawn implements Serializable{
 
     private FamilyPawnType type;
     private int actualValue;
@@ -35,4 +37,11 @@ public class FamilyPawn extends Pawn {
         return actualValue;
     }
 
+    @Override
+    public String toString() {
+        return "FamilyPawn{" +
+                "type=" + type +
+                ", actualValue=" + actualValue +
+                '}';
+    }
 }

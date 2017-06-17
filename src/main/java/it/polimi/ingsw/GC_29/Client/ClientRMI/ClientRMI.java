@@ -1,12 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
-import it.polimi.ingsw.GC_29.Client.Client;
-import it.polimi.ingsw.GC_29.Client.Distribution;
-import it.polimi.ingsw.GC_29.Client.Instruction;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.Input;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterface;
 import it.polimi.ingsw.GC_29.Server.Query.Query;
@@ -16,14 +10,7 @@ import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -105,6 +92,13 @@ public class ClientRMI {
                     case "see valid action list":
                         rmiView.getInputChecker().printValidActionList();
                         break;
+                        //TODO: le prossime due istruizioni sono per provare, bisogna gestirle in altro modo
+                    case "see my goodset":
+                        System.out.println(serverViewStub.getPlayerGoodset());
+                        break;
+                    case "see my family pawns":
+                        System.out.println(serverViewStub.getPlayerPawns());
+                        break;
                     case "execute action":
                         serverViewStub.doAction(rmiView.getInputChecker().getActionIndex());
                         break;
@@ -152,6 +146,18 @@ public class ClientRMI {
                         }
                         else {
                             serverViewStub.payToObtainCardChosen(rmiView.getInputChecker().getActivatedCardMap());
+                        }
+                        break;
+
+                    case "privilege":
+                        if(rmiView.getInputChecker().nextParchment()){
+                            rmiView.getInputChecker().askWhichPrivilege();
+                        }
+                        else if(rmiView.getInputChecker().nextPrivilegeEffect()){
+                            rmiView.getInputChecker().askWhichPrivilege();
+                        }
+                        else {
+                            serverViewStub.privilegesChosen(rmiView.getInputChecker().getCouncilPrivilegeEffectChosenList());
                         }
                         break;
 

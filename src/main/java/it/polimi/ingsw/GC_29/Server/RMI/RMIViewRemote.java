@@ -2,8 +2,7 @@ package it.polimi.ingsw.GC_29.Server.RMI;
 
 import com.sun.org.apache.regexp.internal.RE;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
-import it.polimi.ingsw.GC_29.Components.CardColor;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
@@ -60,4 +59,12 @@ public interface RMIViewRemote extends Remote {
     Map<String,HashMap<Integer,String>> getPayToObtainCards() throws RemoteException;
 
     void payToObtainCardChosen(Map<String, Integer> activatedCardMap) throws RemoteException;
+
+    List<Integer> getCouncilPrivileges() throws RemoteException;
+
+    void privilegesChosen(List<Integer> councilPrivilegeEffectChosenList) throws RemoteException;
+
+    GoodSet getPlayerGoodset() throws RemoteException;
+
+    List<FamilyPawn> getPlayerPawns() throws RemoteException;
 }

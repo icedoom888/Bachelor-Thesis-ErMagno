@@ -14,8 +14,8 @@ public class CouncilPrivilegeEffectTest {
         int numberOfCouncilPrivileges = 3;
         CouncilPrivilegeEffect effect = new CouncilPrivilegeEffect(numberOfCouncilPrivileges);
 
-        effect.whichPrivileges();
-        effect.checkDifferentPrivileges();
+        //effect.whichPrivileges();
+        //effect.checkDifferentPrivileges();
 
 
     }
