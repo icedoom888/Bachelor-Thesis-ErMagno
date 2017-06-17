@@ -50,7 +50,7 @@ public class TowerAction extends Action {
 
     @Override
     public boolean isPossible() {
-        
+
         return super.isPossible()
                 && !checkFamilyPresence()
                 && isTowerAccessPossible()

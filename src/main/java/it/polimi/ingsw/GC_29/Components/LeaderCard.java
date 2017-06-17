@@ -24,10 +24,21 @@ public class LeaderCard {
     }
 
     public boolean isPossible(Player player) {
+
         Map<CardColor, Integer> playerCards = player.getCardsOwned();
         GoodSet playerGoodSet = player.getActualGoodSet();
 
-        return requirement.isPossible(playerCards, playerGoodSet);
+        Boolean available;
+
+        if (permanent) {
+            available = player.getPermanentLeaders().get(this);
+        }
+        else {
+            available = player.getOncePerRoundLeaders().get(this);
+        }
+
+        return requirement.isPossible(playerCards, playerGoodSet)
+                && available;
 
     }
 

@@ -111,7 +111,6 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
             case ACTIVATE_PAY_TO_OBTAIN_CARDS:
                 inputChecker.setPayToObtainCardsMap(serverViewStub.getPayToObtainCards());
                 inputChecker.askActivateCard();
-
                 break;
 
             //TODO: inserire gestione altri stati se necessario
