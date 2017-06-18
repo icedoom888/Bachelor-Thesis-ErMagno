@@ -8,9 +8,7 @@ import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Server.Query.GetFamilyPawnAvailability;
-import it.polimi.ingsw.GC_29.Server.Query.GetValidActions;
-import it.polimi.ingsw.GC_29.Server.Query.Query;
+import it.polimi.ingsw.GC_29.Server.Query.*;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -63,21 +61,25 @@ public class ClientOutHandler implements Runnable {
                 inputLine = commonView.getInputChecker().checkInput(inputLine);
 
                 switch (inputLine) {
+
                     case "throw dices":
                         System.out.println("STAI LANCIANDO I DADI");
                         socketOut.writeObject("throw dices");
                         socketOut.flush();
                         break;
+
                     case "skip action":
                         System.out.println("STAI SKIPPANDO L'AZIONE");
                         socketOut.writeObject("skip action");
                         socketOut.flush();
                         break;
+
                     case "end turn":
                         System.out.println("STAI CONCLUDENDO IL TURNO");
                         socketOut.writeObject("end turn");
                         socketOut.flush();
                         break;
+
                     case "use family pawn":
                         System.out.println("STAI SCEGLIENDO LA FAMILY PAWN");
                         FamilyPawnType familyPawnChosen = commonView.getInputChecker().getFamilyPawnChosen();
@@ -86,11 +88,13 @@ public class ClientOutHandler implements Runnable {
                         socketOut.writeObject(familyPawnChosen);
                         socketOut.flush();
                         break;
+
                     case "see valid action list":
                         query = new GetValidActions();
                         socketOut.writeObject(query);
                         socketOut.flush();
                         break;
+
                     case "execute action":
                         int actionIndex = commonView.getInputChecker().getActionIndex();
                         socketOut.writeObject("execute action");
@@ -98,6 +102,65 @@ public class ClientOutHandler implements Runnable {
                         socketOut.writeObject(actionIndex);
                         socketOut.flush();
                         break;
+
+                    case "use workers":
+                        int workers = commonView.getInputChecker().getWorkersChosen();
+                        socketOut.writeObject("number of workers");
+                        socketOut.flush();
+                        socketOut.writeObject(workers);
+                        socketOut.flush();
+                        break;
+
+                    case "activate card":
+                        if(commonView.getInputChecker().handleCardDecision()){
+                            if(commonView.getInputChecker().nextCard()){
+                                commonView.getInputChecker().askActivateCard();
+                            }
+                            else {
+                                socketOut.writeObject("pay to obtain cards chosen");
+                                socketOut.flush();
+                                socketOut.writeObject(commonView.getInputChecker().getActivatedCardMap());
+                                socketOut.flush();
+                            }
+                        }
+                        break;
+
+                    case "effect chosen":
+                        commonView.getInputChecker().addCard();
+                        if(commonView.getInputChecker().nextCard()){
+                            commonView.getInputChecker().askActivateCard();
+
+                        }
+                        else {
+                            socketOut.writeObject("pay to obtain cards chosen");
+                            socketOut.flush();
+                            socketOut.writeObject(commonView.getInputChecker().getActivatedCardMap());
+                            socketOut.flush();
+                        }
+                        break;
+
+                    case "cost chosen":
+                        int index = commonView.getInputChecker().getCostChosen();
+                        socketOut.writeObject("cost chosen");
+                        socketOut.flush();
+                        socketOut.writeObject(index);
+                        socketOut.flush();
+                        break;
+
+                    case "privilege":
+                        if(commonView.getInputChecker().nextParchment()){
+                            commonView.getInputChecker().askWhichPrivilege();
+                        }
+                        else if(commonView.getInputChecker().nextPrivilegeEffect()){
+                            commonView.getInputChecker().askWhichPrivilege();
+                        }
+                        else {
+                            socketOut.writeObject("council privileges chosen");
+                            socketOut.flush();
+                            socketOut.writeObject(commonView.getInputChecker().getCouncilPrivilegeEffectChosenList());
+                        }
+                        break;
+
                     case "I want to pray":
                         PlayerColor playerColor = commonView.getPlayerColor();
                         socketOut.writeObject("i want to pray");
@@ -105,6 +168,7 @@ public class ClientOutHandler implements Runnable {
                         socketOut.writeObject(playerColor);
                         socketOut.flush();
                         break;
+
                     case "I don't want to pray":
                         playerColor = commonView.getPlayerColor();
                         socketOut.writeObject("i don't want to pray");
@@ -112,9 +176,11 @@ public class ClientOutHandler implements Runnable {
                         socketOut.writeObject(playerColor);
                         socketOut.flush();
                         break;
+
                     case "help":
                         handleHelp();
                         break;
+
                     default:
                         handleHelp();
                         break;
@@ -162,11 +228,57 @@ public class ClientOutHandler implements Runnable {
                     e.printStackTrace();
                 }
 
-                // Fino a qui ho inviato la query
-                // non devo più inviare nulla
                 break;
 
             //TODO: inserire gestione altri stati se necessario
+
+
+            case CHOOSEWORKERS:
+
+                query = new GetCardsForWorkers();
+                try {
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+            case ACTIVATE_PAY_TO_OBTAIN_CARDS:
+
+                query = new GetPayToObtainCards();
+                try {
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+            case CHOOSECOST:
+
+                query = new GetPossibleCosts();
+                try {
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+            case CHOOSE_COUNCIL_PRIVILEGE:
+
+                query = new GetCouncilPrivileges();
+                try {
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
         }
     }
 

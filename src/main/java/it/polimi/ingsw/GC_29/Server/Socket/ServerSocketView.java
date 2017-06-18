@@ -2,20 +2,17 @@ package it.polimi.ingsw.GC_29.Server.Socket;
 
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Server.Query.GetFamilyPawnAvailability;
-import it.polimi.ingsw.GC_29.Server.Query.GetValidActions;
-import it.polimi.ingsw.GC_29.Server.Query.Query;
+import it.polimi.ingsw.GC_29.Server.Query.*;
 import it.polimi.ingsw.GC_29.Server.View;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Lorenzotara on 14/06/17.
@@ -96,6 +93,26 @@ public class ServerSocketView extends View implements Runnable {
                             notifyObserver(new ExecuteAction(actionIndex));
                             break;
 
+                        case "number of workers":
+                            int workers = (int)socketIn.readObject();
+                            notifyObserver(new ActivateCards(workers));
+                            break;
+
+                        case "pay to obtain cards chosen":
+                            Map<String, Integer> activatedCardMap = (Map<String, Integer>)socketIn.readObject();
+                            notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
+                            break;
+
+                        case "cost chosen":
+                            int costChosen = (int)socketIn.readObject();
+                            notifyObserver(new PayCard(costChosen));
+                            break;
+
+                        case "council privileges chosen":
+                            List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
+                            notifyObserver(new PrivilegeChosen(councilPrivileges));
+                            break;
+
                         case "i want to pray":
                             PlayerColor playerColor = (PlayerColor)socketIn.readObject();
                             notifyObserver(new Pray(true, playerColor));
@@ -109,17 +126,6 @@ public class ServerSocketView extends View implements Runnable {
 
                     }
                 }
-                /*if (object instanceof GetPrigionieri) {
-                    // In this particular case handles the action by sending back data to the client,
-                    //  since it is not modifying the model, just querying it.
-                    GetPrigionieri query = (GetPrigionieri) object;
-                    System.out.println("VIEW: received the query " + query);
-                    Set<Prigioniero> prigionieri=query.perform(model);
-                    System.out.println(prigionieri);
-                    this.socketOut.writeObject(prigionieri);
-                    this.socketOut.flush();
-
-                }*/
 
             } catch (ClassNotFoundException e) {
                 // TODO Auto-generated catch block
@@ -177,6 +183,68 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
         }
+
+        if (q instanceof GetCardsForWorkers) {
+
+            try {
+                socketOut.writeObject("Get Cards For Workers");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetCardsForWorkers query = (GetCardsForWorkers) q;
+
+            Map<Integer, ArrayList<String>> cardsForWorkers = query.perform(model);
+            try {
+                this.socketOut.writeObject(cardsForWorkers);
+                this.socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (q instanceof GetPossibleCosts) {
+
+            try {
+                socketOut.writeObject("Get Possible Costs");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetPossibleCosts query = (GetPossibleCosts) q;
+
+            Map<Integer, String> cardsForWorkers = query.perform(model);
+            try {
+                this.socketOut.writeObject(cardsForWorkers);
+                this.socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (q instanceof GetCouncilPrivileges) {
+
+            try {
+                socketOut.writeObject("Get Council Privileges");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetCouncilPrivileges query = (GetCouncilPrivileges) q;
+
+            List<Integer> councilPrivileges = query.perform(model);
+            try {
+                this.socketOut.writeObject(councilPrivileges);
+                this.socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
 

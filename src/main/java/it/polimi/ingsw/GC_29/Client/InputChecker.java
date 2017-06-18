@@ -56,6 +56,10 @@ public class InputChecker {
     CouncilPrivilege currentParchment;
     private List<CouncilPrivilege> currentParchmentList;
 
+    ///////TOWERACTION VARIABLES////
+    private Map<Integer, String> possibleCosts;
+    private int costChosen;
+
     public InputChecker(){
 
         instructionSet = new InstructionSet();
@@ -457,14 +461,16 @@ public class InputChecker {
 
     public Boolean nextCard(){
 
-        if(!payToObtainCardKeys.isEmpty()){
+        if(!payToObtainCardKeys.isEmpty()) {
 
             currentPayToObtainCard = payToObtainCardKeys.remove(0);
+
+            setCurrentPlayerState(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS);
 
             return true;
         }
 
-        else{
+        else {
 
             return false;
         }
@@ -584,5 +590,25 @@ public class InputChecker {
 
     public List<Integer> getCouncilPrivilegeEffectChosenList() {
         return councilPrivilegeEffectChosenList;
+    }
+
+    public void setPossibleCosts(Map<Integer, String> possibleCosts) {
+        this.possibleCosts = possibleCosts;
+    }
+
+    public void askWhichCost() {
+        System.out.println("Choose how to pay between the following costs:\n");
+        for (Integer integer : possibleCosts.keySet()) {
+            String cost = possibleCosts.get(integer);
+            System.out.println(integer + ")   " + cost);
+        }
+    }
+
+    public int getCostChosen() {
+        return costChosen;
+    }
+
+    public void setCostChosen(int costChosen) {
+        this.costChosen = costChosen;
     }
 }

@@ -48,7 +48,7 @@ public interface RMIViewRemote extends Remote {
 
     List<String> getDevelopmentCard(CardColor cardColor) throws RemoteException;
 
-    List<String> getTowertCards(CardColor towerCardColor) throws RemoteException;
+    List<String> getTowerCards(CardColor towerCardColor) throws RemoteException;
 
     void throwDices() throws RemoteException;
 
@@ -67,4 +67,8 @@ public interface RMIViewRemote extends Remote {
     GoodSet getPlayerGoodset() throws RemoteException;
 
     List<FamilyPawn> getPlayerPawns() throws RemoteException;
+
+    void chooseCost(int costChosen);
+
+    Map<Integer, String> getPossibleCosts();
 }
