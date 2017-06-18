@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.Player;
 
@@ -35,13 +36,13 @@ public class ExecuteAction extends Input {
 
         currentPlayer = model.getCurrentPlayer();
 
-        ActionChecker actionChecker = controller.getActionChecker();
+        //ActionChecker actionChecker = controller.getActionChecker();
 
         //TODO: qui o lato client controllare che l'input sia valido (actionIndex)
 
         Action actionSelected = currentPlayer.getCurrentValidActionsList().get(actionIndex);
 
-        if(actionSelected instanceof WorkAction){
+        if(actionSelected instanceof WorkAction) {
 
             WorkAction workAction = (WorkAction)actionSelected;
             workAction.buildDifferentChoices();
@@ -49,6 +50,20 @@ public class ExecuteAction extends Input {
 
             currentPlayer.setPlayerState(PlayerState.CHOOSEWORKERS);
 
+        }
+
+        else if (actionSelected instanceof TowerAction) {
+
+            TowerAction towerAction = (TowerAction)actionSelected;
+            currentPlayer.setCurrentAction(towerAction);
+            if (towerAction.getCardCost().isWithPrice()) {
+                currentPlayer.setPlayerState(PlayerState.CHOOSECOST);
+            }
+
+            else {
+                towerAction.execute();
+                controller.handleEndAction();
+            }
         }
 
         /////////////NORMAL ACTIONS WITHOUT DISTRIBUTION////////////////////

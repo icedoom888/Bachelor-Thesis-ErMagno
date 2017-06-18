@@ -9,9 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Lorenzotara on 14/06/17.
@@ -129,8 +127,6 @@ public class ClientInHandler implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
-                    System.out.println("PRINT TEST");
-
                     System.out.println(input);
 
                     if (input.contentEquals("Valid Actions")) {
@@ -145,11 +141,140 @@ public class ClientInHandler implements Runnable {
                 break;
 
             //TODO: inserire gestione altri stati se necessario
+
+            case CHOOSEWORKERS:
+
+                try {
+                    String input = (String)socketIn.readObject();
+
+                    System.out.println(input);
+
+                    if (input.contentEquals("Get Cards For Workers")) {
+                        getCardsForWorkers();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+            case ACTIVATE_PAY_TO_OBTAIN_CARDS:
+
+                try {
+                    String input = (String)socketIn.readObject();
+
+                    System.out.println(input);
+
+                    if (input.contentEquals("Get Pay To Obtain Cards")) {
+                        getPayToObtainCards();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+            case CHOOSECOST:
+
+                try {
+                    String input = (String)socketIn.readObject();
+
+                    System.out.println(input);
+
+                    if (input.contentEquals("Get Possible Costs")) {
+                        getPossibleCosts();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+            case CHOOSE_COUNCIL_PRIVILEGE:
+
+                try {
+                    String input = (String)socketIn.readObject();
+
+                    System.out.println(input);
+
+                    if (input.contentEquals("Get Council Privileges")) {
+                        getCouncilPrivileges();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
+
+
+
         }
     }
 
+    private void getCouncilPrivileges() {
 
+        try {
+            List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
+            commonView.getInputChecker().setCouncilPrivilegeEffectList(councilPrivileges);
+            commonView.getInputChecker().nextPrivilegeEffect();
+            commonView.getInputChecker().askWhichPrivilege();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
+    }
+
+    private void getPossibleCosts() {
+
+        try {
+            Map<Integer, String> possibleCosts = (Map<Integer, String>)socketIn.readObject();
+            commonView.getInputChecker().setPossibleCosts(possibleCosts);
+            commonView.getInputChecker().askWhichCost();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getPayToObtainCards() {
+
+        try {
+            Map<String, HashMap<Integer, String>> payToObtainCards = (Map<String, HashMap<Integer, String>>)socketIn.readObject();
+            commonView.getInputChecker().setPayToObtainCardsMap(payToObtainCards);
+            commonView.getInputChecker().askActivateCard();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getCardsForWorkers() {
+
+        try {
+            Map<Integer, ArrayList<String>> cardsForWorkers = (Map<Integer, ArrayList<String>>)socketIn.readObject();
+            commonView.getInputChecker().setPossibleCardsWorkActionMap(cardsForWorkers);
+            commonView.getInputChecker().printPossibleCardsWorkAction();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+/*
     public void printValidActionList() {
 
         Map<Integer, String> validActionList = commonView.getInputChecker().getValidActionList();
@@ -167,14 +292,14 @@ public class ClientInHandler implements Runnable {
 
         else System.out.println("nessuna azione valida");
 
-    }
+    }*/
 
     private void validActions() {
 
         try {
             Map<Integer, String> validActions = (Map<Integer, String>)socketIn.readObject();
             commonView.getInputChecker().setValidActionList(validActions);
-            printValidActionList();
+            commonView.getInputChecker().printValidActionList();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

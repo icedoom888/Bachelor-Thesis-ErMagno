@@ -17,7 +17,6 @@ public class WorkAction extends Action {
     private FieldType fieldSelected;
     private Map<Integer,ArrayList<DevelopmentCard>> cardsForWorkers;
     private ArrayList<Effect> effectsToActivate;
-    private int workersChosen;
     private Map<String,DevelopmentCard> payToObtainCardsMap;
 
 

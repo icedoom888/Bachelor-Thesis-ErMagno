@@ -5,7 +5,9 @@ import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Lorenzotara on 19/05/17.
@@ -13,13 +15,14 @@ import java.util.List;
 public class TowerAction extends Action {
 
 
-    private transient Tower towerChosen;
+    private Tower towerChosen;
     private int floorIndex;
-    private transient GoodSet actionSpaceGoodSet; // accumula il bonus dell'actionSpace
-    private transient GoodSet towerCost; // 3 coins
-    private transient CardCost cardCost;
-    private transient ArrayList<Cost> possibleCardCosts;
-    private transient DevelopmentCard cardSelected;
+    private GoodSet actionSpaceGoodSet; // accumula il bonus dell'actionSpace
+    private GoodSet towerCost; // 3 coins
+    private CardCost cardCost;
+    private HashMap<Integer, Cost> possibleCardCosts;
+    private int costChosen;
+    private DevelopmentCard cardSelected;
 
     public TowerAction(
             ZoneType actionSelected,
@@ -32,7 +35,7 @@ public class TowerAction extends Action {
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.actionSpaceGoodSet = new GoodSet();
         this.towerCost = new GoodSet();
-        this.possibleCardCosts = new ArrayList<>();
+        this.possibleCardCosts = new HashMap<>();
 
     }
 
@@ -42,7 +45,7 @@ public class TowerAction extends Action {
 
         super.payWorkers();
         super.addPawn();
-        payCard();
+        pay();
         giveCard();
         activateCardEffects();
         update();
@@ -151,6 +154,7 @@ public class TowerAction extends Action {
             playerGoodSet.subGoodSet(towerCost);
             playerGoodSet.addGoodSet(actionSpaceGoodSet);
 
+            int i = 1;
             boolean value = false;
             for (Cost cost : costList) {
 
@@ -161,10 +165,12 @@ public class TowerAction extends Action {
                     if (playerGoodSet.enoughResources(necessaryGoodSet)
                             && playerGoodSet.enoughResources(realCost)) {
 
-                        possibleCardCosts.add(cost);
+                        possibleCardCosts.put(i,cost);
                         value = true;
                     }
                 }
+
+                i++;
             }
 
             return value;
@@ -206,7 +212,7 @@ public class TowerAction extends Action {
                 && player.getPersonalBoard().getLane(type).isFree();
     }
 
-    private void payCard() throws Exception {
+    /*private void payCard() throws Exception {
 
         GoodSet goodSetToPay;
 
@@ -231,8 +237,7 @@ public class TowerAction extends Action {
             }
 
             System.out.println("Write the number of the option chosen");
-            /*Scanner scanner = new Scanner(System.in);
-            int answer = scanner.nextInt();*/
+
             int answer = 0; // random
 
             goodSetToPay = possibleCardCosts.get(answer).getCost();
@@ -253,8 +258,27 @@ public class TowerAction extends Action {
 
         player.updateGoodSet(goodSetToPay);
         System.out.println("The card has been paid");
-    }
+    }*/
 
+
+    private void pay() {
+        GoodSet goodSetToPay = new GoodSet();
+
+        if (towerCost.getGoodAmount(GoodType.COINS) != 0) {
+            goodSetToPay.addGoodSet(towerCost);
+        }
+
+        if (cardCost.isWithPrice()) {
+            goodSetToPay.addGoodSet(possibleCardCosts.get(costChosen).getCost());
+        }
+
+        try {
+            player.updateGoodSet(goodSetToPay);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
     /**
@@ -372,7 +396,7 @@ public class TowerAction extends Action {
         return cardCost;
     }
 
-    public List<Cost> getPossibleCardCosts() {
+    public Map<Integer,Cost> getPossibleCardCosts() {
         return possibleCardCosts;
     }
 
@@ -384,5 +408,9 @@ public class TowerAction extends Action {
     public String toString() {
         return "TowerAction{"
                 + super.toString() + ", floorIndex=" + floorIndex + '}';
+    }
+
+    public void setCostChosen(int costChosen) {
+        this.costChosen = costChosen;
     }
 }

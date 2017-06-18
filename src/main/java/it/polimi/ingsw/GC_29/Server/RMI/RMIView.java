@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Query.GetValidActions;
@@ -107,7 +108,7 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
-    public List<String> getTowertCards(CardColor towerCardColor) throws RemoteException{
+    public List<String> getTowerCards(CardColor towerCardColor) throws RemoteException{
 
         List<String> returnList = new ArrayList<>();
 
@@ -150,6 +151,20 @@ public class RMIView extends View implements RMIViewRemote {
         }
 
         return cardMap;
+
+    }
+
+    @Override
+    public Map<Integer, String> getPossibleCosts() {
+        Map<Integer, Cost> possibleCosts = ((TowerAction)gameStatus.getCurrentPlayer().getCurrentAction()).getPossibleCardCosts();
+        HashMap<Integer, String> possibleCostsToString = new HashMap<>();
+
+        for (Integer integer : possibleCosts.keySet()) {
+            String cost = possibleCosts.get(integer).toString();
+            possibleCostsToString.put(integer, cost);
+        }
+
+        return possibleCostsToString;
 
     }
 
@@ -230,6 +245,15 @@ public class RMIView extends View implements RMIViewRemote {
     public List<FamilyPawn> getPlayerPawns() throws RemoteException {
 
         return gameStatus.getCurrentPlayer().getFamilyPawns();
+    }
+
+    @Override
+    public void chooseCost(int costChosen) {
+        try {
+            notifyObserver(new PayCard(costChosen));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

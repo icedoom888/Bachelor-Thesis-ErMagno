@@ -172,6 +172,10 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
                         }
                         break;
 
+                    case "cost chosen":
+                        serverViewStub.chooseCost(rmiView.getInputChecker().getCostChosen());
+                        break;
+
                     case "privilege":
                         if(rmiView.getInputChecker().nextParchment()){
                             rmiView.getInputChecker().askWhichPrivilege();

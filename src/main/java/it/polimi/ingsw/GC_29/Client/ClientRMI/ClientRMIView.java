@@ -112,6 +112,12 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
                 inputChecker.setPayToObtainCardsMap(serverViewStub.getPayToObtainCards());
                 inputChecker.askActivateCard();
                 break;
+
+            case CHOOSECOST:
+                inputChecker.setPossibleCosts(serverViewStub.getPossibleCosts());
+                inputChecker.askWhichCost();
+                break;
+
             case CHOOSE_COUNCIL_PRIVILEGE:
                 inputChecker.setCouncilPrivilegeEffectList(serverViewStub.getCouncilPrivileges());
                 inputChecker.nextPrivilegeEffect();
@@ -133,7 +139,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
     public void getTowerCard() throws RemoteException {
 
-        List<String> towerCards = serverViewStub.getTowertCards(inputChecker.getTowerCardColor());
+        List<String> towerCards = serverViewStub.getTowerCards(inputChecker.getTowerCardColor());
 
         towerCardsMap.put(inputChecker.getTowerCardColor(), towerCards);
 
