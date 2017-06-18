@@ -173,9 +173,11 @@ public class MainGSonFromFile {
 
         final Gson gson = gsonBuilder.create();
 
-        FileReader fileReader = new FileReader("C:\\Users\\Christian\\Desktop\\prova");
+        FileReader fileReader = new FileReader("C:\\Users\\Christian\\Documents\\workspaces\\eclipse\\prova-finale-template\\cards\\greenCards");
 
-        GameBoard gameBoard = gson.fromJson(fileReader, GameBoard.class);
+        Type listType = new TypeToken<ArrayList<DevelopmentCard>>(){}.getType();
+
+        ArrayList<DevelopmentCard> gameBoard = gson.fromJson(fileReader, listType);
 
         System.out.println(gameBoard);
 

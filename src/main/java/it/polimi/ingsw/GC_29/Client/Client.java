@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Client;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
-import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterfaceImpl;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientSocket;
 import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterface;
 
@@ -28,7 +27,7 @@ public class Client {
     private Distribution distribution;
     private boolean connectionChosen;
 
-    private ClientRemoteInterfaceImpl clientRemote;
+   // private ClientRemoteInterfaceImpl clientRemote;
 
     private ClientRMI gameRMI;
 
@@ -88,7 +87,8 @@ public class Client {
         switch (distribution) {
 
             case RMI:
-                executeRMI();
+                gameRMI = new ClientRMI();
+                gameRMI.executeRMI();
                 break;
 
             case SOCKET:
@@ -114,7 +114,7 @@ public class Client {
         }
     }
 
-    private void executeRMI() {
+   /* private void executeRMI() {
 
         try {
             connectServerRMI();
@@ -207,7 +207,7 @@ public class Client {
     private void connectServerSocket() {
 
 
-    }
+    }*/
 
     private void close() {
 

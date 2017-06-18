@@ -13,6 +13,8 @@ import it.polimi.ingsw.GC_29.Server.Socket.ServerSocketView;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.rmi.AlreadyBoundException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -196,6 +198,7 @@ public class ServerNewGame implements Runnable {
             }
 
         }
+
 
         System.out.println("Qua arrivi?");
 

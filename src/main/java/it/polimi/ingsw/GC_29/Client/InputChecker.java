@@ -8,7 +8,6 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilege;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Server.Server;
 
 import java.util.*;
 import java.util.regex.Matcher;

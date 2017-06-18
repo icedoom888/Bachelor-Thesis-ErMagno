@@ -20,7 +20,7 @@ public class CouncilPrivilegeEffect implements Effect {
 
         this.numberOfCouncilPrivileges = numberOfCouncilPrivileges;
 
-        this.parchmentList = new ArrayList<>(numberOfCouncilPrivileges);
+        this.parchmentList = new ArrayList<>();
         for(int i = 0; i < numberOfCouncilPrivileges; i++){
 
             parchmentList.add(new CouncilPrivilege());
