@@ -77,12 +77,15 @@ public class InstructionSet {
     private final Instruction choosePrivilege = new Instruction("privilege (effect index)",
             new ArrayList<>(Arrays.asList(PlayerState.CHOOSE_COUNCIL_PRIVILEGE)), "privilege \\d+");
 
+    private final Instruction chooseCost = new Instruction("cost (effect index)",
+            new ArrayList<>(Arrays.asList(PlayerState.CHOOSECOST)), "cost \\d+");
+
 
     private final List<Instruction> instructionList = new ArrayList<>(Arrays.asList(
             skipAction, endTurn, useFamilyPawn, activateLeaderCard,
             discardLeaderCard, seeValidActionList, doAction, seeCardsDevelopment, seeCardsExcommunication, seeCardsLeader, seeGameBoard,
             seeTracks, seePersonalBoard, seeGameBoardDevelopmentCards, seeGameBoardExcommunicationCards, seeMyGoodSet, seeMyAvailablePawns,
-            throwDices, chooseWorkers, activateCard, chooseEffect, choosePrivilege));
+            throwDices, chooseWorkers, activateCard, chooseEffect, choosePrivilege, chooseCost));
 
 
     /////////////////////////////////////////////////////////////////////7

@@ -22,11 +22,15 @@ public class Workspace implements Cleanable {
         }
 
         this.type = type;
-        this.fields = new EnumMap<FieldType, ActionSpace>(FieldType.class);
+
+        this.fields = new EnumMap<>(FieldType.class);
+
         fields.put(FieldType.FIRST,new ActionSpace(null,1, new PawnSlot(1,true),true,false));
+
         if(numberOfPlayers>=3) {
             fields.put(FieldType.SECOND,new ActionSpace(new BonusEffect(new BonusAndMalusOnAction(type,-3),null,null),1, new PawnSlot(numberOfPlayers,true),false,false));
         }
+
         else{
             fields.put(FieldType.SECOND,null);
         }

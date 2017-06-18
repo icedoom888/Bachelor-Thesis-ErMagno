@@ -171,11 +171,34 @@ public class InputChecker {
 
                 return handlePrivilegeEffect(lastWord);
 
+            case "cost (effect index)" :
+
+                return handleCostChosen(lastWord);
+
         }
 
         Integer.parseInt(lastWord);
 
         return null;
+    }
+
+    private String handleCostChosen(String lastWord) {
+
+        int index = Integer.parseInt(lastWord);
+
+
+        if(possibleCosts.keySet().contains(index)){
+
+            costChosen = index;
+
+            return "cost chosen";
+        }
+
+        else {
+
+            return "invalid input";
+        }
+
     }
 
     /**

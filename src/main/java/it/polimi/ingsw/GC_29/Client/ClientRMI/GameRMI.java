@@ -158,6 +158,10 @@ public class GameRMI implements Runnable {
                         }
                         break;
 
+                    case "cost chosen":
+                        serverViewStub.chooseCost(rmiView.getInputChecker().getCostChosen());
+                        break;
+
                     case "help":
                         rmiView.getInputChecker().handleHelp();
                         break;

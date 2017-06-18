@@ -1,9 +1,8 @@
 package it.polimi.ingsw.GC_29.Server.RMI;
 
-import com.sun.org.apache.regexp.internal.RE;
+
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.rmi.Remote;
@@ -68,7 +67,7 @@ public interface RMIViewRemote extends Remote {
 
     List<FamilyPawn> getPlayerPawns() throws RemoteException;
 
-    void chooseCost(int costChosen);
+    void chooseCost(int costChosen) throws RemoteException;
 
-    Map<Integer, String> getPossibleCosts();
+    Map<Integer, String> getPossibleCosts() throws RemoteException;
 }

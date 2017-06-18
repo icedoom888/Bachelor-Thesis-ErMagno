@@ -97,11 +97,14 @@ public class RMIView extends View implements RMIViewRemote {
 
         List<String> returnList = new ArrayList<>();
 
-        DevelopmentCard playerCards[] = gameStatus.getCurrentPlayer().getPersonalBoard().getLane(cardColor).getCards();
+        List<DevelopmentCard> playerCards = Arrays.asList(gameStatus.getCurrentPlayer().getPersonalBoard().getLane(cardColor).getCards());
 
         for (DevelopmentCard playerCard : playerCards) {
 
-            returnList.add(playerCard.toString());
+            if(playerCard!= null){
+                returnList.add(playerCard.toString());
+            }
+
         }
 
         return returnList;
