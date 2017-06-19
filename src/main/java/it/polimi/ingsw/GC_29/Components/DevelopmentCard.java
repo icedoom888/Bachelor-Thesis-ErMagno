@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Components;
 
 
+import de.vandermeer.asciitable.AsciiTable;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 
 import java.util.ArrayList;
@@ -94,7 +96,6 @@ public class DevelopmentCard {
         return returnString;
 
     }
-
 
 
 
