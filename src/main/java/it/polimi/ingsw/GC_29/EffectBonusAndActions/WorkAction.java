@@ -143,6 +143,8 @@ public class WorkAction extends Action {
      */
     public void buildDifferentChoices() throws Exception {
 
+        activateBonusTile();
+
         Lane lane = null;
 
         if(zoneType==ZoneType.HARVEST){
@@ -161,7 +163,7 @@ public class WorkAction extends Action {
 
         int workersNeeded = 0;
 
-        if(actionSpaceSelected.getEffect()!=null) {
+        if(actionSpaceSelected.getEffect()!= null) {
 
             actionSpaceSelected.getEffect().execute(player);
         }
@@ -242,9 +244,20 @@ public class WorkAction extends Action {
 
                 if(effect instanceof PayToObtainEffect){
 
-                    payToObtainCardsMap.put(cardKey, card);
+                    PayToObtainEffect effect1 = (PayToObtainEffect)effect;
 
-                    isPayToObtain = true;
+                    /**
+                     * TODO: IN QUESTO MODO NON AGGIUNGE LA CARTA NELLE RICHIESTE DA ATTIVARE
+                     * però nella richiesta dei workers per l'attivazione delle carte questa carta è ancora visibile
+                     * SISTEMARE...
+                     */
+
+
+                    if(effect1.checkSufficientGoods(player)){
+                        payToObtainCardsMap.put(cardKey, card);
+                        isPayToObtain = true;
+                    }
+
                 }
 
                 else{
@@ -362,20 +375,19 @@ public class WorkAction extends Action {
     private void activateEffects() throws Exception {
 
 
-        if (zoneType==ZoneType.HARVEST) {
-            player.getPersonalBoard().getBonusTile().getHarvestEffect().execute(player);
-        }
-
-        if (zoneType==ZoneType.PRODUCTION) {
-            player.getPersonalBoard().getBonusTile().getProductionEffect().execute(player);
-        }
-
         if(!effectsToActivate.isEmpty()){
 
             for(Effect effect : effectsToActivate){
                 effect.execute(player);
             }
         }
+    }
+
+    private void activateBonusTile() throws Exception {
+
+        player.getPersonalBoard().getBonusTile().getEffect(zoneType).execute(player);
+
+
     }
 
     public Map<Integer, ArrayList<DevelopmentCard>> getCardsForWorkers() {

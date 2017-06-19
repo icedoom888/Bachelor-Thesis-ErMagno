@@ -38,7 +38,7 @@ public class InputChecker {
     private int currentPayToObtainEffectIndex;
     private Boolean cardIsToActivate;
     private Map<Integer, ArrayList<String>> possibleCardsWorkActionMap;
-    private  List<String> payToObtainCardKeys;
+    private List<String> payToObtainCardKeys;
     private Map<String, HashMap<Integer, String >> payToObtainCardsMap;
     private String currentPayToObtainCard;
     private Map<Integer, String> currentPayToObtainEffectsMap;
@@ -482,7 +482,9 @@ public class InputChecker {
 
         Set<String> keySet = payToObtainCardsMap.keySet();
 
-        payToObtainCardKeys = Arrays.asList(keySet.toArray(new String[keySet.size()]));
+        String keyArray[] = keySet.toArray(new String [keySet.size()]);
+
+        payToObtainCardKeys = new ArrayList<>(Arrays.asList(keyArray));
 
         currentPayToObtainCard = payToObtainCardKeys.remove(0);
 
@@ -496,9 +498,11 @@ public class InputChecker {
 
             ArrayList<String> tempString = possibleCardsWorkActionMap.get(workersAmount);
 
-            System.out.println(" if you use this workers amount" + workersAmount + "you can activate these cards: \n");
+            System.out.println(" if you use this workers amount:" + workersAmount + ") " + "you can activate these cards: \n");
 
-            tempString.forEach(System.out::println);
+            for (String s : tempString) {
+                System.out.println(s);
+            }
         }
     }
 
@@ -672,7 +676,7 @@ public class InputChecker {
 
         for (Integer bonusTileIndex : bonusTileMap.keySet()) {
 
-            System.out.println(bonusTileMap.get(bonusTileIndex));
+            System.out.println("bonus tile index: " + bonusTileIndex + ")  " + bonusTileMap.get(bonusTileIndex));
 
         }
 

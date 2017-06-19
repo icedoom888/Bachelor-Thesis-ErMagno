@@ -5,6 +5,7 @@ import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import org.testng.annotations.Test;
@@ -50,7 +51,9 @@ public class DevelopmentCardTest {
             System.out.println(floor.getDevelopmentCard().toTable());
         }*/
 
-        System.out.println(model.getGameBoard().toTable());
+        //System.out.println(model.getGameBoard().toTable());
+
+        System.out.println(model.getGameBoard().getTower(ZoneType.BLUETOWER).getFloor(0).getDevelopmentCard().toTable());
     }
 
 }

@@ -52,7 +52,7 @@ public class PayToObtainEffect implements Effect{
      * @param status
      * @return boolean that indicates if the player's resources are enough to activate the effect
      */
-    private boolean checkSufficientGoods(Player status){
+    public boolean checkSufficientGoods(Player status){
 
         GoodSet playerGoodSet = status.getActualGoodSet();
 

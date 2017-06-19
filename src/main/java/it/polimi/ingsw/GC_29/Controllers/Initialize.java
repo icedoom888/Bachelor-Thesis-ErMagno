@@ -37,7 +37,7 @@ public class Initialize extends Input {
         if(lastPlayer.getPlayerColor() == playerColor){
 
             model.setCurrentPlayer(lastPlayer);
-            //controller.setCurrentBonusTileIndexPlayer()
+            controller.setCurrentBonusTileIndexPlayer(turnOrder.indexOf(lastPlayer));
             lastPlayer.setPlayerState(PlayerState.CHOOSE_BONUS_TILE);
         }
 

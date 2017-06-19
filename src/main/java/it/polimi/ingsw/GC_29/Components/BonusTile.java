@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 
 /**
  * Created by AlbertoPennino on 18/05/2017.
@@ -30,5 +32,17 @@ public class BonusTile {
                 "productionEffect = " + productionEffect + "\n"
                 + ", harvestEffect = " + harvestEffect + "\n"
                 + '}';
+    }
+
+    public Effect getEffect(ZoneType zoneType) {
+
+        if (zoneType==ZoneType.HARVEST) {
+            return harvestEffect;
+        }
+
+        else {
+
+            return productionEffect;
+        }
     }
 }

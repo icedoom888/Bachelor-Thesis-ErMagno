@@ -23,6 +23,7 @@ public class Controller implements Observer<Input>  {
     private final GameStatus model;
     private Integer playersPraying;
     private ActionChecker actionChecker;
+    private int currentBonusTileIndexPlayer;
 
 
     public Controller(GameStatus model){
@@ -599,5 +600,13 @@ public class Controller implements Observer<Input>  {
             model.getCurrentPlayer().setPlayerState(PlayerState.ENDTURN);
 
         }
+    }
+
+    public void setCurrentBonusTileIndexPlayer(int currentBonusTileIndexPlayer) {
+        this.currentBonusTileIndexPlayer = currentBonusTileIndexPlayer;
+    }
+
+    public int getCurrentBonusTileIndexPlayer() {
+        return currentBonusTileIndexPlayer;
     }
 }
