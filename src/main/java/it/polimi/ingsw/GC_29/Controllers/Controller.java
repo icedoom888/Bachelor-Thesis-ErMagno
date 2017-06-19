@@ -563,6 +563,7 @@ public class Controller implements Observer<Input>  {
         actionChecker.setActionList(actionList);
     }
 
+
     public void handleEndAction(){
 
         if(!model.getCurrentPlayer().getCouncilPrivilegeEffectList().isEmpty()){

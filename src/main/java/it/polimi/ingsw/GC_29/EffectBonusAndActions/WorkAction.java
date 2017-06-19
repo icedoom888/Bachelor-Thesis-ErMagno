@@ -142,34 +142,49 @@ public class WorkAction extends Action {
      * the arrays are created only if the resources of the player are enough to pay hte workersNeeded
      */
     public void buildDifferentChoices() throws Exception {
+
         Lane lane = null;
+
         if(zoneType==ZoneType.HARVEST){
             lane = player.getPersonalBoard().getTerritoryLane();
         }
+
         if (zoneType==ZoneType.PRODUCTION){
             lane = player.getPersonalBoard().getLane(CardColor.YELLOW);
         }
 
         HashMap<Integer,ArrayList<DevelopmentCard>> temporaryHash = new HashMap<>();
+
         HashMap<Integer,ArrayList<DevelopmentCard>> finalHash = new HashMap<>();
+
         int maxWorkersNeeded = 0;
+
         int workersNeeded = 0;
+
         if(actionSpaceSelected.getEffect()!=null) {
+
             actionSpaceSelected.getEffect().execute(player);
         }
+
         if(lane.getFirstFreeSlotIndex()!=0){
+
             for (DevelopmentCard card : lane.getCards()) {
+
                 if(card==null){
                     break;
                 }
+
                 workersNeeded = card.getActionValue() - temporaryPawn.getActualValue();
 
                 if (workersNeeded <= player.getActualGoodSet().getGoodAmount(GoodType.WORKERS) - workers) {
+
                     if (temporaryHash.get(workersNeeded) == null) {
                         ArrayList<DevelopmentCard> templist = new ArrayList<>();
                         templist.add(card);
                         temporaryHash.put(workersNeeded, templist);
-                    } else {
+                    }
+
+                    else {
                         temporaryHash.get(workersNeeded).add(card);
                     }
 
@@ -180,17 +195,26 @@ public class WorkAction extends Action {
             }
 
             workersNeeded = 0;
+
             while (workersNeeded <= maxWorkersNeeded) {
+
                 finalHash.put(workersNeeded,new ArrayList<>());
+
                 if (workersNeeded!=0) {
+
                     ArrayList<DevelopmentCard> temp = new ArrayList<>(finalHash.get(workersNeeded-1));
+
                     finalHash.put(workersNeeded, temp);
                 }
+
                 if (temporaryHash.get(workersNeeded)!=null) {
+
                     for (DevelopmentCard cardPresent : temporaryHash.get(workersNeeded)) {
+
                         if(cardPresent==null){
                             break;
                         }
+
                         finalHash.get(workersNeeded).add(cardPresent);
                     }
                 }
@@ -240,7 +264,7 @@ public class WorkAction extends Action {
      * then asks the player which effects he wants to activate for each card in case of alternatives,
      * only if the player wants activate the card at all.
      * The method generates then a list of effects that need to be activated
-     */
+
     private void makeChoice() {
         //TODO: filtraggio sul costo in workers una volta ottenuto
         int choice;
@@ -271,7 +295,7 @@ public class WorkAction extends Action {
                     }
 
                     if (ask) {
-                        if (/*askForCardActivation(card)*/true){
+                        if (/*askForCardActivation(card)true){
                                 if(card.getPermanentEffect().size()>1) {
                                     //effectChosen = askForEffect(card);
                                     effectChosen=card.getPermanentEffect().get(0);
@@ -293,7 +317,7 @@ public class WorkAction extends Action {
         System.out.println();
         System.out.println(effectsToActivate);
 
-    }
+    }*/
 
 
 
@@ -337,16 +361,20 @@ public class WorkAction extends Action {
      */
     private void activateEffects() throws Exception {
 
-        GoodSet goodSet= null;
+
         if (zoneType==ZoneType.HARVEST) {
             player.getPersonalBoard().getBonusTile().getHarvestEffect().execute(player);
         }
+
         if (zoneType==ZoneType.PRODUCTION) {
             player.getPersonalBoard().getBonusTile().getProductionEffect().execute(player);
         }
 
-        for(Effect effect : effectsToActivate){
-            effect.execute(player);
+        if(!effectsToActivate.isEmpty()){
+
+            for(Effect effect : effectsToActivate){
+                effect.execute(player);
+            }
         }
     }
 
