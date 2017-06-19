@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import de.vandermeer.asciitable.AsciiTable;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.util.ArrayList;
@@ -103,5 +104,15 @@ public class Track implements Cleanable {
                 ", trackLength=" + trackLength +
                 ", pawnMap=" + pawnMap +
                 '}';
+    }
+
+    public String toTable() {
+        AsciiTable asciiTable = new AsciiTable();
+        for (int i=0; i<track.length; i++) {
+            asciiTable.addRule();
+            asciiTable.addRow(i, track[i].getPlayerPawns());
+        }
+
+        return asciiTable.render();
     }
 }

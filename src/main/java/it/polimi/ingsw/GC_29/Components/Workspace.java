@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import de.vandermeer.asciitable.AsciiTable;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 
 import java.util.EnumMap;
@@ -63,5 +64,14 @@ public class Workspace implements Cleanable {
                 "fields=" + fields +
                 ", type=" + type +
                 '}';
+    }
+
+    public String toTable() {
+        AsciiTable workSpaceTable = new AsciiTable();
+        for (FieldType fieldType : fields.keySet()) {
+            workSpaceTable.addRule();
+            workSpaceTable.addRow(fieldType, fields.get(fieldType).toString());
+        }
+        return "\n\n\n" + type + "\n\n" + workSpaceTable.render();
     }
 }

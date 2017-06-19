@@ -2,7 +2,14 @@ package it.polimi.ingsw.GC_29.Components;
 
 import de.vandermeer.asciitable.AsciiTable;
 import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
+import it.polimi.ingsw.GC_29.Controllers.Controller;
+import it.polimi.ingsw.GC_29.Controllers.GameSetup;
+import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
 
 import static org.testng.Assert.*;
 
@@ -12,19 +19,38 @@ import static org.testng.Assert.*;
 public class DevelopmentCardTest {
     @Test
     public void testToString() throws Exception {
-        DevelopmentCard developmentCard = new DevelopmentCard("ciao", Era.FIRST, null, null, null, null, false,0);
-        System.out.println(developmentCard.toString());
-        toTable(developmentCard);
-    }
+        ArrayList<Player> players = new ArrayList<>();
 
-    public void toTable(DevelopmentCard developmentCard) {
-        AsciiTable asciiTable = new AsciiTable();
-        asciiTable.addRule();
-        asciiTable.addRow("name" + developmentCard.getSpecial());
-        asciiTable.addRule();
-        asciiTable.setTextAlignment(TextAlignment.CENTER);
-        String rend = asciiTable.render();
-        System.out.println(rend);
+        Player player1 = new Player("l", PlayerColor.BLUE, new PersonalBoard(6));
+        Player player2 = new Player("e", PlayerColor.GREEN, new PersonalBoard(6));
+
+        players.add(player1);
+        players.add(player2);
+
+        GameSetup gameSetup = new GameSetup(players);
+
+        gameSetup.init();
+
+        GameStatus model = gameSetup.getGameStatus();
+
+        Controller controller = null;
+        try {
+            controller = new Controller(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        controller.setNewRound();
+
+        //System.out.println(model.getGameBoard().getVictoryPointsTrack().toTable());
+        //System.out.println(model.getGameBoard().getFaithPointsTrack().toTable());
+
+        /*Tower tower = model.getGameBoard().getTower(CardColor.YELLOW);
+        for (Floor floor : tower.getFloors()) {
+            System.out.println(floor.getDevelopmentCard().toTable());
+        }*/
+
+        System.out.println(model.getGameBoard().toTable());
     }
 
 }
