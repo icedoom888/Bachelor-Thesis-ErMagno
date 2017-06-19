@@ -32,12 +32,21 @@ public class MainGSonToFile {
 
         GameBoard gameBoard = new GameBoard(5, faithPointsTrack);*/
 
-        ArrayList<Effect> immediateEffect = new ArrayList<>();
-        ArrayList<Effect> permanentEffect = new ArrayList<>();
-        immediateEffect.add(new CouncilPrivilegeEffect(3));
+        ArrayList<BonusTile> bonusTiles = new ArrayList<>();
 
-        DevelopmentCard developmentCard = new DevelopmentCard("messo reale", Era.SECOND, new CardCost(false,true,new Cost(new GoodSet(0,0,5,0,0,0,0)
-                                                                , new GoodSet()), new Cost()), CardColor.BLUE, immediateEffect, permanentEffect, false, 0);
+        BonusTile bonusTile = new BonusTile(new ObtainEffect(0,0,2,1,0,0,0), new ObtainEffect(1,2,0,0,0,1,0));
+
+        BonusTile bonusTile2 = new BonusTile(new ObtainEffect(0,0,0,1,0,2,0), new ObtainEffect(1,2,1,0,0,0,0));
+
+        BonusTile bonusTile3 = new BonusTile(new ObtainEffect(0,0,1,2,0,0,0), new ObtainEffect(1,2,0,0,0,1,0));
+
+        BonusTile bonusTile4 = new BonusTile(new ObtainEffect(0,0,1,0,0,2,0), new ObtainEffect(1,2,0,1,0,0,0));
+
+        bonusTiles.add(bonusTile);
+        bonusTiles.add(bonusTile2);
+        bonusTiles.add(bonusTile3);
+        bonusTiles.add(bonusTile4);
+
 
         // toJson
 
@@ -107,7 +116,7 @@ public class MainGSonToFile {
         Gson gson = gsonBuilder.setPrettyPrinting().create();
 
 
-        gson.toJson(developmentCard, fileWriter);
+        gson.toJson(bonusTiles, fileWriter);
 
         fileWriter.close();
 

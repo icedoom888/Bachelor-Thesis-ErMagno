@@ -23,4 +23,12 @@ public class BonusTile {
     public ObtainEffect getHarvestEffect() {
         return harvestEffect;
     }
+
+    @Override
+    public String toString() {
+        return "BonusTile{" +
+                "productionEffect = " + productionEffect + "\n"
+                + ", harvestEffect = " + harvestEffect + "\n"
+                + '}';
+    }
 }

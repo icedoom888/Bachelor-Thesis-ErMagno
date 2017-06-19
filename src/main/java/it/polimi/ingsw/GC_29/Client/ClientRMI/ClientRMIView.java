@@ -122,6 +122,11 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
                 inputChecker.setCouncilPrivilegeEffectList(serverViewStub.getCouncilPrivileges());
                 inputChecker.nextPrivilegeEffect();
                 inputChecker.askWhichPrivilege();
+                break;
+
+            case CHOOSE_BONUS_TILE:
+                inputChecker.setBonusTileMap(serverViewStub.getBonusTileList());
+                inputChecker.askWhichBonusTile();
 
             //TODO: inserire gestione altri stati se necessario
         }

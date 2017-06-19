@@ -59,6 +59,10 @@ public class InputChecker {
     private Map<Integer, String> possibleCosts;
     private int costChosen;
 
+
+    private Map<Integer, String> bonusTileMap;
+    private int bonusTileChosen;
+
     public InputChecker(){
 
         instructionSet = new InstructionSet();
@@ -82,6 +86,8 @@ public class InputChecker {
         councilPrivilegeEffectChosenList = new ArrayList<>();
 
         currentParchmentList = new ArrayList<>();
+
+        bonusTileMap = new HashMap<>();
 
         //TODO dalla view ad ogni update devo settare i valori giusti (pawnAvailability, playerState, gameState)
     }
@@ -175,11 +181,33 @@ public class InputChecker {
 
                 return handleCostChosen(lastWord);
 
+            case "bonus tile (index)" :
+
+                return handleBonusTile(lastWord);
+
         }
 
         Integer.parseInt(lastWord);
 
         return null;
+    }
+
+    private String handleBonusTile(String lastWord) {
+
+        int index = Integer.parseInt(lastWord);
+
+
+        if(bonusTileMap.keySet().contains(index)){
+
+            bonusTileChosen = index;
+
+            return "bonus tile chosen";
+        }
+
+        else {
+
+            return "invalid input";
+        }
     }
 
     private String handleCostChosen(String lastWord) {
@@ -632,5 +660,26 @@ public class InputChecker {
 
     public void setCostChosen(int costChosen) {
         this.costChosen = costChosen;
+    }
+
+    public void setBonusTileMap(Map<Integer, String> bonusTileMap) {
+        this.bonusTileMap = bonusTileMap;
+    }
+
+    public void askWhichBonusTile() {
+
+        System.out.println("Select one of the next bonus tiles");
+
+        for (Integer bonusTileIndex : bonusTileMap.keySet()) {
+
+            System.out.println(bonusTileMap.get(bonusTileIndex));
+
+        }
+
+        System.out.println("the valid input is: bonus tile (index)");
+    }
+
+    public int getBonusTileChosen() {
+        return bonusTileChosen;
     }
 }

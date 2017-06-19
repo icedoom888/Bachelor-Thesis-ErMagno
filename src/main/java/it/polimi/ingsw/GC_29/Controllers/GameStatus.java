@@ -30,6 +30,7 @@ public class GameStatus extends Observable<Change>{
     private ArrayList<Player> turnOrder;
     private ArrayList<Player> skippedTurnPlayers;
     private HashMap<FamilyPawn, ActionSpace> pawnsOnActionSpace;
+    private List<BonusTile> bonusTileList;
 
     public GameStatus() {
 
@@ -38,6 +39,7 @@ public class GameStatus extends Observable<Change>{
         gameState = GameState.RUNNING;
         skippedTurnPlayers = new ArrayList<>();
         turnOrder = new ArrayList<>();
+        bonusTileList = new ArrayList<>();
     }
 
 
@@ -176,6 +178,14 @@ public class GameStatus extends Observable<Change>{
         gameBoard.getFaithPointsTrack().startTrack(pawns);
         gameBoard.getVenturesPointsTrack().startTrack(pawns);
         gameBoard.getVictoryPointsTrack().startTrack(pawns);
+    }
+
+    public void setBonusTileList(List<BonusTile> bonusTileList) {
+        this.bonusTileList = bonusTileList;
+    }
+
+    public List<BonusTile> getBonusTileList() {
+        return bonusTileList;
     }
 }
 

@@ -70,4 +70,8 @@ public interface RMIViewRemote extends Remote {
     void chooseCost(int costChosen) throws RemoteException;
 
     Map<Integer, String> getPossibleCosts() throws RemoteException;
+
+    Map<Integer,String> getBonusTileList() throws  RemoteException;
+
+    void bonusTileChosen(int bonusTileChosen) throws RemoteException;
 }

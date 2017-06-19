@@ -162,6 +162,10 @@ public class GameRMI implements Runnable {
                         serverViewStub.chooseCost(rmiView.getInputChecker().getCostChosen());
                         break;
 
+                    case "bonus tile chosen":
+                        serverViewStub.bonusTileChosen(rmiView.getInputChecker().getBonusTileChosen());
+                        break;
+
                     case "help":
                         rmiView.getInputChecker().handleHelp();
                         break;

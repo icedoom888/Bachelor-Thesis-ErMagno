@@ -36,9 +36,6 @@ public class GameSetup {
 
     private ArrayList<Player> players;
 
-    // TODO: possibile refactor: rendo classe singleton e rendo init statico passandogli l'arraylist dei players
-    // TODO: nel setup settare era, turno e round come first, 1, 1
-
     public GameSetup(ArrayList<Player> clientList) throws RemoteException {
 
 
@@ -47,6 +44,7 @@ public class GameSetup {
         this.numberOfPlayers = players.size();
         this.orderedDecks = new EnumMap<>(CardColor.class);
         this.excommunicationTileMap = new EnumMap<>(Era.class);
+
     }
 
     /*public void setPlayers(ArrayList<Player> clientList) throws RemoteException {
@@ -92,6 +90,7 @@ public class GameSetup {
         setGameStatus();
 
     }
+
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -245,11 +244,22 @@ public class GameSetup {
 
         gameStatus.setCurrentTurn(0);
 
-    }
+        try {
+            gameStatus.setBonusTileList(loadBonusTilesFromFile());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
+    }
 
 
     public GameStatus getGameStatus() {
         return gameStatus;
+    }
+
+    private List<BonusTile> loadBonusTilesFromFile() throws FileNotFoundException {
+
+        return new ObjectDeserializer().getBonusTiles();
+
     }
 }

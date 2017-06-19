@@ -12,10 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Christian on 02/06/2017.
@@ -36,6 +33,10 @@ public class ObjectDeserializer {
     Type listType = new TypeToken<ArrayList<DevelopmentCard>>(){}.getType();
 
     private HashMap<Integer, String> gameBoardFromFileMap;
+
+    private final String bonustilesFilePath = "bonusTiles/bonusTiles";
+
+    Type bonusTilelistType = new TypeToken<ArrayList<BonusTile>>(){}.getType();
 
     private Gson gsonCardDeserializer;
 
@@ -116,6 +117,22 @@ public class ObjectDeserializer {
         fileReader.close();
 
         return gameBoard;
+    }
+
+    public List<BonusTile> getBonusTiles() throws FileNotFoundException {
+
+        FileReader fileReader = new FileReader(bonustilesFilePath);
+
+        List<BonusTile> bonusTiles = gsonBuilder.create().fromJson(fileReader, bonusTilelistType );
+
+        try {
+            fileReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return bonusTiles;
+
     }
 }
 

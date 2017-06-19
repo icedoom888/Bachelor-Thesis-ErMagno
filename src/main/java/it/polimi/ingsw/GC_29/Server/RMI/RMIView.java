@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Server.Query.BonusTileQuery;
 import it.polimi.ingsw.GC_29.Server.Query.GetValidActions;
 import it.polimi.ingsw.GC_29.Server.View;
 
@@ -169,6 +170,20 @@ public class RMIView extends View implements RMIViewRemote {
 
         return possibleCostsToString;
 
+    }
+
+    @Override
+    public Map<Integer,String> getBonusTileList() throws RemoteException {
+        return new BonusTileQuery().perform(gameStatus);
+    }
+
+    @Override
+    public void bonusTileChosen(int bonusTileChosen) throws RemoteException {
+        try {
+            notifyObserver(new BonusTileChosen(bonusTileChosen));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
