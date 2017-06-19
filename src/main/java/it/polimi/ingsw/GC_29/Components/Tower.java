@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import de.vandermeer.asciitable.AsciiTable;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 
@@ -119,5 +121,19 @@ public class Tower implements Cleanable {
         else {
             return CardColor.PURPLE;
         }
+    }
+
+    public String toTable() {
+        /*AsciiTable heading = new AsciiTable();
+        heading.addRule();
+        heading.addRow(zoneType);
+        String header = heading.render();*/
+        AsciiTable towerTable = new AsciiTable();
+        for (int i = 0; i < floors.length; i++) {
+            towerTable.addRule();
+            towerTable.addRow("Floor: " + i, "Card: \n" + floors[i].getDevelopmentCard().toString(), "Action Space:\n" + floors[i].getActionSpace().toString());
+        }
+        towerTable.setTextAlignment(TextAlignment.CENTER);
+        return "\n\n\n" + zoneType + "\n" + towerTable.render();
     }
 }

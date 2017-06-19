@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import de.vandermeer.asciitable.AsciiTable;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
@@ -77,4 +78,16 @@ public class CouncilPalaceActionSpace extends ActionSpace {
         }
     }
 
+    public String toTable() {
+
+        AsciiTable councilTable = new AsciiTable();
+
+        int i = 0;
+        for (PlayerColor playerColor : turnOrder) {
+            councilTable.addRule();
+            councilTable.addRow(i + ")", playerColor);
+        }
+
+        return "\n\n\n" + "COUNCIL PALACE \n\n" + councilTable.render();
+    }
 }

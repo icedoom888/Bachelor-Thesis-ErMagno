@@ -241,6 +241,33 @@ public class GameBoard {
                 '}';
     }
 
+    public String toTable() {
+        String finalString = "";
+
+        for (Tower tower : towerMap.values()) {
+            finalString += tower.toTable();
+        }
+        finalString += "\n\n\n";
+        for (Workspace workspace : workAreaMap.values()) {
+            finalString += workspace.toTable();
+        }
+        finalString += "\n\n\n";
+        finalString += market.toTable();
+        finalString += "\n\n\n";
+        finalString += councilPalace.toTable();
+        finalString += "\n\n\n";
+        finalString += excommunicationLane.toTable();
+        finalString += "\n\n\n";
+        finalString += victoryPointsTrack.toTable();
+        finalString += "\n\n\n";
+        finalString += venturesPointsTrack.toTable();
+        finalString += "\n\n\n";
+        finalString += faithPointsTrack.toTable();
+
+
+        return finalString;
+    }
+
 
     /**
      * setTurn add all the cards to the right towers

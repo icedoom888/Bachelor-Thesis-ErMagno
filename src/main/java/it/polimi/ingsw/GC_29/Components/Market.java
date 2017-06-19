@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import de.vandermeer.asciitable.AsciiTable;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
@@ -46,5 +47,15 @@ public class Market implements Cleanable {
                 houses.get(name).clean();
             }
         }
+    }
+
+    public String toTable() {
+        AsciiTable marketTable = new AsciiTable();
+        for (ShopName shopName : houses.keySet()) {
+            marketTable.addRule();
+            marketTable.addRow(shopName, houses.get(shopName).toString());
+        }
+
+        return "\n\n\n" + "MARKET \n\n" + marketTable.render();
     }
 }

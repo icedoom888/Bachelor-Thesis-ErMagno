@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import de.vandermeer.asciitable.AsciiTable;
+
 import java.util.Arrays;
 
 /**
@@ -27,6 +29,17 @@ public class FaithPointsTrack extends Track {
                 ", trackLength=" + trackLength +
                 ", pawnMap=" + pawnMap +
                 '}';
+    }
+
+    @Override
+    public String toTable() {
+        AsciiTable asciiTable = new AsciiTable();
+        for (int i=0; i<track.length; i++) {
+            asciiTable.addRule();
+            asciiTable.addRow(i, "Victory Points: " + victoryPointsPerSlot[i], track[i].getPlayerPawns());
+        }
+
+        return asciiTable.render();
     }
 }
 
