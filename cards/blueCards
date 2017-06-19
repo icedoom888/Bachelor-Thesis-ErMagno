@@ -1,6 +1,6 @@
 [
 {
-    "name": "Artigiano",
+    "special": "Artigiano",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -45,7 +45,7 @@
     "actionValue": 0
   },
   {
-    "name": "Condottiero",
+    "special": "Condottiero",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -105,7 +105,7 @@
     "actionValue": 0
   },
   {
-    "name": "Predicatore",
+    "special": "Predicatore",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -157,7 +157,7 @@
     "actionValue": 0
   },
   {
-    "name": "Badessa",
+    "special": "Badessa",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -214,7 +214,7 @@
     "actionValue": 0
   },
   {
-    "name": "Dama",
+    "special": "Dama",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -274,7 +274,7 @@
     "actionValue": 0
   },
   {
-    "name": "Costruttore",
+    "special": "Costruttore",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -345,7 +345,7 @@
     "actionValue": 0
   },
   {
-    "name": "Cavaliere",
+    "special": "Cavaliere",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -472,7 +472,7 @@
     "actionValue": 0
   },
   {
-    "name": "Contadino",
+    "special": "Contadino",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -517,7 +517,7 @@
     "actionValue": 0
   },
   {
-    "name": "Messo Papale",
+    "special": "Messo Papale",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -569,7 +569,7 @@
     "actionValue": 0
   },
   {
-    "name": "Fattore",
+    "special": "Fattore",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -614,7 +614,7 @@
     "actionValue": 0
   },
   {
-    "name": "Studioso",
+    "special": "Studioso",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -659,7 +659,7 @@
     "actionValue": 0
   },
   {
-    "name": "Capitano",
+    "special": "Capitano",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -716,7 +716,7 @@
     "actionValue": 0
   },
   {
-    "name": "Architetto",
+    "special": "Architetto",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -774,7 +774,7 @@
     "actionValue": 0
   },
   {
-    "name": "Eroe",
+    "special": "Eroe",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -898,7 +898,7 @@
     "actionValue": 0
   },
   {
-    "name": "Mecenate",
+    "special": "Mecenate",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -956,7 +956,7 @@
     "actionValue": 0
   },
   {
-    "name": "Messo Reale",
+    "special": "Messo Reale",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1223,7 +1223,7 @@
     "actionValue": 0
   },
   {
-    "name": "Nobile",
+    "special": "Nobile",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1290,7 +1290,7 @@
     "actionValue": 0
   },
   {
-    "name": "Governatore",
+    "special": "Governatore",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1357,7 +1357,7 @@
     "actionValue": 0
   },
   {
-    "name": "Cortigiana",
+    "special": "Cortigiana",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1424,7 +1424,7 @@
     "actionValue": 0
   },
   {
-    "name": "Araldo",
+    "special": "Araldo",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1491,7 +1491,7 @@
     "actionValue": 0
   },
   {
-    "name": "Cardinale",
+    "special": "Cardinale",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1548,7 +1548,7 @@
     "actionValue": 0
   },
   {
-    "name": "Vescovo",
+    "special": "Vescovo",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1605,7 +1605,7 @@
     "actionValue": 0
   },
   {
-    "name": "Generale",
+    "special": "Generale",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1671,7 +1671,7 @@
     "actionValue": 0
   },
   {
-    "name": "Ambasciatore",
+    "special": "Ambasciatore",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,

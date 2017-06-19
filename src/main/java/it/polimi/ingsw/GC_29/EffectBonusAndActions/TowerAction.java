@@ -154,7 +154,7 @@ public class TowerAction extends Action {
             playerGoodSet.subGoodSet(towerCost);
             playerGoodSet.addGoodSet(actionSpaceGoodSet);
 
-            int i = 1;
+            int i = 0;
             boolean value = false;
             for (Cost cost : costList) {
 
@@ -167,10 +167,10 @@ public class TowerAction extends Action {
 
                         possibleCardCosts.put(i,cost);
                         value = true;
+                        i++;
                     }
                 }
 
-                i++;
             }
 
             return value;
@@ -269,8 +269,12 @@ public class TowerAction extends Action {
         }
 
         if (cardCost.isWithPrice()) {
+
             goodSetToPay.addGoodSet(possibleCardCosts.get(costChosen).getCost());
+
         }
+
+        goodSetToPay.setNegative();
 
         try {
             player.updateGoodSet(goodSetToPay);

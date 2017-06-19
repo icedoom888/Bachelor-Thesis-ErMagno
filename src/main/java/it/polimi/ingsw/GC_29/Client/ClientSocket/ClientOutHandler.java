@@ -95,6 +95,12 @@ public class ClientOutHandler implements Runnable {
                         socketOut.flush();
                         break;
 
+                    case "see my family pawns":
+                        query = new GetFamilyPawns();
+                        socketOut.writeObject(query);
+                        socketOut.flush();
+                        break;
+
                     case "execute action":
                         int actionIndex = commonView.getInputChecker().getActionIndex();
                         socketOut.writeObject("execute action");
@@ -174,6 +180,24 @@ public class ClientOutHandler implements Runnable {
                         socketOut.writeObject("i don't want to pray");
                         socketOut.flush();
                         socketOut.writeObject(playerColor);
+                        socketOut.flush();
+                        break;
+
+                    case "see my goodset":
+                        query = new GetGoodSet();
+                        socketOut.writeObject(query);
+                        socketOut.flush();
+                        break;
+
+                    case "see development card":
+                        query = new GetDevelopmentCard(commonView.getInputChecker().getPlayerCardColor());
+                        socketOut.writeObject(query);
+                        socketOut.flush();
+                        break;
+
+                    case "see tower card":
+                        query = new GetTowerCard(commonView.getInputChecker().getTowerCardColor());
+                        socketOut.writeObject(query);
                         socketOut.flush();
                         break;
 

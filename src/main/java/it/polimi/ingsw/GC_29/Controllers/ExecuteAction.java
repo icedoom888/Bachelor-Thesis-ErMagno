@@ -45,10 +45,18 @@ public class ExecuteAction extends Input {
         if(actionSelected instanceof WorkAction) {
 
             WorkAction workAction = (WorkAction)actionSelected;
-            workAction.buildDifferentChoices();
             currentPlayer.setCurrentAction(workAction);
 
-            currentPlayer.setPlayerState(PlayerState.CHOOSEWORKERS);
+            workAction.buildDifferentChoices();
+
+            if (workAction.getCardsForWorkers().isEmpty()) {
+                workAction.execute();
+                controller.handleEndAction();
+            }
+
+            else {
+                currentPlayer.setPlayerState(PlayerState.CHOOSEWORKERS);
+            }
 
         }
 
@@ -56,11 +64,12 @@ public class ExecuteAction extends Input {
 
             TowerAction towerAction = (TowerAction)actionSelected;
             currentPlayer.setCurrentAction(towerAction);
-            if (towerAction.getCardCost().isWithPrice()) {
+            if (towerAction.getCardCost().isWithPrice() && towerAction.getPossibleCardCosts().keySet().size() > 1) {
                 currentPlayer.setPlayerState(PlayerState.CHOOSECOST);
             }
 
             else {
+                towerAction.setCostChosen(0);
                 towerAction.execute();
                 controller.handleEndAction();
             }

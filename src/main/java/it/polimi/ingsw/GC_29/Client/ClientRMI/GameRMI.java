@@ -26,7 +26,7 @@ public class GameRMI implements Runnable {
 
     @Override
     public void run() {
-//get the stub (local object) of the remote view
+    //get the stub (local object) of the remote view
 
         System.out.println(playerColor);
         System.out.println(serverViewStub);

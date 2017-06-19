@@ -9,7 +9,7 @@ public enum SpecialBonusAndMalus {
     FREETOWER,
     FIVEVICTORYPOINTSIFPRAY,
     NOMILITARYFORTERRITORY,
-    X2ONIMMEDIATE,
+    X2ONIMMEDIATE, //TODO: pensare a mettere doubleResources() su effect
     NOMARKET,
     NOGREENTOWER,
     NOBLUETOWER,
@@ -22,7 +22,7 @@ public enum SpecialBonusAndMalus {
     NOVICTORYFROMBLUE,
     NOVICTORYFROMPURPLE,
     NOVICTORYFROMGREEN,
-    CHANGEVALUEOFEVERYPAWN,
-    CHANGEVALUEOFONEPAWN,
+    CHANGEVALUEOFEVERYPAWN, //TODO: si sistema con un nuovo effetto
+    CHANGEVALUEOFONEPAWN, //TODO: non è implementato
     SKIPFIRSTTURN
 }

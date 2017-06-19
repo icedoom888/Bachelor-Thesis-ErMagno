@@ -168,5 +168,14 @@ public class GameStatus extends Observable<Change>{
     }
 
 
+    public void setPawns(ArrayList<Player> players) {
+        ArrayList<Pawn> pawns = new ArrayList<>();
+        for (Player player : players) {
+            pawns.add(player.getMarkerDiscs());
+        }
+        gameBoard.getFaithPointsTrack().startTrack(pawns);
+        gameBoard.getVenturesPointsTrack().startTrack(pawns);
+        gameBoard.getVictoryPointsTrack().startTrack(pawns);
+    }
 }
 

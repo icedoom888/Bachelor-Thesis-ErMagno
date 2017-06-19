@@ -1,6 +1,6 @@
 [
   {
-    "name": "Hiring Recruits",
+    "special": "Hiring Recruits",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -67,7 +67,7 @@
     "actionValue": 0
   },
   {
-    "name": "Repairing the Church",
+    "special": "Repairing the Church",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -134,7 +134,7 @@
     "actionValue": 0
   },
   {
-    "name": "Building the Walls",
+    "special": "Building the Walls",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -282,7 +282,7 @@
     "actionValue": 0
   },
   {
-    "name": "Raising a Statue",
+    "special": "Raising a Statue",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -490,7 +490,7 @@
     "actionValue": 0
   },
   {
-    "name": "Military Campaign",
+    "special": "Military Campaign",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -557,7 +557,7 @@
     "actionValue": 0
   },
   {
-    "name": "Hosting Panhandlers",
+    "special": "Hosting Panhandlers",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -624,7 +624,7 @@
     "actionValue": 0
   },
   {
-    "name": "Fighting Heresies",
+    "special": "Fighting Heresies",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -691,7 +691,7 @@
     "actionValue": 0
   },
   {
-    "name": "Support to the Bishop",
+    "special": "Support to the Bishop",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -782,7 +782,7 @@
     "actionValue": 0
   },
   {
-    "name": "Hiring Soldiers",
+    "special": "Hiring Soldiers",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -849,7 +849,7 @@
     "actionValue": 0
   },
   {
-    "name": "Repairing the Abbey",
+    "special": "Repairing the Abbey",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -916,7 +916,7 @@
     "actionValue": 0
   },
   {
-    "name": "Building the Bastions",
+    "special": "Building the Bastions",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1064,7 +1064,7 @@
     "actionValue": 0
   },
   {
-    "name": "Support to the King",
+    "special": "Support to the King",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1212,7 +1212,7 @@
     "actionValue": 0
   },
   {
-    "name": "Improving the Canals",
+    "special": "Improving the Canals",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1270,7 +1270,7 @@
     "actionValue": 0
   },
   {
-    "name": "Hosting Foreigners",
+    "special": "Hosting Foreigners",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1337,7 +1337,7 @@
     "actionValue": 0
   },
   {
-    "name": "Crusade",
+    "special": "Crusade",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1404,7 +1404,7 @@
     "actionValue": 0
   },
   {
-    "name": "Support to the Cardinal",
+    "special": "Support to the Cardinal",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1495,7 +1495,7 @@
     "actionValue": 0
   },
   {
-    "name": "Hiring Mercenaries",
+    "special": "Hiring Mercenaries",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1562,7 +1562,7 @@
     "actionValue": 0
   },
   {
-    "name": "Repairing the Cathedral",
+    "special": "Repairing the Cathedral",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1634,7 +1634,7 @@
     "actionValue": 0
   },
   {
-    "name": "Building the Towers",
+    "special": "Building the Towers",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1782,7 +1782,7 @@
     "actionValue": 0
   },
   {
-    "name": "Promoting Sacred Art",
+    "special": "Promoting Sacred Art",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1849,7 +1849,7 @@
     "actionValue": 0
   },
   {
-    "name": "Improving the Roads",
+    "special": "Improving the Roads",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1907,7 +1907,7 @@
     "actionValue": 0
   },
   {
-    "name": "Sacred War",
+    "special": "Sacred War",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1974,7 +1974,7 @@
     "actionValue": 0
   },
   {
-    "name": "Military Conquest",
+    "special": "Military Conquest",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -2041,7 +2041,7 @@
     "actionValue": 0
   },
   {
-    "name": "Support to the Pope",
+    "special": "Support to the Pope",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,

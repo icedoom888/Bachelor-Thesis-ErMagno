@@ -26,6 +26,8 @@ public class Player extends Observable<Change> {
     private HashMap<LeaderCard, Boolean> permanentLeaders;
     private HashMap<LeaderCard, Boolean> oncePerRoundLeaders;
 
+    private ArrayList<ExcommunicationTile> excommunicationTiles;
+
     private List<FamilyPawn> familyPawns;
     private Pawn excommunicationPawns;
     private Pawn markerDiscs;
@@ -101,6 +103,8 @@ public class Player extends Observable<Change> {
         currentValidActionsList = new ArrayList<>();
 
         specialBonusAndMaluses = new ArrayList<>();
+
+        excommunicationTiles = new ArrayList<>();
 
     }
 
@@ -267,6 +271,14 @@ public class Player extends Observable<Change> {
 
     public List<CouncilPrivilegeEffect> getCouncilPrivilegeEffectList() {
         return councilPrivilegeEffectList;
+    }
+
+    public ArrayList<ExcommunicationTile> getExcommunicationTiles() {
+        return excommunicationTiles;
+    }
+
+    public void setExcommunicationTiles(ArrayList<ExcommunicationTile> excommunicationTiles) {
+        this.excommunicationTiles = excommunicationTiles;
     }
 }
 

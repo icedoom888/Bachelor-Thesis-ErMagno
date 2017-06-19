@@ -236,6 +236,8 @@ public class GameSetup {
 
         gameStatus.setTurnOrder(players);
 
+        gameStatus.setPawns(players);
+
         gameStatus.setCurrentPlayer(players.get(0));
 
         gameStatus.setCurrentEra(Era.FIRST);

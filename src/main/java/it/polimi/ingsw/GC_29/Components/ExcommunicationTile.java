@@ -13,23 +13,22 @@ import it.polimi.ingsw.GC_29.Player.Player;
 
 public class ExcommunicationTile {
 
-    //TODO: malus a fine partita
 
     private Era era;
-    private SpecialBonusAndMalus name;
+    private SpecialBonusAndMalus special;
     private BonusAndMalusOnAction malusOnAction;
     private BonusAndMalusOnGoods malusOnGoods;
     private BonusAndMalusOnCost malusOnCost;
     private Effect effect;
 
     public ExcommunicationTile(Era era,
-                               SpecialBonusAndMalus name,
+                               SpecialBonusAndMalus special,
                                BonusAndMalusOnAction malusOnAction,
                                BonusAndMalusOnGoods malusOnGoods,
                                BonusAndMalusOnCost malusOnCost,
                                Effect effect) {
         this.era = era;
-        this.name = name;
+        this.special = special;
         this.malusOnAction = malusOnAction;
         this.malusOnGoods = malusOnGoods;
         this.malusOnCost = malusOnCost;
@@ -44,8 +43,8 @@ public class ExcommunicationTile {
         return era;
     }
 
-    public SpecialBonusAndMalus getName() {
-        return name;
+    public SpecialBonusAndMalus getSpecial() {
+        return special;
     }
 
     public BonusAndMalusOnAction getMalusOnAction() {
@@ -68,12 +67,13 @@ public class ExcommunicationTile {
         if (malusOnAction != null) player.getBonusAndMalusOnAction().add(this.getMalusOnAction());
         if (malusOnGoods != null) player.getBonusAndMalusOnGoods().add(this.getMalusOnGoods());
         if (malusOnCost != null) player.getBonusAndMalusOnCost().add(this.getMalusOnCost());
-        if (effect != null) effect.execute(player);
+        //if (effect != null) effect.execute(player);
+        player.getExcommunicationTiles().add(this);
 
     }
 
     @Override
     public String toString() {
-        return "ExcommunicationTile{" + "era=" + era + ", name='" + name + '\'' + ", malusOnAction=" + malusOnAction + ", malusOnGoods=" + malusOnGoods + ", malusOnCost=" + malusOnCost +  '\'' + '}';
+        return "ExcommunicationTile{" + "era=" + era + ", special='" + special + '\'' + ", malusOnAction=" + malusOnAction + ", malusOnGoods=" + malusOnGoods + ", malusOnCost=" + malusOnCost +  '\'' + '}';
     }
 }

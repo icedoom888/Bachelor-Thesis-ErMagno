@@ -8,8 +8,6 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public class Special implements Effect {
 
-    //TODO: potrebbe essere incorporato a BonusEffect
-
     private SpecialBonusAndMalus specialBonusAndMalus;
 
     public Special(SpecialBonusAndMalus specialBonusAndMalus) {

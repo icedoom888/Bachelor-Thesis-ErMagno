@@ -127,6 +127,8 @@ public class ServerNewGame implements Runnable {
             e.printStackTrace();
         }
 
+        TrackController trackController = new TrackController(gameSetup.getGameStatus());
+
 
         /*try {
             startRMIView(gameSetup.getGameStatus(), controller);
@@ -148,9 +150,11 @@ public class ServerNewGame implements Runnable {
                 ServerSocketView serverSocketView = new ServerSocketView(playersSocketMap.get(player), gameSetup.getGameStatus());
 
                 serverSocketView.registerObserver(controller);
-
                 gameSetup.getGameStatus().registerObserver(serverSocketView);
                 gameSetup.getGameStatus().getPlayer(player.getPlayerColor()).registerObserver(serverSocketView);
+
+                player.getActualGoodSet().registerObserver(trackController);
+
                 serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
                 executorService.submit(serverSocketView);
 

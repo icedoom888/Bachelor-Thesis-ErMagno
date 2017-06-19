@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class DevelopmentCard {
 
-    private String name;
+    private String special;
     private Era era;
     private CardCost cardCost;
     private CardColor color;
@@ -22,7 +22,7 @@ public class DevelopmentCard {
 
 
     public DevelopmentCard(
-            String name,
+            String special,
             Era era,
             CardCost cardCost,
             CardColor color,
@@ -31,7 +31,7 @@ public class DevelopmentCard {
             boolean withActionValue,
             int actionValue) {
 
-        this.name = name;
+        this.special = special;
         this.era = era;
         this.cardCost = cardCost;
         this.color = color;
@@ -41,8 +41,8 @@ public class DevelopmentCard {
         this.actionValue = actionValue;
     }
 
-    public String getName() {
-        return name;
+    public String getSpecial() {
+        return special;
     }
 
     public Era getEra() {
@@ -77,7 +77,7 @@ public class DevelopmentCard {
     public String toString() {
 
         String returnString = "DevelopmentCard{ \n"
-                + "name = '" + name + "'\n"
+                + "special = '" + special + "'\n"
                 + "era = " + era + "\n"
                 + "color = " + color + "\n"
                 + "cardCost = " + cardCost + "\n"
@@ -94,4 +94,53 @@ public class DevelopmentCard {
         return returnString;
 
     }
+
+
+
+
+    /*@Override
+    public String toString() {
+        AsciiArtTable devCard = new AsciiArtTable();
+        devCard.addHeadline(special);
+        devCard.addHeaderCols("Era", "Color");
+        ArrayList<String> row = new ArrayList<>();
+        row.add(era.toString());
+        row.add(color.toString());
+        if (cardCost.isWithPrice())  {
+            devCard.addHeaderCols("Cost");
+            row.add(cardCost.getMainCost().getCost().toString());
+        }
+        if (cardCost.isAlternative()) {
+            devCard.addHeaderCols("Alternative Cost");
+            row.add(cardCost.getAlternativeCost().getCost().toString());
+        }
+        if (!immediateEffect.isEmpty()) {
+            devCard.addHeaderCols("Immediate Effects");
+            String string = null;
+            for (Effect effect : immediateEffect) {
+                string += effect.toString();
+            }
+            row.add(string);
+        }
+        if (!permanentEffect.isEmpty()) {
+            devCard.addHeaderCols("Permanent Effects");
+            String string = "";
+            for (Effect effect : permanentEffect) {
+                string += effect.toString();
+            }
+            row.add(string);
+        }
+        if (withActionValue) {
+            devCard.addHeaderCols("ActionValue");
+            row.add(Integer.toString(actionValue));
+        }
+        devCard.add(row);
+
+        devCard.print(System.out);
+
+
+        return devCard.getOutput();
+    }*/
+
+
 }

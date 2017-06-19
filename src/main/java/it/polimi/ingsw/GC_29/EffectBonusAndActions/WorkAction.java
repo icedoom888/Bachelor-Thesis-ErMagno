@@ -27,7 +27,7 @@ public class WorkAction extends Action {
         super(zoneType, gameStatus);
         this.workspaceSelected = this.gameStatus.getGameBoard().getWorkArea(zoneType);
 
-        this.actionSpaceSelected = workspaceSelected.getActionspace(fieldSelected);
+        this.actionSpaceSelected = workspaceSelected.getActionSpace(fieldSelected);
         this.fieldSelected = fieldSelected;
         this.cardsForWorkers = new HashMap<>();
         this.effectsToActivate = new ArrayList<>();
@@ -63,7 +63,7 @@ public class WorkAction extends Action {
             return true;
         }
         FieldType other = FieldType.FIRST;
-        if(workspaceSelected.getActionspace(other).isOccupied()){
+        if(workspaceSelected.getActionSpace(other).isOccupied()){
             System.out.println("The first field is free");
             return true;
         }
@@ -77,7 +77,7 @@ public class WorkAction extends Action {
      */
     private boolean checkFamilyPresenceInField() {
 
-        for(Pawn pawnPresent : workspaceSelected.getActionspace(fieldSelected).getPawnPlaced().getPlayerPawns()){
+        for(Pawn pawnPresent : workspaceSelected.getActionSpace(fieldSelected).getPawnPlaced().getPlayerPawns()){
             if(((FamilyPawn)pawnPresent).getType()==FamilyPawnType.BONUS){
 
             }
@@ -97,6 +97,9 @@ public class WorkAction extends Action {
      * @return true if the neutral rule is respected, false otherwise
      */
     private boolean checkNeutralRule() {
+
+        if (gameStatus.getTurnOrder().size() < 4) return true;
+
         if(temporaryPawn.getType()==FamilyPawnType.NEUTRAL){
             System.out.println("The neutral rule is respected");
             return true;
@@ -109,7 +112,8 @@ public class WorkAction extends Action {
         else{
             otherField = FieldType.FIRST;
         }
-        for (Pawn pawnPresent : workspaceSelected.getActionspace(otherField).getPawnPlaced().getPlayerPawns()){
+
+        for (Pawn pawnPresent : workspaceSelected.getActionSpace(otherField).getPawnPlaced().getPlayerPawns()){
             if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && ((FamilyPawn)pawnPresent).getType()!=FamilyPawnType.NEUTRAL){
                 System.out.println("The neutral rule is NOT respected");
                 return false;
@@ -261,7 +265,7 @@ public class WorkAction extends Action {
                         System.out.println(effect.getClass().getName());
 
                         if(!(effect instanceof PayToObtainEffect)){ // TODO: rifare, ne basta solo uno per chiedere
-                        //if (!(effect.getClass().getName()=="it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect")){
+                        //if (!(effect.getClass().getSpecial()=="it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect")){
                             ask = false;
                         }
                     }

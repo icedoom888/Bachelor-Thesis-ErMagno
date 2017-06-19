@@ -39,7 +39,9 @@ public class Workspace implements Cleanable {
     @Override
     public void clean() {
         for(FieldType type: FieldType.values()){
-            fields.get(type).clean();
+            if (fields.containsKey(type)) {
+                fields.get(type).clean();
+            }
         }
     }
 
@@ -51,7 +53,7 @@ public class Workspace implements Cleanable {
         return type;
     }
 
-    public ActionSpace getActionspace(FieldType fieldType){
+    public ActionSpace getActionSpace(FieldType fieldType){
         return fields.get(fieldType);
     }
 

@@ -1,6 +1,6 @@
 [
   {
-    "name": "Borgo",
+    "special": "Borgo",
     "era": "FIRST",
     "cardCost": {
       "withPrice": false,
@@ -28,7 +28,7 @@
     "actionValue": 3
   },
   {
-    "name": "Bosco",
+    "special": "Bosco",
     "era": "FIRST",
     "cardCost": {
       "withPrice": false,
@@ -71,7 +71,7 @@
     "actionValue": 2
   },
   {
-    "name": "Città",
+    "special": "Città",
     "era": "FIRST",
     "cardCost": {
       "withPrice": false,
@@ -181,7 +181,7 @@
     "actionValue": 6
   },
   {
-    "name": "Rocca",
+    "special": "Rocca",
     "era": "FIRST",
     "cardCost": {
       "withPrice": false,
@@ -209,7 +209,7 @@
     "actionValue": 5
   },
   {
-    "name": "Cava di Ghiaia",
+    "special": "Cava di Ghiaia",
     "era": "FIRST",
     "cardCost": {
       "withPrice": false,
@@ -252,7 +252,7 @@
     "actionValue": 4
   },
   {
-    "name": "Foresta",
+    "special": "Foresta",
     "era": "FIRST",
     "cardCost": {
       "withPrice": false,
@@ -295,7 +295,7 @@
     "actionValue": 5
   },
   {
-    "name": "Avamposto Commerciale",
+    "special": "Avamposto Commerciale",
     "era": "FIRST",
     "cardCost": {
       "withPrice": false,
@@ -323,7 +323,7 @@
     "actionValue": 1
   },
   {
-    "name": "Monastero",
+    "special": "Monastero",
     "era": "FIRST",
     "cardCost": {
       "withPrice": false,
@@ -366,7 +366,7 @@
     "actionValue": 6
   },
   {
-    "name": "Villaggio Minerario",
+    "special": "Villaggio Minerario",
     "era": "SECOND",
     "cardCost": {
       "withPrice": false,
@@ -409,7 +409,7 @@
     "actionValue": 4
   },
   {
-    "name": "Maniero",
+    "special": "Maniero",
     "era": "SECOND",
     "cardCost": {
       "withPrice": false,
@@ -437,7 +437,7 @@
     "actionValue": 5
   },
   {
-    "name": "Cava di Pietra",
+    "special": "Cava di Pietra",
     "era": "SECOND",
     "cardCost": {
       "withPrice": false,
@@ -480,7 +480,7 @@
     "actionValue": 3
   },
   {
-    "name": "Ducato",
+    "special": "Ducato",
     "era": "SECOND",
     "cardCost": {
       "withPrice": false,
@@ -523,7 +523,7 @@
     "actionValue": 6
   },
   {
-    "name": "Miniera d\u0027Oro",
+    "special": "Miniera d\u0027Oro",
     "era": "SECOND",
     "cardCost": {
       "withPrice": false,
@@ -566,7 +566,7 @@
     "actionValue": 1
   },
   {
-    "name": "Eremo",
+    "special": "Eremo",
     "era": "SECOND",
     "cardCost": {
       "withPrice": false,
@@ -609,7 +609,7 @@
     "actionValue": 2
   },
   {
-    "name": "Possedimento",
+    "special": "Possedimento",
     "era": "SECOND",
     "cardCost": {
       "withPrice": false,
@@ -652,7 +652,7 @@
     "actionValue": 4
   },
   {
-    "name": "Villaggio Montano",
+    "special": "Villaggio Montano",
     "era": "SECOND",
     "cardCost": {
       "withPrice": false,
@@ -695,7 +695,7 @@
     "actionValue": 3
   },
   {
-    "name": "Colonia",
+    "special": "Colonia",
     "era": "THIRD",
     "cardCost": {
       "withPrice": false,
@@ -738,7 +738,7 @@
     "actionValue": 5
   },
   {
-    "name": "Cava di Marmo",
+    "special": "Cava di Marmo",
     "era": "THIRD",
     "cardCost": {
       "withPrice": false,
@@ -781,7 +781,7 @@
     "actionValue": 2
   },
   {
-    "name": "Città Mercantile",
+    "special": "Città Mercantile",
     "era": "THIRD",
     "cardCost": {
       "withPrice": false,
@@ -824,7 +824,7 @@
     "actionValue": 1
   },
   {
-    "name": "Città Fortificata",
+    "special": "Città Fortificata",
     "era": "THIRD",
     "cardCost": {
       "withPrice": false,
@@ -867,7 +867,7 @@
     "actionValue": 2
   },
   {
-    "name": "Castello",
+    "special": "Castello",
     "era": "THIRD",
     "cardCost": {
       "withPrice": false,
@@ -910,7 +910,7 @@
     "actionValue": 4
   },
   {
-    "name": "Tenuta",
+    "special": "Tenuta",
     "era": "THIRD",
     "cardCost": {
       "withPrice": false,
@@ -953,7 +953,7 @@
     "actionValue": 3
   },
   {
-    "name": "Santuario",
+    "special": "Santuario",
     "era": "THIRD",
     "cardCost": {
       "withPrice": false,
@@ -996,7 +996,7 @@
     "actionValue": 1
   },
   {
-    "name": "Provincia",
+    "special": "Provincia",
     "era": "THIRD",
     "cardCost": {
       "withPrice": false,

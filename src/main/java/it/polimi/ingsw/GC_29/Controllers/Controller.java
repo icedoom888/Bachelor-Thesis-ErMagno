@@ -277,6 +277,14 @@ public class Controller implements Observer<Input>  {
 
             pointsFromGreenCards(player);
 
+            //EXCOMMUNICATION TILES
+
+            for (ExcommunicationTile excommunicationTile : player.getExcommunicationTiles()) {
+                if (excommunicationTile.getEra() == Era.THIRD && excommunicationTile.getEffect() != null) {
+                    excommunicationTile.getEffect().execute(player);
+                }
+            }
+
             transformResourcesInPoints(player);
 
 
@@ -435,6 +443,8 @@ public class Controller implements Observer<Input>  {
                 player.getFamilyPawnAvailability().put(FamilyPawnType.WHITE, true);
                 player.getFamilyPawnAvailability().put(FamilyPawnType.NEUTRAL, true);
 
+                //TODO: da rivedere
+
                 player.setFamilyPawnValue(FamilyPawnType.BLACK, 5);
                 player.setFamilyPawnValue(FamilyPawnType.ORANGE, 5);
                 player.setFamilyPawnValue(FamilyPawnType.WHITE, 5);
@@ -536,14 +546,16 @@ public class Controller implements Observer<Input>  {
             } else if (zoneType == ZoneType.COUNCILPALACE) {
                 actionList.add(new CouncilPalaceAction(model));
 
-            } else if (zoneType == ZoneType.HARVEST) {
+            } else if (zoneType == ZoneType.HARVEST || zoneType == ZoneType.PRODUCTION) {
 
-                //TODO: impl
+                for (FieldType fieldType : FieldType.values()) {
+                    WorkAction workAction = new WorkAction(zoneType, model, fieldType);
+                    if (fieldType == FieldType.SECOND && model.getTurnOrder().size() < 4) {
+                        workAction.setEnable(false);
+                    }
 
-            } else if (zoneType == ZoneType.PRODUCTION) {
-
-                //TODO: impl
-
+                    actionList.add(workAction);
+                }
             }
 
         }

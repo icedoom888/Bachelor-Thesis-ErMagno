@@ -42,7 +42,9 @@ public class Market implements Cleanable {
     @Override
     public void clean(){
         for(ShopName name : ShopName.values()){
-            houses.get(name).clean();
+            if (houses.containsKey(name)) {
+                houses.get(name).clean();
+            }
         }
     }
 }

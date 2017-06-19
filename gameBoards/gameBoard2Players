@@ -1237,7 +1237,7 @@
   "councilPalace": {
     "effect_2": {
       "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
-      "numberOfCouncilPrivileges": 3,
+      "numberOfCouncilPrivileges": 1,
       "effectsChosen": [
         null
       ]

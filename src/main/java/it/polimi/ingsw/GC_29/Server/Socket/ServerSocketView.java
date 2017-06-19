@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Server.Socket;
 
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Query.*;
@@ -144,7 +146,7 @@ public class ServerSocketView extends View implements Runnable {
 
         System.out.println("VIEW: received the query " + q);
 
-        if (q instanceof GetFamilyPawnAvailability) {
+        /*if (q instanceof GetFamilyPawns) {
 
             try {
                 socketOut.writeObject("Family Pawn Availability");
@@ -162,7 +164,7 @@ public class ServerSocketView extends View implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
         if (q instanceof GetValidActions) {
 
@@ -243,6 +245,88 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
         }
+
+        if (q instanceof GetGoodSet) {
+
+            try {
+                socketOut.writeObject("Get GoodSet");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetGoodSet query = (GetGoodSet) q;
+
+            GoodSet goodSet = query.perform(model);
+            try {
+                this.socketOut.writeObject(goodSet);
+                this.socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (q instanceof GetDevelopmentCard) {
+
+            try {
+                socketOut.writeObject("Get Development Cards");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetDevelopmentCard query = (GetDevelopmentCard) q;
+
+            List<String> developmentCards = query.perform(model);
+            try {
+                this.socketOut.writeObject(developmentCards);
+                this.socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (q instanceof GetTowerCard) {
+
+            try {
+                socketOut.writeObject("Get Tower Cards");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetTowerCard query = (GetTowerCard) q;
+
+            List<String> towerCards = query.perform(model);
+            try {
+                this.socketOut.writeObject(towerCards);
+                this.socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (q instanceof GetFamilyPawnAvailability) {
+
+            try {
+                socketOut.writeObject("Get Family Pawns Availability");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetFamilyPawnAvailability query = (GetFamilyPawnAvailability) q;
+
+            Map<FamilyPawn, Boolean> familyPawns = query.perform(model);
+            try {
+                this.socketOut.writeObject(familyPawns);
+                this.socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
 
     }

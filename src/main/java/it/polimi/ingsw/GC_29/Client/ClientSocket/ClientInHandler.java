@@ -1,11 +1,10 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Server.Query.GetFamilyPawnAvailability;
-import it.polimi.ingsw.GC_29.Server.Query.Query;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
@@ -48,6 +47,18 @@ public class ClientInHandler implements Runnable {
                         break;
                     case "Valid Actions":
                         validActions();
+                        break;
+                    case "Get GoodSet":
+                        getGoodSet();
+                        break;
+                    case "Get Development Cards":
+                        getCards();
+                        break;
+                    case "Get Tower Cards":
+                        getCards();
+                        break;
+                    case "Get Family Pawns Availability":
+                        getFamilyPawnsAvailability();
                         break;
 
                 }
@@ -110,9 +121,8 @@ public class ClientInHandler implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
-                    if (input.contentEquals("Family Pawn Availability")) {
-                        Map<FamilyPawnType, Boolean> familyPawnAvailability = (Map<FamilyPawnType, Boolean>)socketIn.readObject();
-                        commonView.getInputChecker().setFamilyPawnAvailability(familyPawnAvailability);
+                    if (input.contentEquals("Get Family Pawns Availability")) {
+                        getFamilyPawnsAvailability();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -214,9 +224,6 @@ public class ClientInHandler implements Runnable {
 
                 break;
 
-
-
-
         }
     }
 
@@ -274,25 +281,6 @@ public class ClientInHandler implements Runnable {
         }
     }
 
-/*
-    public void printValidActionList() {
-
-        Map<Integer, String> validActionList = commonView.getInputChecker().getValidActionList();
-
-        if(!validActionList.isEmpty()){
-
-            Set<Integer> keys = validActionList.keySet();
-
-            for (Integer key : keys) {
-                System.out.println("action index: " + key + ") " + validActionList.get(key));
-
-            }
-
-        }
-
-        else System.out.println("nessuna azione valida");
-
-    }*/
 
     private void validActions() {
 
@@ -300,6 +288,55 @@ public class ClientInHandler implements Runnable {
             Map<Integer, String> validActions = (Map<Integer, String>)socketIn.readObject();
             commonView.getInputChecker().setValidActionList(validActions);
             commonView.getInputChecker().printValidActionList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void getGoodSet() {
+
+        try {
+            GoodSet goodSet = (GoodSet)socketIn.readObject();
+            System.out.println(goodSet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getCards() {
+
+        try {
+            List<String> developmentCards = (List<String>)socketIn.readObject();
+            for (String developmentCard : developmentCards) {
+                System.out.println(developmentCard);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void getFamilyPawnsAvailability() {
+
+        try {
+            Map<FamilyPawn, Boolean> familyPawns = (Map<FamilyPawn, Boolean>)socketIn.readObject();
+            HashMap<FamilyPawnType, Boolean> familyPawnsAvailability = new HashMap<>();
+
+            for (FamilyPawn familyPawn : familyPawns.keySet()) {
+                if (familyPawns.get(familyPawn)) {
+                    System.out.println(familyPawn);
+                }
+                familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
+            }
+
+            commonView.getInputChecker().setFamilyPawnAvailability(familyPawnsAvailability);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

@@ -1,6 +1,6 @@
 [
   {
-    "name": "Zecca",
+    "special": "Zecca",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -82,7 +82,7 @@
     "actionValue": 5
   },
   {
-    "name": "Esattoria",
+    "special": "Esattoria",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -164,7 +164,7 @@
     "actionValue": 5
   },
   {
-    "name": "Falegnameria",
+    "special": "Falegnameria",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -273,7 +273,7 @@
     "actionValue": 4
   },
   {
-    "name": "Cappella",
+    "special": "Cappella",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -354,7 +354,7 @@
     "actionValue": 2
   },
   {
-    "name": "Arco di Trionfo",
+    "special": "Arco di Trionfo",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -436,7 +436,7 @@
     "actionValue": 6
   },
   {
-    "name": "Teatro",
+    "special": "Teatro",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -518,7 +518,7 @@
     "actionValue": 6
   },
   {
-    "name": "Tagliapietre",
+    "special": "Tagliapietre",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -627,7 +627,7 @@
     "actionValue": 3
   },
   {
-    "name": "Residenza",
+    "special": "Residenza",
     "era": "FIRST",
     "cardCost": {
       "withPrice": true,
@@ -775,7 +775,7 @@
     "actionValue": 1
   },
   {
-    "name": "Mercato",
+    "special": "Mercato",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -856,7 +856,7 @@
     "actionValue": 3
   },
   {
-    "name": "Tesoreria",
+    "special": "Tesoreria",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -965,7 +965,7 @@
     "actionValue": 3
   },
   {
-    "name": "Gilda dei Pittori",
+    "special": "Gilda dei Pittori",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1074,7 +1074,7 @@
     "actionValue": 4
   },
   {
-    "name": "Gilda degli Scultori",
+    "special": "Gilda degli Scultori",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1183,7 +1183,7 @@
     "actionValue": 5
   },
   {
-    "name": "Gilda dei Costruttori",
+    "special": "Gilda dei Costruttori",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1264,7 +1264,7 @@
     "actionValue": 4
   },
   {
-    "name": "Battistero",
+    "special": "Battistero",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1345,7 +1345,7 @@
     "actionValue": 2
   },
   {
-    "name": "Caserma",
+    "special": "Caserma",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1426,7 +1426,7 @@
     "actionValue": 1
   },
   {
-    "name": "Fortezza",
+    "special": "Fortezza",
     "era": "SECOND",
     "cardCost": {
       "withPrice": true,
@@ -1493,7 +1493,7 @@
     "actionValue": 6
   },
   {
-    "name": "Palazzo",
+    "special": "Palazzo",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1574,7 +1574,7 @@
     "actionValue": 6
   },
   {
-    "name": "Basilica",
+    "special": "Basilica",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1683,7 +1683,7 @@
     "actionValue": 1
   },
   {
-    "name": "Accademia Militare",
+    "special": "Accademia Militare",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1764,7 +1764,7 @@
     "actionValue": 3
   },
   {
-    "name": "Cattedrale",
+    "special": "Cattedrale",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1831,7 +1831,7 @@
     "actionValue": 2
   },
   {
-    "name": "Banca",
+    "special": "Banca",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1898,7 +1898,7 @@
     "actionValue": 2
   },
   {
-    "name": "Fiera",
+    "special": "Fiera",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -1979,7 +1979,7 @@
     "actionValue": 4
   },
   {
-    "name": "Giardino",
+    "special": "Giardino",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
@@ -2046,7 +2046,7 @@
     "actionValue": 1
   },
   {
-    "name": "Castelletto",
+    "special": "Castelletto",
     "era": "THIRD",
     "cardCost": {
       "withPrice": true,
