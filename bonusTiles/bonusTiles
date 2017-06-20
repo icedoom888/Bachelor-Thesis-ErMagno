@@ -1,0 +1,122 @@
+[
+  {
+    "productionEffect": {
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 2,
+          "WORKERS": 1,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "harvestEffect": {
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 1,
+          "STONE": 2,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 1,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "productionEffect": {
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 1,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 2,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "harvestEffect": {
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 1,
+          "STONE": 2,
+          "COINS": 1,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "productionEffect": {
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 1,
+          "WORKERS": 2,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "harvestEffect": {
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 1,
+          "STONE": 2,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 1,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "productionEffect": {
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 1,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 2,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "harvestEffect": {
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 1,
+          "STONE": 2,
+          "COINS": 0,
+          "WORKERS": 1,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  }
+]
