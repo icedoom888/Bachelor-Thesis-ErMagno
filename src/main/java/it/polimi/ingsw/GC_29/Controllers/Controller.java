@@ -186,8 +186,6 @@ public class Controller implements Observer<Input>  {
 
         List<Player> players = model.getTurnOrder();
 
-        for (int i = 0; i < threshold; i++) {
-
             for (Player player : players) {
 
                 if (player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS) < faithPointsNeeded) {
@@ -198,7 +196,6 @@ public class Controller implements Observer<Input>  {
                     safePlayers.add(player);
                 }
             }
-        }
 
         return safePlayers;
 
@@ -297,7 +294,11 @@ public class Controller implements Observer<Input>  {
             }
         }
 
+        //winner.setPlayerState();
+
         model.setGameState(GameState.ENDED);
+
+
 
         System.out.println("The winner is... " + winner);
 
@@ -594,8 +595,6 @@ public class Controller implements Observer<Input>  {
             model.getCurrentPlayer().setPlayerState(PlayerState.BONUSACTION);
 
         } else {
-
-            // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
 
             model.getCurrentPlayer().setPlayerState(PlayerState.ENDTURN);
 

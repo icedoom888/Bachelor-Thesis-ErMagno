@@ -83,12 +83,21 @@ public class InstructionSet {
     private final Instruction chooseBonusTile = new Instruction("bonus tile (index)",
             new ArrayList<>(Arrays.asList(PlayerState.CHOOSE_BONUS_TILE)), "bonus tile \\d+");
 
+    private final Instruction pray = new Instruction("pray",
+            new ArrayList<>(Arrays.asList(PlayerState.PRAY)));
+
+    private final Instruction doNotPray = new Instruction("do not pray",
+            new ArrayList<>(Arrays.asList(PlayerState.PRAY)));
+
+    private final Instruction help = new Instruction("help",
+            new ArrayList<>(Arrays.asList(PlayerState.values())));
+
 
     private final List<Instruction> instructionList = new ArrayList<>(Arrays.asList(
             skipAction, endTurn, useFamilyPawn, activateLeaderCard,
             discardLeaderCard, seeValidActionList, doAction, seeCardsDevelopment, seeCardsExcommunication, seeCardsLeader, seeGameBoard,
             seeTracks, seePersonalBoard, seeGameBoardDevelopmentCards, seeGameBoardExcommunicationCards, seeMyGoodSet, seeMyAvailablePawns,
-            throwDices, chooseWorkers, activateCard, chooseEffect, choosePrivilege, chooseCost, chooseBonusTile));
+            throwDices, chooseWorkers, activateCard, chooseEffect, choosePrivilege, chooseCost, chooseBonusTile, pray, doNotPray, help));
 
 
     /////////////////////////////////////////////////////////////////////7

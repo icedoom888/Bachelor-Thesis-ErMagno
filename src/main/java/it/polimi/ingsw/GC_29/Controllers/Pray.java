@@ -39,7 +39,7 @@ public class Pray extends Input {
             }
 
             Filter.apply(player, goodSet);
-            goodSet.addGoodSet(new GoodSet(0,0,0,0, 0, 0, -playerFaithPoints));
+            goodSet.addGoodSet(new GoodSet(0,0,0,0, 0, 0, - playerFaithPoints));
             player.updateGoodSet(goodSet);
         }
 

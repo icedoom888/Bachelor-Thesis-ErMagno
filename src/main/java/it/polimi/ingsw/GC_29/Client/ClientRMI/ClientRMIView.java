@@ -17,10 +17,6 @@ import java.util.*;
 public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemote, Serializable {
 
 
-    private Map<Integer, String> validActionList;
-
-    private PlayerColor playerColor;
-
     PlayerState currentPlayerState;
 
     GameState currentGameState;
@@ -41,28 +37,12 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
         inputChecker = new InputChecker();
 
-        this.playerColor = playerColor;
-
         this.playerDevCard = new ArrayList<>();
 
         this.towerCardsMap = new EnumMap<>(CardColor.class);
 
-    }
+        inputChecker.setPlayerColor(playerColor);
 
-    public Map<Integer, String> getValidActionList() {
-        return validActionList;
-    }
-
-    public void setValidActionList(Map<Integer, String> validActionList) {
-        this.validActionList = validActionList;
-    }
-
-    public PlayerColor getPlayerColor() {
-        return playerColor;
-    }
-
-    public InputChecker getInputChecker() {
-        return inputChecker;
     }
 
 
@@ -70,11 +50,10 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
     public void updateClient(Change c) throws RemoteException {
         // Just prints what was received from the server
         System.out.println(c);
-        System.out.println(playerColor);
 
         if(c instanceof PlayerStateChange){
 
-            currentPlayerState = ((PlayerStateChange)c).getNewPlayerState();
+            PlayerState currentPlayerState = ((PlayerStateChange)c).getNewPlayerState();
 
             handlePlayerState(currentPlayerState);
 
@@ -82,8 +61,10 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
         }
 
         if(c instanceof GameChange){
-            currentGameState = ((GameChange)c).getNewGameState();
-            //TODO: if relation with the church chiedo se questo player è stato scomunicato passando dallo stub e poi printo quello che devo
+
+            GameState currentGameState = ((GameChange)c).getNewGameState();
+
+            inputChecker.setcurrentGameState(currentGameState);
         }
     }
 
@@ -97,9 +78,10 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
                 inputChecker.setFamilyPawnAvailability(serverViewStub.getFamilyPawnAvailability());
                 break;
 
+
             case CHOOSEACTION:
-                validActionList = serverViewStub.getValidActionList();
-                inputChecker.setValidActionList(validActionList);
+            case BONUSACTION:
+                inputChecker.setValidActionList(serverViewStub.getValidActionList());
                 inputChecker.printValidActionList();
                 break;
 
@@ -127,6 +109,10 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
             case CHOOSE_BONUS_TILE:
                 inputChecker.setBonusTileMap(serverViewStub.getBonusTileList());
                 inputChecker.askWhichBonusTile();
+                break;
+
+            case PRAY:
+                System.out.println("you have to decide whether to swear fidelity to the pope or not \n the valid input is : pray / do not pray");
 
             //TODO: inserire gestione altri stati se necessario
         }
@@ -153,4 +139,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
         }
     }
 
+    public InputChecker getInputChecker() {
+        return inputChecker;
+    }
 }

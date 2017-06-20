@@ -115,12 +115,12 @@ public class ServerSocketView extends View implements Runnable {
                             notifyObserver(new PrivilegeChosen(councilPrivileges));
                             break;
 
-                        case "i want to pray":
+                        case "pray":
                             PlayerColor playerColor = (PlayerColor)socketIn.readObject();
                             notifyObserver(new Pray(true, playerColor));
                             break;
 
-                        case "i don't want to pray":
+                        case "do not pray":
                             playerColor = (PlayerColor)socketIn.readObject();
                             notifyObserver(new Pray(false, playerColor));
                             break;

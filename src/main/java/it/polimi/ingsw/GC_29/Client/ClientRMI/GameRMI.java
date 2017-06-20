@@ -65,8 +65,6 @@ public class GameRMI implements Runnable {
 
             try {
 
-
-                //vedi il commento nel metodo inputParser
                 inputLine = rmiView.getInputChecker().checkInput(inputLine);
 
                 System.out.println(inputLine);
@@ -99,10 +97,10 @@ public class GameRMI implements Runnable {
                     case "execute action":
                         serverViewStub.doAction(rmiView.getInputChecker().getActionIndex());
                         break;
-                    case "I want to pray":
+                    case "pray":
                         serverViewStub.pray(true, rmiView.getInputChecker().getPlayerColor());
                         break;
-                    case "I don't want to pray":
+                    case "do not pray":
                         serverViewStub.pray(false, rmiView.getInputChecker().getPlayerColor());
                         break;
 

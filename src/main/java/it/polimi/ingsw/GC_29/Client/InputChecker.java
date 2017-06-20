@@ -683,7 +683,13 @@ public class InputChecker {
         System.out.println("the valid input is: bonus tile (index)");
     }
 
+
+
     public int getBonusTileChosen() {
         return bonusTileChosen;
+    }
+
+    public void setcurrentGameState(GameState currentGameState) {
+        this.currentGameState = currentGameState;
     }
 }

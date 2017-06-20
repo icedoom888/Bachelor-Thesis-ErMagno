@@ -167,17 +167,17 @@ public class ClientOutHandler implements Runnable {
                         }
                         break;
 
-                    case "I want to pray":
+                    case "pray":
                         PlayerColor playerColor = commonView.getPlayerColor();
-                        socketOut.writeObject("i want to pray");
+                        socketOut.writeObject("pray");
                         socketOut.flush();
                         socketOut.writeObject(playerColor);
                         socketOut.flush();
                         break;
 
-                    case "I don't want to pray":
+                    case "do not pray":
                         playerColor = commonView.getPlayerColor();
-                        socketOut.writeObject("i don't want to pray");
+                        socketOut.writeObject("do not pray");
                         socketOut.flush();
                         socketOut.writeObject(playerColor);
                         socketOut.flush();
