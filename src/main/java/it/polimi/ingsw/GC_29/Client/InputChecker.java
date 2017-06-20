@@ -606,6 +606,8 @@ public class InputChecker {
 
             this.councilPrivilegeEffectList.add(new CouncilPrivilegeEffect(integer));
         }
+
+        councilPrivilegeEffectChosenList.clear();
     }
 
 

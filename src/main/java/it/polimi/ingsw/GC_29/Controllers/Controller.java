@@ -54,10 +54,17 @@ public class Controller implements Observer<Input>  {
         if (round%2 == 0) {
             model.setGameState(GameState.CHURCHRELATION);
             List<Player> safePlayers = excommunicatePlayers();
+            playersPraying = safePlayers.size();
 
-            for (Player safePlayer : safePlayers) {
-                safePlayer.setPlayerState(PlayerState.PRAY);
+            if(!safePlayers.isEmpty()){
+                for (Player safePlayer : safePlayers) {
+                    safePlayer.setPlayerState(PlayerState.PRAY);
+                }
             }
+            else{
+                setNewRound();
+            }
+
         }
         else setNewRound();
     }
@@ -90,7 +97,12 @@ public class Controller implements Observer<Input>  {
         }
 
         model.setCurrentTurn(0);
+
         model.setCurrentRound(model.getCurrentRound()+1);
+
+        //DEBUG
+        System.out.println(model.getCurrentRound());
+        //DEBUG
 
         setSkippingTurnPlayers();
 
@@ -324,6 +336,7 @@ public class Controller implements Observer<Input>  {
     }
 
     private void pointsFromMilitaryPoints() throws Exception {
+
         ArrayList<Player> players = new ArrayList<>();
 
         players.addAll(model.getTurnOrder());
@@ -337,10 +350,11 @@ public class Controller implements Observer<Input>  {
 
         int firstPlayerMilitaryPoints = players.get(0).getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS);
 
-        int i = 0;
+        int militaryIndex;
 
-        for (i = 0; i < players.size(); i++) {
-            Player player = players.get(i+1);
+        for (militaryIndex = 0; militaryIndex < players.size(); militaryIndex++) {
+
+            Player player = players.get(militaryIndex+1);
 
             if (player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS) != firstPlayerMilitaryPoints) {
                 break;
@@ -349,13 +363,13 @@ public class Controller implements Observer<Input>  {
             else player.updateGoodSet(new GoodSet(0,0,0,0,5,0,0));
         }
 
-        if (i != 0) return;
+        if (militaryIndex != 0) return;
 
         int secondPlayerMilitaryPoints = players.get(1).getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS);
 
-        for (i = 1; i < players.size(); i++) {
+        for (militaryIndex = 1; militaryIndex < players.size(); militaryIndex++) {
 
-            Player player = players.get(i+1);
+            Player player = players.get(militaryIndex+1);
 
             if (player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS) != secondPlayerMilitaryPoints) {
                 break;
