@@ -411,7 +411,8 @@ public class TowerAction extends Action {
     @Override
     public String toString() {
         return "TowerAction{"
-                + super.toString() + ", floorIndex=" + floorIndex + '}';
+                + super.toString() + ", floorIndex=" + floorIndex
+                + cardSelected.getImmediateEffect().toString() + '}';
     }
 
     public void setCostChosen(int costChosen) {

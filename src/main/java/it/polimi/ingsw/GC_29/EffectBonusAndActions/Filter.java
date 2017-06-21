@@ -101,7 +101,7 @@ public final class Filter {
     }
 
     /**
-     * aplySpecial return true if the player has the special bonusAndMals, false otherwise
+     * applySpecial return true if the player has the special bonusAndMalus, false otherwise
      * @param player
      * @param special
      */

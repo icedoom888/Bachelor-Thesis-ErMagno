@@ -73,12 +73,17 @@ public class ServerSocketView extends View implements Runnable {
 
                     switch (string) {
 
+                        case "bonus tile":
+                            int bonusTile = (int)socketIn.readObject();
+                            notifyObserver(new BonusTileChosen(bonusTile));
+                            break;
+
                         case "throw dices":
                             notifyObserver(new ThrowDices());
                             break;
 
                         case "family pawn chosen":
-                            FamilyPawnType familyPawnType = (FamilyPawnType) socketIn.readObject();
+                            FamilyPawnType familyPawnType = (FamilyPawnType)socketIn.readObject();
                             notifyObserver(new UsePawnChosen(familyPawnType));
                             break;
 
@@ -320,6 +325,26 @@ public class ServerSocketView extends View implements Runnable {
             Map<FamilyPawn, Boolean> familyPawns = query.perform(model);
             try {
                 this.socketOut.writeObject(familyPawns);
+                this.socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (q instanceof GetBonusTile) {
+
+            try {
+                socketOut.writeObject("Get Bonus Tile");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetBonusTile query = (GetBonusTile) q;
+
+            Map<Integer, String> bonusTiles = query.perform(model);
+            try {
+                this.socketOut.writeObject(bonusTiles);
                 this.socketOut.flush();
             } catch (IOException e) {
                 e.printStackTrace();

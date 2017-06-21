@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by Christian on 19/06/2017.
  */
-public class BonusTileQuery extends Query<Map<Integer,String>> {
+public class GetBonusTile extends Query<Map<Integer,String>> {
 
     @Override
     public Map<Integer, String> perform(GameStatus model) {

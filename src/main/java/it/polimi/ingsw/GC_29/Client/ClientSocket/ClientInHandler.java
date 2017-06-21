@@ -132,6 +132,7 @@ public class ClientInHandler implements Runnable {
 
                 break;
 
+            case BONUSACTION:
             case CHOOSEACTION:
 
                 try {
@@ -224,8 +225,28 @@ public class ClientInHandler implements Runnable {
 
                 break;
 
+            case CHOOSE_BONUS_TILE:
+
+                try {
+                    String input = (String)socketIn.readObject();
+
+                    System.out.println(input);
+
+                    if (input.contentEquals("Get Bonus Tile")) {
+                        getBonusTiles();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
         }
     }
+
+
 
     private void getCouncilPrivileges() {
 
@@ -337,6 +358,19 @@ public class ClientInHandler implements Runnable {
             }
 
             commonView.getInputChecker().setFamilyPawnAvailability(familyPawnsAvailability);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getBonusTiles() {
+
+        try {
+            Map<Integer, String> bonusTiles = (Map<Integer, String>)socketIn.readObject();
+            commonView.getInputChecker().setBonusTileMap(bonusTiles);
+            commonView.getInputChecker().askWhichBonusTile();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

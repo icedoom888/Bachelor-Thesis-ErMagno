@@ -323,6 +323,7 @@ public class Controller implements Observer<Input>  {
 
     }
 
+    //TODO: testing
     private void pointsFromMilitaryPoints() throws Exception {
         ArrayList<Player> players = new ArrayList<>();
 
@@ -337,7 +338,7 @@ public class Controller implements Observer<Input>  {
 
         int firstPlayerMilitaryPoints = players.get(0).getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS);
 
-        int i = 0;
+        int i;
 
         for (i = 0; i < players.size(); i++) {
             Player player = players.get(i+1);

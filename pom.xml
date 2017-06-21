@@ -4,7 +4,7 @@
 	<groupId>it.polimi.ingsw</groupId>
 	<artifactId>GC_29</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<special>GC_29</special>
+	<name>GC_29</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.language>java</sonar.language>

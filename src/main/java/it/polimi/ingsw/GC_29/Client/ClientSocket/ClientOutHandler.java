@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Client.ClientSocket;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Client.InstructionSet;
+import it.polimi.ingsw.GC_29.Components.BonusTile;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.*;
@@ -61,6 +62,14 @@ public class ClientOutHandler implements Runnable {
                 inputLine = commonView.getInputChecker().checkInput(inputLine);
 
                 switch (inputLine) {
+
+                    case "bonus tile chosen":
+                        int bonusTile = commonView.getInputChecker().getBonusTileChosen();
+                        socketOut.writeObject("bonus tile");
+                        socketOut.flush();
+                        socketOut.writeObject(bonusTile);
+                        socketOut.flush();
+                        break;
 
                     case "throw dices":
                         System.out.println("STAI LANCIANDO I DADI");
@@ -242,6 +251,7 @@ public class ClientOutHandler implements Runnable {
                 // non devo più inviare nulla
                 break;
 
+            case BONUSACTION:
             case CHOOSEACTION:
 
                 query = new GetValidActions();
@@ -302,6 +312,20 @@ public class ClientOutHandler implements Runnable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                break;
+
+            case CHOOSE_BONUS_TILE:
+
+                query = new GetBonusTile();
+                try {
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
 
         }
     }
