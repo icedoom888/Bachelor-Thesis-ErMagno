@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -13,13 +14,13 @@ import javafx.stage.Stage;
 public class BonusTileMain extends Application {
 
     public static void main(String[] args) {
-       Application.launch(BonusTileMain.class);
+       Application.launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        SplitPane root = FXMLLoader.load(getClass().getResource("/Login2.fxml"));
+        HBox root = FXMLLoader.load(getClass().getResource("/BonusTile.fxml"));
         stage.setScene(new Scene(root));
         stage.setTitle("Login");
         stage.setHeight(400);

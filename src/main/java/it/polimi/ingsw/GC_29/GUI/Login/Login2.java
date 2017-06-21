@@ -24,8 +24,7 @@ public class Login2 extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        //SplitPane root = FXMLLoader.load(getClass().getResource("/Login2.fxml"));
-        SplitPane root = FXMLLoader.load(getClass().getResource("/BonusTile.fxml"));
+        SplitPane root = FXMLLoader.load(getClass().getResource("/Login2.fxml"));
         stage.setScene(new Scene(root));
         stage.setTitle("Login");
         stage.setHeight(400);
