@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -8,9 +9,6 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-
-
 
 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.GUI.BonusTile.BonusTileController">
    <children>
@@ -21,10 +19,10 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
                <image>
-                  <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_1.png" />
+                  <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png" />
                </image>
             </ImageView>
-            <Button fx:id="button1" mnemonicParsing="false" text="Choose">
+            <Button fx:id="button1" mnemonicParsing="false" onAction="#executeButton1" text="Choose">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -41,7 +39,7 @@
                   <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" text="Choose">
+            <Button fx:id="button2" mnemonicParsing="false" onAction="#executeButton2" text="Choose">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -58,7 +56,7 @@
                   <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" text="Choose">
+            <Button fx:id="button3" mnemonicParsing="false" onAction="#executeButton3" text="Choose">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -75,7 +73,7 @@
                   <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" text="Choose">
+            <Button fx:id="button4" mnemonicParsing="false" onAction="#executeButton4" text="Choose">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -92,7 +90,7 @@
                   <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" text="Choose">
+            <Button fx:id="button5" mnemonicParsing="false" onAction="#executeButton5" text="Choose">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
