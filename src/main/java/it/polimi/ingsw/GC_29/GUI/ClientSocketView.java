@@ -5,7 +5,7 @@ package it.polimi.ingsw.GC_29.GUI;
  */
 public class ClientSocketView {
 
-    public void sendInput(String input){
+    public static void sendInput(String input){
 
     }
 }
