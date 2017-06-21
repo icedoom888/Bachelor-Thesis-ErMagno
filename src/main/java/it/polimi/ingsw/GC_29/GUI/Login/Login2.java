@@ -1,12 +1,11 @@
 package it.polimi.ingsw.GC_29.GUI.Login;
 
+import it.polimi.ingsw.GC_29.GUI.BonusTile.BonusTileMain;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+
 import javafx.stage.Stage;
 
 /**
@@ -14,14 +13,19 @@ import javafx.stage.Stage;
  */
 public class Login2 extends Application {
 
-    public static void main(String[]args) {
+    /*public static void main(String[]args) {
         Application.launch(args);
+    }*/
+
+    public static void main(String[] args) {
+        Application.launch(BonusTileMain.class);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        SplitPane root = FXMLLoader.load(getClass().getResource("/Login2.fxml"));
+        //SplitPane root = FXMLLoader.load(getClass().getResource("/Login2.fxml"));
+        SplitPane root = FXMLLoader.load(getClass().getResource("/BonusTile.fxml"));
         stage.setScene(new Scene(root));
         stage.setTitle("Login");
         stage.setHeight(400);
