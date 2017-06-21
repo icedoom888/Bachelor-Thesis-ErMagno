@@ -9,7 +9,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root dividerPositions="0.4675324675324675" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="310.0" prefWidth="515.0" type="SplitPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.GUI.Login.Login2Controller">
+
+<SplitPane dividerPositions="0.4675324675324675" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.GUI.Login.Login2Controller">
    <items>
       <AnchorPane>
          <children>
@@ -17,7 +18,7 @@
                <children>
                   <ImageView fitHeight="210.0" fitWidth="199.0" preserveRatio="true" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                      <image>
-                        <Image url="@../../../lorenzo_materiale_grafico_compr/logoScritta.png" />
+                        <Image url="@lorenzo_materiale_grafico_compr/logoScritta.png" />
                      </image>
                   </ImageView>
                </children>
@@ -103,4 +104,4 @@
          </children>
       </AnchorPane>
    </items>
-</fx:root>
+</SplitPane>

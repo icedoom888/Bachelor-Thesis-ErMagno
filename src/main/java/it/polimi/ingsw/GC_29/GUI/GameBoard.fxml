@@ -12,7 +12,7 @@
          <children>
             <ImageView fitHeight="680.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <image>
-                  <Image url="@../../../../../../../../lorenzo_materiale_grafico_compr/gameboard_f_c.jpeg" />
+                  <Image url="@../../../../../../resources/lorenzo_materiale_grafico_compr/gameboard_f_c.jpeg" />
                </image>
                <HBox.margin>
                   <Insets left="10.0" />
@@ -29,7 +29,7 @@
                                  <content>
                                     <ImageView fitHeight="429.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_FRONT_compressed/punchboard_f_c_03.jpg" />
+                                          <Image url="@../../../../../../resources/lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_FRONT_compressed/punchboard_f_c_03.jpg" />
                                        </image>
                                        <HBox.margin>
                                           <Insets />
