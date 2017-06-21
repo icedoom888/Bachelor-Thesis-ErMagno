@@ -1,0 +1,6 @@
+ .root{
+  -fx-background-image:url("lorenzo_materiale_grafico_compr/gameboard_f_c.jpeg");
+  -fx-backGround-repeat: stretch;
+  -fx-backGround-size: 550 680;
+  -fx-backGround-position: center center;
+}
