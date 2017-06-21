@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.4675324675324675" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="310.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.GUI.Login2">
+<fx:root dividerPositions="0.4675324675324675" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="310.0" prefWidth="515.0" type="SplitPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.GUI.Login2Controller">
    <items>
       <AnchorPane>
          <children>
@@ -35,7 +35,7 @@
                               <Insets left="70.0" />
                            </HBox.margin>
                         </Text>
-                        <TextField prefHeight="27.0" prefWidth="206.0" promptText="Insert Username" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="username" prefHeight="27.0" prefWidth="206.0" promptText="Insert Username" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets right="30.0" />
                            </HBox.margin>
@@ -58,7 +58,7 @@
                               <Insets left="70.0" />
                            </HBox.margin>
                         </Text>
-                        <TextField prefHeight="27.0" prefWidth="206.0" promptText="Insert Password" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="password" prefHeight="27.0" prefWidth="206.0" promptText="Insert Password" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets right="30.0" />
                            </HBox.margin>
@@ -71,8 +71,8 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="513.0" spacing="30.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Text layoutX="43.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connection:" />
-                        <RadioButton mnemonicParsing="false" text="Socket" />
-                        <RadioButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="RMI" />
+                        <RadioButton fx:id="socket" mnemonicParsing="false" onAction="#switchButtons" text="Socket" />
+                        <RadioButton fx:id="rmi" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchButtons" text="RMI" />
                      </children>
                      <padding>
                         <Insets bottom="12.5" left="70.0" />
@@ -81,9 +81,26 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Button fx:id="submit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendSubmit" text="Submit" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="225.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Text fx:id="error" strokeType="OUTSIDE" strokeWidth="0.0" text="Campi Incompleti" visible="false">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>
       </AnchorPane>
    </items>
-</SplitPane>
+</fx:root>

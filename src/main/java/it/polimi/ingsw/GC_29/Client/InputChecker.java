@@ -7,8 +7,13 @@ import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilege;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
+import it.polimi.ingsw.GC_29.GUI.GameBoardController;
+import it.polimi.ingsw.GC_29.GUI.GameBoardMain;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -425,6 +430,7 @@ public class InputChecker {
 
     public void setCurrentPlayerState(PlayerState currentPlayerState) {
         this.currentPlayerState = currentPlayerState;
+
     }
 
     public InstructionSet getInstructionSet() {
