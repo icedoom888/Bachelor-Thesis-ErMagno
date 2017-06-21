@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.GUI;
+package it.polimi.ingsw.GC_29.GUI.GameBoard;
 
 /**
  * Created by AlbertoPennino on 21/06/2017.
@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -24,14 +25,13 @@ public class GameBoardMain extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-            URL location = getClass().getResource("GameBoard.fxml");
-            FXMLLoader fxmlLoader = new FXMLLoader(location);
-
-            Parent page = fxmlLoader.<Parent>load();
-            Scene scene = new Scene(page,1100,800);
-            stage.setScene(scene);
-            stage.setTitle("Lorenzo il Magnifico");
-            stage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("/GameBoard.fxml"));
+        stage.setScene(new Scene(root));
+        stage.setHeight(700);
+        stage.setWidth(1100);
+        stage.centerOnScreen();
+        stage.setTitle("Lorenzo il Magnifico");
+        stage.show();
     }
 
 }

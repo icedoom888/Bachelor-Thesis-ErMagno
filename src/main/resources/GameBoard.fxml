@@ -6,13 +6,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.GUI.GameBoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.GUI.GameBoard.GameBoardController">
    <children>
       <HBox alignment="CENTER" prefHeight="700.0" prefWidth="1100.0">
          <children>
             <ImageView fitHeight="680.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <image>
-                  <Image url="@../../../../../../resources/lorenzo_materiale_grafico_compr/gameboard_f_c.jpeg" />
+                  <Image url="@lorenzo_materiale_grafico_compr/gameboard_f_c.jpeg" />
                </image>
                <HBox.margin>
                   <Insets left="10.0" />
@@ -29,7 +29,7 @@
                                  <content>
                                     <ImageView fitHeight="429.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../resources/lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_FRONT_compressed/punchboard_f_c_03.jpg" />
+                                          <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_FRONT_compressed/punchboard_f_c_03.jpg" />
                                        </image>
                                        <HBox.margin>
                                           <Insets />
