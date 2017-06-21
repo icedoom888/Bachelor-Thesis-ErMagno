@@ -358,6 +358,7 @@ public class ClientInHandler implements Runnable {
             }
 
             commonView.getInputChecker().setFamilyPawnAvailability(familyPawnsAvailability);
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
