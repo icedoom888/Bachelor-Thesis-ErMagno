@@ -1,5 +1,6 @@
-package it.polimi.ingsw.GC_29.GUI;
+package it.polimi.ingsw.GC_29.GUI.Login;
 
+import it.polimi.ingsw.GC_29.GUI.ClientSocketView;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
