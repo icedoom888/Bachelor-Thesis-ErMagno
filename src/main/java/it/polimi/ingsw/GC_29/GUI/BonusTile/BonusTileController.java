@@ -3,7 +3,9 @@ package it.polimi.ingsw.GC_29.GUI.BonusTile;
 import it.polimi.ingsw.GC_29.GUI.ClientSocketView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * Created by AlbertoPennino on 21/06/2017.
@@ -21,6 +23,7 @@ public class BonusTileController {
 
         String string = executeButton();
         ClientSocketView.sendInput(string+"0");
+        endExecute(event);
 
     }
 
@@ -28,12 +31,14 @@ public class BonusTileController {
 
         String string = executeButton();
         ClientSocketView.sendInput(string+"1");
+        endExecute(event);
     }
 
     public void executeButton3(ActionEvent event) {
 
         String string = executeButton();
         ClientSocketView.sendInput(string+"2");
+        endExecute(event);
 
     }
 
@@ -41,17 +46,25 @@ public class BonusTileController {
 
         String string = executeButton();
         ClientSocketView.sendInput(string+"3");
+        endExecute(event);
 
     }
     public void executeButton5(ActionEvent event) {
 
         String string = executeButton();
         ClientSocketView.sendInput(string+"4");
+        endExecute(event);
 
     }
 
     private String executeButton() {
         return "bonus tile ";
+    }
+
+    private void endExecute(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
 }
