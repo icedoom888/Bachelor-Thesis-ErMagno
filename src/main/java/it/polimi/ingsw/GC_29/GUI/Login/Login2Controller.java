@@ -8,8 +8,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
-import java.awt.event.ActionEvent;
 
 /**
  * Created by AlbertoPennino on 21/06/2017.
@@ -23,7 +23,8 @@ public class Login2Controller {
     @FXML private Button submit;
     @FXML private Text error;
 
-    private void sendSubmit(ActionEvent event){
+
+    public void sendSubmit(ActionEvent event){
         if(!username.getText().isEmpty()&& !password.getText().isEmpty()&&(rmi.isSelected() || socket.isSelected())){
             ClientSocketView sender = new ClientSocketView();
             sender.sendInput("");

@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -18,13 +21,11 @@ public class Login2 extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/Login2.fxml"));
-        stage.setTitle("Login");
+        SplitPane root = FXMLLoader.load(getClass().getResource("/Login2.fxml"));
         stage.setScene(new Scene(root));
-        stage.setMinHeight(310);
-        stage.setMinWidth(515);
-        stage.setHeight(310);
-        stage.setWidth(515);
+        stage.setTitle("Login");
+        stage.setHeight(400);
+        stage.setWidth(500);
         stage.centerOnScreen();
         stage.show();
     }
