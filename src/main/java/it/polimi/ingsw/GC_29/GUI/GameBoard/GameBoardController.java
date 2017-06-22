@@ -1,15 +1,13 @@
 package it.polimi.ingsw.GC_29.GUI.GameBoard;
 
-import it.polimi.ingsw.GC_29.Client.InputChecker;
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
+import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.GUI.ClientSocketView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -20,165 +18,443 @@ import java.util.Map;
  * Created by AlbertoPennino on 21/06/2017.
  */
 public class GameBoardController {
+
+    private HashMap<Integer, ImageView> personalGreenCards = new HashMap<>();
+    private HashMap<Integer, ImageView> personalBlueCards = new HashMap<>();
+    private HashMap<Integer, ImageView> personalYellowCards = new HashMap<>();
+    private HashMap<Integer, ImageView> personalPurpleCards = new HashMap<>();
+
+    private HashMap<Integer, ImageView> greenTower = new HashMap<>();
+    private HashMap<Integer, ImageView> blueTower = new HashMap<>();
+    private HashMap<Integer, ImageView> yellowTower = new HashMap<>();
+    private HashMap<Integer, ImageView> purpleTower = new HashMap<>();
+
+    //quando devo settare i pulsanti attivi
+    private HashMap<Integer, ImageView> actionButtons = new HashMap<>();
+
+    //quando devo sapere a che azione corrisponde il pulsante premuto
+    private HashMap<ImageView, Integer> buttonAction = new HashMap<>();
+
+
+    private HashMap<GoodType, Text> resourceAmount = new HashMap<>();
+    private ClientSocketView view = new ClientSocketView();
+    private HashMap<Integer,ImageView> coverImages = new HashMap<>();
+
+
     //Pulsanti per scegliere le pedine
-    @FXML private ImageView whitePawn;
-    @FXML private ImageView orangePawn;
-    @FXML private ImageView balckPawn;
-    @FXML private ImageView neutralPawn;
+    @FXML
+    private ImageView whitePawn;
+    @FXML
+    private ImageView orangePawn;
+    @FXML
+    private ImageView balckPawn;
+    @FXML
+    private ImageView neutralPawn;
 
     // Valore pedine
-    @FXML private Text whiteValue;
-    @FXML private Text orangeValue;
-    @FXML private Text blackValue;
-    @FXML private Text neutralValue;
+    @FXML
+    private Text whiteValue;
+    @FXML
+    private Text orangeValue;
+    @FXML
+    private Text blackValue;
+    @FXML
+    private Text neutralValue;
 
     //Pulsanti per attivare i leader
-    @FXML private Button activate1;
-    @FXML private Button activate2;
-    @FXML private Button activate3;
-    @FXML private Button activate4;
+    @FXML
+    private Button activate1;
+    @FXML
+    private Button activate2;
+    @FXML
+    private Button activate3;
+    @FXML
+    private Button activate4;
 
     //Pulsanti per scartare una carta leader
-    @FXML private Button burn1;
-    @FXML private Button burn2;
-    @FXML private Button burn3;
-    @FXML private Button burn4;
+    @FXML
+    private Button burn1;
+    @FXML
+    private Button burn2;
+    @FXML
+    private Button burn3;
+    @FXML
+    private Button burn4;
 
-    @FXML private Button throwDices;
-    @FXML private Button skipAction;
-    @FXML private Button endTurn;
+    @FXML
+    private Button throwDices;
+    @FXML
+    private Button skipAction;
+    @FXML
+    private Button endTurn;
 
-    private HashMap<Integer, javafx.scene.control.Button> leaderActivateButtons = new HashMap<>();
+    //Spazi immagine carte PersonalBoard
+    @FXML
+    private ImageView greenCard1;
+    @FXML
+    private ImageView greenCard2;
+    @FXML
+    private ImageView greenCard3;
+    @FXML
+    private ImageView greenCard4;
+    @FXML
+    private ImageView greenCard5;
+    @FXML
+    private ImageView greenCard6;
 
-    public void handleActivate(ActionEvent event){
-        Object activateButton = event.getSource();
-        ClientSocketView sender = new ClientSocketView();
+    @FXML
+    private ImageView blueCard1;
+    @FXML
+    private ImageView blueCard2;
+    @FXML
+    private ImageView blueCard3;
+    @FXML
+    private ImageView blueCard4;
+    @FXML
+    private ImageView blueCard5;
+    @FXML
+    private ImageView blueCard6;
 
+    @FXML
+    private ImageView yellowCard1;
+    @FXML
+    private ImageView yellowCard2;
+    @FXML
+    private ImageView yellowCard3;
+    @FXML
+    private ImageView yellowCard4;
+    @FXML
+    private ImageView yellowCard5;
+    @FXML
+    private ImageView yellowCard6;
+
+    @FXML
+    private ImageView purpleCard1;
+    @FXML
+    private ImageView purpleCard2;
+    @FXML
+    private ImageView purpleCard3;
+    @FXML
+    private ImageView purpleCard4;
+    @FXML
+    private ImageView purpleCard5;
+    @FXML
+    private ImageView purpleCard6;
+
+    //Contatori per GoodSet
+    @FXML
+    private Text gold;
+    @FXML
+    private Text stone;
+    @FXML
+    private Text wood;
+    @FXML
+    private Text workers;
+
+    //Aree immagini per carte
+    @FXML
+    private ImageView greenTowerCard1;
+    @FXML
+    private ImageView greenTowerCard2;
+    @FXML
+    private ImageView greenTowerCard3;
+    @FXML
+    private ImageView greenTowerCard4;
+    @FXML
+    private ImageView blueTowerCard1;
+    @FXML
+    private ImageView blueTowerCard2;
+    @FXML
+    private ImageView blueTowerCard3;
+    @FXML
+    private ImageView blueTowerCard4;
+    @FXML
+    private ImageView yellowTowerCard1;
+    @FXML
+    private ImageView yellowTowerCard2;
+    @FXML
+    private ImageView yellowTowerCard3;
+    @FXML
+    private ImageView yellowTowerCard4;
+    @FXML
+    private ImageView purpleTowerCard1;
+    @FXML
+    private ImageView purpleTowerCard2;
+    @FXML
+    private ImageView purpleTowerCard3;
+    @FXML
+    private ImageView purpleTowerCard4;
+
+    //Aree azioni
+    @FXML
+    private ImageView greenTowerAction1;
+    @FXML
+    private ImageView greenTowerAction2;
+    @FXML
+    private ImageView greenTowerAction3;
+    @FXML
+    private ImageView greenTowerAction4;
+    @FXML
+    private ImageView blueTowerAction1;
+    @FXML
+    private ImageView blueTowerAction2;
+    @FXML
+    private ImageView blueTowerAction3;
+    @FXML
+    private ImageView blueTowerAction4;
+    @FXML
+    private ImageView yellowTowerAction1;
+    @FXML
+    private ImageView yellowTowerAction2;
+    @FXML
+    private ImageView yellowTowerAction3;
+    @FXML
+    private ImageView yellowTowerAction4;
+    @FXML
+    private ImageView purpleTowerAction1;
+    @FXML
+    private ImageView purpleTowerAction2;
+    @FXML
+    private ImageView purpleTowerAction3;
+    @FXML
+    private ImageView purpleTowerAction4;
+    @FXML
+    private ImageView councilPalace;
+    @FXML
+    private ImageView harvest1;
+    @FXML
+    private ImageView harvest2;
+    @FXML
+    private ImageView production1;
+    @FXML
+    private ImageView production2;
+    @FXML
+    private ImageView market1;
+    @FXML
+    private ImageView market2;
+    @FXML
+    private ImageView market3;
+    @FXML
+    private ImageView market4;
+
+
+
+
+
+    @FXML
+    public void initialize(){
+
+        personalGreenCards.put(0,greenCard1);
+        personalGreenCards.put(1,greenCard2);
+        personalGreenCards.put(2,greenCard3);
+        personalGreenCards.put(3,greenCard4);
+        personalGreenCards.put(4,greenCard5);
+        personalGreenCards.put(5,greenCard6);
+
+        personalBlueCards.put(0,blueCard1);
+        personalBlueCards.put(1,blueCard2);
+        personalBlueCards.put(2,blueCard3);
+        personalBlueCards.put(3,blueCard4);
+        personalBlueCards.put(4,blueCard5);
+        personalBlueCards.put(5,blueCard6);
+
+        personalYellowCards.put(0,yellowCard1);
+        personalYellowCards.put(1,yellowCard2);
+        personalYellowCards.put(2,yellowCard3);
+        personalYellowCards.put(3,yellowCard4);
+        personalYellowCards.put(4,yellowCard5);
+        personalYellowCards.put(5,yellowCard6);
+
+        personalPurpleCards.put(0,purpleCard1);
+        personalPurpleCards.put(1,purpleCard2);
+        personalPurpleCards.put(2,purpleCard3);
+        personalPurpleCards.put(3,purpleCard4);
+        personalPurpleCards.put(4,purpleCard5);
+        personalPurpleCards.put(5,purpleCard6);
+
+        resourceAmount.put(GoodType.COINS,gold);
+        resourceAmount.put(GoodType.STONE,stone);
+        resourceAmount.put(GoodType.WOOD,wood);
+        resourceAmount.put(GoodType.WORKERS,workers);
+
+        greenTower.put(0,greenTowerCard1);
+        greenTower.put(1,greenTowerCard2);
+        greenTower.put(2,greenTowerCard3);
+        greenTower.put(3,greenTowerCard4);
+
+        blueTower.put(0,blueTowerCard1);
+        blueTower.put(1,blueTowerCard2);
+        blueTower.put(2,blueTowerCard3);
+        blueTower.put(3,blueTowerCard4);
+
+        yellowTower.put(0,yellowTowerCard1);
+        yellowTower.put(1,yellowTowerCard2);
+        yellowTower.put(2,yellowTowerCard3);
+        yellowTower.put(3,yellowTowerCard4);
+
+        purpleTower.put(0,purpleTowerCard1);
+        purpleTower.put(1,purpleTowerCard2);
+        purpleTower.put(2,purpleTowerCard3);
+        purpleTower.put(3,purpleTowerCard4);
+
+    }
+
+    /**
+     * Gestisce l'attivazione leader card
+     * @param event
+     */
+    public void handleActivateLeader(ActionEvent event){
+        Button activateButton = (Button) event.getSource();
         if(activateButton==activate1){
-            sender.sendInput("activate leader card 0");
+            view.sendInput("activate leader card 0");
         }
         if(activateButton==activate2){
-            sender.sendInput("activate leader card 1");
+            view.sendInput("activate leader card 1");
         }
         if(activateButton==activate3){
-            sender.sendInput("activate leader card 2");
+            view.sendInput("activate leader card 2");
         }
         if(activateButton==activate4){
-            sender.sendInput("activate leader card 3");
+            view.sendInput("activate leader card 3");
         }
 
     }
 
-    public void handleBurn(ActionEvent event){
-        ClientSocketView sender = new ClientSocketView();
+    /**
+     * Gestisce la distruzione leader card
+
+     * @param event
+     * @throws Exception
+     */
+    public void handleBurnLeader(ActionEvent event) throws Exception {
         Object burnButton = event.getSource();
         if (burnButton==burn1){
-            sender.sendInput("discard leader card 0");
+            view.sendInput("discard leader card 0");
         }
         if (burnButton==burn2){
-            sender.sendInput("discard leader card 1");
+            view.sendInput("discard leader card 1");
         }
         if (burnButton==burn3){
-            sender.sendInput("discard leader card 2");
+            view.sendInput("discard leader card 2");
         }
         if (burnButton==burn4){
-            sender.sendInput("discard leader card 3");
+            view.sendInput("discard leader card 3");
         }
     }
 
+    /**
+     * Gestisce l'attivazione bottone Lancia Dadi
+     * @param event
+     */
     public void handleThrowDices(ActionEvent event){
-        ClientSocketView sender = new ClientSocketView();
-        sender.sendInput("throw dices");
+        view.sendInput("throw dices");
     }
 
+    /**
+     * Gestisce l'attivazione bottone Salta Azione
+     * @param event
+     */
     public void handleSkipAction(ActionEvent event){
-        ClientSocketView sender = new ClientSocketView();
-        sender.sendInput("skip action");
+        view.sendInput("skip action");
     }
 
+    /**
+     * Gestisce l'attivazione bottone Fine Turno
+     * @param event
+     */
     public void handleEndTurn(ActionEvent event){
-        ClientSocketView sender = new ClientSocketView();
-        sender.sendInput("end turn");
+        view.sendInput("end turn");
     }
 
+    /**
+     * Gestisce l'attivazione dei pulsanti seleziona pedina
+     * @param event
+     */
     public void handlePawnPicked(MouseEvent event) {
-        ClientSocketView sender = new ClientSocketView();
         if (event.getSource() == balckPawn) {
-            sender.sendInput("use family pawn black");
+            view.sendInput("use family pawn black");
         }
         if (event.getSource() == whitePawn) {
-            sender.sendInput("use family pawn white");
+            view.sendInput("use family pawn white");
         }
         if (event.getSource() == orangePawn) {
-            sender.sendInput("use family pawn orange");
+            view.sendInput("use family pawn orange");
         }
         if (event.getSource() == neutralPawn) {
-            sender.sendInput("use family pawn neutral");
+            view.sendInput("use family pawn neutral");
         }
 
     }
 
-/*
-    public void activateButtons(PlayerState currentPlayerState){
-        switch (currentPlayerState){
-            case ENDTURN:
-                deactivateLeaderButtons();
-                skipAction.setEnabled(false);
-                throwDices.setEnabled(false);
-                endTurn.setEnabled(true);
-
-            case THROWDICES:
-                deactivateLeaderButtons();
-                skipAction.setEnabled(false);
-                endTurn.setEnabled(false);
-                throwDices.setEnabled(true);
-
-            case CHOOSEACTION:
-                activateLeaderButtons();
-                skipAction.setEnabled(false);
-                endTurn.setEnabled(false);
-                throwDices.setEnabled(false);
-
-            default:
-                deactivateLeaderButtons();
-                skipAction.setEnabled(false);
-                throwDices.setEnabled(false);
-                endTurn.setEnabled(false);
-
-        }
+    public void handleActionChosenImageView(MouseEvent event){
+        //TODO: 3 metodi diversi
+        Integer actionSelected = buttonAction.get(event.getSource());
+        view.sendInput("execute action " + actionSelected.toString());
+        updatePawnOnActionspace((ImageView) event.getSource());
     }
 
-    public void activateLeaderButtons(Map<LeaderCard,Boolean> availability){
-        int i=0;
-        while (i<4){
-            for (LeaderCard leaderCard:availability.keySet()) {
+    public void updatePawnOnActionspace(ImageView imageView){
 
-            }
-        }
-    }*/
+    }
+
+    public void updatePawnOnActionSpace(GridPane gridPane) {
+
+    }
+    /**
+     * Quando viene chiamata setta i vari pulsanti pedina che possono essere clickati
+     * @param availability
+     */
+    //TODO:hashmap pawntype pawns grafiche
     public void activatePawns(Map<FamilyPawn,Boolean> availability){
+
         for (FamilyPawn pawn: availability.keySet()) {
+            FamilyPawnType familyPawnType = pawn.getType();
+
+            if (availability.get(pawn)) {
+                setAvailable(pawn.getType());
+            }
+
+            else {
+                setNotAvailable(pawn.getType());
+            }
+
+            switch (familyPawnType) {
+                case BLACK:
+                    break;
+                case ORANGE:
+                    if (availability.get(pawn)) {
+                        orangePawn.setDisable(false);
+                        Integer value = pawn.getActualValue();
+                        orangeValue.setText(value.toString());
+                    }
+                    else {
+                        orangePawn.setDisable(true);
+                        orangeValue.setText("");
+                    }
+                    break;
+                case WHITE:
+                    if (availability.get(pawn)) {
+                        whitePawn.setDisable(false);
+                        Integer value = pawn.getActualValue();
+                        whiteValue.setText(value.toString());
+                    }
+                    else{
+                        whitePawn.setDisable(true);
+                        whiteValue.setText("");
+                    }
+                    break;
+                case NEUTRAL:
+                    break;
+                case BONUS:
+                    break;
+                case ANY:
+                    break;
+            }
             if (pawn.getType()==FamilyPawnType.WHITE){
-                if (availability.get(pawn)) {
-                    whitePawn.setDisable(false);
-                    Integer value = pawn.getActualValue();
-                    whiteValue.setText(value.toString());
-                }
-                else{
-                    whitePawn.setDisable(true);
-                    whiteValue.setText("");
-                }
+
             }
             if (pawn.getType()==FamilyPawnType.ORANGE){
-                if (availability.get(pawn)) {
-                    orangePawn.setDisable(false);
-                    Integer value = pawn.getActualValue();
-                    orangeValue.setText(value.toString());
-                }
-                else {
-                    orangePawn.setDisable(true);
-                    orangeValue.setText("");
-                }
+
             }
             if (pawn.getType()==FamilyPawnType.BLACK){
                 if (availability.get(pawn)) {
@@ -202,4 +478,105 @@ public class GameBoardController {
             }
         }
     }
+
+    private void setNotAvailable(FamilyPawnType type) {
+
+    }
+
+    private void setAvailable(FamilyPawnType type) {
+    }
+
+    /**
+     * Quando è chiamata modifica le immagini delle carte visualizzate sulla PersonalBoard
+     * @param cards
+     * @param cardColor
+     */
+    public void updateCardsPersonalBoard(ArrayList<DevelopmentCard> cards, CardColor cardColor){
+        int i =0;
+        for (DevelopmentCard card:cards){
+            if (card == null){
+                break;
+            }
+            else{
+                if (cardColor.equals(CardColor.YELLOW)){
+                    Image image = new Image(view.getCardMap().get(card.getSpecial()));
+                    personalYellowCards.get(i).setImage(image);
+                    i++;
+                }
+                if (cardColor.equals(CardColor.BLUE)){
+                    Image image = new Image(view.getCardMap().get(card.getSpecial()));
+                    personalBlueCards.get(i).setImage(image);
+                    i++;
+                }
+                if (cardColor.equals(CardColor.PURPLE)){
+                    Image image = new Image(view.getCardMap().get(card.getSpecial()));
+                    personalPurpleCards.get(i).setImage(image);
+                    i++;
+                }
+                if (cardColor.equals(CardColor.GREEN)){
+                    Image image = new Image(view.getCardMap().get(card.getSpecial()));
+                    personalGreenCards.get(i).setImage(image);
+                    i++;
+                }
+            }
+        }
+    }
+
+    /**
+     * Quando viene chiamata modifica le quantità di resourceAmount sulla PersonalBoard
+     * @param newGoodSet
+     */
+    public void updateGoodSetPersonalBoard(GoodSet newGoodSet){
+        for (GoodType type: GoodType.values()) {
+
+            if (type!=GoodType.FAITHPOINTS &&type!=GoodType.MILITARYPOINTS &&type!=GoodType.VICTORYPOINTS) {
+                Integer value = newGoodSet.getGoodAmount(type);
+                resourceAmount.get(type).setText(value.toString());
+            }
+            else if (true) {}
+                //TODO: aggiorna track - pensa a player color
+
+        }
+    }
+
+    /**
+     * Quando è chiamata attiva/disattiva tutti i pulsanti ActionSpace che si possono clickare
+     */
+    public void updatePossibleActions(Map<Integer,Boolean> availability){
+        for (Integer i : availability.keySet()) {
+
+            if(availability.get(i)){
+                actionButtons.get(i).setDisable(false);
+                coverImages.get(i).setVisible(false);
+            }
+            else {
+                actionButtons.get(i).setDisable(true);
+                coverImages.get(i).setVisible(true);
+            }
+
+        }
+    }
+
+    /**
+     * Quando è chiamata modifica tutti i contatori delle track sulla PersonalBoard
+     */
+    public void updateTracks(ArrayList<Track> tracks){}
+
+    /**
+     * Quando è chiamata fissa l'immagine della BonusTile che riceve
+     */
+    public void updateBonusTile(BonusTile bonusTile){}
+
+    /**
+     * Quando è chiamata modifica le immagini delle carte sulle torri
+     */
+    public void updateTowers(ArrayList<Tower> towers){
+    }
+
+
+    public void updateExcomunicationTiles(ArrayList<ExcommunicationTile> tiles){
+
+    }
+
+
 }
