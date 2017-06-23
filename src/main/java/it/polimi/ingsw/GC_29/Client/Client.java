@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Client;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientSocketCLI;
 import it.polimi.ingsw.GC_29.Client.GUI.FXMLMain;
+import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginGUI;
 import javafx.application.Application;
 
 import java.io.IOException;

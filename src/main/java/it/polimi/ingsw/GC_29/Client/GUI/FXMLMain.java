@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginGUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
@@ -37,11 +38,10 @@ public class FXMLMain extends Application {
         FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
 
 
-        /*loginController = loginLoader.getController();
+        loginController = loginLoader.getController();
         System.out.println(loginController);
-        loginController.setConnected(false);*/
 
-        SplitPane root = loginLoader.load();
+        Parent root = loginLoader.load();
         stage.setScene(new Scene(root));
         stage.setTitle("Login");
         stage.setHeight(400);
@@ -49,11 +49,10 @@ public class FXMLMain extends Application {
         stage.centerOnScreen();
         stage.show();
 
-
-        LoginGUI loginGUI = new LoginGUI();
+        /*LoginGUI loginGUI = new LoginGUI();
         loginGUI.start(stage);
         loginController = loginGUI.getController();
-        System.out.println(loginController);
+        System.out.println(loginController);*/
 
 
         logged = false;
