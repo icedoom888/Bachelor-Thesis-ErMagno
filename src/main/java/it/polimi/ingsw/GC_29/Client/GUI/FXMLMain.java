@@ -23,19 +23,23 @@ public class FXMLMain extends Application {
     private LoginController loginController;
     private ClientSocketGUI clientSocketGUI;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
 
         ///////LOGIN///////
 
         //FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("FXML/Login.fxml"));
-        /*
+
         FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
 
 
-        loginController = loginLoader.getController();
+        /*loginController = loginLoader.getController();
         System.out.println(loginController);
-        loginController.setConnected(false);
+        loginController.setConnected(false);*/
 
         SplitPane root = loginLoader.load();
         stage.setScene(new Scene(root));
@@ -44,7 +48,7 @@ public class FXMLMain extends Application {
         stage.setWidth(500);
         stage.centerOnScreen();
         stage.show();
-        */
+
 
         LoginGUI loginGUI = new LoginGUI();
         loginGUI.start(stage);

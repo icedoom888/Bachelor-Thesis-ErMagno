@@ -12,7 +12,7 @@ import java.util.Scanner;
 /**
  * Created by Christian on 11/06/2017.
  */
-public class Client {
+public class Client{
 
     private Distribution distribution;
 

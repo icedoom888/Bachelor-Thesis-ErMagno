@@ -8,27 +8,23 @@ import javafx.scene.control.SplitPane;
 
 import javafx.stage.Stage;
 
+import java.util.concurrent.CountDownLatch;
+
 /**
  * Created by AlbertoPennino on 20/06/2017.
  */
 public class LoginGUI extends Application {
 
     LoginController loginController;
-
-    public static void main(String[]args) {
-        Application.launch(args);
-    }
-
-    /*public static void main(String[] args) {
-        Application.launch(BonusTileGUI.class);
-    }*/
-
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
-        SplitPane root = loader.load();
+        Scene root = new Scene(loader.load());
+
+        //Get a controller instance
         loginController = loader.getController();
-        stage.setScene(new Scene(root));
+
+        stage.setScene(root);
         stage.setTitle("Login");
         stage.setHeight(400);
         stage.setWidth(500);
@@ -40,6 +36,9 @@ public class LoginGUI extends Application {
 
         return loginController;
 
+    }
 
+    public static void main(String[] args) {
+        launch(args);
     }
 }
