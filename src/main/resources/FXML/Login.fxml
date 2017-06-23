@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.4675324675324675" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController">
+   <items>
+      <AnchorPane>
+         <children>
+            <HBox alignment="CENTER" prefHeight="140.0" prefWidth="513.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="210.0" fitWidth="199.0" preserveRatio="true" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                     <image>
+                        <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/logoScritta.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane>
+         <children>
+            <VBox alignment="CENTER" prefHeight="161.0" prefWidth="513.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="93.0" prefWidth="513.0" spacing="10.0" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Text layoutX="20.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="70.0" />
+                           </HBox.margin>
+                        </Text>
+                        <TextField fx:id="username" prefHeight="27.0" prefWidth="206.0" promptText="Insert Username" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets right="30.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="12.5" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="93.0" prefWidth="513.0" spacing="13.0">
+                     <children>
+                        <Text layoutX="20.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="70.0" />
+                           </HBox.margin>
+                        </Text>
+                        <TextField fx:id="password" prefHeight="27.0" prefWidth="206.0" promptText="Insert Password" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets right="30.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="513.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Text layoutX="43.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connection:" />
+                        <RadioButton fx:id="socket" mnemonicParsing="false" onAction="#switchButtons" text="Socket" />
+                        <RadioButton fx:id="rmi" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchButtons" text="RMI" />
+                     </children>
+                     <padding>
+                        <Insets bottom="12.5" left="70.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Button fx:id="submit" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendSubmit" prefHeight="27.0" prefWidth="62.0" text="Submit" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="225.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Text fx:id="errorBlankFields" strokeType="OUTSIDE" strokeWidth="0.0" text="Blank Fields" visible="false">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="errorUserPsw" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrong Username or Password" translateX="-70.0" visible="false" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </items>
+</SplitPane>

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
@@ -18,27 +19,37 @@ public class ClientSocket {
     private final String IP = "127.0.0.1";
     private final String NAME = "socket";
     private final String error = "Input not allowed for your current state";
+
     private PlayerColor playerColor;
+    private EnumInterface enumInterface;
 
     private Socket socket;
     private ObjectInputStream socketIn;
     private ObjectOutputStream socketOut;
     private BufferedReader inKeyboard;
     private PrintWriter outVideo;
-    private ClientOutHandler clientOutHandler;
-    private ClientInHandler clientInHandler;
 
-    public ClientSocket() throws IOException {
+    private ClientOutHandlerCLI clientOutHandlerCLI;
+    private ClientInHandlerCLI clientInHandlerCLI;
+
+    private ClientOutHandlerGUI clientOutHandlerGUI;
+    private ClientInHandlerGUI clientInHandlerGUI;
+
+    public ClientSocket(EnumInterface enumInterface) throws IOException {
+        this.enumInterface = enumInterface;
     }
 
 
-    public void startClient() throws UnknownHostException, IOException {
+    public void startClientCLI() throws UnknownHostException, IOException {
         System.out.println("Client avviato");
 
         try {
             connect();
-            login();
-            playNewGame();
+
+            loginCLI();
+
+            playNewGameCLI();
+
             //chiudi();
             //TODO: gestisci fine partita
         } catch (Exception e) {
@@ -55,25 +66,78 @@ public class ClientSocket {
 
     }
 
-    private void playNewGame() {
+    public void startClientGUI() {
 
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+        System.out.println("Client avviato GUI");
+        try {
 
-        clientInHandler.setClientOutHandler(clientOutHandler);
-        clientOutHandler.setClientInHandler(clientInHandler);
+            connect();
 
-        CommonView commonView = new CommonView();
-        commonView.setInputChecker(new InputChecker());
-        commonView.setPlayerColor(playerColor);
+            //loginGUI(username, password);
 
-        clientOutHandler.setCommonView(commonView);
-        clientInHandler.setCommonView(commonView);
+            //playNewGameCLI();
 
-        executor.submit(clientInHandler);
-        executor.submit(clientOutHandler);
+            //chiudi();
+            //TODO: gestisci fine partita
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+            e.printStackTrace();
+        } /*finally {
+            // Always close it:
+            try {
+                socket.close();
+            } catch (IOException e) {
+                System.err.println("Socket not closed");
+            }
+        }*/
+
     }
 
-    private void login() {
+    public boolean loginGUI(String username, String password) {
+
+        boolean logged = false;
+
+        try {
+
+            //ObjectOutputStream outSocket = clientOutHandlerGUI.getCommonOut().getSocketOut();
+            //ObjectInputStream inSocket = clientInHandlerGUI.getSocketIn();
+
+            socketOut.writeObject("login");
+            socketOut.flush();
+            socketOut.writeObject(username);
+            socketOut.flush();
+            socketOut.writeObject(password);
+            socketOut.flush();
+
+            logged = socketIn.readBoolean();
+
+            if (logged) {
+                //TODO schermata di login successful
+                //outVideo.println("Login correctly done");
+                PlayerColor playerColor = (PlayerColor)socketIn.readObject();
+
+                setPlayerColor(playerColor);
+
+                clientInHandlerGUI.getCommonView().setPlayerColor(playerColor);
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+            e.printStackTrace();
+
+            try {
+                socket.close();
+            } catch (IOException ex) {
+                System.err.println("Socket not closed");
+            }
+        }
+
+        return logged;
+
+    }
+
+    private void loginCLI() {
 
         try {
             boolean logged = false;
@@ -86,15 +150,15 @@ public class ClientSocket {
                 outVideo.println("Inserire password:");
                 String password = inKeyboard.readLine();
 
-                ObjectOutputStream outSocket = clientOutHandler.getSocketOut();
-                ObjectInputStream inSocket = clientInHandler.getSocketIn();
+                //ObjectOutputStream outSocket = clientOutHandlerCLI.getCommonOut().getSocketOut();
+                //ObjectInputStream inSocket = clientInHandlerCLI.getSocketIn();
 
-                outSocket.writeObject("login");
-                outSocket.flush();
-                outSocket.writeObject(username);
-                outSocket.flush();
-                outSocket.writeObject(password);
-                outSocket.flush();
+                socketOut.writeObject("login");
+                socketOut.flush();
+                socketOut.writeObject(username);
+                socketOut.flush();
+                socketOut.writeObject(password);
+                socketOut.flush();
 
                 logged = socketIn.readBoolean();
 
@@ -103,14 +167,17 @@ public class ClientSocket {
                 else
                     outVideo.println("Nome utente in uso con altra password");
 
-                PlayerColor playerColor = (PlayerColor)socketIn.readObject();
-
-                setPlayerColor(playerColor);
-
-                clientInHandler.getCommonView().setPlayerColor(playerColor);
-
 
             }
+
+            //TODO: spostato da dentro al while a fuori
+
+            PlayerColor playerColor = (PlayerColor)socketIn.readObject();
+
+            setPlayerColor(playerColor);
+
+            clientInHandlerCLI.getCommonView().setPlayerColor(playerColor);
+
         } catch (Exception e) {
             System.out.println("Exception: " + e);
             e.printStackTrace();
@@ -123,6 +190,43 @@ public class ClientSocket {
         }
 
     }
+
+    private void playNewGameCLI() {
+
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        clientInHandlerCLI.setClientOutHandlerCLI(clientOutHandlerCLI);
+        //clientOutHandlerCLI.setClientInHandlerCLI(clientInHandlerCLI);
+
+        CommonView commonView = new CommonView();
+        commonView.setInputChecker(new InputChecker());
+        commonView.setPlayerColor(playerColor);
+
+        clientOutHandlerCLI.setCommonView(commonView);
+        clientInHandlerCLI.setCommonView(commonView);
+
+        executor.submit(clientInHandlerCLI);
+        executor.submit(clientOutHandlerCLI);
+    }
+
+    public void playNewGameGUI() {
+
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        clientInHandlerGUI.setCommonOut(clientOutHandlerGUI.getCommonOut());
+        //clientOutHandlerGUI.setClientInHandlerGUI(clientInHandlerGUI);
+
+        CommonView commonView = new CommonView();
+        commonView.setInputChecker(new InputChecker());
+        commonView.setPlayerColor(playerColor);
+
+        clientOutHandlerGUI.setCommonView(commonView);
+        clientInHandlerGUI.setCommonView(commonView);
+
+        executor.submit(clientInHandlerGUI);
+        executor.submit(clientOutHandlerGUI);
+    }
+
 
     private void connect() {
 
@@ -140,25 +244,27 @@ public class ClientSocket {
             inKeyboard = new BufferedReader(new InputStreamReader(System.in));
             outVideo = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)), true);
 
-            //Creates one thread to send messages to the server
-
-            //PrintWriter socketOut = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 
             this.socketOut = new ObjectOutputStream(/*new BufferedOutputStream*/(socket.getOutputStream()));
-
-            this.clientOutHandler = new ClientOutHandler(socketOut);
-
-
-            //Creates one thread to receive messages from the server
-
-            //BufferedReader socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
             this.socketIn = new ObjectInputStream(/*new BufferedInputStream*/((socket.getInputStream())));
 
-            this.clientInHandler = new ClientInHandler(socketIn);
 
-            //clientOutHandler.setClientInHandler(clientInHandler);
-            //clientInHandler.setClientOutHandler(clientOutHandler);
+            //Creates one thread to send messages to the server
+            //Creates one thread to receive messages from the server
+
+
+            switch (enumInterface) {
+
+                case CLI:
+                    this.clientOutHandlerCLI = new ClientOutHandlerCLI(socketOut);
+                    this.clientInHandlerCLI = new ClientInHandlerCLI(socketIn);
+                    break;
+
+                case GUI:
+                    this.clientOutHandlerGUI = new ClientOutHandlerGUI(socketOut);
+                    this.clientInHandlerGUI = new ClientInHandlerGUI(socketIn);
+            }
+
 
             System.out.println("Client connesso");
 
@@ -178,7 +284,7 @@ public class ClientSocket {
 
     /*public static void main(String[] args) throws UnknownHostException, IOException{
         ClientSocket client = new ClientSocket();
-        client.startClient();
+        client.startClientCLI();
     }*/
 
     public void setPlayerColor(PlayerColor playerColor) {
