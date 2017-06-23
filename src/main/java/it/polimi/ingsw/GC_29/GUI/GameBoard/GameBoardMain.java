@@ -17,7 +17,7 @@ public class GameBoardMain extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/polimi/ingsw/GC_29/GUI/GameBoard/GameBoard.fxml"));
         Parent root = loader.load();
         GameBoardController gameBoardController = loader.getController();
         stage.setScene(new Scene(root));

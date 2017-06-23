@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -31,9 +32,13 @@ public class GameBoardController {
 
     //quando devo settare i pulsanti attivi
     private HashMap<Integer, ImageView> actionButtons = new HashMap<>();
+    private HashMap<Integer,GridPane> actionGrid = new HashMap<>();
+    private HashMap<Integer,HBox> actionBox = new HashMap<>();
 
     //quando devo sapere a che azione corrisponde il pulsante premuto
     private HashMap<ImageView, Integer> buttonAction = new HashMap<>();
+    private HashMap<GridPane,Integer> gridAction = new HashMap<>();
+    private HashMap<HBox,Integer> boxAction = new HashMap<>();
 
 
     private HashMap<GoodType, Text> resourceAmount = new HashMap<>();
@@ -219,15 +224,15 @@ public class GameBoardController {
     @FXML
     private ImageView purpleTowerAction4;
     @FXML
-    private ImageView councilPalace;
+    private GridPane councilPalace;
     @FXML
     private ImageView harvest1;
     @FXML
-    private ImageView harvest2;
+    private HBox harvest2;
     @FXML
     private ImageView production1;
     @FXML
-    private ImageView production2;
+    private HBox production2;
     @FXML
     private ImageView market1;
     @FXML
@@ -238,6 +243,57 @@ public class GameBoardController {
     private ImageView market4;
 
 
+
+    @FXML
+    private ImageView greenTowerAction1Cover;
+    @FXML
+    private ImageView greenTowerAction2Cover;
+    @FXML
+    private ImageView greenTowerAction3Cover;
+    @FXML
+    private ImageView greenTowerAction4Cover;
+    @FXML
+    private ImageView blueTowerAction1Cover;
+    @FXML
+    private ImageView blueTowerAction2Cover;
+    @FXML
+    private ImageView blueTowerAction3Cover;
+    @FXML
+    private ImageView blueTowerAction4Cover;
+    @FXML
+    private ImageView yellowTowerAction1Cover;
+    @FXML
+    private ImageView yellowTowerAction2Cover;
+    @FXML
+    private ImageView yellowTowerAction3Cover;
+    @FXML
+    private ImageView yellowTowerAction4Cover;
+    @FXML
+    private ImageView purpleTowerAction1Cover;
+    @FXML
+    private ImageView purpleTowerAction2Cover;
+    @FXML
+    private ImageView purpleTowerAction3Cover;
+    @FXML
+    private ImageView purpleTowerAction4Cover;
+    @FXML
+    private ImageView councilPalaceCover;
+    @FXML
+    private ImageView harvest1Cover;
+    @FXML
+    private ImageView harvest2Cover;
+    @FXML
+    private ImageView production1Cover;
+    @FXML
+    private ImageView production2Cover;
+    @FXML
+    private ImageView market1Cover;
+    @FXML
+    private ImageView market2Cover;
+    @FXML
+    private ImageView market3Cover;
+    @FXML
+    private ImageView market4Cover;
 
 
 
@@ -296,6 +352,86 @@ public class GameBoardController {
         purpleTower.put(1,purpleTowerCard2);
         purpleTower.put(2,purpleTowerCard3);
         purpleTower.put(3,purpleTowerCard4);
+
+        actionButtons.put(0,greenTowerAction1);
+        actionButtons.put(1,greenTowerAction2);
+        actionButtons.put(2,greenTowerAction3);
+        actionButtons.put(3,greenTowerAction4);
+        actionButtons.put(4,yellowTowerAction1);
+        actionButtons.put(5,yellowTowerAction2);
+        actionButtons.put(6,yellowTowerAction3);
+        actionButtons.put(7,yellowTowerAction4);
+        actionButtons.put(8,blueTowerAction1);
+        actionButtons.put(9,blueTowerAction2);
+        actionButtons.put(10,blueTowerAction3);
+        actionButtons.put(11,blueTowerAction4);
+        actionButtons.put(12,purpleTowerAction1);
+        actionButtons.put(13,purpleTowerAction2);
+        actionButtons.put(14,purpleTowerAction3);
+        actionButtons.put(15,purpleTowerAction4);
+        actionButtons.put(16,market1);
+        actionButtons.put(17,market2);
+        actionButtons.put(18,market3);
+        actionButtons.put(19,market4);
+        actionGrid.put(20,councilPalace);
+        actionButtons.put(21,harvest1);
+        actionBox.put(22,harvest2);
+        actionButtons.put(23,production1);
+        actionBox.put(24,production2);
+
+        buttonAction.put(greenTowerAction1,0);
+        buttonAction.put(greenTowerAction2,1);
+        buttonAction.put(greenTowerAction3,2);
+        buttonAction.put(greenTowerAction4,3);
+        buttonAction.put(yellowTowerAction1,4);
+        buttonAction.put(yellowTowerAction2,5);
+        buttonAction.put(yellowTowerAction3,6);
+        buttonAction.put(yellowTowerAction4,7);
+        buttonAction.put(blueTowerAction1,8);
+        buttonAction.put(blueTowerAction2,9);
+        buttonAction.put(blueTowerAction3,10);
+        buttonAction.put(blueTowerAction4,11);
+        buttonAction.put(purpleTowerAction1,12);
+        buttonAction.put(purpleTowerAction2,13);
+        buttonAction.put(purpleTowerAction3,14);
+        buttonAction.put(purpleTowerAction4,15);
+        buttonAction.put(market1,16);
+        buttonAction.put(market2,17);
+        buttonAction.put(market3,18);
+        buttonAction.put(market4,19);
+        gridAction.put(councilPalace,20);
+        buttonAction.put(harvest1,21);
+        boxAction.put(harvest2,22);
+        buttonAction.put(production1,23);
+        boxAction.put(production2,24);
+
+
+        coverImages.put(0,greenTowerAction1Cover);
+        coverImages.put(1,greenTowerAction2Cover);
+        coverImages.put(2,greenTowerAction3Cover);
+        coverImages.put(3,greenTowerAction4Cover);
+        coverImages.put(4,yellowTowerAction1Cover);
+        coverImages.put(5,yellowTowerAction2Cover);
+        coverImages.put(6,yellowTowerAction3Cover);
+        coverImages.put(7,yellowTowerAction4Cover);
+        coverImages.put(8,blueTowerAction1Cover);
+        coverImages.put(9,blueTowerAction2Cover);
+        coverImages.put(10,blueTowerAction3Cover);
+        coverImages.put(11,blueTowerAction4Cover);
+        coverImages.put(12,purpleTowerAction1Cover);
+        coverImages.put(13,purpleTowerAction2Cover);
+        coverImages.put(14,purpleTowerAction3Cover);
+        coverImages.put(15,purpleTowerAction4Cover);
+        coverImages.put(16,market1Cover);
+        coverImages.put(17,market2Cover);
+        coverImages.put(18,market3Cover);
+        coverImages.put(19,market4Cover);
+        coverImages.put(20,councilPalaceCover);
+        coverImages.put(21,harvest1Cover);
+        coverImages.put(22,harvest2Cover);
+        coverImages.put(23,production1Cover);
+        coverImages.put(24,production2Cover);
+
 
     }
 
@@ -387,10 +523,24 @@ public class GameBoardController {
     }
 
     public void handleActionChosenImageView(MouseEvent event){
-        //TODO: 3 metodi diversi
-        Integer actionSelected = buttonAction.get(event.getSource());
-        view.sendInput("execute action " + actionSelected.toString());
-        updatePawnOnActionspace((ImageView) event.getSource());
+        if(event.getSource() instanceof ImageView) {
+            Integer actionSelected = buttonAction.get(event.getSource());
+            view.sendInput("execute action " + actionSelected.toString());
+            updatePawnOnActionspace((ImageView) event.getSource());
+        }
+
+        if(event.getSource() instanceof GridPane) {
+            Integer actionSelected = gridAction.get(event.getSource());
+            view.sendInput("execute action " + actionSelected.toString());
+            updatePawnOnActionSpace((GridPane) event.getSource());
+        }
+
+        if (event.getSource() instanceof HBox){
+            Integer actionSelected = boxAction.get(event.getSource());
+            view.sendInput("execute action " + actionSelected.toString());
+            updatePawnOnActionSpace((HBox) event.getSource());
+        }
+
     }
 
     public void updatePawnOnActionspace(ImageView imageView){
@@ -400,10 +550,15 @@ public class GameBoardController {
     public void updatePawnOnActionSpace(GridPane gridPane) {
 
     }
-    /**
-     * Quando viene chiamata setta i vari pulsanti pedina che possono essere clickati
-     * @param availability
-     */
+
+    public void updatePawnOnActionSpace(HBox hBox) {
+
+    }
+
+        /**
+         * Quando viene chiamata setta i vari pulsanti pedina che possono essere clickati
+         * @param availability
+         */
     //TODO:hashmap pawntype pawns grafiche
     public void activatePawns(Map<FamilyPawn,Boolean> availability){
 
@@ -546,11 +701,27 @@ public class GameBoardController {
         for (Integer i : availability.keySet()) {
 
             if(availability.get(i)){
-                actionButtons.get(i).setDisable(false);
+                if (i==20){
+                    actionGrid.get(i).setDisable(false);
+                }
+                if (i==22 || i==24){
+                    actionBox.get(i).setDisable(false);
+                }
+                else {
+                    actionButtons.get(i).setDisable(false);
+                }
                 coverImages.get(i).setVisible(false);
             }
             else {
-                actionButtons.get(i).setDisable(true);
+                if (i==20){
+                    actionGrid.get(i).setDisable(true);
+                }
+                if (i==22 || i==24){
+                    actionBox.get(i).setDisable(true);
+                }
+                else {
+                    actionButtons.get(i).setDisable(true);
+                }
                 coverImages.get(i).setVisible(true);
             }
 

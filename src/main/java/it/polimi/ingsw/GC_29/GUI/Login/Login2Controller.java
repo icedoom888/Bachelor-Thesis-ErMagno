@@ -23,11 +23,18 @@ public class Login2Controller {
     @FXML private Button submit;
     @FXML private Text error;
 
+    private String connection = null;
+
+
 
     public void sendSubmit(ActionEvent event){
         if(!username.getText().isEmpty()&& !password.getText().isEmpty()&&(rmi.isSelected() || socket.isSelected())){
-            ClientSocketView sender = new ClientSocketView();
-            sender.sendInput("");
+            if(rmi.isSelected()){
+                setConnection("rmi");
+            }
+            if (socket.isSelected()){
+                setConnection("socket");
+            }
 
             Node source = (Node) event.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
@@ -45,5 +52,13 @@ public class Login2Controller {
         else if (event.getSource()==socket){
             rmi.setSelected(false);
         }
+    }
+
+    public String getConnection() {
+        return connection;
+    }
+
+    public void setConnection(String connection) {
+        this.connection = connection;
     }
 }
