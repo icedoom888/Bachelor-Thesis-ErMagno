@@ -1,7 +1,13 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.GUI.ChangeViewGUI;
+import it.polimi.ingsw.GC_29.Controllers.Change;
+import it.polimi.ingsw.GC_29.Controllers.GameChange;
+import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.rmi.RemoteException;
 
 /**
  * Created by Lorenzotara on 23/06/17.
@@ -11,10 +17,11 @@ public class ClientInHandlerGUI implements Runnable {
     private CommonOut commonOut;
     private ObjectInputStream socketIn;
     private CommonView commonView;
+    private ChangeViewGUI changeViewGUI;
 
     public ClientInHandlerGUI(ObjectInputStream socketIn) {
         this.socketIn = socketIn;
-        this.commonView = new CommonView();
+        this.changeViewGUI = new ChangeViewGUI(socketIn, commonView);
     }
 
 
@@ -70,6 +77,39 @@ public class ClientInHandlerGUI implements Runnable {
 
     private void updateClientGUI() {
 
+        Change c = null;
+        try {
+            c = (Change)socketIn.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        //System.out.println(c);
+        //System.out.println(commonView.getPlayerColor());
+
+
+
+        if(c instanceof PlayerStateChange){
+
+            commonView.setCurrentPlayerState(((PlayerStateChange)c).getNewPlayerState());
+
+            try {
+                //TODO: probabilmente cancellare
+                changeViewGUI.change(commonView.getCurrentPlayerState());
+                //handlePlayerState(commonView.getCurrentPlayerState());
+            } catch (/*RemoteException*/ Exception e) {
+                e.printStackTrace();
+            }
+
+            //System.out.println("if you want to see your valid input for this current state insert : help");
+        }
+
+        if(c instanceof GameChange){
+            commonView.setCurrentGameState(((GameChange)c).getNewGameState());
+            //TODO: if relation with the church chiedo se questo player è stato scomunicato passando dallo stub e poi printo quello che devo
+        }
+
     }
 
     private void validActionsGUI() {
@@ -95,9 +135,11 @@ public class ClientInHandlerGUI implements Runnable {
 
     public void setCommonOut(CommonOut commonOut) {
         this.commonOut = commonOut;
+        this.changeViewGUI.setCommonOut(commonOut);
+
     }
 
     public void setCommonView(CommonView commonView) {
-
+        this.commonView = commonView;
     }
 }
