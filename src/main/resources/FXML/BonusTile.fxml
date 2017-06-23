@@ -19,7 +19,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
                <image>
-                  <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png" />
+                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png" />
                </image>
             </ImageView>
             <Button fx:id="button1" mnemonicParsing="false" onAction="#executeButton1" text="Choose">
@@ -36,7 +36,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
                <image>
-                  <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png" />
+                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png" />
                </image>
             </ImageView>
             <Button fx:id="button2" mnemonicParsing="false" onAction="#executeButton2" text="Choose">
@@ -53,7 +53,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
                <image>
-                  <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png" />
+                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png" />
                </image>
             </ImageView>
             <Button fx:id="button3" mnemonicParsing="false" onAction="#executeButton3" text="Choose">
@@ -70,7 +70,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
                <image>
-                  <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png" />
+                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png" />
                </image>
             </ImageView>
             <Button fx:id="button4" mnemonicParsing="false" onAction="#executeButton4" text="Choose">
@@ -87,7 +87,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
                <image>
-                  <Image url="@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png" />
+                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png" />
                </image>
             </ImageView>
             <Button fx:id="button5" mnemonicParsing="false" onAction="#executeButton5" text="Choose">

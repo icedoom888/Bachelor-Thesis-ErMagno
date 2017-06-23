@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.GUI.Login;
 
-import it.polimi.ingsw.GC_29.GUI.BonusTile.BonusTileMain;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,8 +23,9 @@ public class Login2 extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
-        SplitPane root = FXMLLoader.load(getClass().getResource("/Login2.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login2.fxml"));
+        SplitPane root = loader.load();
+        Login2Controller login2Controller = loader.getController();
         stage.setScene(new Scene(root));
         stage.setTitle("Login");
         stage.setHeight(400);
