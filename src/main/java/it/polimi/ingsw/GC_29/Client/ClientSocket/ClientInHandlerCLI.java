@@ -61,6 +61,9 @@ public class ClientInHandlerCLI implements Runnable {
                     case "Get Family Pawns Availability":
                         getFamilyPawnsAvailability();
                         break;
+                    case "Get Bonus Tile":
+                        getBonusTiles();
+                        break;
 
                 }
 

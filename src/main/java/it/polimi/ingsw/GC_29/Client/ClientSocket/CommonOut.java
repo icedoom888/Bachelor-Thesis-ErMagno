@@ -33,6 +33,14 @@ public class CommonOut {
 
             switch (inputLine) {
 
+                case "bonus tile chosen":
+                    int bonusTile = commonView.getInputChecker().getBonusTileChosen();
+                    socketOut.writeObject("bonus tile");
+                    socketOut.flush();
+                    socketOut.writeObject(bonusTile);
+                    socketOut.flush();
+                    break;
+
                 case "throw dices":
                     System.out.println("STAI LANCIANDO I DADI");
                     socketOut.writeObject("throw dices");
@@ -67,7 +75,7 @@ public class CommonOut {
                     break;
 
                 case "see my family pawns":
-                    query = new GetFamilyPawns();
+                    query = new GetFamilyPawnAvailability();
                     socketOut.writeObject(query);
                     socketOut.flush();
                     break;
@@ -138,17 +146,17 @@ public class CommonOut {
                     }
                     break;
 
-                case "I want to pray":
+                case "pray":
                     PlayerColor playerColor = commonView.getPlayerColor();
-                    socketOut.writeObject("i want to pray");
+                    socketOut.writeObject("pray");
                     socketOut.flush();
                     socketOut.writeObject(playerColor);
                     socketOut.flush();
                     break;
 
-                case "I don't want to pray":
+                case "do not pray":
                     playerColor = commonView.getPlayerColor();
-                    socketOut.writeObject("i don't want to pray");
+                    socketOut.writeObject("do not pray");
                     socketOut.flush();
                     socketOut.writeObject(playerColor);
                     socketOut.flush();
@@ -209,6 +217,7 @@ public class CommonOut {
                 // non devo più inviare nulla
                 break;
 
+            case BONUSACTION:
             case CHOOSEACTION:
 
                 query = new GetValidActions();
@@ -269,6 +278,20 @@ public class CommonOut {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                break;
+
+            case CHOOSE_BONUS_TILE:
+
+                query = new GetBonusTile();
+                try {
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
 
         }
     }

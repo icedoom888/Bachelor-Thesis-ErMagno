@@ -13,24 +13,33 @@ import javafx.stage.Stage;
  */
 public class LoginGUI extends Application {
 
+    LoginController loginController;
+
     public static void main(String[]args) {
         Application.launch(args);
     }
 
     /*public static void main(String[] args) {
-        Application.launch(BonusTileMain.class);
+        Application.launch(BonusTileGUI.class);
     }*/
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
         SplitPane root = loader.load();
-        LoginController loginController = loader.getController();
+        loginController = loader.getController();
         stage.setScene(new Scene(root));
         stage.setTitle("Login");
         stage.setHeight(400);
         stage.setWidth(500);
         stage.centerOnScreen();
         stage.show();
+    }
+
+    public LoginController getController() {
+
+        return loginController;
+
+
     }
 }

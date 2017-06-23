@@ -1,10 +1,8 @@
 package it.polimi.ingsw.GC_29.Client;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
-import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientSocket;
-import it.polimi.ingsw.GC_29.Client.GUI.GUILauncher;
-import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginGUI;
-import it.polimi.ingsw.GC_29.Server.Socket.Login;
+import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientSocketCLI;
+import it.polimi.ingsw.GC_29.Client.GUI.FXMLMain;
 import javafx.application.Application;
 
 import java.io.IOException;
@@ -34,46 +32,15 @@ public class Client {
         switch (enumInterface){
             case CLI:
                 clientCLI();
-                try {
-                    executeCLI();
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-                finally {
-                    // TODO: chiusura canale rmi e canale socket
-                }
+
                 break;
             case GUI:
-                clientGUI();
+                Application.launch(FXMLMain.class);
                 break;
         }
 
     }
 
-    private void clientGUI() {
-
-        startGUI();
-
-        /*askWhichConnectionGUI();
-        try {
-            executeGUI();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        finally {
-            // TODO: chiusura canale rmi e canale socket
-        }*/
-    }
-
-    private void startGUI() {
-        Application.launch(LoginGUI.class);
-    }
-
-    private void executeGUI() {
-
-    }
 
     private void clientCLI() {
         askWhichConnectionCLI();
@@ -130,7 +97,7 @@ public class Client {
                     break;
 
                 case  "cli":
-                    enumInterface = EnumInterface.GUI;
+                    enumInterface = EnumInterface.CLI;
                     interfaceChosen = true;
                     break;
 
@@ -200,8 +167,8 @@ public class Client {
 
         try {
 
-            ClientSocket clientSocket = new ClientSocket(enumInterface);
-            clientSocket.startClientCLI();
+            ClientSocketCLI clientSocketCLI = new ClientSocketCLI();
+            clientSocketCLI.startClientCLI();
 
         } catch (Exception e) {
             e.printStackTrace();

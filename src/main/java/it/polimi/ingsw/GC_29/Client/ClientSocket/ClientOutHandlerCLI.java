@@ -55,6 +55,8 @@ public class ClientOutHandlerCLI implements Runnable {
                 e.printStackTrace();
             }
 
+            commonOut.sendInput(inputLine);
+
             /*Input input;
             Query query;
             try {

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Created by AlbertoPennino on 21/06/2017.
  */
-public class BonusTileMain extends Application {
+public class BonusTileGUI extends Application {
 
     public static void main(String[] args) {
        Application.launch(args);
