@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
 /**
  * Created by Lorenzotara on 23/06/17.
  */
-public class ClientInHandlerGUI implements Runnable {
+public class ClientInHandlerGUI {
 
     private CommonOut commonOut;
     private ObjectInputStream socketIn;
@@ -24,8 +24,53 @@ public class ClientInHandlerGUI implements Runnable {
         this.changeViewGUI = new ChangeViewGUI(socketIn, commonView);
     }
 
+    public void start() {
+        System.out.println("Client In Running");
 
+        Boolean b = true;
 
+        while(b){
+
+            // handles input messages coming from the server, just showing them to the user
+            try {
+                String input = (String)socketIn.readObject();
+
+                System.out.println("Update da Server View arrivato a Client In GUI");
+
+                switch (input) {
+
+                    case "Change":
+                        updateClientGUI();
+                        break;
+                    case "Valid Actions":
+                        validActionsGUI();
+                        break;
+                    case "Get GoodSet":
+                        getGoodSetGUI();
+                        break;
+                    case "Get Development Cards":
+                        getCardsGUI();
+                        break;
+                    case "Get Tower Cards":
+                        getCardsGUI();
+                        break;
+                    case "Get Family Pawns Availability":
+                        getFamilyPawnsAvailabilityGUI();
+                        break;
+
+                }
+
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /*
     @Override
     public void run() {
         System.out.println("Client In Running");
@@ -72,6 +117,7 @@ public class ClientInHandlerGUI implements Runnable {
             }
         }
     }
+    */
 
 
 
@@ -141,5 +187,12 @@ public class ClientInHandlerGUI implements Runnable {
 
     public void setCommonView(CommonView commonView) {
         this.commonView = commonView;
+        this.changeViewGUI.setCommonView(commonView);
     }
+
+    public ChangeViewGUI getChangeViewGUI() {
+        return changeViewGUI;
+    }
+
+
 }

@@ -2,11 +2,13 @@ package it.polimi.ingsw.GC_29.Client.GUI;
 
 import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonOut;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonView;
-import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
-import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardGUI;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import javafx.application.Application;
+import it.polimi.ingsw.GC_29.Server.Observable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,9 +20,10 @@ import java.rmi.RemoteException;
 public class ChangeViewGUI {
 
     private final ObjectInputStream socketIn;
-    private final CommonView commonView;
+    private CommonView commonView;
     private CommonOut commonOut;
     private static GameBoardController gameBoardController;
+    private Stage gameboardStage;
 
     public ChangeViewGUI(ObjectInputStream socketIn, CommonView commonView) {
         this.socketIn = socketIn;
@@ -158,6 +161,11 @@ public class ChangeViewGUI {
                     System.out.println(input);
 
                     if (input.contentEquals("Get Bonus Tile")) {
+
+                        //Application.launch(GameBoardGUI.class);
+
+                        launchGameboard();
+
                         getBonusTilesGUI();
                     }
                 } catch (IOException e) {
@@ -171,9 +179,81 @@ public class ChangeViewGUI {
         }
     }
 
+    private void launchGameboard() {
+
+        /*
+
+        Stage gameboardStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
+
+        AnchorPane root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Launching GameBoard: " + root);
+        gameboardStage.setScene(new Scene(root));
+        gameboardStage.setTitle("Login");
+        gameboardStage.setHeight(400);
+        gameboardStage.setWidth(500);
+        gameboardStage.centerOnScreen();
+        gameboardStage.show();
+
+        gameBoardController = loader.getController();
+
+
+*/
+        /*
+
+        Platform.setImplicitExit(false);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                System.out.println("Platform run later");
+
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        gameboardStage = new Stage();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
+
+                        AnchorPane root = null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        System.out.println("Launching GameBoard: " + root);
+                        gameboardStage.setScene(new Scene(root));
+                        gameboardStage.setTitle("Login");
+                        gameboardStage.setHeight(400);
+                        gameboardStage.setWidth(500);
+                        gameboardStage.centerOnScreen();
+                        gameboardStage.show();
+
+                        gameBoardController = loader.getController();
+
+                    }
+                });
+
+            }
+        }).start();
+
+        */
+
+    }
+
     private void getBonusTilesGUI() {
-        Application.launch(GameBoardGUI.class);
-        Application.launch(BonusTileGUI.class);
+
+        while (true);
+        //Application.launch(BonusTileGUI.class);
     }
 
 
@@ -186,5 +266,15 @@ public class ChangeViewGUI {
         ChangeViewGUI.gameBoardController = gameBoardController;
     }
 
+    public CommonView getCommonView() {
+        return commonView;
+    }
 
+    public CommonOut getCommonOut() {
+        return commonOut;
+    }
+
+    public void setCommonView(CommonView commonView) {
+        this.commonView = commonView;
+    }
 }

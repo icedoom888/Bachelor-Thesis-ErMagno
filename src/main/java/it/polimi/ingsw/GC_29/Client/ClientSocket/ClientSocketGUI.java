@@ -87,7 +87,16 @@ public class ClientSocketGUI {
 
                 this.playerColor = playerColor;
 
-                clientInHandlerGUI.getCommonView().setPlayerColor(playerColor);
+                clientInHandlerGUI.setCommonOut(clientOutHandlerGUI.getCommonOut());
+                //clientOutHandlerGUI.setClientInHandlerGUI(clientInHandlerGUI);
+
+                CommonView commonView = new CommonView();
+                commonView.setInputChecker(new InputChecker());
+                commonView.setPlayerColor(playerColor);
+
+                clientOutHandlerGUI.setCommonView(commonView);
+                clientInHandlerGUI.setCommonView(commonView);
+
             }
 
 
@@ -125,6 +134,7 @@ public class ClientSocketGUI {
             //Creates one thread to send messages to the server
             //Creates one thread to receive messages from the server
 
+
             this.clientOutHandlerGUI = new ClientOutHandlerGUI(socketOut);
             this.clientInHandlerGUI = new ClientInHandlerGUI(socketIn);
 
@@ -148,19 +158,16 @@ public class ClientSocketGUI {
 
     public void playNewGameGUI() {
 
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+        clientInHandlerGUI.start();
 
-        clientInHandlerGUI.setCommonOut(clientOutHandlerGUI.getCommonOut());
-        //clientOutHandlerGUI.setClientInHandlerGUI(clientInHandlerGUI);
-
-        CommonView commonView = new CommonView();
-        commonView.setInputChecker(new InputChecker());
-        commonView.setPlayerColor(playerColor);
-
-        clientOutHandlerGUI.setCommonView(commonView);
-        clientInHandlerGUI.setCommonView(commonView);
+        /*ExecutorService executor = Executors.newFixedThreadPool(2);
 
         executor.submit(clientInHandlerGUI);
         executor.submit(clientOutHandlerGUI);
+        */
+    }
+
+    public ClientInHandlerGUI getClientInHandlerGUI() {
+        return clientInHandlerGUI;
     }
 }

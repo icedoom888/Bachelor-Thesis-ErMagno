@@ -1,6 +1,9 @@
 package it.polimi.ingsw.GC_29.Client.GUI.Login;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientSocketCLI;
 import it.polimi.ingsw.GC_29.Client.Distribution;
+import it.polimi.ingsw.GC_29.Client.GUI.ControllerGUI;
+import it.polimi.ingsw.GC_29.Client.GUI.GUIChange;
+import it.polimi.ingsw.GC_29.Server.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -12,7 +15,7 @@ import javafx.event.ActionEvent;
 /**
  * Created by AlbertoPennino on 21/06/2017.
  */
-public class LoginController {
+public class LoginController extends Observable<GUIChange> implements ControllerGUI {
 
     @FXML private TextField username;
     @FXML private TextField password;
@@ -26,7 +29,7 @@ public class LoginController {
     private final String IP = "127.0.0.1";
     private boolean firstTime = true;
     private ClientSocketCLI clientSocketCLI;
-    private Boolean connected = false;
+    private boolean connected = false;
 
 
     public void sendSubmit(ActionEvent event){
@@ -40,12 +43,22 @@ public class LoginController {
 
                 setConnection(Distribution.RMI);
                 connected = true;
+                try {
+                    notifyObserver(new LoginChange(connected));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             else if (socket.isSelected()) {
 
                 setConnection(Distribution.SOCKET);
                 connected = true;
+                try {
+                    notifyObserver(new LoginChange(connected));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
 
@@ -64,6 +77,10 @@ public class LoginController {
         else if (event.getSource()==socket){
             rmi.setSelected(false);
         }
+    }
+
+    public void close() {
+
     }
 
 

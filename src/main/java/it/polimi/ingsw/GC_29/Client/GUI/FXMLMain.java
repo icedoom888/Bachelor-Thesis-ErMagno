@@ -2,19 +2,23 @@ package it.polimi.ingsw.GC_29.Client.GUI;
 
 import it.polimi.ingsw.GC_29.Client.ClientSocket.*;
 import it.polimi.ingsw.GC_29.Client.Distribution;
+import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
+import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginChange;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController;
-import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginGUI;
+import it.polimi.ingsw.GC_29.Server.Observer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
-import javafx.stage.Modality;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * Created by Lorenzotara on 23/06/17.
  */
-public class FXMLMain extends Application {
+public class FXMLMain extends Application implements Observer<GUIChange> {
 
     Distribution connection;
     private String username;
@@ -22,9 +26,34 @@ public class FXMLMain extends Application {
     private boolean logged;
     private LoginController loginController;
     private ClientSocketGUI clientSocketGUI;
+    private Stage stage;
+    private Stage loginStage;
+    private GameBoardController gameBoardController;
+
+    @Override
+    public void update(GUIChange o) throws Exception {
+
+        if (o instanceof LoginChange) {
+            Boolean connected = ((LoginChange) o).getConnected();
+            if (connected) {
+                signUp();
+            }
+        }
+
+
+    }
+
+
+
+    @Override
+    public void update() {
+
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        this.stage = stage;
 
         ///////LOGIN///////
 
@@ -47,21 +76,33 @@ public class FXMLMain extends Application {
         */
 
 
-        System.out.println("Sono dentro a login");
+        System.out.println("Sono dentro a FXMLMain");
 
-        //loginStage = stage;
+        loginStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
         SplitPane root = loader.load();
         System.out.println("ROOT: " + root);
-        loginController = loader.getController();
+
+        /*
         stage.setScene(new Scene(root));
-        //Stage loginStage = new Stage();
         stage.setTitle("Login");
         stage.setHeight(400);
         stage.setWidth(500);
         stage.centerOnScreen();
-        //stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
+        */
+
+        loginStage.setScene(new Scene(root));
+        loginStage.setTitle("Login");
+        loginStage.setHeight(400);
+        loginStage.setWidth(500);
+        loginStage.centerOnScreen();
+        loginStage.show();
+
+
+        loginController = loader.getController();
+
+
         System.out.println(loginController);
         System.out.println("arrivi qui?");
 
@@ -105,41 +146,9 @@ public class FXMLMain extends Application {
 
         loginController.setConnected(false);
 
-        while (!logged) {
-
-            while (!loginController.getConnected()){} // when the player submit
-
-            this.connection = loginController.getConnection();
+        loginController.registerObserver(this);
 
 
-            this.username = loginController.getUsername();
-            this.password = loginController.getPassword();
-
-            switch (connection) {
-
-                case SOCKET:
-
-                    connectSocket();
-
-                    break;
-
-                case RMI:
-                    break;
-            }
-        }
-
-        // Login Successful
-
-        stage.close();
-
-        switch (connection) {
-            case SOCKET:
-                clientSocketGUI.playNewGameGUI();
-                break;
-
-            case RMI:
-                break;
-        }
 
 
         ///////WAITING STAGE//////////
@@ -173,6 +182,78 @@ public class FXMLMain extends Application {
             e.printStackTrace();
 
         }
+
+    }
+
+    public void signUp() {
+
+        while (!logged) {
+
+            /*while (!loginController.getConnected()){
+                System.out.println("ciao");
+            } // when the player submit
+            */
+
+            this.connection = loginController.getConnection();
+
+
+            this.username = loginController.getUsername();
+            this.password = loginController.getPassword();
+
+            switch (connection) {
+
+                case SOCKET:
+
+                    connectSocket();
+
+                    break;
+
+                case RMI:
+                    break;
+            }
+        }
+
+        // Login Successful
+
+        loginStage.close();
+
+
+
+
+        switch (connection) {
+            case SOCKET:
+                clientSocketGUI.playNewGameGUI();
+                break;
+
+            case RMI:
+                break;
+        }
+    }
+
+
+
+    private void startGameboard() {
+
+        /*Stage gameboardStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
+
+        AnchorPane root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Launching GameBoard: " + root);
+        gameboardStage.setScene(new Scene(root));
+        gameboardStage.setTitle("Login");
+        gameboardStage.setHeight(400);
+        gameboardStage.setWidth(500);
+        gameboardStage.centerOnScreen();
+        gameboardStage.show();
+
+        gameBoardController = loader.getController();
+        */
 
     }
 
