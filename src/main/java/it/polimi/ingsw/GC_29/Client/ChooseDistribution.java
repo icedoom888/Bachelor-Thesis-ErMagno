@@ -14,6 +14,18 @@ public class ChooseDistribution {
         this.distribution = distribution;
     }
 
+    public void sendInput(String input) {
+        switch (distribution) {
+
+            case SOCKET:
+                commonOutSocket.sendInput(input);
+                break;
+
+            case RMI:
+                break;
+        }
+    }
+
 
     public void setCommonOutSocket(CommonOutSocket commonOutSocket) {
         this.commonOutSocket = commonOutSocket;

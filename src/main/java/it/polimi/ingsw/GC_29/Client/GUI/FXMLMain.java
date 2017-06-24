@@ -46,15 +46,8 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
             Boolean connected = ((LoginChange) o).getConnected();
             if (connected) {
 
-                switch (connection){
+                signUp();
 
-                    case SOCKET:
-                        signUpSocket();
-                        break;
-
-                    case RMI:
-                        break;
-                }
             }
         }
 
@@ -110,7 +103,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
     }
 
-    public void signUpSocket() {
+    public void signUp() {
 
         while (!logged) {
 

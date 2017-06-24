@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.GUI.GameBoard;
 
 import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
-import it.polimi.ingsw.GC_29.Client.GUI.CardsChange;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientOutHandlerGUI;
 import javafx.event.ActionEvent;
@@ -45,12 +44,11 @@ public class GameBoardController {
 
 
     private HashMap<GoodType, Text> resourceAmount = new HashMap<>();
-    private ClientOutHandlerGUI view = new ClientOutHandlerGUI();
     private HashMap<Integer,ImageView> coverImages = new HashMap<>();
 
 
     //ChooseDistribution, classe che serve per parlare con il server
-    private ChooseDistribution chooseDistribution;
+    private ChooseDistribution sender;
 
 
     //Pulsanti per scegliere le pedine
@@ -305,7 +303,7 @@ public class GameBoardController {
 
 
     @FXML
-    public void initialize(){
+    public void initialize() {
 
         personalGreenCards.put(0,greenCard1);
         personalGreenCards.put(1,greenCard2);
@@ -449,16 +447,16 @@ public class GameBoardController {
     public void handleActivateLeader(ActionEvent event){
         Button activateButton = (Button) event.getSource();
         if(activateButton==activate1){
-            view.sendInput("activate leader card 0");
+            sender.sendInput("activate leader card 0");
         }
         if(activateButton==activate2){
-            view.sendInput("activate leader card 1");
+            sender.sendInput("activate leader card 1");
         }
         if(activateButton==activate3){
-            view.sendInput("activate leader card 2");
+            sender.sendInput("activate leader card 2");
         }
         if(activateButton==activate4){
-            view.sendInput("activate leader card 3");
+            sender.sendInput("activate leader card 3");
         }
 
     }
@@ -472,16 +470,16 @@ public class GameBoardController {
     public void handleBurnLeader(ActionEvent event) throws Exception {
         Object burnButton = event.getSource();
         if (burnButton==burn1){
-            view.sendInput("discard leader card 0");
+            sender.sendInput("discard leader card 0");
         }
         if (burnButton==burn2){
-            view.sendInput("discard leader card 1");
+            sender.sendInput("discard leader card 1");
         }
         if (burnButton==burn3){
-            view.sendInput("discard leader card 2");
+            sender.sendInput("discard leader card 2");
         }
         if (burnButton==burn4){
-            view.sendInput("discard leader card 3");
+            sender.sendInput("discard leader card 3");
         }
     }
 
@@ -490,7 +488,7 @@ public class GameBoardController {
      * @param event
      */
     public void handleThrowDices(ActionEvent event){
-        view.sendInput("throw dices");
+        sender.sendInput("throw dices");
     }
 
     /**
@@ -498,7 +496,7 @@ public class GameBoardController {
      * @param event
      */
     public void handleSkipAction(ActionEvent event){
-        view.sendInput("skip action");
+        sender.sendInput("skip action");
     }
 
     /**
@@ -506,7 +504,7 @@ public class GameBoardController {
      * @param event
      */
     public void handleEndTurn(ActionEvent event){
-        view.sendInput("end turn");
+        sender.sendInput("end turn");
     }
 
     /**
@@ -515,16 +513,16 @@ public class GameBoardController {
      */
     public void handlePawnPicked(MouseEvent event) {
         if (event.getSource() == balckPawn) {
-            view.sendInput("use family pawn black");
+            sender.sendInput("use family pawn black");
         }
         if (event.getSource() == whitePawn) {
-            view.sendInput("use family pawn white");
+            sender.sendInput("use family pawn white");
         }
         if (event.getSource() == orangePawn) {
-            view.sendInput("use family pawn orange");
+            sender.sendInput("use family pawn orange");
         }
         if (event.getSource() == neutralPawn) {
-            view.sendInput("use family pawn neutral");
+            sender.sendInput("use family pawn neutral");
         }
 
     }
@@ -532,19 +530,19 @@ public class GameBoardController {
     public void handleActionChosenImageView(MouseEvent event){
         if(event.getSource() instanceof ImageView) {
             Integer actionSelected = buttonAction.get(event.getSource());
-            view.sendInput("execute action " + actionSelected.toString());
+            sender.sendInput("execute action " + actionSelected.toString());
             updatePawnOnActionspace((ImageView) event.getSource());
         }
 
         if(event.getSource() instanceof GridPane) {
             Integer actionSelected = gridAction.get(event.getSource());
-            view.sendInput("execute action " + actionSelected.toString());
+            sender.sendInput("execute action " + actionSelected.toString());
             updatePawnOnActionSpace((GridPane) event.getSource());
         }
 
         if (event.getSource() instanceof HBox){
             Integer actionSelected = boxAction.get(event.getSource());
-            view.sendInput("execute action " + actionSelected.toString());
+            sender.sendInput("execute action " + actionSelected.toString());
             updatePawnOnActionSpace((HBox) event.getSource());
         }
 
@@ -655,33 +653,33 @@ public class GameBoardController {
      */
     public void updateCardsPersonalBoard(ArrayList<DevelopmentCard> cards, CardColor cardColor){
         int i =0;
-        for (DevelopmentCard card:cards){
+        /*for (DevelopmentCard card:cards){
             if (card == null){
                 break;
             }
             else{
                 if (cardColor.equals(CardColor.YELLOW)){
-                    Image image = new Image(view.getCardMap().get(card.getSpecial()));
+                    Image image = new Image(sender.getCardMap().get(card.getSpecial()));
                     personalYellowCards.get(i).setImage(image);
                     i++;
                 }
                 if (cardColor.equals(CardColor.BLUE)){
-                    Image image = new Image(view.getCardMap().get(card.getSpecial()));
+                    Image image = new Image(sender.getCardMap().get(card.getSpecial()));
                     personalBlueCards.get(i).setImage(image);
                     i++;
                 }
                 if (cardColor.equals(CardColor.PURPLE)){
-                    Image image = new Image(view.getCardMap().get(card.getSpecial()));
+                    Image image = new Image(sender.getCardMap().get(card.getSpecial()));
                     personalPurpleCards.get(i).setImage(image);
                     i++;
                 }
                 if (cardColor.equals(CardColor.GREEN)){
-                    Image image = new Image(view.getCardMap().get(card.getSpecial()));
+                    Image image = new Image(sender.getCardMap().get(card.getSpecial()));
                     personalGreenCards.get(i).setImage(image);
                     i++;
                 }
             }
-        }
+        }*/
     }
 
     /**
@@ -815,6 +813,6 @@ public class GameBoardController {
 
 
     public void setChooseDistribution(ChooseDistribution chooseDistribution) {
-        this.chooseDistribution = chooseDistribution;
+        this.sender = chooseDistribution;
     }
 }
