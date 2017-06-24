@@ -746,7 +746,6 @@ public class GameBoardController {
 
 
     public void updateExcomunicationTiles(ArrayList<ExcommunicationTile> tiles){
-
     }
 
 
