@@ -158,13 +158,13 @@ public class ClientSocketGUI {
 
     public void playNewGameGUI() {
 
-        clientInHandlerGUI.start();
+        //clientInHandlerGUI.start();
 
-        /*ExecutorService executor = Executors.newFixedThreadPool(2);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
 
         executor.submit(clientInHandlerGUI);
         executor.submit(clientOutHandlerGUI);
-        */
+
     }
 
     public ClientInHandlerGUI getClientInHandlerGUI() {

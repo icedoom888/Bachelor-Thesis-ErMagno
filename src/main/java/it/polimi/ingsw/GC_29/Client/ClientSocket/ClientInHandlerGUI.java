@@ -1,31 +1,40 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
 import it.polimi.ingsw.GC_29.Client.GUI.ChangeViewGUI;
+import it.polimi.ingsw.GC_29.Client.GUI.GUIChange;
+import it.polimi.ingsw.GC_29.Client.GUI.GuiChangeListener;
+import it.polimi.ingsw.GC_29.Client.GUI.StartGameChange;
 import it.polimi.ingsw.GC_29.Controllers.Change;
 import it.polimi.ingsw.GC_29.Controllers.GameChange;
 import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
+import it.polimi.ingsw.GC_29.Server.Observable;
+import org.testng.collections.Lists;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * Created by Lorenzotara on 23/06/17.
  */
-public class ClientInHandlerGUI {
+public class ClientInHandlerGUI implements Runnable {
 
     private CommonOut commonOut;
     private ObjectInputStream socketIn;
     private CommonView commonView;
     private ChangeViewGUI changeViewGUI;
+    private List<GuiChangeListener> listeners = Lists.newArrayList();
 
     public ClientInHandlerGUI(ObjectInputStream socketIn) {
         this.socketIn = socketIn;
         this.changeViewGUI = new ChangeViewGUI(socketIn, commonView);
     }
 
-    public void start() {
+    @Override
+    public void run() {
         System.out.println("Client In Running");
+
 
         Boolean b = true;
 
@@ -141,8 +150,17 @@ public class ClientInHandlerGUI {
             commonView.setCurrentPlayerState(((PlayerStateChange)c).getNewPlayerState());
 
             try {
+
+                /*for (GuiChangeListener listener : listeners) {
+                    listener.onReadingChange();
+                }*/
+
+                //OPPURE
+
+                fireGuiChangeEvent();
+
                 //TODO: probabilmente cancellare
-                changeViewGUI.change(commonView.getCurrentPlayerState());
+                //changeViewGUI.change(commonView.getCurrentPlayerState());
                 //handlePlayerState(commonView.getCurrentPlayerState());
             } catch (/*RemoteException*/ Exception e) {
                 e.printStackTrace();
@@ -156,6 +174,16 @@ public class ClientInHandlerGUI {
             //TODO: if relation with the church chiedo se questo player è stato scomunicato passando dallo stub e poi printo quello che devo
         }
 
+    }
+
+    private void fireGuiChangeEvent() {
+        for (GuiChangeListener listener : listeners) {
+            listener.onReadingChange(new StartGameChange());
+        }
+    }
+
+    public void addListener(GuiChangeListener listener) {
+        listeners.add(listener);
     }
 
     private void validActionsGUI() {

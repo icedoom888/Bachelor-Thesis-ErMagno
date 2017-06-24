@@ -5,11 +5,13 @@ import it.polimi.ingsw.GC_29.Client.GUI.ControllerGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.GUIChange;
 import it.polimi.ingsw.GC_29.Server.Observable;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
 
 /**
@@ -30,9 +32,12 @@ public class LoginController extends Observable<GUIChange> implements Controller
     private boolean firstTime = true;
     private ClientSocketCLI clientSocketCLI;
     private boolean connected = false;
+    private ActionEvent event;
 
 
     public void sendSubmit(ActionEvent event){
+
+        this.event = event;
 
         if(!(username.getText().isEmpty()
                 && password.getText().isEmpty())
@@ -81,6 +86,9 @@ public class LoginController extends Observable<GUIChange> implements Controller
 
     public void close() {
 
+        Node source = (Node) event.getSource();
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
 
