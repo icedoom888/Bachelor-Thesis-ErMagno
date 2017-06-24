@@ -118,6 +118,10 @@ public class LoginController extends Observable<GUIChange> implements Controller
         return password.getText();
     }
 
+    public void showError() {
+        errorBlankFields.setVisible(true);
+    }
+
 
 
 

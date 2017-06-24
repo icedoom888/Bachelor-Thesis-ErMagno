@@ -216,7 +216,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
         // Login Successful
 
-        loginStage.close();
+        //loginStage.close();
 
         ///////WAITING STAGE//////////
         ///////WAITING STAGE//////////
@@ -247,7 +247,11 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                System.out.println("Gameboard Started");
+
+
+                loginController.showError();
+
+                /*System.out.println("Gameboard Started");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
                 AnchorPane root = null;
                 try {
@@ -262,7 +266,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
                 stage.setWidth(1100);
                 stage.centerOnScreen();
                 stage.setTitle("Lorenzo il Magnifico");
-                stage.show();
+                stage.show();*/
             }
         });
     }
