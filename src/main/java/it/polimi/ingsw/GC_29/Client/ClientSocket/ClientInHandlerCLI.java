@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
-import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
@@ -17,7 +16,7 @@ import java.util.*;
 public class ClientInHandlerCLI implements Runnable {
 
     private ObjectInputStream socketIn;
-    private CommonOut commonOut;
+    private CommonOutSocket commonOutSocket;
     private CommonView commonView;
 
     public ClientInHandlerCLI(ObjectInputStream socketIn) {
@@ -116,7 +115,7 @@ public class ClientInHandlerCLI implements Runnable {
 
         commonView.getInputChecker().setCurrentPlayerState(currentPlayerState);
 
-        commonOut.handlePlayerState(currentPlayerState);
+        commonOutSocket.handlePlayerState(currentPlayerState);
 
         switch (currentPlayerState){
 
@@ -389,7 +388,7 @@ public class ClientInHandlerCLI implements Runnable {
     }
 
     public void setClientOutHandlerCLI(ClientOutHandlerCLI clientOutHandlerCLI) {
-        this.commonOut = clientOutHandlerCLI.getCommonOut();
+        this.commonOutSocket = clientOutHandlerCLI.getCommonOutSocket();
     }
 
     public void setCommonView(CommonView commonView) {
@@ -400,11 +399,11 @@ public class ClientInHandlerCLI implements Runnable {
         return commonView;
     }
 
-    public CommonOut getCommonOut() {
-        return commonOut;
+    public CommonOutSocket getCommonOutSocket() {
+        return commonOutSocket;
     }
 
-    public void setCommonOut(CommonOut commonOut) {
-        this.commonOut = commonOut;
+    public void setCommonOutSocket(CommonOutSocket commonOutSocket) {
+        this.commonOutSocket = commonOutSocket;
     }
 }

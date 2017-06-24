@@ -8,7 +8,9 @@ import java.util.HashMap;
  */
 public class ClientOutHandlerGUI implements Runnable {
 
-    private CommonOut commonOut;
+    //TODO: classe inutile
+
+    private CommonOutSocket commonOutSocket;
 
     //private ObjectOutputStream socketOut;
 
@@ -22,7 +24,7 @@ public class ClientOutHandlerGUI implements Runnable {
 
     public ClientOutHandlerGUI(ObjectOutputStream socketOut) {
 
-        this.commonOut = new CommonOut(socketOut);
+        this.commonOutSocket = new CommonOutSocket(socketOut);
 
         HashMap<String,String> cardMap = new HashMap<>();
         cardMap.put("Avamposto Commerciale","@lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_1.png");
@@ -144,16 +146,16 @@ public class ClientOutHandlerGUI implements Runnable {
         return cardMap;
     }
 
-    public CommonOut getCommonOut() {
-        return commonOut;
+    public CommonOutSocket getCommonOutSocket() {
+        return commonOutSocket;
     }
 
-    public void setCommonOut(CommonOut commonOut) {
-        this.commonOut = commonOut;
+    public void setCommonOutSocket(CommonOutSocket commonOutSocket) {
+        this.commonOutSocket = commonOutSocket;
     }
 
     public void setCommonView(CommonView commonView) {
-        commonOut.setCommonView(commonView);
+        commonOutSocket.setCommonView(commonView);
     }
 
 

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.GUI.GameBoard;
 
+import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+import it.polimi.ingsw.GC_29.Client.GUI.CardsChange;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientOutHandlerGUI;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,6 +47,10 @@ public class GameBoardController {
     private HashMap<GoodType, Text> resourceAmount = new HashMap<>();
     private ClientOutHandlerGUI view = new ClientOutHandlerGUI();
     private HashMap<Integer,ImageView> coverImages = new HashMap<>();
+
+
+    //ChooseDistribution, classe che serve per parlare con il server
+    private ChooseDistribution chooseDistribution;
 
 
     //Pulsanti per scegliere le pedine
@@ -696,11 +703,12 @@ public class GameBoardController {
 
     /**
      * Quando è chiamata attiva/disattiva tutti i pulsanti ActionSpace che si possono clickare
+     * @param availability
      */
-    public void updatePossibleActions(Map<Integer,Boolean> availability){
+    public void updatePossibleActions(Map<Integer, String> availability){
         for (Integer i : availability.keySet()) {
 
-            if(availability.get(i)){
+            /*if(availability.get(i)){
                 if (i==20){
                     actionGrid.get(i).setDisable(false);
                 }
@@ -723,7 +731,7 @@ public class GameBoardController {
                     actionButtons.get(i).setDisable(true);
                 }
                 coverImages.get(i).setVisible(true);
-            }
+            }*/
 
         }
     }
@@ -731,7 +739,11 @@ public class GameBoardController {
     /**
      * Quando è chiamata modifica tutti i contatori delle track sulla PersonalBoard
      */
-    public void updateTracks(ArrayList<Track> tracks){}
+    public void updateTower(List<DevelopmentCard> developmentCards, CardColor cardColor){
+
+        //TODO: update della tower con quel colore
+
+    }
 
     /**
      * Quando è chiamata fissa l'immagine della BonusTile che riceve
@@ -741,12 +753,68 @@ public class GameBoardController {
     /**
      * Quando è chiamata modifica le immagini delle carte sulle torri
      */
-    public void updateTowers(ArrayList<Tower> towers){
+    public void updateTracks(){
     }
 
 
     public void updateExcomunicationTiles(ArrayList<ExcommunicationTile> tiles){
     }
 
+    public void testGB() {
+        whiteValue.setText("Ha funzionato");
+    }
 
+
+    public void chooseWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
+
+        //TODO: mostrare la schermata chooseWorkers
+        //TODO: printare nel textbox indice e arrayList di stringhe (per ogni indice)
+        //TODO: con textArea e submit dell'indice
+
+    }
+
+    public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
+
+        //TODO: mostrare la schermata choosePayToObtain: inizialmente mostra le carte (che contengono payToObtain)
+        //TODO: con dei radio button che indicano attiva o meno
+
+        //TODO: qua verrà cambiato lo stato del player a chooseEffect
+        //TODO: e ci sarà un altro metodo che farà le cose qui sotto
+
+        //TODO: se il radio button viene attivato, se la payToObtain contiene alternative, esse vengono mostrate
+        //TODO: e allo stesso modo con un radio button si sceglie l'alternativa
+        //TODO: tutte queste scelte vengono salvate (vedi InputChecker) e spedite all'Input Checker
+
+    }
+
+    public void chooseCost(Map<Integer, String> possibleCosts) {
+
+        //TODO: mostrare la schermata dei costi possibili
+        //TODO: esattamente come chooseWorkers eccetto che è una stringa sola e non un arrayList
+
+    }
+
+    public void choosePrivileges(List<Integer> councilPrivileges) {
+
+        //TODO: non so bene come sia implementato a livello di inputChecker, ma la schermata è abbastanza ovvia
+    }
+
+    public void chooseBonusTile(Map<Integer, String> bonusTiles) {
+
+        //TODO: mostra la schermata delle bonus Tile
+
+    }
+
+
+
+
+
+
+
+
+
+
+    public void setChooseDistribution(ChooseDistribution chooseDistribution) {
+        this.chooseDistribution = chooseDistribution;
+    }
 }

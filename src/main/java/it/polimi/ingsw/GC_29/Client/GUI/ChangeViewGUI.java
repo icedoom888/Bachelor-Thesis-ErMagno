@@ -1,13 +1,9 @@
 package it.polimi.ingsw.GC_29.Client.GUI;
 
-import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonOut;
+import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonOutSocket;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonView;
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.Server.Observable;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,7 +17,7 @@ public class ChangeViewGUI {
 
     private final ObjectInputStream socketIn;
     private CommonView commonView;
-    private CommonOut commonOut;
+    private CommonOutSocket commonOutSocket;
     private static GameBoardController gameBoardController;
     private Stage gameboardStage;
 
@@ -37,7 +33,7 @@ public class ChangeViewGUI {
         commonView.getInputChecker().setCurrentPlayerState(currentPlayerState);
 
         try {
-            commonOut.handlePlayerState(currentPlayerState);
+            commonOutSocket.handlePlayerState(currentPlayerState);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -257,8 +253,8 @@ public class ChangeViewGUI {
     }
 
 
-    public void setCommonOut(CommonOut commonOut) {
-        this.commonOut = commonOut;
+    public void setCommonOutSocket(CommonOutSocket commonOutSocket) {
+        this.commonOutSocket = commonOutSocket;
     }
 
 
@@ -270,8 +266,8 @@ public class ChangeViewGUI {
         return commonView;
     }
 
-    public CommonOut getCommonOut() {
-        return commonOut;
+    public CommonOutSocket getCommonOutSocket() {
+        return commonOutSocket;
     }
 
     public void setCommonView(CommonView commonView) {

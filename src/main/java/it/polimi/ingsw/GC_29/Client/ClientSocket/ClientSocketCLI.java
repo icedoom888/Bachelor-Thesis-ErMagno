@@ -80,7 +80,7 @@ public class ClientSocketCLI {
                 outVideo.println("Inserire password:");
                 String password = inKeyboard.readLine();
 
-                //ObjectOutputStream outSocket = clientOutHandlerCLI.getCommonOut().getSocketOut();
+                //ObjectOutputStream outSocket = clientOutHandlerCLI.getCommonOutSocket().getSocketOut();
                 //ObjectInputStream inSocket = clientInHandlerCLI.getSocketIn();
 
                 socketOut.writeObject("login");

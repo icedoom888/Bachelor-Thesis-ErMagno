@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -65,7 +67,7 @@ public class ClientSocketGUI {
 
         try {
 
-            //ObjectOutputStream outSocket = clientOutHandlerGUI.getCommonOut().getSocketOut();
+            //ObjectOutputStream outSocket = clientOutHandlerGUI.getCommonOutSocket().getSocketOut();
             //ObjectInputStream inSocket = clientInHandlerGUI.getSocketIn();
 
             socketOut.writeObject("login");
@@ -87,7 +89,7 @@ public class ClientSocketGUI {
 
                 this.playerColor = playerColor;
 
-                clientInHandlerGUI.setCommonOut(clientOutHandlerGUI.getCommonOut());
+                clientInHandlerGUI.setCommonOutSocket(clientOutHandlerGUI.getCommonOutSocket());
                 //clientOutHandlerGUI.setClientInHandlerGUI(clientInHandlerGUI);
 
                 CommonView commonView = new CommonView();
@@ -96,6 +98,9 @@ public class ClientSocketGUI {
 
                 clientOutHandlerGUI.setCommonView(commonView);
                 clientInHandlerGUI.setCommonView(commonView);
+
+                ChooseDistribution chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
+                chooseDistribution.setCommonOutSocket(clientOutHandlerGUI.getCommonOutSocket());
 
             }
 
@@ -139,6 +144,8 @@ public class ClientSocketGUI {
             this.clientInHandlerGUI = new ClientInHandlerGUI(socketIn);
 
 
+
+
             System.out.println("Client connesso");
 
         } catch (Exception e) {
@@ -169,5 +176,10 @@ public class ClientSocketGUI {
 
     public ClientInHandlerGUI getClientInHandlerGUI() {
         return clientInHandlerGUI;
+    }
+
+
+    public ClientOutHandlerGUI getClientOutHandlerGUI() {
+        return clientOutHandlerGUI;
     }
 }

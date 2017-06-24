@@ -14,12 +14,12 @@ import java.util.List;
 /**
  * Created by Lorenzotara on 23/06/17.
  */
-public class CommonOut {
+public class CommonOutSocket {
 
     private CommonView commonView;
     private ObjectOutputStream socketOut;
 
-    public CommonOut(ObjectOutputStream socketOut) {
+    public CommonOutSocket(ObjectOutputStream socketOut) {
         this.socketOut = socketOut;
     }
 

@@ -1,17 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
-import it.polimi.ingsw.GC_29.Client.Instruction;
-import it.polimi.ingsw.GC_29.Client.InstructionSet;
-import it.polimi.ingsw.GC_29.Components.BonusTile;
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Server.Query.*;
-
 import java.io.*;
-import java.rmi.RemoteException;
-import java.util.*;
 
 /**
  * Created by Lorenzotara on 14/06/17.
@@ -22,7 +11,7 @@ public class ClientOutHandlerCLI implements Runnable {
     //private CommonView commonView;
 
     private ClientInHandlerCLI clientInHandlerCLI;
-    private CommonOut commonOut;
+    private CommonOutSocket commonOutSocket;
 
     //private Boolean logged = false;
 
@@ -32,7 +21,7 @@ public class ClientOutHandlerCLI implements Runnable {
 
 
     public ClientOutHandlerCLI(ObjectOutputStream socketOut) {
-        this.commonOut = new CommonOut(socketOut);
+        this.commonOutSocket = new CommonOutSocket(socketOut);
         this.inKeyboard = new BufferedReader(new InputStreamReader(System.in));
 
     }
@@ -55,7 +44,7 @@ public class ClientOutHandlerCLI implements Runnable {
                 e.printStackTrace();
             }
 
-            commonOut.sendInput(inputLine);
+            commonOutSocket.sendInput(inputLine);
 
             /*Input input;
             Query query;
@@ -359,10 +348,10 @@ public class ClientOutHandlerCLI implements Runnable {
     }*/
 
     public void setCommonView(CommonView commonView) {
-        this.commonOut.setCommonView(commonView);
+        this.commonOutSocket.setCommonView(commonView);
     }
 
-    public CommonOut getCommonOut() {
-        return commonOut;
+    public CommonOutSocket getCommonOutSocket() {
+        return commonOutSocket;
     }
 }
