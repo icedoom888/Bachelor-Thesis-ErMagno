@@ -427,7 +427,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="350.0" prefWidth="566.0">
                      <children>
-                        <ImageView fitHeight="351.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="bonusTile" fitHeight="351.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true" />
                         <VBox alignment="TOP_CENTER" prefHeight="351.0" prefWidth="498.0">
                            <children>
                               <TabPane prefHeight="265.0" prefWidth="493.0" tabClosingPolicy="UNAVAILABLE">

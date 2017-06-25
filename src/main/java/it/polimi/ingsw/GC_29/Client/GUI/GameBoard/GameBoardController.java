@@ -26,6 +26,14 @@ public class GameBoardController {
     //mappa carte per immagini
     HashMap<String,String> cardMap = new HashMap<>();
 
+    //mappa bonustiles per immagini
+    private HashMap<Integer,String> bonusTilesMap = new HashMap<>();
+
+    //mappa pedine per immagini
+    HashMap<PlayerColor,HashMap<FamilyPawnType,String>> pawnsImagesMap = new HashMap<>();
+
+    //mappa spazi pedine delle Box
+
 
     private HashMap<Integer, ImageView> personalGreenCards = new HashMap<>();
     private HashMap<Integer, ImageView> personalBlueCards = new HashMap<>();
@@ -37,7 +45,6 @@ public class GameBoardController {
     private int blueFreeSlot=0;
     private int yellowFreeSlot=0;
     private int purpleFreeSlot=0;
-
 
     private HashMap<Integer, ImageView> greenTower = new HashMap<>();
     private HashMap<Integer, ImageView> blueTower = new HashMap<>();
@@ -57,6 +64,9 @@ public class GameBoardController {
 
     private HashMap<GoodType, Text> resourceAmount = new HashMap<>();
     private HashMap<Integer,ImageView> coverImages = new HashMap<>();
+
+    private ArrayList<ImageView> familyPawns;
+
 
 
     //ChooseDistribution, classe che serve per parlare con il server
@@ -81,8 +91,8 @@ public class GameBoardController {
     private AnchorPane throwDicesPane;
 
 
-
-
+    @FXML
+    private ImageView bonusTile;
 
     //Pulsanti per scegliere le pedine
     @FXML
@@ -94,7 +104,6 @@ public class GameBoardController {
     @FXML
     private ImageView neutralPawn;
 
-    private ArrayList<ImageView> familyPawns;
 
     // Valore pedine
     @FXML
@@ -345,6 +354,14 @@ public class GameBoardController {
 
     @FXML
     public void initialize() {
+
+        bonusTilesMap.put(1,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_1.png");
+        bonusTilesMap.put(2,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png;");
+        bonusTilesMap.put(3,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png;");
+        bonusTilesMap.put(4,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png;");
+        bonusTilesMap.put(5,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png;");
+
+
         cardMap.put("Avamposto Commerciale","@lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_1.png");
         cardMap.put("Bosco","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_2.png");
         cardMap.put("Borgo","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_3.png");
@@ -674,7 +691,6 @@ public class GameBoardController {
     }
 
 
-    //TODO check here
     public void handleActionChosenImageView(MouseEvent event){
         if(event.getSource() instanceof ImageView) {
             Integer actionSelected = buttonAction.get(event.getSource());
@@ -693,20 +709,35 @@ public class GameBoardController {
 
     }
 
-    public void updatePawnOnActionspace(ImageView imageView){
-        //TODO
+    public void updatePawn(FamilyPawn familyPawn, int actionIndex) {
+        PlayerColor playerColor = familyPawn.getPlayerColor();
+        FamilyPawnType pawnType = familyPawn.getType();
+        Image image = new Image(pawnsImagesMap.get(playerColor).get(pawnType));
+        if (actionIndex==20){
+            updatePawnOnGrid(image,actionIndex);
+        }
+        else if (actionIndex==22 || actionIndex==24){
+            updatePawnOnBox(image,actionIndex);
+        }
+        else if (actionIndex!=20 && actionIndex!=22 && actionIndex!=24){
+            updatePawnOnActionspace(image,actionIndex);
+        }
     }
 
-    public void updatePawnOnActionSpace(GridPane gridPane) {
-        //TODO
+    private void updatePawnOnActionspace(Image image, int actionIndex) {
+        actionButtons.get(actionIndex).setImage(image);
+    }
+
+    private void updatePawnOnBox(Image image, int actionIndex) {
 
     }
 
-    public void updatePawnOnActionSpace(HBox hBox) {
-        //TODO
+    private void updatePawnOnGrid(Image image, int actionIndex) {
     }
 
-        /**
+
+
+    /**
          * Quando viene chiamata setta i vari pulsanti pedina che possono essere clickati
          * @param availability
          */
@@ -865,56 +896,54 @@ public class GameBoardController {
     }
 
     public void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
-
         //TODO: impl
     }
 
     /**
-     * Quando è chiamata modifica tutti i contatori delle track sulla PersonalBoard
+     * Quando è chiamata modifica tutte le carte sulle torri
      */
     public void updateTower(ArrayList<String> cardNames, CardColor cardColor){
-
         for (int i =0;i<4;i++){
             String name = cardNames.get(i);
-            Image image = new Image(cardMap.get(cardNames.get(i)));
             switch (cardColor){
                 case GREEN:
                     if (!name.contentEquals("null")) {
+                        Image image = new Image(cardMap.get(cardNames.get(i)));
+
                         greenTower.get(i).setImage(image);
                     }
                     else {
-                        image.cancel();
-                        greenTower.get(i).setImage(image);
+                        greenTower.get(i).setImage(null);
                     }
                     break;
 
                 case BLUE:
                     if (!name.contentEquals("null")) {
+                        Image image = new Image(cardMap.get(cardNames.get(i)));
                         blueTower.get(i).setImage(image);
                     }
                     else {
-                        image.cancel();
-                        blueTower.get(i).setImage(image);
+                        blueTower.get(i).setImage(null);
                     }
                     break;
 
                 case PURPLE:
                     if (!name.contentEquals("null")) {
+                        Image image = new Image(cardMap.get(cardNames.get(i)));
                         purpleTower.get(i).setImage(image);
                     }
                     else {
-                        image.cancel();
-                        purpleTower.get(i).setImage(image);
+                        purpleTower.get(i).setImage(null);
                     }
                     break;
 
                 case YELLOW:
                     if (!name.contentEquals("null")) {
+                        Image image = new Image(cardMap.get(cardNames.get(i)));
                         yellowTower.get(i).setImage(image);
                     }
                     else {
-                        image.cancel();
-                        yellowTower.get(i).setImage(image);
+                        yellowTower.get(i).setImage(null);
                     }
                     break;
             }
@@ -925,15 +954,12 @@ public class GameBoardController {
      * Quando è chiamata fissa l'immagine della BonusTile che riceve
      */
     public void updateBonusTile(String bonusTileIndex){
-
+        Image image = new Image(bonusTilesMap.get(bonusTileIndex));
+        bonusTile.setImage(image);
     }
-
-    public void updatePawn(FamilyPawn familyPawn, int actionIndex) {
-
-    }
-
 
     public void updateExcomunicationTiles(ArrayList<ExcommunicationTile> tiles){
+        //TODO
     }
 
     public void testGB() {
@@ -983,8 +1009,6 @@ public class GameBoardController {
         //TODO: rifare con logica di chiave sempre uguale
 
         bonusTileController.setBonusTiles(bonusTiles);
-
-
 
         bonusTilePane.setVisible(true);
         //bonusTilePane.setDisable(false);
