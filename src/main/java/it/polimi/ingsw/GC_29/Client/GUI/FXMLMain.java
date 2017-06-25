@@ -3,9 +3,12 @@ package it.polimi.ingsw.GC_29.Client.GUI;
 import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.*;
 import it.polimi.ingsw.GC_29.Client.Distribution;
+import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
+import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginChange;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController;
+import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
@@ -307,7 +310,10 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
             AnchorPane.setBottomAnchor(childBonus,200.0);
             AnchorPane.setLeftAnchor(childBonus,200.0);
             childBonus.setVisible(false);
-            gameBoardController.setBonusTileController(loaderBonus.getController());
+            BonusTileController bonusTileController = loaderBonus.getController();
+            bonusTileController.setSender(chooseDistribution);
+            bonusTileController.setGameBoardController(gameBoardController);
+            gameBoardController.setBonusTileController(bonusTileController);
             gameBoardController.setBonusTilePane(childBonus);
 
             //aggiunta ChooseCost
@@ -317,7 +323,9 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
             AnchorPane.setBottomAnchor(childCost,300.0);
             AnchorPane.setLeftAnchor(childCost,300.0);
             childCost.setVisible(false);
-            gameBoardController.setChooseCostController(loaderCost.getController());
+            ChooseCostController chooseCostController = loaderCost.getController();
+            chooseCostController.setSender(chooseDistribution);
+            gameBoardController.setChooseCostController(chooseCostController);
             gameBoardController.setChooseCostPane(childCost);
 
             //aggiunta ChooseEffect
@@ -333,7 +341,9 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
             AnchorPane.setBottomAnchor(childPray,300.0);
             AnchorPane.setLeftAnchor(childPray,300.0);
             childPray.setVisible(false);
-            gameBoardController.setPrayController(loaderPray.getController());
+            PrayController prayController = loaderPray.getController();
+            prayController.setSender(chooseDistribution);
+            gameBoardController.setPrayController(prayController);
             gameBoardController.setPrayPane(childPray);
 
             //Aggiunta YourTurn
@@ -344,7 +354,15 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
             AnchorPane.setLeftAnchor(childTurn,300.0);
             childTurn.setVisible(false);
             gameBoardController.setYourTurnPane(childTurn);
-            gameBoardController.setYourTurnPane(childTurn);
+
+            //Adding ThrowDices
+            FXMLLoader loaderThrowDices = new FXMLLoader(getClass().getResource("/FXML/ThrowDices.fxml"));
+            AnchorPane childDices = loaderThrowDices.load();
+            gameboardRoot.getChildren().add(childDices);
+            AnchorPane.setBottomAnchor(childDices,300.0);
+            AnchorPane.setLeftAnchor(childDices,300.0);
+            childDices.setVisible(false);
+            gameBoardController.setThrowDicesPane(childDices);
 
 
         } catch (IOException e) {

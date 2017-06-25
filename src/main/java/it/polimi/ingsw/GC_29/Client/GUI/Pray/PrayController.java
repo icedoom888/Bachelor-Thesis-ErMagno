@@ -56,5 +56,7 @@ public class PrayController {
         }
     }
 
-
+    public void setSender(ChooseDistribution sender) {
+        this.sender = sender;
+    }
 }

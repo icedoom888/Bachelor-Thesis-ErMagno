@@ -67,6 +67,7 @@ public class GameBoardController {
     private AnchorPane prayPane;
     private AnchorPane yourTurnPane;
     private AnchorPane chooseWorkersPane;
+    private AnchorPane throwDicesPane;
 
 
 
@@ -81,6 +82,8 @@ public class GameBoardController {
     private ImageView blackPawn;
     @FXML
     private ImageView neutralPawn;
+
+    private ArrayList<ImageView> familyPawns;
 
     // Valore pedine
     @FXML
@@ -102,6 +105,8 @@ public class GameBoardController {
     @FXML
     private Button activate4;
 
+    private ArrayList<Button> activateLeaderCardsButtons;
+
     //Pulsanti per scartare una carta leader
     @FXML
     private Button burn1;
@@ -111,6 +116,9 @@ public class GameBoardController {
     private Button burn3;
     @FXML
     private Button burn4;
+
+    private ArrayList<Button> burnLeaderCardsButtons;
+
 
     @FXML
     private Button throwDices;
@@ -217,6 +225,7 @@ public class GameBoardController {
     private ImageView purpleTowerCard4;
 
     //Aree azioni
+    // in HashMap
     @FXML
     private ImageView greenTowerAction1;
     @FXML
@@ -320,6 +329,7 @@ public class GameBoardController {
     private ImageView market3Cover;
     @FXML
     private ImageView market4Cover;
+
 
 
     @FXML
@@ -457,6 +467,12 @@ public class GameBoardController {
         coverImages.put(23,production1Cover);
         coverImages.put(24,production2Cover);
 
+
+        familyPawns = new ArrayList<>(Arrays.asList(whitePawn, orangePawn, blackPawn, neutralPawn));
+
+        activateLeaderCardsButtons = new ArrayList<>(Arrays.asList(activate1, activate2, activate3, activate4));
+
+        burnLeaderCardsButtons = new ArrayList<>(Arrays.asList(burn1, burn2, burn3, burn4));
 
     }
 
@@ -854,13 +870,18 @@ public class GameBoardController {
     }
 
     public void chooseBonusTile(Map<Integer, String> bonusTiles) {
+
+        //TODO: rifare con logica di chiave sempre uguale
+
+        bonusTileController.setBonusTiles(bonusTiles);
+
         bonusTilePane.setVisible(true);
     }
 
     public void yourTurn() throws InterruptedException {
         try {
             yourTurnPane.setVisible(true);
-            Thread.sleep(5000);
+            Thread.sleep(3000);
             yourTurnPane.setVisible(false);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -872,6 +893,248 @@ public class GameBoardController {
         prayPane.setVisible(true);
         prayController.updatePray(excommunication);
     }
+
+
+
+    public void setState(PlayerState newPlayerState) {
+
+        closeWindows();
+
+        switch (newPlayerState) {
+
+            case CHOOSE_BONUS_TILE:
+
+                setActions(false);
+
+                setLeaderButtons(false);
+
+                setFamilyPawns(false);
+
+                setThrowDices(false);
+
+                setSkipAction(false);
+
+                setEndTurn(false);
+
+
+                break;
+
+
+            case THROWDICES:
+
+                setActions(false);
+
+                setLeaderButtons(false);
+
+                setFamilyPawns(false);
+
+                setThrowDices(true);
+
+                setSkipAction(false);
+
+                setEndTurn(true);
+
+                throwDicesPane.setVisible(true);
+
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                throwDicesPane.setVisible(false);
+
+                break;
+
+
+
+
+
+            case DOACTION:
+
+                setActions(false);
+
+                setLeaderButtons(true);
+
+                setFamilyPawns(true);
+
+                setThrowDices(false);
+
+                setSkipAction(true);
+
+                setEndTurn(true);
+
+                yourTurnPane.setVisible(true);
+
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                yourTurnPane.setVisible(false);
+
+
+                break;
+
+            case BONUSACTION:
+
+                setActions(false);
+
+                setLeaderButtons(true);
+
+                setFamilyPawns(false);
+
+                setThrowDices(false);
+
+                setSkipAction(true);
+
+                setEndTurn(true);
+
+
+                break;
+
+
+            case CHOOSEACTION:
+
+                setActions(false);
+
+                setLeaderButtons(true);
+
+                setFamilyPawns(true);
+
+                setThrowDices(false);
+
+                setSkipAction(true);
+
+                setEndTurn(true);
+
+
+
+                break;
+
+
+            case CHOOSEWORKERS:
+            case ACTIVATE_PAY_TO_OBTAIN_CARDS:
+            case CHOOSE_EFFECT:
+            case CHOOSECOST:
+            case CHOOSE_COUNCIL_PRIVILEGE:
+            case PRAY:
+            case WAITING:
+
+                setActions(false);
+
+                setLeaderButtons(false);
+
+                setFamilyPawns(false);
+
+                setThrowDices(false);
+
+                setSkipAction(false);
+
+                setEndTurn(false);
+
+
+                break;
+
+
+
+            case ENDTURN:
+
+                setActions(false);
+
+                setLeaderButtons(true);
+
+                setFamilyPawns(false);
+
+                setThrowDices(false);
+
+                setSkipAction(false);
+
+                setEndTurn(true);
+
+
+                break;
+
+
+
+
+
+        }
+
+    }
+
+    private void closeWindows() {
+
+        bonusTilePane.setDisable(true);
+        chooseCostPane.setDisable(true);
+        //TODO: reinserire una volta fatto
+        // chooseEffectPane.setDisable(true);
+        //choosePrivilegePane.setDisable(true);
+        //chooseWorkersPane.setDisable(true);
+
+        prayPane.setDisable(true);
+        yourTurnPane.setDisable(true);
+
+    }
+
+
+    private void setEndTurn(boolean b) {
+
+        endTurn.setDisable(!b);
+    }
+
+    private void setSkipAction(boolean b) {
+
+        skipAction.setDisable(!b);
+
+    }
+
+    private void setThrowDices(boolean b) {
+
+        throwDices.setDisable(!b);
+
+    }
+
+    private void setFamilyPawns(boolean b) {
+
+        for (ImageView familyPawn : familyPawns) {
+            familyPawn.setDisable(!b);
+        }
+
+    }
+
+    private void setLeaderButtons(boolean b) {
+
+        for (Button activateLeaderCardsButton : activateLeaderCardsButtons) {
+            activateLeaderCardsButton.setDisable(!b);
+        }
+
+        for (Button burnLeaderCardsButton : burnLeaderCardsButtons) {
+            burnLeaderCardsButton.setDisable(!b);
+        }
+
+    }
+
+    private void setActions(boolean b) {
+
+        for (ImageView imageView : actionButtons.values()) {
+            imageView.setDisable(!b);
+        }
+        for (GridPane gridPane : actionGrid.values()) {
+            gridPane.setDisable(!b);
+        }
+        for (HBox hBox : actionBox.values()) {
+            hBox.setDisable(!b);
+        }
+    }
+
+
+
+
+
+
+
 
 
     public void setBonusTilePane(HBox bonusTilePane) {
@@ -898,6 +1161,10 @@ public class GameBoardController {
         this.yourTurnPane = yourTurnPane;
     }
 
+    public void setThrowDicesPane(AnchorPane childDices) {
+        this.throwDicesPane = childDices;
+    }
+
     public void setChooseWorkersPane(AnchorPane chooseWorkersPane) {
         this.chooseWorkersPane = chooseWorkersPane;
     }
@@ -918,13 +1185,6 @@ public class GameBoardController {
         this.sender = chooseDistribution;
     }
 
-    public void setState(PlayerState newPlayerState) {
-
-        switch (newPlayerState) {
 
 
-
-        }
-
-    }
 }

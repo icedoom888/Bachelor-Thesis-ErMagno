@@ -39,4 +39,8 @@ public class ChooseCostController {
     public void updateShownCosts(String newCosts){
         shownCosts.setText(newCosts);
     }
+
+    public void setSender(ChooseDistribution sender) {
+        this.sender = sender;
+    }
 }

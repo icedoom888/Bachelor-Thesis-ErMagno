@@ -20,7 +20,7 @@ import java.io.IOException;
  * Created by AlbertoPennino on 22/06/2017.
  */
 
-public class GUILauncher extends Application implements Runnable {
+/*public class GUILauncher extends Application implements Runnable {
     GameBoardController gameBoardController;
     LoginController loginController;
     BonusTileController bonusTileController;
@@ -74,4 +74,4 @@ public class GUILauncher extends Application implements Runnable {
         }
 
     }
-}
+}*/
