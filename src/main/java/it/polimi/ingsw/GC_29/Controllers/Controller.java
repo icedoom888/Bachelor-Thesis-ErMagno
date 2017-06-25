@@ -134,6 +134,10 @@ public class Controller implements Observer<Input>  {
         }
 
         model.getGameBoard().setTurn(greenDeck, blueDeck, yellowDeck, purpleDeck);
+        model.updateTowerGUI(CardColor.GREEN);
+        model.updateTowerGUI(CardColor.BLUE);
+        model.updateTowerGUI(CardColor.YELLOW);
+        model.updateTowerGUI(CardColor.PURPLE);
 
     }
 

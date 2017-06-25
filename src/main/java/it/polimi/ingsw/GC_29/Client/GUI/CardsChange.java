@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Lorenzotara on 24/06/17.
  */
-public class CardsChange {
+/*public class CardsChange {
 
 
     private String type;
@@ -26,3 +26,4 @@ public class CardsChange {
         return developmentCards;
     }
 }
+*/

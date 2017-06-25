@@ -4,10 +4,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.*;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Controllers.Change;
-import it.polimi.ingsw.GC_29.Controllers.GameChange;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
+import it.polimi.ingsw.GC_29.Controllers.*;
 import org.testng.collections.Lists;
 
 import java.io.IOException;
@@ -54,6 +51,8 @@ public class ClientInHandlerGUI implements Runnable {
                     case "Change":
                         updateClientGUI();
                         break;
+
+                    /*
                     case "Valid Actions":
                         validActionsGUI();
                         break;
@@ -70,6 +69,7 @@ public class ClientInHandlerGUI implements Runnable {
                         getFamilyPawnsAvailabilityGUI();
                         break;
 
+                        */
                 }
 
             } catch (ClassNotFoundException e) {
@@ -118,6 +118,13 @@ public class ClientInHandlerGUI implements Runnable {
         if(c instanceof GameChange){
             commonView.setCurrentGameState(((GameChange)c).getNewGameState());
             //TODO: if relation with the church chiedo se questo player è stato scomunicato passando dallo stub e poi printo quello che devo
+        }
+
+        if (c instanceof GUIChange) {
+
+            GUIChange guiChange = (GUIChange)c;
+            guiChange.perform(listeners);
+
         }
 
     }
@@ -293,20 +300,20 @@ public class ClientInHandlerGUI implements Runnable {
         }
     }
 
-    private void fireGoodSet(GoodSet goodSet) {
+    /*private void fireGoodSet(GoodSet goodSet) {
 
         for (GuiChangeListener listener : listeners) {
             listener.onReadingChange(new GoodSetChange(goodSet));
         }
-    }
+    }*/
 
-    private void fireCardsCards(List<String> developmentCards, String string) {
+    /*private void fireCardsCards(List<String> developmentCards, String string) {
 
         for (GuiChangeListener listener : listeners) {
             listener.onReadingChange(new CardsChange(developmentCards, string));
         }
 
-    }
+    }*/
 
     private void fireFamilyPawns(Map<FamilyPawn, Boolean> familyPawns) {
 
@@ -395,7 +402,7 @@ public class ClientInHandlerGUI implements Runnable {
 
     }
 
-    private void getGoodSetGUI() {
+    /*private void getGoodSetGUI() {
 
         try {
             GoodSet goodSet = (GoodSet)socketIn.readObject();
@@ -409,11 +416,11 @@ public class ClientInHandlerGUI implements Runnable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
 
-    private void getCardsGUI(String string) {
+    /*private void getCardsGUI(String string) {
 
         try {
 
@@ -427,7 +434,7 @@ public class ClientInHandlerGUI implements Runnable {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 
 

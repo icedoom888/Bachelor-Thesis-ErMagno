@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -718,7 +719,7 @@ public class GameBoardController {
      * @param cards
      * @param cardColor
      */
-    public void updateCardsPersonalBoard(ArrayList<DevelopmentCard> cards, CardColor cardColor){
+    public void updateCardsPersonalBoard(String cards, CardColor cardColor){
         int i =0;
         /*for (DevelopmentCard card:cards){
             if (card == null){
@@ -753,14 +754,17 @@ public class GameBoardController {
      * Quando viene chiamata modifica le quantità di resourceAmount sulla PersonalBoard
      * @param newGoodSet
      */
-    public void updateGoodSetPersonalBoard(GoodSet newGoodSet){
+    public void updatePersonalGoodSet(GoodSet newGoodSet/*, PlayerColor playerColor*/){
         for (GoodType type: GoodType.values()) {
 
             if (type!=GoodType.FAITHPOINTS &&type!=GoodType.MILITARYPOINTS &&type!=GoodType.VICTORYPOINTS) {
                 Integer value = newGoodSet.getGoodAmount(type);
                 resourceAmount.get(type).setText(value.toString());
             }
-            else if (true) {}
+            else if (true) {
+
+                //TODO: ora puoi implementare, fai 3 if diversi
+            }
                 //TODO: aggiorna track - pensa a player color
 
         }
@@ -801,10 +805,15 @@ public class GameBoardController {
         }
     }
 
+    public void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
+
+        //TODO: impl
+    }
+
     /**
      * Quando è chiamata modifica tutti i contatori delle track sulla PersonalBoard
      */
-    public void updateTower(List<DevelopmentCard> developmentCards, CardColor cardColor){
+    public void updateTower(ArrayList<String> developmentCards, CardColor cardColor){
 
         //TODO: update della tower con quel colore
 
@@ -817,10 +826,8 @@ public class GameBoardController {
 
     }
 
-    /**
-     * Quando è chiamata modifica le immagini delle carte sulle torri
-     */
-    public void updateTracks(){
+    public void updatePawn(FamilyPawn familyPawn, int actionIndex) {
+
     }
 
 

@@ -16,6 +16,7 @@ public class TrackController implements Observer<MovePawn> {
     @Override
     public void update(MovePawn movePawn) throws Exception {
         movePawn.moveOnTrack(model);
+
     }
 
     @Override

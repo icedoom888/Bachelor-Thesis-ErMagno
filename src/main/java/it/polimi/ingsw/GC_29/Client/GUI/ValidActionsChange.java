@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Created by Lorenzotara on 24/06/17.
  */
-public class ValidActionsChange extends GUIChange {
+public class ValidActionsChange {
 
     private Map<Integer, String> validActionList;
 

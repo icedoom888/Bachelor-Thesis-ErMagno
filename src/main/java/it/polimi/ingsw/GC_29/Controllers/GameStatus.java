@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import it.polimi.ingsw.GC_29.Client.GUI.FamilyPawnChange;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.Player;
@@ -186,6 +187,52 @@ public class GameStatus extends Observable<Change>{
 
     public List<BonusTile> getBonusTileList() {
         return bonusTileList;
+    }
+
+    public void updateTowerGUI(CardColor cardColor) {
+
+        ArrayList<String> cards = new ArrayList<>();
+
+        for (Floor floor : gameBoard.getTower(cardColor).getFloors()) {
+
+            DevelopmentCard card = floor.getDevelopmentCard();
+
+            if (card != null) {
+                cards.add(card.getSpecial());
+            }
+
+            else {
+                cards.add("null");
+            }
+        }
+
+        try {
+            notifyObserver(new TowerCardsChange(cards, cardColor));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void updateTrackGUI(PlayerColor playerColor, GoodType faithpoints, int numberOfPoints) {
+
+        try {
+            notifyObserver(new TrackChange(playerColor, faithpoints, numberOfPoints));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePawnsGUI(FamilyPawn temporaryPawn) {
+
+        int actionIndex = currentPlayer.getCurrentValidActionsList().indexOf(currentPlayer.getCurrentAction());
+
+        try {
+            notifyObserver(new AddPawnChange(temporaryPawn, actionIndex));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

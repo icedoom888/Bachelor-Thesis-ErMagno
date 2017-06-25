@@ -68,8 +68,8 @@ public class GoodSet extends Observable<MovePawn> implements Serializable{
         }
     }
 
-    public void updateGoodSet(GoodSet goodSetToAdd) throws Exception {
-        addGoodSet(goodSetToAdd);
+    public void updateModelTracks(GoodSet goodSetToAdd) throws Exception {
+
         int victoryPoints = goodSetToAdd.getGoodAmount(GoodType.VICTORYPOINTS);
         int militaryPoints = goodSetToAdd.getGoodAmount(GoodType.MILITARYPOINTS);
         int faithPoints = goodSetToAdd.getGoodAmount(GoodType.FAITHPOINTS);

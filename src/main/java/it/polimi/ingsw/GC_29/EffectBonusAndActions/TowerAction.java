@@ -243,7 +243,7 @@ public class TowerAction extends Action {
             goodSetToPay = possibleCardCosts.get(answer).getCost();
             goodSetToPay.setNegative();
 
-            player.updateGoodSet(goodSetToPay);
+            player.updateModelTracks(goodSetToPay);
             System.out.println("The card has been paid");
             return;
         }
@@ -256,7 +256,7 @@ public class TowerAction extends Action {
 
         goodSetToPay.setNegative();
 
-        player.updateGoodSet(goodSetToPay);
+        player.updateModelTracks(goodSetToPay);
         System.out.println("The card has been paid");
     }*/
 
@@ -310,6 +310,11 @@ public class TowerAction extends Action {
             default:
                 System.out.println("Ops! There has been an error!");
         }
+
+        CardColor cardColor = card.getColor();
+
+        gameStatus.updateTowerGUI(cardColor);
+        player.updatePersonalBoardGUI(card.getSpecial(), cardColor);
 
     }
 

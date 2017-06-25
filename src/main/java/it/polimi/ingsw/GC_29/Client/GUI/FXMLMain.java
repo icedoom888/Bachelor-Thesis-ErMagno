@@ -9,10 +9,12 @@ import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginChange;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
+import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
+import it.polimi.ingsw.GC_29.Components.GoodType;
+import it.polimi.ingsw.GC_29.Controllers.*;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -183,8 +185,10 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
                             updateGoodSet(goodSetChange.getGoodSet());
                         }
 
-                        @Override
+                        /*@Override
                         public void onReadingChange(CardsChange cardsChange) {
+
+                            //TODO: sbagliato
 
                             switch (cardsChange.getType()) {
 
@@ -196,7 +200,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
                                     updateCardsOnTower(cardsChange.getDevelopmentCards());
                                     break;
                             }
-                        }
+                        }*/
 
                         @Override
                         public void onReadingChange(FamilyPawnChange familyPawnChange) {
@@ -233,6 +237,26 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
                             setGuiOnState(playerStateChange.getNewPlayerState());
                         }
 
+                        @Override
+                        public void onReadingChange(TowerCardsChange towerCardsChange) {
+                            updateTower(towerCardsChange.getCards(), towerCardsChange.getCardColor());
+                        }
+
+                        @Override
+                        public void onReadingChange(PersonalCardChange personalCardChange) {
+                            updatePersonalCards(personalCardChange.getCardName(), personalCardChange.getCardColor());
+                        }
+
+                        @Override
+                        public void onReadingChange(TrackChange trackChange) {
+                            updateTrack(trackChange.getPlayerColor(), trackChange.getGoodType(), trackChange.getNumberOfPoints());
+                        }
+
+                        @Override
+                        public void onReadingChange(AddPawnChange addPawnChange) {
+                            updatePawn(addPawnChange.getFamilyPawn(), addPawnChange.getActionIndex());
+                        }
+
 
                     });
                     break;
@@ -249,8 +273,6 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
 
     }
-
-
 
 
     private void setLogin() {
@@ -394,6 +416,47 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
 
 
+    private void updatePawn(FamilyPawn familyPawn, int actionIndex) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                gameBoardController.updatePawn(familyPawn, actionIndex);
+
+
+            }
+        });
+
+    }
+
+    private void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                gameBoardController.updateTrack(playerColor, goodType, numberOfPoints);
+
+
+            }
+        });
+
+    }
+
+    private void updateTower(ArrayList<String> cards, CardColor cardColor) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                gameBoardController.updateTower(cards, cardColor);
+
+
+            }
+        });
+
+    }
 
 
     private void setGuiOnState(PlayerState newPlayerState) {
@@ -493,24 +556,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
     }
 
-
-    private void updatePersonalCards(List<String> developmentCards) {
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-
-                //TODO: impl controller, bisogna passare il nome delle carte non il toString
-
-                //gameBoardController.updateCardsPersonalBoard(developmentCards, cardColor);
-
-
-            }
-        });
-
-    }
-
-    private void updateCardsOnTower(List<String> developmentCards) {
+    private void updatePersonalCards(String cardName, CardColor cardColor) {
 
         Platform.runLater(new Runnable() {
             @Override
@@ -518,13 +564,15 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
                 //TODO: impl controller, bisogna passare il nome delle carte non il toString
 
-                //gameBoardController.updateTower(developmentCards, cardColor);
+                gameBoardController.updateCardsPersonalBoard(cardName, cardColor);
 
 
             }
         });
 
     }
+
+
 
     private void updateGoodSet(GoodSet goodSet) {
 
@@ -532,7 +580,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
             @Override
             public void run() {
 
-                gameBoardController.updateGoodSetPersonalBoard(goodSet);
+                gameBoardController.updatePersonalGoodSet(goodSet);
 
 
             }

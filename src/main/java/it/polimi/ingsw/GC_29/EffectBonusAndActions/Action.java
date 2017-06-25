@@ -219,10 +219,13 @@ public abstract class Action implements Serializable{
         if(temporaryPawn.getType() != FamilyPawnType.BONUS){
 
             actionSpaceSelected.addPawn(temporaryPawn);
+
+            gameStatus.getPawnsOnActionSpace().put(temporaryPawn, actionSpaceSelected);
+
+            gameStatus.updatePawnsGUI(temporaryPawn);
         }
 
 
-        gameStatus.getPawnsOnActionSpace().put(temporaryPawn, actionSpaceSelected);
 
         Effect effect = actionSpaceSelected.getEffect();
 

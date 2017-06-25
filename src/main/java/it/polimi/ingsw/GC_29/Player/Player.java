@@ -1,14 +1,10 @@
 package it.polimi.ingsw.GC_29.Player;
 
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Controllers.Change;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
+import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Server.Observable;
 
-import java.awt.*;
-import java.rmi.RemoteException;
 import java.util.*;
 import java.util.List;
 
@@ -240,7 +236,12 @@ public class Player extends Observable<Change> {
 
     public void updateGoodSet(GoodSet newGoodSet) throws Exception {
 
-        this.actualGoodSet.updateGoodSet(newGoodSet);
+        actualGoodSet.addGoodSet(newGoodSet);
+
+        notifyObserver(new GoodSetChange(actualGoodSet));
+
+
+        this.actualGoodSet.updateModelTracks(newGoodSet, playerColor);
     }
 
     public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() {
@@ -279,6 +280,15 @@ public class Player extends Observable<Change> {
 
     public void setExcommunicationTiles(ArrayList<ExcommunicationTile> excommunicationTiles) {
         this.excommunicationTiles = excommunicationTiles;
+    }
+
+    public void updatePersonalBoardGUI(String special, CardColor cardColor) {
+
+        try {
+            notifyObserver(new PersonalCardChange(special, cardColor));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

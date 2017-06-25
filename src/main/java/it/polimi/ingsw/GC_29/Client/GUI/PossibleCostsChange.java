@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Created by Lorenzotara on 24/06/17.
  */
-public class PossibleCostsChange extends StartGameChange {
+public class PossibleCostsChange {
 
     private Map<Integer, String> possibleCosts;
 

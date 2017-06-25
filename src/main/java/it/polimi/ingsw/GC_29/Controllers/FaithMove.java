@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Components.Track;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
@@ -16,5 +17,7 @@ public class FaithMove extends MovePawn {
     public void moveOnTrack(GameStatus model) {
         Track faithPointsTrack = model.getGameBoard().getFaithPointsTrack();
         faithPointsTrack.movePawn(numberOfPoints, super.playerPawn(model));
+        model.updateTrackGUI(model.getCurrentPlayer().getPlayerColor(), GoodType.FAITHPOINTS, numberOfPoints);
+
     }
 }

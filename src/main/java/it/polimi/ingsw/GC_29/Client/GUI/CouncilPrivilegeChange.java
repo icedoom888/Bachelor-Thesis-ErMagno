@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Lorenzotara on 24/06/17.
  */
-public class CouncilPrivilegeChange extends StartGameChange {
+public class CouncilPrivilegeChange {
 
     private List<Integer> councilPrivileges;
 

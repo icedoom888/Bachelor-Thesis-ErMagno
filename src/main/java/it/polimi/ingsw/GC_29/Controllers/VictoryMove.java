@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Components.Pawn;
 import it.polimi.ingsw.GC_29.Components.Track;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -18,5 +19,6 @@ public class VictoryMove extends MovePawn {
 
         Track victoryPointsTrack = model.getGameBoard().getVictoryPointsTrack();
         victoryPointsTrack.movePawn(numberOfPoints, super.playerPawn(model));
+        model.updateTrackGUI(model.getCurrentPlayer().getPlayerColor(), GoodType.VICTORYPOINTS, numberOfPoints);
     }
 }
