@@ -875,7 +875,10 @@ public class GameBoardController {
 
         bonusTileController.setBonusTiles(bonusTiles);
 
+
+
         bonusTilePane.setVisible(true);
+        //bonusTilePane.setDisable(false);
     }
 
     public void yourTurn() throws InterruptedException {
@@ -937,7 +940,7 @@ public class GameBoardController {
                 throwDicesPane.setVisible(true);
 
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -967,7 +970,7 @@ public class GameBoardController {
                 yourTurnPane.setVisible(true);
 
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -1066,15 +1069,15 @@ public class GameBoardController {
 
     private void closeWindows() {
 
-        bonusTilePane.setDisable(true);
-        chooseCostPane.setDisable(true);
+        bonusTilePane.setVisible(false);
+        chooseCostPane.setVisible(false);
         //TODO: reinserire una volta fatto
-        // chooseEffectPane.setDisable(true);
-        //choosePrivilegePane.setDisable(true);
-        //chooseWorkersPane.setDisable(true);
+        // chooseEffectPane.setVisible(false);
+        //choosePrivilegePane.setVisible(false);
+        //chooseWorkersPane.setVisible(false);
 
-        prayPane.setDisable(true);
-        yourTurnPane.setDisable(true);
+        prayPane.setVisible(false);
+        yourTurnPane.setVisible(false);
 
     }
 
