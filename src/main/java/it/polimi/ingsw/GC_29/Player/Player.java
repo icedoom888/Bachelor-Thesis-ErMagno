@@ -241,7 +241,7 @@ public class Player extends Observable<Change> {
         notifyObserver(new GoodSetChange(actualGoodSet));
 
 
-        this.actualGoodSet.updateModelTracks(newGoodSet, playerColor);
+        this.actualGoodSet.updateModelTracks(newGoodSet);
     }
 
     public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() {

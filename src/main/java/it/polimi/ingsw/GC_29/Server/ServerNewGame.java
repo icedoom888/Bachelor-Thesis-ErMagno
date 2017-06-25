@@ -206,6 +206,8 @@ public class ServerNewGame implements Runnable {
 
         System.out.println("Qua arrivi?");
 
+        controller.setCardsOnTowers();
+
 
         Boolean b = true;
 

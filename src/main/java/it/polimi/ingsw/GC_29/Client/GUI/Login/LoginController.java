@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 /**
  * Created by AlbertoPennino on 21/06/2017.
  */
-public class LoginController extends Observable<GUIChange> implements ControllerGUI {
+public class LoginController extends Observable<LoginChange> implements ControllerGUI {
 
     @FXML private TextField username;
     @FXML private TextField password;

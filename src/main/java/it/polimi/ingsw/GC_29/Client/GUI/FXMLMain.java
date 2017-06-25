@@ -34,7 +34,7 @@ import java.util.Map;
 /**
  * Created by Lorenzotara on 23/06/17.
  */
-public class FXMLMain extends Application implements Observer<GUIChange> {
+public class FXMLMain extends Application implements Observer<LoginChange> {
 
     private Distribution connection;
     private String username;
@@ -50,15 +50,14 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
     private GameBoardController gameBoardController;
 
     @Override
-    public void update(GUIChange o) throws Exception {
+    public void update(LoginChange o) throws Exception {
 
-        if (o instanceof LoginChange) {
-            Boolean connected = ((LoginChange) o).getConnected();
-            if (connected) {
+        Boolean connected = ((LoginChange) o).getConnected();
+        if (connected) {
 
-                signUp();
+            signUp();
 
-            }
+
         }
 
     }
@@ -302,7 +301,6 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
         logged = false;
 
         loginController.setConnected(false);
-
         loginController.registerObserver(this);
 
     }

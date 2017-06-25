@@ -31,7 +31,7 @@ public class Controller implements Observer<Input>  {
         playersPraying = 0;
         actionChecker = new ActionChecker(model);
 
-        setCardsOnTowers();
+        //setCardsOnTowers();
 
         createActions();
     }
@@ -119,7 +119,7 @@ public class Controller implements Observer<Input>  {
         model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);*/
     }
 
-    private void setCardsOnTowers(){
+    public void setCardsOnTowers(){
 
         DevelopmentCard[] greenDeck = new DevelopmentCard[4];
         DevelopmentCard[] blueDeck = new DevelopmentCard[4];

@@ -1,11 +1,12 @@
 package it.polimi.ingsw.GC_29.Client.GUI.Login;
 
+import it.polimi.ingsw.GC_29.Controllers.Change;
 import it.polimi.ingsw.GC_29.Controllers.GUIChange;
 
 /**
  * Created by Lorenzotara on 24/06/17.
  */
-public class LoginChange extends GUIChange {
+public class LoginChange {
 
     private static final long serialVersionUID = 5551223529797237865L;
 
