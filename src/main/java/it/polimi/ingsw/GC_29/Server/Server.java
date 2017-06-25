@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Server;
 
+import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterfaceImpl;
 import it.polimi.ingsw.GC_29.Server.Socket.Login;
 import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;
@@ -129,7 +130,15 @@ public class Server {
 
             System.out.println("DOPO LOGIN");
 
-            gameMatchHandler.addClient(login.login(), playerSocket);
+            String username = login.login();
+
+            if (!(login.getEnumInterface() == EnumInterface.GUI && !login.isLogged())) {
+
+                gameMatchHandler.addClient(username, playerSocket);
+
+            }
+
+            else socket.close();
 
 
 

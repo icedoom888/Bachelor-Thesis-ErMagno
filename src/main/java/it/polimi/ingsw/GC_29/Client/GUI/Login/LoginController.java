@@ -119,8 +119,24 @@ public class LoginController extends Observable<GUIChange> implements Controller
     }
 
     public void showError() {
-        errorBlankFields.setVisible(true);
+        errorUserPsw.setVisible(true);
     }
+
+    /*
+    public void connectionStable() {
+
+        switch (connection) {
+
+            case SOCKET:
+                rmi.setVisible(false);
+                break;
+
+            case RMI:
+                socket.setVisible(false);
+                break;
+        }
+    }
+    */
 
 
 

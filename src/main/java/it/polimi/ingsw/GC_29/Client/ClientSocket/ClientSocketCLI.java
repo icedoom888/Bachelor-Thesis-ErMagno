@@ -85,6 +85,8 @@ public class ClientSocketCLI {
 
                 socketOut.writeObject("login");
                 socketOut.flush();
+                socketOut.writeObject("cli");
+                socketOut.flush();
                 socketOut.writeObject(username);
                 socketOut.flush();
                 socketOut.writeObject(password);

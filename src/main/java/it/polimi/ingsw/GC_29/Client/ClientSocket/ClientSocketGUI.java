@@ -72,6 +72,8 @@ public class ClientSocketGUI {
 
             socketOut.writeObject("login");
             socketOut.flush();
+            socketOut.writeObject("gui");
+            socketOut.flush();
             socketOut.writeObject(username);
             socketOut.flush();
             socketOut.writeObject(password);
@@ -103,6 +105,8 @@ public class ClientSocketGUI {
                 chooseDistribution.setCommonOutSocket(clientOutHandlerGUI.getCommonOutSocket());
 
             }
+
+            else socket.close();
 
 
         } catch (Exception e) {
@@ -181,5 +185,9 @@ public class ClientSocketGUI {
 
     public ClientOutHandlerGUI getClientOutHandlerGUI() {
         return clientOutHandlerGUI;
+    }
+
+    public Socket getSocket() {
+        return socket;
     }
 }

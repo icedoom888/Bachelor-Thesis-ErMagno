@@ -92,6 +92,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
             if (!logged) {
                 loginController.setConnected(false);
+                clientSocketGUI.getSocket().close();
             }
 
 
@@ -107,7 +108,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
     public void signUp() {
 
-        while (!logged) {
+        if (!logged) {
 
 
             this.connection = loginController.getConnection();
@@ -126,103 +127,114 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
                 case RMI:
                     break;
+
             }
+
+
+            if (!logged) {
+
+                loginController.showError();
+                //loginController.connectionStable();
+            }
+
         }
 
-        // Login Successful
 
-        loginStage.close();
+        if (logged) {
 
-        ///////WAITING STAGE//////////
-        //TODO:
-        ///////WAITING STAGE//////////
+            // Login Successful
 
 
+            loginStage.close();
+
+            ///////WAITING STAGE//////////
+            //TODO:
+            ///////WAITING STAGE//////////
 
 
-        switch (connection) {
+            switch (connection) {
 
-            case SOCKET:
+                case SOCKET:
 
-                clientSocketGUI.playNewGameGUI();
+                    clientSocketGUI.playNewGameGUI();
 
-                clientSocketGUI.getClientInHandlerGUI().addListener(new GuiChangeListener() {
+                    clientSocketGUI.getClientInHandlerGUI().addListener(new GuiChangeListener() {
 
-                    @Override
-                    public void onReadingChange(StartGameChange startGameChange) {
-                        //TODO: da fare
-                        updateView();
-                    }
-
-                    @Override
-                    public void onReadingChange(ValidActionsChange validActionsChange) {
-                        updateValidActions(validActionsChange.getValidActionList());
-
-                    }
-
-                    @Override
-                    public void onReadingChange(GoodSetChange goodSetChange) {
-                        updateGoodSet(goodSetChange.getGoodSet());
-                    }
-
-                    @Override
-                    public void onReadingChange(CardsChange cardsChange) {
-
-                        switch (cardsChange.getType()) {
-
-                            case "development":
-                                updatePersonalCards(cardsChange.getDevelopmentCards());
-                                break;
-
-                            case "tower":
-                                updateCardsOnTower(cardsChange.getDevelopmentCards());
-                                break;
+                        @Override
+                        public void onReadingChange(StartGameChange startGameChange) {
+                            //TODO: da fare
+                            updateView();
                         }
-                    }
 
-                    @Override
-                    public void onReadingChange(FamilyPawnChange familyPawnChange) {
-                        updateFamilyPawns(familyPawnChange.getFamilyPawns());
-                    }
+                        @Override
+                        public void onReadingChange(ValidActionsChange validActionsChange) {
+                            updateValidActions(validActionsChange.getValidActionList());
 
-                    @Override
-                    public void onReadingChange(CardsForWorkersChange cardsForWorkersChange) {
-                        chooseWorkers(cardsForWorkersChange.getCardsForWorkers());
-                    }
+                        }
 
-                    @Override
-                    public void onReadingChange(PayToObtainCardsChange payToObtainCardsChange) {
-                        choosePayToObtainCards(payToObtainCardsChange.getPayToObtainCards());
-                    }
+                        @Override
+                        public void onReadingChange(GoodSetChange goodSetChange) {
+                            updateGoodSet(goodSetChange.getGoodSet());
+                        }
 
-                    @Override
-                    public void onReadingChange(PossibleCostsChange possibleCostsChange) {
-                        chooseCost(possibleCostsChange.getPossibleCosts());
-                    }
+                        @Override
+                        public void onReadingChange(CardsChange cardsChange) {
 
-                    @Override
-                    public void onReadingChange(CouncilPrivilegeChange councilPrivilegeChange) {
-                        chooseCouncilPrivilege(councilPrivilegeChange.getCouncilPrivileges());
-                    }
+                            switch (cardsChange.getType()) {
 
-                    @Override
-                    public void onReadingChange(BonusTileChange bonusTileChange) {
-                        chooseBonusTile(bonusTileChange.getBonusTiles());
-                    }
+                                case "development":
+                                    updatePersonalCards(cardsChange.getDevelopmentCards());
+                                    break;
+
+                                case "tower":
+                                    updateCardsOnTower(cardsChange.getDevelopmentCards());
+                                    break;
+                            }
+                        }
+
+                        @Override
+                        public void onReadingChange(FamilyPawnChange familyPawnChange) {
+                            updateFamilyPawns(familyPawnChange.getFamilyPawns());
+                        }
+
+                        @Override
+                        public void onReadingChange(CardsForWorkersChange cardsForWorkersChange) {
+                            chooseWorkers(cardsForWorkersChange.getCardsForWorkers());
+                        }
+
+                        @Override
+                        public void onReadingChange(PayToObtainCardsChange payToObtainCardsChange) {
+                            choosePayToObtainCards(payToObtainCardsChange.getPayToObtainCards());
+                        }
+
+                        @Override
+                        public void onReadingChange(PossibleCostsChange possibleCostsChange) {
+                            chooseCost(possibleCostsChange.getPossibleCosts());
+                        }
+
+                        @Override
+                        public void onReadingChange(CouncilPrivilegeChange councilPrivilegeChange) {
+                            chooseCouncilPrivilege(councilPrivilegeChange.getCouncilPrivileges());
+                        }
+
+                        @Override
+                        public void onReadingChange(BonusTileChange bonusTileChange) {
+                            chooseBonusTile(bonusTileChange.getBonusTiles());
+                        }
 
 
-                });
-                break;
+                    });
+                    break;
 
-            case RMI:
-                break;
+                case RMI:
+                    break;
+            }
+
+
+            /////GAMEBOARD SETTING///////
+
+            setGameboard();
         }
-
-
-        /////GAMEBOARD SETTING///////
-
-        setGameboard();
-
 
 
     }
