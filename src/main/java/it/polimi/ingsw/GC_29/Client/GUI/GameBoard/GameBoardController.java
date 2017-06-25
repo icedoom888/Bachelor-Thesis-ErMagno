@@ -778,27 +778,26 @@ public class GameBoardController {
             }
             if (i == 22 || i == 24) {
                 actionBox.get(i).setDisable(false);
-            } else {
+            }
+            if (i!=20 && i!=22 && i!=24){
                 actionButtons.get(i).setDisable(false);
             }
             coverImages.get(i).setVisible(false);
         }
 
-        Integer r = 0;
-        while (r<25) {
-            if (availability.get(r)==null){
+        for(int r=0;r<25;r++){
+            if (!availability.containsKey(r)){
                 if (r==20){
                     actionGrid.get(r).setDisable(true);
                 }
                 if (r==22 || r==24){
                     actionBox.get(r).setDisable(true);
                 }
-                else {
+                if (r!=20 && r!=22 && r!=24){
                     actionButtons.get(r).setDisable(true);
                 }
                 coverImages.get(r).setVisible(true);
             }
-            r++;
         }
     }
 
