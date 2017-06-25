@@ -773,31 +773,32 @@ public class GameBoardController {
     public void updatePossibleActions(Map<Integer, String> availability){
         for (Integer i : availability.keySet()) {
 
-            /*if(availability.get(i)){
-                if (i==20){
-                    actionGrid.get(i).setDisable(false);
-                }
-                if (i==22 || i==24){
-                    actionBox.get(i).setDisable(false);
-                }
-                else {
-                    actionButtons.get(i).setDisable(false);
-                }
-                coverImages.get(i).setVisible(false);
+            if (i == 20) {
+                actionGrid.get(i).setDisable(false);
             }
-            else {
-                if (i==20){
-                    actionGrid.get(i).setDisable(true);
+            if (i == 22 || i == 24) {
+                actionBox.get(i).setDisable(false);
+            } else {
+                actionButtons.get(i).setDisable(false);
+            }
+            coverImages.get(i).setVisible(false);
+        }
+
+        Integer r = 0;
+        while (r<25) {
+            if (availability.get(r)==null){
+                if (r==20){
+                    actionGrid.get(r).setDisable(true);
                 }
-                if (i==22 || i==24){
-                    actionBox.get(i).setDisable(true);
+                if (r==22 || r==24){
+                    actionBox.get(r).setDisable(true);
                 }
                 else {
-                    actionButtons.get(i).setDisable(true);
+                    actionButtons.get(r).setDisable(true);
                 }
-                coverImages.get(i).setVisible(true);
-            }*/
-
+                coverImages.get(r).setVisible(true);
+            }
+            r++;
         }
     }
 
