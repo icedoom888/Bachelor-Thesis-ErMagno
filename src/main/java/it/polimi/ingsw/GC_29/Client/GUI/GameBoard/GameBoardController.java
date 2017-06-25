@@ -780,10 +780,10 @@ public class GameBoardController {
             if (i == 20) {
                 actionGrid.get(i).setDisable(false);
             }
-            if (i == 22 || i == 24) {
+            else if (i == 22 || i == 24) {
                 actionBox.get(i).setDisable(false);
             }
-            if (i!=20 && i!=22 && i!=24){
+            else if (i!=20 && i!=22 && i!=24){
                 actionButtons.get(i).setDisable(false);
             }
             coverImages.get(i).setVisible(false);
@@ -794,10 +794,10 @@ public class GameBoardController {
                 if (r==20){
                     actionGrid.get(r).setDisable(true);
                 }
-                if (r==22 || r==24){
+                else if (r==22 || r==24){
                     actionBox.get(r).setDisable(true);
                 }
-                if (r!=20 && r!=22 && r!=24){
+                else if (r!=20 && r!=22 && r!=24){
                     actionButtons.get(r).setDisable(true);
                 }
                 coverImages.get(r).setVisible(true);
