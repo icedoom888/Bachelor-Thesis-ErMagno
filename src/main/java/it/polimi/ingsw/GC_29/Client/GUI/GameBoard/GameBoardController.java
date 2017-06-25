@@ -23,11 +23,21 @@ import java.util.*;
  * Created by AlbertoPennino on 21/06/2017.
  */
 public class GameBoardController {
+    //mappa carte per immagini
+    HashMap<String,String> cardMap = new HashMap<>();
+
 
     private HashMap<Integer, ImageView> personalGreenCards = new HashMap<>();
     private HashMap<Integer, ImageView> personalBlueCards = new HashMap<>();
     private HashMap<Integer, ImageView> personalYellowCards = new HashMap<>();
     private HashMap<Integer, ImageView> personalPurpleCards = new HashMap<>();
+
+    //Posizioni libere della personal
+    private int greenFreeSlot=0;
+    private int blueFreeSlot=0;
+    private int yellowFreeSlot=0;
+    private int purpleFreeSlot=0;
+
 
     private HashMap<Integer, ImageView> greenTower = new HashMap<>();
     private HashMap<Integer, ImageView> blueTower = new HashMap<>();
@@ -335,6 +345,105 @@ public class GameBoardController {
 
     @FXML
     public void initialize() {
+        cardMap.put("Avamposto Commerciale","@lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_1.png");
+        cardMap.put("Bosco","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_2.png");
+        cardMap.put("Borgo","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_3.png");
+        cardMap.put("Cave di Ghiaia","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_4.png");
+        cardMap.put("Foresta","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_5.png");
+        cardMap.put("Monastero","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_6.png");
+        cardMap.put("Rocca","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_7.png");
+        cardMap.put("Città","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_8.png");
+        cardMap.put("Miniera d'Oro","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_9.png");
+        cardMap.put("Villaggio Montano","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_10.png");
+        cardMap.put("Villaggio Minerario","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_11.png");
+        cardMap.put("Cava di Pietra","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_12.png");
+        cardMap.put("Possedimento","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_13.png");
+        cardMap.put("Eremo","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_14.png");
+        cardMap.put("Maniero","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_15.png");
+        cardMap.put("Ducato","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_16.png");
+        cardMap.put("Città Mercantile","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_17.png");
+        cardMap.put("Tenuta","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_18.png");
+        cardMap.put("Colonia","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_19.png");
+        cardMap.put("Cava di Marmo","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_20.png");
+        cardMap.put("Provincia","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_21.png");
+        cardMap.put("Santuario","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_22.png");
+        cardMap.put("Castello","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_23.png");
+        cardMap.put("Città Fortificata","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_24.png");
+
+        cardMap.put("Zecca","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_25.png");
+        cardMap.put("Esattoria","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_26.png");
+        cardMap.put("Arco di Trionfo","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_27.png");
+        cardMap.put("Teatro","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_28.png");
+        cardMap.put("Falegnameria","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_29.png");
+        cardMap.put("Tagliapietre","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_30.png");
+        cardMap.put("Cappella","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_31.png");
+        cardMap.put("Residenza","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_32.png");
+        cardMap.put("Mercato","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_33.png");
+        cardMap.put("Tesoreria","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_34.png");
+        cardMap.put("Gilda dei Pittori","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_35.png");
+        cardMap.put("Gilda degli Scultori","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_36.png");
+        cardMap.put("Gilda dei Costruttori","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_37.png");
+        cardMap.put("Battistero","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_38.png");
+        cardMap.put("Caserma","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_39.png");
+        cardMap.put("Fortezza","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_40.png");
+        cardMap.put("Banca","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_41.png");
+        cardMap.put("Fiera","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_42.png");
+        cardMap.put("Giardino","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_43.png");
+        cardMap.put("Castelletto","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_44.png");
+        cardMap.put("Palazzo","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_45.png");
+        cardMap.put("Basilica","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_46.png");
+        cardMap.put("Accademia Militare","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_47.png");
+        cardMap.put("Cattedrale","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_48.png");
+
+        cardMap.put("Condottiero","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_49.png");
+        cardMap.put("Costruttore","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_50.png");
+        cardMap.put("Dama","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_51.png");
+        cardMap.put("Cavaliere","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_52.png");
+        cardMap.put("Contadino","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_53.png");
+        cardMap.put("Artigiano","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_54.png");
+        cardMap.put("Predicatore","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_55.png");
+        cardMap.put("Badessa","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_56.png");
+        cardMap.put("Capitano","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_57.png");
+        cardMap.put("Architetto","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_58.png");
+        cardMap.put("Mecenate","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_59.png");
+        cardMap.put("Eroe","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_60.png");
+        cardMap.put("Fattore","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_61.png");
+        cardMap.put("Studioso","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_62.png");
+        cardMap.put("Messo Papale","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_63.png");
+        cardMap.put("Messo Reale","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_64.png");
+        cardMap.put("Nobile","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_65.png");
+        cardMap.put("Governatore","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_66.png");
+        cardMap.put("Cortigiana","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_67.png");
+        cardMap.put("Araldo","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_68.png");
+        cardMap.put("Cardinale","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_69.png");
+        cardMap.put("Vescovo","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_70.png");
+        cardMap.put("Generale","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_71.png");
+        cardMap.put("Ambasciatore","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_72.png");
+
+        cardMap.put("Hiring Recruits","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_73.png");
+        cardMap.put("Repairing the Church","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_74.png");
+        cardMap.put("Building the Walls","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_75.png");
+        cardMap.put("Raising a Statue","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_76.png");
+        cardMap.put("Military Campaign","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_77.png");
+        cardMap.put("Hosting Panhandlers","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_78.png");
+        cardMap.put("Fighting Heresies","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_79.png");
+        cardMap.put("Support to the Bishop","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_80.png");
+        cardMap.put("Hiring Soldiers","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_81.png");
+        cardMap.put("Repairing the Abbey","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_82.png");
+        cardMap.put("Building the Bastions","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_83.png");
+        cardMap.put("Support to the King","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_84.png");
+        cardMap.put("Improving the Canals","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_85.png");
+        cardMap.put("Hosting Foreigners","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_86.png");
+        cardMap.put("Crusade","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_87.png");
+        cardMap.put("Support to the Cardinal","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_88.png");
+        cardMap.put("Hiring Mercenaries","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_89.png");
+        cardMap.put("Repairing the Cathedral","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_90.png");
+        cardMap.put("Building the Towers","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_91.png");
+        cardMap.put("Promoting Sacred Art","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_92.png");
+        cardMap.put("Military Conquest","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_93.png");
+        cardMap.put("Improving the Roads","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_94.png");
+        cardMap.put("Sacred War","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_95.png");
+        cardMap.put("Support to the Pope","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_96.png");
 
         personalGreenCards.put(0,greenCard1);
         personalGreenCards.put(1,greenCard2);
@@ -564,114 +673,55 @@ public class GameBoardController {
 
     }
 
+
+    //TODO check here
     public void handleActionChosenImageView(MouseEvent event){
         if(event.getSource() instanceof ImageView) {
             Integer actionSelected = buttonAction.get(event.getSource());
             sender.sendInput("execute action " + actionSelected.toString());
-            updatePawnOnActionspace((ImageView) event.getSource());
         }
 
         if(event.getSource() instanceof GridPane) {
             Integer actionSelected = gridAction.get(event.getSource());
             sender.sendInput("execute action " + actionSelected.toString());
-            updatePawnOnActionSpace((GridPane) event.getSource());
         }
 
         if (event.getSource() instanceof HBox){
             Integer actionSelected = boxAction.get(event.getSource());
             sender.sendInput("execute action " + actionSelected.toString());
-            updatePawnOnActionSpace((HBox) event.getSource());
         }
 
     }
 
     public void updatePawnOnActionspace(ImageView imageView){
-
+        //TODO
     }
 
     public void updatePawnOnActionSpace(GridPane gridPane) {
+        //TODO
 
     }
 
     public void updatePawnOnActionSpace(HBox hBox) {
-
+        //TODO
     }
 
         /**
          * Quando viene chiamata setta i vari pulsanti pedina che possono essere clickati
          * @param availability
          */
-    //TODO:hashmap pawntype pawns grafiche
     public void activatePawns(Map<FamilyPawn,Boolean> availability){
 
         for (FamilyPawn pawn: availability.keySet()) {
             FamilyPawnType familyPawnType = pawn.getType();
 
             if (availability.get(pawn)) {
-                setAvailable(pawn.getType());
+                setAvailable(pawn);
+
             }
 
             else {
                 setNotAvailable(pawn.getType());
-            }
-
-            switch (familyPawnType) {
-                case BLACK:
-                    break;
-                case ORANGE:
-                    if (availability.get(pawn)) {
-                        orangePawn.setDisable(false);
-                        Integer value = pawn.getActualValue();
-                        orangeValue.setText(value.toString());
-                    }
-                    else {
-                        orangePawn.setDisable(true);
-                        orangeValue.setText("");
-                    }
-                    break;
-                case WHITE:
-                    if (availability.get(pawn)) {
-                        whitePawn.setDisable(false);
-                        Integer value = pawn.getActualValue();
-                        whiteValue.setText(value.toString());
-                    }
-                    else{
-                        whitePawn.setDisable(true);
-                        whiteValue.setText("");
-                    }
-                    break;
-                case NEUTRAL:
-                    break;
-                case BONUS:
-                    break;
-                case ANY:
-                    break;
-            }
-            if (pawn.getType()==FamilyPawnType.WHITE){
-
-            }
-            if (pawn.getType()==FamilyPawnType.ORANGE){
-
-            }
-            if (pawn.getType()==FamilyPawnType.BLACK){
-                if (availability.get(pawn)) {
-                    blackValue.setDisable(false);
-                    Integer value = pawn.getActualValue();
-                    blackValue.setText(value.toString());
-                } else {
-                    blackPawn.setDisable(true);
-                    blackValue.setText("");
-                }
-            }
-            if (pawn.getType()==FamilyPawnType.NEUTRAL){
-                if (availability.get(pawn)) {
-                    neutralPawn.setDisable(false);
-                    Integer value = pawn.getActualValue();
-                    neutralValue.setText(value.toString());
-                } else {
-                    neutralPawn.setDisable(true);
-                    neutralValue.setText("");
-                }
             }
         }
     }
@@ -695,59 +745,63 @@ public class GameBoardController {
         }
     }
 
-    private void setAvailable(FamilyPawnType type) {
+    private void setAvailable(FamilyPawn pawn) {
+        FamilyPawnType type = pawn.getType();
+        Integer value = pawn.getActualValue();
+
         switch (type){
             case BLACK:
                 blackValue.setVisible(true);
                 blackPawn.setVisible(true);
+                blackPawn.setDisable(false);
+                blackValue.setText(value.toString());
                 break;
             case ORANGE:
                 orangeValue.setVisible(true);
                 orangePawn.setVisible(true);
+                orangePawn.setDisable(false);
+                orangeValue.setText(value.toString());
+
                 break;
             case WHITE:
                 whiteValue.setVisible(true);
                 whitePawn.setVisible(true);
+                whitePawn.setDisable(false);
+                whiteValue.setText(value.toString());
+
             case NEUTRAL:
                 neutralValue.setVisible(true);
                 neutralPawn.setVisible(true);
+                neutralPawn.setDisable(false);
+                neutralValue.setText(value.toString());
+
         }
     }
 
     /**
      * Quando è chiamata modifica le immagini delle carte visualizzate sulla PersonalBoard
-     * @param cards
      * @param cardColor
      */
-    public void updateCardsPersonalBoard(String cards, CardColor cardColor){
-        int i =0;
-        /*for (DevelopmentCard card:cards){
-            if (card == null){
+    public void updateCardsPersonalBoard(String name, CardColor cardColor){
+        Image image = new Image(cardMap.get(name));
+        switch (cardColor){
+            case BLUE:
+                personalBlueCards.get(blueFreeSlot).setImage(image);
+                blueFreeSlot ++;
                 break;
-            }
-            else{
-                if (cardColor.equals(CardColor.YELLOW)){
-                    Image image = new Image(sender.getCardMap().get(card.getSpecial()));
-                    personalYellowCards.get(i).setImage(image);
-                    i++;
-                }
-                if (cardColor.equals(CardColor.BLUE)){
-                    Image image = new Image(sender.getCardMap().get(card.getSpecial()));
-                    personalBlueCards.get(i).setImage(image);
-                    i++;
-                }
-                if (cardColor.equals(CardColor.PURPLE)){
-                    Image image = new Image(sender.getCardMap().get(card.getSpecial()));
-                    personalPurpleCards.get(i).setImage(image);
-                    i++;
-                }
-                if (cardColor.equals(CardColor.GREEN)){
-                    Image image = new Image(sender.getCardMap().get(card.getSpecial()));
-                    personalGreenCards.get(i).setImage(image);
-                    i++;
-                }
-            }
-        }*/
+            case GREEN:
+                personalGreenCards.get(greenFreeSlot).setImage(image);
+                greenFreeSlot++;
+                break;
+            case PURPLE:
+                personalPurpleCards.get(purpleFreeSlot).setImage(image);
+                purpleFreeSlot++;
+                break;
+            case YELLOW:
+                personalYellowCards.get(yellowFreeSlot).setImage(image);
+                yellowFreeSlot++;
+                break;
+        }
     }
 
     /**
@@ -813,10 +867,53 @@ public class GameBoardController {
     /**
      * Quando è chiamata modifica tutti i contatori delle track sulla PersonalBoard
      */
-    public void updateTower(ArrayList<String> developmentCards, CardColor cardColor){
+    public void updateTower(ArrayList<String> cardNames, CardColor cardColor){
 
-        //TODO: update della tower con quel colore
+        for (int i =0;i<4;i++){
+            String name = cardNames.get(i);
+            Image image = new Image(cardMap.get(cardNames.get(i)));
+            switch (cardColor){
+                case GREEN:
+                    if (!name.equals("null")) {
+                        greenTower.get(i).setImage(image);
+                    }
+                    else {
+                        image.cancel();
+                        greenTower.get(i).setImage(image);
+                    }
+                    break;
 
+                case BLUE:
+                    if (!name.equals("null")) {
+                        blueTower.get(i).setImage(image);
+                    }
+                    else {
+                        image.cancel();
+                        blueTower.get(i).setImage(image);
+                    }
+                    break;
+
+                case PURPLE:
+                    if (!name.equals("null")) {
+                        purpleTower.get(i).setImage(image);
+                    }
+                    else {
+                        image.cancel();
+                        purpleTower.get(i).setImage(image);
+                    }
+                    break;
+
+                case YELLOW:
+                    if (!name.equals("null")) {
+                        yellowTower.get(i).setImage(image);
+                    }
+                    else {
+                        image.cancel();
+                        yellowTower.get(i).setImage(image);
+                    }
+                    break;
+            }
+        }
     }
 
     /**
