@@ -362,10 +362,10 @@ public class GameBoardController {
         bonusTilesMap.put(5,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png;");
 
 
-        cardMap.put("Avamposto Commerciale","@lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_1.png");
+        cardMap.put("Avamposto Commerciale","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_1.png");
         cardMap.put("Bosco","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_2.png");
         cardMap.put("Borgo","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_3.png");
-        cardMap.put("Cave di Ghiaia","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_4.png");
+        cardMap.put("Cava di Ghiaia","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_4.png");
         cardMap.put("Foresta","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_5.png");
         cardMap.put("Monastero","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_6.png");
         cardMap.put("Rocca","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_7.png");
