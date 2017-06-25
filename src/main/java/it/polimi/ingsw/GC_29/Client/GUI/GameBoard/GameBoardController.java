@@ -879,7 +879,7 @@ public class GameBoardController {
             Image image = new Image(cardMap.get(cardNames.get(i)));
             switch (cardColor){
                 case GREEN:
-                    if (!name.equals("null")) {
+                    if (!name.contentEquals("null")) {
                         greenTower.get(i).setImage(image);
                     }
                     else {
@@ -889,7 +889,7 @@ public class GameBoardController {
                     break;
 
                 case BLUE:
-                    if (!name.equals("null")) {
+                    if (!name.contentEquals("null")) {
                         blueTower.get(i).setImage(image);
                     }
                     else {
@@ -899,7 +899,7 @@ public class GameBoardController {
                     break;
 
                 case PURPLE:
-                    if (!name.equals("null")) {
+                    if (!name.contentEquals("null")) {
                         purpleTower.get(i).setImage(image);
                     }
                     else {
@@ -909,7 +909,7 @@ public class GameBoardController {
                     break;
 
                 case YELLOW:
-                    if (!name.equals("null")) {
+                    if (!name.contentEquals("null")) {
                         yellowTower.get(i).setImage(image);
                     }
                     else {
