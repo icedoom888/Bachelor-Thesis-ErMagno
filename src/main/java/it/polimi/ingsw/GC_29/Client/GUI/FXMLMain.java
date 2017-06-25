@@ -8,6 +8,8 @@ import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginChange;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Controllers.PlayerState;
+import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
 import it.polimi.ingsw.GC_29.Server.Observer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -38,6 +40,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
     private Stage stage;
     private Stage loginStage;
     private Stage gameboardStage;
+    private PlayerState currentPlayerState;
 
     private GameBoardController gameBoardController;
 
@@ -222,6 +225,11 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
                             chooseBonusTile(bonusTileChange.getBonusTiles());
                         }
 
+                        @Override
+                        public void onReadingChange(PlayerStateChange playerStateChange) {
+                            setGuiOnState(playerStateChange.getNewPlayerState());
+                        }
+
 
                     });
                     break;
@@ -238,6 +246,8 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
 
     }
+
+
 
 
     private void setLogin() {
@@ -283,8 +293,12 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
         AnchorPane gameboardRoot = null;
 
+
         try {
+
             gameboardRoot = loader.load();
+            gameBoardController = loader.getController();
+            gameBoardController.setChooseDistribution(chooseDistribution);
 
             //aggiunta bonusTile
             FXMLLoader loaderBonus = new FXMLLoader(getClass().getResource("/FXML/BonusTile.fxml"));
@@ -319,12 +333,12 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
             AnchorPane.setBottomAnchor(childPray,300.0);
             AnchorPane.setLeftAnchor(childPray,300.0);
             childPray.setVisible(false);
-            gameBoardController.setChooseCostController(loaderPray.getController());
+            gameBoardController.setPrayController(loaderPray.getController());
             gameBoardController.setPrayPane(childPray);
 
             //Aggiunta YourTurn
             FXMLLoader loaderTurn = new FXMLLoader(getClass().getResource("/FXML/Pray.fxml"));
-            AnchorPane childTurn = loaderPray.load();
+            AnchorPane childTurn = loaderTurn.load();
             gameboardRoot.getChildren().add(childTurn);
             AnchorPane.setBottomAnchor(childTurn,300.0);
             AnchorPane.setLeftAnchor(childTurn,300.0);
@@ -344,8 +358,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
         gameboardStage.setTitle("Lorenzo il Magnifico");
         gameboardStage.show();
 
-        gameBoardController = loader.getController();
-        gameBoardController.setChooseDistribution(chooseDistribution);
+
 
     }
 
@@ -365,6 +378,19 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
 
 
 
+    private void setGuiOnState(PlayerState newPlayerState) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                gameBoardController.setState(newPlayerState);
+
+
+            }
+        });
+
+    }
 
     private void chooseBonusTile(Map<Integer, String> bonusTiles) {
 

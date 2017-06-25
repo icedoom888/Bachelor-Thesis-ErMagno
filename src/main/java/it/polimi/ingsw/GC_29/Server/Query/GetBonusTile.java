@@ -17,7 +17,7 @@ public class GetBonusTile extends Query<Map<Integer,String>> {
 
         Map<Integer, String> bonusTileMap = new HashMap<>();
 
-        List<BonusTile> bonusTileList =model.getBonusTileList();
+        List<BonusTile> bonusTileList = model.getBonusTileList();
 
         for (BonusTile bonusTile : bonusTileList) {
 

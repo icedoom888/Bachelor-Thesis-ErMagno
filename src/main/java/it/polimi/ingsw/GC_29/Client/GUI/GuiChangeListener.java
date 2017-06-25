@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Client.GUI;
 
 
+import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
+
 /**
  * Created by Lorenzotara on 24/06/17.
  */
@@ -16,4 +18,5 @@ public interface GuiChangeListener {
     void onReadingChange(PossibleCostsChange possibleCostsChange);
     void onReadingChange(CouncilPrivilegeChange councilPrivilegeChange);
     void onReadingChange(BonusTileChange bonusTileChange);
+    void onReadingChange(PlayerStateChange playerStateChange);
 }

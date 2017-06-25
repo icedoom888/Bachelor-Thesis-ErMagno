@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -915,5 +916,15 @@ public class GameBoardController {
 
     public void setChooseDistribution(ChooseDistribution chooseDistribution) {
         this.sender = chooseDistribution;
+    }
+
+    public void setState(PlayerState newPlayerState) {
+
+        switch (newPlayerState) {
+
+
+
+        }
+
     }
 }

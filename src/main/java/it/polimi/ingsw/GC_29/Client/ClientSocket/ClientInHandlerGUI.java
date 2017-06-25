@@ -127,7 +127,11 @@ public class ClientInHandlerGUI implements Runnable {
         commonView.getInputChecker().setCurrentPlayerState(currentPlayerState);
 
         try {
+
             commonOutSocket.handlePlayerState(currentPlayerState);
+
+            firePlayerState(currentPlayerState);
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -273,6 +277,14 @@ public class ClientInHandlerGUI implements Runnable {
         }
     }
 
+    private void firePlayerState(PlayerState currentPlayerState) {
+
+        for (GuiChangeListener listener : listeners) {
+            listener.onReadingChange(new PlayerStateChange(currentPlayerState));
+        }
+
+    }
+
 
     private void fireValidActions() {
 
@@ -288,7 +300,7 @@ public class ClientInHandlerGUI implements Runnable {
         }
     }
 
-    private void fireTowerCards(List<String> developmentCards, String string) {
+    private void fireCardsCards(List<String> developmentCards, String string) {
 
         for (GuiChangeListener listener : listeners) {
             listener.onReadingChange(new CardsChange(developmentCards, string));
@@ -404,8 +416,11 @@ public class ClientInHandlerGUI implements Runnable {
     private void getCardsGUI(String string) {
 
         try {
+
             List<String> developmentCards = (List<String>)socketIn.readObject();
-            fireTowerCards(developmentCards, string);
+
+            fireCardsCards(developmentCards, string);
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -419,6 +434,7 @@ public class ClientInHandlerGUI implements Runnable {
     private void getFamilyPawnsAvailabilityGUI() {
 
         try {
+
             Map<FamilyPawn, Boolean> familyPawns = (Map<FamilyPawn, Boolean>)socketIn.readObject();
             HashMap<FamilyPawnType, Boolean> familyPawnsAvailability = new HashMap<>();
 
