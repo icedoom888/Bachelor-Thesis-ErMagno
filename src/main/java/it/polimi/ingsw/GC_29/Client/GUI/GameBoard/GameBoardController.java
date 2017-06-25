@@ -1,21 +1,21 @@
 package it.polimi.ingsw.GC_29.Client.GUI.GameBoard;
 
 import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
+import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
+import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientOutHandlerGUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by AlbertoPennino on 21/06/2017.
@@ -50,6 +50,26 @@ public class GameBoardController {
     //ChooseDistribution, classe che serve per parlare con il server
     private ChooseDistribution sender;
 
+    //Controller delle schermate interne
+    private BonusTileController bonusTileController;
+    private ChooseCostController chooseCostController;
+    //private ChooseEffectController chooseEffectController;
+    //private ChoosePrivilegeController choosePrivilegeController;
+    private PrayController prayController;
+    //private WorkersController workersController;
+
+    //Pane delle schermate interne utilizzati per hidarle
+    private HBox bonusTilePane;
+    private AnchorPane chooseCostPane;
+    private AnchorPane chooseEffectPane;
+    private AnchorPane choosePrivilegePane;
+    private AnchorPane prayPane;
+    private AnchorPane yourTurnPane;
+    private AnchorPane chooseWorkersPane;
+
+
+
+
 
     //Pulsanti per scegliere le pedine
     @FXML
@@ -57,7 +77,7 @@ public class GameBoardController {
     @FXML
     private ImageView orangePawn;
     @FXML
-    private ImageView balckPawn;
+    private ImageView blackPawn;
     @FXML
     private ImageView neutralPawn;
 
@@ -301,7 +321,6 @@ public class GameBoardController {
     private ImageView market4Cover;
 
 
-
     @FXML
     public void initialize() {
 
@@ -512,7 +531,7 @@ public class GameBoardController {
      * @param event
      */
     public void handlePawnPicked(MouseEvent event) {
-        if (event.getSource() == balckPawn) {
+        if (event.getSource() == blackPawn) {
             sender.sendInput("use family pawn black");
         }
         if (event.getSource() == whitePawn) {
@@ -622,7 +641,7 @@ public class GameBoardController {
                     Integer value = pawn.getActualValue();
                     blackValue.setText(value.toString());
                 } else {
-                    balckPawn.setDisable(true);
+                    blackPawn.setDisable(true);
                     blackValue.setText("");
                 }
             }
@@ -640,10 +659,41 @@ public class GameBoardController {
     }
 
     private void setNotAvailable(FamilyPawnType type) {
-
+        switch (type){
+            case BLACK:
+                blackValue.setVisible(false);
+                blackPawn.setVisible(false);
+                break;
+            case ORANGE:
+                orangeValue.setVisible(false);
+                orangePawn.setVisible(false);
+                break;
+            case WHITE:
+                whiteValue.setVisible(false);
+                whitePawn.setVisible(false);
+            case NEUTRAL:
+                neutralValue.setVisible(false);
+                neutralPawn.setVisible(false);
+        }
     }
 
     private void setAvailable(FamilyPawnType type) {
+        switch (type){
+            case BLACK:
+                blackValue.setVisible(true);
+                blackPawn.setVisible(true);
+                break;
+            case ORANGE:
+                orangeValue.setVisible(true);
+                orangePawn.setVisible(true);
+                break;
+            case WHITE:
+                whiteValue.setVisible(true);
+                whitePawn.setVisible(true);
+            case NEUTRAL:
+                neutralValue.setVisible(true);
+                neutralPawn.setVisible(true);
+        }
     }
 
     /**
@@ -746,7 +796,9 @@ public class GameBoardController {
     /**
      * Quando è chiamata fissa l'immagine della BonusTile che riceve
      */
-    public void updateBonusTile(BonusTile bonusTile){}
+    public void updateBonusTile(String bonusTileIndex){
+
+    }
 
     /**
      * Quando è chiamata modifica le immagini delle carte sulle torri
@@ -787,9 +839,12 @@ public class GameBoardController {
 
     public void chooseCost(Map<Integer, String> possibleCosts) {
 
-        //TODO: mostrare la schermata dei costi possibili
-        //TODO: esattamente come chooseWorkers eccetto che è una stringa sola e non un arrayList
-
+        chooseCostPane.setVisible(true);
+        String newCosts="";
+        for (Integer index:possibleCosts.keySet()) {
+            newCosts = newCosts + index.toString() + ") " + possibleCosts.get(index) + "\n";
+        }
+        chooseCostController.updateShownCosts(newCosts);
     }
 
     public void choosePrivileges(List<Integer> councilPrivileges) {
@@ -798,19 +853,65 @@ public class GameBoardController {
     }
 
     public void chooseBonusTile(Map<Integer, String> bonusTiles) {
+        bonusTilePane.setVisible(true);
+    }
 
-        //TODO: mostra la schermata delle bonus Tile
+    public void yourTurn() throws InterruptedException {
+        try {
+            yourTurnPane.setVisible(true);
+            Thread.sleep(5000);
+            yourTurnPane.setVisible(false);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
+    public void pray(String excommunication){
+        prayPane.setVisible(true);
+        prayController.updatePray(excommunication);
+    }
 
 
+    public void setBonusTilePane(HBox bonusTilePane) {
+        this.bonusTilePane = bonusTilePane;
+    }
 
+    public void setChooseCostPane(AnchorPane chooseCostPane) {
+        this.chooseCostPane = chooseCostPane;
+    }
 
+    public void setChooseEffectPane(AnchorPane chooseEffectPane) {
+        this.chooseEffectPane = chooseEffectPane;
+    }
 
+    public void setChoosePrivilegePane(AnchorPane choosePrivilegePane) {
+        this.choosePrivilegePane = choosePrivilegePane;
+    }
 
+    public void setPrayPane(AnchorPane prayPane) {
+        this.prayPane = prayPane;
+    }
 
+    public void setYourTurnPane(AnchorPane yourTurnPane) {
+        this.yourTurnPane = yourTurnPane;
+    }
 
+    public void setChooseWorkersPane(AnchorPane chooseWorkersPane) {
+        this.chooseWorkersPane = chooseWorkersPane;
+    }
+
+    public void setBonusTileController(BonusTileController bonusTileController) {
+        this.bonusTileController = bonusTileController;
+    }
+
+    public void setChooseCostController(ChooseCostController chooseCostController) {
+        this.chooseCostController = chooseCostController;
+    }
+
+    public void setPrayController(PrayController prayController) {
+        this.prayController = prayController;
+    }
 
     public void setChooseDistribution(ChooseDistribution chooseDistribution) {
         this.sender = chooseDistribution;

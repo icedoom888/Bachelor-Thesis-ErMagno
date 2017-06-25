@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.GUI.BonusTile;
 
+import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientOutHandlerGUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import javafx.stage.Stage;
  */
 public class BonusTileController {
 
+    private ChooseDistribution sender;
+
     @FXML private Button button1;
     @FXML private Button button2;
     @FXML private Button button3;
@@ -23,7 +26,7 @@ public class BonusTileController {
 
         String string = executeButton();
         ClientOutHandlerGUI.sendInput(string+"0");
-        endExecute(event);
+        //endExecute(event);
 
     }
 
@@ -31,14 +34,14 @@ public class BonusTileController {
 
         String string = executeButton();
         ClientOutHandlerGUI.sendInput(string+"1");
-        endExecute(event);
+        //endExecute(event);
     }
 
     public void executeButton3(ActionEvent event) {
 
         String string = executeButton();
         ClientOutHandlerGUI.sendInput(string+"2");
-        endExecute(event);
+        //endExecute(event);
 
     }
 
@@ -46,14 +49,14 @@ public class BonusTileController {
 
         String string = executeButton();
         ClientOutHandlerGUI.sendInput(string+"3");
-        endExecute(event);
+        //endExecute(event);
 
     }
     public void executeButton5(ActionEvent event) {
 
         String string = executeButton();
         ClientOutHandlerGUI.sendInput(string+"4");
-        endExecute(event);
+        //endExecute(event);
 
     }
 
@@ -61,10 +64,15 @@ public class BonusTileController {
         return "bonus tile ";
     }
 
+    /*
     private void endExecute(ActionEvent event) {
         Node source = (Node) event.getSource();
         Stage stage  = (Stage) source.getScene().getWindow();
         stage.close();
     }
+    */
 
+    public void setSender(ChooseDistribution sender) {
+        this.sender = sender;
+    }
 }

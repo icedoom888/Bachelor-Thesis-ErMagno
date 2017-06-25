@@ -65,11 +65,11 @@ public class WorkActionTest {
         testGameSetup.init();
 
         player1.getActualGoodSet().addGoodSet(new GoodSet(0,0,0,10,0,0,0));
-        WorkAction action1 = new WorkAction(ZoneType.HARVEST,fieldSelected2);
-        WorkAction action2 = new WorkAction(ZoneType.HARVEST,fieldSelected1);
-        WorkAction action3 = new WorkAction(ZoneType.HARVEST,fieldSelected1);
-        WorkAction action4 = new WorkAction(ZoneType.HARVEST,fieldSelected2);
-        WorkAction action5 = new WorkAction(ZoneType.HARVEST,fieldSelected2);
+        ChooseEffect action1 = new ChooseEffect(ZoneType.HARVEST,fieldSelected2);
+        ChooseEffect action2 = new ChooseEffect(ZoneType.HARVEST,fieldSelected1);
+        ChooseEffect action3 = new ChooseEffect(ZoneType.HARVEST,fieldSelected1);
+        ChooseEffect action4 = new ChooseEffect(ZoneType.HARVEST,fieldSelected2);
+        ChooseEffect action5 = new ChooseEffect(ZoneType.HARVEST,fieldSelected2);
 
         action1.setFamiliyPawn(selectedPawn1);
         action1.setPlayer(player1);
@@ -126,7 +126,7 @@ public class WorkActionTest {
         player1.getActualGoodSet().addGoodSet(new GoodSet(0,0,0,2,0,0,0));
         System.out.println(player1.getActualGoodSet());
 
-        WorkAction action = new WorkAction(ZoneType.HARVEST,fieldSelected1);
+        ChooseEffect action = new ChooseEffect(ZoneType.HARVEST,fieldSelected1);
         action.setFamiliyPawn(selectedPawn1);
         action.setPlayer(player1);
 
@@ -163,7 +163,7 @@ public class WorkActionTest {
         player1.getActualGoodSet().addGoodSet(new GoodSet(0,0,0,0,0,0,0));
         System.out.println(player1.getActualGoodSet());
 
-        WorkAction action = new WorkAction(ZoneType.PRODUCTION,fieldSelected1);
+        ChooseEffect action = new ChooseEffect(ZoneType.PRODUCTION,fieldSelected1);
         action.setFamiliyPawn(selectedPawn1);
         action.setPlayer(player1);
 

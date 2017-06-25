@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -37,6 +38,7 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
     private Stage stage;
     private Stage loginStage;
     private Stage gameboardStage;
+
     private GameBoardController gameBoardController;
 
     @Override
@@ -262,12 +264,63 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
     private void setGameboard() {
 
         System.out.println("Gameboard Started");
+        ChooseDistribution chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
+        chooseDistribution.setCommonOutSocket(clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket());
+
         gameboardStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
         AnchorPane gameboardRoot = null;
 
         try {
             gameboardRoot = loader.load();
+
+            //aggiunta bonusTile
+            FXMLLoader loaderBonus = new FXMLLoader(getClass().getResource("/FXML/BonusTile.fxml"));
+            HBox childBonus = loaderBonus.load();
+            gameboardRoot.getChildren().add(childBonus);
+            AnchorPane.setBottomAnchor(childBonus,200.0);
+            AnchorPane.setLeftAnchor(childBonus,200.0);
+            childBonus.setVisible(false);
+            gameBoardController.setBonusTileController(loaderBonus.getController());
+            gameBoardController.setBonusTilePane(childBonus);
+
+            //aggiunta ChooseCost
+            FXMLLoader loaderCost = new FXMLLoader(getClass().getResource("/FXML/ChooseCost.fxml"));
+            AnchorPane childCost = loaderCost.load();
+            gameboardRoot.getChildren().add(childCost);
+            AnchorPane.setBottomAnchor(childCost,300.0);
+            AnchorPane.setLeftAnchor(childCost,300.0);
+            childCost.setVisible(false);
+            gameBoardController.setChooseCostController(loaderCost.getController());
+            gameBoardController.setChooseCostPane(childCost);
+
+            //aggiunta ChooseEffect
+
+            //Aggiunta ChooseWorkers
+
+            //Aggiunta ChoosePrivilege
+
+            //Aggiunta Pray
+            FXMLLoader loaderPray = new FXMLLoader(getClass().getResource("/FXML/Pray.fxml"));
+            AnchorPane childPray = loaderPray.load();
+            gameboardRoot.getChildren().add(childPray);
+            AnchorPane.setBottomAnchor(childPray,300.0);
+            AnchorPane.setLeftAnchor(childPray,300.0);
+            childPray.setVisible(false);
+            gameBoardController.setChooseCostController(loaderPray.getController());
+            gameBoardController.setPrayPane(childPray);
+
+            //Aggiunta YourTurn
+            FXMLLoader loaderTurn = new FXMLLoader(getClass().getResource("/FXML/Pray.fxml"));
+            AnchorPane childTurn = loaderPray.load();
+            gameboardRoot.getChildren().add(childTurn);
+            AnchorPane.setBottomAnchor(childTurn,300.0);
+            AnchorPane.setLeftAnchor(childTurn,300.0);
+            childTurn.setVisible(false);
+            gameBoardController.setYourTurnPane(childTurn);
+            gameBoardController.setYourTurnPane(childTurn);
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -280,8 +333,6 @@ public class FXMLMain extends Application implements Observer<GUIChange> {
         gameboardStage.show();
 
         gameBoardController = loader.getController();
-        ChooseDistribution chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
-        chooseDistribution.setCommonOutSocket(clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket());
         gameBoardController.setChooseDistribution(chooseDistribution);
 
     }

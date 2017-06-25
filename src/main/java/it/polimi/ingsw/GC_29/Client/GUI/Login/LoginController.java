@@ -96,7 +96,7 @@ public class LoginController extends Observable<GUIChange> implements Controller
         this.connection = connection;
     }
 
-    public Boolean getConnected() {
+    public boolean getConnected() {
         return connected;
     }
 
