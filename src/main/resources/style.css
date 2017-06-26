@@ -32,3 +32,11 @@
      -fx-background-repeat:   no-repeat;
      -fx-background-position: center center;
  }
+
+ .HboxWhite{
+     -fx-background-color: #FFFFFF;
+ }
+
+ .AnchorWhite{
+     -fx-background-color: #FFFFFF;
+ }

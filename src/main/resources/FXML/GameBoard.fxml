@@ -21,7 +21,7 @@
                   <URL value="@../style.css" />
                </stylesheets>
                <children>
-                  <AnchorPane prefHeight="738.0" prefWidth="550.0">
+                  <AnchorPane prefHeight="738.0" prefWidth="550.0" VBox.vgrow="NEVER">
                      <children>
                         <VBox prefHeight="372.0" prefWidth="95.0" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="45.0">
                            <children>
@@ -306,7 +306,7 @@
                               </AnchorPane>
                            </children>
                         </VBox>
-                        <GridPane fx:id="councilPalace" prefHeight="45.0" prefWidth="129.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="420.0">
+                        <GridPane fx:id="councilPalace" onMouseClicked="#handleActionChosenImageView" prefHeight="45.0" prefWidth="129.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="420.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -320,18 +320,18 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <ImageView fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <ImageView fx:id="grid0" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="grid1" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                              <ImageView fx:id="grid2" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                              <ImageView fx:id="grid3" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                              <ImageView fx:id="grid4" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                              <ImageView fx:id="grid5" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" />
+                              <ImageView fx:id="grid6" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+                              <ImageView fx:id="grid7" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ImageView fx:id="grid8" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <ImageView fx:id="grid9" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <ImageView fx:id="grid10" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <ImageView fx:id="grid11" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                         <ImageView fx:id="councilPalaceCover" fitHeight="45.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="420.0">
@@ -342,28 +342,28 @@
                         <ImageView fitHeight="73.0" fitWidth="42.0" layoutX="114.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="114.0" AnchorPane.topAnchor="450.0" />
                         <ImageView fitHeight="73.0" fitWidth="33.0" layoutX="124.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="156.0" AnchorPane.topAnchor="450.0" />
                         <ImageView fitHeight="73.0" fitWidth="42.0" layoutX="124.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="189.0" AnchorPane.topAnchor="450.0" />
-                        <ImageView fx:id="production1" fitHeight="25.0" fitWidth="25.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="62.5" AnchorPane.topAnchor="605.0" />
-                        <ImageView fx:id="harvest1" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="62.5" AnchorPane.topAnchor="662.5" />
-                        <HBox fx:id="production2" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="605.0">
+                        <ImageView fx:id="production1" fitHeight="25.0" fitWidth="25.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="62.5" AnchorPane.topAnchor="605.0" />
+                        <ImageView fx:id="harvest1" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="62.5" AnchorPane.topAnchor="662.5" />
+                        <HBox fx:id="production2" onMouseClicked="#handleActionChosenImageView" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="605.0">
                            <children>
-                              <ImageView fx:id="greenTowerAction1111" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="greenTowerAction1112" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="greenTowerAction1113" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="greenTowerAction1114" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="production2_0" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="production2_1" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="production2_2" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="production2_3" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </HBox>
-                        <HBox fx:id="harvest2" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="662.5">
+                        <HBox fx:id="harvest2" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="662.5">
                            <children>
-                              <ImageView fx:id="greenTowerAction11111" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="greenTowerAction11121" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="greenTowerAction11131" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="greenTowerAction11141" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="harvest2_0" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="harvest2_1" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="harvest2_2" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="harvest2_3" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </HBox>
-                        <ImageView fx:id="market1" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="297.5" AnchorPane.topAnchor="595.0" />
-                        <ImageView fx:id="market2" fitHeight="25.0" fitWidth="25.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="342.5" AnchorPane.topAnchor="595.0" />
-                        <ImageView fx:id="market3" fitHeight="25.0" fitWidth="25.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="610.0" />
-                        <ImageView fx:id="market4" fitHeight="25.0" fitWidth="25.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="417.5" AnchorPane.topAnchor="640.0" />
+                        <ImageView fx:id="market1" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="297.5" AnchorPane.topAnchor="595.0" />
+                        <ImageView fx:id="market2" fitHeight="25.0" fitWidth="25.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="342.5" AnchorPane.topAnchor="595.0" />
+                        <ImageView fx:id="market3" fitHeight="25.0" fitWidth="25.0" layoutX="40.0" layoutY="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="610.0" />
+                        <ImageView fx:id="market4" fitHeight="25.0" fitWidth="25.0" layoutX="50.0" layoutY="50.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="417.5" AnchorPane.topAnchor="640.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="667.5">
                            <font>
                               <Font size="27.0" />
@@ -499,6 +499,132 @@
                                           </VBox>
                                     </content>
                                   </Tab>
+                                    <Tab text="Tracks">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <GridPane prefHeight="227.0" prefWidth="493.0">
+                                                  <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="121.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="130.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.0" minWidth="10.0" prefWidth="155.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player" textAlignment="CENTER" GridPane.halignment="CENTER">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Victory Points" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Military Points" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Faith Points" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fill="#09bc12" strokeType="OUTSIDE" strokeWidth="0.0" text="Green" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fill="#0d4fdd" strokeType="OUTSIDE" strokeWidth="0.0" text="Blue" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fill="#ee0808" strokeType="OUTSIDE" strokeWidth="0.0" text="Red" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fill="#eedb0c" strokeType="OUTSIDE" strokeWidth="0.0" text="Yellow" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </Tab>
                                 </tabs>
                               </TabPane>
                               <HBox alignment="CENTER_LEFT" prefHeight="98.0" prefWidth="493.0" spacing="37.0" styleClass="Hbox">
@@ -638,7 +764,7 @@
                                        <image>
                                           <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/whiteCircle.png" />
                                        </image></ImageView>
-                                    <Text fx:id="orangeValue" fill="#f8f8f6" strokeType="OUTSIDE" strokeWidth="0.0">
+                                    <Text fx:id="whiteValue" fill="#f8f8f6" strokeType="OUTSIDE" strokeWidth="0.0">
                                        <font>
                                           <Font size="27.0" />
                                        </font>
@@ -651,7 +777,7 @@
                                        <image>
                                           <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/orangeCircle.png" />
                                        </image></ImageView>
-                                    <Text fx:id="whiteValue" fill="#f8f8f6" strokeType="OUTSIDE" strokeWidth="0.0">
+                                    <Text fx:id="orangeValue" fill="#f8f8f6" strokeType="OUTSIDE" strokeWidth="0.0">
                                        <font>
                                           <Font size="27.0" />
                                        </font>

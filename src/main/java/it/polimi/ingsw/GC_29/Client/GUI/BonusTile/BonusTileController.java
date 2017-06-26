@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.util.Map;
@@ -90,14 +91,35 @@ public class BonusTileController {
     }
 
     public void setBonusTiles(Map<Integer, String> bonusTiles) {
+        for (int i=0;i<5;i++){
+            if (!bonusTiles.containsKey(i)){
+                switch (i){
+                    case (0):
+                        button1.setDisable(true);
+                        break;
+                    case (1):
+                        button2.setDisable(true);
+                        break;
+                    case (2):
+                        button3.setDisable(true);
+                        break;
+                    case (3):
+                        button4.setDisable(true);
+                        break;
+                    case (4):
+                        button5.setDisable(true);
+                        break;
+                    default:
+                        break;
 
-        //TODO: impl
+                }
+            }
 
-
-
+        }
     }
 
     public void setGameBoardController(GameBoardController gameBoardController) {
         this.gameBoardController = gameBoardController;
     }
+
 }

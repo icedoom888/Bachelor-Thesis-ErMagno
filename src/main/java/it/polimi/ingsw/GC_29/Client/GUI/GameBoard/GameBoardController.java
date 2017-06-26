@@ -24,15 +24,26 @@ import java.util.*;
  */
 public class GameBoardController {
     //mappa carte per immagini
-    HashMap<String,String> cardMap = new HashMap<>();
+    private HashMap<String,String> cardMap = new HashMap<>();
 
     //mappa bonustiles per immagini
-    private HashMap<Integer,String> bonusTilesMap = new HashMap<>();
+    private HashMap<String,String> bonusTilesMap = new HashMap<>();
 
     //mappa pedine per immagini
-    HashMap<PlayerColor,HashMap<FamilyPawnType,String>> pawnsImagesMap = new HashMap<>();
+    private HashMap<FamilyPawnType,String> bluePawnsImagesMap = new HashMap<>();
+    private HashMap<FamilyPawnType,String> greenPawnsImagesMap = new HashMap<>();
+    private HashMap<FamilyPawnType,String> redPawnsImagesMap = new HashMap<>();
+    private HashMap<FamilyPawnType,String> yellowPawnsImagesMap = new HashMap<>();
 
     //mappa spazi pedine delle Box
+    private HashMap<Integer,ImageView> productionBox = new HashMap<>();
+    private int productionBoxFreeSlot = 0;
+    private HashMap<Integer,ImageView> harvestBox = new HashMap<>();
+    private int harvestBoxFreeSlot = 0;
+
+    //mappa pedine della grid
+    private HashMap<Integer,ImageView> gridMap = new HashMap<>();
+    private int gridFreeSlot = 0;
 
 
     private HashMap<Integer, ImageView> personalGreenCards = new HashMap<>();
@@ -89,6 +100,51 @@ public class GameBoardController {
     private AnchorPane yourTurnPane;
     private AnchorPane chooseWorkersPane;
     private AnchorPane throwDicesPane;
+
+    @FXML
+    private ImageView grid0;
+    @FXML
+    private ImageView grid1;
+    @FXML
+    private ImageView grid2;
+    @FXML
+    private ImageView grid3;
+    @FXML
+    private ImageView grid4;
+    @FXML
+    private ImageView grid5;
+    @FXML
+    private ImageView grid6;
+    @FXML
+    private ImageView grid7;
+    @FXML
+    private ImageView grid8;
+    @FXML
+    private ImageView grid9;
+    @FXML
+    private ImageView grid10;
+    @FXML
+    private ImageView grid11;
+
+
+    @FXML
+    private ImageView production2_0;
+    @FXML
+    private ImageView production2_1;
+    @FXML
+    private ImageView production2_2;
+    @FXML
+    private ImageView production2_3;
+
+    @FXML
+    private ImageView harvest2_0;
+    @FXML
+    private ImageView harvest2_1;
+    @FXML
+    private ImageView harvest2_2;
+    @FXML
+    private ImageView harvest2_3;
+
 
 
     @FXML
@@ -355,11 +411,57 @@ public class GameBoardController {
     @FXML
     public void initialize() {
 
-        bonusTilesMap.put(1,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_1.png");
-        bonusTilesMap.put(2,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png;");
-        bonusTilesMap.put(3,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png;");
-        bonusTilesMap.put(4,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png;");
-        bonusTilesMap.put(5,"@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png;");
+        gridMap.put(0,grid0);
+        gridMap.put(1,grid1);
+        gridMap.put(2,grid2);
+        gridMap.put(3,grid3);
+        gridMap.put(4,grid4);
+        gridMap.put(5,grid5);
+        gridMap.put(6,grid6);
+        gridMap.put(7,grid7);
+        gridMap.put(8,grid8);
+        gridMap.put(9,grid9);
+        gridMap.put(10,grid10);
+        gridMap.put(11,grid11);
+
+
+
+        productionBox.put(0,production2_0);
+        productionBox.put(1,production2_1);
+        productionBox.put(2,production2_2);
+        productionBox.put(3,production2_3);
+
+        harvestBox.put(0,harvest2_0);
+        harvestBox.put(1,harvest2_1);
+        harvestBox.put(2,harvest2_2);
+        harvestBox.put(3,harvest2_3);
+
+        bluePawnsImagesMap.put(FamilyPawnType.BLACK,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/blueBlackPawn.png");
+        bluePawnsImagesMap.put(FamilyPawnType.NEUTRAL,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/blueNeutralPawn.png");
+        bluePawnsImagesMap.put(FamilyPawnType.ORANGE,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/blueOrangePawn.png");
+        bluePawnsImagesMap.put(FamilyPawnType.WHITE,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/blueWhitePawn.png");
+
+        greenPawnsImagesMap.put(FamilyPawnType.BLACK,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/greenBalckPawn.png");
+        greenPawnsImagesMap.put(FamilyPawnType.NEUTRAL,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/greenNeutralPawn.png");
+        greenPawnsImagesMap.put(FamilyPawnType.ORANGE,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/greenOrangePawn.png");
+        greenPawnsImagesMap.put(FamilyPawnType.WHITE,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/greenWhitePawn.png");
+
+        yellowPawnsImagesMap.put(FamilyPawnType.BLACK,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/yellowBlackPawn.png");
+        yellowPawnsImagesMap.put(FamilyPawnType.NEUTRAL,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/yellowNeutralPawn.png");
+        yellowPawnsImagesMap.put(FamilyPawnType.ORANGE,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/yellowOrangePawn.png");
+        yellowPawnsImagesMap.put(FamilyPawnType.WHITE,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/yellowWhitePawn.png");
+
+        redPawnsImagesMap.put(FamilyPawnType.BLACK,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/redBalckPawn.png");
+        redPawnsImagesMap.put(FamilyPawnType.NEUTRAL,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/redNeutralPawn.png");
+        redPawnsImagesMap.put(FamilyPawnType.ORANGE,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/redOrangePawn.png");
+        redPawnsImagesMap.put(FamilyPawnType.WHITE,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/redWhitePawn.png");
+
+
+        bonusTilesMap.put("0","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_1.png");
+        bonusTilesMap.put("1","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png;");
+        bonusTilesMap.put("2","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png;");
+        bonusTilesMap.put("3","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png;");
+        bonusTilesMap.put("4","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png;");
 
 
         cardMap.put("Avamposto Commerciale","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_1.png");
@@ -712,7 +814,21 @@ public class GameBoardController {
     public void updatePawn(FamilyPawn familyPawn, int actionIndex) {
         PlayerColor playerColor = familyPawn.getPlayerColor();
         FamilyPawnType pawnType = familyPawn.getType();
-        Image image = new Image(pawnsImagesMap.get(playerColor).get(pawnType));
+        Image image = null;
+        switch (playerColor){
+            case YELLOW:
+                image = new Image(yellowPawnsImagesMap.get(pawnType));
+                break;
+            case BLUE:
+                image = new Image(bluePawnsImagesMap.get(pawnType));
+                break;
+            case GREEN:
+                image = new Image(greenPawnsImagesMap.get(pawnType));
+                break;
+            case RED:
+                image = new Image(redPawnsImagesMap.get(pawnType));
+                break;
+        }
         if (actionIndex==20){
             updatePawnOnGrid(image,actionIndex);
         }
@@ -729,10 +845,34 @@ public class GameBoardController {
     }
 
     private void updatePawnOnBox(Image image, int actionIndex) {
-
+        if (actionIndex==22){
+            harvestBox.get(harvestBoxFreeSlot).setImage(image);
+            harvestBoxFreeSlot++;
+        }
+        else if (actionIndex==24){
+            productionBox.get(productionBoxFreeSlot).setImage(image);
+            productionBoxFreeSlot++;
+        }
     }
 
     private void updatePawnOnGrid(Image image, int actionIndex) {
+        gridMap.get(gridFreeSlot).setImage(image);
+        gridFreeSlot++;
+    }
+
+    private void removeAllPawns(){
+        for (Integer integer : actionButtons.keySet()) {
+            Image image = null;
+            actionButtons.get(integer).setImage(image);
+        }
+        for (Integer integer : harvestBox.keySet()){
+            Image image = null;
+            harvestBox.get(integer).setImage(image);
+        }
+        for (Integer integer : productionBox.keySet()){
+            Image image = null;
+            productionBox.get(integer).setImage(image);
+        }
     }
 
 
@@ -744,7 +884,6 @@ public class GameBoardController {
     public void activatePawns(Map<FamilyPawn,Boolean> availability){
 
         for (FamilyPawn pawn: availability.keySet()) {
-            FamilyPawnType familyPawnType = pawn.getType();
 
             if (availability.get(pawn)) {
                 setAvailable(pawn);
@@ -787,25 +926,27 @@ public class GameBoardController {
                 blackPawn.setDisable(false);
                 blackValue.setText(value.toString());
                 break;
+
             case ORANGE:
                 orangeValue.setVisible(true);
                 orangePawn.setVisible(true);
                 orangePawn.setDisable(false);
                 orangeValue.setText(value.toString());
-
                 break;
+
             case WHITE:
                 whiteValue.setVisible(true);
                 whitePawn.setVisible(true);
                 whitePawn.setDisable(false);
                 whiteValue.setText(value.toString());
+                break;
 
             case NEUTRAL:
                 neutralValue.setVisible(true);
                 neutralPawn.setVisible(true);
                 neutralPawn.setDisable(false);
                 neutralValue.setText(value.toString());
-
+                break;
         }
     }
 
@@ -1005,12 +1146,8 @@ public class GameBoardController {
     }
 
     public void chooseBonusTile(Map<Integer, String> bonusTiles) {
-
-        //TODO: rifare con logica di chiave sempre uguale
-
-        bonusTileController.setBonusTiles(bonusTiles);
-
         bonusTilePane.setVisible(true);
+        bonusTileController.setBonusTiles(bonusTiles);
         //bonusTilePane.setDisable(false);
     }
 
