@@ -26,6 +26,7 @@ public class ServerSocketView extends View implements Runnable {
     private ObjectInputStream socketIn;
     private ObjectOutputStream socketOut;
     private GameStatus model;
+    private static final Object socketLock = new Object();
 
 
     public ServerSocketView(PlayerSocket playerSocket, GameStatus model) throws IOException {
@@ -45,6 +46,7 @@ public class ServerSocketView extends View implements Runnable {
         socketOut.flush();
         socketOut.writeObject(o);
         socketOut.flush();
+
     }
 
     @Override
@@ -59,91 +61,91 @@ public class ServerSocketView extends View implements Runnable {
 
         while (b) {
             // await for incoming data from the client
-            try {
+                try {
 
-                Object object = socketIn.readObject();
+                    Object object = socketIn.readObject();
 
-                // Il server riceve una query dal ClientOut
-                if (object instanceof Query) {
-                    handleQuery((Query)object);
-                }
-
-                if (object instanceof String) {
-                    String string = (String)object;
-
-                    switch (string) {
-
-                        case "bonus tile":
-                            int bonusTile = (int)socketIn.readObject();
-                            notifyObserver(new BonusTileChosen(bonusTile));
-                            break;
-
-                        case "throw dices":
-                            notifyObserver(new ThrowDices());
-                            break;
-
-                        case "family pawn chosen":
-                            FamilyPawnType familyPawnType = (FamilyPawnType)socketIn.readObject();
-                            notifyObserver(new UsePawnChosen(familyPawnType));
-                            break;
-
-                        case "skip action":
-                            notifyObserver(new SkipAction());
-                            break;
-
-                        case "end turn":
-                            notifyObserver(new EndTurn());
-                            break;
-
-                        case "execute action":
-                            int actionIndex = (int)socketIn.readObject();
-                            notifyObserver(new ExecuteAction(actionIndex));
-                            break;
-
-                        case "number of workers":
-                            int workers = (int)socketIn.readObject();
-                            notifyObserver(new ActivateCards(workers));
-                            break;
-
-                        case "pay to obtain cards chosen":
-                            Map<String, Integer> activatedCardMap = (Map<String, Integer>)socketIn.readObject();
-                            notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
-                            break;
-
-                        case "cost chosen":
-                            int costChosen = (int)socketIn.readObject();
-                            notifyObserver(new PayCard(costChosen));
-                            break;
-
-                        case "council privileges chosen":
-                            List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
-                            notifyObserver(new PrivilegeChosen(councilPrivileges));
-                            break;
-
-                        case "pray":
-                            PlayerColor playerColor = (PlayerColor)socketIn.readObject();
-                            notifyObserver(new Pray(true, playerColor));
-                            break;
-
-                        case "do not pray":
-                            playerColor = (PlayerColor)socketIn.readObject();
-                            notifyObserver(new Pray(false, playerColor));
-                            break;
-
-
+                    // Il server riceve una query dal ClientOut
+                    if (object instanceof Query) {
+                        handleQuery((Query)object);
                     }
-                }
 
-            } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
+                    if (object instanceof String) {
+                        String string = (String)object;
+
+                        switch (string) {
+
+                            case "bonus tile":
+                                int bonusTile = (int)socketIn.readObject();
+                                notifyObserver(new BonusTileChosen(bonusTile));
+                                break;
+
+                            case "throw dices":
+                                notifyObserver(new ThrowDices());
+                                break;
+
+                            case "family pawn chosen":
+                                FamilyPawnType familyPawnType = (FamilyPawnType)socketIn.readObject();
+                                notifyObserver(new UsePawnChosen(familyPawnType));
+                                break;
+
+                            case "skip action":
+                                notifyObserver(new SkipAction());
+                                break;
+
+                            case "end turn":
+                                notifyObserver(new EndTurn());
+                                break;
+
+                            case "execute action":
+                                int actionIndex = (int)socketIn.readObject();
+                                notifyObserver(new ExecuteAction(actionIndex));
+                                break;
+
+                            case "number of workers":
+                                int workers = (int)socketIn.readObject();
+                                notifyObserver(new ActivateCards(workers));
+                                break;
+
+                            case "pay to obtain cards chosen":
+                                Map<String, Integer> activatedCardMap = (Map<String, Integer>)socketIn.readObject();
+                                notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
+                                break;
+
+                            case "cost chosen":
+                                int costChosen = (int)socketIn.readObject();
+                                notifyObserver(new PayCard(costChosen));
+                                break;
+
+                            case "council privileges chosen":
+                                List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
+                                notifyObserver(new PrivilegeChosen(councilPrivileges));
+                                break;
+
+                            case "pray":
+                                PlayerColor playerColor = (PlayerColor)socketIn.readObject();
+                                notifyObserver(new Pray(true, playerColor));
+                                break;
+
+                            case "do not pray":
+                                playerColor = (PlayerColor)socketIn.readObject();
+                                notifyObserver(new Pray(false, playerColor));
+                                break;
+
+
+                        }
+                    }
+
+                } catch (ClassNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
     }
 

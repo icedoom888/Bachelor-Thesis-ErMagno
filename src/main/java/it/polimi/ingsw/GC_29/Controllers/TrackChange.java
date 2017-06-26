@@ -13,10 +13,10 @@ public class TrackChange extends GUIChange {
 
     private PlayerColor playerColor;
     private GoodType goodType;
-    private int numberOfPoints;
+    private Integer numberOfPoints;
 
 
-    public TrackChange(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
+    public TrackChange(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints) {
         this.playerColor = playerColor;
         this.goodType = goodType;
         this.numberOfPoints = numberOfPoints;

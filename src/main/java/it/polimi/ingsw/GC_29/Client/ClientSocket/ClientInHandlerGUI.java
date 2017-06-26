@@ -150,6 +150,9 @@ public class ClientInHandlerGUI implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
+                    System.out.println("DO action: " + input);
+
+
                     if (input.contentEquals("Get Family Pawns Availability")) {
                         getFamilyPawnsAvailabilityGUI();
                     }
@@ -167,7 +170,7 @@ public class ClientInHandlerGUI implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
+                    System.out.println("VALID ACTIONS: " + input);
 
                     if (input.contentEquals("Valid Actions")) {
                         validActionsGUI();
@@ -187,7 +190,7 @@ public class ClientInHandlerGUI implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
+                    System.out.println("Choose workers: " + input);
 
                     if (input.contentEquals("Get Cards For Workers")) {
                         getCardsForWorkersGUI();
@@ -205,7 +208,7 @@ public class ClientInHandlerGUI implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
+                    System.out.println("Pay to obtain: " + input);
 
                     if (input.contentEquals("Get Pay To Obtain Cards")) {
                         getPayToObtainCardsGUI();
@@ -223,7 +226,7 @@ public class ClientInHandlerGUI implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
+                    System.out.println("choose cost: " + input);
 
                     if (input.contentEquals("Get Possible Costs")) {
                         getPossibleCostsGUI();
@@ -241,7 +244,7 @@ public class ClientInHandlerGUI implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
+                    System.out.println("council privilege: " + input);
 
                     if (input.contentEquals("Get Council Privileges")) {
                         getCouncilPrivilegesGUI();
@@ -259,7 +262,7 @@ public class ClientInHandlerGUI implements Runnable {
                 try {
                     String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
+                    System.out.println("Bonus Tiles : " + input);
 
                     if (input.contentEquals("Get Bonus Tile")) {
                         getBonusTilesGUI();

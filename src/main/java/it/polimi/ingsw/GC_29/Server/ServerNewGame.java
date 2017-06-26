@@ -49,6 +49,8 @@ public class ServerNewGame implements Runnable {
 
     private ExecutorService executorService = Executors.newCachedThreadPool();
 
+    private HashMap<ServerSocketView, Player> serverSocketViews = new HashMap<>();
+
 
 
     public ServerNewGame(ClientRemoteInterface client) throws RemoteException {
@@ -155,8 +157,10 @@ public class ServerNewGame implements Runnable {
 
                 player.getActualGoodSet().registerObserver(trackController);
 
-                serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
-                executorService.submit(serverSocketView);
+                //serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
+
+                serverSocketViews.put(serverSocketView, player);
+                //executorService.submit(serverSocketView);
 
             }
 
@@ -207,6 +211,20 @@ public class ServerNewGame implements Runnable {
         System.out.println("Qua arrivi?");
 
         controller.setCardsOnTowers();
+
+        for (ServerSocketView serverSocketView : serverSocketViews.keySet()) {
+
+            try {
+                serverSocketView.notifyObserver(new Initialize(serverSocketViews.get(serverSocketView).getPlayerColor()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            executorService.submit(serverSocketView);
+
+        }
+
+
 
 
         Boolean b = true;
