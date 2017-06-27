@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_29.Client.GUI.GameBoard;
 import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
 import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
+import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeController;
+import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
@@ -41,6 +43,13 @@ public class GameBoardController {
     private HashMap<Integer,ImageView> harvestBox = new HashMap<>();
     private int harvestBoxFreeSlot = 0;
 
+    //mappa testi nelle tracks
+    private HashMap<GoodType,Text> greenPlayerTrack = new HashMap<>();
+    private HashMap<GoodType,Text> bluePlayerTrack = new HashMap<>();
+    private HashMap<GoodType,Text> redPlayerTrack = new HashMap<>();
+    private HashMap<GoodType,Text> yellowPlayerTrack = new HashMap<>();
+
+
     //mappa pedine della grid
     private HashMap<Integer,ImageView> gridMap = new HashMap<>();
     private int gridFreeSlot = 0;
@@ -73,7 +82,7 @@ public class GameBoardController {
     private HashMap<HBox,Integer> boxAction = new HashMap<>();
 
 
-    private HashMap<GoodType, Text> resourceAmount = new HashMap<>();
+    private HashMap<GoodType,Text> resourceAmount = new HashMap<>();
     private HashMap<Integer,ImageView> coverImages = new HashMap<>();
 
     private ArrayList<ImageView> familyPawns;
@@ -87,12 +96,12 @@ public class GameBoardController {
     private BonusTileController bonusTileController;
     private ChooseCostController chooseCostController;
     //private ChooseEffectController chooseEffectController;
-    //private ChoosePrivilegeController choosePrivilegeController;
+    private ChoosePrivilegeController choosePrivilegeController;
     private PrayController prayController;
-    //private WorkersController workersController;
+    private WorkersController workersController;
 
     //Pane delle schermate interne utilizzati per hidarle
-    private HBox bonusTilePane;
+    private AnchorPane bonusTilePane;
     private AnchorPane chooseCostPane;
     private AnchorPane chooseEffectPane;
     private AnchorPane choosePrivilegePane;
@@ -100,6 +109,34 @@ public class GameBoardController {
     private AnchorPane yourTurnPane;
     private AnchorPane chooseWorkersPane;
     private AnchorPane throwDicesPane;
+
+    @FXML
+    private Text greenVictoryPoints;
+    @FXML
+    private Text yellowVictoryPoints;
+    @FXML
+    private Text redVictoryPoints;
+    @FXML
+    private Text blueVictoryPoints;
+
+    @FXML
+    private Text greenMilitaryPoints;
+    @FXML
+    private Text yellowMilitaryPoints;
+    @FXML
+    private Text redMilitaryPoints;
+    @FXML
+    private Text blueMilitaryPoints;
+
+    @FXML
+    private Text greenFaithPoints;
+    @FXML
+    private Text yellowFaithPoints;
+    @FXML
+    private Text redFaithPoints;
+    @FXML
+    private Text blueFaithPoints;
+
 
     @FXML
     private ImageView grid0;
@@ -411,6 +448,22 @@ public class GameBoardController {
     @FXML
     public void initialize() {
 
+        greenPlayerTrack.put(GoodType.VICTORYPOINTS,greenVictoryPoints);
+        greenPlayerTrack.put(GoodType.MILITARYPOINTS,greenMilitaryPoints);
+        greenPlayerTrack.put(GoodType.FAITHPOINTS,greenFaithPoints);
+
+        redPlayerTrack.put(GoodType.VICTORYPOINTS,redVictoryPoints);
+        redPlayerTrack.put(GoodType.MILITARYPOINTS,redMilitaryPoints);
+        redPlayerTrack.put(GoodType.FAITHPOINTS,redFaithPoints);
+
+        yellowPlayerTrack.put(GoodType.VICTORYPOINTS,yellowVictoryPoints);
+        yellowPlayerTrack.put(GoodType.MILITARYPOINTS,yellowMilitaryPoints);
+        yellowPlayerTrack.put(GoodType.FAITHPOINTS,yellowFaithPoints);
+
+        bluePlayerTrack.put(GoodType.VICTORYPOINTS,blueVictoryPoints);
+        bluePlayerTrack.put(GoodType.MILITARYPOINTS,blueMilitaryPoints);
+        bluePlayerTrack.put(GoodType.FAITHPOINTS,blueFaithPoints);
+
         gridMap.put(0,grid0);
         gridMap.put(1,grid1);
         gridMap.put(2,grid2);
@@ -457,11 +510,11 @@ public class GameBoardController {
         redPawnsImagesMap.put(FamilyPawnType.WHITE,"lorenzo_materiale_grafico_compr/GameboardElements/pawns/redWhitePawn.png");
 
 
-        bonusTilesMap.put("0","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_1.png");
-        bonusTilesMap.put("1","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png;");
-        bonusTilesMap.put("2","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png;");
-        bonusTilesMap.put("3","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png;");
-        bonusTilesMap.put("4","@lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png;");
+        bonusTilesMap.put("0","lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png");
+        bonusTilesMap.put("1","lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png");
+        bonusTilesMap.put("2","lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png");
+        bonusTilesMap.put("3","lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png");
+        bonusTilesMap.put("4","lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_1.png");
 
 
         cardMap.put("Avamposto Commerciale","lorenzo_materiale_grafico_compr/LorenzoCards_compressed_png/devcards_f_en_c_1.png");
@@ -643,6 +696,7 @@ public class GameBoardController {
         actionButtons.put(23,production1);
         actionBox.put(24,production2);
 
+        /*
         buttonAction.put(greenTowerAction1,0);
         buttonAction.put(greenTowerAction2,1);
         buttonAction.put(greenTowerAction3,2);
@@ -667,8 +721,33 @@ public class GameBoardController {
         buttonAction.put(harvest1,21);
         boxAction.put(harvest2,22);
         buttonAction.put(production1,23);
-        boxAction.put(production2,24);
+        boxAction.put(production2,24);*/
 
+        buttonAction.put(greenTowerAction1Cover,0);
+        buttonAction.put(greenTowerAction2Cover,1);
+        buttonAction.put(greenTowerAction3Cover,2);
+        buttonAction.put(greenTowerAction4Cover,3);
+        buttonAction.put(yellowTowerAction1Cover,4);
+        buttonAction.put(yellowTowerAction2Cover,5);
+        buttonAction.put(yellowTowerAction3Cover,6);
+        buttonAction.put(yellowTowerAction4Cover,7);
+        buttonAction.put(blueTowerAction1Cover,8);
+        buttonAction.put(blueTowerAction2Cover,9);
+        buttonAction.put(blueTowerAction3Cover,10);
+        buttonAction.put(blueTowerAction4Cover,11);
+        buttonAction.put(purpleTowerAction1Cover,12);
+        buttonAction.put(purpleTowerAction2Cover,13);
+        buttonAction.put(purpleTowerAction3Cover,14);
+        buttonAction.put(purpleTowerAction4Cover,15);
+        buttonAction.put(market1Cover,16);
+        buttonAction.put(market2Cover,17);
+        buttonAction.put(market3Cover,18);
+        buttonAction.put(market4Cover,19);
+        buttonAction.put(councilPalaceCover,20);
+        buttonAction.put(harvest1Cover,21);
+        buttonAction.put(harvest2Cover,22);
+        buttonAction.put(production1Cover,23);
+        buttonAction.put(production2Cover,24);
 
         coverImages.put(0,greenTowerAction1Cover);
         coverImages.put(1,greenTowerAction2Cover);
@@ -794,21 +873,8 @@ public class GameBoardController {
 
 
     public void handleActionChosenImageView(MouseEvent event){
-        if(event.getSource() instanceof ImageView) {
-            Integer actionSelected = buttonAction.get(event.getSource());
-            sender.sendInput("execute action " + actionSelected.toString());
-        }
-
-        if(event.getSource() instanceof GridPane) {
-            Integer actionSelected = gridAction.get(event.getSource());
-            sender.sendInput("execute action " + actionSelected.toString());
-        }
-
-        if (event.getSource() instanceof HBox){
-            Integer actionSelected = boxAction.get(event.getSource());
-            sender.sendInput("execute action " + actionSelected.toString());
-        }
-
+        Integer actionSelected = buttonAction.get(event.getSource());
+        sender.sendInput("execute action " + actionSelected.toString());
     }
 
     public void updatePawn(FamilyPawn familyPawn, int actionIndex) {
@@ -842,6 +908,9 @@ public class GameBoardController {
 
     private void updatePawnOnActionspace(Image image, int actionIndex) {
         actionButtons.get(actionIndex).setImage(image);
+        for (Integer integer : coverImages.keySet()){
+            coverImages.get(integer).setVisible(false);
+        }
     }
 
     private void updatePawnOnBox(Image image, int actionIndex) {
@@ -909,9 +978,11 @@ public class GameBoardController {
             case WHITE:
                 whiteValue.setVisible(false);
                 whitePawn.setVisible(false);
+                break;
             case NEUTRAL:
                 neutralValue.setVisible(false);
                 neutralPawn.setVisible(false);
+                break;
         }
     }
 
@@ -982,17 +1053,26 @@ public class GameBoardController {
      */
     public void updatePersonalGoodSet(GoodSet newGoodSet/*, PlayerColor playerColor*/){
         for (GoodType type: GoodType.values()) {
-
-            if (type!=GoodType.FAITHPOINTS &&type!=GoodType.MILITARYPOINTS &&type!=GoodType.VICTORYPOINTS) {
+            if (type==GoodType.COINS){
                 Integer value = newGoodSet.getGoodAmount(type);
-                resourceAmount.get(type).setText(value.toString());
+                String valueString = value.toString();
+                gold.setText(valueString);
             }
-            else if (true) {
-
-                //TODO: ora puoi implementare, fai 3 if diversi
+            else if(type==GoodType.WOOD){
+                Integer value = newGoodSet.getGoodAmount(type);
+                String valueString = value.toString();
+                wood.setText(valueString);
             }
-                //TODO: aggiorna track - pensa a player color
-
+            else if(type==GoodType.STONE){
+                Integer value = newGoodSet.getGoodAmount(type);
+                String valueString = value.toString();
+                stone.setText(valueString);
+            }
+            else if(type==GoodType.WORKERS){
+                Integer value = newGoodSet.getGoodAmount(type);
+                String valueString = value.toString();
+                workers.setText(valueString);
+            }
         }
     }
 
@@ -1002,8 +1082,7 @@ public class GameBoardController {
      */
     public void updatePossibleActions(Map<Integer, String> availability){
         for (Integer i : availability.keySet()) {
-
-            if (i == 20) {
+            /*if (i == 20) {
                 actionGrid.get(i).setDisable(false);
             }
             else if (i == 22 || i == 24) {
@@ -1011,13 +1090,14 @@ public class GameBoardController {
             }
             else if (i!=20 && i!=22 && i!=24){
                 actionButtons.get(i).setDisable(false);
-            }
-            coverImages.get(i).setVisible(false);
+            }*/
+            coverImages.get(i).setVisible(true);
         }
 
         for(int r=0;r<25;r++) {
 
             if (!availability.containsKey(r)) {
+                /*
 
                 if (r==20) {
                     actionGrid.get(r).setDisable(true);
@@ -1030,14 +1110,46 @@ public class GameBoardController {
                 else if (r!=20 && r!=22 && r!=24) {
                     actionButtons.get(r).setDisable(true);
                 }
-
-                coverImages.get(r).setVisible(true);
+                */
+                coverImages.get(r).setVisible(false);
             }
         }
     }
 
+    /**
+     * modifica il contenuto delle tracks
+     * @param playerColor
+     * @param goodType
+     * @param numberOfPoints
+     */
     public void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
-        //TODO: impl
+        int risorsa=0;
+        String numberOfPointString = String.valueOf(numberOfPoints);
+        switch (goodType){
+            case VICTORYPOINTS:
+                risorsa=0;
+                break;
+            case MILITARYPOINTS:
+                risorsa=1;
+                break;
+            case FAITHPOINTS:
+                risorsa=2;
+                break;
+        }
+        switch (playerColor){
+            case BLUE:
+                bluePlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case GREEN:
+                greenPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case RED:
+                redPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case YELLOW:
+                yellowPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+        }
     }
 
     /**
@@ -1110,10 +1222,16 @@ public class GameBoardController {
 
     public void chooseWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
 
-        //TODO: mostrare la schermata chooseWorkers
-        //TODO: printare nel textbox indice e arrayList di stringhe (per ogni indice)
-        //TODO: con textArea e submit dell'indice
-
+        chooseWorkersPane.setVisible(true);
+        String newWorkers="";
+        for (Integer index:cardsForWorkers.keySet()) {
+            newWorkers = newWorkers + index.toString() + ") ";
+            for (int i=0;i<(cardsForWorkers.get(index)).size();i++){
+                newWorkers = newWorkers + (cardsForWorkers.get(index)).get(i);
+            }
+            newWorkers = newWorkers + "\n";
+        }
+        workersController.updateShownCosts(newWorkers);
     }
 
     public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
@@ -1140,11 +1258,14 @@ public class GameBoardController {
         chooseCostController.updateShownCosts(newCosts);
     }
 
-    public void choosePrivileges(List<Integer> councilPrivileges) {
 
-        //TODO: non so bene come sia implementato a livello di inputChecker, ma la schermata è abbastanza ovvia
+    //TODO: deve essere chiamata passandogli la lista di interi selezionabili ogni volta che ho un privilege da scegliere, devono sempre avere la stessa numerazione
+    public void choosePrivileges(List<Integer> councilPrivileges) {
+        choosePrivilegePane.setVisible(true);
+        choosePrivilegeController.updatePrivilege(councilPrivileges);
     }
 
+    //TODO: arrivano solo quelle da mostrare, con indici crescenti, mi servono sempre con numero fisso da 0 a 4
     public void chooseBonusTile(Map<Integer, String> bonusTiles) {
         bonusTilePane.setVisible(true);
         bonusTileController.setBonusTiles(bonusTiles);
@@ -1343,8 +1464,8 @@ public class GameBoardController {
         chooseCostPane.setVisible(false);
         //TODO: reinserire una volta fatto
         // chooseEffectPane.setVisible(false);
-        //choosePrivilegePane.setVisible(false);
-        //chooseWorkersPane.setVisible(false);
+        choosePrivilegePane.setVisible(false);
+        chooseWorkersPane.setVisible(false);
 
         prayPane.setVisible(false);
         yourTurnPane.setVisible(false);
@@ -1406,11 +1527,7 @@ public class GameBoardController {
 
 
 
-
-
-
-
-    public void setBonusTilePane(HBox bonusTilePane) {
+    public void setBonusTilePane(AnchorPane bonusTilePane) {
         this.bonusTilePane = bonusTilePane;
     }
 
@@ -1458,6 +1575,11 @@ public class GameBoardController {
         this.sender = chooseDistribution;
     }
 
+    public void setChoosePrivilegeController(ChoosePrivilegeController choosePrivilegeController) {
+        this.choosePrivilegeController = choosePrivilegeController;
+    }
 
-
+    public void setWorkersController(WorkersController workersController) {
+        this.workersController = workersController;
+    }
 }

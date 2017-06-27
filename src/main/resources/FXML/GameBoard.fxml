@@ -33,12 +33,12 @@
                                        </VBox.margin>
                                        <children>
                                           <ImageView fx:id="greenTowerCard4" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="greenTowerAction4" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="greenTowerAction4" fitHeight="45.0" fitWidth="40.0"  pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="greenTowerAction4Cover" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="greenTowerAction4Cover" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -51,12 +51,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="greenTowerCard3" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="greenTowerAction3" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="greenTowerAction3" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="greenTowerAction3Cover" fitHeight="45.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="greenTowerAction3Cover" fitHeight="45.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -66,12 +66,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="greenTowerCard2" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="greenTowerAction2" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="greenTowerAction2" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="greenTowerAction2Cover" fitHeight="45.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="greenTowerAction2Cover" fitHeight="45.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -81,12 +81,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="greenTowerCard1" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="greenTowerAction1" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="greenTowerAction1" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="greenTowerAction1Cover" fitHeight="45.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="greenTowerAction1Cover" fitHeight="45.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -103,15 +103,15 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="blueTowerCard4" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="blueTowerAction4" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="blueTowerAction4" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="12.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <ImageView fx:id="blueTowerAction4Cover" fitHeight="45.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="blueTowerAction4Cover" fitHeight="45.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -124,12 +124,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="blueTowerCard3" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="blueTowerAction3" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="blueTowerAction3" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="blueTowerAction3Cover" fitHeight="45.0" fitWidth="40.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="blueTowerAction3Cover" fitHeight="45.0" fitWidth="40.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -139,12 +139,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="blueTowerCard2" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="blueTowerAction2" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="blueTowerAction2" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="blueTowerAction2Cover" fitHeight="45.0" fitWidth="40.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="blueTowerAction2Cover" fitHeight="45.0" fitWidth="40.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -154,12 +154,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="blueTowerCard1" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="blueTowerAction1" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="blueTowerAction1" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="blueTowerAction1Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="blueTowerAction1Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -173,15 +173,15 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="yellowTowerCard4" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="yellowTowerAction4" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="yellowTowerAction4" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="12.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <ImageView fx:id="yellowTowerAction4Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="yellowTowerAction4Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -194,12 +194,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="yellowTowerCard3" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="yellowTowerAction3" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="yellowTowerAction3" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="yellowTowerAction3Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="yellowTowerAction3Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -209,12 +209,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="yellowTowerCard2" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="yellowTowerAction2" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="yellowTowerAction2" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="yellowTowerAction2Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="yellowTowerAction2Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -224,12 +224,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="yellowTowerCard1" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="yellowTowerAction1" fitHeight="45.0" fitWidth="40.0" onContextMenuRequested="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="yellowTowerAction1" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="yellowTowerAction1Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="yellowTowerAction1Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -243,15 +243,15 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="purpleTowerCard4" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="purpleTowerAction4" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="purpleTowerAction4" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="12.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <ImageView fx:id="purpleTowerAction4Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="purpleTowerAction4Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -264,12 +264,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="purpleTowerCard3" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="purpleTowerAction3" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="purpleTowerAction3" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="purpleTowerAction3Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="purpleTowerAction3Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -279,12 +279,12 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="purpleTowerCard2" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="purpleTowerAction2" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="purpleTowerAction2" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="purpleTowerAction2Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="purpleTowerAction2Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -294,19 +294,19 @@
                                     <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                        <children>
                                           <ImageView fx:id="purpleTowerCard1" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="purpleTowerAction1" fitHeight="45.0" fitWidth="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="purpleTowerAction1" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="purpleTowerAction1Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
+                                    <ImageView fx:id="purpleTowerAction1Cover" fitHeight="45.0" fitWidth="40.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="55.0">
                                        <image>
-                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                                          <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                                        </image>
                                     </ImageView>
                                  </children>
                               </AnchorPane>
                            </children>
                         </VBox>
-                        <GridPane fx:id="councilPalace" onMouseClicked="#handleActionChosenImageView" prefHeight="45.0" prefWidth="129.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="420.0">
+                        <GridPane fx:id="councilPalace" prefHeight="45.0" prefWidth="129.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="420.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -334,17 +334,17 @@
                               <ImageView fx:id="grid11" fitHeight="22.5" fitWidth="21.5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <ImageView fx:id="councilPalaceCover" fitHeight="45.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="420.0">
+                        <ImageView fx:id="councilPalaceCover" fitHeight="45.0" fitWidth="123.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="420.0">
                            <image>
-                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="73.0" fitWidth="42.0" layoutX="114.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="114.0" AnchorPane.topAnchor="450.0" />
                         <ImageView fitHeight="73.0" fitWidth="33.0" layoutX="124.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="156.0" AnchorPane.topAnchor="450.0" />
                         <ImageView fitHeight="73.0" fitWidth="42.0" layoutX="124.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="189.0" AnchorPane.topAnchor="450.0" />
-                        <ImageView fx:id="production1" fitHeight="25.0" fitWidth="25.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="62.5" AnchorPane.topAnchor="605.0" />
-                        <ImageView fx:id="harvest1" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="62.5" AnchorPane.topAnchor="662.5" />
-                        <HBox fx:id="production2" onMouseClicked="#handleActionChosenImageView" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="605.0">
+                        <ImageView fx:id="production1" fitHeight="25.0" fitWidth="25.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="62.5" AnchorPane.topAnchor="605.0" />
+                        <ImageView fx:id="harvest1" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="62.5" AnchorPane.topAnchor="662.5" />
+                        <HBox fx:id="production2" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="605.0">
                            <children>
                               <ImageView fx:id="production2_0" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="production2_1" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
@@ -352,7 +352,7 @@
                               <ImageView fx:id="production2_3" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </HBox>
-                        <HBox fx:id="harvest2" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="662.5">
+                        <HBox fx:id="harvest2" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="662.5">
                            <children>
                               <ImageView fx:id="harvest2_0" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="harvest2_1" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
@@ -360,10 +360,10 @@
                               <ImageView fx:id="harvest2_3" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </HBox>
-                        <ImageView fx:id="market1" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="297.5" AnchorPane.topAnchor="595.0" />
-                        <ImageView fx:id="market2" fitHeight="25.0" fitWidth="25.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="342.5" AnchorPane.topAnchor="595.0" />
-                        <ImageView fx:id="market3" fitHeight="25.0" fitWidth="25.0" layoutX="40.0" layoutY="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="610.0" />
-                        <ImageView fx:id="market4" fitHeight="25.0" fitWidth="25.0" layoutX="50.0" layoutY="50.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="417.5" AnchorPane.topAnchor="640.0" />
+                        <ImageView fx:id="market1" fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="297.5" AnchorPane.topAnchor="595.0" />
+                        <ImageView fx:id="market2" fitHeight="25.0" fitWidth="25.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="342.5" AnchorPane.topAnchor="595.0" />
+                        <ImageView fx:id="market3" fitHeight="25.0" fitWidth="25.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="610.0" />
+                        <ImageView fx:id="market4" fitHeight="25.0" fitWidth="25.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="417.5" AnchorPane.topAnchor="640.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="667.5">
                            <font>
                               <Font size="27.0" />
@@ -379,44 +379,44 @@
                               <Font size="27.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="market1Cover" fitHeight="45.0" fitWidth="123.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="292.5" AnchorPane.topAnchor="592.5">
+                        <ImageView fx:id="market1Cover" fitHeight="45.0" fitWidth="123.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="292.5" AnchorPane.topAnchor="592.5">
                            <image>
-                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="market2Cover" fitHeight="45.0" fitWidth="123.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="590.0">
+                        <ImageView fx:id="market2Cover" fitHeight="45.0" fitWidth="123.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="590.0">
                            <image>
-                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="market3Cover" fitHeight="45.0" fitWidth="123.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="595.0">
+                        <ImageView fx:id="market3Cover" fitHeight="45.0" fitWidth="123.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="595.0">
                            <image>
-                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="market4Cover" fitHeight="45.0" fitWidth="123.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="620.0">
+                        <ImageView fx:id="market4Cover" fitHeight="45.0" fitWidth="123.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="620.0">
                            <image>
-                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="production1Cover" fitHeight="45.0" fitWidth="123.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="595.0">
+                        <ImageView fx:id="production1Cover" fitHeight="45.0" fitWidth="123.0" layoutX="20.0" layoutY="20.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="595.0">
                            <image>
-                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="production2Cover" fitHeight="45.0" fitWidth="123.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="595.0">
+                        <ImageView fx:id="production2Cover" fitHeight="45.0" fitWidth="123.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="595.0">
                            <image>
-                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harvest2Cover" fitHeight="45.0" fitWidth="123.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="650.0">
+                        <ImageView fx:id="harvest2Cover" fitHeight="45.0" fitWidth="123.0" layoutX="40.0" layoutY="40.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="650.0">
                            <image>
-                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harvest1Cover" fitHeight="45.0" fitWidth="123.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="650.0">
+                        <ImageView fx:id="harvest1Cover" fitHeight="45.0" fitWidth="123.0" layoutX="30.0" layoutY="30.0" onMouseClicked="#handleActionChosenImageView" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="650.0">
                            <image>
-                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/big-red-x-hi.png" />
+                              <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/tick-icon-44.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -539,7 +539,7 @@
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                      <Text fx:id="greenVictoryPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -564,57 +564,57 @@
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                      <Text fx:id="greenMilitaryPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                      <Text fx:id="greenFaithPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                      <Text fx:id="blueVictoryPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                      <Text fx:id="blueMilitaryPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                      <Text fx:id="redVictoryPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                      <Text fx:id="yellowVictoryPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                      <Text fx:id="redMilitaryPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                      <Text fx:id="yellowMilitaryPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                      <Text fx:id="blueFaithPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                      <Text fx:id="redFaithPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                      <Text fx:id="yellowFaithPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>

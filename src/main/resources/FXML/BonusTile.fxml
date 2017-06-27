@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
@@ -10,92 +11,98 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController">
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController">
    <children>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="400.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" stylesheets="@../style.css">
          <children>
-            <ImageView fitHeight="360.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-               <image>
-                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="button1" mnemonicParsing="false" onAction="#executeButton1" text="Choose">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </Button>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="360.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="button1" mnemonicParsing="false" onAction="#executeButton1" text="Choose">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="360.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Button fx:id="button2" mnemonicParsing="false" onAction="#executeButton2" text="Choose">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="360.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="button3" mnemonicParsing="false" onAction="#executeButton3" text="Choose">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="360.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="button4" mnemonicParsing="false" onAction="#executeButton4" text="Choose">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="360.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_1.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="button5" mnemonicParsing="false" onAction="#executeButton5" text="Choose">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
          </children>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <ImageView fitHeight="360.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-               <image>
-                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_2.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="button2" mnemonicParsing="false" onAction="#executeButton2" text="Choose">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <ImageView fitHeight="360.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-               <image>
-                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_3.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="button3" mnemonicParsing="false" onAction="#executeButton3" text="Choose">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <ImageView fitHeight="360.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-               <image>
-                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_4.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="button4" mnemonicParsing="false" onAction="#executeButton4" text="Choose">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-      <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <ImageView fitHeight="360.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-               <image>
-                  <Image url="@../lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/personalbonustile_5.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="button5" mnemonicParsing="false" onAction="#executeButton5" text="Choose">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
+      </HBox>
    </children>
-</HBox>
+</AnchorPane>

@@ -33,7 +33,6 @@ public class BonusTileController {
 
         String string = executeButton();
         sender.sendInput(string + index);
-        //TODO: aggiungi bonus tile a personal board
         gameBoardController.updateBonusTile(index);
 
         //endExecute(event);
@@ -42,34 +41,42 @@ public class BonusTileController {
 
     public void executeButton2(ActionEvent event) {
 
+        String index = "1";
+
         String string = executeButton();
-        sender.sendInput(string+"1");
-        //TODO: aggiungi bonus tile a personal board
+        sender.sendInput(string + index);
+        gameBoardController.updateBonusTile(index);
         //endExecute(event);
     }
 
     public void executeButton3(ActionEvent event) {
 
+        String index = "2";
+
         String string = executeButton();
-        sender.sendInput(string+"2");
-        //TODO: aggiungi bonus tile a personal board
+        sender.sendInput(string + index);
+        gameBoardController.updateBonusTile(index);
         //endExecute(event);
 
     }
 
     public void executeButton4(ActionEvent event) {
 
+        String index = "3";
+
         String string = executeButton();
-        sender.sendInput(string+"3");
-        //TODO: aggiungi bonus tile a personal board
+        sender.sendInput(string + index);
+        gameBoardController.updateBonusTile(index);
         //endExecute(event);
 
     }
     public void executeButton5(ActionEvent event) {
 
+        String index = "4";
+
         String string = executeButton();
-        sender.sendInput(string+"4");
-        //TODO: aggiungi bonus tile a personal board
+        sender.sendInput(string + index);
+        gameBoardController.updateBonusTile(index);
         //endExecute(event);
 
     }
