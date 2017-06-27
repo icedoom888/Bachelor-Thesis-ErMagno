@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_29.Client.GUI.GameBoard;
 import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
 import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
+import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
+import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
@@ -95,7 +97,8 @@ public class GameBoardController {
     //Controller delle schermate interne
     private BonusTileController bonusTileController;
     private ChooseCostController chooseCostController;
-    //private ChooseEffectController chooseEffectController;
+    private PayToObtainController payToObtainController;
+    private ChooseEffectController chooseEffectController;
     private ChoosePrivilegeController choosePrivilegeController;
     private PrayController prayController;
     private WorkersController workersController;
@@ -103,6 +106,7 @@ public class GameBoardController {
     //Pane delle schermate interne utilizzati per hidarle
     private AnchorPane bonusTilePane;
     private AnchorPane chooseCostPane;
+    private AnchorPane payToObtainPane;
     private AnchorPane chooseEffectPane;
     private AnchorPane choosePrivilegePane;
     private AnchorPane prayPane;
@@ -929,6 +933,7 @@ public class GameBoardController {
         gridFreeSlot++;
     }
 
+    //TODO:da chiamare
     private void removeAllPawns(){
         for (Integer integer : actionButtons.keySet()) {
             Image image = null;
@@ -1122,25 +1127,38 @@ public class GameBoardController {
      * @param goodType
      * @param numberOfPoints
      */
-    //TODO: Mi deve arrivare il numero di punti totale non quelli nuovi acquisiti
+    //TODO: capire perchè passano faithpoints a 0
     public void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
         System.out.println(playerColor);
         System.out.println(goodType);
         System.out.println(numberOfPoints);
-        String numberOfPointString = String.valueOf(numberOfPoints);
-
+        String numberOfPointString = "";
+        int value = 0;
+        int sum = 0;
         switch (playerColor){
             case BLUE:
-                (bluePlayerTrack.get(goodType)).setText(numberOfPointString);
+                value = Integer.parseInt(bluePlayerTrack.get(goodType).getText());
+                sum = value + numberOfPoints;
+                numberOfPointString = String.valueOf(sum);
+                bluePlayerTrack.get(goodType).setText(numberOfPointString);
                 break;
             case GREEN:
-                (greenPlayerTrack.get(goodType)).setText(numberOfPointString);
+                value = Integer.parseInt(greenPlayerTrack.get(goodType).getText());
+                sum = value + numberOfPoints;
+                numberOfPointString = String.valueOf(sum);
+                greenPlayerTrack.get(goodType).setText(numberOfPointString);
                 break;
             case RED:
-                (redPlayerTrack.get(goodType)).setText(numberOfPointString);
+                value = Integer.parseInt(redPlayerTrack.get(goodType).getText());
+                sum = value + numberOfPoints;
+                numberOfPointString = String.valueOf(sum);
+                redPlayerTrack.get(goodType).setText(numberOfPointString);
                 break;
             case YELLOW:
-                (yellowPlayerTrack.get(goodType)).setText(numberOfPointString);
+                value = Integer.parseInt(yellowPlayerTrack.get(goodType).getText());
+                sum = value + numberOfPoints;
+                numberOfPointString = String.valueOf(sum);
+                yellowPlayerTrack.get(goodType).setText(numberOfPointString);
                 break;
         }
     }
@@ -1460,11 +1478,10 @@ public class GameBoardController {
 
         bonusTilePane.setVisible(false);
         chooseCostPane.setVisible(false);
-        //TODO: reinserire una volta fatto
-        // chooseEffectPane.setVisible(false);
+        payToObtainPane.setVisible(false);
+        chooseEffectPane.setVisible(false);
         choosePrivilegePane.setVisible(false);
         chooseWorkersPane.setVisible(false);
-
         prayPane.setVisible(false);
         yourTurnPane.setVisible(false);
 
@@ -1533,6 +1550,10 @@ public class GameBoardController {
         this.chooseCostPane = chooseCostPane;
     }
 
+    public void setPayToObtainPane(AnchorPane payToObtainPane) {
+        this.payToObtainPane = payToObtainPane;
+    }
+
     public void setChooseEffectPane(AnchorPane chooseEffectPane) {
         this.chooseEffectPane = chooseEffectPane;
     }
@@ -1579,5 +1600,13 @@ public class GameBoardController {
 
     public void setWorkersController(WorkersController workersController) {
         this.workersController = workersController;
+    }
+
+    public void setPayToObtainController(PayToObtainController payToObtainController) {
+        this.payToObtainController = payToObtainController;
+    }
+
+    public void setChooseEffectController(ChooseEffectController chooseEffectController) {
+        this.chooseEffectController = chooseEffectController;
     }
 }

@@ -5,6 +5,8 @@ import it.polimi.ingsw.GC_29.Client.ClientSocket.*;
 import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
+import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
+import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
@@ -350,7 +352,29 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             gameBoardController.setChooseCostController(chooseCostController);
             gameBoardController.setChooseCostPane(childCost);
 
-            //aggiunta ChooseEffect
+            //aggiunta ChooseEffect carte
+            FXMLLoader loaderPayToObtain = new FXMLLoader(getClass().getResource("/FXML/PayToObtainCards.fxml"));
+            AnchorPane childPay = loaderPayToObtain.load();
+            gameboardRoot.getChildren().add(childPay);
+            AnchorPane.setBottomAnchor(childPay,200.0);
+            AnchorPane.setLeftAnchor(childPay,200.0);
+            childPay.setVisible(false);
+            PayToObtainController payToObtainController = loaderPayToObtain.getController();
+            payToObtainController.setSender(chooseDistribution);
+            gameBoardController.setPayToObtainController(payToObtainController);
+            gameBoardController.setPayToObtainPane(childPay);
+
+            //aggiunta ChooseEffect effetti
+            FXMLLoader loaderEffects = new FXMLLoader(getClass().getResource("/FXML/ChooseEffect.fxml"));
+            AnchorPane childEffect = loaderEffects.load();
+            gameboardRoot.getChildren().add(childEffect);
+            AnchorPane.setBottomAnchor(childEffect,200.0);
+            AnchorPane.setLeftAnchor(childEffect,200.0);
+            childEffect.setVisible(false);
+            ChooseEffectController chooseEffectController = loaderEffects.getController();
+            chooseCostController.setSender(chooseDistribution);
+            gameBoardController.setChooseEffectController(chooseEffectController);
+            gameBoardController.setChooseEffectPane(childEffect);
 
             //Aggiunta ChooseWorkers
             FXMLLoader loaderWorkers = new FXMLLoader(getClass().getResource("/FXML/ChooseWorkers.fxml"));

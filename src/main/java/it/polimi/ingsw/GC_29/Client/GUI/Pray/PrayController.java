@@ -35,7 +35,7 @@ public class PrayController {
             sender.sendInput("pray");
         }
         if (getExcommunicated.isSelected()){
-            sender.sendInput("don't pray");
+            sender.sendInput("do not pray");
         }
         else {
             error.setVisible(true);

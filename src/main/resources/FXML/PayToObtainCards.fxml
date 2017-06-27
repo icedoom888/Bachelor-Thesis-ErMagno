@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="497.0" stroke="BLACK" strokeType="INSIDE" width="349.0" />
+      <ImageView fx:id="card" fitHeight="355.0" fitWidth="231.0" layoutX="59.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="29.0" layoutY="25.0" text="Do you want to activate this card?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="yesButton" layoutX="86.0" layoutY="432.0" mnemonicParsing="false" onAction="#sendResponse" text="Yes">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="noButton" layoutX="201.0" layoutY="432.0" mnemonicParsing="false" onAction="#sendResponse" text="No">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

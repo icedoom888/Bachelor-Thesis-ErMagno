@@ -29,7 +29,7 @@ public class ChooseCostController {
 
     public void sendSubmit(ActionEvent event){
         if(!chosenCost.getText().isEmpty()){
-            sender.sendInput("cost chosen " + chosenCost.getText());
+            sender.sendInput("cost " + chosenCost.getText());
         }
         else {
             error.setVisible(true);
