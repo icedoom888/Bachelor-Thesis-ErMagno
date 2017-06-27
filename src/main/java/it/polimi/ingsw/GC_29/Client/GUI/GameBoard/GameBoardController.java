@@ -1122,32 +1122,25 @@ public class GameBoardController {
      * @param goodType
      * @param numberOfPoints
      */
+    //TODO: Mi deve arrivare il numero di punti totale non quelli nuovi acquisiti
     public void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
-        int risorsa=0;
+        System.out.println(playerColor);
+        System.out.println(goodType);
+        System.out.println(numberOfPoints);
         String numberOfPointString = String.valueOf(numberOfPoints);
-        switch (goodType){
-            case VICTORYPOINTS:
-                risorsa=0;
-                break;
-            case MILITARYPOINTS:
-                risorsa=1;
-                break;
-            case FAITHPOINTS:
-                risorsa=2;
-                break;
-        }
+
         switch (playerColor){
             case BLUE:
-                bluePlayerTrack.get(goodType).setText(numberOfPointString);
+                (bluePlayerTrack.get(goodType)).setText(numberOfPointString);
                 break;
             case GREEN:
-                greenPlayerTrack.get(goodType).setText(numberOfPointString);
+                (greenPlayerTrack.get(goodType)).setText(numberOfPointString);
                 break;
             case RED:
-                redPlayerTrack.get(goodType).setText(numberOfPointString);
+                (redPlayerTrack.get(goodType)).setText(numberOfPointString);
                 break;
             case YELLOW:
-                yellowPlayerTrack.get(goodType).setText(numberOfPointString);
+                (yellowPlayerTrack.get(goodType)).setText(numberOfPointString);
                 break;
         }
     }
@@ -1222,9 +1215,13 @@ public class GameBoardController {
 
     public void chooseWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
 
+        System.out.println(cardsForWorkers);
+
+        ArrayList<Integer> choices = new ArrayList<>();
         chooseWorkersPane.setVisible(true);
         String newWorkers="";
         for (Integer index:cardsForWorkers.keySet()) {
+            choices.add(index);
             newWorkers = newWorkers + index.toString() + ") ";
             for (int i=0;i<(cardsForWorkers.get(index)).size();i++){
                 newWorkers = newWorkers + (cardsForWorkers.get(index)).get(i);
@@ -1232,6 +1229,7 @@ public class GameBoardController {
             newWorkers = newWorkers + "\n";
         }
         workersController.updateShownCosts(newWorkers);
+        workersController.setChoices(choices);
     }
 
     public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {

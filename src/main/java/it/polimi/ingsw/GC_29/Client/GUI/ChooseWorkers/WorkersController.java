@@ -8,12 +8,16 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 /**
  * Created by AlbertoPennino on 26/06/2017.
  */
 public class WorkersController {
 
     private ChooseDistribution sender;
+    private ArrayList<Integer> choices;
 
     @FXML
     private TextArea shownWorkers;
@@ -28,8 +32,18 @@ public class WorkersController {
     private Text error;
 
     public void sendSubmit(ActionEvent event){
-        if(!chosenWorkers.getText().isEmpty()){
-            sender.sendInput("workers chosen " + chosenWorkers.getText());
+        String choiceMade = chosenWorkers.getText();
+        if(!choiceMade.isEmpty()){
+            for (Integer choicePossible : choices){
+                if (choicePossible.toString().equals(choiceMade)){
+                    sender.sendInput("use workers " + choiceMade);
+                    System.out.println("use workers " + choiceMade);
+                }
+                else {
+                    error.setVisible(true);
+                }
+            }
+
         }
         else {
             error.setVisible(true);
@@ -37,9 +51,15 @@ public class WorkersController {
     }
     public void updateShownCosts(String newWorkers){
         shownWorkers.setText(newWorkers);
+        error.setVisible(false);
+        chosenWorkers.setText("");
     }
 
     public void setSender(ChooseDistribution sender) {
         this.sender = sender;
+    }
+
+    public void setChoices(ArrayList<Integer> choices) {
+        this.choices = choices;
     }
 }
