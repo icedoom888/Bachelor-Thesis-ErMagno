@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Lorenzotara on 23/06/17.
@@ -18,6 +19,7 @@ public class CommonOutSocket {
 
     private CommonView commonView;
     private ObjectOutputStream socketOut;
+    private Map<String, Integer> activatedCardMap;
 
     public CommonOutSocket(ObjectOutputStream socketOut) {
         this.socketOut = socketOut;
@@ -29,7 +31,9 @@ public class CommonOutSocket {
 
         try {
             // Implements the communication protocol, creating the Actions corresponding to the input of the user
-            inputLine = commonView.getInputChecker().checkInput(inputLine);
+            if (!inputLine.contentEquals("activated cards GUI")) {
+                inputLine = commonView.getInputChecker().checkInput(inputLine);
+            }
 
             switch (inputLine) {
 
@@ -122,6 +126,14 @@ public class CommonOutSocket {
                         socketOut.writeObject(commonView.getInputChecker().getActivatedCardMap());
                         socketOut.flush();
                     }
+                    break;
+
+                case "activated cards GUI":
+
+                    socketOut.writeObject("activated cards GUI");
+                    socketOut.flush();
+                    socketOut.writeObject(activatedCardMap);
+                    socketOut.flush();
                     break;
 
                 case "cost chosen":
@@ -326,4 +338,7 @@ public class CommonOutSocket {
         this.commonView = commonView;
     }
 
+    public void setActivatedCardMap(Map<String, Integer> activatedCardMap) {
+        this.activatedCardMap = activatedCardMap;
+    }
 }

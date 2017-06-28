@@ -26,7 +26,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -357,7 +356,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             gameBoardController.setChooseCostController(chooseCostController);
             gameBoardController.setChooseCostPane(childCost);
 
-            //aggiunta ChooseEffect carte
+            //aggiunta carte payToObtain
             FXMLLoader loaderPayToObtain = new FXMLLoader(getClass().getResource("/FXML/PayToObtainCards.fxml"));
             AnchorPane childPay = loaderPayToObtain.load();
             gameboardRoot.getChildren().add(childPay);
@@ -366,6 +365,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             childPay.setVisible(false);
             PayToObtainController payToObtainController = loaderPayToObtain.getController();
             payToObtainController.setSender(chooseDistribution);
+            payToObtainController.setGameBoardController(gameBoardController);
             gameBoardController.setPayToObtainController(payToObtainController);
             gameBoardController.setPayToObtainPane(childPay);
 
@@ -377,9 +377,14 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childEffect,200.0);
             childEffect.setVisible(false);
             ChooseEffectController chooseEffectController = loaderEffects.getController();
-            chooseCostController.setSender(chooseDistribution);
+            chooseEffectController.setSender(chooseDistribution);
+            chooseEffectController.setGameBoardController(gameBoardController);
+            chooseEffectController.setPayToObtainController(payToObtainController);
             gameBoardController.setChooseEffectController(chooseEffectController);
             gameBoardController.setChooseEffectPane(childEffect);
+
+            payToObtainController.setChooseEffectController(chooseEffectController);
+
 
             //Aggiunta ChooseWorkers
             FXMLLoader loaderWorkers = new FXMLLoader(getClass().getResource("/FXML/ChooseWorkers.fxml"));
@@ -401,7 +406,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childPrivilege,200.0);
             childPrivilege.setVisible(false);
             ChoosePrivilegeController choosePrivilegeController = loaderPrivileges.getController();
-            chooseCostController.setSender(chooseDistribution);
+            choosePrivilegeController.setSender(chooseDistribution);
             gameBoardController.setChoosePrivilegeController(choosePrivilegeController);
             gameBoardController.setChoosePrivilegePane(childPrivilege);
 
@@ -566,13 +571,13 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
-    private void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
+    private void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCard) {
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
 
-                gameBoardController.choosePayToObtainCards(payToObtainCards);
+                gameBoardController.choosePayToObtainCards(payToObtainCard);
 
 
             }

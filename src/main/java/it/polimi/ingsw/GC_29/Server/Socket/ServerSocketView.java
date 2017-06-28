@@ -13,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -316,6 +317,23 @@ public class ServerSocketView extends View implements Runnable {
             Map<Integer, String> bonusTiles = query.perform(model);
 
             sendOut(bonusTiles);
+        }
+
+        if (q instanceof GetPayToObtainCards) {
+
+            try {
+                socketOut.writeObject("Get Pay To Obtain Cards");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetPayToObtainCards query = (GetPayToObtainCards) q;
+
+            Map<String, HashMap<Integer, String>> payToObtainCards = query.perform(model);
+
+            sendOut(payToObtainCards);
+
         }
 
 

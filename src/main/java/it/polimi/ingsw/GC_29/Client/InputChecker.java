@@ -695,4 +695,8 @@ public class InputChecker {
     public void setcurrentGameState(GameState currentGameState) {
         this.currentGameState = currentGameState;
     }
+
+    public String getCurrentPayToObtainCard() {
+        return currentPayToObtainCard;
+    }
 }

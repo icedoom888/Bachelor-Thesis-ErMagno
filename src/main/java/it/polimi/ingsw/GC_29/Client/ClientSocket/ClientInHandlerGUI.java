@@ -333,10 +333,10 @@ public class ClientInHandlerGUI implements Runnable {
 
     }
 
-    private void firePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
+    private void firePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCard) {
 
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new PayToObtainCardsChange(payToObtainCards));
+            listener.onReadingChange(new PayToObtainCardsChange(payToObtainCard));
         }
     }
 

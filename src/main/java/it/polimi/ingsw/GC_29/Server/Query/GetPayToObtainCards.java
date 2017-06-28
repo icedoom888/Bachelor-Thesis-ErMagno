@@ -22,13 +22,17 @@ public class GetPayToObtainCards extends Query<Map<String, HashMap<Integer, Stri
 
         for(DevelopmentCard card : workAction.getPayToObtainCardsMap().values()){
 
-            payToObtainCardMap.put(card.toString(), new HashMap<>());
+            payToObtainCardMap.put(card.getSpecial(), new HashMap<>());
+
+            //payToObtainCardMap.put(card.toString(), new HashMap<>());
 
             for(Effect effect : card.getPermanentEffect()){
 
                 int effectIndex = card.getPermanentEffect().indexOf(effect);
 
-                payToObtainCardMap.get(card.toString()).put(effectIndex, effect.toString());
+                payToObtainCardMap.get(card.getSpecial()).put(effectIndex, effect.toString());
+
+                //payToObtainCardMap.get(card.toString()).put(effectIndex, effect.toString());
 
             }
         }

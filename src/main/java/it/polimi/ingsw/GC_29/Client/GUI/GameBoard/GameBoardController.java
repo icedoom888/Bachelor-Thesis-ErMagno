@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.util.*;
@@ -446,7 +447,6 @@ public class GameBoardController {
     private ImageView market3Cover;
     @FXML
     private ImageView market4Cover;
-
 
 
     @FXML
@@ -1255,6 +1255,11 @@ public class GameBoardController {
 
     public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
 
+        payToObtainController.chooseCards();
+
+
+
+
         //TODO: mostrare la schermata choosePayToObtain: inizialmente mostra le carte (che contengono payToObtain)
         //TODO: con dei radio button che indicano attiva o meno
 
@@ -1267,14 +1272,18 @@ public class GameBoardController {
 
     }
 
+
+
     public void chooseCost(Map<Integer, String> possibleCosts) {
 
         chooseCostPane.setVisible(true);
-        String newCosts="";
-        for (Integer index:possibleCosts.keySet()) {
-            newCosts = newCosts + index.toString() + ") " + possibleCosts.get(index) + "\n";
+        StringBuilder newCosts= new StringBuilder();
+
+        for (Integer index : possibleCosts.keySet()) {
+            newCosts.append(index.toString()).append(") ").append(possibleCosts.get(index)).append("\n");
         }
-        chooseCostController.updateShownCosts(newCosts);
+
+        chooseCostController.updateShownCosts(newCosts.toString());
     }
 
 
@@ -1479,6 +1488,14 @@ public class GameBoardController {
 
     }
 
+    public void closeWindow(Pane pane) {
+        pane.setVisible(false);
+    }
+
+    public void openWindow(Pane pane) {
+        pane.setVisible(true);
+    }
+
 
     private void setEndTurn(boolean b) {
 
@@ -1615,5 +1632,13 @@ public class GameBoardController {
 
     public void setChooseEffectController(ChooseEffectController chooseEffectController) {
         this.chooseEffectController = chooseEffectController;
+    }
+
+    public AnchorPane getPayToObtainPane() {
+        return payToObtainPane;
+    }
+
+    public AnchorPane getChooseEffectPane() {
+        return chooseEffectPane;
     }
 }
