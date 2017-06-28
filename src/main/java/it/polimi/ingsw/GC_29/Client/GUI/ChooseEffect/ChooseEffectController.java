@@ -42,6 +42,8 @@ public class ChooseEffectController {
 
     public void sendSubmit(ActionEvent event){
 
+        gameBoardController.getChooseEffectPane().setVisible(false);
+
         Integer choiceMade = Integer.valueOf(effectChoosen.getText());
 
         if(!choices.isEmpty() && choices.contains(choiceMade)) {
@@ -77,23 +79,19 @@ public class ChooseEffectController {
 
         this.choices = currentPayToObtainEffectsMap.keySet();
 
-        //TODO: impl
-
         Set<Integer> keys = currentPayToObtainEffectsMap.keySet();
 
-
-
-        /*
-        System.out.println("which Pay To Obtain do you want to activate?");
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (Integer key : keys) {
-
-            System.out.println("effect index: " + key + ") " + currentPayToObtainEffectsMap.get(key));
-
+            stringBuilder.append(key)
+                    .append(") ")
+                    .append(currentPayToObtainEffectsMap.get(key))
+                    .append("\n");
         }
 
-        System.out.println("insert the effect index:");
-        */
+        updateShownEffects(stringBuilder.toString());
+
 
     }
 

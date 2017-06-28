@@ -1255,7 +1255,7 @@ public class GameBoardController {
 
     public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
 
-        payToObtainController.chooseCards();
+        payToObtainController.chooseCards(payToObtainCards);
 
 
 
@@ -1640,5 +1640,11 @@ public class GameBoardController {
 
     public AnchorPane getChooseEffectPane() {
         return chooseEffectPane;
+    }
+
+    public String getCard(String currentPayToObtainCard) {
+
+        return cardMap.get(currentPayToObtainCard);
+
     }
 }

@@ -94,9 +94,9 @@ public class PayToObtainController {
     }
 
 
-    public void chooseCards() {
+    public void chooseCards(Map<String, HashMap<Integer, String>> payToObtainCardsMap) {
 
-        setPayToObtainCards(payToObtainCards);
+        setPayToObtainCards(payToObtainCardsMap);
 
         askActivateCard();
 
@@ -119,9 +119,8 @@ public class PayToObtainController {
 
     private void askActivateCard() {
 
-        //TODO: impl gui
 
-        //TODO: apri la schermata
+        updateCard(new Image(gameBoardController.getCard(currentPayToObtainCard)));
 
         gameBoardController.getPayToObtainPane().setVisible(true);
 
@@ -166,6 +165,7 @@ public class PayToObtainController {
     private void askWhichEffect() {
 
         if (!currentPayToObtainEffectsMap.isEmpty()) {
+
             chooseEffectController.askWhichEffect(currentPayToObtainEffectsMap);
         }
 
