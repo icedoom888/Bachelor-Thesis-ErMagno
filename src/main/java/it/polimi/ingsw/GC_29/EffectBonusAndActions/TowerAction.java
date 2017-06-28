@@ -76,6 +76,9 @@ public class TowerAction extends Action {
             ActionSpace actionSpace = floor.getActionSpace();
             if (actionSpace.isOccupied()) {
                 familiarPresent = actionSpace.getPawnPlaced().searchFamiliar(this.temporaryPawn);
+                if (!familiarPresent) {
+                    return false;
+                }
             }
         }
         return familiarPresent;
@@ -347,12 +350,16 @@ public class TowerAction extends Action {
 
         super.update();
 
+        towerChosen.setOccupied(true);
+
         for (Effect effect : cardSelected.getPermanentEffect()) {
             if (effect instanceof BonusEffect) {
                 BonusEffect effect1 = (BonusEffect)effect;
+                /*
                 player.getBonusAndMalusOnAction().add(effect1.getBonusAndMalusOnAction());
                 player.getBonusAndMalusOnCost().add(effect1.getBonusAndMalusOnCost());
                 player.getBonusAndMalusOnGoods().add(effect1.getBonusAndMalusOnGoods());
+                */
 
                 if (effect1.getBonusAndMalusOnAction() != null) player.getBonusAndMalusOnAction().add(effect1.getBonusAndMalusOnAction());
                 if (effect1.getBonusAndMalusOnGoods() != null) player.getBonusAndMalusOnGoods().add(effect1.getBonusAndMalusOnGoods());

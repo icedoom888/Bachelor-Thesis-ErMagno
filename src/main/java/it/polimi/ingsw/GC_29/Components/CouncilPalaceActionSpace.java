@@ -64,7 +64,12 @@ public class CouncilPalaceActionSpace extends ActionSpace {
     @Override
     public void clean(){
         super.clean();
-        for (int r=0;r<turnOrder.length;r++){
+
+        /*for (PlayerColor playerColor : turnOrder) {
+            playerColor = null;
+        }*/
+
+        for (int r=0; r <turnOrder.length; r++){
             turnOrder[r]= null;
         }
     }

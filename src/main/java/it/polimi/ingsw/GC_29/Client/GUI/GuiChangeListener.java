@@ -22,4 +22,5 @@ public interface GuiChangeListener {
     void onReadingChange(PersonalCardChange personalCardChange);
     void onReadingChange(TrackChange trackChange);
     void onReadingChange(AddPawnChange addPawnChange);
+    void onReadingChange(ClearPawns clearPawns);
 }

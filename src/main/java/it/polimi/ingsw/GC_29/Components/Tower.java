@@ -15,7 +15,7 @@ public class Tower implements Cleanable {
     private final int NUMBEROFFLOORS = 4;
     private ZoneType zoneType;
     private boolean occupied;
-    private int CostIfOccupied;
+    private int costIfOccupied;
 
     public Tower(ZoneType zoneType){
 
@@ -45,7 +45,7 @@ public class Tower implements Cleanable {
 
         this.zoneType = zoneType;
         this.occupied = false;
-        this.CostIfOccupied = 3;
+        this.costIfOccupied = 3;
     }
 
     public void setOccupied(boolean occupied) {
@@ -56,6 +56,7 @@ public class Tower implements Cleanable {
     public void clean() {
         for (int i = 0; i < NUMBEROFFLOORS; i++){
             floors[i].clean();
+            occupied = false;
         }
     }
 
@@ -65,7 +66,7 @@ public class Tower implements Cleanable {
                 "floors=" + Arrays.toString(floors) +
                 ", cardType=" + zoneType +
                 ", occupied=" + occupied +
-                ", CostIfOccupied=" + CostIfOccupied +
+                ", costIfOccupied=" + costIfOccupied +
                 '}';
     }
 
@@ -101,7 +102,7 @@ public class Tower implements Cleanable {
     }
 
     public int getCostIfOccupied() {
-        return CostIfOccupied;
+        return costIfOccupied;
     }
 
     public CardColor getCardType() {

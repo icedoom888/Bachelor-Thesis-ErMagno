@@ -108,6 +108,8 @@ public class Controller implements Observer<Input>  {
 
         model.getGameBoard().clearRound();
 
+        model.clearPawns();
+
         setCardsOnTowers();
 
         model.getTurnOrder().get(0).setPlayerState(PlayerState.THROWDICES);

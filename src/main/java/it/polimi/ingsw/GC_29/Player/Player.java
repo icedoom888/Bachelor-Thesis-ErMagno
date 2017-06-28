@@ -238,6 +238,8 @@ public class Player extends Observable<Change> {
 
         actualGoodSet.addGoodSet(newGoodSet);
 
+        System.out.println("Pre NOTIFY: " + actualGoodSet);
+
         notifyObserver(new GoodSetChange(actualGoodSet));
 
 

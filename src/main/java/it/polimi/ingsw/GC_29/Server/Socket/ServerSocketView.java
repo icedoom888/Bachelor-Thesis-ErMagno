@@ -44,6 +44,7 @@ public class ServerSocketView extends View implements Runnable {
         System.out.println("UPDATE from Server");
         socketOut.writeObject("Change");
         socketOut.flush();
+        socketOut.reset();
         socketOut.writeObject(o);
         socketOut.flush();
 
@@ -185,12 +186,8 @@ public class ServerSocketView extends View implements Runnable {
             GetValidActions query = (GetValidActions) q;
 
             Map<Integer, String> validActions = query.perform(model);
-            try {
-                this.socketOut.writeObject(validActions);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            sendOut(validActions);
         }
 
         if (q instanceof GetCardsForWorkers) {
@@ -205,12 +202,8 @@ public class ServerSocketView extends View implements Runnable {
             GetCardsForWorkers query = (GetCardsForWorkers) q;
 
             Map<Integer, ArrayList<String>> cardsForWorkers = query.perform(model);
-            try {
-                this.socketOut.writeObject(cardsForWorkers);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            sendOut(cardsForWorkers);
         }
 
         if (q instanceof GetPossibleCosts) {
@@ -224,13 +217,9 @@ public class ServerSocketView extends View implements Runnable {
 
             GetPossibleCosts query = (GetPossibleCosts) q;
 
-            Map<Integer, String> cardsForWorkers = query.perform(model);
-            try {
-                this.socketOut.writeObject(cardsForWorkers);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Map<Integer, String> possibleCosts = query.perform(model);
+
+            sendOut(possibleCosts);
         }
 
         if (q instanceof GetCouncilPrivileges) {
@@ -245,12 +234,8 @@ public class ServerSocketView extends View implements Runnable {
             GetCouncilPrivileges query = (GetCouncilPrivileges) q;
 
             List<Integer> councilPrivileges = query.perform(model);
-            try {
-                this.socketOut.writeObject(councilPrivileges);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            sendOut(councilPrivileges);
         }
 
         if (q instanceof GetGoodSet) {
@@ -265,12 +250,8 @@ public class ServerSocketView extends View implements Runnable {
             GetGoodSet query = (GetGoodSet) q;
 
             GoodSet goodSet = query.perform(model);
-            try {
-                this.socketOut.writeObject(goodSet);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            sendOut(goodSet);
         }
 
         if (q instanceof GetDevelopmentCard) {
@@ -285,12 +266,8 @@ public class ServerSocketView extends View implements Runnable {
             GetDevelopmentCard query = (GetDevelopmentCard) q;
 
             List<String> developmentCards = query.perform(model);
-            try {
-                this.socketOut.writeObject(developmentCards);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            sendOut(developmentCards);
         }
 
         if (q instanceof GetTowerCard) {
@@ -305,12 +282,8 @@ public class ServerSocketView extends View implements Runnable {
             GetTowerCard query = (GetTowerCard) q;
 
             List<String> towerCards = query.perform(model);
-            try {
-                this.socketOut.writeObject(towerCards);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            sendOut(towerCards);
         }
 
         if (q instanceof GetFamilyPawnAvailability) {
@@ -325,12 +298,8 @@ public class ServerSocketView extends View implements Runnable {
             GetFamilyPawnAvailability query = (GetFamilyPawnAvailability) q;
 
             Map<FamilyPawn, Boolean> familyPawns = query.perform(model);
-            try {
-                this.socketOut.writeObject(familyPawns);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            sendOut(familyPawns);
         }
 
         if (q instanceof GetBonusTile) {
@@ -345,17 +314,26 @@ public class ServerSocketView extends View implements Runnable {
             GetBonusTile query = (GetBonusTile) q;
 
             Map<Integer, String> bonusTiles = query.perform(model);
-            try {
-                this.socketOut.writeObject(bonusTiles);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            sendOut(bonusTiles);
         }
 
 
 
 
+    }
+
+    private void sendOut(Object o) {
+
+        try {
+
+            this.socketOut.reset();
+            this.socketOut.writeObject(o);
+            this.socketOut.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

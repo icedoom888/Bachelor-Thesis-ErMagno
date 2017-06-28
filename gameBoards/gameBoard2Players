@@ -859,7 +859,7 @@
       "NUMBEROFFLOORS": 4,
       "zoneType": "GREENTOWER",
       "occupied": false,
-      "CostIfOccupied": 3
+      "costIfOccupied": 3
     },
     "YELLOWTOWER": {
       "floors": [
@@ -971,7 +971,7 @@
       "NUMBEROFFLOORS": 4,
       "zoneType": "YELLOWTOWER",
       "occupied": false,
-      "CostIfOccupied": 3
+      "costIfOccupied": 3
     },
     "BLUETOWER": {
       "floors": [
@@ -1083,7 +1083,7 @@
       "NUMBEROFFLOORS": 4,
       "zoneType": "BLUETOWER",
       "occupied": false,
-      "CostIfOccupied": 3
+      "costIfOccupied": 3
     },
     "PURPLETOWER": {
       "floors": [
@@ -1195,7 +1195,7 @@
       "NUMBEROFFLOORS": 4,
       "zoneType": "PURPLETOWER",
       "occupied": false,
-      "CostIfOccupied": 3
+      "costIfOccupied": 3
     }
   },
   "workAreaMap": {

@@ -41,11 +41,10 @@ public class Market implements Cleanable {
     }
 
     @Override
-    public void clean(){
-        for(ShopName name : ShopName.values()){
-            if (houses.containsKey(name)) {
-                houses.get(name).clean();
-            }
+    public void clean() {
+
+        for (ActionSpace actionSpace : houses.values()) {
+            actionSpace.clean();
         }
     }
 

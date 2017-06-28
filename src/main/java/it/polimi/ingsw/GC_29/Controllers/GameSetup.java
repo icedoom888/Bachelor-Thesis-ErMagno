@@ -85,7 +85,8 @@ public class GameSetup {
 
         Collections.shuffle(players);
 
-        setGoodsForPlayers();
+        // setGoodsForPlayers();
+        // commentata e resa public perchè devo prima registrare la gui e poi settare i goods
 
         setGameStatus();
 
@@ -204,7 +205,7 @@ public class GameSetup {
         return excommunicationTileMap.get(era).get(randomIndex);
     }
 
-    private void setGoodsForPlayers() throws Exception {
+    public void setGoodsForPlayers() throws Exception {
 
         FileReader fileReader = new FileReader("goodsForPlayerSetup");
 

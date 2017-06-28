@@ -49,7 +49,7 @@ public class ExecuteAction extends Input {
 
             workAction.buildDifferentChoices();
 
-            if (workAction.getCardsForWorkers().isEmpty()) {
+            if (workAction.getCardsForWorkers().keySet().size() <= 1) {
                 workAction.execute();
                 controller.handleEndAction();
             }

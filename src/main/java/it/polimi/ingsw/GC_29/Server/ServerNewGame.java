@@ -210,6 +210,12 @@ public class ServerNewGame implements Runnable {
 
         System.out.println("Qua arrivi?");
 
+        try {
+            gameSetup.setGoodsForPlayers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         controller.setCardsOnTowers();
 
         for (ServerSocketView serverSocketView : serverSocketViews.keySet()) {

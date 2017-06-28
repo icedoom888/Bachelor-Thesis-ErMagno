@@ -39,11 +39,11 @@ public class Workspace implements Cleanable {
 
     @Override
     public void clean() {
-        for(FieldType type: FieldType.values()){
-            if (fields.containsKey(type)) {
-                fields.get(type).clean();
-            }
+
+        for (ActionSpace actionSpace : fields.values()) {
+            actionSpace.clean();
         }
+
     }
 
     public Map<FieldType, ActionSpace> getFields() {

@@ -76,7 +76,7 @@ public class GoodSet extends Observable<MovePawn> implements Serializable{
 
         if (victoryPoints != 0) notifyObserver(new VictoryMove(victoryPoints));
         if (militaryPoints != 0) notifyObserver(new MilitaryMove(militaryPoints));
-        if (faithPoints != 0) notifyObserver(new FaithMove(militaryPoints));
+        if (faithPoints != 0) notifyObserver(new FaithMove(faithPoints));
     }
 
     public void subGoodSet(GoodSet goodSetToSub){

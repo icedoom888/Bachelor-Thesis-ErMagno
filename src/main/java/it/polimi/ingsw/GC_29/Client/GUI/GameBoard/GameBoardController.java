@@ -899,13 +899,14 @@ public class GameBoardController {
                 image = new Image(redPawnsImagesMap.get(pawnType));
                 break;
         }
-        if (actionIndex==20){
+        if (actionIndex == 20){
             updatePawnOnGrid(image,actionIndex);
         }
-        else if (actionIndex==22 || actionIndex==24){
+
+        else if (actionIndex == 22 || actionIndex == 24){
             updatePawnOnBox(image,actionIndex);
         }
-        else if (actionIndex!=20 && actionIndex!=22 && actionIndex!=24){
+        else {
             updatePawnOnActionspace(image,actionIndex);
         }
     }
@@ -933,8 +934,7 @@ public class GameBoardController {
         gridFreeSlot++;
     }
 
-    //TODO:da chiamare
-    private void removeAllPawns(){
+    public void removeAllPawns(){
         for (Integer integer : actionButtons.keySet()) {
             Image image = null;
             actionButtons.get(integer).setImage(image);
@@ -960,7 +960,7 @@ public class GameBoardController {
         for (FamilyPawn pawn: availability.keySet()) {
 
             if (availability.get(pawn)) {
-                setAvailable(pawn);
+                setPawnAvailable(pawn);
 
             }
 
@@ -991,11 +991,13 @@ public class GameBoardController {
         }
     }
 
-    private void setAvailable(FamilyPawn pawn) {
+    private void setPawnAvailable(FamilyPawn pawn) {
+
         FamilyPawnType type = pawn.getType();
         Integer value = pawn.getActualValue();
 
         switch (type){
+
             case BLACK:
                 blackValue.setVisible(true);
                 blackPawn.setVisible(true);
@@ -1127,14 +1129,12 @@ public class GameBoardController {
      * @param goodType
      * @param numberOfPoints
      */
-    //TODO: capire perchè passano faithpoints a 0
     public void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
-        System.out.println(playerColor);
-        System.out.println(goodType);
-        System.out.println(numberOfPoints);
-        String numberOfPointString = "";
-        int value = 0;
-        int sum = 0;
+
+        String numberOfPointString;
+        int value;
+        int sum;
+
         switch (playerColor){
             case BLUE:
                 value = Integer.parseInt(bluePlayerTrack.get(goodType).getText());
@@ -1237,16 +1237,19 @@ public class GameBoardController {
 
         ArrayList<Integer> choices = new ArrayList<>();
         chooseWorkersPane.setVisible(true);
-        String newWorkers="";
+        StringBuilder newWorkers= new StringBuilder();
+
         for (Integer index:cardsForWorkers.keySet()) {
             choices.add(index);
-            newWorkers = newWorkers + index.toString() + ") ";
-            for (int i=0;i<(cardsForWorkers.get(index)).size();i++){
-                newWorkers = newWorkers + (cardsForWorkers.get(index)).get(i);
+            newWorkers.append(index.toString()).append(") ");
+
+            for (int i = 0;i < (cardsForWorkers.get(index)).size(); i++) {
+                newWorkers.append((cardsForWorkers.get(index)).get(i));
             }
-            newWorkers = newWorkers + "\n";
+
+            newWorkers.append("\n");
         }
-        workersController.updateShownCosts(newWorkers);
+        workersController.updateShownCosts(newWorkers.toString());
         workersController.setChoices(choices);
     }
 
@@ -1342,7 +1345,7 @@ public class GameBoardController {
 
                 setSkipAction(false);
 
-                setEndTurn(true);
+                setEndTurn(false);
 
                 throwDicesPane.setVisible(true);
 
@@ -1432,18 +1435,7 @@ public class GameBoardController {
             case PRAY:
             case WAITING:
 
-                setActions(false);
-
-                setLeaderButtons(false);
-
-                setFamilyPawns(false);
-
-                setThrowDices(false);
-
-                setSkipAction(false);
-
-                setEndTurn(false);
-
+                noButtonsAble();
 
                 break;
 
@@ -1536,6 +1528,21 @@ public class GameBoardController {
         for (HBox hBox : actionBox.values()) {
             hBox.setDisable(!b);
         }
+    }
+
+    public void noButtonsAble() {
+
+        setActions(false);
+
+        setLeaderButtons(false);
+
+        setFamilyPawns(false);
+
+        setThrowDices(false);
+
+        setSkipAction(false);
+
+        setEndTurn(false);
     }
 
 

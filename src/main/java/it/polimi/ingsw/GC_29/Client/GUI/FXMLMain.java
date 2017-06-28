@@ -260,6 +260,11 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
                             updatePawn(addPawnChange.getFamilyPawn(), addPawnChange.getActionIndex());
                         }
 
+                        @Override
+                        public void onReadingChange(ClearPawns clearPawns) {
+                            gameBoardController.removeAllPawns();
+                        }
+
 
                     });
                     break;
@@ -441,6 +446,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         gameboardStage.setWidth(1100);
         gameboardStage.centerOnScreen();
         gameboardStage.setTitle("Lorenzo il Magnifico");
+        gameBoardController.noButtonsAble();
         gameboardStage.show();
 
 
@@ -607,8 +613,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             @Override
             public void run() {
 
-                //TODO: impl controller, bisogna passare il nome delle carte non il toString
-
                 gameBoardController.updateCardsPersonalBoard(cardName, cardColor);
 
 
@@ -621,9 +625,19 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     private void updateGoodSet(GoodSet goodSet) {
 
+        System.out.println("Pre run " + goodSet);
+
         Platform.runLater(new Runnable() {
+
+
+            //private GoodSet goodSetRun = goodSet;
+
+
             @Override
             public void run() {
+
+                System.out.println("Post run " + goodSet);
+
 
                 gameBoardController.updatePersonalGoodSet(goodSet);
 
@@ -635,9 +649,11 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     private void updateValidActions(Map<Integer, String> validActions) {
 
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+
 
                 gameBoardController.updatePossibleActions(validActions);
 

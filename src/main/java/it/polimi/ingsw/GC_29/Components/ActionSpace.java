@@ -86,6 +86,7 @@ public class ActionSpace implements Cleanable {
         if(!pawnPlaced.isFree()){
 
             pawnPlaced.clearSlot();
+            occupied = false;
 
         }
 

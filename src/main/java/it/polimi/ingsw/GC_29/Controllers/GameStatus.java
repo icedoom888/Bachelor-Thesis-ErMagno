@@ -234,5 +234,15 @@ public class GameStatus extends Observable<Change>{
         }
 
     }
+
+    public void clearPawns() {
+
+        try {
+            notifyObserver(new ClearPawns());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 
