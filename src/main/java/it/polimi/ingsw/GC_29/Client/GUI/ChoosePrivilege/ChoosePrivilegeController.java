@@ -1,6 +1,9 @@
 package it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege;
 
 import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilege;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +20,15 @@ import java.util.Map;
 public class ChoosePrivilegeController {
 
     private ChooseDistribution sender;
+
+    private GameBoardController gameBoardController;
+
+    private List<CouncilPrivilegeEffect> councilPrivilegeEffectList;
+    private List<Integer> councilPrivilegeEffectChosenList;
+    private CouncilPrivilege currentParchment;
+    private CouncilPrivilegeEffect currentCouncilPrivilegeEffect;
+    private List<CouncilPrivilege> currentParchmentList;
+
 
     private HashMap<Integer,RadioButton> buttons;
 
@@ -36,6 +48,7 @@ public class ChoosePrivilegeController {
 
     @FXML
     private Button submit;
+
 
 
     public void switchButtons(ActionEvent event){
@@ -72,28 +85,62 @@ public class ChoosePrivilegeController {
     }
 
     public void sendSubmit(ActionEvent event){
-        if (privilege1.isSelected()){
-            sender.sendInput("privilege 0");
+
+        gameBoardController.getChoosePrivilegePane().setVisible(false);
+
+        if (privilege1.isSelected()) {
+            councilPrivilegeEffectChosenList.add(0);
         }
-        else if (privilege2.isSelected()){
-            sender.sendInput("privilege 1");
+
+        else if (privilege2.isSelected()) {
+            councilPrivilegeEffectChosenList.add(1);
+
         }
-        else if (privilege3.isSelected()){
-            sender.sendInput("privilege 2");
+
+        else if (privilege3.isSelected()) {
+            councilPrivilegeEffectChosenList.add(2);
+
         }
-        else if (privilege4.isSelected()){
-            sender.sendInput("privilege 3");
+
+        else if (privilege4.isSelected()) {
+            councilPrivilegeEffectChosenList.add(3);
+
         }
-        else if (privilege5.isSelected()){
-            sender.sendInput("privilege 4");
+
+        else if (privilege5.isSelected()) {
+            councilPrivilegeEffectChosenList.add(4);
+
         }
+
         else {
+
             error.setVisible(true);
+
+            return;
+
         }
+
+        if (nextParchment()) {
+            askWhichPrivilege();
+        }
+
+        else if (nextPrivilegeEffect()) {
+            askWhichPrivilege();
+        }
+
+        else {
+
+            sender.sendInput(councilPrivilegeEffectChosenList);
+        }
+
+
 
     }
 
-    public void updatePrivilege(List<Integer> privileges){
+
+
+    public void choosePrivilege(List<Integer> privileges) {
+
         privilege1.setDisable(false);
         privilege1.setSelected(false);
         privilege2.setDisable(false);
@@ -105,6 +152,7 @@ public class ChoosePrivilegeController {
         privilege5.setDisable(false);
         privilege5.setSelected(false);
 
+        /*
         for(int i = 0; i<5; i++){
             if (!privileges.contains(i)){
                 switch (i){
@@ -126,10 +174,69 @@ public class ChoosePrivilegeController {
                 }
             }
         }
+        */
+
+        setCouncilPrivilegeEffectList(privileges);
+
+        nextPrivilegeEffect();
+
+        askWhichPrivilege();
+
+
+    }
+
+
+
+
+    public void setCouncilPrivilegeEffectList(List<Integer> councilPrivilegeEffectList) {
+
+        for (Integer integer : councilPrivilegeEffectList) {
+
+            this.councilPrivilegeEffectList.add(new CouncilPrivilegeEffect(integer));
+        }
+
+        councilPrivilegeEffectChosenList.clear();
+    }
+
+    private boolean nextPrivilegeEffect() {
+
+        if (!councilPrivilegeEffectList.isEmpty()) {
+
+            currentCouncilPrivilegeEffect = councilPrivilegeEffectList.remove(0);
+            currentParchmentList = currentCouncilPrivilegeEffect.getParchmentList();
+
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
+    private boolean nextParchment() {
+
+        return !currentParchmentList.isEmpty();
+    }
+
+    private void askWhichPrivilege() {
+
+        currentParchment = currentCouncilPrivilegeEffect.getParchmentList().remove(0);
+
+        //TODO: impl con indici sempre uguali
+        //TODO: qui va fatto il set degli effetti che possono essere attivi o meno
+
+        gameBoardController.getChoosePrivilegePane().setVisible(true);
+
     }
 
 
     public void setSender(ChooseDistribution sender) {
         this.sender = sender;
     }
+
+    public void setGameBoardController(GameBoardController gameBoardController) {
+        this.gameBoardController = gameBoardController;
+    }
+
+
 }

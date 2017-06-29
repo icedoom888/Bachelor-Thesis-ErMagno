@@ -340,6 +340,23 @@ public class ServerSocketView extends View implements Runnable {
 
         }
 
+        if (q instanceof GetExcommunication) {
+
+            try {
+                socketOut.writeObject("Get Excommunication");
+                socketOut.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            GetExcommunication query = (GetExcommunication) q;
+
+            String excommunicationUrl = query.perform(model);
+
+            sendOut(excommunicationUrl);
+
+        }
+
 
 
 

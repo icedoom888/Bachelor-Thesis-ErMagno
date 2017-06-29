@@ -1,13 +1,11 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Client.GUI.FamilyPawnChange;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import  it.polimi.ingsw.GC_29.Server.Observable;
 
-import java.rmi.RemoteException;
 import java.util.*;
 
 /**

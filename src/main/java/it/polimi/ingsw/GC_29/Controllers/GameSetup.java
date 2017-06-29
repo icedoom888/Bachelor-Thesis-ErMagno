@@ -243,7 +243,7 @@ public class GameSetup {
 
         gameStatus.setCurrentRound(1);
 
-        gameStatus.setCurrentTurn(0);
+        gameStatus.setCurrentTurn(1);
 
         try {
             gameStatus.setBonusTileList(loadBonusTilesFromFile());

@@ -96,7 +96,7 @@ public class Controller implements Observer<Input>  {
             }
         }
 
-        model.setCurrentTurn(0);
+        model.setCurrentTurn(1);
 
         model.setCurrentRound(model.getCurrentRound()+1);
 
@@ -619,6 +619,27 @@ public class Controller implements Observer<Input>  {
 
             model.getCurrentPlayer().setPlayerState(PlayerState.ENDTURN);
 
+        }
+    }
+
+    public void handlePayToObtainCards(WorkAction workAction, Player currentPlayer, int workers) {
+
+        if (workAction.handlePayToObtainCards(workers)) {
+
+            System.out.println("handlePay true");
+
+            currentPlayer.setPlayerState(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS);
+
+
+        }
+
+        else {
+            try {
+                workAction.execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            handleEndAction();
         }
     }
 

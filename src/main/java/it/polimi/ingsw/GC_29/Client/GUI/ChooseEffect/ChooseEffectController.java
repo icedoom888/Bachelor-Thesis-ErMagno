@@ -42,11 +42,12 @@ public class ChooseEffectController {
 
     public void sendSubmit(ActionEvent event){
 
-        gameBoardController.getChooseEffectPane().setVisible(false);
 
         Integer choiceMade = Integer.valueOf(effectChoosen.getText());
 
         if(!choices.isEmpty() && choices.contains(choiceMade)) {
+
+            gameBoardController.getChooseEffectPane().setVisible(false);
 
             payToObtainController.setCurrentPayToObtainEffectIndex(choiceMade);
             payToObtainController.seeNextCard();
@@ -61,7 +62,6 @@ public class ChooseEffectController {
         effects.setText(newEffects);
         error.setVisible(false);
         effectChoosen.setText("");
-        System.out.println("Choose effect set visible");
         gameBoardController.getChooseEffectPane().setVisible(true);
     }
 

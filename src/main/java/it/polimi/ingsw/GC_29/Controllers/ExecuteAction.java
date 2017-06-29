@@ -49,20 +49,29 @@ public class ExecuteAction extends Input {
 
             workAction.buildDifferentChoices();
 
-            /*
+
             if (workAction.getCardsForWorkers().keySet().size() <= 1) {
 
 
-                workAction.execute();
-                controller.handleEndAction();
+                controller.handlePayToObtainCards(workAction, currentPlayer, 0);
+
+                /*if (workAction.handlePayToObtainCards(0)) {
+
+                    currentPlayer.setPlayerState(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS);
+
+
+                }
+
+                else {
+                    workAction.execute();
+                    controller.handleEndAction();
+                }*/
             }
 
             else {
+
                 currentPlayer.setPlayerState(PlayerState.CHOOSEWORKERS);
             }
-             */
-
-            currentPlayer.setPlayerState(PlayerState.CHOOSEWORKERS);
 
 
         }

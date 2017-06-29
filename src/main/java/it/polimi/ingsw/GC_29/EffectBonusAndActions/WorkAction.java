@@ -238,7 +238,7 @@ public class WorkAction extends Action {
 
         for (DevelopmentCard card : cardsToActivateList) {
 
-            String cardKey = card.toString();
+            String cardKey = card.getSpecial();
 
             for(Effect effect : card.getPermanentEffect()){
 
@@ -374,8 +374,11 @@ public class WorkAction extends Action {
      */
     private void activateEffects() throws Exception {
 
+        System.out.println("activate effects");
 
         if(!effectsToActivate.isEmpty()){
+
+            System.out.println("effectsToActivate not empty");
 
             for(Effect effect : effectsToActivate){
 
@@ -421,6 +424,8 @@ public class WorkAction extends Action {
                 throw new IllegalArgumentException("Illegal card key" + cardKey);
             }
         }
+
+        System.out.println("WORKACTION - effects to activate: " + effectsToActivate);
     }
 
     public boolean handlePayToObtainCards() {

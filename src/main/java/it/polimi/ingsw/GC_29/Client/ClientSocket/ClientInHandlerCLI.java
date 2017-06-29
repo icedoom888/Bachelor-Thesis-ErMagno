@@ -246,6 +246,10 @@ public class ClientInHandlerCLI implements Runnable {
 
                 break;
 
+            case PRAY:
+                System.out.println("you have to decide whether to swear fidelity to the pope or not \n the valid input is : pray / do not pray");
+                break;
+
         }
     }
 

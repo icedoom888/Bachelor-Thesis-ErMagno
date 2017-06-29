@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Client;
 
 import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonOutSocket;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,7 +36,11 @@ public class ChooseDistribution {
 
     public void sendInput(Map<String, Integer> activatedCardMap) {
         commonOutSocket.setActivatedCardMap(activatedCardMap);
-        System.out.println("input sent");
         sendInput("activated cards GUI");
+    }
+
+    public void sendInput(List<Integer> councilPrivilegeEffectChosenList) {
+        commonOutSocket.setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
+        sendInput("council privileges chosen GUI");
     }
 }

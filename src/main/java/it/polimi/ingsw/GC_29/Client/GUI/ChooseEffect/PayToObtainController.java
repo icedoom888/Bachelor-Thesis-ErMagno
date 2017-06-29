@@ -97,8 +97,6 @@ public class PayToObtainController {
 
     public void chooseCards(Map<String, HashMap<Integer, String>> payToObtainCardsMap) {
 
-        System.out.println("dentro payToObtain controller");
-
         setPayToObtainCards(payToObtainCardsMap);
 
         askActivateCard();
@@ -122,8 +120,6 @@ public class PayToObtainController {
 
     private void askActivateCard() {
 
-
-        System.out.println("ask activate card");
 
         updateCard(new Image(gameBoardController.getCard(currentPayToObtainCard)));
 
@@ -198,5 +194,6 @@ public class PayToObtainController {
 
     public void setCurrentPayToObtainEffectIndex(Integer currentPayToObtainEffectIndex) {
         this.currentPayToObtainEffectIndex = currentPayToObtainEffectIndex;
+        addCard();
     }
 }

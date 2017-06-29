@@ -33,8 +33,13 @@ public class EndTurn extends Input {
             setSkippedPlayer(model, controller);
         }
 
+        System.out.println("Current player: " + currentPlayer.getPlayerID());
+        System.out.println(turnOrder.indexOf(currentPlayer));
+
 
         if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) {
+
+
 
             if (model.getCurrentTurn() < 4) {
                 model.setCurrentTurn(model.getCurrentTurn()+1);
@@ -47,7 +52,9 @@ public class EndTurn extends Input {
                 model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);
             }
 
-            if (model.getCurrentTurn() == 4) {
+            else if (model.getCurrentTurn() == 4) {
+
+                System.out.println("Setting Skipped players");
 
                 setSkippedPlayer(model, controller);
 
@@ -64,6 +71,9 @@ public class EndTurn extends Input {
     private void setSkippedPlayer(GameStatus model, Controller controller) throws Exception {
 
         if (model.getSkippedTurnPlayers().isEmpty()) {
+
+            System.out.println("nessuno skippa");
+
             model.setGameState(GameState.RUNNING);
             controller.handleEndRound();
         }

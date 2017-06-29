@@ -20,6 +20,7 @@ public class CommonOutSocket {
     private CommonView commonView;
     private ObjectOutputStream socketOut;
     private Map<String, Integer> activatedCardMap;
+    private List<Integer> councilPrivilegeEffectChosenList;
 
     public CommonOutSocket(ObjectOutputStream socketOut) {
         this.socketOut = socketOut;
@@ -31,7 +32,10 @@ public class CommonOutSocket {
 
         try {
             // Implements the communication protocol, creating the Actions corresponding to the input of the user
-            if (!inputLine.contentEquals("activated cards GUI")) {
+
+            if (!inputLine.contentEquals("activated cards GUI")
+                    || !inputLine.contentEquals("council privileges chosen GUI")) {
+
                 inputLine = commonView.getInputChecker().checkInput(inputLine);
             }
 
@@ -132,7 +136,6 @@ public class CommonOutSocket {
 
                     socketOut.writeObject("pay to obtain cards chosen");
                     socketOut.flush();
-                    System.out.println("inviate la mappa delle carte attive al server");
                     socketOut.writeObject(activatedCardMap);
                     socketOut.flush();
                     break;
@@ -158,6 +161,15 @@ public class CommonOutSocket {
                         socketOut.writeObject(commonView.getInputChecker().getCouncilPrivilegeEffectChosenList());
                     }
                     break;
+
+                case "council privileges chosen GUI":
+
+                    socketOut.writeObject("council privilege chosen");
+                    socketOut.flush();
+                    socketOut.writeObject(councilPrivilegeEffectChosenList);
+                    socketOut.flush();
+                    break;
+
 
                 case "pray":
                     PlayerColor playerColor = commonView.getPlayerColor();
@@ -306,6 +318,18 @@ public class CommonOutSocket {
 
                 break;
 
+            case PRAY:
+
+                query = new GetExcommunication();
+                try {
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+
         }
     }
 
@@ -341,5 +365,9 @@ public class CommonOutSocket {
 
     public void setActivatedCardMap(Map<String, Integer> activatedCardMap) {
         this.activatedCardMap = activatedCardMap;
+    }
+
+    public void setCouncilPrivilegeEffectChosenList(List<Integer> councilPrivilegeEffectChosenList) {
+        this.councilPrivilegeEffectChosenList = councilPrivilegeEffectChosenList;
     }
 }

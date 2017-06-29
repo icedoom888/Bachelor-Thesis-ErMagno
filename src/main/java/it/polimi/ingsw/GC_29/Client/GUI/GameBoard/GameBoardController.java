@@ -1301,8 +1301,8 @@ public class GameBoardController {
 
     //TODO: deve essere chiamata passandogli la lista di interi selezionabili ogni volta che ho un privilege da scegliere, devono sempre avere la stessa numerazione
     public void choosePrivileges(List<Integer> councilPrivileges) {
-        choosePrivilegePane.setVisible(true);
-        choosePrivilegeController.updatePrivilege(councilPrivileges);
+        //choosePrivilegePane.setVisible(true);
+        choosePrivilegeController.choosePrivilege(councilPrivileges);
     }
 
     //TODO: arrivano solo quelle da mostrare, con indici crescenti, mi servono sempre con numero fisso da 0 a 4
@@ -1324,8 +1324,9 @@ public class GameBoardController {
     }
 
     public void pray(String excommunication){
-        prayPane.setVisible(true);
         prayController.updatePray(excommunication);
+        prayPane.setVisible(true);
+
     }
 
 
@@ -1660,4 +1661,7 @@ public class GameBoardController {
 
     }
 
+    public AnchorPane getChoosePrivilegePane() {
+        return choosePrivilegePane;
+    }
 }

@@ -171,73 +171,10 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
                     clientSocketGUI.getClientInHandlerGUI().addListener(new GuiChangeListener() {
 
                         @Override
-                        public void onReadingChange(StartGameChange startGameChange) {
-                            //TODO: da fare
-                            updateView();
-                        }
-
-                        @Override
-                        public void onReadingChange(ValidActionsChange validActionsChange) {
-                            updateValidActions(validActionsChange.getValidActionList());
-
-                        }
-
-                        @Override
                         public void onReadingChange(GoodSetChange goodSetChange) {
                             updateGoodSet(goodSetChange.getGoodSet());
                         }
 
-                        /*@Override
-                        public void onReadingChange(CardsChange cardsChange) {
-
-                            //TODO: sbagliato
-
-                            switch (cardsChange.getType()) {
-
-                                case "development":
-                                    updatePersonalCards(cardsChange.getDevelopmentCards());
-                                    break;
-
-                                case "tower":
-                                    updateCardsOnTower(cardsChange.getDevelopmentCards());
-                                    break;
-                            }
-                        }*/
-
-                        @Override
-                        public void onReadingChange(FamilyPawnChange familyPawnChange) {
-                            updateFamilyPawns(familyPawnChange.getFamilyPawns());
-                        }
-
-                        @Override
-                        public void onReadingChange(CardsForWorkersChange cardsForWorkersChange) {
-                            chooseWorkers(cardsForWorkersChange.getCardsForWorkers());
-                        }
-
-                        @Override
-                        public void onReadingChange(PayToObtainCardsChange payToObtainCardsChange) {
-                            choosePayToObtainCards(payToObtainCardsChange.getPayToObtainCards());
-                        }
-
-                        @Override
-                        public void onReadingChange(PossibleCostsChange possibleCostsChange) {
-                            chooseCost(possibleCostsChange.getPossibleCosts());
-                        }
-
-                        @Override
-                        public void onReadingChange(CouncilPrivilegeChange councilPrivilegeChange) {
-                            chooseCouncilPrivilege(councilPrivilegeChange.getCouncilPrivileges());
-                        }
-
-                        @Override
-                        public void onReadingChange(BonusTileChange bonusTileChange) {
-                            chooseBonusTile(bonusTileChange.getBonusTiles());
-                        }
-
-                        @Override
-                        public void onReadingChange(PlayerStateChange playerStateChange) {
-                            setGuiOnState(playerStateChange.getNewPlayerState());
-                        }
 
                         @Override
                         public void onReadingChange(TowerCardsChange towerCardsChange) {
@@ -261,7 +198,72 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
                         @Override
                         public void onReadingChange(ClearPawns clearPawns) {
-                            gameBoardController.removeAllPawns();
+
+                            removeAllPawns();
+
+                        }
+
+                        @Override
+                        public void pray(String excommunicationUrl) {
+
+                            playerPraying(excommunicationUrl);
+
+                        }
+
+                        @Override
+                        public void changeState(PlayerState currentPlayerState) {
+
+                            setGuiOnState(currentPlayerState);
+
+                        }
+
+                        @Override
+                        public void validActions(Map<Integer, String> validActionList) {
+
+                            updateValidActions(validActionList);
+
+                        }
+
+                        @Override
+                        public void updatePawns(Map<FamilyPawn, Boolean> familyPawns) {
+
+                            updateFamilyPawns(familyPawns);
+
+                        }
+
+                        @Override
+                        public void cardsForWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
+
+                            chooseWorkers(cardsForWorkers);
+
+                        }
+
+                        @Override
+                        public void payToObtainCard(Map<String, HashMap<Integer, String>> payToObtainCard) {
+
+                            choosePayToObtainCards(payToObtainCard);
+
+                        }
+
+                        @Override
+                        public void possibleCosts(Map<Integer, String> possibleCosts) {
+
+                            chooseCost(possibleCosts);
+
+                        }
+
+                        @Override
+                        public void councilPrivilege(List<Integer> councilPrivileges) {
+
+                            chooseCouncilPrivilege(councilPrivileges);
+
+                        }
+
+                        @Override
+                        public void bonusTile(Map<Integer, String> bonusTiles) {
+
+                            chooseBonusTile(bonusTiles);
+
                         }
 
 
@@ -280,6 +282,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
 
     }
+
+
 
 
     private void setLogin() {
@@ -406,6 +410,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             childPrivilege.setVisible(false);
             ChoosePrivilegeController choosePrivilegeController = loaderPrivileges.getController();
             choosePrivilegeController.setSender(chooseDistribution);
+            choosePrivilegeController.setGameBoardController(gameBoardController);
             gameBoardController.setChoosePrivilegeController(choosePrivilegeController);
             gameBoardController.setChoosePrivilegePane(childPrivilege);
 
@@ -469,6 +474,13 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
 
 
+
+
+    private void removeAllPawns() {
+
+        gameBoardController.removeAllPawns();
+
+    }
 
 
     private void updatePawn(FamilyPawn familyPawn, int actionIndex) {
@@ -632,13 +644,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
         Platform.runLater(new Runnable() {
 
-
-            //private GoodSet goodSetRun = goodSet;
-
-
             @Override
             public void run() {
-
 
 
                 gameBoardController.updatePersonalGoodSet(goodSet);
@@ -665,19 +672,19 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
-    private void updateView() {
+    private void playerPraying(String excommunicationUrl) {
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
 
-                //TODO: impl
 
-                //loginController.showError();
+                gameBoardController.pray(excommunicationUrl);
 
 
             }
         });
+
     }
 
 

@@ -14,6 +14,7 @@ import it.polimi.ingsw.GC_29.Player.Player;
 public class ExcommunicationTile {
 
 
+    private String url;
     private Era era;
     private SpecialBonusAndMalus special;
     private BonusAndMalusOnAction malusOnAction;
@@ -21,12 +22,14 @@ public class ExcommunicationTile {
     private BonusAndMalusOnCost malusOnCost;
     private Effect effect;
 
-    public ExcommunicationTile(Era era,
+    public ExcommunicationTile(String url,
+                               Era era,
                                SpecialBonusAndMalus special,
                                BonusAndMalusOnAction malusOnAction,
                                BonusAndMalusOnGoods malusOnGoods,
                                BonusAndMalusOnCost malusOnCost,
                                Effect effect) {
+        this.url = url;
         this.era = era;
         this.special = special;
         this.malusOnAction = malusOnAction;
@@ -61,6 +64,10 @@ public class ExcommunicationTile {
 
     public Effect getEffect() {
         return effect;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public void execute(Player player) throws Exception {

@@ -260,6 +260,7 @@ public class ClientInHandlerGUI implements Runnable {
             case CHOOSE_BONUS_TILE:
 
                 try {
+
                     String input = (String)socketIn.readObject();
 
                     System.out.println("Bonus Tiles : " + input);
@@ -275,22 +276,41 @@ public class ClientInHandlerGUI implements Runnable {
 
                 break;
 
+            case PRAY:
+
+                try {
+
+                    String input = (String)socketIn.readObject();
+
+                    System.out.println("PRAY : " + input);
+
+                    if (input.contentEquals("Get Excommunication")) {
+                        getExcommunicationTileUrl();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                break;
         }
     }
 
 
 
 
-    private void fireGuiChangeEvent() {
+    private void firePray(String excommunicationUrl) {
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new StartGameChange());
+            listener.pray(excommunicationUrl);
         }
     }
+
 
     private void firePlayerState(PlayerState currentPlayerState) {
 
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new PlayerStateChange(currentPlayerState));
+            listener.changeState(currentPlayerState);
         }
 
     }
@@ -299,36 +319,24 @@ public class ClientInHandlerGUI implements Runnable {
     private void fireValidActions() {
 
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new ValidActionsChange(commonView.getInputChecker().getValidActionList()));
+
+            listener.validActions(commonView.getInputChecker().getValidActionList());
+
         }
     }
 
-    /*private void fireGoodSet(GoodSet goodSet) {
-
-        for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new GoodSetChange(goodSet));
-        }
-    }*/
-
-    /*private void fireCardsCards(List<String> developmentCards, String string) {
-
-        for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new CardsChange(developmentCards, string));
-        }
-
-    }*/
 
     private void fireFamilyPawns(Map<FamilyPawn, Boolean> familyPawns) {
 
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new FamilyPawnChange(familyPawns));
+            listener.updatePawns(familyPawns);
         }
     }
 
     private void fireCardsForWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
 
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new CardsForWorkersChange(cardsForWorkers));
+            listener.cardsForWorkers(cardsForWorkers);
         }
 
     }
@@ -336,14 +344,14 @@ public class ClientInHandlerGUI implements Runnable {
     private void firePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCard) {
 
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new PayToObtainCardsChange(payToObtainCard));
+            listener.payToObtainCard(payToObtainCard);
         }
     }
 
     private void firePossibleCosts(Map<Integer, String> possibleCosts) {
 
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new PossibleCostsChange(possibleCosts));
+            listener.possibleCosts(possibleCosts);
         }
 
     }
@@ -351,7 +359,7 @@ public class ClientInHandlerGUI implements Runnable {
     private void fireCouncilPrivileges(List<Integer> councilPrivileges) {
 
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new CouncilPrivilegeChange(councilPrivileges));
+            listener.councilPrivilege(councilPrivileges);
         }
 
     }
@@ -359,7 +367,7 @@ public class ClientInHandlerGUI implements Runnable {
     private void fireBonusTiles(Map<Integer, String> bonusTiles) {
 
         for (GuiChangeListener listener : listeners) {
-            listener.onReadingChange(new BonusTileChange(bonusTiles));
+            listener.bonusTile(bonusTiles);
         }
 
     }
@@ -404,40 +412,6 @@ public class ClientInHandlerGUI implements Runnable {
 
 
     }
-
-    /*private void getGoodSetGUI() {
-
-        try {
-            GoodSet goodSet = (GoodSet)socketIn.readObject();
-
-            //TODO: PENSARE ALL'AGGIORNAMENTO DELL GOODSET LATO GUI
-
-            fireGoodSet(goodSet);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-
-
-    /*private void getCardsGUI(String string) {
-
-        try {
-
-            List<String> developmentCards = (List<String>)socketIn.readObject();
-
-            fireCardsCards(developmentCards, string);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-    }*/
 
 
 
@@ -529,7 +503,7 @@ public class ClientInHandlerGUI implements Runnable {
 
             List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
             commonView.getInputChecker().setCouncilPrivilegeEffectList(councilPrivileges);
-            commonView.getInputChecker().nextPrivilegeEffect();
+            //commonView.getInputChecker().nextPrivilegeEffect();
             //commonView.getInputChecker().askWhichPrivilege();
             //TODO: guarda bene
 
@@ -561,6 +535,27 @@ public class ClientInHandlerGUI implements Runnable {
         }
 
     }
+
+
+    private void getExcommunicationTileUrl() {
+
+        try {
+
+            String excommunicationUrl = (String) socketIn.readObject();
+
+            firePray(excommunicationUrl);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
 
 
 
