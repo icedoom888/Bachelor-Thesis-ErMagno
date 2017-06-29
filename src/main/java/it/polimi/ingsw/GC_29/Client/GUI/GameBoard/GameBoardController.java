@@ -1280,6 +1280,8 @@ public class GameBoardController {
 
     public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
 
+        System.out.println("choose payToObtain gameboard controller");
+
         payToObtainController.chooseCards(payToObtainCards);
 
     }

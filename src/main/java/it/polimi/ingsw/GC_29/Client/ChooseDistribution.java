@@ -35,6 +35,7 @@ public class ChooseDistribution {
 
     public void sendInput(Map<String, Integer> activatedCardMap) {
         commonOutSocket.setActivatedCardMap(activatedCardMap);
+        System.out.println("input sent");
         sendInput("activated cards GUI");
     }
 }

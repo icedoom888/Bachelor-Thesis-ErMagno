@@ -61,6 +61,8 @@ public class ChooseEffectController {
         effects.setText(newEffects);
         error.setVisible(false);
         effectChoosen.setText("");
+        System.out.println("Choose effect set visible");
+        gameBoardController.getChooseEffectPane().setVisible(true);
     }
 
     public void setSender(ChooseDistribution sender) {
