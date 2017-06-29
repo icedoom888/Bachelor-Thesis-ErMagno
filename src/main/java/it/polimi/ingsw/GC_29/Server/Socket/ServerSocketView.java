@@ -111,8 +111,10 @@ public class ServerSocketView extends View implements Runnable {
 
                             case "pay to obtain cards chosen":
                                 Map<String, Integer> activatedCardMap = (Map<String, Integer>)socketIn.readObject();
+                                System.out.println("notifico observer con PayToObtainCardsChosen");
                                 notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
                                 break;
+
 
                             case "cost chosen":
                                 int costChosen = (int)socketIn.readObject();

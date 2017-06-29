@@ -21,6 +21,8 @@ public class PayToObtainCardsChosen extends Input {
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 
+        System.out.println("performing PayToObtainCardsChosen");
+
         WorkAction workAction = (WorkAction) model.getCurrentPlayer().getCurrentAction();
 
         workAction.setPayToObtainCardsChosen(activatedCardMap);

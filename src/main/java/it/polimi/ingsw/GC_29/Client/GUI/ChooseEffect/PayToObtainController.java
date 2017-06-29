@@ -66,6 +66,7 @@ public class PayToObtainController {
 
         if (nextCard()) {
 
+
             askActivateCard();
 
         }
@@ -96,6 +97,8 @@ public class PayToObtainController {
 
     public void chooseCards(Map<String, HashMap<Integer, String>> payToObtainCardsMap) {
 
+        System.out.println("dentro payToObtain controller");
+
         setPayToObtainCards(payToObtainCardsMap);
 
         askActivateCard();
@@ -119,6 +122,8 @@ public class PayToObtainController {
 
     private void askActivateCard() {
 
+
+        System.out.println("ask activate card");
 
         updateCard(new Image(gameBoardController.getCard(currentPayToObtainCard)));
 

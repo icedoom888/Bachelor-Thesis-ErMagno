@@ -15,7 +15,6 @@ public class GoodSetChange extends GUIChange {
 
     public GoodSetChange(GoodSet goodSet) {
         this.goodSet = goodSet;
-        System.out.println("goodset nel change appena creato: " + goodSet);
     }
 
     public GoodSet getGoodSet() {

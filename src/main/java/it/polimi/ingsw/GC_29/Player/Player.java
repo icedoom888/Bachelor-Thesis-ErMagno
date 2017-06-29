@@ -145,6 +145,7 @@ public class Player extends Observable<Change> {
     }
 
     public List<FamilyPawn> getFamilyPawns() {
+
         return familyPawns;
     }
 
@@ -237,8 +238,6 @@ public class Player extends Observable<Change> {
     public void updateGoodSet(GoodSet newGoodSet) throws Exception {
 
         actualGoodSet.addGoodSet(newGoodSet);
-
-        System.out.println("Pre NOTIFY: " + actualGoodSet);
 
         notifyObserver(new GoodSetChange(actualGoodSet));
 

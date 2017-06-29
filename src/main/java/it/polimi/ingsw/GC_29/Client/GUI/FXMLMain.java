@@ -293,7 +293,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("ROOT: " + loginRoot);
 
         loginStage.setScene(new Scene(loginRoot));
         loginStage.setTitle("Login");
@@ -630,7 +629,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     private void updateGoodSet(GoodSet goodSet) {
 
-        System.out.println("Pre run " + goodSet);
 
         Platform.runLater(new Runnable() {
 
@@ -641,7 +639,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             @Override
             public void run() {
 
-                System.out.println("Post run " + goodSet);
 
 
                 gameBoardController.updatePersonalGoodSet(goodSet);

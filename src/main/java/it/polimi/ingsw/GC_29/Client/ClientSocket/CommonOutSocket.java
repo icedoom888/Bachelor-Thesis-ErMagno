@@ -130,8 +130,9 @@ public class CommonOutSocket {
 
                 case "activated cards GUI":
 
-                    socketOut.writeObject("activated cards GUI");
+                    socketOut.writeObject("pay to obtain cards chosen");
                     socketOut.flush();
+                    System.out.println("inviate la mappa delle carte attive al server");
                     socketOut.writeObject(activatedCardMap);
                     socketOut.flush();
                     break;

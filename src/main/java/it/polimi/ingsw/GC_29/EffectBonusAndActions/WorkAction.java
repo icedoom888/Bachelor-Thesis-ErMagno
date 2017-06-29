@@ -419,5 +419,9 @@ public class WorkAction extends Action {
             }
         }
     }
+
+    public boolean handlePayToObtainCards() {
+        return handlePayToObtainCards(workers);
+    }
 }
 
