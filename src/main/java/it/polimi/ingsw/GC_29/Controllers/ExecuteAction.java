@@ -49,25 +49,24 @@ public class ExecuteAction extends Input {
 
             workAction.buildDifferentChoices();
 
+            /*
             if (workAction.getCardsForWorkers().keySet().size() <= 1) {
 
-                if(workAction.handlePayToObtainCards()) {
-                    model.getCurrentPlayer().setPlayerState(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS);
 
-                }
-
-                else {
-
-                    workAction.execute();
-                    controller.handleEndAction();
-                }
+                workAction.execute();
+                controller.handleEndAction();
             }
 
             else {
                 currentPlayer.setPlayerState(PlayerState.CHOOSEWORKERS);
             }
+             */
+
+            currentPlayer.setPlayerState(PlayerState.CHOOSEWORKERS);
+
 
         }
+
 
         else if (actionSelected instanceof TowerAction) {
 

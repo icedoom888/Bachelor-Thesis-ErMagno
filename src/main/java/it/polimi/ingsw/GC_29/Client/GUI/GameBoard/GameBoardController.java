@@ -889,6 +889,7 @@ public class GameBoardController {
 
     public void handleActionChosenImageView(MouseEvent event){
         Integer actionSelected = buttonAction.get(event.getSource());
+        System.out.println("input sent from gameboard Controller : execute action " + actionSelected.toString());
         sender.sendInput("execute action " + actionSelected.toString());
     }
 
@@ -980,9 +981,6 @@ public class GameBoardController {
     public void activatePawns(Map<FamilyPawn,Boolean> availability){
 
         for (FamilyPawn pawn: availability.keySet()) {
-            System.out.println("\n PAWN:");
-            System.out.println(pawn);
-            System.out.println(availability.get(pawn));
 
             if (availability.get(pawn)) {
                 setPawnAvailable(pawn);

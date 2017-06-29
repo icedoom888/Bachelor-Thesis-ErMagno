@@ -25,6 +25,8 @@ public class PayToObtainEffect implements Effect{
     @Override
     public void execute(Player status) throws Exception {
 
+        System.out.println("eseguo execute della payToObtain");
+
         if(checkSufficientGoods(status)){
 
             System.out.println("Resources sufficient to activate!");

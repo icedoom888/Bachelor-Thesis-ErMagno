@@ -378,6 +378,9 @@ public class WorkAction extends Action {
         if(!effectsToActivate.isEmpty()){
 
             for(Effect effect : effectsToActivate){
+
+                System.out.println(effect.getClass());
+
                 effect.execute(player);
             }
         }

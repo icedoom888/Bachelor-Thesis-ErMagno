@@ -82,8 +82,11 @@ public class ActionChecker {
 
         for(Action action : temporaryActionList){
 
-            action.setFamiliyPawn(familyPawnChosen);
+            //action.setFamiliyPawn(familyPawnChosen);
 
+            //TODO: cambiato per errore nel conteggio del valore delle pedine
+
+            action.setFamiliyPawn(new FamilyPawn(familyPawnChosen));
 
             action.setValid(action.isPossible());
 

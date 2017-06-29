@@ -303,8 +303,6 @@ public class ServerSocketView extends View implements Runnable {
             GetFamilyPawnAvailability query = (GetFamilyPawnAvailability) q;
 
             Map<FamilyPawn, Boolean> familyPawns = query.perform(model);
-            System.out.println("Pawn Server: ");
-            System.out.println(familyPawns);
 
             sendOut(familyPawns);
         }
@@ -351,7 +349,6 @@ public class ServerSocketView extends View implements Runnable {
 
         try {
 
-            System.out.println(o);
             this.socketOut.writeObject(o);
             this.socketOut.flush();
 
