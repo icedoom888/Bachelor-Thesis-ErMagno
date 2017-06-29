@@ -449,6 +449,11 @@ public class ClientInHandlerGUI implements Runnable {
             HashMap<FamilyPawnType, Boolean> familyPawnsAvailability = new HashMap<>();
 
             for (FamilyPawn familyPawn : familyPawns.keySet()) {
+                System.out.println("Pawn client in:");
+                System.out.println(familyPawn);
+                System.out.println(familyPawns.get(familyPawn));
+
+
                 familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
             }
 

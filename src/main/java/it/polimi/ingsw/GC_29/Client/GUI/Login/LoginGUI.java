@@ -42,7 +42,7 @@ public class LoginGUI extends Application {
         Stage loginStage = new Stage();
         stage.setTitle("Login");
         stage.setHeight(400);
-        stage.setWidth(500);
+        stage.setWidth(600);
         stage.centerOnScreen();
         //stage.initModality(Modality.WINDOW_MODAL);
         System.out.println(stage.getModality());

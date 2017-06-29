@@ -18,6 +18,8 @@ public class GetFamilyPawnAvailability extends Query<Map<FamilyPawn, Boolean>> {
 
         Map<FamilyPawnType, Boolean> familyPawnsAvailability = model.getCurrentPlayer().getFamilyPawnAvailability();
 
+        System.out.println(familyPawnsAvailability);
+
         List<FamilyPawn> familyPawns = model.getCurrentPlayer().getFamilyPawns();
 
         HashMap<FamilyPawn, Boolean> familyPawnsAvailable = new HashMap<>();

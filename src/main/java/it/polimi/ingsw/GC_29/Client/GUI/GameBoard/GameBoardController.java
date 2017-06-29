@@ -104,6 +104,7 @@ public class GameBoardController {
     private PrayController prayController;
     private WorkersController workersController;
 
+
     //Pane delle schermate interne utilizzati per hidarle
     private AnchorPane bonusTilePane;
     private AnchorPane chooseCostPane;
@@ -443,10 +444,20 @@ public class GameBoardController {
     private ImageView market1Cover;
     @FXML
     private ImageView market2Cover;
+
     @FXML
     private ImageView market3Cover;
     @FXML
     private ImageView market4Cover;
+
+
+
+    @FXML
+    private ImageView zoomImage;
+    @FXML
+    private AnchorPane zoomPane;
+    @FXML
+    private Button endZoom;
 
 
     @FXML
@@ -881,6 +892,17 @@ public class GameBoardController {
         sender.sendInput("execute action " + actionSelected.toString());
     }
 
+    public void handleZoom(MouseEvent event){
+        ImageView imageView = (ImageView) event.getSource();
+        Image imageToShow = imageView.getImage();
+        zoomImage.setImage(imageToShow);
+        zoomPane.setVisible(true);
+    }
+
+    public void handleEndZoom(ActionEvent event){
+        zoomPane.setVisible(false);
+    }
+
     public void updatePawn(FamilyPawn familyPawn, int actionIndex) {
         PlayerColor playerColor = familyPawn.getPlayerColor();
         FamilyPawnType pawnType = familyPawn.getType();
@@ -958,6 +980,9 @@ public class GameBoardController {
     public void activatePawns(Map<FamilyPawn,Boolean> availability){
 
         for (FamilyPawn pawn: availability.keySet()) {
+            System.out.println("\n PAWN:");
+            System.out.println(pawn);
+            System.out.println(availability.get(pawn));
 
             if (availability.get(pawn)) {
                 setPawnAvailable(pawn);
@@ -1256,19 +1281,6 @@ public class GameBoardController {
     public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
 
         payToObtainController.chooseCards(payToObtainCards);
-
-
-
-
-        //TODO: mostrare la schermata choosePayToObtain: inizialmente mostra le carte (che contengono payToObtain)
-        //TODO: con dei radio button che indicano attiva o meno
-
-        //TODO: qua verrà cambiato lo stato del player a chooseEffect
-        //TODO: e ci sarà un altro metodo che farà le cose qui sotto
-
-        //TODO: se il radio button viene attivato, se la payToObtain contiene alternative, esse vengono mostrate
-        //TODO: e allo stesso modo con un radio button si sceglie l'alternativa
-        //TODO: tutte queste scelte vengono salvate (vedi InputChecker) e spedite all'Input Checker
 
     }
 
@@ -1647,4 +1659,5 @@ public class GameBoardController {
         return cardMap.get(currentPayToObtainCard);
 
     }
+
 }

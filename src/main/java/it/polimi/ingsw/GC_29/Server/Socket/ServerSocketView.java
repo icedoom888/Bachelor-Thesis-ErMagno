@@ -244,6 +244,8 @@ public class ServerSocketView extends View implements Runnable {
             try {
                 socketOut.writeObject("Get GoodSet");
                 socketOut.flush();
+                this.socketOut.reset();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -299,6 +301,8 @@ public class ServerSocketView extends View implements Runnable {
             GetFamilyPawnAvailability query = (GetFamilyPawnAvailability) q;
 
             Map<FamilyPawn, Boolean> familyPawns = query.perform(model);
+            System.out.println("Pawn Server: ");
+            System.out.println(familyPawns);
 
             sendOut(familyPawns);
         }
@@ -345,7 +349,7 @@ public class ServerSocketView extends View implements Runnable {
 
         try {
 
-            this.socketOut.reset();
+            System.out.println(o);
             this.socketOut.writeObject(o);
             this.socketOut.flush();
 

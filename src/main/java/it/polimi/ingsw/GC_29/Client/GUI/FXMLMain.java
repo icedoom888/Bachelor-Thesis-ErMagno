@@ -298,7 +298,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         loginStage.setScene(new Scene(loginRoot));
         loginStage.setTitle("Login");
         loginStage.setHeight(400);
-        loginStage.setWidth(500);
+        loginStage.setWidth(600);
         loginStage.centerOnScreen();
         loginStage.show();
 
