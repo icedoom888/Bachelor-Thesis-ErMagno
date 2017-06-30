@@ -117,6 +117,7 @@ public class GameBoardController {
     private AnchorPane yourTurnPane;
     private AnchorPane chooseWorkersPane;
     private AnchorPane throwDicesPane;
+    private AnchorPane bonusActionPane;
 
 
     @FXML
@@ -1344,11 +1345,29 @@ public class GameBoardController {
 
 
     //TODO: Verificare il funzionamento
-    public void yourTurn() throws InterruptedException {
+    private void yourTurn() throws InterruptedException {
         yourTurnPane.setVisible(true);
-        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        PauseTransition delay = new PauseTransition(Duration.seconds(5));
         delay.setOnFinished( event -> yourTurnPane.setVisible(false) );
         delay.play();
+    }
+
+    private void throwDices() throws InterruptedException {
+
+        throwDicesPane.setVisible(true);
+        PauseTransition delay = new PauseTransition(Duration.seconds(5));
+        delay.setOnFinished( event -> throwDicesPane.setVisible(false) );
+        delay.play();
+
+    }
+
+    private void bonusAction() throws InterruptedException {
+
+        bonusActionPane.setVisible(true);
+        PauseTransition delay = new PauseTransition(Duration.seconds(5));
+        delay.setOnFinished( event -> bonusActionPane.setVisible(false) );
+        delay.play();
+
     }
 
     public void pray(String excommunication){
@@ -1397,15 +1416,11 @@ public class GameBoardController {
 
                 setEndTurn(false);
 
-                throwDicesPane.setVisible(true);
-
                 try {
-                    Thread.sleep(5000);
+                    throwDices();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                throwDicesPane.setVisible(false);
 
                 break;
 
@@ -1427,15 +1442,11 @@ public class GameBoardController {
 
                 setEndTurn(true);
 
-                yourTurnPane.setVisible(true);
-
                 try {
-                    Thread.sleep(5000);
+                    yourTurn();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                yourTurnPane.setVisible(false);
 
 
                 break;
@@ -1454,6 +1465,11 @@ public class GameBoardController {
 
                 setEndTurn(true);
 
+                try {
+                    bonusAction();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 break;
 
@@ -1508,10 +1524,6 @@ public class GameBoardController {
 
                 break;
 
-
-
-
-
         }
 
     }
@@ -1519,7 +1531,6 @@ public class GameBoardController {
     private void closeWindows() {
 
         waitingForPlayers.setVisible(false);
-
         bonusTilePane.setVisible(false);
         chooseCostPane.setVisible(false);
         payToObtainPane.setVisible(false);
@@ -1693,5 +1704,9 @@ public class GameBoardController {
 
     public AnchorPane getChoosePrivilegePane() {
         return choosePrivilegePane;
+    }
+
+    public void setBonusActionPane(AnchorPane bonusActionPane) {
+        this.bonusActionPane = bonusActionPane;
     }
 }

@@ -52,7 +52,11 @@ public class Pray extends Input {
 
         controller.praying();
 
-        player.setPlayerState(PlayerState.WAITING);
+        if (player.getPlayerState() != PlayerState.SUSPENDED) {
+
+            player.setPlayerState(PlayerState.WAITING);
+
+        }
 
         if (controller.getPlayersPraying() == 0) {
 

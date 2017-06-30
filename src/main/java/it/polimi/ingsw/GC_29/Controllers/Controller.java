@@ -96,7 +96,6 @@ public class Controller implements Observer<Input>  {
             }
         }
 
-        model.setCurrentTurn(1);
 
         model.setCurrentRound(model.getCurrentRound()+1);
 
@@ -112,13 +111,23 @@ public class Controller implements Observer<Input>  {
 
         setCardsOnTowers();
 
+        for (Player player : model.getTurnOrder()) {
+
+            if (player.getPlayerState() != PlayerState.SUSPENDED) {
+
+                player.setPlayerState(PlayerState.THROWDICES);
+                break;
+            }
+        }
+
+        /*
+        Prima del ciclo for c'era questa linea di codice
+
         model.getTurnOrder().get(0).setPlayerState(PlayerState.THROWDICES);
+        */
 
-        //TODO: al posto che queste ultime righe usare chooseCurrentPlayer(0), ma si creano problemi.
-        /*List<Player> turnOrder = model.getTurnOrder();
+        model.setCurrentTurn(1);
 
-        model.setCurrentPlayer(turnOrder.get(0));
-        model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);*/
     }
 
     public void setCardsOnTowers(){
@@ -156,11 +165,14 @@ public class Controller implements Observer<Input>  {
     }
 
     public void chooseCurrentPlayer(Integer index) throws Exception {
+
         Player firstPlayer = model.getTurnOrder().get(index);
 
         model.setCurrentPlayer(firstPlayer);
 
-        if (Filter.applySpecial(firstPlayer, SpecialBonusAndMalus.SKIPFIRSTTURN)) {
+        if (Filter.applySpecial(firstPlayer, SpecialBonusAndMalus.SKIPFIRSTTURN)
+                && model.getCurrentTurn() == 1) {
+
             firstPlayer.setPlayerState(PlayerState.ENDTURN);
         }
 
@@ -172,6 +184,7 @@ public class Controller implements Observer<Input>  {
             actionChecker.setCurrentPlayer();
 
             firstPlayer.setPlayerState(PlayerState.DOACTION);
+
         }
     }
 
@@ -642,6 +655,27 @@ public class Controller implements Observer<Input>  {
             handleEndAction();
         }
     }
+
+    /*
+    public int indexFirstPlayerNotSuspended() {
+
+        List<Player> turnOrder = model.getTurnOrder();
+
+        while (true) {
+
+            for (Player player : turnOrder) {
+
+                if (player.getPlayerState() != PlayerState.SUSPENDED) {
+
+                    return turnOrder.indexOf(player);
+                }
+
+            }
+        }
+
+    }
+    */
+
 
     public void setCurrentBonusTileIndexPlayer(int currentBonusTileIndexPlayer) {
         this.currentBonusTileIndexPlayer = currentBonusTileIndexPlayer;

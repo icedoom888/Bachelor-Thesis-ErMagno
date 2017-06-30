@@ -26,24 +26,39 @@ public class EndTurn extends Input {
     public void perform(GameStatus model, Controller controller) throws Exception {
 
         Player currentPlayer = model.getCurrentPlayer();
-        currentPlayer.setPlayerState(PlayerState.WAITING);
+
+        if (currentPlayer.getPlayerState() != PlayerState.SUSPENDED) {
+            currentPlayer.setPlayerState(PlayerState.WAITING);
+        }
+
         List<Player> turnOrder = model.getTurnOrder();
 
         if (model.getGameState() == GameState.CHECKONSKIPPED) {
             setSkippedPlayer(model, controller);
         }
 
-        System.out.println("Current player: " + currentPlayer.getPlayerID());
-        System.out.println(turnOrder.indexOf(currentPlayer));
+        else if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) {
 
-
-        if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) {
-
+            System.out.println("Current player: " + currentPlayer.getPlayerID());
+            System.out.println(turnOrder.indexOf(currentPlayer));
 
 
             if (model.getCurrentTurn() < 4) {
+
                 model.setCurrentTurn(model.getCurrentTurn()+1);
-                model.setCurrentPlayer(model.getTurnOrder().get(0));
+
+                turnOrder = model.getTurnOrder();
+
+                for (Player player : turnOrder) {
+
+                    if (player.getPlayerState() != PlayerState.SUSPENDED) {
+
+                        model.setCurrentPlayer(player);
+                        break;
+
+                    }
+                }
+
 
                 controller.getActionChecker().resetActionList();
 
@@ -56,13 +71,35 @@ public class EndTurn extends Input {
 
                 System.out.println("Setting Skipped players");
 
+                //TODO: anche qui
                 setSkippedPlayer(model, controller);
 
             }
         }
 
         else {
+
             int indexOfNextPlayer = turnOrder.indexOf(currentPlayer) + 1;
+
+            boolean b = true;
+
+            while (b) {
+
+                for (; indexOfNextPlayer < turnOrder.size(); indexOfNextPlayer++) {
+
+                    if (turnOrder.get(indexOfNextPlayer).getPlayerState() != PlayerState.SUSPENDED) {
+
+                        b = false;
+
+                        break;
+                    }
+
+                }
+
+                if (b) indexOfNextPlayer = 0;
+
+            }
+
             controller.chooseCurrentPlayer(indexOfNextPlayer);
         }
     }
@@ -79,8 +116,34 @@ public class EndTurn extends Input {
         }
 
         else {
+
             model.setGameState(GameState.CHECKONSKIPPED);
-            Player newCurrentPlayer = model.getSkippedTurnPlayers().remove(0);
+
+            Player newCurrentPlayer = null; //ho dovuto inizializzare per lo stesso motivo
+
+            boolean b = true;
+
+            while (b) {
+
+                List<Player> skippedPlayers = model.getSkippedTurnPlayers();
+
+                for (Player skippedPlayer : skippedPlayers) {
+
+                    if (skippedPlayer.getPlayerState() != PlayerState.SUSPENDED) {
+
+                        b = false;
+                        newCurrentPlayer = skippedPlayer;
+                        skippedPlayers.remove(skippedPlayer);
+                        break;
+                    }
+
+                    skippedPlayers.remove(skippedPlayer);
+                }
+
+            }
+
+            //Player newCurrentPlayer = model.getSkippedTurnPlayers().remove(0);
+
             model.setCurrentPlayer(newCurrentPlayer);
 
             controller.getActionChecker().resetActionList();

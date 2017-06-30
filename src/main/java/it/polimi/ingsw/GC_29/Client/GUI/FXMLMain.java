@@ -55,7 +55,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     @Override
     public void update(LoginChange o) throws Exception {
 
-        Boolean connected = ((LoginChange) o).getConnected();
+        Boolean connected = o.getConnected();
         if (connected) {
 
             signUp();
@@ -428,7 +428,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             gameBoardController.setPrayPane(childPray);
 
             //Aggiunta YourTurn
-            FXMLLoader loaderTurn = new FXMLLoader(getClass().getResource("/FXML/Pray.fxml"));
+            FXMLLoader loaderTurn = new FXMLLoader(getClass().getResource("/FXML/YourTurn.fxml"));
             AnchorPane childTurn = loaderTurn.load();
             gameboardRoot.getChildren().add(childTurn);
             AnchorPane.setBottomAnchor(childTurn,200.0);
@@ -444,6 +444,15 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childDices,200.0);
             childDices.setVisible(false);
             gameBoardController.setThrowDicesPane(childDices);
+
+            //Adding BonusAction
+            FXMLLoader loaderBonusAction = new FXMLLoader(getClass().getResource("/FXML/BonusAction.fxml"));
+            AnchorPane childBonusAction = loaderBonusAction.load();
+            gameboardRoot.getChildren().add(childBonusAction);
+            AnchorPane.setBottomAnchor(childBonusAction,200.0);
+            AnchorPane.setLeftAnchor(childBonusAction,200.0);
+            childBonusAction.setVisible(false);
+            gameBoardController.setBonusActionPane(childBonusAction);
 
 
         } catch (IOException e) {
