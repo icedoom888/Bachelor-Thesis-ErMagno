@@ -1,9 +1,4 @@
- .Vbox{
-  -fx-background-image:url("lorenzo_materiale_grafico_compr/GameboardElements/gameboard_f_c2.png");
-   -fx-background-size:     cover;                      /* <------ */
-   -fx-background-repeat:   no-repeat;
-   -fx-background-position: center center;
- }
+
  
  .AnchorPane{
    -fx-background-image:url("lorenzo_materiale_grafico_compr/GameboardElements/sfondo.jpg");
