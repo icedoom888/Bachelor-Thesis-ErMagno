@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 /**
@@ -16,7 +18,7 @@ public class PrayController {
     private ChooseDistribution sender;
 
     @FXML
-    private TextArea excommunicationDetails;
+    private ImageView excommunicationDetails;
 
     @FXML
     private RadioButton pray;
@@ -34,7 +36,7 @@ public class PrayController {
         if(pray.isSelected()){
             sender.sendInput("pray");
         }
-        if (getExcommunicated.isSelected()){
+        else if (getExcommunicated.isSelected()){
             sender.sendInput("do not pray");
         }
         else {
@@ -43,7 +45,7 @@ public class PrayController {
     }
 
     public void updatePray(String newExcommunication){
-        excommunicationDetails.setText(newExcommunication);
+        excommunicationDetails.setImage(new Image(newExcommunication));
     }
 
 

@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.util.*;
 
@@ -115,6 +117,20 @@ public class GameBoardController {
     private AnchorPane yourTurnPane;
     private AnchorPane chooseWorkersPane;
     private AnchorPane throwDicesPane;
+
+
+    @FXML
+    private AnchorPane waitingForPlayers;
+
+    @FXML
+    private ImageView excummunicationTile1;
+
+    @FXML
+    private ImageView excummunicationTile2;
+
+    @FXML
+    private ImageView excummunicationTile3;
+
 
     @FXML
     private Text greenVictoryPoints;
@@ -1245,8 +1261,22 @@ public class GameBoardController {
         bonusTile.setImage(image);
     }
 
-    public void updateExcomunicationTiles(ArrayList<ExcommunicationTile> tiles){
-        //TODO
+    public void updateExcomunicationTiles(ArrayList<String> tiles){
+        int i=1;
+        for (String tile : tiles){
+            switch (i){
+                case 1:
+                    excummunicationTile1.setImage(new Image(tile));
+                    break;
+                case 2:
+                    excummunicationTile2.setImage(new Image(tile));
+                    break;
+                case 3:
+                    excummunicationTile3.setImage(new Image(tile));
+                    break;
+            }
+            i++;
+        }
     }
 
     public void testGB() {
@@ -1312,15 +1342,13 @@ public class GameBoardController {
         //bonusTilePane.setDisable(false);
     }
 
-    public void yourTurn() throws InterruptedException {
-        try {
-            yourTurnPane.setVisible(true);
-            Thread.sleep(3000);
-            yourTurnPane.setVisible(false);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
+    //TODO: Verificare il funzionamento
+    public void yourTurn() throws InterruptedException {
+        yourTurnPane.setVisible(true);
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        delay.setOnFinished( event -> yourTurnPane.setVisible(false) );
+        delay.play();
     }
 
     public void pray(String excommunication){
@@ -1489,6 +1517,8 @@ public class GameBoardController {
     }
 
     private void closeWindows() {
+
+        waitingForPlayers.setVisible(false);
 
         bonusTilePane.setVisible(false);
         chooseCostPane.setVisible(false);
