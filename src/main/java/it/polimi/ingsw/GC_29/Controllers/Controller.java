@@ -495,7 +495,9 @@ public class Controller implements Observer<Input>  {
 
                 for (FamilyPawnType familyPawnType : FamilyPawnType.values()){
 
-                    if (familyPawnType != FamilyPawnType.BONUS && familyPawnType != FamilyPawnType.ANY)  {
+                    if (familyPawnType != FamilyPawnType.BONUS
+                            && familyPawnType != FamilyPawnType.ANY
+                            && familyPawnType != FamilyPawnType.COLORED)  {
                         player.getFamilyPawnAvailability().put(familyPawnType, true);
 
                         if (familyPawnType != FamilyPawnType.NEUTRAL) {

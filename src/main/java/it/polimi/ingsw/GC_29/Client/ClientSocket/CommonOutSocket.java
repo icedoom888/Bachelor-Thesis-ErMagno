@@ -141,6 +141,7 @@ public class CommonOutSocket {
                     break;
 
                 case "cost chosen":
+
                     int index = commonView.getInputChecker().getCostChosen();
                     socketOut.writeObject("cost chosen");
                     socketOut.flush();
@@ -149,6 +150,7 @@ public class CommonOutSocket {
                     break;
 
                 case "privilege":
+
                     if(commonView.getInputChecker().nextParchment()){
                         commonView.getInputChecker().askWhichPrivilege();
                     }
