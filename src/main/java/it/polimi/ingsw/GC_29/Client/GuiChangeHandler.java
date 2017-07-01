@@ -16,13 +16,8 @@ import java.util.Map;
  */
 public class GuiChangeHandler {
 
-    private List<GuiChangeListener> listeners = Lists.newArrayList();
-    private InputChecker inputChecker;
-
-    public GuiChangeHandler(InputChecker inputChecker){
-
-        this.inputChecker = inputChecker;
-    }
+    protected List<GuiChangeListener> listeners = Lists.newArrayList();
+    protected InputChecker inputChecker;
 
 
     private void firePray(String excommunicationUrl) {
@@ -36,6 +31,7 @@ public class GuiChangeHandler {
 
         for (GuiChangeListener listener : listeners) {
             listener.changeState(currentPlayerState);
+            System.out.println("HO AVVERTITO LISTENER DEL CHANGE STATE");
         }
 
     }
@@ -93,6 +89,7 @@ public class GuiChangeHandler {
 
         for (GuiChangeListener listener : listeners) {
             listener.bonusTile(bonusTiles);
+            System.out.println("sono in fire bonus tile");
         }
 
     }
@@ -195,4 +192,7 @@ public class GuiChangeHandler {
 
     }
 
+    public void setInputChecker(InputChecker inputChecker) {
+        this.inputChecker = inputChecker;
+    }
 }

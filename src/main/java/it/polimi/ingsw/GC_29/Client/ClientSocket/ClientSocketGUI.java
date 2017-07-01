@@ -94,12 +94,15 @@ public class ClientSocketGUI {
                 clientInHandlerGUI.setCommonOutSocket(clientOutHandlerGUI.getCommonOutSocket());
                 //clientOutHandlerGUI.setClientInHandlerGUI(clientInHandlerGUI);
 
-                CommonView commonView = new CommonView();
-                commonView.setInputChecker(new InputChecker());
-                commonView.setPlayerColor(playerColor);
+                //CommonView commonView = new CommonView();
+                //commonView.setInputChecker(new InputChecker());
+                //commonView.setPlayerColor(playerColor);
 
-                clientOutHandlerGUI.setCommonView(commonView);
-                clientInHandlerGUI.setCommonView(commonView);
+                // the input checker must be the same for in and out handler
+                InputChecker inputChecker = new InputChecker();
+                clientOutHandlerGUI.setInputChecker(inputChecker);
+                clientOutHandlerGUI.setPlayerColor(playerColor);
+                clientInHandlerGUI.setInputChecker(inputChecker);
 
                 ChooseDistribution chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
                 chooseDistribution.setCommonOutSocket(clientOutHandlerGUI.getCommonOutSocket());

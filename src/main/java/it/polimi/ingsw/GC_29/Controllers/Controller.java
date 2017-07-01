@@ -23,10 +23,10 @@ public class Controller implements Observer<Input>  {
 
     private final GameStatus model;
 
-    private final long throwDicesTime = 15000;
-    private final long chooseBonusTilesTime = 15000;
-    private final long prayTime = 15000;
-    private final long turnTime = 15000;
+    private final long throwDicesTime = 30000;
+    private final long chooseBonusTilesTime = 60000;
+    private final long prayTime = 30000;
+    private final long turnTime = 120000;
 
     private Integer playersPraying;
     private ActionChecker actionChecker;

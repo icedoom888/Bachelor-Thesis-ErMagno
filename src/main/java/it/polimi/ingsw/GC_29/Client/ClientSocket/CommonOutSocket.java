@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
@@ -17,10 +18,12 @@ import java.util.Map;
  */
 public class CommonOutSocket {
 
-    private CommonView commonView;
     private ObjectOutputStream socketOut;
     private Map<String, Integer> activatedCardMap;
     private List<Integer> councilPrivilegeEffectChosenList;
+    private PlayerColor playerColor;
+    private InputChecker inputChecker;
+    private CommonView commonView;
 
     public CommonOutSocket(ObjectOutputStream socketOut) {
         this.socketOut = socketOut;
@@ -36,17 +39,19 @@ public class CommonOutSocket {
             if (!inputLine.contentEquals("activated cards GUI")
                     || !inputLine.contentEquals("council privileges chosen GUI")) {
 
-                inputLine = commonView.getInputChecker().checkInput(inputLine);
+                inputLine = inputChecker.checkInput(inputLine);
             }
 
             switch (inputLine) {
 
                 case "bonus tile chosen":
-                    int bonusTile = commonView.getInputChecker().getBonusTileChosen();
+                    int bonusTile = inputChecker.getBonusTileChosen();
                     socketOut.writeObject("bonus tile");
                     socketOut.flush();
                     socketOut.writeObject(bonusTile);
                     socketOut.flush();
+
+                    System.out.println("HO INVIATO LA TILE AL SERVER");
                     break;
 
                 case "throw dices":
@@ -69,7 +74,7 @@ public class CommonOutSocket {
 
                 case "use family pawn":
                     System.out.println("STAI SCEGLIENDO LA FAMILY PAWN");
-                    FamilyPawnType familyPawnChosen = commonView.getInputChecker().getFamilyPawnChosen();
+                    FamilyPawnType familyPawnChosen = inputChecker.getFamilyPawnChosen();
                     socketOut.writeObject("family pawn chosen");
                     socketOut.flush();
                     socketOut.writeObject(familyPawnChosen);
@@ -89,7 +94,7 @@ public class CommonOutSocket {
                     break;
 
                 case "execute action":
-                    int actionIndex = commonView.getInputChecker().getActionIndex();
+                    int actionIndex = inputChecker.getActionIndex();
                     socketOut.writeObject("execute action");
                     socketOut.flush();
                     socketOut.writeObject(actionIndex);
@@ -97,7 +102,7 @@ public class CommonOutSocket {
                     break;
 
                 case "use workers":
-                    int workers = commonView.getInputChecker().getWorkersChosen();
+                    int workers = inputChecker.getWorkersChosen();
                     socketOut.writeObject("number of workers");
                     socketOut.flush();
                     socketOut.writeObject(workers);
@@ -105,29 +110,29 @@ public class CommonOutSocket {
                     break;
 
                 case "activate card":
-                    if(commonView.getInputChecker().handleCardDecision()){
-                        if(commonView.getInputChecker().nextCard()){
-                            commonView.getInputChecker().askActivateCard();
+                    if(inputChecker.handleCardDecision()){
+                        if(inputChecker.nextCard()){
+                            inputChecker.askActivateCard();
                         }
                         else {
                             socketOut.writeObject("pay to obtain cards chosen");
                             socketOut.flush();
-                            socketOut.writeObject(commonView.getInputChecker().getActivatedCardMap());
+                            socketOut.writeObject(inputChecker.getActivatedCardMap());
                             socketOut.flush();
                         }
                     }
                     break;
 
                 case "effect chosen":
-                    commonView.getInputChecker().addCard();
-                    if(commonView.getInputChecker().nextCard()){
-                        commonView.getInputChecker().askActivateCard();
+                    inputChecker.addCard();
+                    if(inputChecker.nextCard()){
+                        inputChecker.askActivateCard();
 
                     }
                     else {
                         socketOut.writeObject("pay to obtain cards chosen");
                         socketOut.flush();
-                        socketOut.writeObject(commonView.getInputChecker().getActivatedCardMap());
+                        socketOut.writeObject(inputChecker.getActivatedCardMap());
                         socketOut.flush();
                     }
                     break;
@@ -142,7 +147,7 @@ public class CommonOutSocket {
 
                 case "cost chosen":
 
-                    int index = commonView.getInputChecker().getCostChosen();
+                    int index = inputChecker.getCostChosen();
                     socketOut.writeObject("cost chosen");
                     socketOut.flush();
                     socketOut.writeObject(index);
@@ -151,16 +156,16 @@ public class CommonOutSocket {
 
                 case "privilege":
 
-                    if(commonView.getInputChecker().nextParchment()){
-                        commonView.getInputChecker().askWhichPrivilege();
+                    if(inputChecker.nextParchment()){
+                        inputChecker.askWhichPrivilege();
                     }
-                    else if(commonView.getInputChecker().nextPrivilegeEffect()){
-                        commonView.getInputChecker().askWhichPrivilege();
+                    else if(inputChecker.nextPrivilegeEffect()){
+                        inputChecker.askWhichPrivilege();
                     }
                     else {
                         socketOut.writeObject("council privileges chosen");
                         socketOut.flush();
-                        socketOut.writeObject(commonView.getInputChecker().getCouncilPrivilegeEffectChosenList());
+                        socketOut.writeObject(inputChecker.getCouncilPrivilegeEffectChosenList());
                         socketOut.flush();
                     }
                     break;
@@ -175,7 +180,6 @@ public class CommonOutSocket {
 
 
                 case "pray":
-                    PlayerColor playerColor = commonView.getPlayerColor();
                     socketOut.writeObject("pray");
                     socketOut.flush();
                     socketOut.writeObject(playerColor);
@@ -183,7 +187,6 @@ public class CommonOutSocket {
                     break;
 
                 case "do not pray":
-                    playerColor = commonView.getPlayerColor();
                     socketOut.writeObject("do not pray");
                     socketOut.flush();
                     socketOut.writeObject(playerColor);
@@ -197,13 +200,13 @@ public class CommonOutSocket {
                     break;
 
                 case "see development card":
-                    query = new GetDevelopmentCard(commonView.getInputChecker().getPlayerCardColor());
+                    query = new GetDevelopmentCard(inputChecker.getPlayerCardColor());
                     socketOut.writeObject(query);
                     socketOut.flush();
                     break;
 
                 case "see tower card":
-                    query = new GetTowerCard(commonView.getInputChecker().getTowerCardColor());
+                    query = new GetTowerCard(inputChecker.getTowerCardColor());
                     socketOut.writeObject(query);
                     socketOut.flush();
                     break;
@@ -211,6 +214,7 @@ public class CommonOutSocket {
                 case "join game":
                     socketOut.writeObject("join game");
                     socketOut.flush();
+                    break;
 
                 case "help":
                     handleHelp();
@@ -343,7 +347,7 @@ public class CommonOutSocket {
 
     public void handleHelp(){
 
-        List<Instruction> instructionList = commonView.getInputChecker().getInstructionSet().getInstructions(commonView.getCurrentPlayerState());
+        List<Instruction> instructionList = inputChecker.getInstructionSet().getInstructions(inputChecker.getCurrentPlayerState());
 
         System.out.println("your valid input in this current state are:");
 
@@ -366,15 +370,23 @@ public class CommonOutSocket {
         this.socketOut = socketOut;
     }
 
-    public void setCommonView(CommonView commonView) {
-        this.commonView = commonView;
-    }
-
     public void setActivatedCardMap(Map<String, Integer> activatedCardMap) {
         this.activatedCardMap = activatedCardMap;
     }
 
     public void setCouncilPrivilegeEffectChosenList(List<Integer> councilPrivilegeEffectChosenList) {
         this.councilPrivilegeEffectChosenList = councilPrivilegeEffectChosenList;
+    }
+
+    public void setInputChecker(InputChecker inputChecker) {
+        this.inputChecker = inputChecker;
+    }
+
+    public void setPlayerColor(PlayerColor playerColor) {
+        this.playerColor = playerColor;
+    }
+
+    public void setCommonView(CommonView commonView) {
+        this.commonView = commonView;
     }
 }

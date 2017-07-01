@@ -31,6 +31,8 @@ public class BonusTileController {
 
         String index = "0";
 
+        System.out.println("HO SCELTO TILE");
+
         String string = executeButton();
         sender.sendInput(string + index);
         gameBoardController.updateBonusTile(index);

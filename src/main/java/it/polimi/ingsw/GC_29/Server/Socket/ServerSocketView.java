@@ -80,6 +80,7 @@ public class ServerSocketView extends View implements Runnable {
                             case "bonus tile":
                                 int bonusTile = (int)socketIn.readObject();
                                 notifyObserver(new BonusTileChosen(bonusTile));
+                                System.out.println("HO NOTIFIOATO OBSERVER");
                                 break;
 
                             case "throw dices":
