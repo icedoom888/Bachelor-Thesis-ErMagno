@@ -10,10 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Lorenzotara on 22/05/17.
@@ -32,7 +29,7 @@ public class MainGSonToFile {
 
         GameBoard gameBoard = new GameBoard(5, faithPointsTrack);*/
 
-        ArrayList<BonusTile> bonusTiles = new ArrayList<>();
+        HashMap<Integer, BonusTile> bonusTiles = new HashMap<>();
 
         BonusTile bonusTile = new BonusTile(new ObtainEffect(0,0,2,1,0,0,0), new ObtainEffect(1,2,0,0,0,1,0));
 
@@ -42,15 +39,21 @@ public class MainGSonToFile {
 
         BonusTile bonusTile4 = new BonusTile(new ObtainEffect(0,0,1,0,0,2,0), new ObtainEffect(1,2,0,1,0,0,0));
 
-        bonusTiles.add(bonusTile);
-        bonusTiles.add(bonusTile2);
-        bonusTiles.add(bonusTile3);
-        bonusTiles.add(bonusTile4);
+        bonusTiles.put(0, bonusTile);
+        bonusTiles.put(1, bonusTile2);
+        bonusTiles.put(2, bonusTile3);
+        bonusTiles.put(3, bonusTile4);
+
+
+        ArrayList<Effect> immediateEffect = new ArrayList<>();
+        immediateEffect.add(new CouncilPrivilegeEffect(3));
+
+        DevelopmentCard card = new DevelopmentCard("ciao", Era.FIRST, new CardCost(false, false, new Cost(new GoodSet(), new GoodSet()), new Cost(new GoodSet(), new GoodSet())), CardColor.GREEN, immediateEffect, new ArrayList<Effect>(), false, 0 );
 
 
         // toJson
 
-        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\carta");
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Christian\\Desktop\\prova");
 
         final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
                 .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
@@ -116,7 +119,7 @@ public class MainGSonToFile {
         Gson gson = gsonBuilder.setPrettyPrinting().create();
 
 
-        gson.toJson(bonusTiles, fileWriter);
+        gson.toJson(card, fileWriter);
 
         fileWriter.close();
 

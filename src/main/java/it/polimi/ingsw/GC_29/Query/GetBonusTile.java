@@ -17,11 +17,11 @@ public class GetBonusTile extends Query<Map<Integer,String>> {
 
         Map<Integer, String> bonusTileMap = new HashMap<>();
 
-        List<BonusTile> bonusTileList = model.getBonusTileList();
+        Map<Integer, BonusTile> modelBonusTileMap = model.getBonusTileMap();
 
-        for (BonusTile bonusTile : bonusTileList) {
+        for (Integer index : modelBonusTileMap.keySet()) {
 
-            int index = bonusTileList.indexOf(bonusTile);
+            BonusTile bonusTile = modelBonusTileMap.get(index);
 
             bonusTileMap.put(index, bonusTile.toString());
 

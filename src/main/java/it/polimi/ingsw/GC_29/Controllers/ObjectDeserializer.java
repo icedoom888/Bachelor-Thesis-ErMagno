@@ -36,7 +36,7 @@ public class ObjectDeserializer {
 
     private final String bonustilesFilePath = "bonusTiles/bonusTiles";
 
-    Type bonusTilelistType = new TypeToken<ArrayList<BonusTile>>(){}.getType();
+    Type bonusTileMapType = new TypeToken<Map<Integer,BonusTile>>(){}.getType();
 
     private Gson gsonCardDeserializer;
 
@@ -119,11 +119,11 @@ public class ObjectDeserializer {
         return gameBoard;
     }
 
-    public List<BonusTile> getBonusTiles() throws FileNotFoundException {
+    public Map<Integer, BonusTile> getBonusTiles() throws FileNotFoundException {
 
         FileReader fileReader = new FileReader(bonustilesFilePath);
 
-        List<BonusTile> bonusTiles = gsonBuilder.create().fromJson(fileReader, bonusTilelistType );
+        Map<Integer, BonusTile> bonusTiles = gsonBuilder.create().fromJson(fileReader, bonusTileMapType);
 
         try {
             fileReader.close();
