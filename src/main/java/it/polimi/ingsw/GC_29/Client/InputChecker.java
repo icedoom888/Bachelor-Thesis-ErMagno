@@ -718,4 +718,7 @@ public class InputChecker {
 
     }
 
+    public PlayerState getCurrentPlayerState() {
+        return currentPlayerState;
+    }
 }

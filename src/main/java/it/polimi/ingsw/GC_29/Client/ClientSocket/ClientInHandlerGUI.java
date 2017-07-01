@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
 import it.polimi.ingsw.GC_29.Client.GUI.*;
+import it.polimi.ingsw.GC_29.Client.GuiChangeHandler;
+import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
@@ -18,7 +20,7 @@ import java.util.Map;
 /**
  * Created by Lorenzotara on 23/06/17.
  */
-public class ClientInHandlerGUI implements Runnable {
+public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
     private CommonOutSocket commonOutSocket;
     private ObjectInputStream socketIn;
@@ -27,6 +29,8 @@ public class ClientInHandlerGUI implements Runnable {
     private List<GuiChangeListener> listeners = Lists.newArrayList();
 
     public ClientInHandlerGUI(ObjectInputStream socketIn) {
+        super(new InputChecker());
+
         this.socketIn = socketIn;
         this.changeViewGUI = new ChangeViewGUI(socketIn, commonView);
     }
@@ -348,7 +352,7 @@ public class ClientInHandlerGUI implements Runnable {
 
 
 
-    private void firePray(String excommunicationUrl) {
+    /*private void firePray(String excommunicationUrl) {
         for (GuiChangeListener listener : listeners) {
             listener.pray(excommunicationUrl);
         }
@@ -536,7 +540,7 @@ public class ClientInHandlerGUI implements Runnable {
 
         firePray(excommunicationUrl);
 
-    }
+    }*/
 
 
 

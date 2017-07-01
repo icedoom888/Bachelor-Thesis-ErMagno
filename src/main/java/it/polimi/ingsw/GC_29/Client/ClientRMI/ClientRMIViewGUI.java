@@ -9,17 +9,15 @@ import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Created by Christian on 07/06/2017.
+ * Created by Christian on 01/07/2017.
  */
-public class ClientRMIView implements ClientViewRemote, Serializable {
-
-
-    PlayerState currentPlayerState;
-
-    GameState currentGameState;
+public class ClientRMIViewGUI implements ClientViewRemote, Serializable {
 
     private transient InputChecker inputChecker;
 
@@ -30,7 +28,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
     private Map<CardColor, List<String>> towerCardsMap;
 
 
-    protected ClientRMIView(PlayerColor playerColor, RMIViewRemote serverViewStub) throws RemoteException {
+    protected ClientRMIViewGUI(PlayerColor playerColor, RMIViewRemote serverViewStub) throws RemoteException {
 
         this.serverViewStub = serverViewStub;
 
@@ -41,6 +39,9 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
         this.towerCardsMap = new EnumMap<>(CardColor.class);
 
         inputChecker.setPlayerColor(playerColor);
+
+        //rende remota questa classe
+        UnicastRemoteObject.exportObject(this, 0);
 
     }
 
@@ -56,7 +57,6 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
             handlePlayerState(currentPlayerState);
 
-            System.out.println("if you want to see your valid input for this current state insert : help");
         }
 
         if(c instanceof GameChange){
@@ -139,7 +139,4 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
         }
     }
 
-    public InputChecker getInputChecker() {
-        return inputChecker;
-    }
 }

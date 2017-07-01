@@ -132,13 +132,19 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
     }
 
     @Override
-    public void initializeNewGame(RMIViewRemote serverViewStub) {
+    public void runNewGame(RMIViewRemote serverViewStub) throws  RemoteException{
 
         System.out.println("GAME BEGUN TRUE");
         this.serverViewStub = serverViewStub;
         gameRMI = new GameRMI(playerColor, serverViewStub);
         executor.submit(gameRMI);
         System.out.println("THREAD LANCIATO");
+    }
+
+    @Override
+    public void initialize() throws RemoteException{
+
+        gameRMI.initialize();
     }
 
 

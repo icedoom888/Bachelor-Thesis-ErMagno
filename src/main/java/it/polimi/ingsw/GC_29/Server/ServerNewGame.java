@@ -12,9 +12,6 @@ import it.polimi.ingsw.GC_29.Server.Socket.ServerSocketView;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.rmi.AlreadyBoundException;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -191,9 +188,12 @@ public class ServerNewGame implements Runnable {
                 gameSetup.getGameStatus().registerObserver(rmiView);
                 gameSetup.getGameStatus().getPlayer(clientRemoteInterface.getPlayerColor()).registerObserver(rmiView);
 
+                gameSetup.getGameStatus().getPlayer(clientRemoteInterface.getPlayerColor()).getActualGoodSet().registerObserver(trackController);
+
+
                 try {
                     RMIViewRemote rmiViewStub = rmiView;
-                    clientRemoteInterface.initializeNewGame(rmiViewStub);
+                    clientRemoteInterface.runNewGame(rmiViewStub);
                     System.out.println("CLIENT AVVISATI NUOVA PARTITA");
                 }
 
@@ -228,6 +228,15 @@ public class ServerNewGame implements Runnable {
 
             executorService.submit(serverSocketView);
 
+        }
+
+        for (ClientRemoteInterface clientRemoteInterface : clientRMIList) {
+
+            try {
+                clientRemoteInterface.initialize();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
 

@@ -12,7 +12,9 @@ import java.rmi.RemoteException;
  */
 public interface ClientRemoteInterface extends Remote {
 
-    void initializeNewGame(RMIViewRemote serverViewStub) throws RemoteException;
+    void runNewGame(RMIViewRemote serverViewStub) throws RemoteException;
+
+    void initialize() throws RemoteException;
 
     void setPlayerColor(PlayerColor playerColor) throws RemoteException;
 

@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 /**
@@ -24,6 +25,8 @@ public class GameRMI implements Runnable {
         this.serverViewStub = serverViewStub;
     }
 
+    
+
     @Override
     public void run() {
     //get the stub (local object) of the remote view
@@ -38,19 +41,18 @@ public class GameRMI implements Runnable {
             e.printStackTrace();
         }
 
+        try {
+            UnicastRemoteObject.exportObject(rmiView, 0);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
         // register the client view in the server side (to receive messages from the server)
         try {
             serverViewStub.registerClient(rmiView);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
-        try {
-            serverViewStub.initialize(playerColor);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
 
         Scanner stdIn = new Scanner(System.in);
 
@@ -181,6 +183,15 @@ public class GameRMI implements Runnable {
                 e.printStackTrace();
             }
             // TODO: gestione client disconnesso!
+        }
+    }
+
+    public void initialize() {
+
+        try {
+            serverViewStub.initialize(playerColor);
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 }
