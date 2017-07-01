@@ -14,6 +14,8 @@ public class ThrowDices extends Input {
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 
+        controller.stopTimer();
+
         for (Dice dice : model.getGameBoard().getDiceLane()) {
             dice.roll();
         }

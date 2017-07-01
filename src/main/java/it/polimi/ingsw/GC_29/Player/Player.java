@@ -121,13 +121,16 @@ public class Player extends Observable<Change> {
 
     public void setPlayerState(PlayerState playerState) {
 
-        synchronized (lock) {
-            this.playerState = playerState;
+        if (this.playerState != PlayerState.SUSPENDED) {
 
-            try {
-                notifyObserver(new PlayerStateChange(this.playerState));
-            } catch (Exception e) {
-                e.printStackTrace();
+            synchronized (lock) {
+                this.playerState = playerState;
+
+                try {
+                    notifyObserver(new PlayerStateChange(this.playerState));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
 

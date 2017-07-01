@@ -1575,11 +1575,20 @@ public class GameBoardController {
 
                 break;
 
+            case SUSPENDED:
+
+                noButtonsAble();
+
+                //TODO: showare sospensione
+
+                break;
+
+
         }
 
     }
 
-    private void closeWindows() {
+    public void closeWindows() {
 
         waitingForPlayers.setVisible(false);
         bonusTilePane.setVisible(false);

@@ -270,6 +270,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
                         }
 
 
+
                     });
 
                     break;
@@ -702,6 +703,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         });
 
     }
+
 
 
 

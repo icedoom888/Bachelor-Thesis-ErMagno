@@ -195,8 +195,6 @@ public class ClientInHandlerGUI implements Runnable {
 
                 break;
 
-            //TODO: inserire gestione altri stati se necessario
-
             case CHOOSEWORKERS:
 
                 try {
@@ -342,6 +340,7 @@ public class ClientInHandlerGUI implements Runnable {
                 }*/
 
                 break;
+
         }
     }
 
@@ -419,6 +418,7 @@ public class ClientInHandlerGUI implements Runnable {
         }
 
     }
+
 
 
 

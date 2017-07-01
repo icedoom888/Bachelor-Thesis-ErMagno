@@ -111,7 +111,6 @@ public class ServerSocketView extends View implements Runnable {
 
                             case "pay to obtain cards chosen":
                                 Map<String, Integer> activatedCardMap = (Map<String, Integer>)socketIn.readObject();
-                                System.out.println("notifico observer con PayToObtainCardsChosen");
                                 notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
                                 break;
 
@@ -134,6 +133,11 @@ public class ServerSocketView extends View implements Runnable {
                             case "do not pray":
                                 playerColor = (PlayerColor)socketIn.readObject();
                                 notifyObserver(new Pray(false, playerColor));
+                                break;
+
+                            case "join game":
+                                playerColor = (PlayerColor)socketIn.readObject();
+                                //notifyObserver(new JoinGame(playerColor));
                                 break;
 
 

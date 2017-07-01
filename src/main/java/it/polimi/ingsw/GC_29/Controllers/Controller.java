@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
+import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
 
 import java.rmi.RemoteException;
 import java.util.*;
@@ -21,9 +22,16 @@ import java.util.*;
 public class Controller implements Observer<Input>  {
 
     private final GameStatus model;
+
+    private final long throwDicesTime = 15000;
+    private final long chooseBonusTilesTime = 15000;
+    private final long prayTime = 15000;
+    private final long turnTime = 15000;
+
     private Integer playersPraying;
     private ActionChecker actionChecker;
     private int currentBonusTileIndexPlayer;
+    private Timer timer;
 
 
     public Controller(GameStatus model){
@@ -50,6 +58,8 @@ public class Controller implements Observer<Input>  {
 
     public void handleEndRound() throws Exception {
 
+        System.out.println("handle end round del controller");
+
         int round = model.getCurrentRound();
         if (round%2 == 0) {
             model.setGameState(GameState.CHURCHRELATION);
@@ -59,6 +69,7 @@ public class Controller implements Observer<Input>  {
             if(!safePlayers.isEmpty()){
                 for (Player safePlayer : safePlayers) {
                     safePlayer.setPlayerState(PlayerState.PRAY);
+                    startTimer(safePlayer);
                 }
             }
             else{
@@ -75,6 +86,8 @@ public class Controller implements Observer<Input>  {
      * @throws Exception
      */
     public void setNewRound() throws Exception {
+
+        System.out.println("set new round del controller");
 
         setFamilyPawnsAndLeaderValues();
         setNewTurnOrder();
@@ -116,6 +129,9 @@ public class Controller implements Observer<Input>  {
             if (player.getPlayerState() != PlayerState.SUSPENDED) {
 
                 player.setPlayerState(PlayerState.THROWDICES);
+
+                startTimer(player);
+
                 break;
             }
         }
@@ -184,6 +200,8 @@ public class Controller implements Observer<Input>  {
             actionChecker.setCurrentPlayer();
 
             firstPlayer.setPlayerState(PlayerState.DOACTION);
+
+            startTimer(firstPlayer);
 
         }
     }
@@ -686,4 +704,53 @@ public class Controller implements Observer<Input>  {
     public int getCurrentBonusTileIndexPlayer() {
         return currentBonusTileIndexPlayer;
     }
+
+    public void startTimer(Player player) {
+
+        PlayerState playerState = player.getPlayerState();
+
+        long time = 0;
+
+        switch (playerState) {
+
+            case THROWDICES:
+
+                time = throwDicesTime;
+                break;
+
+            case CHOOSE_BONUS_TILE:
+
+                time = chooseBonusTilesTime;
+                break;
+
+            case PRAY:
+
+                time = prayTime;
+                break;
+
+            case DOACTION:
+
+                time = turnTime;
+                break;
+
+        }
+
+        timer = new Timer();
+        TimerTask suspendPlayer = new SuspendPlayer(this, model, player);
+
+        timer.schedule(suspendPlayer, time);
+
+    }
+
+    public void stopTimer() {
+
+        this.timer.cancel();
+
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+
 }

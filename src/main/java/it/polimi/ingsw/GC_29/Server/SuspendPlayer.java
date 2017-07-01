@@ -43,7 +43,7 @@ public class SuspendPlayer extends TimerTask {
                     e.printStackTrace();
                 }
 
-                endTurn();
+                //endTurn();
 
                 break;
 
@@ -89,8 +89,11 @@ public class SuspendPlayer extends TimerTask {
 
             case CHOOSE_BONUS_TILE:
 
-                //TODO: gestire
-                // new BonusTileChosen().perform(model, controller);
+                try {
+                    new BonusTileChosen().perform(model, controller);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 break;
 

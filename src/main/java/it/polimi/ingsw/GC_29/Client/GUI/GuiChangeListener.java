@@ -39,4 +39,5 @@ public interface GuiChangeListener {
     void councilPrivilege(List<Integer> councilPrivileges);
 
     void bonusTile(Map<Integer, String> bonusTiles);
+
 }
