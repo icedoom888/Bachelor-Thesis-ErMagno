@@ -81,9 +81,18 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
     public Boolean loginGUI(String userName, String password) throws RemoteException {
 
+        Boolean logged;
+
         this.userName = userName;
 
-        return connectionStub.login(userName, password);
+        logged = connectionStub.login(userName, password);
+
+        if(logged){
+
+            connectionStub.addClient(this);
+        }
+
+        return logged;
 
     }
 

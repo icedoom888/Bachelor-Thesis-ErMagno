@@ -12,6 +12,9 @@ public class ChooseDistribution {
 
     private Distribution distribution;
     private CommonOutSocket commonOutSocket;
+    //private GameRMIGui
+
+    //TODO stub view server
 
     public ChooseDistribution(Distribution distribution) {
         this.distribution = distribution;
