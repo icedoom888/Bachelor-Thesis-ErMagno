@@ -119,6 +119,8 @@ public class GameBoardController {
     private AnchorPane throwDicesPane;
     private AnchorPane bonusActionPane;
 
+    private Button activatedLeader;
+    private Button dichardedLeader;
 
     @FXML
     private AnchorPane waitingForPlayers;
@@ -254,6 +256,16 @@ public class GameBoardController {
     private Button burn4;
 
     private ArrayList<Button> burnLeaderCardsButtons;
+
+
+    @FXML
+    private ImageView leader1;
+    @FXML
+    private ImageView leader2;
+    @FXML
+    private ImageView leader3;
+    @FXML
+    private ImageView leader4;
 
 
     @FXML
@@ -824,15 +836,26 @@ public class GameBoardController {
         Button activateButton = (Button) event.getSource();
         if(activateButton==activate1){
             sender.sendInput("activate leader card 0");
+            activatedLeader = activate1;
+            dichardedLeader = burn1;
         }
         if(activateButton==activate2){
             sender.sendInput("activate leader card 1");
+            activatedLeader = activate2;
+            dichardedLeader = burn2;
+
         }
         if(activateButton==activate3){
             sender.sendInput("activate leader card 2");
+            activatedLeader = activate3;
+            dichardedLeader = burn3;
+
         }
         if(activateButton==activate4){
             sender.sendInput("activate leader card 3");
+            activatedLeader = activate4;
+            dichardedLeader = burn4;
+
         }
 
     }
@@ -847,15 +870,27 @@ public class GameBoardController {
         Object burnButton = event.getSource();
         if (burnButton==burn1){
             sender.sendInput("discard leader card 0");
+            leader1.setVisible(false);
+            activate1.setDisable(true);
+            burn1.setDisable(true);
         }
         if (burnButton==burn2){
             sender.sendInput("discard leader card 1");
+            leader2.setVisible(false);
+            activate2.setDisable(true);
+            burn2.setDisable(true);
         }
         if (burnButton==burn3){
             sender.sendInput("discard leader card 2");
+            leader3.setVisible(false);
+            activate3.setDisable(true);
+            burn3.setDisable(true);
         }
         if (burnButton==burn4){
             sender.sendInput("discard leader card 3");
+            leader4.setVisible(false);
+            activate4.setDisable(true);
+            burn4.setDisable(true);
         }
     }
 
@@ -1065,6 +1100,22 @@ public class GameBoardController {
                 neutralPawn.setDisable(false);
                 neutralValue.setText(value.toString());
                 break;
+        }
+    }
+
+
+    public void updateLeaderCards(ArrayList<String> leaders){
+        leader1.setImage(new Image(leaders.get(0)));
+        leader2.setImage(new Image(leaders.get(1)));
+        leader3.setImage(new Image(leaders.get(2)));
+        leader4.setImage(new Image(leaders.get(3)));
+    }
+
+    public void activationLeaders(boolean activated, boolean permanent){
+        if (activated){
+            if (permanent){
+                activatedLeader.setDisable(true);
+            }
         }
     }
 
