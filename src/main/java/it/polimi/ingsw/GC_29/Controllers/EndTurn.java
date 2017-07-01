@@ -25,11 +25,12 @@ public class EndTurn extends Input {
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 
+        controller.stopTimer();
+
         Player currentPlayer = model.getCurrentPlayer();
 
-        if (currentPlayer.getPlayerState() != PlayerState.SUSPENDED) {
-            currentPlayer.setPlayerState(PlayerState.WAITING);
-        }
+        currentPlayer.setPlayerState(PlayerState.WAITING);
+
 
         List<Player> turnOrder = model.getTurnOrder();
 
@@ -37,13 +38,13 @@ public class EndTurn extends Input {
             setSkippedPlayer(model, controller);
         }
 
-        else if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) {
-
-            System.out.println("Current player: " + currentPlayer.getPlayerID());
-            System.out.println(turnOrder.indexOf(currentPlayer));
+        //else if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) {
+        else if (seeIfLastPlayer(turnOrder, currentPlayer)) {
 
 
             if (model.getCurrentTurn() < 4) {
+
+                System.out.println("INCREMENTING TURN");
 
                 model.setCurrentTurn(model.getCurrentTurn()+1);
 
@@ -57,6 +58,7 @@ public class EndTurn extends Input {
                         break;
 
                     }
+
                 }
 
 
@@ -65,13 +67,14 @@ public class EndTurn extends Input {
                 controller.getActionChecker().setCurrentPlayer();
 
                 model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);
+
+                controller.startTimer(model.getCurrentPlayer());
             }
 
             else if (model.getCurrentTurn() == 4) {
 
                 System.out.println("Setting Skipped players");
 
-                //TODO: anche qui
                 setSkippedPlayer(model, controller);
 
             }
@@ -112,6 +115,7 @@ public class EndTurn extends Input {
             System.out.println("nessuno skippa");
 
             model.setGameState(GameState.RUNNING);
+
             controller.handleEndRound();
         }
 
@@ -152,6 +156,33 @@ public class EndTurn extends Input {
 
             newCurrentPlayer.setPlayerState(PlayerState.DOACTION);
 
+            controller.startTimer(newCurrentPlayer);
+
         }
+    }
+
+    private boolean seeIfLastPlayer(List<Player> turnOrder, Player currentPlayer) {
+
+        int indexOfCurrentPlayer = turnOrder.indexOf(currentPlayer);
+
+        if (indexOfCurrentPlayer == turnOrder.size()-1) {
+            return true;
+        }
+
+        else {
+
+            for (indexOfCurrentPlayer = indexOfCurrentPlayer + 1; indexOfCurrentPlayer < turnOrder.size(); indexOfCurrentPlayer++) {
+
+                if (turnOrder.get(indexOfCurrentPlayer).getPlayerState() == PlayerState.SUSPENDED
+                        && indexOfCurrentPlayer == turnOrder.size() - 1) {
+
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
     }
 }

@@ -39,6 +39,8 @@ public class Initialize extends Input {
             model.setCurrentPlayer(lastPlayer);
             controller.setCurrentBonusTileIndexPlayer(turnOrder.indexOf(lastPlayer));
             lastPlayer.setPlayerState(PlayerState.CHOOSE_BONUS_TILE);
+
+            controller.startTimer(lastPlayer);
         }
 
         else {

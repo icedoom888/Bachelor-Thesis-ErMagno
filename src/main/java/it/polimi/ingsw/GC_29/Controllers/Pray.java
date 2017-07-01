@@ -28,6 +28,8 @@ public class Pray extends Input {
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 
+        controller.stopTimer();
+
         Player player = model.getPlayer(playerColor);
 
         if (answer) {
@@ -52,11 +54,8 @@ public class Pray extends Input {
 
         controller.praying();
 
-        if (player.getPlayerState() != PlayerState.SUSPENDED) {
+        player.setPlayerState(PlayerState.WAITING);
 
-            player.setPlayerState(PlayerState.WAITING);
-
-        }
 
         if (controller.getPlayersPraying() == 0) {
 

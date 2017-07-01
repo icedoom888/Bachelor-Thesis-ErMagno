@@ -121,128 +121,50 @@ public class ClientInHandlerCLI implements Runnable {
 
             case DOACTION:
 
-                try {
-                    String input = (String)socketIn.readObject();
-
-                    if (input.contentEquals("Get Family Pawns Availability")) {
-                        getFamilyPawnsAvailability();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                getFamilyPawnsAvailability();
 
                 break;
 
             case BONUSACTION:
             case CHOOSEACTION:
 
-                try {
-                    String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
-
-                    if (input.contentEquals("Valid Actions")) {
-                        validActions();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                validActions();
 
                 break;
 
-            //TODO: inserire gestione altri stati se necessario
-
             case CHOOSEWORKERS:
 
-                try {
-                    String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
-
-                    if (input.contentEquals("Get Cards For Workers")) {
-                        getCardsForWorkers();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                getCardsForWorkers();
 
                 break;
 
             case ACTIVATE_PAY_TO_OBTAIN_CARDS:
 
-                try {
-                    String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
-
-                    if (input.contentEquals("Get Pay To Obtain Cards")) {
-                        getPayToObtainCards();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                getPayToObtainCards();
 
                 break;
 
             case CHOOSECOST:
 
-                try {
-                    String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
-
-                    if (input.contentEquals("Get Possible Costs")) {
-                        getPossibleCosts();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                getPossibleCosts();
 
                 break;
 
             case CHOOSE_COUNCIL_PRIVILEGE:
 
-                try {
-                    String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
-
-                    if (input.contentEquals("Get Council Privileges")) {
-                        getCouncilPrivileges();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                getCouncilPrivileges();
 
                 break;
 
             case CHOOSE_BONUS_TILE:
 
-                try {
-                    String input = (String)socketIn.readObject();
 
-                    System.out.println(input);
-
-                    if (input.contentEquals("Get Bonus Tile")) {
-                        getBonusTiles();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                getBonusTiles();
 
                 break;
 

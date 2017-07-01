@@ -208,6 +208,10 @@ public class CommonOutSocket {
                     socketOut.flush();
                     break;
 
+                case "join game":
+                    socketOut.writeObject("join game");
+                    socketOut.flush();
+
                 case "help":
                     handleHelp();
                     break;
