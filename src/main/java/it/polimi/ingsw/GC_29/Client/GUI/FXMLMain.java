@@ -55,6 +55,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     private PlayerState currentPlayerState;
 
     private GameBoardController gameBoardController;
+    private ChooseDistribution chooseDistribution;
 
 
     private ClientRMI clientRMI;
@@ -196,6 +197,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
                     clientSocketGUI.playNewGameGUI();
 
+                    this.chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
+
                     clientSocketGUI.getClientInHandlerGUI().addListener(new GuiChangeListener() {
 
                         @Override
@@ -299,6 +302,10 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
                     break;
 
                 case RMI:
+
+                    this.chooseDistribution = new ChooseDistribution(Distribution.RMI);
+
+
                     break;
             }
 
@@ -346,7 +353,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     private void setGameboard() {
 
         System.out.println("Gameboard Started");
-        ChooseDistribution chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
         chooseDistribution.setCommonOutSocket(clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket());
 
         gameboardStage = new Stage();

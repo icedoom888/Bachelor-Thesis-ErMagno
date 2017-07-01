@@ -86,11 +86,11 @@ public final class Filter {
         }
 
         for (BonusAndMalusOnCost bonusAndMalusOnCost : currentPlayerBonusAndMalusOnCost) {
-            bonusAndMalusOnCost.filter(player, costs, zoneType);
+            bonusAndMalusOnCost.filter(costs, zoneType);
         }
 
         for (BonusAndMalusOnCost bonusAndMalusOnCost : currentPlayerBonusAndMalusOnCostTemporary) {
-            bonusAndMalusOnCost.filter(player,costs, zoneType);
+            bonusAndMalusOnCost.filter(costs, zoneType);
             currentPlayerBonusAndMalusOnCostTemporary.removeFirst();
         }
 

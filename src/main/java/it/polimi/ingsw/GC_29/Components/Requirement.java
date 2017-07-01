@@ -30,7 +30,19 @@ public class Requirement {
         boolean isPossible = true;
 
         for (CardColor cardColor : cardsRequired.keySet()) {
-            isPossible = isPossible && (cardsRequired.get(cardColor) <= playerCards.get(cardColor));
+
+            if (cardColor != CardColor.ANY) {
+
+                isPossible = isPossible && (cardsRequired.get(cardColor) <= playerCards.get(cardColor));
+            }
+
+            else {
+
+                isPossible = isPossible && anyColor(playerCards);
+
+
+            }
+
         }
 
         for (GoodType goodType : GoodType.values()) {
@@ -38,5 +50,23 @@ public class Requirement {
         }
 
         return isPossible;
+    }
+
+    private boolean anyColor(Map<CardColor, Integer> playerCards) {
+
+        for (CardColor cardColor : CardColor.values()) {
+
+            if (cardColor != CardColor.ANY) {
+
+                if (cardsRequired.get(CardColor.ANY) <= playerCards.get(cardColor)) {
+                    return true;
+                }
+
+            }
+
+        }
+
+        return false;
+
     }
 }
