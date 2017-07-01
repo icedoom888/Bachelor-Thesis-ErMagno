@@ -161,6 +161,7 @@ public class CommonOutSocket {
                         socketOut.writeObject("council privileges chosen");
                         socketOut.flush();
                         socketOut.writeObject(commonView.getInputChecker().getCouncilPrivilegeEffectChosenList());
+                        socketOut.flush();
                     }
                     break;
 
