@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_29.Client.GUI;
 
 import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.*;
 import it.polimi.ingsw.GC_29.Client.Distribution;
+import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
@@ -29,6 +31,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,6 +56,9 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     private GameBoardController gameBoardController;
 
+
+    private ClientRMI clientRMI;
+
     @Override
     public void update(LoginChange o) throws Exception {
 
@@ -59,7 +66,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         if (connected) {
 
             signUp();
-
 
         }
 
@@ -116,6 +122,21 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
+    private void connectRMI() throws RemoteException, NotBoundException {
+
+        clientRMI = new ClientRMI(EnumInterface.GUI);
+
+        clientRMI.connectServerRMI();
+
+        logged = clientRMI.loginGUI(username, password);
+
+        if(!logged){
+
+            loginController.setConnected(false);
+        }
+
+    }
+
     public void signUp() {
 
         if (!logged) {
@@ -136,6 +157,13 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
                     break;
 
                 case RMI:
+                    try {
+                        connectRMI();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    } catch (NotBoundException e) {
+                        e.printStackTrace();
+                    }
                     break;
 
             }
@@ -282,8 +310,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
 
     }
-
-
 
 
     private void setLogin() {

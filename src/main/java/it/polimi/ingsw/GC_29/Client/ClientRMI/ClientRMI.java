@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.Distribution;
+import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterface;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
@@ -41,8 +42,14 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
     private final Distribution distribution = Distribution.RMI;
 
-    public ClientRMI() throws RemoteException{
+    private EnumInterface gameInterface;
+
+    public ClientRMI(EnumInterface gameInterface) throws RemoteException{
+
         super();
+
+        this.gameInterface = gameInterface;
+
     }
 
 
@@ -65,10 +72,18 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
     }
 
 
-    private void connectServerRMI() throws RemoteException, NotBoundException {
+    public void connectServerRMI() throws RemoteException, NotBoundException {
 
         Registry reg = LocateRegistry.getRegistry(HOST, PORT);
         connectionStub = (ConnectionInterface)reg.lookup(NAME);
+
+    }
+
+    public Boolean loginGUI(String userName, String password) throws RemoteException {
+
+        this.userName = userName;
+
+        return connectionStub.login(userName, password);
 
     }
 

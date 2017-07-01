@@ -150,7 +150,7 @@ public class Client {
         switch (distribution) {
 
             case RMI:
-                gameRMI = new ClientRMI();
+                gameRMI = new ClientRMI(EnumInterface.CLI);
                 gameRMI.executeRMI();
                 break;
 
