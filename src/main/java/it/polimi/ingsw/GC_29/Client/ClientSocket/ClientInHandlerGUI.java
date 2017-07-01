@@ -148,6 +148,12 @@ public class ClientInHandlerGUI implements Runnable {
             case DOACTION:
 
                 try {
+                    getFamilyPawnsAvailabilityGUI((Map<FamilyPawn, Boolean>)socketIn.readObject());
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
                     String input = (String)socketIn.readObject();
 
                     System.out.println("DO action: " + input);
@@ -160,7 +166,7 @@ public class ClientInHandlerGUI implements Runnable {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 break;
 
@@ -168,6 +174,12 @@ public class ClientInHandlerGUI implements Runnable {
             case CHOOSEACTION:
 
                 try {
+                    validActionsGUI((Map<Integer, String>)socketIn.readObject());
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
                     String input = (String)socketIn.readObject();
 
                     System.out.println("VALID ACTIONS: " + input);
@@ -179,7 +191,7 @@ public class ClientInHandlerGUI implements Runnable {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 break;
 
@@ -188,6 +200,12 @@ public class ClientInHandlerGUI implements Runnable {
             case CHOOSEWORKERS:
 
                 try {
+                    getCardsForWorkersGUI((Map<Integer, ArrayList<String>>)socketIn.readObject());
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
                     String input = (String)socketIn.readObject();
 
                     System.out.println("Choose workers: " + input);
@@ -199,13 +217,19 @@ public class ClientInHandlerGUI implements Runnable {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 break;
 
             case ACTIVATE_PAY_TO_OBTAIN_CARDS:
 
                 try {
+                    getPayToObtainCardsGUI((Map<String, HashMap<Integer, String>>)socketIn.readObject());
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
                     String input = (String)socketIn.readObject();
 
                     System.out.println("Pay to obtain: " + input);
@@ -217,13 +241,19 @@ public class ClientInHandlerGUI implements Runnable {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 break;
 
             case CHOOSECOST:
 
                 try {
+                    getPossibleCostsGUI((Map<Integer, String>)socketIn.readObject());
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
                     String input = (String)socketIn.readObject();
 
                     System.out.println("choose cost: " + input);
@@ -235,13 +265,19 @@ public class ClientInHandlerGUI implements Runnable {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 break;
 
             case CHOOSE_COUNCIL_PRIVILEGE:
 
                 try {
+                    getCouncilPrivilegesGUI((List<Integer>)socketIn.readObject());
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
                     String input = (String)socketIn.readObject();
 
                     System.out.println("council privilege: " + input);
@@ -253,13 +289,19 @@ public class ClientInHandlerGUI implements Runnable {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 break;
 
             case CHOOSE_BONUS_TILE:
 
                 try {
+                    getBonusTilesGUI((Map<Integer, String>)socketIn.readObject());
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
 
                     String input = (String)socketIn.readObject();
 
@@ -272,13 +314,19 @@ public class ClientInHandlerGUI implements Runnable {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 break;
 
             case PRAY:
 
                 try {
+                    getExcommunicationTileUrl((String)socketIn.readObject());
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                /*try {
 
                     String input = (String)socketIn.readObject();
 
@@ -291,7 +339,7 @@ public class ClientInHandlerGUI implements Runnable {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 break;
         }
@@ -397,159 +445,96 @@ public class ClientInHandlerGUI implements Runnable {
 
 
 
-    private void validActionsGUI() {
+    private void validActionsGUI(Map<Integer, String> validActions) {
 
-        try {
-
-            Map<Integer, String> validActions = (Map<Integer, String>)socketIn.readObject();
-            commonView.getInputChecker().setValidActionList(validActions);
-            fireValidActions();
-
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        //Map<Integer, String> validActions = (Map<Integer, String>)socketIn.readObject();
+        commonView.getInputChecker().setValidActionList(validActions);
+        fireValidActions();
 
 
     }
 
 
 
-    private void getFamilyPawnsAvailabilityGUI() {
+    private void getFamilyPawnsAvailabilityGUI(Map<FamilyPawn, Boolean> familyPawns) {
 
-        try {
+        //Map<FamilyPawn, Boolean> familyPawns = (Map<FamilyPawn, Boolean>)socketIn.readObject();
 
-            Map<FamilyPawn, Boolean> familyPawns = (Map<FamilyPawn, Boolean>)socketIn.readObject();
-            HashMap<FamilyPawnType, Boolean> familyPawnsAvailability = new HashMap<>();
+        HashMap<FamilyPawnType, Boolean> familyPawnsAvailability = new HashMap<>();
 
-            for (FamilyPawn familyPawn : familyPawns.keySet()) {
+        for (FamilyPawn familyPawn : familyPawns.keySet()) {
 
-                familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
-            }
-
-            commonView.getInputChecker().setFamilyPawnAvailability(familyPawnsAvailability);
-
-            fireFamilyPawns(familyPawns);
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
         }
+
+        commonView.getInputChecker().setFamilyPawnAvailability(familyPawnsAvailability);
+
+        fireFamilyPawns(familyPawns);
 
     }
 
 
 
-    private void getCardsForWorkersGUI() {
+    private void getCardsForWorkersGUI(Map<Integer, ArrayList<String>> cardsForWorkers) {
 
-        try {
+        //Map<Integer, ArrayList<String>> cardsForWorkers = (Map<Integer, ArrayList<String>>)socketIn.readObject();
+        commonView.getInputChecker().setPossibleCardsWorkActionMap(cardsForWorkers);
 
-            Map<Integer, ArrayList<String>> cardsForWorkers = (Map<Integer, ArrayList<String>>)socketIn.readObject();
-            commonView.getInputChecker().setPossibleCardsWorkActionMap(cardsForWorkers);
-
-            fireCardsForWorkers(cardsForWorkers);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        fireCardsForWorkers(cardsForWorkers);
 
     }
 
 
-    private void getPayToObtainCardsGUI() {
+    private void getPayToObtainCardsGUI(Map<String, HashMap<Integer, String>> payToObtainCards) {
 
-        try {
+        //Map<String, HashMap<Integer, String>> payToObtainCards = (Map<String, HashMap<Integer, String>>)socketIn.readObject();
+        commonView.getInputChecker().setPayToObtainCardsMap(payToObtainCards);
 
-            Map<String, HashMap<Integer, String>> payToObtainCards = (Map<String, HashMap<Integer, String>>)socketIn.readObject();
-            commonView.getInputChecker().setPayToObtainCardsMap(payToObtainCards);
-            //commonView.getInputChecker().askActivateCard();
-            //TODO: guarda bene
-
-            firePayToObtainCards(payToObtainCards);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        firePayToObtainCards(payToObtainCards);
 
     }
 
 
 
-    private void getPossibleCostsGUI() {
+    private void getPossibleCostsGUI(Map<Integer, String> possibleCosts) {
 
-        try {
+        //Map<Integer, String> possibleCosts = (Map<Integer, String>)socketIn.readObject();
+        commonView.getInputChecker().setPossibleCosts(possibleCosts);
 
-            Map<Integer, String> possibleCosts = (Map<Integer, String>)socketIn.readObject();
-            commonView.getInputChecker().setPossibleCosts(possibleCosts);
-
-            firePossibleCosts(possibleCosts);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        firePossibleCosts(possibleCosts);
 
     }
 
 
 
-    private void getCouncilPrivilegesGUI() {
+    private void getCouncilPrivilegesGUI(List<Integer> councilPrivileges) {
 
-        try {
+        //List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
+        commonView.getInputChecker().setCouncilPrivilegeEffectList(councilPrivileges);
+        //commonView.getInputChecker().nextPrivilegeEffect();
+        //commonView.getInputChecker().askWhichPrivilege();
 
-            List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
-            commonView.getInputChecker().setCouncilPrivilegeEffectList(councilPrivileges);
-            //commonView.getInputChecker().nextPrivilegeEffect();
-            //commonView.getInputChecker().askWhichPrivilege();
-            //TODO: guarda bene
-
-            fireCouncilPrivileges(councilPrivileges);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        fireCouncilPrivileges(councilPrivileges);
 
     }
 
 
 
-    private void getBonusTilesGUI() {
+    private void getBonusTilesGUI(Map<Integer, String> bonusTiles) {
 
-        try {
+        //Map<Integer, String> bonusTiles = (Map<Integer, String>)socketIn.readObject();
+        commonView.getInputChecker().setBonusTileMap(bonusTiles);
 
-            Map<Integer, String> bonusTiles = (Map<Integer, String>)socketIn.readObject();
-            commonView.getInputChecker().setBonusTileMap(bonusTiles);
-
-            fireBonusTiles(bonusTiles);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        fireBonusTiles(bonusTiles);
 
     }
 
 
-    private void getExcommunicationTileUrl() {
+    private void getExcommunicationTileUrl(String excommunicationUrl) {
 
-        try {
+        //String excommunicationUrl = (String)socketIn.readObject();
 
-            String excommunicationUrl = (String) socketIn.readObject();
-
-            firePray(excommunicationUrl);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        firePray(excommunicationUrl);
 
     }
 
