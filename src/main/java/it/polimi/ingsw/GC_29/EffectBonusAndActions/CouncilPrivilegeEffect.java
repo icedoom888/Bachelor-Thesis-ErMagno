@@ -47,8 +47,6 @@ public class CouncilPrivilegeEffect implements Effect {
 
         status.getCouncilPrivilegeEffectList().add(this);
 
-
-
     }
 
 

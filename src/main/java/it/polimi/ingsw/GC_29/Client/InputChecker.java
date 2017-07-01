@@ -52,8 +52,8 @@ public class InputChecker {
     private List<CouncilPrivilegeEffect> councilPrivilegeEffectList;
     CouncilPrivilegeEffect currentCouncilPrivilegeEffect;
     List<Integer> councilPrivilegeEffectChosenList;
-    CouncilPrivilege currentParchment;
-    private List<CouncilPrivilege> currentParchmentList;
+    Map<Integer, ObtainEffect> currentParchment;
+    private List<Map<Integer, ObtainEffect>> currentParchmentList;
 
     ///////TOWERACTION VARIABLES////
     private Map<Integer, String> possibleCosts;
@@ -240,13 +240,13 @@ public class InputChecker {
         int index = Integer.parseInt(lastWord);
 
 
-        if(index < currentParchment.getPossibleObtainEffect().size() && index >= 0){
+        if(currentParchment.containsKey(index)){
 
             councilPrivilegeEffectChosenList.add(index);
 
-            for (CouncilPrivilege councilPrivilege : currentParchmentList) {
+            for (Map<Integer, ObtainEffect> councilEffectsMap : currentParchmentList) {
 
-                councilPrivilege.getPossibleObtainEffect().remove(index);
+                councilEffectsMap.remove(index);
 
             }
 
@@ -418,79 +418,6 @@ public class InputChecker {
     }
 
 
-
-    public void setFamilyPawnAvailability(Map<FamilyPawnType,Boolean> familyPawnAvailability) {
-        this.familyPawnAvailability = familyPawnAvailability;
-    }
-
-    public void setCurrentPlayerState(PlayerState currentPlayerState) {
-        this.currentPlayerState = currentPlayerState;
-
-    }
-
-    public InstructionSet getInstructionSet() {
-        return instructionSet;
-    }
-
-    public FamilyPawnType getFamilyPawnChosen() {
-        return familyPawnChosen;
-    }
-
-    public int getActionIndex() {
-        return actionIndex;
-    }
-
-    public void setValidActionList(Map<Integer,String> validActionList) {
-        this.validActionList = validActionList;
-    }
-
-    public PlayerColor getPlayerColor() {
-        return playerColor;
-    }
-
-    public void setPlayerColor(PlayerColor playerColor) {
-        this.playerColor = playerColor;
-    }
-
-    public Map<Integer, String> getValidActionList() {
-        return validActionList;
-    }
-
-    public CardColor getPlayerCardColor() {
-        return playerCardColor;
-    }
-
-    public CardColor getTowerCardColor() {
-        return towerCardColor;
-    }
-
-    public Map<Integer, ArrayList<String>> getPossibleCardsWorkActionMap() {
-        return possibleCardsWorkActionMap;
-    }
-
-    public void setPossibleCardsWorkActionMap(Map<Integer, ArrayList<String>> possibleCardsWorkActionMap) {
-        this.possibleCardsWorkActionMap = possibleCardsWorkActionMap;
-    }
-
-    public int getWorkersChosen() {
-        return workersChosen;
-    }
-
-
-    public void setPayToObtainCardsMap(Map<String, HashMap<Integer, String>> payToObtainCardsMap) {
-
-        this.payToObtainCardsMap = payToObtainCardsMap;
-
-        Set<String> keySet = payToObtainCardsMap.keySet();
-
-        String keyArray[] = keySet.toArray(new String [keySet.size()]);
-
-        payToObtainCardKeys = new ArrayList<>(Arrays.asList(keyArray));
-
-        currentPayToObtainCard = payToObtainCardKeys.remove(0);
-
-    }
-
     public void printPossibleCardsWorkAction() {
 
         Set<Integer> workerskeys = possibleCardsWorkActionMap.keySet();
@@ -532,17 +459,6 @@ public class InputChecker {
 
     }
 
-    public Map<String, Integer> getActivatedCardMap() {
-        return activatedCardMap;
-    }
-
-    public int getCurrentPayToObtainEffectIndex() {
-        return currentPayToObtainEffectIndex;
-    }
-
-    public void setCurrentPayToObtainEffectIndex(int currentPayToObtainEffectIndex) {
-        this.currentPayToObtainEffectIndex = currentPayToObtainEffectIndex;
-    }
 
     public boolean handleCardDecision() {
 
@@ -575,10 +491,12 @@ public class InputChecker {
         return true;
     }
 
+
     public void addCard() {
 
         activatedCardMap.put(currentPayToObtainCard, currentPayToObtainEffectIndex);
     }
+
 
     private void askWichEffect() {
 
@@ -617,10 +535,26 @@ public class InputChecker {
         if (!councilPrivilegeEffectList.isEmpty()) {
 
             currentCouncilPrivilegeEffect = councilPrivilegeEffectList.remove(0);
-            currentParchmentList = currentCouncilPrivilegeEffect.getParchmentList();
+
+            for (CouncilPrivilege councilPrivilege : currentCouncilPrivilegeEffect.getParchmentList()) {
+
+                Map<Integer, ObtainEffect> temporaryMap = new HashMap<>();
+
+                for(int index = 0; index < councilPrivilege.getPossibleObtainEffect().size(); index++){
+
+                    ObtainEffect temporaryObtainEffect = councilPrivilege.getPossibleObtainEffect().get(index);
+
+                    temporaryMap.put(index, temporaryObtainEffect);
+
+                }
+
+                currentParchmentList.add(temporaryMap);
+            }
 
             return true;
-        } else {
+        }
+
+        else {
             return false;
         }
     }
@@ -632,13 +566,13 @@ public class InputChecker {
 
     public void askWhichPrivilege(){
 
-        currentParchment = currentCouncilPrivilegeEffect.getParchmentList().remove(0);
+        currentParchment = currentParchmentList.remove(0);
 
         System.out.println("choose between these privilege effects: ");
 
-        for (ObtainEffect obtainEffect : currentParchment.getPossibleObtainEffect()) {
+        for (Integer index : currentParchment.keySet()) {
 
-            int index = currentParchment.getPossibleObtainEffect().indexOf(obtainEffect);
+            ObtainEffect obtainEffect = currentParchment.get(index);
 
             System.out.println("privilege " + index + ") " + obtainEffect);
         }
@@ -699,4 +633,89 @@ public class InputChecker {
     public String getCurrentPayToObtainCard() {
         return currentPayToObtainCard;
     }
+
+    public InstructionSet getInstructionSet() {
+        return instructionSet;
+    }
+
+    public FamilyPawnType getFamilyPawnChosen() {
+        return familyPawnChosen;
+    }
+
+    public int getActionIndex() {
+        return actionIndex;
+    }
+
+    public void setValidActionList(Map<Integer,String> validActionList) {
+        this.validActionList = validActionList;
+    }
+
+    public PlayerColor getPlayerColor() {
+        return playerColor;
+    }
+
+    public void setPlayerColor(PlayerColor playerColor) {
+        this.playerColor = playerColor;
+    }
+
+    public Map<Integer, String> getValidActionList() {
+        return validActionList;
+    }
+
+    public CardColor getPlayerCardColor() {
+        return playerCardColor;
+    }
+
+    public CardColor getTowerCardColor() {
+        return towerCardColor;
+    }
+
+    public Map<Integer, ArrayList<String>> getPossibleCardsWorkActionMap() {
+        return possibleCardsWorkActionMap;
+    }
+
+    public void setPossibleCardsWorkActionMap(Map<Integer, ArrayList<String>> possibleCardsWorkActionMap) {
+        this.possibleCardsWorkActionMap = possibleCardsWorkActionMap;
+    }
+
+    public int getWorkersChosen() {
+        return workersChosen;
+    }
+
+    public Map<String, Integer> getActivatedCardMap() {
+        return activatedCardMap;
+    }
+
+    public int getCurrentPayToObtainEffectIndex() {
+        return currentPayToObtainEffectIndex;
+    }
+
+    public void setCurrentPayToObtainEffectIndex(int currentPayToObtainEffectIndex) {
+        this.currentPayToObtainEffectIndex = currentPayToObtainEffectIndex;
+    }
+
+    public void setPayToObtainCardsMap(Map<String, HashMap<Integer, String>> payToObtainCardsMap) {
+
+        this.payToObtainCardsMap = payToObtainCardsMap;
+
+        Set<String> keySet = payToObtainCardsMap.keySet();
+
+        String keyArray[] = keySet.toArray(new String [keySet.size()]);
+
+        payToObtainCardKeys = new ArrayList<>(Arrays.asList(keyArray));
+
+        currentPayToObtainCard = payToObtainCardKeys.remove(0);
+
+    }
+
+
+    public void setFamilyPawnAvailability(Map<FamilyPawnType,Boolean> familyPawnAvailability) {
+        this.familyPawnAvailability = familyPawnAvailability;
+    }
+
+    public void setCurrentPlayerState(PlayerState currentPlayerState) {
+        this.currentPlayerState = currentPlayerState;
+
+    }
+
 }

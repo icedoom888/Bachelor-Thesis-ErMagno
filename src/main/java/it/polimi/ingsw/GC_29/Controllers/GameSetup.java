@@ -2,11 +2,9 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.ProveGSon.EnumMapInstanceCreator;
 
 import java.io.FileNotFoundException;
@@ -246,7 +244,7 @@ public class GameSetup {
         gameStatus.setCurrentTurn(1);
 
         try {
-            gameStatus.setBonusTileList(loadBonusTilesFromFile());
+            gameStatus.setBonusTileMap(loadBonusTilesFromFile());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -258,7 +256,7 @@ public class GameSetup {
         return gameStatus;
     }
 
-    private List<BonusTile> loadBonusTilesFromFile() throws FileNotFoundException {
+    private Map<Integer, BonusTile> loadBonusTilesFromFile() throws FileNotFoundException {
 
         return new ObjectDeserializer().getBonusTiles();
 
