@@ -107,6 +107,7 @@ public class SuspendPlayer extends TimerTask {
 
         // viene chiamata con timer.schedule(task, 1000)
         // il numero di secondi indica quanto deve aspettare prima di partire
+        // timer.cancel()
 
 
 
