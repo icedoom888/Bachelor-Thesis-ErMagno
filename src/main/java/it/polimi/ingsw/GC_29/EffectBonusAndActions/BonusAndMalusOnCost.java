@@ -32,13 +32,17 @@ public class BonusAndMalusOnCost {
      * This method creates the list of all the possible costs that card can assume taking into
      * account all the bonusAndMalusOnCost of the player and all the possible alternatives of the
      * cardCost
-     * @param player
      * @param costs
      * @param cardZoneType
      */
-    public void filter(Player player, ArrayList<Cost> costs, ZoneType cardZoneType) {
+    public void filter(ArrayList<Cost> costs, ZoneType cardZoneType) {
 
-        if (this.zoneType == cardZoneType) {
+        if (this.zoneType == cardZoneType
+                || (this.zoneType == ZoneType.ANYTOWER
+                    && (cardZoneType == ZoneType.BLUETOWER
+                    || cardZoneType == ZoneType.GREENTOWER
+                    || cardZoneType == ZoneType.YELLOWTOWER
+                    || cardZoneType == ZoneType.PURPLETOWER))) {
 
             int listLength = costs.size();
 

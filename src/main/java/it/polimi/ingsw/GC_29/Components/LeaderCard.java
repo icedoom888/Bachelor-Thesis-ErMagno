@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnAction;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnCost;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusAndMalusOnGoods;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.Player.Player;
 
@@ -14,6 +17,9 @@ public class LeaderCard {
     private Requirement requirement;
     private boolean permanent;
     private Effect effect;
+    private BonusAndMalusOnAction bonusAndMalusOnAction;
+    private BonusAndMalusOnCost bonusAndMalusOnCost;
+    private BonusAndMalusOnGoods bonusAndMalusOnGoods;
 
 
     public LeaderCard(String leaderName, Requirement requirement, boolean permanent, Effect effect) {
@@ -21,6 +27,30 @@ public class LeaderCard {
         this.requirement = requirement;
         this.permanent = permanent;
         this.effect = effect;
+    }
+
+    public LeaderCard(String leaderName, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnCost bonusAndMalusOnCost) {
+        this.leaderName = leaderName;
+        this.requirement = requirement;
+        this.permanent = permanent;
+        this.effect = effect;
+        this.bonusAndMalusOnCost = bonusAndMalusOnCost;
+    }
+
+    public LeaderCard(String leaderName, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnAction bonusAndMalusOnAction) {
+        this.leaderName = leaderName;
+        this.requirement = requirement;
+        this.permanent = permanent;
+        this.effect = effect;
+        this.bonusAndMalusOnAction = bonusAndMalusOnAction;
+    }
+
+    public LeaderCard(String leaderName, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnGoods bonusAndMalusOnGoods) {
+        this.leaderName = leaderName;
+        this.requirement = requirement;
+        this.permanent = permanent;
+        this.effect = effect;
+        this.bonusAndMalusOnGoods = bonusAndMalusOnGoods;
     }
 
     public boolean isPossible(Player player) {
@@ -44,7 +74,22 @@ public class LeaderCard {
 
     public void executeEffect(Player player) throws Exception {
 
-        effect.execute(player);
+        if (effect != null) {
+            effect.execute(player);
+        }
+
+        if (bonusAndMalusOnGoods != null) {
+            player.getBonusAndMalusOnGoods().add(bonusAndMalusOnGoods);
+        }
+
+        if (bonusAndMalusOnAction != null) {
+            player.getBonusAndMalusOnAction().add(bonusAndMalusOnAction);
+        }
+
+        if (bonusAndMalusOnCost != null) {
+            player.getBonusAndMalusOnCost().add(bonusAndMalusOnCost);
+        }
+
         if (permanent) {
             player.getPermanentLeaders().put(this, false);
         }
