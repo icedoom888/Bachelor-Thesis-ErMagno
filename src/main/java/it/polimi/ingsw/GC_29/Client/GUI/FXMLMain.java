@@ -276,8 +276,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderBonus = new FXMLLoader(getClass().getResource("/FXML/BonusTile.fxml"));
             AnchorPane childBonus = loaderBonus.load();
             gameboardRoot.getChildren().add(childBonus);
-            AnchorPane.setBottomAnchor(childBonus, 200.0);
-            AnchorPane.setLeftAnchor(childBonus, 200.0);
+            AnchorPane.setBottomAnchor(childBonus,200.0);
+            AnchorPane.setLeftAnchor(childBonus,200.0);
             childBonus.setVisible(false);
             BonusTileController bonusTileController = loaderBonus.getController();
             bonusTileController.setSender(chooseDistribution);
@@ -289,8 +289,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderCost = new FXMLLoader(getClass().getResource("/FXML/ChooseCost.fxml"));
             AnchorPane childCost = loaderCost.load();
             gameboardRoot.getChildren().add(childCost);
-            AnchorPane.setBottomAnchor(childCost, 200.0);
-            AnchorPane.setLeftAnchor(childCost, 200.0);
+            AnchorPane.setBottomAnchor(childCost,200.0);
+            AnchorPane.setLeftAnchor(childCost,200.0);
             childCost.setVisible(false);
             ChooseCostController chooseCostController = loaderCost.getController();
             chooseCostController.setSender(chooseDistribution);
@@ -301,8 +301,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderPayToObtain = new FXMLLoader(getClass().getResource("/FXML/PayToObtainCards.fxml"));
             AnchorPane childPay = loaderPayToObtain.load();
             gameboardRoot.getChildren().add(childPay);
-            AnchorPane.setBottomAnchor(childPay, 200.0);
-            AnchorPane.setLeftAnchor(childPay, 200.0);
+            AnchorPane.setBottomAnchor(childPay,200.0);
+            AnchorPane.setLeftAnchor(childPay,200.0);
             childPay.setVisible(false);
             PayToObtainController payToObtainController = loaderPayToObtain.getController();
             payToObtainController.setSender(chooseDistribution);
@@ -314,8 +314,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderEffects = new FXMLLoader(getClass().getResource("/FXML/ChooseEffect.fxml"));
             AnchorPane childEffect = loaderEffects.load();
             gameboardRoot.getChildren().add(childEffect);
-            AnchorPane.setBottomAnchor(childEffect, 200.0);
-            AnchorPane.setLeftAnchor(childEffect, 200.0);
+            AnchorPane.setBottomAnchor(childEffect,200.0);
+            AnchorPane.setLeftAnchor(childEffect,200.0);
             childEffect.setVisible(false);
             ChooseEffectController chooseEffectController = loaderEffects.getController();
             chooseEffectController.setSender(chooseDistribution);
@@ -331,8 +331,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderWorkers = new FXMLLoader(getClass().getResource("/FXML/ChooseWorkers.fxml"));
             AnchorPane childWorkers = loaderWorkers.load();
             gameboardRoot.getChildren().add(childWorkers);
-            AnchorPane.setBottomAnchor(childWorkers, 200.0);
-            AnchorPane.setLeftAnchor(childWorkers, 200.0);
+            AnchorPane.setBottomAnchor(childWorkers,200.0);
+            AnchorPane.setLeftAnchor(childWorkers,200.0);
             childWorkers.setVisible(false);
             WorkersController workersController = loaderWorkers.getController();
             workersController.setSender(chooseDistribution);
@@ -343,8 +343,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderPrivileges = new FXMLLoader(getClass().getResource("/FXML/ChoosePrivilege.fxml"));
             AnchorPane childPrivilege = loaderPrivileges.load();
             gameboardRoot.getChildren().add(childPrivilege);
-            AnchorPane.setBottomAnchor(childPrivilege, 200.0);
-            AnchorPane.setLeftAnchor(childPrivilege, 200.0);
+            AnchorPane.setBottomAnchor(childPrivilege,200.0);
+            AnchorPane.setLeftAnchor(childPrivilege,200.0);
             childPrivilege.setVisible(false);
             ChoosePrivilegeController choosePrivilegeController = loaderPrivileges.getController();
             choosePrivilegeController.setSender(chooseDistribution);
@@ -357,8 +357,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderPray = new FXMLLoader(getClass().getResource("/FXML/Pray.fxml"));
             AnchorPane childPray = loaderPray.load();
             gameboardRoot.getChildren().add(childPray);
-            AnchorPane.setBottomAnchor(childPray, 200.0);
-            AnchorPane.setLeftAnchor(childPray, 200.0);
+            AnchorPane.setBottomAnchor(childPray,200.0);
+            AnchorPane.setLeftAnchor(childPray,200.0);
             childPray.setVisible(false);
             PrayController prayController = loaderPray.getController();
             prayController.setSender(chooseDistribution);
@@ -369,8 +369,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderTurn = new FXMLLoader(getClass().getResource("/FXML/YourTurn.fxml"));
             AnchorPane childTurn = loaderTurn.load();
             gameboardRoot.getChildren().add(childTurn);
-            AnchorPane.setBottomAnchor(childTurn, 200.0);
-            AnchorPane.setLeftAnchor(childTurn, 200.0);
+            AnchorPane.setBottomAnchor(childTurn,200.0);
+            AnchorPane.setLeftAnchor(childTurn,200.0);
             childTurn.setVisible(false);
             gameBoardController.setYourTurnPane(childTurn);
 
@@ -378,8 +378,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderThrowDices = new FXMLLoader(getClass().getResource("/FXML/ThrowDices.fxml"));
             AnchorPane childDices = loaderThrowDices.load();
             gameboardRoot.getChildren().add(childDices);
-            AnchorPane.setBottomAnchor(childDices, 200.0);
-            AnchorPane.setLeftAnchor(childDices, 200.0);
+            AnchorPane.setBottomAnchor(childDices,200.0);
+            AnchorPane.setLeftAnchor(childDices,200.0);
             childDices.setVisible(false);
             gameBoardController.setThrowDicesPane(childDices);
 
@@ -387,8 +387,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             FXMLLoader loaderBonusAction = new FXMLLoader(getClass().getResource("/FXML/BonusAction.fxml"));
             AnchorPane childBonusAction = loaderBonusAction.load();
             gameboardRoot.getChildren().add(childBonusAction);
-            AnchorPane.setBottomAnchor(childBonusAction, 200.0);
-            AnchorPane.setLeftAnchor(childBonusAction, 200.0);
+            AnchorPane.setBottomAnchor(childBonusAction,200.0);
+            AnchorPane.setLeftAnchor(childBonusAction,200.0);
             childBonusAction.setVisible(false);
             gameBoardController.setBonusActionPane(childBonusAction);
 
