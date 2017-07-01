@@ -1,0 +1,480 @@
+[
+  {
+    "leaderName": "Ludovico Ariosto",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_02.jpg",
+    "requirement": {
+      "cardsRequired": {
+        "BLUE": 5
+      }
+    },
+    "permanent": true,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "specialBonusAndMalus": "PAWNONOCCUPIEDSPACE"
+    }
+  },
+  {
+    "leaderName": "Filippo Brunelleschi",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_03.jpg",
+    "requirement": {
+      "cardsRequired": {
+        "YELLOW": 5
+      }
+    },
+    "permanent": true,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "specialBonusAndMalus": "FREETOWER"
+    }
+  },
+  {
+    "leaderName": "Sigismondo Malatesta",
+    "requirement": {
+      "goodSetRequired": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 7,
+          "FAITHPOINTS": 3
+        },
+        "observers": []
+      }
+    },
+    "permanent": true,
+    "bonusAndMalusOnAction": {
+      "zoneType": "ANYZONE",
+      "diceIncrementOrReduction": 3,
+      "familyPawnType": "NEUTRAL"
+    }
+  },
+  {
+    "leaderName": "Girolamo Savonarola",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_05.jpg",
+    "requirement": {
+      "goodSetRequired": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 18,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "permanent": false,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 1
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "leaderName": "Michelangelo Buonarroti",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_08.jpg",
+    "requirement": {
+      "goodSetRequired": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 10,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "permanent": false,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 3,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "leaderName": "Giovanni dalle Bande Nere",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_06.jpg",
+    "requirement": {
+      "goodSetRequired": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 12,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "permanent": false,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 1,
+          "STONE": 1,
+          "COINS": 1,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "leaderName": "Sandro Botticelli",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_07.jpg",
+    "requirement": {
+      "goodSetRequired": {
+        "goodSetMap": {
+          "WOOD": 10,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "permanent": false,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 1,
+          "MILITARYPOINTS": 2,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "leaderName": "Ludovico il Moro",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_16.jpg",
+    "requirement": {
+      "cardsRequired": {
+        "YELLOW": 2,
+        "GREEN": 2,
+        "BLUE": 2,
+        "PURPLE": 2
+      }
+    },
+    "permanent": true,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "specialBonusAndMalus": "CHANGEVALUEOFEVERYPAWN"
+    }
+  },
+  {
+    "leaderName": "Lucrezia Borgia",
+    "requirement": {
+      "cardsRequired": {
+        "ANY": 6
+      }
+    },
+    "permanent": true,
+    "bonusAndMalusOnAction": {
+      "zoneType": "ANYZONE",
+      "diceIncrementOrReduction": 2,
+      "familyPawnType": "COLORED"
+    }
+  },
+  {
+    "leaderName": "Sisto IV",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_12.jpg",
+    "requirement": {
+      "goodSetRequired": {
+        "goodSetMap": {
+          "WOOD": 6,
+          "STONE": 6,
+          "COINS": 6,
+          "WORKERS": 6,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "permanent": true,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "specialBonusAndMalus": "FIVEVICTORYPOINTSIFPRAY"
+    }
+  },
+  {
+    "leaderName": "Cesare Borgia",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_17.jpg",
+    "requirement": {
+      "goodSetRequired": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 12,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 2
+        },
+        "observers": []
+      },
+      "cardsRequired": {
+        "YELLOW": 3
+      }
+    },
+    "permanent": true,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "specialBonusAndMalus": "NOMILITARYFORTERRITORY"
+    }
+  },
+  {
+    "leaderName": "Cosimo de\u0027 Medici",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_19.jpg",
+    "requirement": {
+      "cardsRequired": {
+        "YELLOW": 4,
+        "BLUE": 2
+      }
+    },
+    "permanent": false,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 3,
+          "VICTORYPOINTS": 1,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "leaderName": "Ludovico III Gonzaga",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_09.jpg",
+    "requirement": {
+      "goodSetRequired": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 15,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    },
+    "permanent": false,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "numberOfCouncilPrivileges": 1,
+      "parchmentList": [
+        {
+          "possibleObtainEffect": [
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 1,
+                  "STONE": 1,
+                  "COINS": 0,
+                  "WORKERS": 0,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 0,
+                  "FAITHPOINTS": 0
+                },
+                "observers": []
+              }
+            },
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 0,
+                  "STONE": 0,
+                  "COINS": 0,
+                  "WORKERS": 2,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 0,
+                  "FAITHPOINTS": 0
+                },
+                "observers": []
+              }
+            },
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 0,
+                  "STONE": 0,
+                  "COINS": 2,
+                  "WORKERS": 0,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 0,
+                  "FAITHPOINTS": 0
+                },
+                "observers": []
+              }
+            },
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 0,
+                  "STONE": 0,
+                  "COINS": 0,
+                  "WORKERS": 0,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 2,
+                  "FAITHPOINTS": 0
+                },
+                "observers": []
+              }
+            },
+            {
+              "goodsObtained": {
+                "goodSetMap": {
+                  "WOOD": 0,
+                  "STONE": 0,
+                  "COINS": 0,
+                  "WORKERS": 0,
+                  "VICTORYPOINTS": 0,
+                  "MILITARYPOINTS": 0,
+                  "FAITHPOINTS": 1
+                },
+                "observers": []
+              }
+            }
+          ]
+        }
+      ],
+      "modified": false
+    }
+  },
+  {
+    "leaderName": "Pico della Mirandola",
+    "requirement": {
+      "cardsRequired": {
+        "YELLOW": 2,
+        "PURPLE": 4
+      }
+    },
+    "permanent": true,
+    "bonusAndMalusOnCost": {
+      "zoneType": "ANYTOWER",
+      "firstDiscount": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 3,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      },
+      "alternative": false
+    }
+  },
+  {
+    "leaderName": "Bartolomeo Colleoni",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_20.jpg",
+    "requirement": {
+      "cardsRequired": {
+        "GREEN": 4,
+        "PURPLE": 2
+      }
+    },
+    "permanent": false,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "goodsObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 4,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "leaderName": "Leonardo da Vinci",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_10.jpg",
+    "requirement": {
+      "cardsRequired": {
+        "GREEN": 2,
+        "BLUE": 4
+      }
+    },
+    "permanent": false,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+      "type": "PRODUCTION",
+      "actionValue": 0,
+      "onlyWorkers": true
+    }
+  },
+  {
+    "leaderName": "Francesco Sforza",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_01.jpg",
+    "requirement": {
+      "cardsRequired": {
+        "PURPLE": 5
+      }
+    },
+    "permanent": false,
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+      "type": "HARVEST",
+      "actionValue": 1,
+      "onlyWorkers": true
+    }
+  }
+]

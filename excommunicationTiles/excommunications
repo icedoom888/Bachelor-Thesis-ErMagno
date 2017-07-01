@@ -1,0 +1,331 @@
+[
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_1_1.png",
+    "era": "FIRST",
+    "malusOnGoods": {
+      "goodSetBonusMalus": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": -1,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_1_2.png",
+    "era": "FIRST",
+    "malusOnGoods": {
+      "goodSetBonusMalus": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": -1,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_1_3.png",
+    "era": "FIRST",
+    "malusOnGoods": {
+      "goodSetBonusMalus": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": -1,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_1_4.png",
+    "era": "FIRST",
+    "malusOnGoods": {
+      "goodSetBonusMalus": {
+        "goodSetMap": {
+          "WOOD": -1,
+          "STONE": -1,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_1_7.png",
+    "era": "FIRST",
+    "malusOnAction": {
+      "zoneType": "ANYZONE",
+      "diceIncrementOrReduction": -1,
+      "familyPawnType": "COLORED"
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_1_6.png",
+    "era": "FIRST",
+    "malusOnAction": {
+      "zoneType": "PRODUCTION",
+      "diceIncrementOrReduction": -3,
+      "familyPawnType": "ANY"
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_1_5.png",
+    "era": "FIRST",
+    "malusOnAction": {
+      "zoneType": "HARVEST",
+      "diceIncrementOrReduction": -3,
+      "familyPawnType": "ANY"
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_2_4.png",
+    "era": "SECOND",
+    "malusOnAction": {
+      "zoneType": "PURPLETOWER",
+      "diceIncrementOrReduction": -4,
+      "familyPawnType": "ANY"
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_2_1.png",
+    "era": "SECOND",
+    "malusOnAction": {
+      "zoneType": "GREENTOWER",
+      "diceIncrementOrReduction": -4,
+      "familyPawnType": "ANY"
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_2_2.png",
+    "era": "SECOND",
+    "malusOnAction": {
+      "zoneType": "YELLOWTOWER",
+      "diceIncrementOrReduction": -4,
+      "familyPawnType": "ANY"
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_2_3.png",
+    "era": "SECOND",
+    "malusOnAction": {
+      "zoneType": "BLUETOWER",
+      "diceIncrementOrReduction": -4,
+      "familyPawnType": "ANY"
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_2_5.png",
+    "era": "SECOND",
+    "special": "NOMARKET"
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_2_7.png",
+    "era": "SECOND",
+    "special": "SKIPFIRSTTURN"
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_2_6.png",
+    "era": "SECOND",
+    "special": "TWOWORKERS"
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_1.png",
+    "era": "THIRD",
+    "special": "NOVICTORYFROMBLUE"
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_3.png",
+    "era": "THIRD",
+    "special": "NOVICTORYFROMGREEN"
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_2.png",
+    "era": "THIRD",
+    "special": "NOVICTORYFROMPURPLE"
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_5.png",
+    "era": "THIRD",
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+      "effectForEachCondition": {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": -1,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          },
+          "observers": []
+        }
+      },
+      "goodsCondition": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 0,
+          "MILITARYPOINTS": 1,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_4.png",
+    "era": "THIRD",
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+      "effectForEachCondition": {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": -1,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          },
+          "observers": []
+        }
+      },
+      "goodsCondition": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": 5,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_7.png",
+    "era": "THIRD",
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainForMoreCondition",
+      "effectForEachCondition": {
+        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "goodsObtained": {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": -1,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          },
+          "observers": []
+        }
+      },
+      "goodsCondition": [
+        {
+          "goodSetMap": {
+            "WOOD": 1,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          },
+          "observers": []
+        },
+        {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 1,
+            "COINS": 0,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          },
+          "observers": []
+        },
+        {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 1,
+            "WORKERS": 0,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          },
+          "observers": []
+        },
+        {
+          "goodSetMap": {
+            "WOOD": 0,
+            "STONE": 0,
+            "COINS": 0,
+            "WORKERS": 1,
+            "VICTORYPOINTS": 0,
+            "MILITARYPOINTS": 0,
+            "FAITHPOINTS": 0
+          },
+          "observers": []
+        }
+      ]
+    }
+  },
+  {
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_6.png",
+    "era": "THIRD",
+    "effect": {
+      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainForCost",
+      "cardColor": "YELLOW",
+      "goodTypesToPay": [
+        "WOOD",
+        "STONE"
+      ],
+      "goodSetObtained": {
+        "goodSetMap": {
+          "WOOD": 0,
+          "STONE": 0,
+          "COINS": 0,
+          "WORKERS": 0,
+          "VICTORYPOINTS": -1,
+          "MILITARYPOINTS": 0,
+          "FAITHPOINTS": 0
+        },
+        "observers": []
+      }
+    }
+  }
+]
