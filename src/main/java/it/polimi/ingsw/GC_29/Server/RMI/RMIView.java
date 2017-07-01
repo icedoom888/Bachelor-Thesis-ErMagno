@@ -8,8 +8,8 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Server.Query.GetBonusTile;
-import it.polimi.ingsw.GC_29.Server.Query.GetValidActions;
+import it.polimi.ingsw.GC_29.Query.GetBonusTile;
+import it.polimi.ingsw.GC_29.Query.GetValidActions;
 import it.polimi.ingsw.GC_29.Server.View;
 
 import java.rmi.RemoteException;

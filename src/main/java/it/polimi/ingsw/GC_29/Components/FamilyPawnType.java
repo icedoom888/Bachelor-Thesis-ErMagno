@@ -9,5 +9,6 @@ public enum FamilyPawnType {
     WHITE,
     NEUTRAL,
     BONUS,
+    COLORED,
     ANY
 }

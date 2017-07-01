@@ -44,6 +44,8 @@ public class Player extends Observable<Change> {
     private ArrayList<Action> currentValidActionsList;
     private List<CouncilPrivilegeEffect> councilPrivilegeEffectList;
 
+    private final Object lock = new Object();
+
 
     public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
 
@@ -118,14 +120,24 @@ public class Player extends Observable<Change> {
     }
 
     public void setPlayerState(PlayerState playerState) {
-        this.playerState = playerState;
 
-        try {
-            notifyObserver(new PlayerStateChange(this.playerState));
-        } catch (Exception e) {
-            e.printStackTrace();
+        synchronized (lock) {
+            this.playerState = playerState;
+
+            try {
+                notifyObserver(new PlayerStateChange(this.playerState));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
+    }
+
+    public PlayerState getPlayerState() {
+
+        synchronized (lock) {
+            return playerState;
+        }
     }
 
     public String getPlayerID() {

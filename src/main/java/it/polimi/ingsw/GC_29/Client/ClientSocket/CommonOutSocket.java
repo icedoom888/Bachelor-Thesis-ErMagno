@@ -4,7 +4,7 @@ import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Server.Query.*;
+import it.polimi.ingsw.GC_29.Query.*;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -141,6 +141,7 @@ public class CommonOutSocket {
                     break;
 
                 case "cost chosen":
+
                     int index = commonView.getInputChecker().getCostChosen();
                     socketOut.writeObject("cost chosen");
                     socketOut.flush();
@@ -149,6 +150,7 @@ public class CommonOutSocket {
                     break;
 
                 case "privilege":
+
                     if(commonView.getInputChecker().nextParchment()){
                         commonView.getInputChecker().askWhichPrivilege();
                     }

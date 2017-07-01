@@ -1,10 +1,9 @@
-package it.polimi.ingsw.GC_29.Server.Query;
+package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

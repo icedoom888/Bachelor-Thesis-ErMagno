@@ -1,8 +1,7 @@
-package it.polimi.ingsw.GC_29.Server.Query;
+package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.Server.Query.Query;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,11 +24,11 @@ public class ChoosePrivilegeController {
 
     private GameBoardController gameBoardController;
 
-    private List<CouncilPrivilegeEffect> councilPrivilegeEffectList;
-    private List<Integer> councilPrivilegeEffectChosenList;
+    private List<CouncilPrivilegeEffect> councilPrivilegeEffectList = new ArrayList<>();
+    private List<Integer> councilPrivilegeEffectChosenList = new ArrayList<>();
     private CouncilPrivilege currentParchment;
     private CouncilPrivilegeEffect currentCouncilPrivilegeEffect;
-    private List<CouncilPrivilege> currentParchmentList;
+    private List<CouncilPrivilege> currentParchmentList = new ArrayList<>();
 
 
     private HashMap<Integer,RadioButton> buttons;
