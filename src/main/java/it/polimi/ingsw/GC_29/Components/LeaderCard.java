@@ -14,6 +14,7 @@ import java.util.Map;
  */
 public class LeaderCard {
     private String leaderName;
+    private String url;
     private Requirement requirement;
     private boolean permanent;
     private Effect effect;
@@ -22,14 +23,15 @@ public class LeaderCard {
     private BonusAndMalusOnGoods bonusAndMalusOnGoods;
 
 
-    public LeaderCard(String leaderName, Requirement requirement, boolean permanent, Effect effect) {
+    public LeaderCard(String leaderName, String url, Requirement requirement, boolean permanent, Effect effect) {
         this.leaderName = leaderName;
+        this.url = url;
         this.requirement = requirement;
         this.permanent = permanent;
         this.effect = effect;
     }
 
-    public LeaderCard(String leaderName, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnCost bonusAndMalusOnCost) {
+    public LeaderCard(String leaderName,String url, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnCost bonusAndMalusOnCost) {
         this.leaderName = leaderName;
         this.requirement = requirement;
         this.permanent = permanent;
@@ -37,7 +39,7 @@ public class LeaderCard {
         this.bonusAndMalusOnCost = bonusAndMalusOnCost;
     }
 
-    public LeaderCard(String leaderName, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnAction bonusAndMalusOnAction) {
+    public LeaderCard(String leaderName,String url, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnAction bonusAndMalusOnAction) {
         this.leaderName = leaderName;
         this.requirement = requirement;
         this.permanent = permanent;
@@ -45,7 +47,7 @@ public class LeaderCard {
         this.bonusAndMalusOnAction = bonusAndMalusOnAction;
     }
 
-    public LeaderCard(String leaderName, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnGoods bonusAndMalusOnGoods) {
+    public LeaderCard(String leaderName,String url, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnGoods bonusAndMalusOnGoods) {
         this.leaderName = leaderName;
         this.requirement = requirement;
         this.permanent = permanent;
@@ -109,4 +111,7 @@ public class LeaderCard {
         return permanent;
     }
 
+    public String getUrl() {
+        return url;
+    }
 }
