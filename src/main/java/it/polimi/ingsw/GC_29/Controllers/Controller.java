@@ -372,7 +372,7 @@ public class Controller implements Observer<Input>  {
 
         int militaryIndex;
 
-        for (militaryIndex = 0; militaryIndex < players.size(); militaryIndex++) {
+        for (militaryIndex = 0; militaryIndex < players.size() - 1; militaryIndex++) {
 
             Player player = players.get(militaryIndex+1);
 

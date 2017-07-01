@@ -41,13 +41,13 @@ public class Login {
 
                 if (login.contentEquals("login")) {
 
-                    String distribution = (String)socketIn.readObject();
+                    String gameInterface = (String)socketIn.readObject();
 
-                    if (distribution.contentEquals("gui")) {
+                    if (gameInterface.contentEquals("gui")) {
                         enumInterface = EnumInterface.GUI;
                     }
 
-                    if (distribution.contentEquals("cli")) {
+                    if (gameInterface.contentEquals("cli")) {
                         enumInterface = EnumInterface.CLI;
                     }
 
