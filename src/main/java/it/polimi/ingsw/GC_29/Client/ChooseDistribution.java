@@ -43,4 +43,8 @@ public class ChooseDistribution {
         commonOutSocket.setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
         sendInput("council privileges chosen GUI");
     }
+
+    public Distribution getDistribution() {
+        return distribution;
+    }
 }
