@@ -76,7 +76,9 @@ public class GameSetup {
         this.gameBoard = loadGameBoardFromFile(numberOfPlayers);
 
         for(CardColor color : CardColor.values()){
-            this.orderedDecks.put(color, getDeckFromFile(color));
+            if (color != CardColor.ANY) {
+                this.orderedDecks.put(color, getDeckFromFile(color));
+            }
         }
 
         setExcommunicationTiles();

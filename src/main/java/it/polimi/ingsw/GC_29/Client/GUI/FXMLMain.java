@@ -271,6 +271,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
 
                     });
+
                     break;
 
                 case RMI:

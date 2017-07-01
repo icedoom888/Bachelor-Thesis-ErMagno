@@ -87,6 +87,7 @@ public class BonusAndMalusOnAction {
                     || this.zoneType == null)
 
                 && (this.familyPawnType == FamilyPawnType.ANY
+                    || (this.familyPawnType == FamilyPawnType.COLORED && familyPawn.getType() != FamilyPawnType.NEUTRAL)
                     || this.familyPawnType == familyPawn.getType()
                     || this.familyPawnType == null)) {
 
