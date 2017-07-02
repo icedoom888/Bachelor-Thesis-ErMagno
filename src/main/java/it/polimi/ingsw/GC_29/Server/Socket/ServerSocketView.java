@@ -142,6 +142,7 @@ public class ServerSocketView extends View implements Runnable {
                             case "join game":
                                 playerColor = (PlayerColor)socketIn.readObject();
                                 notifyObserver(new JoinGame(playerColor));
+                                System.out.println("OBSERVER NOTIFICATO JOIN GAME SOCKET");
                                 break;
 
 

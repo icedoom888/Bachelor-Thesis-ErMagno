@@ -92,12 +92,16 @@ public class InstructionSet {
     private final Instruction help = new Instruction("help",
             new ArrayList<>(Arrays.asList(PlayerState.values())));
 
+    private final Instruction joinGame = new Instruction("join game",
+            new ArrayList<>(Arrays.asList(PlayerState.SUSPENDED)));
+
+
 
     private final List<Instruction> instructionList = new ArrayList<>(Arrays.asList(
             skipAction, endTurn, useFamilyPawn, activateLeaderCard,
             discardLeaderCard, seeValidActionList, doAction, seeCardsDevelopment, seeCardsExcommunication, seeCardsLeader, seeGameBoard,
             seeTracks, seePersonalBoard, seeGameBoardDevelopmentCards, seeGameBoardExcommunicationCards, seeMyGoodSet, seeMyAvailablePawns,
-            throwDices, chooseWorkers, activateCard, chooseEffect, choosePrivilege, chooseCost, chooseBonusTile, pray, doNotPray, help));
+            throwDices, chooseWorkers, activateCard, chooseEffect, choosePrivilege, chooseCost, chooseBonusTile, pray, doNotPray, help, joinGame));
 
 
     /////////////////////////////////////////////////////////////////////7

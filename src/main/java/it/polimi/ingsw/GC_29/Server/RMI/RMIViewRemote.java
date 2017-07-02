@@ -76,4 +76,6 @@ public interface RMIViewRemote extends Remote {
     void bonusTileChosen(int bonusTileChosen) throws RemoteException;
 
     Map<FamilyPawn,Boolean> getFamilyPawns() throws  RemoteException;
+
+    void joinGame(PlayerColor playerCardColor) throws  RemoteException;
 }

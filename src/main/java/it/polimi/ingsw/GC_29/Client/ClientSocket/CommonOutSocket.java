@@ -38,8 +38,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
             // Implements the communication protocol, creating the Actions corresponding to the input of the user
 
             if (!inputLine.contentEquals("activated cards GUI")
-                    && !inputLine.contentEquals("council privileges chosen GUI")
-                    && !inputLine.contentEquals("join game")) {
+                    && !inputLine.contentEquals("council privileges chosen GUI")) {
 
                 inputLine = inputChecker.checkInput(inputLine);
             }
@@ -219,6 +218,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.flush();
                     socketOut.writeObject(inputChecker.getPlayerColor());
                     socketOut.flush();
+                    System.out.println("SOCKET JOIN GAME INVIATO AL SERVER");
                     break;
 
                 case "help":

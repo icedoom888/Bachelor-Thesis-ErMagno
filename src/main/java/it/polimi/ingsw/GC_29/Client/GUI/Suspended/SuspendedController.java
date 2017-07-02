@@ -34,5 +34,7 @@ public class SuspendedController {
 
     public void joinGame(ActionEvent actionEvent) {
         sender.sendInput("join game");
+
+        System.out.println("BOTTONE SCHIACCIATO JOIN GAME");
     }
 }

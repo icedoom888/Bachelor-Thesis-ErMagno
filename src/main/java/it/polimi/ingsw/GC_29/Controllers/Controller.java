@@ -26,7 +26,7 @@ public class Controller implements Observer<Input>  {
     private final long throwDicesTime = 30000;
     private final long chooseBonusTilesTime = 60000;
     private final long prayTime = 30000;
-    private final long turnTime = 120000;
+    private final long turnTime = 60000;
 
     private Integer playersPraying;
     private ActionChecker actionChecker;

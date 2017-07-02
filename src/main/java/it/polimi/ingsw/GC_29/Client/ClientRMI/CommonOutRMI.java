@@ -182,6 +182,11 @@ public class CommonOutRMI implements InputInterfaceGUI{
                     }
                     break;
 
+                case "join game":
+                    serverViewStub.joinGame(inputChecker.getPlayerColor());
+                    System.out.println("SERVER AVVISATO JOIN GAME");
+                    break;
+
                 case "help":
                     handleHelp();
                     break;

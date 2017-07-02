@@ -17,10 +17,13 @@ public class JoinGame extends Input {
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 
+        System.out.println("il colore del player sospeso è "+playerColor);
+
         for (Player player : model.getTurnOrder()) {
 
             if (player.getPlayerColor() == playerColor) {
                 player.setNotSuspended();
+                System.out.println("PLAYER DI NUOVO IN GIOCO");
                 break;
             }
         }

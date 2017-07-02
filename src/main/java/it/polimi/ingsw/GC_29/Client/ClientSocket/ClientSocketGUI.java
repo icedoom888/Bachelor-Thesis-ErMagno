@@ -100,6 +100,8 @@ public class ClientSocketGUI {
 
                 // the input checker must be the same for in and out handler
                 InputChecker inputChecker = new InputChecker();
+                inputChecker.setPlayerColor(playerColor);
+                //TODO: incoerenza con il lato cli, assegni il playerColor all'outHandler, quando in realtà l'input checker ha già il playerColor
                 clientOutHandlerGUI.setInputChecker(inputChecker);
                 clientOutHandlerGUI.setPlayerColor(playerColor);
                 clientInHandlerGUI.setInputChecker(inputChecker);
