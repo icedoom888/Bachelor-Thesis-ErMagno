@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,7 +17,7 @@ import java.util.Set;
  */
 public class WorkersController {
 
-    private ChooseDistribution sender;
+    private InputInterfaceGUI sender;
     private ArrayList<Integer> choices;
 
     @FXML
@@ -55,7 +56,7 @@ public class WorkersController {
         chosenWorkers.setText("");
     }
 
-    public void setSender(ChooseDistribution sender) {
+    public void setSender(InputInterfaceGUI sender) {
         this.sender = sender;
     }
 

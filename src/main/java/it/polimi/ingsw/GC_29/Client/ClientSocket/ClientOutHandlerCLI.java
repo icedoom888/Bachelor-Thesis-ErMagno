@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.InputChecker;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
+
 import java.io.*;
 
 /**
@@ -347,11 +350,13 @@ public class ClientOutHandlerCLI implements Runnable {
         this.clientInHandlerCLI = clientInHandlerCLI;
     }*/
 
-    public void setCommonView(CommonView commonView) {
-        this.commonOutSocket.setCommonView(commonView);
-    }
 
     public CommonOutSocket getCommonOutSocket() {
         return commonOutSocket;
     }
+
+    public void setInputChecker(InputChecker inputChecker) {
+        commonOutSocket.setInputChecker(inputChecker);
+    }
+
 }

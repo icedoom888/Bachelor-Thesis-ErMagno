@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
+import com.sun.security.ntlm.Client;
+import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.Query;
@@ -13,46 +15,25 @@ import java.util.Scanner;
 /**
  * Created by Christian on 18/06/2017.
  */
-public class GameRMI implements Runnable {
+public class GameRMI extends CommonOutRMI implements Runnable {
 
-    private final PlayerColor playerColor;
-    private final RMIViewRemote serverViewStub;
 
-    public GameRMI(PlayerColor playerColor, RMIViewRemote serverViewStub){
+    ClientRMIView rmiView;
 
-        this.playerColor = playerColor;
+    ClientRMIViewGUI clientRMIViewGUI;
 
-        this.serverViewStub = serverViewStub;
+    public GameRMI(){
+        super();
+
+        rmiView = new ClientRMIView();
+
+        clientRMIViewGUI = new ClientRMIViewGUI();
     }
 
-    
 
     @Override
     public void run() {
     //get the stub (local object) of the remote view
-
-        System.out.println(playerColor);
-        System.out.println(serverViewStub);
-
-        ClientRMIView rmiView = null;
-        try {
-            rmiView = new ClientRMIView(playerColor, serverViewStub);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            UnicastRemoteObject.exportObject(rmiView, 0);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-        // register the client view in the server side (to receive messages from the server)
-        try {
-            serverViewStub.registerClient(rmiView);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
 
         Scanner stdIn = new Scanner(System.in);
 
@@ -65,7 +46,9 @@ public class GameRMI implements Runnable {
             Input input;
             Query query;
 
-            try {
+            sendInput(inputLine);
+
+            /*try {
 
                 inputLine = rmiView.getInputChecker().checkInput(inputLine);
 
@@ -181,7 +164,7 @@ public class GameRMI implements Runnable {
                 e1.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
             // TODO: gestione client disconnesso!
         }
     }
@@ -193,5 +176,41 @@ public class GameRMI implements Runnable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void connectWithServerView(EnumInterface gameInterface, PlayerColor playerColor, RMIViewRemote serverViewStub){
+        
+        super.connectWithServerView(playerColor, serverViewStub);
+
+        switch (gameInterface){
+
+            case CLI:
+
+                rmiView.connectWithServerView(serverViewStub, getInputChecker());
+
+                try {
+                    serverViewStub.registerClient(rmiView);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case GUI:
+                clientRMIViewGUI.connectWithServerView(serverViewStub, getInputChecker());
+
+                try {
+                    serverViewStub.registerClient(clientRMIViewGUI);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+        }
+
+    }
+
+    public ClientRMIViewGUI getClientRMIViewGUI() {
+        return clientRMIViewGUI;
     }
 }

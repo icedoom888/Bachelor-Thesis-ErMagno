@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+
 import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
@@ -104,10 +104,7 @@ public class ClientSocketGUI {
                 clientOutHandlerGUI.setPlayerColor(playerColor);
                 clientInHandlerGUI.setInputChecker(inputChecker);
 
-                ChooseDistribution chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
-                chooseDistribution.setCommonOutSocket(clientOutHandlerGUI.getCommonOutSocket());
-
-            }
+             }
 
             else socket.close();
 

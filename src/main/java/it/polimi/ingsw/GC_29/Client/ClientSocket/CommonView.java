@@ -12,7 +12,6 @@ import java.util.HashMap;
 
 /**
  * Created by Lorenzotara on 15/06/17.
- */
 public class CommonView {
 
     private FamilyPawnType familyPawnChosen;
@@ -82,3 +81,4 @@ public class CommonView {
         this.inputChecker = inputChecker;
     }
 }
+ */

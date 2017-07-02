@@ -104,8 +104,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         if(c instanceof PlayerStateChange){
 
             inputChecker.setCurrentPlayerState(((PlayerStateChange)c).getNewPlayerState());
-
-            System.out.println("PLAYER CHANGE" + inputChecker.getCurrentPlayerState());
+            
             try {
 
                 handlePlayerState(inputChecker.getCurrentPlayerState());

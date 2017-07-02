@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.Client.GUI;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.*;
 import it.polimi.ingsw.GC_29.Client.Distribution;
@@ -15,6 +14,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginChange;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
@@ -55,7 +55,9 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     private PlayerState currentPlayerState;
 
     private GameBoardController gameBoardController;
-    private ChooseDistribution chooseDistribution;
+    //private ChooseDistribution chooseDistribution;
+
+    private InputInterfaceGUI interfaceGUI;
 
 
     private ClientRMI clientRMI;
@@ -197,18 +199,21 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
                     clientSocketGUI.playNewGameGUI();
 
-                    this.chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
+                    //this.chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
 
                     clientSocketGUI.getClientInHandlerGUI().addListener(new GuiListener());
 
-                    chooseDistribution.setCommonOutSocket(clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket());
+                    interfaceGUI = clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket();
 
                     break;
 
                 case RMI:
 
-                    this.chooseDistribution = new ChooseDistribution(Distribution.RMI);
+                    //this.chooseDistribution = new ChooseDistribution(Distribution.RMI);
 
+                    clientRMI.getGameRMI().getClientRMIViewGUI().addListener(new GuiListener());
+
+                    interfaceGUI = clientRMI.getGameRMI();
 
                     break;
             }
@@ -270,7 +275,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
             gameboardRoot = loader.load();
             gameBoardController = loader.getController();
-            gameBoardController.setChooseDistribution(chooseDistribution);
+            gameBoardController.setChooseDistribution(interfaceGUI);
 
             //aggiunta bonusTile
             FXMLLoader loaderBonus = new FXMLLoader(getClass().getResource("/FXML/BonusTile.fxml"));
@@ -280,7 +285,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childBonus,200.0);
             childBonus.setVisible(false);
             BonusTileController bonusTileController = loaderBonus.getController();
-            bonusTileController.setSender(chooseDistribution);
+            bonusTileController.setSender(interfaceGUI);
             bonusTileController.setGameBoardController(gameBoardController);
             gameBoardController.setBonusTileController(bonusTileController);
             gameBoardController.setBonusTilePane(childBonus);
@@ -293,7 +298,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childCost,200.0);
             childCost.setVisible(false);
             ChooseCostController chooseCostController = loaderCost.getController();
-            chooseCostController.setSender(chooseDistribution);
+            chooseCostController.setSender(interfaceGUI);
             gameBoardController.setChooseCostController(chooseCostController);
             gameBoardController.setChooseCostPane(childCost);
 
@@ -305,7 +310,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childPay,200.0);
             childPay.setVisible(false);
             PayToObtainController payToObtainController = loaderPayToObtain.getController();
-            payToObtainController.setSender(chooseDistribution);
+            payToObtainController.setSender(interfaceGUI);
             payToObtainController.setGameBoardController(gameBoardController);
             gameBoardController.setPayToObtainController(payToObtainController);
             gameBoardController.setPayToObtainPane(childPay);
@@ -318,7 +323,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childEffect,200.0);
             childEffect.setVisible(false);
             ChooseEffectController chooseEffectController = loaderEffects.getController();
-            chooseEffectController.setSender(chooseDistribution);
+            chooseEffectController.setSender(interfaceGUI);
             chooseEffectController.setGameBoardController(gameBoardController);
             chooseEffectController.setPayToObtainController(payToObtainController);
             gameBoardController.setChooseEffectController(chooseEffectController);
@@ -335,7 +340,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childWorkers,200.0);
             childWorkers.setVisible(false);
             WorkersController workersController = loaderWorkers.getController();
-            workersController.setSender(chooseDistribution);
+            workersController.setSender(interfaceGUI);
             gameBoardController.setWorkersController(workersController);
             gameBoardController.setChooseWorkersPane(childWorkers);
 
@@ -347,7 +352,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childPrivilege,200.0);
             childPrivilege.setVisible(false);
             ChoosePrivilegeController choosePrivilegeController = loaderPrivileges.getController();
-            choosePrivilegeController.setSender(chooseDistribution);
+            choosePrivilegeController.setSender(interfaceGUI);
             choosePrivilegeController.setGameBoardController(gameBoardController);
             gameBoardController.setChoosePrivilegeController(choosePrivilegeController);
             gameBoardController.setChoosePrivilegePane(childPrivilege);
@@ -361,7 +366,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childPray,200.0);
             childPray.setVisible(false);
             PrayController prayController = loaderPray.getController();
-            prayController.setSender(chooseDistribution);
+            prayController.setSender(interfaceGUI);
             gameBoardController.setPrayController(prayController);
             gameBoardController.setPrayPane(childPray);
 

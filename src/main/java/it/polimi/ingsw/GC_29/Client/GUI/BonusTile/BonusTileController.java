@@ -1,8 +1,9 @@
 package it.polimi.ingsw.GC_29.Client.GUI.BonusTile;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+
 import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientOutHandlerGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -17,7 +18,7 @@ import java.util.Map;
  */
 public class BonusTileController {
 
-    private ChooseDistribution sender;
+    private InputInterfaceGUI sender;
     private GameBoardController gameBoardController;
 
     @FXML private Button button1;
@@ -95,7 +96,7 @@ public class BonusTileController {
     }
     */
 
-    public void setSender(ChooseDistribution sender) {
+    public void setSender(InputInterfaceGUI sender) {
         this.sender = sender;
     }
 

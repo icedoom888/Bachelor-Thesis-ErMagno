@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.Distribution;
+import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
@@ -25,4 +26,5 @@ public interface ClientRemoteInterface extends Remote {
     RMIViewRemote getServerViewStub() throws RemoteException;
 
     Distribution getDistribution() throws RemoteException;
+    
 }

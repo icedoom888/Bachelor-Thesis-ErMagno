@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonView;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
@@ -18,19 +19,24 @@ import java.util.Map;
 /**
  * Created by Christian on 01/07/2017.
  */
-public class CommonOutRMI {
+public class CommonOutRMI implements InputInterfaceGUI{
 
     private InputChecker inputChecker;
-    private PlayerColor playerColor;
-    private RMIViewRemote serverViewStub;
+    protected PlayerColor playerColor;
+    protected RMIViewRemote serverViewStub;
     private Map<String, Integer> activatedCardMap;
     private List<Integer> councilPrivilegeEffectChosenList;
 
-    public CommonOutRMI(PlayerColor playerColor, RMIViewRemote serverViewStub) {
+    public CommonOutRMI(){
 
+        inputChecker = new InputChecker();
+    }
+
+
+    public void connectWithServerView(PlayerColor playerColor, RMIViewRemote serverViewStub){
         this.serverViewStub = serverViewStub;
-        this.inputChecker = new InputChecker();
         this.playerColor = playerColor;
+        this.inputChecker.setPlayerColor(playerColor);
     }
 
     public void sendInput(String inputLine) {
@@ -196,6 +202,16 @@ public class CommonOutRMI {
 
     }
 
+    @Override
+    public void sendInput(Map<String, Integer> activatedCardMap) {
+        setActivatedCardMap(activatedCardMap);
+    }
+
+    @Override
+    public void sendInput(List<Integer> councilPrivilegeEffectChosenList) {
+        setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
+    }
+
 
     public void handleHelp(){
 
@@ -217,5 +233,13 @@ public class CommonOutRMI {
 
     public void setCouncilPrivilegeEffectChosenList(List<Integer> councilPrivilegeEffectChosenList) {
         this.councilPrivilegeEffectChosenList = councilPrivilegeEffectChosenList;
+    }
+
+    public void setInputChecker(InputChecker inputChecker) {
+        this.inputChecker = inputChecker;
+    }
+
+    public InputChecker getInputChecker() {
+        return inputChecker;
     }
 }

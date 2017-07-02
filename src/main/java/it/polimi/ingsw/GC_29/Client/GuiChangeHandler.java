@@ -89,7 +89,6 @@ public class GuiChangeHandler {
 
         for (GuiChangeListener listener : listeners) {
             listener.bonusTile(bonusTiles);
-            System.out.println("sono in fire bonus tile");
         }
 
     }

@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.GetBonusTile;
+import it.polimi.ingsw.GC_29.Query.GetFamilyPawnAvailability;
 import it.polimi.ingsw.GC_29.Query.GetValidActions;
 import it.polimi.ingsw.GC_29.Server.View;
 
@@ -184,6 +185,11 @@ public class RMIView extends View implements RMIViewRemote {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Map<FamilyPawn, Boolean> getFamilyPawns() throws RemoteException {
+        return new GetFamilyPawnAvailability().perform(gameStatus);
     }
 
     @Override

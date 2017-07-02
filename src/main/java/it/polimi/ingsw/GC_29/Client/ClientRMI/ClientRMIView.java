@@ -15,11 +15,7 @@ import java.util.*;
  * Created by Christian on 07/06/2017.
  */
 public class ClientRMIView implements ClientViewRemote, Serializable {
-
-
-    PlayerState currentPlayerState;
-
-    GameState currentGameState;
+    
 
     private transient InputChecker inputChecker;
 
@@ -30,17 +26,22 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
     private Map<CardColor, List<String>> towerCardsMap;
 
 
-    protected ClientRMIView(PlayerColor playerColor, RMIViewRemote serverViewStub) throws RemoteException {
+    public ClientRMIView(){
+
+        try {
+            UnicastRemoteObject.exportObject(this, 0);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public void connectWithServerView(RMIViewRemote serverViewStub, InputChecker inputChecker){
 
         this.serverViewStub = serverViewStub;
 
-        inputChecker = new InputChecker();
-
-        this.playerDevCard = new ArrayList<>();
-
-        this.towerCardsMap = new EnumMap<>(CardColor.class);
-
-        inputChecker.setPlayerColor(playerColor);
+        this.inputChecker = inputChecker;
 
     }
 
@@ -141,5 +142,9 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
     public InputChecker getInputChecker() {
         return inputChecker;
+    }
+
+    public void setInputChecker(InputChecker inputChecker) {
+        this.inputChecker = inputChecker;
     }
 }

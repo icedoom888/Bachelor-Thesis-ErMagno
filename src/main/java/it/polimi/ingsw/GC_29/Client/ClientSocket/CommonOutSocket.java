@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
 import it.polimi.ingsw.GC_29.Client.InputChecker;
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
@@ -16,14 +17,14 @@ import java.util.Map;
 /**
  * Created by Lorenzotara on 23/06/17.
  */
-public class CommonOutSocket {
+public class CommonOutSocket implements InputInterfaceGUI{
 
     private ObjectOutputStream socketOut;
     private Map<String, Integer> activatedCardMap;
     private List<Integer> councilPrivilegeEffectChosenList;
     private PlayerColor playerColor;
     private InputChecker inputChecker;
-    private CommonView commonView;
+    //private CommonView commonView;
 
     public CommonOutSocket(ObjectOutputStream socketOut) {
         this.socketOut = socketOut;
@@ -233,6 +234,15 @@ public class CommonOutSocket {
 
     }
 
+    @Override
+    public void sendInput(Map<String, Integer> activatedCardMap) {
+        setActivatedCardMap(activatedCardMap);
+    }
+
+    @Override
+    public void sendInput(List<Integer> councilPrivilegeEffectChosenList) {
+        setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
+    }
 
 
     public void handlePlayerState(PlayerState currentPlayerState) throws RemoteException {
@@ -386,7 +396,4 @@ public class CommonOutSocket {
         this.playerColor = playerColor;
     }
 
-    public void setCommonView(CommonView commonView) {
-        this.commonView = commonView;
-    }
 }

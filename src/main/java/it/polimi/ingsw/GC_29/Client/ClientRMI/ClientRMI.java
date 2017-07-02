@@ -61,6 +61,7 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
         try {
             connectServerRMI();
             loginRMI();
+            createNewGameRMI();
         } catch (Exception e) {
             System.out.println("Exception: " + e);
             e.printStackTrace();
@@ -68,6 +69,11 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
             // Always close it:
             //TODO: chiudi connessione
         }
+
+    }
+
+    private void createNewGameRMI() {
+
 
     }
 
@@ -90,6 +96,8 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
         if(logged){
 
             connectionStub.addClient(this);
+
+            gameRMI = new GameRMI();
         }
 
         return logged;
@@ -129,6 +137,8 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
         connectionStub.addClient(this);
 
+        gameRMI = new GameRMI();
+
     }
 
     @Override
@@ -136,15 +146,22 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
         System.out.println("GAME BEGUN TRUE");
         this.serverViewStub = serverViewStub;
-        gameRMI = new GameRMI(playerColor, serverViewStub);
-        executor.submit(gameRMI);
-        System.out.println("THREAD LANCIATO");
+        //gameRMI = new GameRMI(playerColor, serverViewStub);
+        //setNewGame per gameRMI
+        gameRMI.connectWithServerView(gameInterface, playerColor, serverViewStub);
+        //executor.submit(gameRMI);
+        //System.out.println("THREAD LANCIATO");
     }
 
     @Override
     public void initialize() throws RemoteException{
 
         gameRMI.initialize();
+
+        if(gameInterface == EnumInterface.CLI){
+
+            executor.submit(gameRMI);
+        }
     }
 
 
@@ -178,4 +195,7 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
         return distribution;
     }
 
+    public GameRMI getGameRMI() {
+        return gameRMI;
+    }
 }
