@@ -21,6 +21,7 @@ public interface GuiChangeListener {
     void onReadingChange(TrackChange trackChange);
     void onReadingChange(AddPawnChange addPawnChange);
     void onReadingChange(ClearPawns clearPawns);
+    void onReadingChange(ExcommunicationChange excommunicationChange);
 
     void pray(String excommunicationUrl);
 
@@ -39,5 +40,6 @@ public interface GuiChangeListener {
     void councilPrivilege(List<Integer> councilPrivileges);
 
     void bonusTile(Map<Integer, String> bonusTiles);
+
 
 }

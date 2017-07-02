@@ -31,7 +31,6 @@ public class EndTurn extends Input {
 
         currentPlayer.setPlayerState(PlayerState.WAITING);
 
-
         List<Player> turnOrder = model.getTurnOrder();
 
         if (model.getGameState() == GameState.CHECKONSKIPPED) {
@@ -43,8 +42,6 @@ public class EndTurn extends Input {
 
 
             if (model.getCurrentTurn() < 4) {
-
-                System.out.println("INCREMENTING TURN");
 
                 model.setCurrentTurn(model.getCurrentTurn()+1);
 

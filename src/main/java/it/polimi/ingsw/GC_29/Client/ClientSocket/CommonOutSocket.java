@@ -34,7 +34,8 @@ public class CommonOutSocket {
             // Implements the communication protocol, creating the Actions corresponding to the input of the user
 
             if (!inputLine.contentEquals("activated cards GUI")
-                    || !inputLine.contentEquals("council privileges chosen GUI")) {
+                    && !inputLine.contentEquals("council privileges chosen GUI")
+                    && !inputLine.contentEquals("join game")) {
 
                 inputLine = commonView.getInputChecker().checkInput(inputLine);
             }
@@ -167,7 +168,9 @@ public class CommonOutSocket {
 
                 case "council privileges chosen GUI":
 
-                    socketOut.writeObject("council privilege chosen");
+                    System.out.println("SONO ARRIVATO ALL'INVIO");
+
+                    socketOut.writeObject("council privileges chosen");
                     socketOut.flush();
                     socketOut.writeObject(councilPrivilegeEffectChosenList);
                     socketOut.flush();
@@ -211,6 +214,9 @@ public class CommonOutSocket {
                 case "join game":
                     socketOut.writeObject("join game");
                     socketOut.flush();
+                    socketOut.writeObject(commonView.getPlayerColor());
+                    socketOut.flush();
+                    break;
 
                 case "help":
                     handleHelp();

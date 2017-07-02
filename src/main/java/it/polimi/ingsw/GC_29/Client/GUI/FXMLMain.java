@@ -13,6 +13,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginChange;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
+import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
@@ -201,9 +202,12 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
                         @Override
                         public void onReadingChange(ClearPawns clearPawns) {
-
                             removeAllPawns();
+                        }
 
+                        @Override
+                        public void onReadingChange(ExcommunicationChange excommunicationChange) {
+                            setExcommunicationTiles(excommunicationChange.getExcommunicationTiles());
                         }
 
                         @Override
@@ -462,6 +466,18 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             childBonusAction.setVisible(false);
             gameBoardController.setBonusActionPane(childBonusAction);
 
+            //Adding Suspended
+            FXMLLoader loaderSuspended = new FXMLLoader(getClass().getResource("/FXML/Suspended.fxml"));
+            AnchorPane childSuspended = loaderSuspended.load();
+            gameboardRoot.getChildren().add(childSuspended);
+            AnchorPane.setBottomAnchor(childSuspended,200.0);
+            AnchorPane.setLeftAnchor(childSuspended,200.0);
+            SuspendedController suspendedController = loaderSuspended.getController();
+            suspendedController.setSender(chooseDistribution);
+            childSuspended.setVisible(false);
+            gameBoardController.setSuspendedPane(childSuspended);
+            gameBoardController.setSuspendedController(suspendedController);
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -697,6 +713,21 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
 
                 gameBoardController.pray(excommunicationUrl);
+
+
+            }
+        });
+
+    }
+
+    private void setExcommunicationTiles(ArrayList<String> excommunicationTiles) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.updateExcomunicationTiles(excommunicationTiles);
 
 
             }

@@ -23,9 +23,9 @@ public class Controller implements Observer<Input>  {
 
     private final GameStatus model;
 
-    private final long throwDicesTime = 15000;
-    private final long chooseBonusTilesTime = 15000;
-    private final long prayTime = 15000;
+    private final long throwDicesTime = 150000;
+    private final long chooseBonusTilesTime = 150000;
+    private final long prayTime = 150000;
     private final long turnTime = 15000;
 
     private Integer playersPraying;
@@ -33,11 +33,15 @@ public class Controller implements Observer<Input>  {
     private int currentBonusTileIndexPlayer;
     private Timer timer;
 
+    private List<Player> playerSuspended;
+
 
     public Controller(GameStatus model){
         this.model = model;
         playersPraying = 0;
         actionChecker = new ActionChecker(model);
+
+        playerSuspended = new ArrayList<>();
 
         //setCardsOnTowers();
 
@@ -145,6 +149,7 @@ public class Controller implements Observer<Input>  {
         model.setCurrentTurn(1);
 
     }
+
 
     public void setCardsOnTowers(){
 

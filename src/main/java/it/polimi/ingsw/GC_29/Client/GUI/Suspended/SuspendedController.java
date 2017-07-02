@@ -1,10 +1,11 @@
 package it.polimi.ingsw.GC_29.Client.GUI.Suspended;
 
 import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 
 /**
  * Created by Lorenzotara on 01/07/17.
@@ -12,18 +13,24 @@ import java.awt.event.ActionEvent;
 public class SuspendedController {
 
     private ChooseDistribution sender;
+    private GameBoardController gameBoardController;
 
     @FXML
     private Button joinGame;
 
-    public void joinGame(ActionEvent event) {
-
-        sender.sendInput("join game");
-
-    }
-
 
     public void setSender(ChooseDistribution sender) {
         this.sender = sender;
+    }
+
+    /*
+    public void joinGame(ActionEvent actionEvent) {
+        System.out.println("Sending input");
+        sender.sendInput("join game");
+    }
+    */
+
+    public void joinGame(ActionEvent actionEvent) {
+        sender.sendInput("join game");
     }
 }
