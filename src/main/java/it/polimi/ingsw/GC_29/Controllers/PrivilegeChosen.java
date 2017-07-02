@@ -26,8 +26,6 @@ public class PrivilegeChosen extends Input {
 
         ObtainEffect obtainEffect;
 
-        // TODO: raddoppiare
-
         for (Integer integer : councilPrivilegeEffectChosenList) {
 
             System.out.println(integer);

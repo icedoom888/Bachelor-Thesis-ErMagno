@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="400.0" stroke="BLACK" strokeType="INSIDE" width="601.0" />
       <Label layoutX="3.0" layoutY="22.0" prefHeight="92.0" prefWidth="594.0" text="You have been Suspended from the game!">
          <font>
             <Font size="29.0" />
@@ -20,6 +21,6 @@
             <Font size="29.0" />
          </font>
       </Label>
-      <Button fx:id="joinGame" layoutX="263.0" layoutY="278.0" mnemonicParsing="false" text="Join Game" />
+      <Button fx:id="joinGame" layoutX="263.0" layoutY="278.0" mnemonicParsing="false" onAction="#joinGame" text="Join Game" />
    </children>
 </AnchorPane>

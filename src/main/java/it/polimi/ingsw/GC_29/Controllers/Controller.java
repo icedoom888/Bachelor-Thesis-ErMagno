@@ -33,11 +33,15 @@ public class Controller implements Observer<Input>  {
     private int currentBonusTileIndexPlayer;
     private Timer timer;
 
+    private List<Player> playerSuspended;
+
 
     public Controller(GameStatus model){
         this.model = model;
         playersPraying = 0;
         actionChecker = new ActionChecker(model);
+
+        playerSuspended = new ArrayList<>();
 
         //setCardsOnTowers();
 
@@ -145,6 +149,7 @@ public class Controller implements Observer<Input>  {
         model.setCurrentTurn(1);
 
     }
+
 
     public void setCardsOnTowers(){
 

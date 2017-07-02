@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeControlle
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
+import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -106,6 +107,7 @@ public class GameBoardController {
     private ChoosePrivilegeController choosePrivilegeController;
     private PrayController prayController;
     private WorkersController workersController;
+    private SuspendedController suspendedController;
 
 
     //Pane delle schermate interne utilizzati per hidarle
@@ -119,8 +121,13 @@ public class GameBoardController {
     private AnchorPane chooseWorkersPane;
     private AnchorPane throwDicesPane;
     private AnchorPane bonusActionPane;
+    private AnchorPane suspendedPane;
 
+
+    @FXML
     private Button activatedLeader;
+
+    @FXML
     private Button dichardedLeader;
 
     @FXML
@@ -944,6 +951,9 @@ public class GameBoardController {
         Integer actionSelected = buttonAction.get(event.getSource());
         System.out.println("input sent from gameboard Controller : execute action " + actionSelected.toString());
         sender.sendInput("execute action " + actionSelected.toString());
+        for(Integer integer : coverImages.keySet()){
+            coverImages.get(integer).setVisible(false);
+        }
     }
 
     public void handleZoom(MouseEvent event){
@@ -1315,6 +1325,12 @@ public class GameBoardController {
     }
 
     public void updateExcomunicationTiles(ArrayList<String> tiles){
+
+        excummunicationTile1.setImage(new Image(tiles.get(0)));
+        excummunicationTile2.setImage(new Image(tiles.get(1)));
+        excummunicationTile3.setImage(new Image(tiles.get(2)));
+
+        /*
         int i=1;
         for (String tile : tiles){
             switch (i){
@@ -1330,10 +1346,7 @@ public class GameBoardController {
             }
             i++;
         }
-    }
-
-    public void testGB() {
-        whiteValue.setText("Ha funzionato");
+        */
     }
 
 
@@ -1538,8 +1551,6 @@ public class GameBoardController {
 
                 setEndTurn(true);
 
-
-
                 break;
 
 
@@ -1578,7 +1589,7 @@ public class GameBoardController {
 
                 noButtonsAble();
 
-                //TODO: showare sospensione
+                suspendedPane.setVisible(true);
 
                 break;
 
@@ -1598,6 +1609,7 @@ public class GameBoardController {
         chooseWorkersPane.setVisible(false);
         prayPane.setVisible(false);
         yourTurnPane.setVisible(false);
+        suspendedPane.setVisible(false);
 
     }
 
@@ -1767,5 +1779,13 @@ public class GameBoardController {
 
     public void setBonusActionPane(AnchorPane bonusActionPane) {
         this.bonusActionPane = bonusActionPane;
+    }
+
+    public void setSuspendedController(SuspendedController suspendedController) {
+        this.suspendedController = suspendedController;
+    }
+
+    public void setSuspendedPane(AnchorPane suspendedPane) {
+        this.suspendedPane = suspendedPane;
     }
 }

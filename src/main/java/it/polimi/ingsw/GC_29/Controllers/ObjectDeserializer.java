@@ -26,7 +26,10 @@ public class ObjectDeserializer {
             .registerSubtype(BonusEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect")
             .registerSubtype(CouncilPrivilegeEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect")
             .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
-            .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect");
+            .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect")
+            .registerSubtype(Special.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special")
+            .registerSubtype(ObtainForCost.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainForCost")
+            .registerSubtype(ObtainForMoreCondition.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainForMoreCondition");
 
     private GsonBuilder gsonBuilder;
 
@@ -35,10 +38,13 @@ public class ObjectDeserializer {
     private HashMap<Integer, String> gameBoardFromFileMap;
 
     private final String bonustilesFilePath = "bonusTiles/bonusTiles";
+    private final String excommunicationFilePath = "excommunicationTiles/excommunications";
 
-    Type bonusTileMapType = new TypeToken<Map<Integer,BonusTile>>(){}.getType();
+    private Type bonusTileMapType = new TypeToken<Map<Integer,BonusTile>>(){}.getType();
+    private Type excommunicationTileListType = new TypeToken<List<ExcommunicationTile>>(){}.getType();
 
     private Gson gsonCardDeserializer;
+
 
     public ObjectDeserializer(){
 
@@ -133,6 +139,44 @@ public class ObjectDeserializer {
 
         return bonusTiles;
 
+    }
+
+    public EnumMap<Era, List<ExcommunicationTile>> getExcommunicationTiles() throws FileNotFoundException {
+
+        FileReader fileReader = new FileReader(excommunicationFilePath);
+
+        List<ExcommunicationTile> excommunicationTiles = gsonBuilder.create().fromJson(fileReader, excommunicationTileListType);
+
+        EnumMap<Era, List<ExcommunicationTile>> eraAndExcomm = new EnumMap<>(Era.class);
+
+        ArrayList<ExcommunicationTile> firstEra = new ArrayList<>();
+        ArrayList<ExcommunicationTile> secondEra = new ArrayList<>();
+        ArrayList<ExcommunicationTile> thirdEra = new ArrayList<>();
+
+        for (ExcommunicationTile excommunicationTile : excommunicationTiles) {
+
+            switch (excommunicationTile.getEra()) {
+
+                case FIRST:
+                    firstEra.add(excommunicationTile);
+                    break;
+
+                case SECOND:
+                    secondEra.add(excommunicationTile);
+                    break;
+
+                case THIRD:
+                    thirdEra.add(excommunicationTile);
+                    break;
+
+            }
+        }
+
+        eraAndExcomm.put(Era.FIRST, firstEra);
+        eraAndExcomm.put(Era.SECOND, secondEra);
+        eraAndExcomm.put(Era.THIRD, thirdEra);
+
+        return eraAndExcomm;
     }
 }
 

@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilege;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,9 +28,9 @@ public class ChoosePrivilegeController {
 
     private List<CouncilPrivilegeEffect> councilPrivilegeEffectList = new ArrayList<>();
     private List<Integer> councilPrivilegeEffectChosenList = new ArrayList<>();
-    private CouncilPrivilege currentParchment;
+    private Map<Integer, ObtainEffect> currentParchment;
     private CouncilPrivilegeEffect currentCouncilPrivilegeEffect;
-    private List<CouncilPrivilege> currentParchmentList = new ArrayList<>();
+    private List<Map<Integer, ObtainEffect>> currentParchmentList = new ArrayList<>();
 
 
     private HashMap<Integer,RadioButton> buttons;
@@ -51,6 +52,8 @@ public class ChoosePrivilegeController {
     @FXML
     private Button submit;
 
+    //private HashMap<Integer, RadioButton> radioButtons = new HashMap<>();
+    private HashMap<Integer, RadioButton> radioButtons = new HashMap<>();
 
 
     public void switchButtons(ActionEvent event){
@@ -132,6 +135,8 @@ public class ChoosePrivilegeController {
 
         else {
 
+            System.out.println("Sending shit");
+
             sender.sendInput(councilPrivilegeEffectChosenList);
         }
 
@@ -142,6 +147,14 @@ public class ChoosePrivilegeController {
 
 
     public void choosePrivilege(List<Integer> privileges) {
+
+
+        radioButtons.put(0, privilege1);
+        radioButtons.put(1, privilege2);
+        radioButtons.put(2, privilege3);
+        radioButtons.put(3, privilege4);
+        radioButtons.put(4, privilege5);
+
 
         privilege1.setDisable(false);
         privilege1.setSelected(false);
@@ -205,12 +218,29 @@ public class ChoosePrivilegeController {
         if (!councilPrivilegeEffectList.isEmpty()) {
 
             currentCouncilPrivilegeEffect = councilPrivilegeEffectList.remove(0);
-            currentParchmentList = currentCouncilPrivilegeEffect.getParchmentList();
+
+            //currentParchmentList = currentCouncilPrivilegeEffect.getParchmentList();
+
+            for (CouncilPrivilege councilPrivilege : currentCouncilPrivilegeEffect.getParchmentList()) {
+
+                Map<Integer, ObtainEffect> temporaryMap = new HashMap<>();
+
+                for (int index = 0; index < councilPrivilege.getPossibleObtainEffect().size(); index++) {
+
+                    ObtainEffect temporaryObtainEffect = councilPrivilege.getPossibleObtainEffect().get(index);
+
+                    temporaryMap.put(index, temporaryObtainEffect);
+
+                }
+
+                currentParchmentList.add(temporaryMap);
+            }
 
             return true;
-        }
 
+        }
         else {
+
             return false;
         }
     }
@@ -222,10 +252,14 @@ public class ChoosePrivilegeController {
 
     private void askWhichPrivilege() {
 
-        currentParchment = currentCouncilPrivilegeEffect.getParchmentList().remove(0);
+        currentParchment = currentParchmentList.remove(0);
 
         //TODO: impl con indici sempre uguali
         //TODO: qui va fatto il set degli effetti che possono essere attivi o meno
+
+        for (Integer integer : currentParchment.keySet()) {
+            radioButtons.get(integer).setDisable(false);
+        }
 
         gameBoardController.getChoosePrivilegePane().setVisible(true);
 

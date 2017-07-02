@@ -136,6 +136,20 @@ public class Player extends Observable<Change> {
 
     }
 
+    public void setNotSuspended() {
+
+        synchronized (lock) {
+            this.playerState = PlayerState.WAITING;
+
+            try {
+                notifyObserver(new PlayerStateChange(this.playerState));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     public PlayerState getPlayerState() {
 
         synchronized (lock) {
@@ -306,6 +320,8 @@ public class Player extends Observable<Change> {
             e.printStackTrace();
         }
     }
+
+
 }
 
 

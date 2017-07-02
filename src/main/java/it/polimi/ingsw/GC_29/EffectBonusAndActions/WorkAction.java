@@ -176,7 +176,7 @@ public class WorkAction extends Action {
                     break;
                 }
 
-                workersNeeded = card.getActionValue() - temporaryPawn.getActualValue();
+                workersNeeded = card.getActionValue() - temporaryPawn.getActualValue() - workers;
 
                 if (workersNeeded <= player.getActualGoodSet().getGoodAmount(GoodType.WORKERS) - workers) {
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,6 +10,7 @@
 
 <AnchorPane prefHeight="187.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="200.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="386.0" />
       <Label layoutX="6.0" layoutY="7.0" prefHeight="204.0" prefWidth="380.0" text="THROW DICES!">
          <font>
             <Font size="52.0" />

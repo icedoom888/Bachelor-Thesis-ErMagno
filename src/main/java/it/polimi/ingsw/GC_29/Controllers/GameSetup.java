@@ -30,7 +30,7 @@ public class GameSetup {
 
     private EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks;
 
-    private EnumMap<Era, ArrayList<ExcommunicationTile>> excommunicationTileMap;
+    private Map<Era, List<ExcommunicationTile>> excommunicationTileMap;
 
     private ArrayList<Player> players;
 
@@ -81,12 +81,14 @@ public class GameSetup {
             }
         }
 
-        setExcommunicationTiles();
+
+
 
         Collections.shuffle(players);
 
+        // setExcommunicationTiles();
         // setGoodsForPlayers();
-        // commentata e resa public perchè devo prima registrare la gui e poi settare i goods
+        // commentate e rese public perchè devo prima registrare la gui e poi settare i goods e exc
 
         setGameStatus();
 
@@ -168,15 +170,12 @@ public class GameSetup {
     }
 
 
-    private ArrayList<ExcommunicationTile> getExcommunicationTilesFromFile(Era era) {
+    private Map<Era, List<ExcommunicationTile>> getExcommunicationTilesFromFile() throws FileNotFoundException {
 
-        // TODO: carica con Gson il file delle excommunicationTile rispetto all'era
-
-        return null;
-
+        return new ObjectDeserializer().getExcommunicationTiles();
     }
 
-    private void setExcommunicationTiles(){
+    public void setExcommunicationTiles(){
 
         /*for(Era era : Era.values()){
 
@@ -187,11 +186,31 @@ public class GameSetup {
         ExcommunicationTile tileSecondEra = getRandomTile(Era.SECOND);
         ExcommunicationTile tileThirdEra = getRandomTile(Era.THIRD);*/
 
+        try {
+            excommunicationTileMap = getExcommunicationTilesFromFile();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ExcommunicationTile tileFirstEra = getRandomTile(Era.FIRST);
+        ExcommunicationTile tileSecondEra = getRandomTile(Era.SECOND);
+        ExcommunicationTile tileThirdEra = getRandomTile(Era.THIRD);
+
+        /*
+
         ExcommunicationTile tileFirstEra = new ExcommunicationTile(Era.FIRST, "prova1",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
         ExcommunicationTile tileSecondEra = new ExcommunicationTile(Era.SECOND, "prova2",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
         ExcommunicationTile tileThirdEra = new ExcommunicationTile(Era.THIRD, "prova3",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
 
+        */
+
         gameBoard.getExcommunicationLane().setExcommunicationLane(tileFirstEra, tileSecondEra, tileThirdEra);
+
+        try {
+            gameStatus.notifyObserver(new ExcommunicationChange(tileFirstEra.getUrl(), tileSecondEra.getUrl(), tileThirdEra.getUrl()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private ExcommunicationTile getRandomTile(Era era) {
