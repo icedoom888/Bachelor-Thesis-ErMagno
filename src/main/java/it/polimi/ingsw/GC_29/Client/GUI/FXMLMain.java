@@ -172,6 +172,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
                     this.chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
 
+                    chooseDistribution.setCommonOutSocket(clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket());
+
                     clientSocketGUI.getClientInHandlerGUI().addListener(new GuiChangeListener() {
 
                         @Override
@@ -333,7 +335,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     private void setGameboard() {
 
         System.out.println("Gameboard Started");
-        chooseDistribution.setCommonOutSocket(clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket());
 
         gameboardStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
