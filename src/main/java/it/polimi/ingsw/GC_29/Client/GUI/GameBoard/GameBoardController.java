@@ -950,6 +950,9 @@ public class GameBoardController {
         Integer actionSelected = buttonAction.get(event.getSource());
         System.out.println("input sent from gameboard Controller : execute action " + actionSelected.toString());
         sender.sendInput("execute action " + actionSelected.toString());
+        for(Integer integer : coverImages.keySet()){
+            coverImages.get(integer).setVisible(false);
+        }
     }
 
     public void handleZoom(MouseEvent event){
