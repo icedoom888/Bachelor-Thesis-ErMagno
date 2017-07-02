@@ -178,6 +178,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.flush();
                     socketOut.writeObject(councilPrivilegeEffectChosenList);
                     socketOut.flush();
+                    System.out.println("LISTA PRIVILEGI SCELTA INVIATA");
                     break;
 
 
@@ -240,11 +241,14 @@ public class CommonOutSocket implements InputInterfaceGUI{
     @Override
     public void sendInput(Map<String, Integer> activatedCardMap) {
         setActivatedCardMap(activatedCardMap);
+        sendInput("activated cards GUI");
     }
 
     @Override
     public void sendInput(List<Integer> councilPrivilegeEffectChosenList) {
         setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
+        sendInput("council privileges chosen GUI");
+        System.out.println("SEND INPUT CHIAMATO");
     }
 
 

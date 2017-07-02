@@ -405,7 +405,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setBottomAnchor(childSuspended,200.0);
             AnchorPane.setLeftAnchor(childSuspended,200.0);
             SuspendedController suspendedController = loaderSuspended.getController();
-            suspendedController.setSender(chooseDistribution);
+            suspendedController.setSender(interfaceGUI);
             childSuspended.setVisible(false);
             gameBoardController.setSuspendedPane(childSuspended);
             gameBoardController.setSuspendedController(suspendedController);

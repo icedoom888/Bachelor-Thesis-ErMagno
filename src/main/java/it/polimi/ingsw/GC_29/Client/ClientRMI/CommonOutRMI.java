@@ -1,18 +1,14 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
-import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonView;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.*;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +43,7 @@ public class CommonOutRMI implements InputInterfaceGUI{
             // Implements the communication protocol, creating the Actions corresponding to the input of the user
 
             if (!inputLine.contentEquals("activated cards GUI")
-                    || !inputLine.contentEquals("council privileges chosen GUI")) {
+                    && !inputLine.contentEquals("council privileges chosen GUI")) {
 
                 inputLine = inputChecker.checkInput(inputLine);
             }
@@ -157,6 +153,7 @@ public class CommonOutRMI implements InputInterfaceGUI{
                 case "council privileges chosen GUI":
 
                     serverViewStub.privilegesChosen(councilPrivilegeEffectChosenList);
+                    System.out.println("LISTA PRIVILEGI SCELTA INVIATA");
                     break;
 
 
@@ -205,11 +202,14 @@ public class CommonOutRMI implements InputInterfaceGUI{
     @Override
     public void sendInput(Map<String, Integer> activatedCardMap) {
         setActivatedCardMap(activatedCardMap);
+        sendInput("activated cards GUI");
     }
 
     @Override
     public void sendInput(List<Integer> councilPrivilegeEffectChosenList) {
         setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
+        sendInput("council privileges chosen GUI");
+        System.out.println("SEND INPUT CHIAMATO");
     }
 
 
