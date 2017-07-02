@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
 import it.polimi.ingsw.GC_29.Client.GUI.*;
+import it.polimi.ingsw.GC_29.Client.GuiChangeHandler;
+import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
@@ -18,17 +20,17 @@ import java.util.Map;
 /**
  * Created by Lorenzotara on 23/06/17.
  */
-public class ClientInHandlerGUI implements Runnable {
+public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
     private CommonOutSocket commonOutSocket;
     private ObjectInputStream socketIn;
-    private CommonView commonView;
-    private ChangeViewGUI changeViewGUI;
-    private List<GuiChangeListener> listeners = Lists.newArrayList();
+    //private ChangeViewGUI changeViewGUI;
+    //private List<GuiChangeListener> listeners = Lists.newArrayList();
 
     public ClientInHandlerGUI(ObjectInputStream socketIn) {
+
         this.socketIn = socketIn;
-        this.changeViewGUI = new ChangeViewGUI(socketIn, commonView);
+       // this.changeViewGUI = new ChangeViewGUI(socketIn, commonView);
     }
 
     @Override
@@ -40,7 +42,7 @@ public class ClientInHandlerGUI implements Runnable {
 
         while(b){
 
-            // handles input messages coming from the server, just showing them to the user
+            // handles input messages coming from the server
             try {
                 String input = (String)socketIn.readObject();
 
@@ -101,11 +103,11 @@ public class ClientInHandlerGUI implements Runnable {
 
         if(c instanceof PlayerStateChange){
 
-            commonView.setCurrentPlayerState(((PlayerStateChange)c).getNewPlayerState());
-
+            inputChecker.setCurrentPlayerState(((PlayerStateChange)c).getNewPlayerState());
+            
             try {
 
-                handlePlayerState(commonView.getCurrentPlayerState());
+                handlePlayerState(inputChecker.getCurrentPlayerState());
 
 
             } catch (/*RemoteException*/ Exception e) {
@@ -116,7 +118,7 @@ public class ClientInHandlerGUI implements Runnable {
         }
 
         if(c instanceof GameChange){
-            commonView.setCurrentGameState(((GameChange)c).getNewGameState());
+            inputChecker.setcurrentGameState(((GameChange)c).getNewGameState());
             //TODO: if relation with the church chiedo se questo player è stato scomunicato passando dallo stub e poi printo quello che devo
         }
 
@@ -131,7 +133,7 @@ public class ClientInHandlerGUI implements Runnable {
 
     private void handlePlayerState(PlayerState currentPlayerState) {
 
-        commonView.getInputChecker().setCurrentPlayerState(currentPlayerState);
+        //inputChecker.setCurrentPlayerState(currentPlayerState);
 
         try {
 
@@ -347,7 +349,7 @@ public class ClientInHandlerGUI implements Runnable {
 
 
 
-    private void firePray(String excommunicationUrl) {
+   /* private void firePray(String excommunicationUrl) {
         for (GuiChangeListener listener : listeners) {
             listener.pray(excommunicationUrl);
         }
@@ -536,33 +538,14 @@ public class ClientInHandlerGUI implements Runnable {
 
         firePray(excommunicationUrl);
 
-    }
+    }*/
 
-
-
-
-
-
-
-
-    public CommonView getCommonView() {
-        return commonView;
-    }
 
     public void setCommonOutSocket(CommonOutSocket commonOutSocket) {
         this.commonOutSocket = commonOutSocket;
-        this.changeViewGUI.setCommonOutSocket(commonOutSocket);
 
     }
 
-    public void setCommonView(CommonView commonView) {
-        this.commonView = commonView;
-        this.changeViewGUI.setCommonView(commonView);
-    }
-
-    public ChangeViewGUI getChangeViewGUI() {
-        return changeViewGUI;
-    }
 
 
 }

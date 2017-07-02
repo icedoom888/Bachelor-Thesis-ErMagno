@@ -1,7 +1,8 @@
 package it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,7 +17,7 @@ import java.util.*;
  */
 public class PayToObtainController {
 
-    private ChooseDistribution sender;
+    private InputInterfaceGUI sender;
     private GameBoardController gameBoardController;
     private ChooseEffectController chooseEffectController;
 
@@ -180,7 +181,7 @@ public class PayToObtainController {
     }
 
 
-    public void setSender(ChooseDistribution sender) {
+    public void setSender(InputInterfaceGUI sender) {
         this.sender = sender;
     }
 

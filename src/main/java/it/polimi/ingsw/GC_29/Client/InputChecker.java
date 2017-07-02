@@ -718,4 +718,11 @@ public class InputChecker {
 
     }
 
+    public PlayerState getCurrentPlayerState() {
+        return currentPlayerState;
+    }
+
+    public Map<FamilyPawnType,Boolean> getFamilyPawnAvailability() {
+        return familyPawnAvailability;
+    }
 }

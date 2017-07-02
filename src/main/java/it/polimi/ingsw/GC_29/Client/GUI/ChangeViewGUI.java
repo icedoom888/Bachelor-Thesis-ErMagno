@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.GUI;
 
 import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonOutSocket;
-import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonView;
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import javafx.stage.Stage;
@@ -12,11 +11,11 @@ import java.rmi.RemoteException;
 
 /**
  * Created by Lorenzotara on 23/06/17.
- */
+
 public class ChangeViewGUI {
 
     private final ObjectInputStream socketIn;
-    private CommonView commonView;
+    //private CommonView commonView;
     private CommonOutSocket commonOutSocket;
     private static GameBoardController gameBoardController;
     private Stage gameboardStage;
@@ -147,7 +146,7 @@ public class ChangeViewGUI {
                     e.printStackTrace();
                 }
 
-                break; */
+                break;
 
             case CHOOSE_BONUS_TILE:
 
@@ -242,7 +241,7 @@ public class ChangeViewGUI {
             }
         }).start();
 
-        */
+
 
     }
 
@@ -273,4 +272,4 @@ public class ChangeViewGUI {
     public void setCommonView(CommonView commonView) {
         this.commonView = commonView;
     }
-}
+}*/

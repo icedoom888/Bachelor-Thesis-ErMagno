@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.InputChecker;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
+
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
@@ -15,6 +18,7 @@ public class ClientOutHandlerGUI implements Runnable {
     //private ObjectOutputStream socketOut;
 
     private HashMap<String,String> cardMap;
+
     //TODO: HashMap Leaders
     //TODO: HashMap BonusTiles
 
@@ -154,9 +158,13 @@ public class ClientOutHandlerGUI implements Runnable {
         this.commonOutSocket = commonOutSocket;
     }
 
-    public void setCommonView(CommonView commonView) {
-        commonOutSocket.setCommonView(commonView);
+
+
+    public void setInputChecker(InputChecker inputChecker) {
+        commonOutSocket.setInputChecker(inputChecker);
     }
 
-
+    public void setPlayerColor(PlayerColor playerColor) {
+        commonOutSocket.setPlayerColor(playerColor);
+    }
 }

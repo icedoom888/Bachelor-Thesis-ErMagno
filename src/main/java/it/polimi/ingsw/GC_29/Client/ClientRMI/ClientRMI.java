@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.Distribution;
+import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterface;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
@@ -41,8 +42,14 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
     private final Distribution distribution = Distribution.RMI;
 
-    public ClientRMI() throws RemoteException{
+    private EnumInterface gameInterface;
+
+    public ClientRMI(EnumInterface gameInterface) throws RemoteException{
+
         super();
+
+        this.gameInterface = gameInterface;
+
     }
 
 
@@ -54,6 +61,7 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
         try {
             connectServerRMI();
             loginRMI();
+            createNewGameRMI();
         } catch (Exception e) {
             System.out.println("Exception: " + e);
             e.printStackTrace();
@@ -64,11 +72,35 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
     }
 
+    private void createNewGameRMI() {
 
-    private void connectServerRMI() throws RemoteException, NotBoundException {
+
+    }
+
+
+    public void connectServerRMI() throws RemoteException, NotBoundException {
 
         Registry reg = LocateRegistry.getRegistry(HOST, PORT);
         connectionStub = (ConnectionInterface)reg.lookup(NAME);
+
+    }
+
+    public Boolean loginGUI(String userName, String password) throws RemoteException {
+
+        Boolean logged;
+
+        this.userName = userName;
+
+        logged = connectionStub.login(userName, password);
+
+        if(logged){
+
+            connectionStub.addClient(this);
+
+            gameRMI = new GameRMI();
+        }
+
+        return logged;
 
     }
 
@@ -105,16 +137,31 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
         connectionStub.addClient(this);
 
+        gameRMI = new GameRMI();
+
     }
 
     @Override
-    public void initializeNewGame(RMIViewRemote serverViewStub) {
+    public void runNewGame(RMIViewRemote serverViewStub) throws  RemoteException{
 
         System.out.println("GAME BEGUN TRUE");
         this.serverViewStub = serverViewStub;
-        gameRMI = new GameRMI(playerColor, serverViewStub);
-        executor.submit(gameRMI);
-        System.out.println("THREAD LANCIATO");
+        //gameRMI = new GameRMI(playerColor, serverViewStub);
+        //setNewGame per gameRMI
+        gameRMI.connectWithServerView(gameInterface, playerColor, serverViewStub);
+        //executor.submit(gameRMI);
+        //System.out.println("THREAD LANCIATO");
+    }
+
+    @Override
+    public void initialize() throws RemoteException{
+
+        gameRMI.initialize();
+
+        if(gameInterface == EnumInterface.CLI){
+
+            executor.submit(gameRMI);
+        }
     }
 
 
@@ -148,4 +195,7 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
         return distribution;
     }
 
+    public GameRMI getGameRMI() {
+        return gameRMI;
+    }
 }

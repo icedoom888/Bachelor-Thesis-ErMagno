@@ -1,8 +1,9 @@
 package it.polimi.ingsw.GC_29.Client.GUI;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.*;
 import it.polimi.ingsw.GC_29.Client.Distribution;
+import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
@@ -13,6 +14,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginChange;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
@@ -30,6 +32,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +56,12 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     private PlayerState currentPlayerState;
 
     private GameBoardController gameBoardController;
-    private ChooseDistribution chooseDistribution;
+    //private ChooseDistribution chooseDistribution;
+
+    private InputInterfaceGUI interfaceGUI;
+
+
+    private ClientRMI clientRMI;
 
     @Override
     public void update(LoginChange o) throws Exception {
@@ -61,7 +70,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         if (connected) {
 
             signUp();
-
 
         }
 
@@ -118,6 +126,21 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
+    private void connectRMI() throws RemoteException, NotBoundException {
+
+        clientRMI = new ClientRMI(EnumInterface.GUI);
+
+        clientRMI.connectServerRMI();
+
+        logged = clientRMI.loginGUI(username, password);
+
+        if(!logged){
+
+            loginController.setConnected(false);
+        }
+
+    }
+
     public void signUp() {
 
         if (!logged) {
@@ -138,6 +161,13 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
                     break;
 
                 case RMI:
+                    try {
+                        connectRMI();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    } catch (NotBoundException e) {
+                        e.printStackTrace();
+                    }
                     break;
 
             }
@@ -170,121 +200,21 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
                     clientSocketGUI.playNewGameGUI();
 
-                    this.chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
+                    //this.chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
 
-                    chooseDistribution.setCommonOutSocket(clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket());
+                    clientSocketGUI.getClientInHandlerGUI().addListener(new GuiListener());
 
-                    clientSocketGUI.getClientInHandlerGUI().addListener(new GuiChangeListener() {
-
-                        @Override
-                        public void onReadingChange(GoodSetChange goodSetChange) {
-                            updateGoodSet(goodSetChange.getGoodSet());
-                        }
-
-
-                        @Override
-                        public void onReadingChange(TowerCardsChange towerCardsChange) {
-                            updateTower(towerCardsChange.getCards(), towerCardsChange.getCardColor());
-                        }
-
-                        @Override
-                        public void onReadingChange(PersonalCardChange personalCardChange) {
-                            updatePersonalCards(personalCardChange.getCardName(), personalCardChange.getCardColor());
-                        }
-
-                        @Override
-                        public void onReadingChange(TrackChange trackChange) {
-                            updateTrack(trackChange.getPlayerColor(), trackChange.getGoodType(), trackChange.getNumberOfPoints());
-                        }
-
-                        @Override
-                        public void onReadingChange(AddPawnChange addPawnChange) {
-                            updatePawn(addPawnChange.getFamilyPawn(), addPawnChange.getActionIndex());
-                        }
-
-                        @Override
-                        public void onReadingChange(ClearPawns clearPawns) {
-                            removeAllPawns();
-                        }
-
-                        @Override
-                        public void onReadingChange(ExcommunicationChange excommunicationChange) {
-                            setExcommunicationTiles(excommunicationChange.getExcommunicationTiles());
-                        }
-
-                        @Override
-                        public void pray(String excommunicationUrl) {
-
-                            playerPraying(excommunicationUrl);
-
-                        }
-
-                        @Override
-                        public void changeState(PlayerState currentPlayerState) {
-
-                            setGuiOnState(currentPlayerState);
-
-                        }
-
-                        @Override
-                        public void validActions(Map<Integer, String> validActionList) {
-
-                            updateValidActions(validActionList);
-
-                        }
-
-                        @Override
-                        public void updatePawns(Map<FamilyPawn, Boolean> familyPawns) {
-
-                            updateFamilyPawns(familyPawns);
-
-                        }
-
-                        @Override
-                        public void cardsForWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
-
-                            chooseWorkers(cardsForWorkers);
-
-                        }
-
-                        @Override
-                        public void payToObtainCard(Map<String, HashMap<Integer, String>> payToObtainCard) {
-
-                            choosePayToObtainCards(payToObtainCard);
-
-                        }
-
-                        @Override
-                        public void possibleCosts(Map<Integer, String> possibleCosts) {
-
-                            chooseCost(possibleCosts);
-
-                        }
-
-                        @Override
-                        public void councilPrivilege(List<Integer> councilPrivileges) {
-
-                            chooseCouncilPrivilege(councilPrivileges);
-
-                        }
-
-                        @Override
-                        public void bonusTile(Map<Integer, String> bonusTiles) {
-
-                            chooseBonusTile(bonusTiles);
-
-                        }
-
-
-
-                    });
+                    interfaceGUI = clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket();
 
                     break;
 
                 case RMI:
 
-                    this.chooseDistribution = new ChooseDistribution(Distribution.RMI);
+                    //this.chooseDistribution = new ChooseDistribution(Distribution.RMI);
 
+                    clientRMI.getGameRMI().getClientRMIViewGUI().addListener(new GuiListener());
+
+                    interfaceGUI = clientRMI.getGameRMI();
 
                     break;
             }
@@ -297,8 +227,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
 
     }
-
-
 
 
     private void setLogin() {
@@ -336,6 +264,9 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
         System.out.println("Gameboard Started");
 
+
+        //chooseDistribution.setCommonOutSocket(clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket());
+
         gameboardStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
         AnchorPane gameboardRoot = null;
@@ -345,7 +276,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
             gameboardRoot = loader.load();
             gameBoardController = loader.getController();
-            gameBoardController.setChooseDistribution(chooseDistribution);
+            gameBoardController.setChooseDistribution(interfaceGUI);
 
             //aggiunta bonusTile
             FXMLLoader loaderBonus = new FXMLLoader(getClass().getResource("/FXML/BonusTile.fxml"));
@@ -355,7 +286,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childBonus,200.0);
             childBonus.setVisible(false);
             BonusTileController bonusTileController = loaderBonus.getController();
-            bonusTileController.setSender(chooseDistribution);
+            bonusTileController.setSender(interfaceGUI);
             bonusTileController.setGameBoardController(gameBoardController);
             gameBoardController.setBonusTileController(bonusTileController);
             gameBoardController.setBonusTilePane(childBonus);
@@ -368,7 +299,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childCost,200.0);
             childCost.setVisible(false);
             ChooseCostController chooseCostController = loaderCost.getController();
-            chooseCostController.setSender(chooseDistribution);
+            chooseCostController.setSender(interfaceGUI);
             gameBoardController.setChooseCostController(chooseCostController);
             gameBoardController.setChooseCostPane(childCost);
 
@@ -380,7 +311,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childPay,200.0);
             childPay.setVisible(false);
             PayToObtainController payToObtainController = loaderPayToObtain.getController();
-            payToObtainController.setSender(chooseDistribution);
+            payToObtainController.setSender(interfaceGUI);
             payToObtainController.setGameBoardController(gameBoardController);
             gameBoardController.setPayToObtainController(payToObtainController);
             gameBoardController.setPayToObtainPane(childPay);
@@ -393,7 +324,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childEffect,200.0);
             childEffect.setVisible(false);
             ChooseEffectController chooseEffectController = loaderEffects.getController();
-            chooseEffectController.setSender(chooseDistribution);
+            chooseEffectController.setSender(interfaceGUI);
             chooseEffectController.setGameBoardController(gameBoardController);
             chooseEffectController.setPayToObtainController(payToObtainController);
             gameBoardController.setChooseEffectController(chooseEffectController);
@@ -410,7 +341,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childWorkers,200.0);
             childWorkers.setVisible(false);
             WorkersController workersController = loaderWorkers.getController();
-            workersController.setSender(chooseDistribution);
+            workersController.setSender(interfaceGUI);
             gameBoardController.setWorkersController(workersController);
             gameBoardController.setChooseWorkersPane(childWorkers);
 
@@ -422,7 +353,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childPrivilege,200.0);
             childPrivilege.setVisible(false);
             ChoosePrivilegeController choosePrivilegeController = loaderPrivileges.getController();
-            choosePrivilegeController.setSender(chooseDistribution);
+            choosePrivilegeController.setSender(interfaceGUI);
             choosePrivilegeController.setGameBoardController(gameBoardController);
             gameBoardController.setChoosePrivilegeController(choosePrivilegeController);
             gameBoardController.setChoosePrivilegePane(childPrivilege);
@@ -436,7 +367,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setLeftAnchor(childPray,200.0);
             childPray.setVisible(false);
             PrayController prayController = loaderPray.getController();
-            prayController.setSender(chooseDistribution);
+            prayController.setSender(interfaceGUI);
             gameBoardController.setPrayController(prayController);
             gameBoardController.setPrayPane(childPray);
 
@@ -474,7 +405,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             AnchorPane.setBottomAnchor(childSuspended,200.0);
             AnchorPane.setLeftAnchor(childSuspended,200.0);
             SuspendedController suspendedController = loaderSuspended.getController();
-            suspendedController.setSender(chooseDistribution);
+            suspendedController.setSender(interfaceGUI);
             childSuspended.setVisible(false);
             gameBoardController.setSuspendedPane(childSuspended);
             gameBoardController.setSuspendedController(suspendedController);
@@ -493,19 +424,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         gameboardStage.show();
 
 
-
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -721,6 +640,109 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
+    class GuiListener implements GuiChangeListener{
+
+        @Override
+        public void onReadingChange(GoodSetChange goodSetChange) {
+            updateGoodSet(goodSetChange.getGoodSet());
+        }
+
+
+        @Override
+        public void onReadingChange(TowerCardsChange towerCardsChange) {
+            updateTower(towerCardsChange.getCards(), towerCardsChange.getCardColor());
+        }
+
+        @Override
+        public void onReadingChange(PersonalCardChange personalCardChange) {
+            updatePersonalCards(personalCardChange.getCardName(), personalCardChange.getCardColor());
+        }
+
+        @Override
+        public void onReadingChange(TrackChange trackChange) {
+            updateTrack(trackChange.getPlayerColor(), trackChange.getGoodType(), trackChange.getNumberOfPoints());
+        }
+
+        @Override
+        public void onReadingChange(AddPawnChange addPawnChange) {
+            updatePawn(addPawnChange.getFamilyPawn(), addPawnChange.getActionIndex());
+        }
+
+        @Override
+        public void onReadingChange(ClearPawns clearPawns) {
+
+            removeAllPawns();
+
+        }
+
+        @Override
+        public void onReadingChange(ExcommunicationChange excommunicationChange) {
+            setExcommunicationTiles(excommunicationChange.getExcommunicationTiles());
+        }
+
+        @Override
+        public void pray(String excommunicationUrl) {
+
+            playerPraying(excommunicationUrl);
+
+        }
+
+        @Override
+        public void changeState(PlayerState currentPlayerState) {
+
+            setGuiOnState(currentPlayerState);
+
+        }
+
+        @Override
+        public void validActions(Map<Integer, String> validActionList) {
+
+            updateValidActions(validActionList);
+
+        }
+
+        @Override
+        public void updatePawns(Map<FamilyPawn, Boolean> familyPawns) {
+
+            updateFamilyPawns(familyPawns);
+
+        }
+
+        @Override
+        public void cardsForWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
+
+            chooseWorkers(cardsForWorkers);
+
+        }
+
+        @Override
+        public void payToObtainCard(Map<String, HashMap<Integer, String>> payToObtainCard) {
+
+            choosePayToObtainCards(payToObtainCard);
+
+        }
+
+        @Override
+        public void possibleCosts(Map<Integer, String> possibleCosts) {
+
+            chooseCost(possibleCosts);
+
+        }
+
+        @Override
+        public void councilPrivilege(List<Integer> councilPrivileges) {
+
+            chooseCouncilPrivilege(councilPrivileges);
+
+        }
+
+        @Override
+        public void bonusTile(Map<Integer, String> bonusTiles) {
+
+            chooseBonusTile(bonusTiles);
+
+        }
+    }
     private void setExcommunicationTiles(ArrayList<String> excommunicationTiles) {
 
         Platform.runLater(new Runnable() {

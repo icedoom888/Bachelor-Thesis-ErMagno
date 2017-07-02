@@ -75,11 +75,14 @@ public class ServerSocketView extends View implements Runnable {
                     if (object instanceof String) {
                         String string = (String)object;
 
+                        System.out.println("la stringa ricevuta è" + string);
+
                         switch (string) {
 
                             case "bonus tile":
                                 int bonusTile = (int)socketIn.readObject();
                                 notifyObserver(new BonusTileChosen(bonusTile));
+                                System.out.println("HO NOTIFIOATO OBSERVER");
                                 break;
 
                             case "throw dices":
@@ -123,6 +126,7 @@ public class ServerSocketView extends View implements Runnable {
                             case "council privileges chosen":
                                 List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
                                 notifyObserver(new PrivilegeChosen(councilPrivileges));
+                                System.out.println("OBSERVER NOTIFICATO PRIVILEGI");
                                 break;
 
                             case "pray":
@@ -138,6 +142,7 @@ public class ServerSocketView extends View implements Runnable {
                             case "join game":
                                 playerColor = (PlayerColor)socketIn.readObject();
                                 notifyObserver(new JoinGame(playerColor));
+                                System.out.println("OBSERVER NOTIFICATO JOIN GAME SOCKET");
                                 break;
 
 

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.GUI.Pray;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +16,7 @@ import javafx.scene.text.Text;
  */
 public class PrayController {
 
-    private ChooseDistribution sender;
+    private InputInterfaceGUI sender;
 
     @FXML
     private ImageView excommunicationDetails;
@@ -58,7 +59,7 @@ public class PrayController {
         }
     }
 
-    public void setSender(ChooseDistribution sender) {
+    public void setSender(InputInterfaceGUI sender) {
         this.sender = sender;
     }
 }

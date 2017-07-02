@@ -1,7 +1,8 @@
 package it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilege;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
@@ -21,7 +22,7 @@ import java.util.Map;
  */
 public class ChoosePrivilegeController {
 
-    private ChooseDistribution sender;
+    private InputInterfaceGUI sender;
 
     private GameBoardController gameBoardController;
 
@@ -265,7 +266,7 @@ public class ChoosePrivilegeController {
     }
 
 
-    public void setSender(ChooseDistribution sender) {
+    public void setSender(InputInterfaceGUI sender) {
         this.sender = sender;
     }
 

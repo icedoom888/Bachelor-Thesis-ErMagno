@@ -210,7 +210,7 @@
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="90.0" prefWidth="95.0">
                                              <children>
-                                                <ImageView fx:id="yellowTowerCard2" fitHeight="90.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="yellowTowerCard2" fitHeight="90.0" fitWidth="55.0" onMouseClicked="#handleZoom" pickOnBounds="true" preserveRatio="true" />
                                                 <ImageView fx:id="yellowTowerAction2" fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                           </HBox>

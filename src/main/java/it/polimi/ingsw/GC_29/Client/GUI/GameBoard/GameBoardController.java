@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.GUI.GameBoard;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+
 import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
@@ -96,7 +97,7 @@ public class GameBoardController {
 
 
     //ChooseDistribution, classe che serve per parlare con il server
-    private ChooseDistribution sender;
+    private InputInterfaceGUI sender;
 
     //Controller delle schermate interne
     private BonusTileController bonusTileController;
@@ -950,6 +951,9 @@ public class GameBoardController {
         Integer actionSelected = buttonAction.get(event.getSource());
         System.out.println("input sent from gameboard Controller : execute action " + actionSelected.toString());
         sender.sendInput("execute action " + actionSelected.toString());
+        for(Integer integer : coverImages.keySet()){
+            coverImages.get(integer).setVisible(false);
+        }
     }
 
     public void handleZoom(MouseEvent event){
@@ -1391,13 +1395,11 @@ public class GameBoardController {
     }
 
 
-    //TODO: deve essere chiamata passandogli la lista di interi selezionabili ogni volta che ho un privilege da scegliere, devono sempre avere la stessa numerazione
-    public void choosePrivileges(List<Integer> councilPrivileges) {
+   public void choosePrivileges(List<Integer> councilPrivileges) {
         //choosePrivilegePane.setVisible(true);
         choosePrivilegeController.choosePrivilege(councilPrivileges);
     }
 
-    //TODO: arrivano solo quelle da mostrare, con indici crescenti, mi servono sempre con numero fisso da 0 a 4
     public void chooseBonusTile(Map<Integer, String> bonusTiles) {
         bonusTilePane.setVisible(true);
         bonusTileController.setBonusTiles(bonusTiles);
@@ -1741,7 +1743,7 @@ public class GameBoardController {
         this.prayController = prayController;
     }
 
-    public void setChooseDistribution(ChooseDistribution chooseDistribution) {
+    public void setChooseDistribution(InputInterfaceGUI chooseDistribution) {
         this.sender = chooseDistribution;
     }
 

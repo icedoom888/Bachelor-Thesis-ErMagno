@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.GUI.ChooseCost;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+
+import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +14,7 @@ import javafx.scene.text.Text;
  */
 public class ChooseCostController {
 
-    private ChooseDistribution sender;
+    private InputInterfaceGUI sender;
 
     @FXML
     private TextArea shownCosts;
@@ -40,7 +41,7 @@ public class ChooseCostController {
         shownCosts.setText(newCosts);
     }
 
-    public void setSender(ChooseDistribution sender) {
+    public void setSender(InputInterfaceGUI sender) {
         this.sender = sender;
     }
 }

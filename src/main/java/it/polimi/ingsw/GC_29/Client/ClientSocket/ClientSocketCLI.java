@@ -134,12 +134,21 @@ public class ClientSocketCLI {
         clientInHandlerCLI.setClientOutHandlerCLI(clientOutHandlerCLI);
         //clientOutHandlerCLI.setClientInHandlerCLI(clientInHandlerCLI);
 
-        CommonView commonView = new CommonView();
-        commonView.setInputChecker(new InputChecker());
-        commonView.setPlayerColor(playerColor);
 
-        clientOutHandlerCLI.setCommonView(commonView);
-        clientInHandlerCLI.setCommonView(commonView);
+        //commonView.setInputChecker();
+        //commonView.setPlayerColor(playerColor);
+
+        InputChecker inputChecker = new InputChecker();
+        inputChecker.setPlayerColor(playerColor);
+
+        clientInHandlerCLI.setInputChecker(inputChecker);
+
+        //clientOutHandlerCLI.setCommonView(commonView);
+        clientOutHandlerCLI.setInputChecker(inputChecker);
+
+        //clientInHandlerCLI.setCommonView(commonView);
+
+
 
         executor.submit(clientInHandlerCLI);
         executor.submit(clientOutHandlerCLI);

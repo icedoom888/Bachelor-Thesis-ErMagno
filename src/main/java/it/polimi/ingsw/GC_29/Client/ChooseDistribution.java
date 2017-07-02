@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.GameRMI;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.CommonOutSocket;
 
 import java.util.List;
@@ -7,11 +8,13 @@ import java.util.Map;
 
 /**
  * Created by Lorenzotara on 24/06/17.
- */
+
 public class ChooseDistribution {
 
     private Distribution distribution;
     private CommonOutSocket commonOutSocket;
+    private GameRMI gameRMI;
+
 
     public ChooseDistribution(Distribution distribution) {
         this.distribution = distribution;
@@ -25,6 +28,7 @@ public class ChooseDistribution {
                 break;
 
             case RMI:
+                gameRMI.sendInput(input);
                 break;
         }
     }
@@ -34,13 +38,44 @@ public class ChooseDistribution {
         this.commonOutSocket = commonOutSocket;
     }
 
+    public void setGameRMI(GameRMI gameRMI) {
+        this.gameRMI = gameRMI;
+    }
+
     public void sendInput(Map<String, Integer> activatedCardMap) {
-        commonOutSocket.setActivatedCardMap(activatedCardMap);
+        switch (distribution){
+
+            case SOCKET:
+                commonOutSocket.setActivatedCardMap(activatedCardMap);
+                break;
+
+            case RMI:
+                gameRMI.setActivatedCardMap(activatedCardMap);
+                break;
+
+        }
+
         sendInput("activated cards GUI");
+
     }
 
     public void sendInput(List<Integer> councilPrivilegeEffectChosenList) {
-        commonOutSocket.setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
+
+        switch (distribution){
+
+            case SOCKET:
+                commonOutSocket.setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
+                break;
+
+            case RMI:
+                gameRMI.set
+        }
+
         sendInput("council privileges chosen GUI");
     }
+
+    public Distribution getDistribution() {
+        return distribution;
+    }
 }
+ */

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
-import it.polimi.ingsw.GC_29.Client.ChooseDistribution;
+
 import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
@@ -94,17 +94,19 @@ public class ClientSocketGUI {
                 clientInHandlerGUI.setCommonOutSocket(clientOutHandlerGUI.getCommonOutSocket());
                 //clientOutHandlerGUI.setClientInHandlerGUI(clientInHandlerGUI);
 
-                CommonView commonView = new CommonView();
-                commonView.setInputChecker(new InputChecker());
-                commonView.setPlayerColor(playerColor);
+                //CommonView commonView = new CommonView();
+                //commonView.setInputChecker(new InputChecker());
+                //commonView.setPlayerColor(playerColor);
 
-                clientOutHandlerGUI.setCommonView(commonView);
-                clientInHandlerGUI.setCommonView(commonView);
+                // the input checker must be the same for in and out handler
+                InputChecker inputChecker = new InputChecker();
+                inputChecker.setPlayerColor(playerColor);
+                //TODO: incoerenza con il lato cli, assegni il playerColor all'outHandler, quando in realtà l'input checker ha già il playerColor
+                clientOutHandlerGUI.setInputChecker(inputChecker);
+                clientOutHandlerGUI.setPlayerColor(playerColor);
+                clientInHandlerGUI.setInputChecker(inputChecker);
 
-                ChooseDistribution chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
-                chooseDistribution.setCommonOutSocket(clientOutHandlerGUI.getCommonOutSocket());
-
-            }
+             }
 
             else socket.close();
 

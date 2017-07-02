@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
+import it.polimi.ingsw.GC_29.Client.GuiChangeHandler;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Controllers.*;
@@ -9,15 +10,15 @@ import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Created by Christian on 07/06/2017.
+ * Created by Christian on 01/07/2017.
  */
-public class ClientRMIView implements ClientViewRemote, Serializable {
-    
-
-    private transient InputChecker inputChecker;
+public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemote, Serializable {
 
     private transient RMIViewRemote serverViewStub;
 
@@ -25,17 +26,19 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
     private Map<CardColor, List<String>> towerCardsMap;
 
+    public ClientRMIViewGUI(){
 
-    public ClientRMIView(){
+        this.playerDevCard = new ArrayList<>();
 
+        this.towerCardsMap = new EnumMap<>(CardColor.class);
+
+        //rende remota questa classe
         try {
             UnicastRemoteObject.exportObject(this, 0);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
     }
-
 
     public void connectWithServerView(RMIViewRemote serverViewStub, InputChecker inputChecker){
 
@@ -53,66 +56,67 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
         if(c instanceof PlayerStateChange){
 
-            PlayerState currentPlayerState = ((PlayerStateChange)c).getNewPlayerState();
+            //PlayerState currentPlayerState = ((PlayerStateChange)c).getNewPlayerState();
 
-            handlePlayerState(currentPlayerState);
+            inputChecker.setCurrentPlayerState(((PlayerStateChange)c).getNewPlayerState());
 
-            System.out.println("if you want to see your valid input for this current state insert : help");
+            handlePlayerState(inputChecker.getCurrentPlayerState());
+
         }
 
         if(c instanceof GameChange){
 
-            GameState currentGameState = ((GameChange)c).getNewGameState();
+            inputChecker.setcurrentGameState(((GameChange)c).getNewGameState());
+        }
 
-            inputChecker.setcurrentGameState(currentGameState);
+        if (c instanceof GUIChange) {
+
+            GUIChange guiChange = (GUIChange)c;
+            guiChange.perform(listeners);
+
         }
     }
 
     private void handlePlayerState(PlayerState currentPlayerState) throws RemoteException {
 
-        inputChecker.setCurrentPlayerState(currentPlayerState);
+        //inputChecker.setCurrentPlayerState(currentPlayerState);
 
-        switch (currentPlayerState){
+        firePlayerState(inputChecker.getCurrentPlayerState());
+
+        switch (inputChecker.getCurrentPlayerState()){
 
             case DOACTION:
-                inputChecker.setFamilyPawnAvailability(serverViewStub.getFamilyPawnAvailability());
+                getFamilyPawnsAvailabilityGUI(serverViewStub.getFamilyPawns());
                 break;
 
 
             case CHOOSEACTION:
             case BONUSACTION:
-                inputChecker.setValidActionList(serverViewStub.getValidActionList());
-                inputChecker.printValidActionList();
+                validActionsGUI(serverViewStub.getValidActionList());
                 break;
 
             case CHOOSEWORKERS:
-                inputChecker.setPossibleCardsWorkActionMap(serverViewStub.getCardsForWorkers());
-                inputChecker.printPossibleCardsWorkAction();
+                getCardsForWorkersGUI(serverViewStub.getCardsForWorkers());
                 break;
 
             case ACTIVATE_PAY_TO_OBTAIN_CARDS:
-                inputChecker.setPayToObtainCardsMap(serverViewStub.getPayToObtainCards());
-                inputChecker.askActivateCard();
+                getPayToObtainCardsGUI(serverViewStub.getPayToObtainCards());
                 break;
 
             case CHOOSECOST:
-                inputChecker.setPossibleCosts(serverViewStub.getPossibleCosts());
-                inputChecker.askWhichCost();
+                getPossibleCostsGUI(serverViewStub.getPossibleCosts());
                 break;
 
             case CHOOSE_COUNCIL_PRIVILEGE:
-                inputChecker.setCouncilPrivilegeEffectList(serverViewStub.getCouncilPrivileges());
-                inputChecker.nextPrivilegeEffect();
-                inputChecker.askWhichPrivilege();
+                getCouncilPrivilegesGUI(serverViewStub.getCouncilPrivileges());
                 break;
 
             case CHOOSE_BONUS_TILE:
-                inputChecker.setBonusTileMap(serverViewStub.getBonusTileList());
-                inputChecker.askWhichBonusTile();
+                getBonusTilesGUI(serverViewStub.getBonusTileList());
                 break;
 
             case PRAY:
-                System.out.println("you have to decide whether to swear fidelity to the pope or not \n the valid input is : pray / do not pray");
+                getExcommunicationTileUrl("you have to decide whether to swear fidelity to the pope or not \n the valid input is : pray / do not pray");
                 break;
 
             //TODO: inserire gestione altri stati se necessario
@@ -120,7 +124,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
     }
 
 
-    public void getPlayerDevCard() throws RemoteException {
+    /*public void getPlayerDevCard() throws RemoteException {
 
         playerDevCard = serverViewStub.getDevelopmentCard(inputChecker.getPlayerCardColor());
 
@@ -138,13 +142,6 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
         for (String towerCard : towerCards) {
             System.out.println(towerCard);
         }
-    }
+    }*/
 
-    public InputChecker getInputChecker() {
-        return inputChecker;
-    }
-
-    public void setInputChecker(InputChecker inputChecker) {
-        this.inputChecker = inputChecker;
-    }
 }
