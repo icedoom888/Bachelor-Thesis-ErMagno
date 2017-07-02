@@ -178,6 +178,8 @@ public class WorkAction extends Action {
 
                 workersNeeded = card.getActionValue() - temporaryPawn.getActualValue() - workers;
 
+                if (workersNeeded < 0) workersNeeded = 0;
+
                 if (workersNeeded <= player.getActualGoodSet().getGoodAmount(GoodType.WORKERS) - workers) {
 
                     if (temporaryHash.get(workersNeeded) == null) {
@@ -225,6 +227,7 @@ public class WorkAction extends Action {
             }
         }
         cardsForWorkers = finalHash;
+
     }
 
 
@@ -234,9 +237,11 @@ public class WorkAction extends Action {
 
         List<DevelopmentCard> cardsToActivateList = cardsForWorkers.get(workersChosen);
 
+
         Boolean isPayToObtain = false;
 
         for (DevelopmentCard card : cardsToActivateList) {
+
 
             String cardKey = card.getSpecial();
 

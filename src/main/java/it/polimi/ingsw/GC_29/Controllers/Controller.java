@@ -26,7 +26,7 @@ public class Controller implements Observer<Input>  {
     private final long throwDicesTime = 150000;
     private final long chooseBonusTilesTime = 150000;
     private final long prayTime = 150000;
-    private final long turnTime = 15000;
+    private final long turnTime = 150000;
 
     private Integer playersPraying;
     private ActionChecker actionChecker;
@@ -664,7 +664,6 @@ public class Controller implements Observer<Input>  {
 
         if (workAction.handlePayToObtainCards(workers)) {
 
-            System.out.println("handlePay true");
 
             currentPlayer.setPlayerState(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS);
 

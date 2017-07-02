@@ -1608,6 +1608,9 @@ public class GameBoardController {
         prayPane.setVisible(false);
         yourTurnPane.setVisible(false);
         suspendedPane.setVisible(false);
+        yourTurnPane.setVisible(false);
+        throwDicesPane.setVisible(false);
+        bonusActionPane.setVisible(false);
 
     }
 
@@ -1683,6 +1686,7 @@ public class GameBoardController {
         setSkipAction(false);
 
         setEndTurn(false);
+
     }
 
 
