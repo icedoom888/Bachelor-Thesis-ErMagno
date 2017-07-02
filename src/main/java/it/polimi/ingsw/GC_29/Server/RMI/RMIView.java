@@ -254,6 +254,7 @@ public class RMIView extends View implements RMIViewRemote {
     public void privilegesChosen(List<Integer> councilPrivilegeEffectChosenList) throws RemoteException {
         try {
             notifyObserver(new PrivilegeChosen(councilPrivilegeEffectChosenList));
+            System.out.println("OBSERVER PRIVILEGI");
         } catch (Exception e) {
             e.printStackTrace();
         }

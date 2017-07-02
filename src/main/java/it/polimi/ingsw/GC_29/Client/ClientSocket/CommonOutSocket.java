@@ -174,7 +174,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
                 case "council privileges chosen GUI":
 
-                    socketOut.writeObject("council privilege chosen");
+                    socketOut.writeObject("council privileges chosen");
                     socketOut.flush();
                     socketOut.writeObject(councilPrivilegeEffectChosenList);
                     socketOut.flush();
