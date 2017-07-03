@@ -20,6 +20,12 @@ public class GuiChangeHandler {
     protected InputChecker inputChecker;
 
 
+    private void fireLeaders(Map<Integer, Boolean> leadersAvailable) {
+        for (GuiChangeListener listener : listeners) {
+            listener.sendLeaderCards(leadersAvailable);
+        }
+    }
+
     private void firePray(String excommunicationUrl) {
         for (GuiChangeListener listener : listeners) {
             listener.pray(excommunicationUrl);
@@ -190,7 +196,15 @@ public class GuiChangeHandler {
 
     }
 
+    protected void getAvailableLeaders(Map<Integer, Boolean> leadersAvailable) {
+        fireLeaders(leadersAvailable);
+    }
+
     public void setInputChecker(InputChecker inputChecker) {
         this.inputChecker = inputChecker;
     }
+
+
+
+
 }

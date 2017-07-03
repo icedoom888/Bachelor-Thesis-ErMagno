@@ -54,6 +54,24 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                         updateClientGUI();
                         break;
 
+                    case "Leader":
+
+                        try {
+
+                            System.out.println("Waiting for leaders\n");
+
+
+                            Map<Integer, Boolean> availableLeaders = (Map<Integer, Boolean>)socketIn.readObject();
+
+                            System.out.println("Leaders received\n");
+
+                            getAvailableLeaders(availableLeaders);
+                        } catch (IOException | ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+                        break;
+
                     /*
                     case "Valid Actions":
                         validActionsGUI();
@@ -150,6 +168,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             case DOACTION:
 
                 try {
+                    socketIn.readObject();
                     getFamilyPawnsAvailabilityGUI((Map<FamilyPawn, Boolean>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -176,6 +195,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             case CHOOSEACTION:
 
                 try {
+                    socketIn.readObject();
                     validActionsGUI((Map<Integer, String>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -200,6 +220,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             case CHOOSEWORKERS:
 
                 try {
+                    socketIn.readObject();
                     getCardsForWorkersGUI((Map<Integer, ArrayList<String>>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -224,6 +245,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             case ACTIVATE_PAY_TO_OBTAIN_CARDS:
 
                 try {
+                    socketIn.readObject();
                     getPayToObtainCardsGUI((Map<String, HashMap<Integer, String>>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -248,6 +270,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             case CHOOSECOST:
 
                 try {
+                    socketIn.readObject();
                     getPossibleCostsGUI((Map<Integer, String>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -272,6 +295,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             case CHOOSE_COUNCIL_PRIVILEGE:
 
                 try {
+                    socketIn.readObject();
                     getCouncilPrivilegesGUI((List<Integer>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -296,6 +320,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             case CHOOSE_BONUS_TILE:
 
                 try {
+                    socketIn.readObject();
                     getBonusTilesGUI((Map<Integer, String>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -321,6 +346,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             case PRAY:
 
                 try {
+                    socketIn.readObject();
                     getExcommunicationTileUrl((String)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -342,6 +368,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                 }*/
 
                 break;
+
 
         }
     }

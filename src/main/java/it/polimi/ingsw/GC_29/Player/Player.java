@@ -19,8 +19,6 @@ public class Player extends Observable<Change> {
     private PersonalBoard personalBoard;
 
     private ArrayList<LeaderCard> leaderCards;
-    private HashMap<LeaderCard, Boolean> permanentLeaders;
-    private HashMap<LeaderCard, Boolean> oncePerRoundLeaders;
 
     private ArrayList<ExcommunicationTile> excommunicationTiles;
 
@@ -57,10 +55,6 @@ public class Player extends Observable<Change> {
         this.personalBoard = personalBoard;
 
         this.leaderCards = new ArrayList<>();
-
-         // TODO: decidere se rendere parametrico numero leader card
-        this.oncePerRoundLeaders = new HashMap<>();
-        this.permanentLeaders = new HashMap<>();
 
         this.councilPrivilegeEffectList = new ArrayList<>();
 
@@ -165,13 +159,7 @@ public class Player extends Observable<Change> {
 
 
 
-    public HashMap<LeaderCard, Boolean> getPermanentLeaders() {
-        return permanentLeaders;
-    }
 
-    public HashMap<LeaderCard, Boolean> getOncePerRoundLeaders() {
-        return oncePerRoundLeaders;
-    }
 
     public List<FamilyPawn> getFamilyPawns() {
 
@@ -295,14 +283,7 @@ public class Player extends Observable<Change> {
 
         this.leaderCards = leaderCards;
 
-        for (LeaderCard leaderCard : this.leaderCards) {
-
-            if (leaderCard.isPermanent()) {
-                this.permanentLeaders.put(leaderCard, true);
-            }
-
-            else this.oncePerRoundLeaders.put(leaderCard, true);
-        }
+        System.out.println("\n\nLEADER CARDS SETTED: size: " + leaderCards.size());
 
         updateLeaderGUI();
     }
@@ -349,14 +330,6 @@ public class Player extends Observable<Change> {
         }
     }
 
-    public void answerLeaderCard(boolean isPossible, boolean permanent) {
-
-        try {
-            notifyObserver(new ActivateLeader(isPossible, permanent));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void setLastState(PlayerState lastState) {
         this.lastState = lastState;

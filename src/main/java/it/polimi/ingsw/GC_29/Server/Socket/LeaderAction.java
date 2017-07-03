@@ -35,14 +35,13 @@ public class LeaderAction extends Input {
                 LeaderCard leaderCard = player.getLeaderCards().get(leaderIndex);
 
                 if (activate) {
-                    if (leaderCard.isPossible(player)) {
-                        System.out.println("leader action possible\n");
-                        leaderCard.execute(player);
+
+                    leaderCard.execute(player);
                     }
-                }
+
 
                 else {
-                    player.getLeaderCards().remove(leaderIndex);
+                    player.getLeaderCards().get(leaderIndex).setDiscarded();
                     player.setLastState(player.getPlayerState());
                     player.setPlayerState(PlayerState.DISCARDINGLEADER);
                 }

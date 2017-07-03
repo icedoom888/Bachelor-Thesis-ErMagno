@@ -182,11 +182,14 @@ public class Controller implements Observer<Input>  {
 
     private void setLeaderValues(Player player) {
 
-        HashMap<LeaderCard, Boolean> playerLeaderCards = player.getOncePerRoundLeaders();
+        List<LeaderCard> playerLeaderCards = player.getLeaderCards();
 
         if(!playerLeaderCards.isEmpty()){
-            for (LeaderCard leaderCard : playerLeaderCards.keySet()) {
-                playerLeaderCards.put(leaderCard, true);
+
+            for (LeaderCard playerLeaderCard : playerLeaderCards) {
+                if (!(playerLeaderCard.isPermanent() || playerLeaderCard.isDiscarded())) {
+                    playerLeaderCard.setActivated(false);
+                }
             }
         }
 

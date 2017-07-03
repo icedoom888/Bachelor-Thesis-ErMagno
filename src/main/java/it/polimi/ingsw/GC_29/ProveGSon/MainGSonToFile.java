@@ -15,19 +15,10 @@ import java.util.*;
 /**
  * Created by Lorenzotara on 22/05/17.
  */
-public class MainGSonToFile {
+/*public class MainGSonToFile {
 
     public static void main(String[] args) throws IOException {
 
-
-        /* GameBoard
-
-        int[] victoryPointsForFaithTrack = {0,1,2,3,4,5,7,9,11,13,15,17,19,22,25,30};
-
-        FaithPointsTrack faithPointsTrack = new FaithPointsTrack(5,16,victoryPointsForFaithTrack);
-
-
-        GameBoard gameBoard = new GameBoard(5, faithPointsTrack);*/
 
         ArrayList<LeaderCard> leaderCards = new ArrayList<>();
         HashMap<CardColor,Integer> requirementCard1 = new HashMap<>();
@@ -180,5 +171,6 @@ public class MainGSonToFile {
 
     }
 
-
 }
+*/
+

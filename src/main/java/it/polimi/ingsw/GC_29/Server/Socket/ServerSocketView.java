@@ -43,6 +43,7 @@ public class ServerSocketView extends View implements Runnable {
     public void update(Change o) throws Exception {
 
         System.out.println("UPDATE from Server");
+        System.out.println(o);
         socketOut.writeObject("Change");
         socketOut.flush();
         socketOut.reset();
@@ -203,6 +204,23 @@ public class ServerSocketView extends View implements Runnable {
             }
         }*/
 
+        if (q instanceof GetAvailableLeaderCards) {
+
+            System.out.println("BEFORE PERFORMING QUERY\n\n");
+
+            sendOut("Leader");
+
+            GetAvailableLeaderCards query = (GetAvailableLeaderCards)q;
+
+            System.out.println("C'è CASINO PRIMA DI QUI? SE NO è LA PERFORM IL PROBLEMA");
+
+            Map<Integer, Boolean> validLeaders = query.perform(model);
+
+            System.out.println("SENDING MAP\n\n");
+
+            sendOut(validLeaders);
+        }
+
         if (q instanceof GetValidActions) {
 /*
             try {
@@ -212,6 +230,9 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+
+            sendOut("Valid Actions");
+
             GetValidActions query = (GetValidActions) q;
 
             Map<Integer, String> validActions = query.perform(model);
@@ -228,6 +249,10 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+
+            sendOut("Get Cards For Workers");
+
+
             GetCardsForWorkers query = (GetCardsForWorkers) q;
 
             Map<Integer, ArrayList<String>> cardsForWorkers = query.perform(model);
@@ -244,6 +269,9 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+
+            sendOut("Get Possible Costs");
+
             GetPossibleCosts query = (GetPossibleCosts) q;
 
             Map<Integer, String> possibleCosts = query.perform(model);
@@ -260,6 +288,9 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+
+            sendOut("Get Council Privileges");
+
             GetCouncilPrivileges query = (GetCouncilPrivileges) q;
 
             List<Integer> councilPrivileges = query.perform(model);
@@ -278,6 +309,9 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+
+            sendOut("Get GoodSet");
+
             GetGoodSet query = (GetGoodSet) q;
 
             GoodSet goodSet = query.perform(model);
@@ -294,6 +328,9 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+
+            sendOut("Get Development Cards");
+
             GetDevelopmentCard query = (GetDevelopmentCard) q;
 
             List<String> developmentCards = query.perform(model);
@@ -310,6 +347,10 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+
+            sendOut("Get Tower Cards");
+
+
             GetTowerCard query = (GetTowerCard) q;
 
             List<String> towerCards = query.perform(model);
@@ -326,6 +367,10 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+
+            sendOut("Get Family Pawns Availability");
+
+
             GetFamilyPawnAvailability query = (GetFamilyPawnAvailability) q;
 
             Map<FamilyPawn, Boolean> familyPawns = query.perform(model);
@@ -344,6 +389,9 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+
+            sendOut("Get Bonus Tile");
+
             GetBonusTile query = (GetBonusTile) q;
 
             Map<Integer, String> bonusTiles = query.perform(model);
@@ -361,6 +409,9 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
 */
+            sendOut("Get Pay To Obtain Cards");
+
+
             GetPayToObtainCards query = (GetPayToObtainCards) q;
 
             Map<String, HashMap<Integer, String>> payToObtainCards = query.perform(model);
@@ -379,6 +430,10 @@ public class ServerSocketView extends View implements Runnable {
                 e.printStackTrace();
             }
             */
+
+            sendOut("Get Excommunication");
+
+
             GetExcommunication query = (GetExcommunication) q;
 
             String excommunicationUrl = query.perform(model);
