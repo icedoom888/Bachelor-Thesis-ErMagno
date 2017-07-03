@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client;
 
+import com.sun.media.jfxmedia.events.PlayerStateEvent;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.GameState;
@@ -62,7 +63,11 @@ public class InputChecker {
 
     private Map<Integer, String> bonusTileMap;
     private int bonusTileChosen;
-    private int leaderIndex;
+
+    //////LEADERCARD VARIABLES//////
+    private Map<Integer, Boolean> leaderCardMap;
+    private int leaderChosenIndex;
+    private List<String> leaderCards;
 
     public InputChecker(){
 
@@ -89,6 +94,10 @@ public class InputChecker {
         currentParchmentList = new ArrayList<>();
 
         bonusTileMap = new HashMap<>();
+
+        leaderCardMap = new HashMap<>();
+
+        leaderCards = new ArrayList<>();
 
         //TODO dalla view ad ogni update devo settare i valori giusti (pawnAvailability, playerState, gameState)
     }
@@ -359,7 +368,7 @@ public class InputChecker {
 
     private String handleLeaderCard(String lastWord, boolean b) {
 
-        // TODO: implementa quando fai Leader Card
+
 
         return "";
     }
@@ -727,7 +736,28 @@ public class InputChecker {
         return familyPawnAvailability;
     }
 
-    public int getLeaderIndex() {
-        return leaderIndex;
+    public int getLeaderChosenIndex() {
+        return leaderChosenIndex;
+    }
+
+    public void setLeaderCardMap(Map<Integer, Boolean> leaderCardMap){
+
+        this.leaderCardMap = leaderCardMap;
+    }
+
+    public void showLeaderCardMap(){
+
+        setCurrentPlayerState(PlayerState.LEADER_CARDS);
+
+        System.out.println("these are your lea");
+
+        for(int index = 0; index < leaderCards.size(); index++){
+
+            System.out.println();
+        }
+    }
+
+    public void setLeaderCards(List<String> leaderCards) {
+        this.leaderCards = leaderCards;
     }
 }

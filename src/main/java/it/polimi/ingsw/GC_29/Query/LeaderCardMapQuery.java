@@ -12,11 +12,11 @@ import java.util.Map;
 /**
  * Created by Christian on 03/07/2017.
  */
-public class LeaderCardQuery extends Query<Map<Integer, Boolean>> {
+public class LeaderCardMapQuery extends Query<Map<Integer, Boolean>> {
 
     private PlayerColor playerColor;
 
-    public LeaderCardQuery(PlayerColor playerColor){
+    public LeaderCardMapQuery(PlayerColor playerColor){
 
         this.playerColor = playerColor;
     }

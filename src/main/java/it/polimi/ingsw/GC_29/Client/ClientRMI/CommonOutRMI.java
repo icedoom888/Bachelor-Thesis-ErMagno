@@ -173,14 +173,20 @@ public class CommonOutRMI implements InputInterfaceGUI{
                     serverViewStub.pray(false, playerColor);
                     break;
 
+                case "use leader cards":
+                    inputChecker.setLeaderCards(serverViewStub.getLeaderCards(playerColor));
+                    inputChecker.setLeaderCardMap(serverViewStub.getLeaderCardsMap(playerColor));
+                    break;
+
                 case "activate leader card":
-                    int index = inputChecker.getLeaderIndex();
+                    int index = inputChecker.getLeaderChosenIndex();
                     serverViewStub.leaderAction(true, index, playerColor);
                     break;
 
                 case "discard leader card":
-                    index = inputChecker.getLeaderIndex();
+                    index = inputChecker.getLeaderChosenIndex();
                     serverViewStub.leaderAction(false, index, playerColor);
+                    break;
 
                 case "see my goodset":
                     System.out.println(serverViewStub.getPlayerGoodset());

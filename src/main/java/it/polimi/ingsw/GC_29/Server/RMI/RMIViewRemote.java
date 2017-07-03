@@ -79,7 +79,11 @@ public interface RMIViewRemote extends Remote {
 
     void joinGame(PlayerColor playerCardColor) throws  RemoteException;
 
-    void leaderAction(boolean b, int index, PlayerColor playerColor);
+    void leaderAction(boolean b, int index, PlayerColor playerColor) throws RemoteException;
 
-    void privilegeLeader(List<Integer> councilPrivilegeEffectChosenList, PlayerColor playerColor);
+    void privilegeLeader(List<Integer> councilPrivilegeEffectChosenList, PlayerColor playerColor) throws RemoteException;
+
+    Map<Integer,Boolean> getLeaderCardsMap(PlayerColor playerColor) throws RemoteException;
+
+    List<String> getLeaderCards(PlayerColor playerColor) throws RemoteException;
 }

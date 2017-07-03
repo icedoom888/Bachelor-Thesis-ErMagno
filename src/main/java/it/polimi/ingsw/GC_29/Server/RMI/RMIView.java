@@ -8,9 +8,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Query.GetBonusTile;
-import it.polimi.ingsw.GC_29.Query.GetFamilyPawnAvailability;
-import it.polimi.ingsw.GC_29.Query.GetValidActions;
+import it.polimi.ingsw.GC_29.Query.*;
 import it.polimi.ingsw.GC_29.Server.Socket.LeaderAction;
 import it.polimi.ingsw.GC_29.Server.Socket.PrivilegeChosenLeader;
 import it.polimi.ingsw.GC_29.Server.View;
@@ -227,7 +225,7 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
-    public void leaderAction(boolean b, int index, PlayerColor playerColor) {
+    public void leaderAction(boolean b, int index, PlayerColor playerColor) throws RemoteException{
         try {
             notifyObserver(new LeaderAction(b, index, playerColor));
         } catch (Exception e) {
@@ -236,12 +234,22 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
-    public void privilegeLeader(List<Integer> councilPrivilegeEffectChosenList, PlayerColor playerColor) {
+    public void privilegeLeader(List<Integer> councilPrivilegeEffectChosenList, PlayerColor playerColor) throws RemoteException{
         try {
             notifyObserver(new PrivilegeChosenLeader(councilPrivilegeEffectChosenList, playerColor));
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Map<Integer, Boolean> getLeaderCardsMap(PlayerColor playerColor) throws RemoteException {
+        return new LeaderCardMapQuery(playerColor).perform(gameStatus);
+    }
+
+    @Override
+    public List<String> getLeaderCards(PlayerColor playerColor) throws RemoteException {
+        return new LeaderCardsQuery(playerColor).perform(gameStatus);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class InstructionSet {
     private final Instruction seeCardsDevelopment = new Instruction("see my development cards (insert type)",
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)), "see my cards \\w+");
 
-    private final Instruction seeCardsLeader = new Instruction("see my leader cards",
+    private final Instruction seeCardsLeader = new Instruction("use leader cards",
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN, PlayerState.WAITING)));
 
     private final Instruction seeCardsExcommunication = new Instruction("see my excommunication cards",
