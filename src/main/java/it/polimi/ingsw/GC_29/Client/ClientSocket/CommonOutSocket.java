@@ -38,7 +38,8 @@ public class CommonOutSocket implements InputInterfaceGUI{
             // Implements the communication protocol, creating the Actions corresponding to the input of the user
 
             if (!inputLine.contentEquals("activated cards GUI")
-                    && !inputLine.contentEquals("council privileges chosen GUI")) {
+                    && !inputLine.contentEquals("council privileges chosen GUI")
+                    && !inputLine.contentEquals("council privileges chosen leader GUI")) {
 
                 inputLine = inputChecker.checkInput(inputLine);
             }
@@ -164,10 +165,22 @@ public class CommonOutSocket implements InputInterfaceGUI{
                         inputChecker.askWhichPrivilege();
                     }
                     else {
-                        socketOut.writeObject("council privileges chosen");
-                        socketOut.flush();
-                        socketOut.writeObject(inputChecker.getCouncilPrivilegeEffectChosenList());
-                        socketOut.flush();
+
+                        if (inputChecker.getCurrentPlayerState() == PlayerState.CHOOSE_COUNCIL_PRIVILEGE) {
+                            socketOut.writeObject("council privileges chosen");
+                            socketOut.flush();
+                            socketOut.writeObject(inputChecker.getCouncilPrivilegeEffectChosenList());
+                            socketOut.flush();
+                        }
+
+                        else if (inputChecker.getCurrentPlayerState() == PlayerState.DISCARDINGLEADER) {
+
+                            socketOut.writeObject("council privileges chosen leader");
+                            socketOut.flush();
+                            socketOut.writeObject(inputChecker.getCouncilPrivilegeEffectChosenList());
+                            socketOut.flush();
+                            socketOut.writeObject(playerColor);
+                        }
                     }
                     break;
 
@@ -177,7 +190,15 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.flush();
                     socketOut.writeObject(councilPrivilegeEffectChosenList);
                     socketOut.flush();
-                    System.out.println("LISTA PRIVILEGI SCELTA INVIATA");
+                    break;
+
+                case "council privileges chosen leader GUI":
+
+                    socketOut.writeObject("council privileges chosen leader");
+                    socketOut.flush();
+                    socketOut.writeObject(councilPrivilegeEffectChosenList);
+                    socketOut.flush();
+                    socketOut.writeObject(playerColor);
                     break;
 
 
@@ -193,6 +214,25 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.flush();
                     socketOut.writeObject(playerColor);
                     socketOut.flush();
+                    break;
+
+                case "activate leader card":
+                    index = inputChecker.getLeaderIndex();
+                    socketOut.writeObject("activate leader card");
+                    socketOut.flush();
+                    socketOut.writeObject(index);
+                    socketOut.flush();
+                    socketOut.writeObject(playerColor);
+                    break;
+
+
+                case "discard leader card":
+                    index = inputChecker.getLeaderIndex();
+                    socketOut.writeObject("discard leader card");
+                    socketOut.flush();
+                    socketOut.writeObject(index);
+                    socketOut.flush();
+                    socketOut.writeObject(playerColor);
                     break;
 
                 case "see my goodset":
@@ -245,10 +285,12 @@ public class CommonOutSocket implements InputInterfaceGUI{
     }
 
     @Override
-    public void sendInput(List<Integer> councilPrivilegeEffectChosenList) {
+    public void sendInput(List<Integer> councilPrivilegeEffectChosenList, boolean councilPrivilege) {
         setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
-        sendInput("council privileges chosen GUI");
-        System.out.println("SEND INPUT CHIAMATO");
+        if (councilPrivilege) {
+            sendInput("council privileges chosen GUI");
+        }
+        else sendInput("council privileges chosen leader GUI");
     }
 
 

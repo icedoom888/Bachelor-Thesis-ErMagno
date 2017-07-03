@@ -29,6 +29,7 @@
   },
   {
     "leaderName": "Sigismondo Malatesta",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_14.jpg",
     "requirement": {
       "goodSetRequired": {
         "goodSetMap": {
@@ -205,6 +206,7 @@
   },
   {
     "leaderName": "Lucrezia Borgia",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_13.jpg",
     "requirement": {
       "cardsRequired": {
         "ANY": 6
@@ -394,6 +396,7 @@
   },
   {
     "leaderName": "Pico della Mirandola",
+    "url": "lorenzo_materiale_grafico_compr/Lorenzo_Leaders_compressed/leaders_f_c_11.jpg",
     "requirement": {
       "cardsRequired": {
         "YELLOW": 2,

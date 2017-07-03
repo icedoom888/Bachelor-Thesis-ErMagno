@@ -11,6 +11,8 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.GetBonusTile;
 import it.polimi.ingsw.GC_29.Query.GetFamilyPawnAvailability;
 import it.polimi.ingsw.GC_29.Query.GetValidActions;
+import it.polimi.ingsw.GC_29.Server.Socket.LeaderAction;
+import it.polimi.ingsw.GC_29.Server.Socket.PrivilegeChosenLeader;
 import it.polimi.ingsw.GC_29.Server.View;
 
 import java.rmi.RemoteException;
@@ -196,6 +198,24 @@ public class RMIView extends View implements RMIViewRemote {
     public void joinGame(PlayerColor playerCardColor) throws RemoteException {
         try {
             notifyObserver(new JoinGame(playerCardColor));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void leaderAction(boolean b, int index, PlayerColor playerColor) {
+        try {
+            notifyObserver(new LeaderAction(b, index, playerColor));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void privilegeLeader(List<Integer> councilPrivilegeEffectChosenList, PlayerColor playerColor) {
+        try {
+            notifyObserver(new PrivilegeChosenLeader(councilPrivilegeEffectChosenList, playerColor));
         } catch (Exception e) {
             e.printStackTrace();
         }

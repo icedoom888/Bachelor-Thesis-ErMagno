@@ -78,4 +78,8 @@ public interface RMIViewRemote extends Remote {
     Map<FamilyPawn,Boolean> getFamilyPawns() throws  RemoteException;
 
     void joinGame(PlayerColor playerCardColor) throws  RemoteException;
+
+    void leaderAction(boolean b, int index, PlayerColor playerColor);
+
+    void privilegeLeader(List<Integer> councilPrivilegeEffectChosenList, PlayerColor playerColor);
 }

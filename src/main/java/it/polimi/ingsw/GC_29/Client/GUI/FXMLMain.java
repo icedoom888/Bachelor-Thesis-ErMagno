@@ -640,6 +640,55 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
+
+    private void leaderOnGui(ArrayList<String> leaderUrls) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.updateLeaderCards(leaderUrls);
+
+
+            }
+        });
+
+    }
+
+
+    private void setExcommunicationTiles(ArrayList<String> excommunicationTiles) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.updateExcomunicationTiles(excommunicationTiles);
+
+
+            }
+        });
+
+    }
+
+    private void answerLeaderAction(boolean possible, boolean permanent) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.activationLeaders(possible, permanent);
+
+
+            }
+        });
+    }
+
+
+
+
     class GuiListener implements GuiChangeListener{
 
         @Override
@@ -678,6 +727,11 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         @Override
         public void onReadingChange(ExcommunicationChange excommunicationChange) {
             setExcommunicationTiles(excommunicationChange.getExcommunicationTiles());
+        }
+
+        @Override
+        public void onReadingChange(ActivateLeader activateLeader) {
+            answerLeaderAction(activateLeader.isPossible(), activateLeader.isPermanent());
         }
 
         @Override
@@ -742,23 +796,13 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             chooseBonusTile(bonusTiles);
 
         }
+
+        @Override
+        public void setLeaderCards(ArrayList<String> leaderUrls) {
+
+            leaderOnGui(leaderUrls);
+        }
     }
-    private void setExcommunicationTiles(ArrayList<String> excommunicationTiles) {
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-
-
-                gameBoardController.updateExcomunicationTiles(excommunicationTiles);
-
-
-            }
-        });
-
-    }
-
-
 
 
 

@@ -174,6 +174,14 @@ public class ClientInHandlerCLI implements Runnable {
                 System.out.println("you have to decide whether to swear fidelity to the pope or not \n the valid input is : pray / do not pray");
                 break;
 
+            case DISCARDINGLEADER:
+
+                List<Integer> councilPrivileges = new ArrayList<>();
+                councilPrivileges.add(1);
+                inputChecker.setCouncilPrivilegeEffectList(councilPrivileges);
+                inputChecker.nextPrivilegeEffect();
+                inputChecker.askWhichPrivilege();
+                break;
         }
     }
 

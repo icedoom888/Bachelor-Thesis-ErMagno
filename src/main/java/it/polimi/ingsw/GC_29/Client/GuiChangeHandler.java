@@ -31,7 +31,6 @@ public class GuiChangeHandler {
 
         for (GuiChangeListener listener : listeners) {
             listener.changeState(currentPlayerState);
-            System.out.println("HO AVVERTITO LISTENER DEL CHANGE STATE");
         }
 
     }

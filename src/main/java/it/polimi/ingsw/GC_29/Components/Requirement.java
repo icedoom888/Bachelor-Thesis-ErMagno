@@ -13,6 +13,7 @@ public class Requirement {
     private HashMap<CardColor, Integer> cardsRequired;
 
     public Requirement(GoodSet goodSetRequired, HashMap<CardColor, Integer> cardsRequired) {
+
         this.goodSetRequired = goodSetRequired;
         this.cardsRequired = cardsRequired;
     }
@@ -29,24 +30,29 @@ public class Requirement {
 
         boolean isPossible = true;
 
-        for (CardColor cardColor : cardsRequired.keySet()) {
+        if (cardsRequired != null) {
 
-            if (cardColor != CardColor.ANY) {
+            for (CardColor cardColor : cardsRequired.keySet()) {
 
-                isPossible = isPossible && (cardsRequired.get(cardColor) <= playerCards.get(cardColor));
+                if (cardColor != CardColor.ANY) {
+
+                    isPossible = isPossible && (cardsRequired.get(cardColor) <= playerCards.get(cardColor));
+                }
+
+                else {
+
+                    isPossible = isPossible && anyColor(playerCards);
+
+
+                }
+
             }
-
-            else {
-
-                isPossible = isPossible && anyColor(playerCards);
-
-
-            }
-
         }
 
-        for (GoodType goodType : GoodType.values()) {
-            isPossible = isPossible && (getGoodSetRequired().getGoodAmount(goodType) <= playerGoodSet.getGoodAmount(goodType));
+        if (goodSetRequired != null) {
+            for (GoodType goodType : GoodType.values()) {
+                isPossible = isPossible && (getGoodSetRequired().getGoodAmount(goodType) <= playerGoodSet.getGoodAmount(goodType));
+            }
         }
 
         return isPossible;

@@ -71,6 +71,9 @@ public class Track implements Cleanable {
         Pawn realPawn = pawnSlot.findPawn(pawn);
 
         if (realPawn != null) {
+
+            if (index + increment < 0) increment = - index;
+
             track[index].removePawn(realPawn);
             track[index + increment].addPawn(realPawn);
             pawnMap.put(realPawn,index + increment);

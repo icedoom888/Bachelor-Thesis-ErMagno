@@ -39,9 +39,11 @@ public class ObjectDeserializer {
 
     private final String bonustilesFilePath = "bonusTiles/bonusTiles";
     private final String excommunicationFilePath = "excommunicationTiles/excommunications";
+    private final String leaderFilePath = "leaderCards/leader";
 
     private Type bonusTileMapType = new TypeToken<Map<Integer,BonusTile>>(){}.getType();
     private Type excommunicationTileListType = new TypeToken<List<ExcommunicationTile>>(){}.getType();
+    private Type leaderCardsListType = new TypeToken<List<LeaderCard>>(){}.getType();
 
     private Gson gsonCardDeserializer;
 
@@ -177,6 +179,13 @@ public class ObjectDeserializer {
         eraAndExcomm.put(Era.THIRD, thirdEra);
 
         return eraAndExcomm;
+    }
+
+    public ArrayList<LeaderCard> getLeaderCards() throws FileNotFoundException {
+
+        FileReader fileReader = new FileReader(leaderFilePath);
+
+        return gsonBuilder.create().fromJson(fileReader, leaderCardsListType);
     }
 }
 

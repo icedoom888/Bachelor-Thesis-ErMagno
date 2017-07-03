@@ -69,14 +69,18 @@ public class LeaderCard {
             available = player.getOncePerRoundLeaders().get(this);
         }
 
-        return requirement.isPossible(playerCards, playerGoodSet)
-                && available;
+        boolean isPossible = requirement.isPossible(playerCards, playerGoodSet) && available;
+
+        player.answerLeaderCard(isPossible, permanent);
+
+        return isPossible;
 
     }
 
-    public void executeEffect(Player player) throws Exception {
+    public void execute(Player player) throws Exception {
 
         if (effect != null) {
+            System.out.println("executing the effect of the leader card\n");
             effect.execute(player);
         }
 
