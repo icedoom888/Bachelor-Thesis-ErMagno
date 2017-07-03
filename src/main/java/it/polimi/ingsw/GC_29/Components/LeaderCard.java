@@ -21,6 +21,8 @@ public class LeaderCard {
     private BonusAndMalusOnAction bonusAndMalusOnAction;
     private BonusAndMalusOnCost bonusAndMalusOnCost;
     private BonusAndMalusOnGoods bonusAndMalusOnGoods;
+    private boolean discarded;
+    private boolean activated;
 
 
     public LeaderCard(String leaderName, String url, Requirement requirement, boolean permanent, Effect effect) {
@@ -62,12 +64,7 @@ public class LeaderCard {
 
         Boolean available;
 
-        if (permanent) {
-            available = player.getPermanentLeaders().get(this);
-        }
-        else {
-            available = player.getOncePerRoundLeaders().get(this);
-        }
+        available = !discarded && !activated;
 
         boolean isPossible = requirement.isPossible(playerCards, playerGoodSet) && available;
 
@@ -96,10 +93,16 @@ public class LeaderCard {
             player.getBonusAndMalusOnCost().add(bonusAndMalusOnCost);
         }
 
+        activated = true;
+
+
+/*
         if (permanent) {
             player.getPermanentLeaders().put(this, false);
         }
         else player.getOncePerRoundLeaders().put(this, false);
+
+        */
 
     }
 
@@ -117,5 +120,21 @@ public class LeaderCard {
 
     public String getUrl() {
         return url;
+    }
+
+    public void setDiscarded() {
+        discarded = true;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public boolean isDiscarded() {
+        return discarded;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 }

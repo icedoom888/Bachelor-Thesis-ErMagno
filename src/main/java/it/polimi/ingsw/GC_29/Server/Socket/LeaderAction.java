@@ -42,7 +42,7 @@ public class LeaderAction extends Input {
                 }
 
                 else {
-                    player.getLeaderCards().remove(leaderIndex);
+                    player.getLeaderCards().get(leaderIndex).setDiscarded();
                     player.setLastState(player.getPlayerState());
                     player.setPlayerState(PlayerState.DISCARDINGLEADER);
                 }
