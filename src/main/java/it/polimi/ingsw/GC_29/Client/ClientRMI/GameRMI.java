@@ -213,4 +213,10 @@ public class GameRMI extends CommonOutRMI implements Runnable {
     public ClientRMIViewGUI getClientRMIViewGUI() {
         return clientRMIViewGUI;
     }
+
+    public void joinGame() throws RemoteException {
+
+        serverViewStub.joinGame(playerColor);
+
+    }
 }

@@ -26,7 +26,7 @@ public class Controller implements Observer<Input>  {
     private final long throwDicesTime = 150000;
     private final long chooseBonusTilesTime = 150000;
     private final long prayTime = 150000;
-    private final long turnTime = 150000;
+    private final long turnTime = 500000;
 
     private Integer playersPraying;
     private ActionChecker actionChecker;
@@ -35,6 +35,8 @@ public class Controller implements Observer<Input>  {
 
     private List<Player> playerSuspended;
 
+    private List<Player> playerReconnected;
+
 
     public Controller(GameStatus model){
         this.model = model;
@@ -42,6 +44,8 @@ public class Controller implements Observer<Input>  {
         actionChecker = new ActionChecker(model);
 
         playerSuspended = new ArrayList<>();
+
+        playerReconnected = new ArrayList<>();
 
         //setCardsOnTowers();
 
@@ -756,5 +760,11 @@ public class Controller implements Observer<Input>  {
         return timer;
     }
 
+    public List<Player> getPlayerReconnected() {
+        return playerReconnected;
+    }
 
+    private void handleReconnectedPlayers(){
+        //TODO: usa questo metodo per riaggiornare le view
+    }
 }

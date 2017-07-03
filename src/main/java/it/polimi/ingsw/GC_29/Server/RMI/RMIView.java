@@ -28,10 +28,18 @@ public class RMIView extends View implements RMIViewRemote {
 
     private GameStatus gameStatus;
 
+    private PlayerColor playerColor;
 
-    public RMIView(GameStatus gameStatus){
+    private String username;
+
+
+    public RMIView(GameStatus gameStatus, PlayerColor playerColor, String username){
 
         this.gameStatus = gameStatus;
+
+        this.playerColor = playerColor;
+
+        this.username = username;
 
         this.validActionQuery = new GetValidActions();
     }
@@ -44,8 +52,23 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
-    public void update(Change o) throws RemoteException {
-        clientView.updateClient(o);
+    public void update(Change o)  {
+        try {
+            clientView.updateClient(o);
+
+        } catch (RemoteException e) {
+            //e.printStackTrace();
+            gameStatus.getPlayer(playerColor).unregisterObserver(this);
+            gameStatus.unregisterObserver(this);
+            logoutInterface.clientDisconnected(username);
+            System.out.println("CLIENT DISCONNECTED. CLIENT SUSPENDED");
+            //gameStatus.getPlayer(playerColor).setPlayerState(PlayerState.SUSPENDED);
+            try {
+                notifyObserver(new Disconnection(playerColor));
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -193,9 +216,9 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
-    public void joinGame(PlayerColor playerCardColor) throws RemoteException {
+    public void joinGame(PlayerColor playerColor) throws RemoteException {
         try {
-            notifyObserver(new JoinGame(playerCardColor));
+            notifyObserver(new JoinGame(playerColor));
         } catch (Exception e) {
             e.printStackTrace();
         }

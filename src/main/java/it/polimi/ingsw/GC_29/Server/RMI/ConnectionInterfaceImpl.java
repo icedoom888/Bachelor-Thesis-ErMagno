@@ -22,15 +22,26 @@ public class ConnectionInterfaceImpl extends UnicastRemoteObject implements Conn
 
     @Override
     public Boolean login(String username, String password) throws RemoteException {
-        String pw = gameMatchHandler.getUserPassword().get(username);
 
-        if (pw == null) {
-            gameMatchHandler.getUserPassword().put(username, password);
-            //records.put(username, 0);
-            return true;
+        if(gameMatchHandler.verifyLoggedClient(username)){
+
+            return false;
         }
 
-        return password.equals(pw);
+        else {
+
+            String pw = gameMatchHandler.getUserPassword().get(username);
+
+            if (pw == null) {
+                gameMatchHandler.getUserPassword().put(username, password);
+                return true;
+            }
+
+            return password.equals(pw);
+
+        }
+
+
     }
 
     @Override

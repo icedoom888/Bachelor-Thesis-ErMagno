@@ -25,11 +25,16 @@ public class EndTurn extends Input {
     @Override
     public void perform(GameStatus model, Controller controller) throws Exception {
 
+        //TODO: qui devi inserire il controllo sulla lista dei riconessi e chiamare il metodo handleReconnectedPlayers
+
         controller.stopTimer();
 
         Player currentPlayer = model.getCurrentPlayer();
 
-        currentPlayer.setPlayerState(PlayerState.WAITING);
+        if(currentPlayer.getPlayerState() != PlayerState.SUSPENDED){
+            currentPlayer.setPlayerState(PlayerState.WAITING);
+        }
+
 
         List<Player> turnOrder = model.getTurnOrder();
 

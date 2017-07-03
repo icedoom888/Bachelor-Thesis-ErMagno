@@ -95,9 +95,10 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
         if(logged){
 
+            gameRMI = new GameRMI();
+
             connectionStub.addClient(this);
 
-            gameRMI = new GameRMI();
         }
 
         return logged;
@@ -133,11 +134,12 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
         }
 
+        gameRMI = new GameRMI();
+
         System.out.println(" login successful");
 
         connectionStub.addClient(this);
 
-        gameRMI = new GameRMI();
 
     }
 
@@ -193,6 +195,17 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
     @Override
     public Distribution getDistribution() throws RemoteException {
         return distribution;
+    }
+
+    @Override
+    public void joinGame() throws RemoteException {
+
+        gameRMI.joinGame();
+
+        if(gameInterface == EnumInterface.CLI){
+
+            executor.submit(gameRMI);
+        }
     }
 
     public GameRMI getGameRMI() {

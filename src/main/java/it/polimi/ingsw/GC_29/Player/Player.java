@@ -121,6 +121,9 @@ public class Player extends Observable<Change> {
 
     public void setPlayerState(PlayerState playerState) {
 
+        System.out.println("STO CAMBIANDO STATO PLAYER IN " + playerState);
+        System.out.println("SONO IL PLAYER " + playerID);
+
         if (this.playerState != PlayerState.SUSPENDED) {
 
             synchronized (lock) {

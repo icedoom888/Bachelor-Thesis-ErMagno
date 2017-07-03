@@ -1,15 +1,18 @@
 package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
+import it.polimi.ingsw.GC_29.Controllers.GameState;
+import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Components.PersonalBoard;
-import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Server.RMI.RMIView;
+import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;
 
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,9 +20,13 @@ import java.util.concurrent.Executors;
 /**
  * Created by Christian on 12/06/2017.
  */
-public class GameMatchHandler {
+public class GameMatchHandler implements LogoutInterface{
 
     private Map<String,ServerNewGame> newGameList;
+
+    private List<String> loggedPlayersList;
+
+    private Map<String, ServerNewGame> clientsCurrentMatchMap;
 
     private Boolean lobbyCreated = false;
 
@@ -38,22 +45,29 @@ public class GameMatchHandler {
     private int currentClientListSize = 0;
 
     private final Map<String, String> userPassword = new HashMap<>();
+
     private ExecutorService executor = Executors.newCachedThreadPool();
 
     public GameMatchHandler(){
 
         newGameList = new HashMap<>();
+
+        loggedPlayersList = new ArrayList<>();
+
+        clientsCurrentMatchMap = new HashMap<>();
     }
 
 
 
     synchronized public void addClient(String username, PlayerSocket playerSocket) throws RemoteException {
 
+        loggedPlayersList.add(username);
+
         if(!lobbyCreated){
 
             lobbySettings();
 
-            newGameList.put(currentMatchID, new ServerNewGame(username, playerSocket));
+            newGameList.put(currentMatchID, new ServerNewGame(username, playerSocket, this));
 
         }
 
@@ -71,11 +85,20 @@ public class GameMatchHandler {
 
     synchronized public void addClient(ClientRemoteInterface clientStub) throws RemoteException {
 
+        loggedPlayersList.add(clientStub.getUserName());
+
+        if(clientsCurrentMatchMap.containsKey(clientStub.getUserName())){
+
+            reconnectClient(clientStub);
+        }
+
+        System.out.println("IL CLIENT NON E' IN ALCUNA PARTITA");
+
         if(!lobbyCreated){
 
             lobbySettings();
 
-            newGameList.put(currentMatchID, new ServerNewGame(clientStub));
+            newGameList.put(currentMatchID, new ServerNewGame(clientStub, this));
 
         }
 
@@ -88,6 +111,47 @@ public class GameMatchHandler {
         evaluateConditions();
 
     }
+
+    private void reconnectClient(ClientRemoteInterface clientStub) throws RemoteException {
+
+        System.out.println("SONO IN RECONNECT CLIENT");
+
+        String username = clientStub.getUserName();
+
+        ServerNewGame clientCurrentMatch = clientsCurrentMatchMap.get(username);
+
+        clientStub.setPlayerColor(clientCurrentMatch.getClientPlayerColorMap().get(username));
+
+        GameStatus gameStatus = clientCurrentMatch.getGameSetup().getGameStatus();
+
+        RMIView rmiView = new RMIView(gameStatus, clientStub.getPlayerColor(), username);
+
+        RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
+                exportObject(rmiView, 0);
+
+        //controller observes this view
+        rmiView.registerObserver(clientCurrentMatch.getController());
+        //add the reconnected player in a list of the controller
+        clientCurrentMatch.getController().getPlayerReconnected().add(gameStatus.getPlayer(clientStub.getPlayerColor()));
+
+        //this view observes the model
+        clientCurrentMatch.getGameSetup().getGameStatus().registerObserver(rmiView);
+        clientCurrentMatch.getGameSetup().getGameStatus().getPlayer(clientStub.getPlayerColor()).registerObserver(rmiView);
+
+        clientCurrentMatch.getGameSetup().getGameStatus().getPlayer(clientStub.getPlayerColor()).getActualGoodSet().registerObserver(clientCurrentMatch.getTrackController());
+
+        //registred view in gameMatchHandler
+        rmiView.registerLogout(this);
+        setClientMatch(username, clientCurrentMatch);
+
+
+        RMIViewRemote rmiViewStub = rmiView;
+        clientStub.runNewGame(rmiViewStub);
+
+        clientStub.joinGame();
+
+
+}
 
     private void lobbySettings() {
 
@@ -162,5 +226,31 @@ public class GameMatchHandler {
         this.lobbyCreated = lobbyCreated;
     }
 
+    public Boolean verifyLoggedClient(String username){
+
+        for (String clientUsername : loggedPlayersList) {
+
+            if(clientUsername.equals(username)){
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    @Override
+    public void clientDisconnected(String username) {
+
+        loggedPlayersList.remove(username);
+
+    }
+
+    @Override
+    public void setClientMatch(String username, ServerNewGame match) {
+        clientsCurrentMatchMap.put(username, match);
+        System.out.println("CLIENT LEGATO AD UNA PARTITA");
+    }
 
 }

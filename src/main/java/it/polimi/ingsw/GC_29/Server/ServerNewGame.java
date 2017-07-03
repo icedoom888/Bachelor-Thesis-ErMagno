@@ -16,6 +16,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -27,6 +28,8 @@ public class ServerNewGame implements Runnable {
     private ArrayList<ClientRemoteInterface> clientRMIList;
     private HashMap<Player, PlayerSocket> playersSocketMap;
     private ArrayList<Player> players;
+    private LogoutInterface logoutInterface;
+    private Map<String, PlayerColor> clientPlayerColorMap;
 
     private Boolean minClientNumberReached = false;
 
@@ -40,6 +43,10 @@ public class ServerNewGame implements Runnable {
 
     private GameSetup gameSetup;
 
+    private Controller controller;
+
+    TrackController trackController;
+
     private final static int PORT = 29999;
 
     private final String NAME = "rmiView";
@@ -50,8 +57,9 @@ public class ServerNewGame implements Runnable {
 
 
 
-    public ServerNewGame(ClientRemoteInterface client) throws RemoteException {
+    public ServerNewGame(ClientRemoteInterface client, LogoutInterface logoutInterface) throws RemoteException {
 
+        this.logoutInterface = logoutInterface;
 
         addColors();
 
@@ -59,7 +67,7 @@ public class ServerNewGame implements Runnable {
 
         players = new ArrayList<>();
 
-        client.setPlayerColor(playerColors.remove(0));
+        clientPlayerColorMap = new HashMap<>();
 
         Player player = new Player(client.getUserName(), client.getPlayerColor(), new PersonalBoard(6));
 
@@ -71,7 +79,9 @@ public class ServerNewGame implements Runnable {
 
     }
 
-    public ServerNewGame(String username, PlayerSocket playerSocket) {
+    public ServerNewGame(String username, PlayerSocket playerSocket, LogoutInterface logoutInterface) {
+
+        this.logoutInterface = logoutInterface;
 
         addColors();
 
@@ -119,14 +129,13 @@ public class ServerNewGame implements Runnable {
             e.printStackTrace();
         }
 
-        Controller controller = null;
         try {
             controller = new Controller(gameSetup.getGameStatus());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        TrackController trackController = new TrackController(gameSetup.getGameStatus());
+        trackController = new TrackController(gameSetup.getGameStatus());
 
 
         /*try {
@@ -176,7 +185,7 @@ public class ServerNewGame implements Runnable {
 
             try {
                 // Create the RMI View, that will be shared with the client
-                RMIView rmiView = new RMIView(gameSetup.getGameStatus());
+                RMIView rmiView = new RMIView(gameSetup.getGameStatus(), clientRemoteInterface.getPlayerColor(), clientRemoteInterface.getUserName());
 
                 RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
                         exportObject(rmiView, 0);
@@ -190,6 +199,9 @@ public class ServerNewGame implements Runnable {
 
                 gameSetup.getGameStatus().getPlayer(clientRemoteInterface.getPlayerColor()).getActualGoodSet().registerObserver(trackController);
 
+                //registred view in gameMatchHandler
+                rmiView.registerLogout(logoutInterface);
+                logoutInterface.setClientMatch(clientRemoteInterface.getUserName(), this);
 
                 try {
                     RMIViewRemote rmiViewStub = rmiView;
@@ -276,6 +288,7 @@ public class ServerNewGame implements Runnable {
     public void addClient(String username, PlayerSocket playerSocket) {
 
         PlayerColor playerColor = playerColors.remove(0);
+        clientPlayerColorMap.put(username, playerColor);
         Player player = new Player(username, playerColor, new PersonalBoard(6));
         players.add(player);
         playersSocketMap.put(player, playerSocket);
@@ -294,6 +307,7 @@ public class ServerNewGame implements Runnable {
     public void addClient(ClientRemoteInterface clientStub) throws RemoteException {
 
         clientStub.setPlayerColor(playerColors.remove(0));
+        clientPlayerColorMap.put(clientStub.getUserName(), clientStub.getPlayerColor());
         clientRMIList.add(clientStub);
         Player player = new Player(clientStub.getUserName(), clientStub.getPlayerColor(), new PersonalBoard(6));
         players.add(player);    }
@@ -322,4 +336,19 @@ public class ServerNewGame implements Runnable {
     }
 
 
+    public GameSetup getGameSetup() {
+        return gameSetup;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public Map<String, PlayerColor> getClientPlayerColorMap() {
+        return clientPlayerColorMap;
+    }
+
+    public TrackController getTrackController() {
+        return trackController;
+    }
 }
