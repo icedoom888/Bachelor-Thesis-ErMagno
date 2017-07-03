@@ -810,8 +810,9 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                              <VBox alignment="CENTER" prefHeight="179.0" prefWidth="103.0" spacing="20.0" HBox.hgrow="ALWAYS">
                                  <children>
+                                    <Button fx:id="useLeaderCards" mnemonicParsing="false" onAction="#handleUseLeaderCards" text="Use Leaders" />
                                     <Button fx:id="throwDices" mnemonicParsing="false" onAction="#handleThrowDices" text="Throw Dices" />
                                     <Button fx:id="skipAction" layoutX="32.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleSkipAction" text="Skip Action" />
                                     <Button fx:id="endTurn" layoutX="32.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleEndTurn" text="End Turn" />

@@ -245,6 +245,11 @@ public class GameBoardController {
     private Text neutralValue;
 
     //Pulsanti per attivare i leader
+
+
+    @FXML
+    private Button useLeaderCards;
+
     @FXML
     private Button activate1;
     @FXML
@@ -839,6 +844,13 @@ public class GameBoardController {
         burnLeaderCardsButtons = new ArrayList<>(Arrays.asList(burn1, burn2, burn3, burn4));
 
     }
+
+
+
+    public void handleUseLeaderCards(ActionEvent event){
+
+    }
+
 
     /**
      * Gestisce l'attivazione leader card
