@@ -22,7 +22,6 @@ public interface GuiChangeListener {
     void onReadingChange(AddPawnChange addPawnChange);
     void onReadingChange(ClearPawns clearPawns);
     void onReadingChange(ExcommunicationChange excommunicationChange);
-    void onReadingChange(ActivateLeader activateLeader);
 
     void pray(String excommunicationUrl);
 
@@ -45,4 +44,5 @@ public interface GuiChangeListener {
     void setLeaderCards(ArrayList<String> leaderUrls);
 
 
+    void sendLeaderCards(Map<Integer, Boolean> leadersAvailable);
 }

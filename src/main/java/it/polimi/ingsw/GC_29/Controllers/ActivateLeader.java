@@ -19,9 +19,9 @@ public class ActivateLeader extends GUIChange {
 
     @Override
     public void perform(List<GuiChangeListener> listeners) {
-        for (GuiChangeListener listener : listeners) {
+        /*for (GuiChangeListener listener : listeners) {
             listener.onReadingChange(this);
-        }
+        }*/
     }
 
     public boolean isPossible() {

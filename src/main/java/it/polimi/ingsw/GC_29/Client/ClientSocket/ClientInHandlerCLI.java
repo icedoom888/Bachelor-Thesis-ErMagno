@@ -42,11 +42,14 @@ public class ClientInHandlerCLI implements Runnable {
 
                 System.out.println("Update da Server View arrivato a Client In");
 
+                System.out.println("\n\nINPUT: " + input);
+
                 switch (input) {
 
                     case "Change":
                         updateClient();
                         break;
+
                     case "Valid Actions":
                         validActions();
                         break;
@@ -63,8 +66,11 @@ public class ClientInHandlerCLI implements Runnable {
                         getFamilyPawnsAvailability();
                         break;
                     case "Get Bonus Tile":
+                        System.out.println("Bonus TILE");
                         getBonusTiles();
                         break;
+
+
 
                 }
 
@@ -123,6 +129,7 @@ public class ClientInHandlerCLI implements Runnable {
 
             case DOACTION:
 
+                readVoid();
                 getFamilyPawnsAvailability();
 
                 break;
@@ -131,41 +138,48 @@ public class ClientInHandlerCLI implements Runnable {
             case CHOOSEACTION:
 
 
+                readVoid();
                 validActions();
 
                 break;
 
             case CHOOSEWORKERS:
 
-
+                readVoid();
                 getCardsForWorkers();
 
                 break;
 
             case ACTIVATE_PAY_TO_OBTAIN_CARDS:
 
-
+                readVoid();
                 getPayToObtainCards();
 
                 break;
 
             case CHOOSECOST:
 
-
+                readVoid();
                 getPossibleCosts();
 
                 break;
 
             case CHOOSE_COUNCIL_PRIVILEGE:
 
-
+                try {
+                    socketIn.readObject();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 getCouncilPrivileges();
 
                 break;
 
             case CHOOSE_BONUS_TILE:
 
-
+                readVoid();
                 getBonusTiles();
 
                 break;
@@ -185,11 +199,21 @@ public class ClientInHandlerCLI implements Runnable {
         }
     }
 
+    private void readVoid() {
+        try {
+            socketIn.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private void getCouncilPrivileges() {
 
         try {
+            socketIn.readObject();
             List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
             inputChecker.setCouncilPrivilegeEffectList(councilPrivileges);
             inputChecker.nextPrivilegeEffect();

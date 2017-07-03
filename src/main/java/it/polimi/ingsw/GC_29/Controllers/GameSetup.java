@@ -232,11 +232,13 @@ public class GameSetup {
 
             for (int i = 0; i < 4; i++) {
 
-                playerLeaderCards.add(leaderCards.remove(0));
+                LeaderCard leaderCard = leaderCards.remove(0);
+
+                playerLeaderCards.add(leaderCard);
 
             }
 
-            player.setLeaderCards(leaderCards);
+            player.setLeaderCards(playerLeaderCards);
 
         }
     }

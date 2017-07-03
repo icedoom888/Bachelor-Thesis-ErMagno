@@ -704,6 +704,17 @@
                            <children>
                               <VBox maxHeight="167.0" prefHeight="167.0" prefWidth="135.0" HBox.hgrow="ALWAYS">
                                  <children>
+                                    <ImageView fx:id="leader0" fitHeight="140.0" fitWidth="135.0" onMouseClicked="#handleZoom" pickOnBounds="true" preserveRatio="true" />
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="activate0" mnemonicParsing="false" onAction="#handleActivateLeader" text="Activate" />
+                                          <Button fx:id="burn0" layoutX="48.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleBurnLeader" text="Burn" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="10.0" layoutY="10.0" maxHeight="167.0" prefHeight="167.0" prefWidth="135.0">
+                                 <children>
                                     <ImageView fx:id="leader1" fitHeight="140.0" fitWidth="135.0" onMouseClicked="#handleZoom" pickOnBounds="true" preserveRatio="true" />
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
@@ -713,7 +724,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox layoutX="10.0" layoutY="10.0" maxHeight="167.0" prefHeight="167.0" prefWidth="135.0">
+                              <VBox layoutX="425.0" layoutY="10.0" maxHeight="167.0" prefHeight="167.0" prefWidth="135.0">
                                  <children>
                                     <ImageView fx:id="leader2" fitHeight="140.0" fitWidth="135.0" onMouseClicked="#handleZoom" pickOnBounds="true" preserveRatio="true" />
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -731,17 +742,6 @@
                                        <children>
                                           <Button fx:id="activate3" mnemonicParsing="false" onAction="#handleActivateLeader" text="Activate" />
                                           <Button fx:id="burn3" layoutX="48.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleBurnLeader" text="Burn" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <VBox layoutX="425.0" layoutY="10.0" maxHeight="167.0" prefHeight="167.0" prefWidth="135.0">
-                                 <children>
-                                    <ImageView fx:id="leader4" fitHeight="140.0" fitWidth="135.0" onMouseClicked="#handleZoom" pickOnBounds="true" preserveRatio="true" />
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <Button fx:id="activate4" mnemonicParsing="false" onAction="#handleActivateLeader" text="Activate" />
-                                          <Button fx:id="burn4" layoutX="48.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleBurnLeader" text="Burn" />
                                        </children>
                                     </HBox>
                                  </children>

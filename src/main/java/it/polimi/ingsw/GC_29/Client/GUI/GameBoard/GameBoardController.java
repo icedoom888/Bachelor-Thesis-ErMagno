@@ -38,6 +38,10 @@ public class GameBoardController {
     //mappa carte per immagini
     private HashMap<String,String> cardMap = new HashMap<>();
 
+    private HashMap<Integer, ImageView> leaderCardsImage;
+    private HashMap<Integer, Button> leaderCardsActivate;
+    private HashMap<Integer, Button> leaderCardsBurn;
+
     //mappa bonustiles per immagini
     private HashMap<String,String> bonusTilesMap = new HashMap<>();
 
@@ -251,37 +255,37 @@ public class GameBoardController {
     private Button useLeaderCards;
 
     @FXML
+    private Button activate0;
+    @FXML
     private Button activate1;
     @FXML
     private Button activate2;
     @FXML
     private Button activate3;
-    @FXML
-    private Button activate4;
 
     private ArrayList<Button> activateLeaderCardsButtons;
 
     //Pulsanti per scartare una carta leader
+    @FXML
+    private Button burn0;
     @FXML
     private Button burn1;
     @FXML
     private Button burn2;
     @FXML
     private Button burn3;
-    @FXML
-    private Button burn4;
 
     private ArrayList<Button> burnLeaderCardsButtons;
 
 
+    @FXML
+    private ImageView leader0;
     @FXML
     private ImageView leader1;
     @FXML
     private ImageView leader2;
     @FXML
     private ImageView leader3;
-    @FXML
-    private ImageView leader4;
 
 
     @FXML
@@ -839,9 +843,9 @@ public class GameBoardController {
 
         familyPawns = new ArrayList<>(Arrays.asList(whitePawn, orangePawn, blackPawn, neutralPawn));
 
-        activateLeaderCardsButtons = new ArrayList<>(Arrays.asList(activate1, activate2, activate3, activate4));
+        activateLeaderCardsButtons = new ArrayList<>(Arrays.asList(activate0, activate1, activate2, activate3));
 
-        burnLeaderCardsButtons = new ArrayList<>(Arrays.asList(burn1, burn2, burn3, burn4));
+        burnLeaderCardsButtons = new ArrayList<>(Arrays.asList(burn0, burn1, burn2, burn3));
 
     }
 
@@ -849,6 +853,11 @@ public class GameBoardController {
 
     public void handleUseLeaderCards(ActionEvent event){
 
+        if (playerState != PlayerState.LEADER) {
+            sender.sendInput("use leader cards");
+        }
+
+        else sender.sendInput("return to action");
     }
 
 
@@ -860,30 +869,30 @@ public class GameBoardController {
 
         Button activateButton = (Button) event.getSource();
 
-        if(activateButton==activate1){
+        if(activateButton== activate0){
             sender.sendInput("activate leader card 0");
-            activatedLeader = activate1;
-            dichardedLeader = burn1;
+            activatedLeader = activate0;
+            dichardedLeader = burn0;
         }
 
-        if(activateButton==activate2){
+        if(activateButton== activate1){
             sender.sendInput("activate leader card 1");
+            activatedLeader = activate1;
+            dichardedLeader = burn1;
+
+        }
+
+        if(activateButton== activate2){
+            sender.sendInput("activate leader card 2");
             activatedLeader = activate2;
             dichardedLeader = burn2;
 
         }
 
-        if(activateButton==activate3){
-            sender.sendInput("activate leader card 2");
+        if(activateButton== activate3){
+            sender.sendInput("activate leader card 3");
             activatedLeader = activate3;
             dichardedLeader = burn3;
-
-        }
-
-        if(activateButton==activate4){
-            sender.sendInput("activate leader card 3");
-            activatedLeader = activate4;
-            dichardedLeader = burn4;
 
         }
 
@@ -897,31 +906,89 @@ public class GameBoardController {
      */
     public void handleBurnLeader(ActionEvent event) throws Exception {
         Object burnButton = event.getSource();
-        if (burnButton==burn1){
+        if (burnButton== burn0){
             sender.sendInput("discard leader card 0");
+            leader0.setVisible(false);
+            activate0.setDisable(true);
+            burn0.setDisable(true);
+        }
+        if (burnButton== burn1){
+            sender.sendInput("discard leader card 1");
             leader1.setVisible(false);
             activate1.setDisable(true);
             burn1.setDisable(true);
         }
-        if (burnButton==burn2){
-            sender.sendInput("discard leader card 1");
+        if (burnButton== burn2){
+            sender.sendInput("discard leader card 2");
             leader2.setVisible(false);
             activate2.setDisable(true);
             burn2.setDisable(true);
         }
-        if (burnButton==burn3){
-            sender.sendInput("discard leader card 2");
+        if (burnButton== burn3){
+            sender.sendInput("discard leader card 3");
             leader3.setVisible(false);
             activate3.setDisable(true);
             burn3.setDisable(true);
         }
-        if (burnButton==burn4){
-            sender.sendInput("discard leader card 3");
-            leader4.setVisible(false);
-            activate4.setDisable(true);
-            burn4.setDisable(true);
+    }
+
+    public void setPossibleLeaders(Map<Integer, Boolean> leadersAvailable) {
+
+        System.out.println(leadersAvailable);
+
+        for (Integer integer : leadersAvailable.keySet()) {
+
+            if (leadersAvailable.get(integer)) {
+                leaderCardsActivate.get(integer).setDisable(false);
+            }
+
+            leaderCardsBurn.get(integer).setDisable(false);
         }
     }
+
+    public void updateLeaderCards(ArrayList<String> leaders){
+
+        leaderCardsImage = new HashMap<>();
+        leaderCardsActivate = new HashMap<>();
+        leaderCardsBurn = new HashMap<>();
+
+        Image image0 = new Image(leaders.get(0));
+        Image image1 = new Image(leaders.get(1));
+        Image image2 = new Image(leaders.get(2));
+        Image image3 = new Image(leaders.get(3));
+
+        leader0.setImage(image0);
+        leaderCardsImage.put(0, leader0);
+
+        leader1.setImage(image1);
+        leaderCardsImage.put(1, leader1);
+
+        leader2.setImage(image2);
+        leaderCardsImage.put(2, leader2);
+
+        leader3.setImage(image3);
+        leaderCardsImage.put(3, leader3);
+
+        leaderCardsActivate.put(0, activate0);
+        leaderCardsActivate.put(1, activate1);
+        leaderCardsActivate.put(2, activate2);
+        leaderCardsActivate.put(3, activate3);
+
+        leaderCardsBurn.put(0, burn0);
+        leaderCardsBurn.put(1, burn1);
+        leaderCardsBurn.put(2, burn2);
+        leaderCardsBurn.put(3, burn3);
+    }
+
+    /*
+    public void activationLeaders(boolean activated, boolean permanent){
+        if (activated){
+            if (permanent){
+                activatedLeader.setDisable(true);
+            }
+        }
+    }
+    */
 
     /**
      * Gestisce l'attivazione bottone Lancia Dadi
@@ -1136,20 +1203,7 @@ public class GameBoardController {
     }
 
 
-    public void updateLeaderCards(ArrayList<String> leaders){
-        leader1.setImage(new Image(leaders.get(0)));
-        leader2.setImage(new Image(leaders.get(1)));
-        leader3.setImage(new Image(leaders.get(2)));
-        leader4.setImage(new Image(leaders.get(3)));
-    }
 
-    public void activationLeaders(boolean activated, boolean permanent){
-        if (activated){
-            if (permanent){
-                activatedLeader.setDisable(true);
-            }
-        }
-    }
 
     /**
      * Quando è chiamata modifica le immagini delle carte visualizzate sulla PersonalBoard
@@ -1488,6 +1542,8 @@ public class GameBoardController {
 
                 setEndTurn(false);
 
+                setUseLeader(false);
+
 
                 break;
 
@@ -1506,6 +1562,8 @@ public class GameBoardController {
 
                 setEndTurn(false);
 
+                setUseLeader(false);
+
                 try {
                     throwDices();
                 } catch (InterruptedException e) {
@@ -1516,13 +1574,11 @@ public class GameBoardController {
 
 
 
-
-
             case DOACTION:
 
                 setActions(false);
 
-                setLeaderButtons(true);
+                setLeaderButtons(false);
 
                 setFamilyPawns(true);
 
@@ -1531,6 +1587,8 @@ public class GameBoardController {
                 setSkipAction(true);
 
                 setEndTurn(true);
+
+                setUseLeader(true);
 
                 try {
                     yourTurn();
@@ -1545,7 +1603,7 @@ public class GameBoardController {
 
                 setActions(false);
 
-                setLeaderButtons(true);
+                setLeaderButtons(false);
 
                 setFamilyPawns(false);
 
@@ -1554,6 +1612,9 @@ public class GameBoardController {
                 setSkipAction(true);
 
                 setEndTurn(true);
+
+                setUseLeader(true);
+
 
                 try {
                     bonusAction();
@@ -1568,7 +1629,7 @@ public class GameBoardController {
 
                 setActions(false);
 
-                setLeaderButtons(true);
+                setLeaderButtons(false);
 
                 setFamilyPawns(true);
 
@@ -1577,6 +1638,9 @@ public class GameBoardController {
                 setSkipAction(true);
 
                 setEndTurn(true);
+
+                setUseLeader(true);
+
 
                 break;
 
@@ -1592,13 +1656,15 @@ public class GameBoardController {
 
                 setLeaderButtons(false);
 
+                setUseLeader(false);
+
                 break;
 
             case WAITING:
 
                 noButtonsAble();
 
-                setLeaderButtons(true);
+                setLeaderButtons(false);
 
                 break;
 
@@ -1606,7 +1672,7 @@ public class GameBoardController {
 
                 noButtonsAble();
 
-                setLeaderButtons(true);
+                setLeaderButtons(false);
 
                 List<Integer> councilPrivilege = new ArrayList<>();
                 councilPrivilege.add(1);
@@ -1619,7 +1685,7 @@ public class GameBoardController {
 
                 setActions(false);
 
-                setLeaderButtons(true);
+                setLeaderButtons(false);
 
                 setFamilyPawns(false);
 
@@ -1629,14 +1695,25 @@ public class GameBoardController {
 
                 setEndTurn(true);
 
+                setUseLeader(true);
+
 
                 break;
+
+            case LEADER:
+
+                noButtonsAble();
+
+                setUseLeader(true);
+
 
             case SUSPENDED:
 
                 noButtonsAble();
 
                 setLeaderButtons(false);
+
+                setUseLeader(false);
 
                 suspendedPane.setVisible(true);
 
@@ -1646,6 +1723,8 @@ public class GameBoardController {
         }
 
     }
+
+
 
     public void closeWindows() {
 
@@ -1677,6 +1756,12 @@ public class GameBoardController {
     private void setEndTurn(boolean b) {
 
         endTurn.setDisable(!b);
+    }
+
+    private void setUseLeader(boolean b) {
+
+        useLeaderCards.setDisable(!b);
+
     }
 
     private void setSkipAction(boolean b) {

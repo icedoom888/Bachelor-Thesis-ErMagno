@@ -35,6 +35,7 @@ public class LeaderCard {
 
     public LeaderCard(String leaderName,String url, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnCost bonusAndMalusOnCost) {
         this.leaderName = leaderName;
+        this.url = url;
         this.requirement = requirement;
         this.permanent = permanent;
         this.effect = effect;
@@ -43,6 +44,7 @@ public class LeaderCard {
 
     public LeaderCard(String leaderName,String url, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnAction bonusAndMalusOnAction) {
         this.leaderName = leaderName;
+        this.url = url;
         this.requirement = requirement;
         this.permanent = permanent;
         this.effect = effect;
@@ -51,6 +53,7 @@ public class LeaderCard {
 
     public LeaderCard(String leaderName,String url, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnGoods bonusAndMalusOnGoods) {
         this.leaderName = leaderName;
+        this.url = url;
         this.requirement = requirement;
         this.permanent = permanent;
         this.effect = effect;
@@ -66,11 +69,7 @@ public class LeaderCard {
 
         available = !discarded && !activated;
 
-        boolean isPossible = requirement.isPossible(playerCards, playerGoodSet) && available;
-
-        player.answerLeaderCard(isPossible, permanent);
-
-        return isPossible;
+        return requirement.isPossible(playerCards, playerGoodSet) && available;
 
     }
 

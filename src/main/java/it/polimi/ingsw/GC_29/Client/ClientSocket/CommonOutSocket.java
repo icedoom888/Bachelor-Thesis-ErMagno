@@ -39,7 +39,8 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
             if (!inputLine.contentEquals("activated cards GUI")
                     && !inputLine.contentEquals("council privileges chosen GUI")
-                    && !inputLine.contentEquals("council privileges chosen leader GUI")) {
+                    && !inputLine.contentEquals("council privileges chosen leader GUI")
+                    && !inputLine.contentEquals("use leader cards")) {
 
                 inputLine = inputChecker.checkInput(inputLine);
             }
@@ -213,6 +214,14 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject("do not pray");
                     socketOut.flush();
                     socketOut.writeObject(playerColor);
+                    socketOut.flush();
+                    break;
+
+                case "use leader cards":
+
+                    System.out.println("USING LEADER");
+                    query = new GetAvailableLeaderCards(playerColor);
+                    socketOut.writeObject(query);
                     socketOut.flush();
                     break;
 

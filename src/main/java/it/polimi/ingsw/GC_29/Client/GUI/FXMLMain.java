@@ -672,18 +672,19 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
-    private void answerLeaderAction(boolean possible, boolean permanent) {
+    private void availableLeaders(Map<Integer, Boolean> leadersAvailable) {
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
 
 
-                gameBoardController.activationLeaders(possible, permanent);
+                gameBoardController.setPossibleLeaders(leadersAvailable);
 
 
             }
         });
+
     }
 
 
@@ -729,10 +730,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             setExcommunicationTiles(excommunicationChange.getExcommunicationTiles());
         }
 
-        @Override
-        public void onReadingChange(ActivateLeader activateLeader) {
-            answerLeaderAction(activateLeader.isPossible(), activateLeader.isPermanent());
-        }
 
         @Override
         public void pray(String excommunicationUrl) {
@@ -801,6 +798,12 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         public void setLeaderCards(ArrayList<String> leaderUrls) {
 
             leaderOnGui(leaderUrls);
+        }
+
+        @Override
+        public void sendLeaderCards(Map<Integer, Boolean> leadersAvailable) {
+
+            availableLeaders(leadersAvailable);
         }
     }
 
