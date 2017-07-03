@@ -44,6 +44,16 @@ public class WorkAction extends Action {
                 && checkNeutralRule();
     }
 
+    @Override
+    public void execute() throws Exception {
+
+        super.payWorkers();
+        super.addPawn();
+        activateEffects();
+        super.update();
+
+    }
+
     private boolean isActionSpaceAccessible() {
         if(actionSpaceSelected.isOccupied() && actionSpaceSelected.isSingle()){
            System.out.println("The field is full!");
@@ -126,14 +136,7 @@ public class WorkAction extends Action {
 
 
 
-    @Override
-    public void execute() throws Exception {
 
-            super.payWorkers();
-            super.addPawn();
-            activateEffects();
-
-    }
 
 
     /**

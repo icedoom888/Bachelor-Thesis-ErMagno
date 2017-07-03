@@ -45,6 +45,7 @@ public class Player extends Observable<Change> {
     private List<CouncilPrivilegeEffect> councilPrivilegeEffectList;
 
     private final Object lock = new Object();
+    private PlayerState lastState;
 
 
     public Player(String playerID, PlayerColor playerColor, PersonalBoard personalBoard) {
@@ -55,20 +56,14 @@ public class Player extends Observable<Change> {
         this.playerColor = playerColor;
         this.personalBoard = personalBoard;
 
+        this.leaderCards = new ArrayList<>();
+
          // TODO: decidere se rendere parametrico numero leader card
         this.oncePerRoundLeaders = new HashMap<>();
         this.permanentLeaders = new HashMap<>();
 
         this.councilPrivilegeEffectList = new ArrayList<>();
 
-        //TODO: decommentare quando si creano leaderCards
-
-        /*for (LeaderCard leaderCard : this.leaderCards) {
-            if (leaderCard.isPermanent()) {
-                this.permanentLeaders.put(leaderCard, true);
-            }
-            else this.oncePerRoundLeaders.put(leaderCard, true);
-        }*/
 
         familyPawns = new ArrayList<>();
         familyPawns.add(new FamilyPawn(playerColor, FamilyPawnType.BLACK, 0));
@@ -167,6 +162,8 @@ public class Player extends Observable<Change> {
     public ArrayList<LeaderCard> getLeaderCards() {
         return leaderCards;
     }
+
+
 
     public HashMap<LeaderCard, Boolean> getPermanentLeaders() {
         return permanentLeaders;
@@ -295,7 +292,19 @@ public class Player extends Observable<Change> {
     }
 
     public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
+
         this.leaderCards = leaderCards;
+
+        for (LeaderCard leaderCard : this.leaderCards) {
+
+            if (leaderCard.isPermanent()) {
+                this.permanentLeaders.put(leaderCard, true);
+            }
+
+            else this.oncePerRoundLeaders.put(leaderCard, true);
+        }
+
+        updateLeaderGUI();
     }
 
     @Override
@@ -325,6 +334,37 @@ public class Player extends Observable<Change> {
     }
 
 
+    public void updateLeaderGUI() {
+
+        ArrayList<String> leaderUrls = new ArrayList<>();
+
+        for (LeaderCard leaderCard : leaderCards) {
+            leaderUrls.add(leaderCard.getUrl());
+        }
+
+        try {
+            notifyObserver(new LeaderCardChange(leaderUrls));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void answerLeaderCard(boolean isPossible, boolean permanent) {
+
+        try {
+            notifyObserver(new ActivateLeader(isPossible, permanent));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setLastState(PlayerState lastState) {
+        this.lastState = lastState;
+    }
+
+    public PlayerState getLastState() {
+        return lastState;
+    }
 }
 
 

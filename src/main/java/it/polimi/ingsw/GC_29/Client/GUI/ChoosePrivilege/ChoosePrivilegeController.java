@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege;
 
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
+import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilege;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
@@ -91,31 +92,37 @@ public class ChoosePrivilegeController {
 
     public void sendSubmit(ActionEvent event){
 
+        privilege1.setDisable(true);
+        privilege2.setDisable(true);
+        privilege3.setDisable(true);
+        privilege4.setDisable(true);
+        privilege5.setDisable(true);
+
+
         gameBoardController.getChoosePrivilegePane().setVisible(false);
 
+        int index;
+
         if (privilege1.isSelected()) {
-            councilPrivilegeEffectChosenList.add(0);
+            index = 0;
         }
 
         else if (privilege2.isSelected()) {
-            councilPrivilegeEffectChosenList.add(1);
-
+            index = 1;
         }
 
         else if (privilege3.isSelected()) {
-            councilPrivilegeEffectChosenList.add(2);
-
+            index = 2;
         }
 
         else if (privilege4.isSelected()) {
-            councilPrivilegeEffectChosenList.add(3);
-
+            index = 3;
         }
 
         else if (privilege5.isSelected()) {
-            councilPrivilegeEffectChosenList.add(4);
-
+            index = 4;
         }
+
 
         else {
 
@@ -124,6 +131,16 @@ public class ChoosePrivilegeController {
             return;
 
         }
+
+        councilPrivilegeEffectChosenList.add(index);
+
+        for (Map<Integer, ObtainEffect> councilEffectsMap : currentParchmentList) {
+
+            councilEffectsMap.remove(index);
+
+        }
+
+
 
         if (nextParchment()) {
             askWhichPrivilege();
@@ -135,9 +152,13 @@ public class ChoosePrivilegeController {
 
         else {
 
-            System.out.println("Sending shit");
+            if (gameBoardController.getPlayerState() == PlayerState.CHOOSE_COUNCIL_PRIVILEGE) {
+                sender.sendInput(councilPrivilegeEffectChosenList, true);
+            }
 
-            sender.sendInput(councilPrivilegeEffectChosenList);
+            else if (gameBoardController.getPlayerState() == PlayerState.DISCARDINGLEADER) {
+                sender.sendInput(councilPrivilegeEffectChosenList, false);
+            }
         }
 
 

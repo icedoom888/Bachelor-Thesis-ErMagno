@@ -26,7 +26,7 @@ public class Controller implements Observer<Input>  {
     private final long throwDicesTime = 150000;
     private final long chooseBonusTilesTime = 150000;
     private final long prayTime = 150000;
-    private final long turnTime = 500000;
+    private final long turnTime = 150000;
 
     private Integer playersPraying;
     private ActionChecker actionChecker;
@@ -132,23 +132,26 @@ public class Controller implements Observer<Input>  {
 
         setCardsOnTowers();
 
-        for (Player player : model.getTurnOrder()) {
+        boolean suspendedPlayers = true;
 
-            if (player.getPlayerState() != PlayerState.SUSPENDED) {
+        while (suspendedPlayers) {
 
-                player.setPlayerState(PlayerState.THROWDICES);
+            for (Player player : model.getTurnOrder()) {
 
-                startTimer(player);
+                if (player.getPlayerState() != PlayerState.SUSPENDED) {
 
-                break;
+                    suspendedPlayers = false;
+
+                    player.setPlayerState(PlayerState.THROWDICES);
+
+                    System.out.println("IN SET NEW ROUND: playerColor = " + player.getPlayerColor() + "Set to throw dices\n");
+
+                    startTimer(player);
+
+                    break;
+                }
             }
         }
-
-        /*
-        Prima del ciclo for c'era questa linea di codice
-
-        model.getTurnOrder().get(0).setPlayerState(PlayerState.THROWDICES);
-        */
 
         model.setCurrentTurn(1);
 

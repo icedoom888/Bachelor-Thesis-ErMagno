@@ -62,6 +62,7 @@ public class InputChecker {
 
     private Map<Integer, String> bonusTileMap;
     private int bonusTileChosen;
+    private int leaderIndex;
 
     public InputChecker(){
 
@@ -724,5 +725,9 @@ public class InputChecker {
 
     public Map<FamilyPawnType,Boolean> getFamilyPawnAvailability() {
         return familyPawnAvailability;
+    }
+
+    public int getLeaderIndex() {
+        return leaderIndex;
     }
 }

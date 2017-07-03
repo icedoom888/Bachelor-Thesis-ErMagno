@@ -126,17 +126,34 @@ public class ServerSocketView extends View implements Runnable {
                             case "council privileges chosen":
                                 List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
                                 notifyObserver(new PrivilegeChosen(councilPrivileges));
-                                System.out.println("OBSERVER NOTIFICATO PRIVILEGI");
+                                break;
+
+                            case "council privileges chosen leader":
+                                councilPrivileges = (List<Integer>)socketIn.readObject();
+                                PlayerColor playerColor = (PlayerColor)socketIn.readObject();
+                                notifyObserver(new PrivilegeChosenLeader(councilPrivileges, playerColor));
                                 break;
 
                             case "pray":
-                                PlayerColor playerColor = (PlayerColor)socketIn.readObject();
+                                playerColor = (PlayerColor)socketIn.readObject();
                                 notifyObserver(new Pray(true, playerColor));
                                 break;
 
                             case "do not pray":
                                 playerColor = (PlayerColor)socketIn.readObject();
                                 notifyObserver(new Pray(false, playerColor));
+                                break;
+
+                            case "activate leader card":
+                                int index = (Integer)socketIn.readObject();
+                                playerColor = (PlayerColor)socketIn.readObject();
+                                notifyObserver(new LeaderAction(true, index, playerColor));
+                                break;
+
+                            case "discard leader card":
+                                index = (Integer)socketIn.readObject();
+                                playerColor = (PlayerColor)socketIn.readObject();
+                                notifyObserver(new LeaderAction(false, index, playerColor));
                                 break;
 
                             case "join game":

@@ -12,7 +12,7 @@ public interface InputInterfaceGUI {
 
     void sendInput(Map<String, Integer> activatedCardMap);
 
-    void sendInput(List<Integer> councilPrivilegeEffectChosenList);
+    void sendInput(List<Integer> councilPrivilegeEffectChosenList, boolean b);
 
     void setCouncilPrivilegeEffectChosenList(List<Integer> councilPrivilegeEffectChosenList);
 

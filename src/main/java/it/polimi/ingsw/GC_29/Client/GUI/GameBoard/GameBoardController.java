@@ -32,6 +32,9 @@ import java.util.*;
  * Created by AlbertoPennino on 21/06/2017.
  */
 public class GameBoardController {
+
+    private PlayerState playerState;
+
     //mappa carte per immagini
     private HashMap<String,String> cardMap = new HashMap<>();
 
@@ -497,6 +500,7 @@ public class GameBoardController {
     private Button endZoom;
 
 
+
     @FXML
     public void initialize() {
 
@@ -841,24 +845,29 @@ public class GameBoardController {
      * @param event
      */
     public void handleActivateLeader(ActionEvent event){
+
         Button activateButton = (Button) event.getSource();
+
         if(activateButton==activate1){
             sender.sendInput("activate leader card 0");
             activatedLeader = activate1;
             dichardedLeader = burn1;
         }
+
         if(activateButton==activate2){
             sender.sendInput("activate leader card 1");
             activatedLeader = activate2;
             dichardedLeader = burn2;
 
         }
+
         if(activateButton==activate3){
             sender.sendInput("activate leader card 2");
             activatedLeader = activate3;
             dichardedLeader = burn3;
 
         }
+
         if(activateButton==activate4){
             sender.sendInput("activate leader card 3");
             activatedLeader = activate4;
@@ -1269,8 +1278,11 @@ public class GameBoardController {
      * Quando è chiamata modifica tutte le carte sulle torri
      */
     public void updateTower(ArrayList<String> cardNames, CardColor cardColor){
-        for (int i =0;i<4;i++){
+
+        for (int i =0;i<cardNames.size();i++){
+
             String name = cardNames.get(i);
+
             switch (cardColor){
                 case GREEN:
                     if (!name.contentEquals("null")) {
@@ -1410,7 +1422,7 @@ public class GameBoardController {
     //TODO: Verificare il funzionamento
     private void yourTurn() throws InterruptedException {
         yourTurnPane.setVisible(true);
-        PauseTransition delay = new PauseTransition(Duration.seconds(5));
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
         delay.setOnFinished( event -> yourTurnPane.setVisible(false) );
         delay.play();
     }
@@ -1418,7 +1430,7 @@ public class GameBoardController {
     private void throwDices() throws InterruptedException {
 
         throwDicesPane.setVisible(true);
-        PauseTransition delay = new PauseTransition(Duration.seconds(5));
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
         delay.setOnFinished( event -> throwDicesPane.setVisible(false) );
         delay.play();
 
@@ -1427,7 +1439,7 @@ public class GameBoardController {
     private void bonusAction() throws InterruptedException {
 
         bonusActionPane.setVisible(true);
-        PauseTransition delay = new PauseTransition(Duration.seconds(5));
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
         delay.setOnFinished( event -> bonusActionPane.setVisible(false) );
         delay.play();
 
@@ -1443,7 +1455,10 @@ public class GameBoardController {
 
     public void setState(PlayerState newPlayerState) {
 
+        this.playerState = newPlayerState;
+
         closeWindows();
+
 
         switch (newPlayerState) {
 
@@ -1560,13 +1575,33 @@ public class GameBoardController {
             case CHOOSECOST:
             case CHOOSE_COUNCIL_PRIVILEGE:
             case PRAY:
+
+                noButtonsAble();
+
+                setLeaderButtons(false);
+
+                break;
+
             case WAITING:
 
                 noButtonsAble();
 
+                setLeaderButtons(true);
+
                 break;
 
+            case DISCARDINGLEADER:
 
+                noButtonsAble();
+
+                setLeaderButtons(true);
+
+                List<Integer> councilPrivilege = new ArrayList<>();
+                councilPrivilege.add(1);
+
+                choosePrivileges(councilPrivilege);
+
+                break;
 
             case ENDTURN:
 
@@ -1588,6 +1623,8 @@ public class GameBoardController {
             case SUSPENDED:
 
                 noButtonsAble();
+
+                setLeaderButtons(false);
 
                 suspendedPane.setVisible(true);
 
@@ -1678,8 +1715,6 @@ public class GameBoardController {
     public void noButtonsAble() {
 
         setActions(false);
-
-        setLeaderButtons(false);
 
         setFamilyPawns(false);
 
@@ -1791,5 +1826,9 @@ public class GameBoardController {
 
     public void setSuspendedPane(AnchorPane suspendedPane) {
         this.suspendedPane = suspendedPane;
+    }
+
+    public PlayerState getPlayerState() {
+        return playerState;
     }
 }

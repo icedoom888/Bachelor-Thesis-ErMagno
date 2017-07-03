@@ -32,6 +32,8 @@ public class GameSetup {
 
     private Map<Era, List<ExcommunicationTile>> excommunicationTileMap;
 
+    private ArrayList<LeaderCard> leaderCards;
+
     private ArrayList<Player> players;
 
     public GameSetup(ArrayList<Player> clientList) throws RemoteException {
@@ -175,16 +177,12 @@ public class GameSetup {
         return new ObjectDeserializer().getExcommunicationTiles();
     }
 
+    private ArrayList<LeaderCard> getLeaderCardsFromFile() throws FileNotFoundException {
+
+        return new ObjectDeserializer().getLeaderCards();
+    }
+
     public void setExcommunicationTiles(){
-
-        /*for(Era era : Era.values()){
-
-            this.excommunicationTileMap.put(era, getExcommunicationTilesFromFile(era));
-        }
-
-        ExcommunicationTile tilefirsEra = getRandomTile(Era.FIRST);
-        ExcommunicationTile tileSecondEra = getRandomTile(Era.SECOND);
-        ExcommunicationTile tileThirdEra = getRandomTile(Era.THIRD);*/
 
         try {
             excommunicationTileMap = getExcommunicationTilesFromFile();
@@ -196,13 +194,6 @@ public class GameSetup {
         ExcommunicationTile tileSecondEra = getRandomTile(Era.SECOND);
         ExcommunicationTile tileThirdEra = getRandomTile(Era.THIRD);
 
-        /*
-
-        ExcommunicationTile tileFirstEra = new ExcommunicationTile(Era.FIRST, "prova1",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
-        ExcommunicationTile tileSecondEra = new ExcommunicationTile(Era.SECOND, "prova2",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
-        ExcommunicationTile tileThirdEra = new ExcommunicationTile(Era.THIRD, "prova3",null, new BonusAndMalusOnGoods(new GoodSet()), null, "");
-
-        */
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tileFirstEra, tileSecondEra, tileThirdEra);
 
@@ -223,6 +214,34 @@ public class GameSetup {
 
         return excommunicationTileMap.get(era).get(randomIndex);
     }
+
+
+    public void setLeaderCards() {
+
+        try {
+            leaderCards = getLeaderCardsFromFile();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Collections.shuffle(leaderCards);
+
+        for (Player player : gameStatus.getTurnOrder()) {
+
+            ArrayList<LeaderCard> playerLeaderCards = new ArrayList<>();
+
+            for (int i = 0; i < 4; i++) {
+
+                playerLeaderCards.add(leaderCards.remove(0));
+
+            }
+
+            player.setLeaderCards(leaderCards);
+
+        }
+    }
+
+
 
     public void setGoodsForPlayers() throws Exception {
 

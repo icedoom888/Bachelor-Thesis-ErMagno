@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.Instruction;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.*;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
@@ -146,16 +147,23 @@ public class CommonOutRMI implements InputInterfaceGUI{
                     }
 
                     else {
-                        serverViewStub.privilegesChosen(inputChecker.getCouncilPrivilegeEffectChosenList());
+                        if (inputChecker.getCurrentPlayerState() == PlayerState.CHOOSE_COUNCIL_PRIVILEGE) {
+                            serverViewStub.privilegesChosen(inputChecker.getCouncilPrivilegeEffectChosenList());
+                        }
+                        else if (inputChecker.getCurrentPlayerState() == PlayerState.DISCARDINGLEADER) {
+                            serverViewStub.privilegeLeader(inputChecker.getCouncilPrivilegeEffectChosenList(), playerColor);
+                        }
                     }
                     break;
 
                 case "council privileges chosen GUI":
 
                     serverViewStub.privilegesChosen(councilPrivilegeEffectChosenList);
-                    System.out.println("LISTA PRIVILEGI SCELTA INVIATA");
                     break;
 
+                case "councilPrivilege chosen leader GUI":
+                    serverViewStub.privilegeLeader(councilPrivilegeEffectChosenList, playerColor);
+                    break;
 
                 case "pray":
                     serverViewStub.pray(true, playerColor);
@@ -164,6 +172,15 @@ public class CommonOutRMI implements InputInterfaceGUI{
                 case "do not pray":
                     serverViewStub.pray(false, playerColor);
                     break;
+
+                case "activate leader card":
+                    int index = inputChecker.getLeaderIndex();
+                    serverViewStub.leaderAction(true, index, playerColor);
+                    break;
+
+                case "discard leader card":
+                    index = inputChecker.getLeaderIndex();
+                    serverViewStub.leaderAction(false, index, playerColor);
 
                 case "see my goodset":
                     System.out.println(serverViewStub.getPlayerGoodset());
@@ -211,7 +228,7 @@ public class CommonOutRMI implements InputInterfaceGUI{
     }
 
     @Override
-    public void sendInput(List<Integer> councilPrivilegeEffectChosenList) {
+    public void sendInput(List<Integer> councilPrivilegeEffectChosenList, boolean b) {
         setCouncilPrivilegeEffectChosenList(councilPrivilegeEffectChosenList);
         sendInput("council privileges chosen GUI");
         System.out.println("SEND INPUT CHIAMATO");

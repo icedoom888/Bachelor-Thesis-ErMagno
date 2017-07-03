@@ -225,6 +225,7 @@ public class ServerNewGame implements Runnable {
         try {
             gameSetup.setGoodsForPlayers();
             gameSetup.setExcommunicationTiles();
+            gameSetup.setLeaderCards();
         } catch (Exception e) {
             e.printStackTrace();
         }

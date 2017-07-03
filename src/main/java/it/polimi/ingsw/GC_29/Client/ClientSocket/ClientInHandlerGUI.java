@@ -46,7 +46,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             try {
                 String input = (String)socketIn.readObject();
 
-                System.out.println("Update da Server View arrivato a Client In GUI");
+                //System.out.println("Update da Server View arrivato a Client In GUI");
 
                 switch (input) {
 

@@ -32,8 +32,6 @@ public class PrivilegeChosen extends Input {
 
             obtainEffect = councilPrivilege.getPossibleObtainEffect().get(integer);
 
-            System.out.println(obtainEffect);
-
             obtainEffect.execute(model.getCurrentPlayer());
         }
 
