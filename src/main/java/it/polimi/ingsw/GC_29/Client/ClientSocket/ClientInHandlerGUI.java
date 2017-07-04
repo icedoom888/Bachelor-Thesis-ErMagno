@@ -146,6 +146,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         if (c instanceof GUIChange) {
 
             GUIChange guiChange = (GUIChange)c;
+
             if (guiChange instanceof LeadersAvailableGUI) {
 
                 LeadersAvailableGUI leadersAvailableGUI = (LeadersAvailableGUI)guiChange;
