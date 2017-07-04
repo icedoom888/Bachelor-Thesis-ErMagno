@@ -116,6 +116,9 @@ public class Player extends Observable<Change> {
         if (this.playerState != PlayerState.SUSPENDED) {
 
             synchronized (lock) {
+
+                System.out.println("SONO NEL LOCK DI SET PLAYER STATE, PLAYER STATE CORRENTE " + this.playerState);
+
                 this.playerState = playerState;
 
                 try {
@@ -126,9 +129,15 @@ public class Player extends Observable<Change> {
             }
         }
 
+
+        System.out.println("SONO IN SET PLAYER ALLA FINE, PLAYERSTATE " + this.playerState + " nome " + playerID);
+
+
     }
 
     public void setNotSuspended() {
+
+        System.out.println("STO RIMETTENDO IN WAITING PLAYER SOSPESO");
 
         synchronized (lock) {
             this.playerState = PlayerState.WAITING;

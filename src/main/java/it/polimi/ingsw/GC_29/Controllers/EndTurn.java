@@ -31,6 +31,8 @@ public class EndTurn extends Input {
 
         Player currentPlayer = model.getCurrentPlayer();
 
+        System.out.println("SONO DENTRO PERFORM END TURN, IL CURRENT PLAYER CHE HA CHIAMATO END TURN E' " + currentPlayer.getPlayerID() + " color " + currentPlayer.getPlayerColor());
+
         currentPlayer.setPlayerState(PlayerState.WAITING);
         System.out.println("\n\nTURNO: " + model.getCurrentTurn());
         System.out.println("END TURN, NOME " + currentPlayer.getPlayerID() + " colore " + currentPlayer.getPlayerColor()+"\n\n");

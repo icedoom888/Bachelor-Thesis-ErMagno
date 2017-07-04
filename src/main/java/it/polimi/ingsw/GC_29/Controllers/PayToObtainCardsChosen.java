@@ -29,6 +29,8 @@ public class PayToObtainCardsChosen extends Input {
 
         workAction.execute();
 
+        workAction.getCardsForWorkers().clear();
+
         controller.handleEndAction();
     }
 }

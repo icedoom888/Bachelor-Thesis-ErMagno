@@ -680,9 +680,7 @@ public class Controller implements Observer<Input>  {
 
         if (workAction.handlePayToObtainCards(workers)) {
 
-
             currentPlayer.setPlayerState(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS);
-
 
         }
 
@@ -692,6 +690,7 @@ public class Controller implements Observer<Input>  {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            workAction.getCardsForWorkers().clear();
             handleEndAction();
         }
     }

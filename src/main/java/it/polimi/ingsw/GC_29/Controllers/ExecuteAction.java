@@ -50,8 +50,7 @@ public class ExecuteAction extends Input {
             workAction.buildDifferentChoices();
 
 
-            if (workAction.getCardsForWorkers().keySet().size() <= 1) {
-
+            if (workAction.getCardsForWorkers().keySet().contains(0)) {
 
                 controller.handlePayToObtainCards(workAction, currentPlayer, 0);
 
