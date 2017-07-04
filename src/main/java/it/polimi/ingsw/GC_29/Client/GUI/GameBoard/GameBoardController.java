@@ -34,6 +34,8 @@ import java.util.*;
 public class GameBoardController {
 
     private PlayerState playerState;
+    private PlayerState lastPlayerState;
+
 
     //mappa carte per immagini
     private HashMap<String,String> cardMap = new HashMap<>();
@@ -100,7 +102,6 @@ public class GameBoardController {
     private HashMap<Integer,ImageView> coverImages = new HashMap<>();
 
     private ArrayList<ImageView> familyPawns;
-
 
 
     //ChooseDistribution, classe che serve per parlare con il server
@@ -855,9 +856,14 @@ public class GameBoardController {
 
         if (playerState != PlayerState.LEADER) {
             sender.sendInput("use leader cards GUI");
+            lastPlayerState = playerState;
+            playerState = PlayerState.LEADER;
         }
 
-        else sender.sendInput("not use leader card");
+        else {
+            sender.sendInput("not use leader card");
+            playerState = lastPlayerState;
+        }
     }
 
 
