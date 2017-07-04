@@ -63,17 +63,56 @@ public class BonusTileChosen extends Input {
 
             playerToChooseBonusTileIndex--;
 
-            controller.setCurrentBonusTileIndexPlayer(playerToChooseBonusTileIndex);
+           // controller.setCurrentBonusTileIndexPlayer(playerToChooseBonusTileIndex);
 
-            model.getCurrentPlayer().setPlayerState(PlayerState.WAITING);
+            Boolean isNotSuspended = false;
+
+            for(; playerToChooseBonusTileIndex >= 0; playerToChooseBonusTileIndex--){
+
+                if(model.getTurnOrder().get(playerToChooseBonusTileIndex).getPlayerState() == PlayerState.SUSPENDED){
+
+                    List<Integer> indexKeys = Arrays.asList(model.getBonusTileMap().keySet().toArray(new Integer[model.getBonusTileMap().size()]));
+
+                    int bonusIndex = indexKeys.get(0);
+
+                    bonusTile = model.getBonusTileMap().get(bonusIndex);
+
+                    model.getBonusTileMap().remove(bonusTile);
+
+                    controller.getPlayerBonusTileIndexMap().put(model.getTurnOrder().get(playerToChooseBonusTileIndex), bonusIndex);
+
+                }
+
+                else{
+
+                    isNotSuspended = true;
+
+                    controller.setCurrentBonusTileIndexPlayer(playerToChooseBonusTileIndex);
+                    break;
+                }
+            }
+
+            if(isNotSuspended){
+
+                model.getCurrentPlayer().setPlayerState(PlayerState.WAITING);
 
 
-            model.setCurrentPlayer(model.getTurnOrder().get(playerToChooseBonusTileIndex));
+                model.setCurrentPlayer(model.getTurnOrder().get(playerToChooseBonusTileIndex));
 
 
-            model.getCurrentPlayer().setPlayerState(PlayerState.CHOOSE_BONUS_TILE);
+                model.getCurrentPlayer().setPlayerState(PlayerState.CHOOSE_BONUS_TILE);
 
-            controller.startTimer(model.getCurrentPlayer());
+                controller.startTimer(model.getCurrentPlayer());
+
+            }
+
+            else{
+
+                beginMatch(model, controller);
+
+            }
+
+
 
 
         }

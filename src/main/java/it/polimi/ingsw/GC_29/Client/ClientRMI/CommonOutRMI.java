@@ -38,13 +38,12 @@ public class CommonOutRMI implements InputInterfaceGUI{
 
     public void sendInput(String inputLine) {
 
-        Query query;
-
         try {
             // Implements the communication protocol, creating the Actions corresponding to the input of the user
 
             if (!inputLine.contentEquals("activated cards GUI")
-                    && !inputLine.contentEquals("council privileges chosen GUI")) {
+                    && !inputLine.contentEquals("council privileges chosen GUI")
+                    && !inputLine.contentEquals("use leader cards GUI")) {
 
                 inputLine = inputChecker.checkInput(inputLine);
             }
@@ -177,6 +176,11 @@ public class CommonOutRMI implements InputInterfaceGUI{
                     inputChecker.setLeaderCards(serverViewStub.getLeaderCards(playerColor));
                     inputChecker.setLeaderCardMap(serverViewStub.getLeaderCardsMap(playerColor));
                     inputChecker.showAvailableLeaderCards();
+                    break;
+
+                case "use leader cards GUI":
+                    inputChecker.setCurrentPlayerState(PlayerState.LEADER);
+                    serverViewStub.useLeaderCardGui(playerColor);
                     break;
 
                 case "activate leader card":

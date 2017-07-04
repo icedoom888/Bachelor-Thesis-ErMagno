@@ -72,8 +72,17 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
         if (c instanceof GUIChange) {
 
             GUIChange guiChange = (GUIChange)c;
+            handleLeaderCard(guiChange);
             guiChange.perform(listeners);
 
+        }
+    }
+
+    private void handleLeaderCard(GUIChange guiChange) {
+        if (guiChange instanceof LeadersAvailableGUI) {
+
+            LeadersAvailableGUI leadersAvailableGUI = (LeadersAvailableGUI)guiChange;
+            inputChecker.setLeaderCardMap(leadersAvailableGUI.getLeadersAvailable());
         }
     }
 

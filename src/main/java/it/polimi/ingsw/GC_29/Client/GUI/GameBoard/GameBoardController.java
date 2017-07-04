@@ -853,6 +853,8 @@ public class GameBoardController {
 
     public void handleUseLeaderCards(ActionEvent event){
 
+        System.out.println("SONO IN USE LEADER, STATO " + playerState);
+
         if (playerState != PlayerState.LEADER) {
             sender.sendInput("use leader cards GUI");
         }
@@ -1408,6 +1410,7 @@ public class GameBoardController {
      * Quando è chiamata fissa l'immagine della BonusTile che riceve
      */
     public void updateBonusTile(String bonusTileIndex){
+
         Image image = new Image(bonusTilesMap.get(bonusTileIndex));
         bonusTile.setImage(image);
     }
@@ -1534,7 +1537,12 @@ public class GameBoardController {
      * @param bonusTileX
      */
     public void setBonusTile(Integer bonusTileX) {
-        Image image = new Image(bonusTilesMap.get(bonusTileX));
+
+        String url = bonusTilesMap.get(bonusTileX.toString());
+
+        System.out.println("ECCO L'URL: " + url);
+
+        Image image = new Image(url);
         bonusTile.setImage(image);
     }
 

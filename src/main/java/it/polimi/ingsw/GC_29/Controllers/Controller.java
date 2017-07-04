@@ -804,6 +804,8 @@ public class Controller implements Observer<Input>  {
                     }
                 }
 
+                System.out.println(" \n INDICE MAPPA " + playerBonusTileIndexMap.get(player ) + " NOME PLAYER " +player.getPlayerID());
+
                 player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
 
 

@@ -252,6 +252,15 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
+    public void useLeaderCardGui(PlayerColor playerColor) throws RemoteException {
+        try {
+            notifyObserver(new UseLeaderCardsGUI(playerColor));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void activateCards(int workersChosen) throws RemoteException {
         try {
             notifyObserver(new ActivateCards(workersChosen));

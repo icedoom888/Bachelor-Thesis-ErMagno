@@ -86,4 +86,7 @@ public interface RMIViewRemote extends Remote {
     Map<Integer,Boolean> getLeaderCardsMap(PlayerColor playerColor) throws RemoteException;
 
     List<String> getLeaderCards(PlayerColor playerColor) throws RemoteException;
+
+    void useLeaderCardGui(PlayerColor playerColor) throws RemoteException;
+
 }

@@ -770,6 +770,8 @@ public class InputChecker {
     }
 
     public void setCurrentPlayerState(PlayerState currentPlayerState) {
+
+        playerStateBeforeLeaderCard = this.currentPlayerState;
         this.currentPlayerState = currentPlayerState;
 
     }
