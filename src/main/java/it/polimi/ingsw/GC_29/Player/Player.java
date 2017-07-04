@@ -283,7 +283,6 @@ public class Player extends Observable<Change> {
 
         this.leaderCards = leaderCards;
 
-        System.out.println("\n\nLEADER CARDS SETTED: size: " + leaderCards.size());
 
         updateLeaderGUI();
     }
