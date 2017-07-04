@@ -27,9 +27,16 @@ public class EndTurn extends Input {
 
         //TODO: qui devi inserire il controllo sulla lista dei riconessi e chiamare il metodo handleReconnectedPlayers
 
+        if(!(controller.getPlayerReconnected().isEmpty())){
+
+            controller.handleReconnectedPlayers();
+        }
+        
         controller.stopTimer();
 
         Player currentPlayer = model.getCurrentPlayer();
+
+        System.out.println("SONO DENTRO PERFORM END TURN, IL CURRENT PLAYER CHE HA CHIAMATO END TURN E' " + currentPlayer.getPlayerID() + " color " + currentPlayer.getPlayerColor());
 
         currentPlayer.setPlayerState(PlayerState.WAITING);
         System.out.println("\n\nTURNO: " + model.getCurrentTurn());

@@ -59,4 +59,18 @@ public class ObtainEffect implements Effect {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ObtainEffect that = (ObtainEffect) o;
+
+        return getGoodsObtained() != null ? getGoodsObtained().equals(that.getGoodsObtained()) : that.getGoodsObtained() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getGoodsObtained() != null ? getGoodsObtained().hashCode() : 0;
+    }
 }

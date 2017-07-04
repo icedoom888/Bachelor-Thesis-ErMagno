@@ -134,16 +134,84 @@ public class WorkAction extends Action {
     }
 
 
+    public void buildDifferentChoices() throws Exception {
 
+        payWorkers();
+        workers = 0;
 
+        activateBonusTile();
 
+        Lane lane = new Lane(6);
+
+        if(zoneType == ZoneType.PRODUCTION){
+
+            lane = player.getPersonalBoard().getLane(CardColor.YELLOW);
+
+        }
+
+        if (zoneType == ZoneType.HARVEST){
+
+            lane = player.getPersonalBoard().getLane(CardColor.GREEN);
+        }
+
+        for (DevelopmentCard card : lane.getCards()) {
+
+            if(card==null){
+                break;
+            }
+
+            int workersNeeded = card.getActionValue() - temporaryPawn.getActualValue();
+
+            if(workersNeeded < player.getActualGoodSet().getGoodAmount(GoodType.WORKERS)){
+
+                workersNeeded = max(0, workersNeeded);
+            }
+
+            if(!(cardsForWorkers.containsKey(workersNeeded))){
+
+                cardsForWorkers.put(workersNeeded, new ArrayList<>());
+                cardsForWorkers.get(workersNeeded).add(card);
+            }
+
+            else {
+
+                cardsForWorkers.get(workersNeeded).add(card);
+            }
+
+        }
+
+        recollectCardsForWorkers();
+
+    }
+
+    private void recollectCardsForWorkers() {
+
+        Set<Integer> workersSet = cardsForWorkers.keySet();
+
+        ArrayList<Integer> workersList = new ArrayList<Integer>(Arrays.asList(workersSet.toArray(new Integer[workersSet.size()])));
+
+        Collections.sort(workersList);
+
+        for (int index = 0; index < workersList.size() - 1; index++) {
+
+            int workersKey = workersList.get(index);
+            int nextWorkersKey = workersList.get(index + 1);
+
+            ArrayList<DevelopmentCard> developmentCards = cardsForWorkers.get(workersKey);
+
+            for (DevelopmentCard developmentCard : developmentCards) {
+
+                cardsForWorkers.get(nextWorkersKey).add(developmentCard);
+            }
+        }
+    }
 
 
     /**
      * This method builds different arrays of cards associated to the number of workers that
      * the player would need to pay to activate their effects,
      * the arrays are created only if the resources of the player are enough to pay hte workersNeeded
-     */
+
     public void buildDifferentChoices() throws Exception {
 
         activateBonusTile();
@@ -179,6 +247,12 @@ public class WorkAction extends Action {
                     break;
                 }
 
+                System.out.println("IL VALORE DELLA CARTA E' " + card.getActionValue() + "\n");
+                System.out.println("IL VALORE DELLA PAWN E' " + temporaryPawn.getActualValue()+ "\n");
+                System.out.println("IL VALORE DEI WORKERS E' " + workers);
+
+
+
                 workersNeeded = card.getActionValue() - temporaryPawn.getActualValue() - workers;
 
                 if (workersNeeded < 0) workersNeeded = 0;
@@ -199,6 +273,7 @@ public class WorkAction extends Action {
                         maxWorkersNeeded = workersNeeded;
                     }
                 }
+
             }
 
             workersNeeded = 0;
@@ -229,9 +304,11 @@ public class WorkAction extends Action {
                 workersNeeded = workersNeeded + 1;
             }
         }
+
+        System.out.println("WORKERS ALLA FINE CHE SERVONO " + workersNeeded);
         cardsForWorkers = finalHash;
 
-    }
+    }*/
 
 
     public Boolean handlePayToObtainCards(int workersChosen){
@@ -240,11 +317,9 @@ public class WorkAction extends Action {
 
         List<DevelopmentCard> cardsToActivateList = cardsForWorkers.get(workersChosen);
 
-
         Boolean isPayToObtain = false;
 
         for (DevelopmentCard card : cardsToActivateList) {
-
 
             String cardKey = card.getSpecial();
 

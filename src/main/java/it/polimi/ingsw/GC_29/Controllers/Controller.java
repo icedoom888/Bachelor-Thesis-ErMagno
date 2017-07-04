@@ -36,6 +36,7 @@ public class Controller implements Observer<Input>  {
     private List<Player> playerSuspended;
 
     private List<Player> playerReconnected;
+    private Map<Player, Integer> playerBonusTileIndexMap;
 
 
     public Controller(GameStatus model){
@@ -43,6 +44,7 @@ public class Controller implements Observer<Input>  {
         playersPraying = 0;
         actionChecker = new ActionChecker(model);
         playerReconnected = new ArrayList<>();
+        playerBonusTileIndexMap = new HashMap<>();
 
         //setCardsOnTowers();
 
@@ -681,9 +683,7 @@ public class Controller implements Observer<Input>  {
 
         if (workAction.handlePayToObtainCards(workers)) {
 
-
             currentPlayer.setPlayerState(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS);
-
 
         }
 
@@ -693,6 +693,7 @@ public class Controller implements Observer<Input>  {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            workAction.getCardsForWorkers().clear();
             handleEndAction();
         }
     }
@@ -778,7 +779,9 @@ public class Controller implements Observer<Input>  {
     }
 
 
-    private void handleReconnectedPlayers(){
+    public void handleReconnectedPlayers(){
+
+        //TODO: leader card update
 
         for (Player player : playerReconnected) {
 
@@ -788,31 +791,20 @@ public class Controller implements Observer<Input>  {
 
                 for (CardColor cardColor : CardColor.values()) {
                     if (cardColor != CardColor.ANY) {
+
                         for (DevelopmentCard developmentCard : player.getPersonalBoard().getLane(cardColor).getCards()) {
-                            player.notifyObserver(new PersonalCardChange(developmentCard.getSpecial(), cardColor));
+                            if(developmentCard == null){
+                                break;
+                            }
+                            else{
+                                player.notifyObserver(new PersonalCardChange(developmentCard.getSpecial(), cardColor));
+                            }
+
                         }
                     }
                 }
 
-                BonusTile playerTile = player.getPersonalBoard().getBonusTile();
-
-                Map<Integer, BonusTile> bonusTileMap = model.getBonusTileMap();
-
-                int indexTile = 0;
-
-                for (Integer integer : bonusTileMap.keySet()) {
-                    if (bonusTileMap.get(integer).equals(playerTile)) {
-                        indexTile = integer;
-                    }
-                    break;
-                }
-
-
-                player.notifyObserver(new BonusTileChangeGui(indexTile));
-
-
-
-
+                player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
 
 
             } catch (Exception e) {
@@ -832,6 +824,11 @@ public class Controller implements Observer<Input>  {
             model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.MILITARYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS));
             model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.FAITHPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS));
         }
+
+        playerReconnected.clear();
     }
 
+    public Map<Player, Integer> getPlayerBonusTileIndexMap() {
+        return playerBonusTileIndexMap;
+    }
 }

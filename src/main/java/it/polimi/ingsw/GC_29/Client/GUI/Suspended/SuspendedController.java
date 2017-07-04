@@ -32,6 +32,11 @@ public class SuspendedController {
     }
     */
 
+    /**
+     * Questa funzione è chiamata quando il giocatore clicca sul bottone join game,
+     * la funzione invia tramite l'InputInterfaceGUI una stringa che indica la volontà del giocatore di riconnettersi
+     * @param actionEvent
+     */
     public void joinGame(ActionEvent actionEvent) {
         sender.sendInput("join game");
 

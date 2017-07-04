@@ -25,10 +25,6 @@ public class SuspendPlayer extends TimerTask {
     @Override
     public void run() {
 
-        if (playerToSuspend != model.getCurrentPlayer()) {
-            return;
-        }
-
         PlayerState playerState = playerToSuspend.getPlayerState();
 
         playerToSuspend.setPlayerState(PlayerState.SUSPENDED);
@@ -119,6 +115,7 @@ public class SuspendPlayer extends TimerTask {
     private void endTurn() {
 
         try {
+            System.out.println("STO LANCIANDO END TURN DA SUSPEND PLAYER, PLAYER STATE: " + playerToSuspend.getPlayerState());
             new EndTurn().perform(model, controller);
         } catch (Exception e) {
             e.printStackTrace();

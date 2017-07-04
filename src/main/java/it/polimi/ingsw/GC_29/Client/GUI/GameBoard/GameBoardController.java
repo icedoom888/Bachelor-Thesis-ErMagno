@@ -510,7 +510,11 @@ public class GameBoardController {
     private Button endZoom;
 
 
-
+    /**
+     * Initialize è una funzione che accede ai parametri FXML una volta lanciata l'applicazione
+     * permette di inserirli all'interno di strutture dati utili alla gestione grafica quali hashmap
+     * contiene inoltre l'elenco degli url delle carte associati al loro nome
+     */
     @FXML
     public void initialize() {
 
@@ -851,7 +855,10 @@ public class GameBoardController {
     }
 
 
-
+    /**
+     * Attivata quando il player clicca il pulsante UseLeaderCards, e comunica la scelta tramite l'InputInterfaceGUI
+     * @param event
+     */
     public void handleUseLeaderCards(ActionEvent event){
 
         if (playerState != PlayerState.LEADER) {
@@ -868,7 +875,7 @@ public class GameBoardController {
 
 
     /**
-     * Gestisce l'attivazione leader card
+     * Gestisce l'attivazione di una leader card
      * @param event
      */
     public void handleActivateLeader(ActionEvent event){
@@ -905,7 +912,7 @@ public class GameBoardController {
     }
 
     /**
-     * Gestisce la distruzione leader card
+     * Gestisce la distruzione di una leader card
 
      * @param event
      * @throws Exception
@@ -940,6 +947,12 @@ public class GameBoardController {
         System.out.println("\n\nLeader discarded AND INPUT SENT\n\n");
     }
 
+
+    /**
+     * Quando è chiamata attiva o disattiva i pulsanti di activate e burn delle rispettive leader cards
+     * a seconda che esse siano segnate come available all'interno della mappa leadersAvailable
+     * @param leadersAvailable
+     */
     public void setPossibleLeaders(Map<Integer, Boolean> leadersAvailable) {
 
         System.out.println(leadersAvailable);
@@ -954,6 +967,10 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * Aggiorna le immagini delle carte leader del player
+     * @param leaders
+     */
     public void updateLeaderCards(ArrayList<String> leaders){
 
         leaderCardsImage = new HashMap<>();
@@ -1043,6 +1060,11 @@ public class GameBoardController {
     }
 
 
+    /**
+     * Attivata quando un giocato reseleziona l'actionSpace dove vuole posizionare una pedina e
+     * comunica la scelta fatta tramite l'InputInterfaceGUI
+     * @param event
+     */
     public void handleActionChosenImageView(MouseEvent event){
         Integer actionSelected = buttonAction.get(event.getSource());
         System.out.println("input sent from gameboard Controller : execute action " + actionSelected.toString());
@@ -1052,6 +1074,11 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * Attivata quando un giocatore seleziona una carta sulla gameboard o sulla personalboard,
+     * La funzione apre un riquadro mostrando la carta in dimensioni maggiori
+     * @param event
+     */
     public void handleZoom(MouseEvent event){
         ImageView imageView = (ImageView) event.getSource();
         Image imageToShow = imageView.getImage();
@@ -1059,10 +1086,21 @@ public class GameBoardController {
         zoomPane.setVisible(true);
     }
 
+    /**
+     * Attivata quando il giocatore dalla schermata di Zoom clicca il pulsante Ok,
+     * chiude la schermata di zoom
+     * @param event
+     */
     public void handleEndZoom(ActionEvent event){
         zoomPane.setVisible(false);
     }
 
+    /**
+     * Inserisce graficamente la pedina selezionata dal giocatore sull'actionSpace da egli selezionato,
+     * chiama poi 3 funzioni diverse a seconda della tipologia di actionSpace
+     * @param familyPawn
+     * @param actionIndex
+     */
     public void updatePawn(FamilyPawn familyPawn, int actionIndex) {
         PlayerColor playerColor = familyPawn.getPlayerColor();
         FamilyPawnType pawnType = familyPawn.getType();
@@ -1093,6 +1131,11 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * Aggiunge graficamente l'immagine della pedina sugli actionSpace singoli
+     * @param image
+     * @param actionIndex
+     */
     private void updatePawnOnActionspace(Image image, int actionIndex) {
         actionButtons.get(actionIndex).setImage(image);
         for (Integer integer : coverImages.keySet()){
@@ -1100,6 +1143,11 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * Aggiunge graficamente l'immagine della pedina all'interno della box corrispondente, nel primo posto libero
+     * @param image
+     * @param actionIndex
+     */
     private void updatePawnOnBox(Image image, int actionIndex) {
         if (actionIndex==22){
             harvestBox.get(harvestBoxFreeSlot).setImage(image);
@@ -1111,11 +1159,19 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * Aggiunge graficamente l'immagine della pedina all'interno della grid corrispondente, nel primo posto libero
+     * @param image
+     * @param actionIndex
+     */
     private void updatePawnOnGrid(Image image, int actionIndex) {
         gridMap.get(gridFreeSlot).setImage(image);
         gridFreeSlot++;
     }
 
+    /**
+     * rimuove tutte le immagini delle pedine dalla gameboard
+     */
     public void removeAllPawns(){
         for (Integer integer : actionButtons.keySet()) {
             Image image = null;
@@ -1317,7 +1373,10 @@ public class GameBoardController {
     }
 
     /**
-     * modifica il contenuto delle tracks
+     * modifica il contenuto delle tracks,
+     * gli viene passato il player a cui cambiare le risorse,
+     * la risorsa da cambiare,
+     * e infine il numero di punti da aggiungere
      * @param playerColor
      * @param goodType
      * @param numberOfPoints
@@ -1418,6 +1477,10 @@ public class GameBoardController {
         bonusTile.setImage(image);
     }
 
+    /**
+     * Quando è chiamata visualizza sulla Gameboard le immagini delle Excomunication tiles che gli vengono passate
+     * @param tiles
+     */
     public void updateExcomunicationTiles(ArrayList<String> tiles){
 
         excummunicationTile1.setImage(new Image(tiles.get(0)));
@@ -1444,6 +1507,12 @@ public class GameBoardController {
     }
 
 
+    /**
+     * chiamata quando bisogna mostrare al giocatore la schermata ChooseWorkers,
+     * la schermata è poi modificata mostrando al suo interno le possibili scelte presenti nella mappa cardsForWorkers,
+     * vengono inoltre salvate nel controller della schermata le scelte possibili
+     * @param cardsForWorkers
+     */
     public void chooseWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
 
         System.out.println(cardsForWorkers);
@@ -1466,6 +1535,11 @@ public class GameBoardController {
         workersController.setChoices(choices);
     }
 
+    /**
+     * chiamata quando bisogna mostrare al giocatore la schermata ChoosePayToObtainCards,
+     * la schermata è poi modificata mostrando al suo interno le possibili scelte presenti nella mappa payToObtainCards
+     * @param payToObtainCards
+     */
     public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
 
         System.out.println("choose payToObtain gameboard controller");
@@ -1475,7 +1549,11 @@ public class GameBoardController {
     }
 
 
-
+    /**
+     * chiamata quando bisogna mostrare al giocatore la schermata ChooseCost,
+     * la schermata è poi modificata mostrando al suo interno le possibili scelte presenti nella mappa possibleCosts
+     * @param possibleCosts
+     */
     public void chooseCost(Map<Integer, String> possibleCosts) {
 
         chooseCostPane.setVisible(true);
@@ -1489,11 +1567,21 @@ public class GameBoardController {
     }
 
 
+    /**
+     * chiamata quando bisogna mostrare al giocatore la schermata ChoosePrivileges,
+     *
+     * @param councilPrivileges
+     */
    public void choosePrivileges(List<Integer> councilPrivileges) {
         //choosePrivilegePane.setVisible(true);
         choosePrivilegeController.choosePrivilege(councilPrivileges);
     }
 
+    /**
+     * chiamata quando bisogna mostrare al giocatore la schermata ChooseBonus,
+     * la schermata è poi modificata in modo tale da mostrare solo le bonustiles presenti nella mappa
+     * @param bonusTiles
+     */
     public void chooseBonusTile(Map<Integer, String> bonusTiles) {
         bonusTilePane.setVisible(true);
         bonusTileController.setBonusTiles(bonusTiles);
@@ -1502,6 +1590,10 @@ public class GameBoardController {
 
 
     //TODO: Verificare il funzionamento
+    /**
+     * chiamata quando bisogna mostrare la schermata YourTurn,
+     * per avvisare il giocatore che il suo turno è iniziato
+     */
     private void yourTurn() throws InterruptedException {
         yourTurnPane.setVisible(true);
         PauseTransition delay = new PauseTransition(Duration.seconds(3));
@@ -1509,6 +1601,10 @@ public class GameBoardController {
         delay.play();
     }
 
+    /**
+     * chiamata quando bisogna mostrare la schermata Throw Dices,
+     * per avvisare il giocatore che deve tirare i dadi
+     */
     private void throwDices() throws InterruptedException {
 
         throwDicesPane.setVisible(true);
@@ -1518,6 +1614,10 @@ public class GameBoardController {
 
     }
 
+    /**
+     * chiamata quando bisogna mostrare la schermata Bonus Action,
+     * per avvisare il giocatore che ha ricevuto un'azione bonus
+     */
     private void bonusAction() throws InterruptedException {
 
         bonusActionPane.setVisible(true);
@@ -1527,22 +1627,61 @@ public class GameBoardController {
 
     }
 
+    /**
+     * chiamata quando bisogna mostrare la schermata Pray,
+     * viene mostrata come immagine l'ecommunication che gli viene passata
+     * @param excommunication
+     */
     public void pray(String excommunication){
         prayController.updatePray(excommunication);
         prayPane.setVisible(true);
 
     }
 
-    public void setBonusTile(Integer bonusTile) {
 
+    /**
+     * Funzione chiamata nel momento in cui una partita deve essere ripristiata,
+     * viene ripristinata la bonusTile selezionata in precedenza dal giocatore
+     * @param bonusTileX
+     */
+    public void setBonusTile(Integer bonusTileX) {
+        Image image = new Image(bonusTilesMap.get(bonusTileX));
+        bonusTile.setImage(image);
     }
 
+    /**
+     * Funzione chiamata nel momento in cui una partita deve essere ripristiata,
+     * viene ripristinato il valore dei punti delle track che erano presenti quando la partita è terminata
+     * @param playerColor
+     * @param goodType
+     * @param numberOfPoints
+     */
     public void resetTrack(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints) {
 
+        String numberOfPointString = String.valueOf(numberOfPoints);
+
+        switch (playerColor){
+            case BLUE:
+                bluePlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case GREEN:
+                greenPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case RED:
+                redPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case YELLOW:
+                yellowPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+        }
     }
 
 
-
+    /**
+     * Setta lo stato in cui si trova il Giocatore, e a seconda dello stato mostra le schermate relative
+     * e attiva/disattiva alcuni pulsanti
+     * @param newPlayerState
+     */
     public void setState(PlayerState newPlayerState) {
 
         this.playerState = newPlayerState;
@@ -1752,7 +1891,9 @@ public class GameBoardController {
     }
 
 
-
+    /**
+     * chiude tutte le finestre aperte
+     */
     public void closeWindows() {
 
         waitingForPlayers.setVisible(false);
@@ -1836,6 +1977,9 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * disattiva tutti i bottoni
+     */
     public void noButtonsAble() {
 
         setActions(false);

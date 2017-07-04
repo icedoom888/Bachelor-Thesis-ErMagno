@@ -12,6 +12,7 @@ public class BonusTileChosen extends Input {
 
     private int bonusTileIndex;
 
+
     public BonusTileChosen(int bonusTileChosen) {
 
         bonusTileIndex = bonusTileChosen;
@@ -47,6 +48,8 @@ public class BonusTileChosen extends Input {
         }
 
         model.getCurrentPlayer().getPersonalBoard().setBonusTile(bonusTile);
+
+        controller.getPlayerBonusTileIndexMap().put(model.getCurrentPlayer(), bonusTileIndex);
 
         int playerToChooseBonusTileIndex = controller.getCurrentBonusTileIndexPlayer();
 
