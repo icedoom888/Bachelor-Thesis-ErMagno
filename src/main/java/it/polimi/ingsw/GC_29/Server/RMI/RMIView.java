@@ -10,7 +10,6 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.*;
 import it.polimi.ingsw.GC_29.Server.Socket.LeaderAction;
-import it.polimi.ingsw.GC_29.Server.Socket.PrivilegeChosenLeader;
 import it.polimi.ingsw.GC_29.Server.View;
 
 import java.rmi.RemoteException;
@@ -233,18 +232,18 @@ public class RMIView extends View implements RMIViewRemote {
         }
     }
 
-    @Override
+    /*@Override
     public void privilegeLeader(List<Integer> councilPrivilegeEffectChosenList, PlayerColor playerColor) throws RemoteException{
         try {
             notifyObserver(new PrivilegeChosenLeader(councilPrivilegeEffectChosenList, playerColor));
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Override
     public Map<Integer, Boolean> getLeaderCardsMap(PlayerColor playerColor) throws RemoteException {
-        return new LeaderCardMapQuery(playerColor).perform(gameStatus);
+        return new GetAvailableLeaderCards(playerColor).perform(gameStatus);
     }
 
     @Override

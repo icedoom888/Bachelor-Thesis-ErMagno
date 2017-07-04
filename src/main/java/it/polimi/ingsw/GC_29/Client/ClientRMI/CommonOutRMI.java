@@ -150,9 +150,9 @@ public class CommonOutRMI implements InputInterfaceGUI{
                         if (inputChecker.getCurrentPlayerState() == PlayerState.CHOOSE_COUNCIL_PRIVILEGE) {
                             serverViewStub.privilegesChosen(inputChecker.getCouncilPrivilegeEffectChosenList());
                         }
-                        else if (inputChecker.getCurrentPlayerState() == PlayerState.DISCARDINGLEADER) {
+                        /*else if (inputChecker.getCurrentPlayerState() == PlayerState.DISCARDINGLEADER) {
                             serverViewStub.privilegeLeader(inputChecker.getCouncilPrivilegeEffectChosenList(), playerColor);
-                        }
+                        }*/
                     }
                     break;
 
@@ -161,9 +161,9 @@ public class CommonOutRMI implements InputInterfaceGUI{
                     serverViewStub.privilegesChosen(councilPrivilegeEffectChosenList);
                     break;
 
-                case "councilPrivilege chosen leader GUI":
+                /*case "councilPrivilege chosen leader GUI":
                     serverViewStub.privilegeLeader(councilPrivilegeEffectChosenList, playerColor);
-                    break;
+                    break;*/
 
                 case "pray":
                     serverViewStub.pray(true, playerColor);
@@ -176,16 +176,23 @@ public class CommonOutRMI implements InputInterfaceGUI{
                 case "use leader cards":
                     inputChecker.setLeaderCards(serverViewStub.getLeaderCards(playerColor));
                     inputChecker.setLeaderCardMap(serverViewStub.getLeaderCardsMap(playerColor));
+                    inputChecker.showAvailableLeaderCards();
                     break;
 
                 case "activate leader card":
                     int index = inputChecker.getLeaderChosenIndex();
                     serverViewStub.leaderAction(true, index, playerColor);
+                    //inputChecker.resetPlayerState();
                     break;
 
                 case "discard leader card":
                     index = inputChecker.getLeaderChosenIndex();
                     serverViewStub.leaderAction(false, index, playerColor);
+                    //inputChecker.resetPlayerState();
+                    break;
+
+                case "not use leader card":
+                    inputChecker.resetPlayerState();
                     break;
 
                 case "see my goodset":

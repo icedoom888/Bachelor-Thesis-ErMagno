@@ -156,9 +156,9 @@ public class ChoosePrivilegeController {
                 sender.sendInput(councilPrivilegeEffectChosenList, true);
             }
 
-            else if (gameBoardController.getPlayerState() == PlayerState.DISCARDINGLEADER) {
+            /*else if (gameBoardController.getPlayerState() == PlayerState.DISCARDINGLEADER) {
                 sender.sendInput(councilPrivilegeEffectChosenList, false);
-            }
+            }*/
         }
 
 

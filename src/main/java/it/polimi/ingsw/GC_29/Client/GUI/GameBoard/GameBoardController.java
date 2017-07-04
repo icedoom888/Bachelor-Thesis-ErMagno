@@ -1668,7 +1668,7 @@ public class GameBoardController {
 
                 break;
 
-            case DISCARDINGLEADER:
+            /*case DISCARDINGLEADER:
 
                 noButtonsAble();
 
@@ -1679,7 +1679,7 @@ public class GameBoardController {
 
                 choosePrivileges(councilPrivilege);
 
-                break;
+                break;*/
 
             case ENDTURN:
 
@@ -1705,6 +1705,7 @@ public class GameBoardController {
                 noButtonsAble();
 
                 setUseLeader(true);
+                break;
 
 
             case SUSPENDED:

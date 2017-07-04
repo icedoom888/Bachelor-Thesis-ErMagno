@@ -174,14 +174,14 @@ public class CommonOutSocket implements InputInterfaceGUI{
                             socketOut.flush();
                         }
 
-                        else if (inputChecker.getCurrentPlayerState() == PlayerState.DISCARDINGLEADER) {
+                        /*else if (inputChecker.getCurrentPlayerState() == PlayerState.DISCARDINGLEADER) {
 
                             socketOut.writeObject("council privileges chosen leader");
                             socketOut.flush();
                             socketOut.writeObject(inputChecker.getCouncilPrivilegeEffectChosenList());
                             socketOut.flush();
                             socketOut.writeObject(playerColor);
-                        }
+                        }*/
                     }
                     break;
 

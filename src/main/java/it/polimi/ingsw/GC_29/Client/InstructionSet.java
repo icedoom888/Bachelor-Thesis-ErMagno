@@ -21,10 +21,13 @@ public class InstructionSet {
             new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION)), "use family pawn \\w+");
 
     private final Instruction activateLeaderCard = new Instruction("activate leader card (insert index)",
-            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN)), "activate leader card \\d+");
+            new ArrayList<>(Arrays.asList(PlayerState.LEADER)), "activate leader card \\d+");
 
     private final Instruction discardLeaderCard = new Instruction("discard leader card (insert index)",
-            new ArrayList<>(Arrays.asList(PlayerState.DOACTION, PlayerState.CHOOSEACTION, PlayerState.BONUSACTION, PlayerState.ENDTURN)), "discard leader card \\d+");
+            new ArrayList<>(Arrays.asList(PlayerState.LEADER)), "discard leader card \\d+");
+
+    private final Instruction notUseLeaderCards = new Instruction("not use leader card",
+            new ArrayList<>(Arrays.asList(PlayerState.LEADER)));
 
     private final Instruction seeValidActionList = new Instruction("see valid action list",
             new ArrayList<>(Arrays.asList(PlayerState.CHOOSEACTION, PlayerState.BONUSACTION)));
@@ -101,7 +104,8 @@ public class InstructionSet {
             skipAction, endTurn, useFamilyPawn, activateLeaderCard,
             discardLeaderCard, seeValidActionList, doAction, seeCardsDevelopment, seeCardsExcommunication, seeCardsLeader, seeGameBoard,
             seeTracks, seePersonalBoard, seeGameBoardDevelopmentCards, seeGameBoardExcommunicationCards, seeMyGoodSet, seeMyAvailablePawns,
-            throwDices, chooseWorkers, activateCard, chooseEffect, choosePrivilege, chooseCost, chooseBonusTile, pray, doNotPray, help, joinGame));
+            throwDices, chooseWorkers, activateCard, chooseEffect, choosePrivilege, chooseCost, chooseBonusTile, pray, doNotPray,
+            help, joinGame, notUseLeaderCards));
 
 
     /////////////////////////////////////////////////////////////////////7

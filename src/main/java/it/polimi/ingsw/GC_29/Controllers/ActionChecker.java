@@ -67,6 +67,8 @@ public class ActionChecker {
 
     public void setValidActionForFamilyPawn(FamilyPawn familyPawn, ZoneType zoneType){
 
+        System.out.println("LO ZONE TYPE DELLA BONUS ACTION E' " + zoneType);
+
         ArrayList<Action> filteredActionList = filterActionListPerZoneType(zoneType);
 
         checkActionOnPawn(familyPawn, filteredActionList);
@@ -120,6 +122,8 @@ public class ActionChecker {
             for(Action action : actionList){
 
                 if(action.getZoneType() == zoneType){
+
+                    System.out.println("ZONE TYPE AZIONE AGGIUNTA E' " + action.getZoneType());
 
                     filteredActionList.add(action);
                 }

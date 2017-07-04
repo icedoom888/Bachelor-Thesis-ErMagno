@@ -63,13 +63,17 @@ public class ServerNewGame implements Runnable {
 
         addColors();
 
+        PlayerColor playerColor = playerColors.remove(0);
+
+        client.setPlayerColor(playerColor);
+
         clientRMIList = new ArrayList<>();
 
         players = new ArrayList<>();
 
         clientPlayerColorMap = new HashMap<>();
 
-        Player player = new Player(client.getUserName(), client.getPlayerColor(), new PersonalBoard(6));
+        Player player = new Player(client.getUserName(), playerColor, new PersonalBoard(6));
 
         players.add(player);
 
@@ -82,6 +86,8 @@ public class ServerNewGame implements Runnable {
     public ServerNewGame(String username, PlayerSocket playerSocket, LogoutInterface logoutInterface) {
 
         this.logoutInterface = logoutInterface;
+
+        clientPlayerColorMap = new HashMap<>();
 
         addColors();
 
@@ -155,7 +161,7 @@ public class ServerNewGame implements Runnable {
 
                 System.out.println("Creo server socket view");
 
-                ServerSocketView serverSocketView = new ServerSocketView(playersSocketMap.get(player), gameSetup.getGameStatus());
+                ServerSocketView serverSocketView = new ServerSocketView(playersSocketMap.get(player), gameSetup.getGameStatus(), player.getPlayerColor());
 
                 serverSocketView.registerObserver(controller);
                 gameSetup.getGameStatus().registerObserver(serverSocketView);
@@ -289,6 +295,9 @@ public class ServerNewGame implements Runnable {
     public void addClient(String username, PlayerSocket playerSocket) {
 
         PlayerColor playerColor = playerColors.remove(0);
+        System.out.println(clientPlayerColorMap == null);
+        System.out.println(username);
+        System.out.println(playerColor);
         clientPlayerColorMap.put(username, playerColor);
         Player player = new Player(username, playerColor, new PersonalBoard(6));
         players.add(player);

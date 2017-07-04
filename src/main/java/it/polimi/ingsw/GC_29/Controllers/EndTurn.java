@@ -31,9 +31,8 @@ public class EndTurn extends Input {
 
         Player currentPlayer = model.getCurrentPlayer();
 
-        if(currentPlayer.getPlayerState() != PlayerState.SUSPENDED){
-            currentPlayer.setPlayerState(PlayerState.WAITING);
-        }
+        currentPlayer.setPlayerState(PlayerState.WAITING);
+        System.out.println("END TURN, NOME " + currentPlayer.getPlayerID() + " colore " + currentPlayer.getPlayerColor());
 
 
         List<Player> turnOrder = model.getTurnOrder();

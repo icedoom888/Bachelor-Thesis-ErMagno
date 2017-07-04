@@ -35,7 +35,22 @@ public class PrivilegeChosen extends Input {
             obtainEffect.execute(model.getCurrentPlayer());
         }
 
-        controller.handleEndAction();
+
+
+        if(model.getCurrentPlayer().getLastState() != null){
+
+            model.getCurrentPlayer().setPlayerState(model.getCurrentPlayer().getLastState());
+
+            model.getCurrentPlayer().setLastState(null);
+
+        }
+
+        else{
+
+            controller.handleEndAction();
+        }
+
+
 
     }
 }

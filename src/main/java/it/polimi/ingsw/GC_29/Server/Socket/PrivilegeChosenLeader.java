@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Created by Lorenzotara on 03/07/17.
- */
+
 public class PrivilegeChosenLeader extends Input {
 
     private List<Integer> councilPrivileges;
@@ -45,4 +45,4 @@ public class PrivilegeChosenLeader extends Input {
             }
         }
     }
-}
+} */

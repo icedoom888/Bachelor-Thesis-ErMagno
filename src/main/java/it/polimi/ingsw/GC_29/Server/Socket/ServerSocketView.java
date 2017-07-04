@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,28 +28,39 @@ public class ServerSocketView extends View implements Runnable {
     private ObjectInputStream socketIn;
     private ObjectOutputStream socketOut;
     private GameStatus model;
+    private PlayerColor playerColor;
     private static final Object socketLock = new Object();
 
 
-    public ServerSocketView(PlayerSocket playerSocket, GameStatus model) throws IOException {
+    public ServerSocketView(PlayerSocket playerSocket, GameStatus model, PlayerColor playerColor) throws IOException {
         this.socket = playerSocket.getSocket();
         this.socketIn = playerSocket.getSocketIn();
         this.socketOut = playerSocket.getSocketOut();
         this.model = model;
         this.validActionQuery = new GetValidActions();
+        this.playerColor = playerColor;
 
     }
 
     @Override
-    public void update(Change o) throws Exception {
+    public void update(Change o)  {
 
         System.out.println("UPDATE from Server");
         System.out.println(o);
-        socketOut.writeObject("Change");
-        socketOut.flush();
-        socketOut.reset();
-        socketOut.writeObject(o);
-        socketOut.flush();
+        try {
+
+            socketOut.writeObject("Change");
+
+            socketOut.flush();
+            socketOut.reset();
+            socketOut.writeObject(o);
+            socketOut.flush();
+
+        } catch (SocketException e){
+            handleDisconnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -129,11 +141,11 @@ public class ServerSocketView extends View implements Runnable {
                                 notifyObserver(new PrivilegeChosen(councilPrivileges));
                                 break;
 
-                            case "council privileges chosen leader":
+                            /*case "council privileges chosen leader":
                                 councilPrivileges = (List<Integer>)socketIn.readObject();
                                 PlayerColor playerColor = (PlayerColor)socketIn.readObject();
                                 notifyObserver(new PrivilegeChosenLeader(councilPrivileges, playerColor));
-                                break;
+                                break;*/
 
                             case "pray":
                                 playerColor = (PlayerColor)socketIn.readObject();
@@ -170,7 +182,10 @@ public class ServerSocketView extends View implements Runnable {
                 } catch (ClassNotFoundException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                } catch (IOException e) {
+                } catch (SocketException e){
+                    handleDisconnection();
+                }
+                catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (Exception e) {
@@ -206,17 +221,11 @@ public class ServerSocketView extends View implements Runnable {
 
         if (q instanceof GetAvailableLeaderCards) {
 
-            System.out.println("BEFORE PERFORMING QUERY\n\n");
-
             sendOut("Leader");
 
             GetAvailableLeaderCards query = (GetAvailableLeaderCards)q;
 
-            System.out.println("C'è CASINO PRIMA DI QUI? SE NO è LA PERFORM IL PROBLEMA");
-
             Map<Integer, Boolean> validLeaders = query.perform(model);
-
-            System.out.println("SENDING MAP\n\n");
 
             sendOut(validLeaders);
         }
@@ -459,5 +468,17 @@ public class ServerSocketView extends View implements Runnable {
         }
     }
 
+    private void handleDisconnection(){
+        model.getPlayer(playerColor).unregisterObserver(this);
+        model.unregisterObserver(this);
+        logoutInterface.clientDisconnected(model.getPlayer(playerColor).getPlayerID());
+        System.out.println("CLIENT DISCONNECTED. CLIENT SUSPENDED");
+        //gameStatus.getPlayer(playerColor).setPlayerState(PlayerState.SUSPENDED);
+        try {
+            notifyObserver(new Disconnection(playerColor));
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+    }
 
 }

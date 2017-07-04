@@ -31,7 +31,12 @@ public class LeaderCardsQuery extends Query<List<String>> {
 
         for (LeaderCard leaderCard : leaderCards) {
 
-            leaderCardsList.add(leaderCard.toString());
+            if(!(leaderCard.isActivated() || leaderCard.isDiscarded())){
+
+                leaderCardsList.add(leaderCard.toString());
+
+            }
+
         }
 
         return leaderCardsList;

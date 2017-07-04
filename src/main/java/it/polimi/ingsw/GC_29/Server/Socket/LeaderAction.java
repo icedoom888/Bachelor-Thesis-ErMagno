@@ -43,7 +43,10 @@ public class LeaderAction extends Input {
                 else {
                     player.getLeaderCards().get(leaderIndex).setDiscarded();
                     player.setLastState(player.getPlayerState());
-                    player.setPlayerState(PlayerState.DISCARDINGLEADER);
+                    CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
+                    councilPrivilegeEffect.execute(player);
+                    player.setPlayerState(PlayerState.CHOOSE_COUNCIL_PRIVILEGE);
+                    //player.setPlayerState(PlayerState.DISCARDINGLEADER);
                 }
 
                 break;

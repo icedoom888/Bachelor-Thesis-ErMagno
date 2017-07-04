@@ -30,6 +30,7 @@ public class InputChecker {
     private PlayerColor playerColor;
 
     private PlayerState currentPlayerState;
+    private PlayerState playerStateBeforeLeaderCard;
     private GameState currentGameState;
 
     private Map<FamilyPawnType, Boolean> familyPawnAvailability;
@@ -153,11 +154,11 @@ public class InputChecker {
 
             case ("activate leader card (insert index)"):
 
-                return handleLeaderCard(lastWord, true);
+                return activateLeaderCard(lastWord);
 
             case ("discard leader card (insert index)"):
 
-                return handleLeaderCard(lastWord, false);
+                return discardLeaderCard(lastWord);
 
             case ("execute action (insert index)"):
 
@@ -201,6 +202,7 @@ public class InputChecker {
 
         return null;
     }
+
 
     private String handleBonusTile(String lastWord) {
 
@@ -366,12 +368,54 @@ public class InputChecker {
 
     }
 
-    private String handleLeaderCard(String lastWord, boolean b) {
+    private String activateLeaderCard(String lastWord) {
+
+        int index = Integer.parseInt(lastWord);
+
+        if(leaderCardMap.keySet().contains(index)){
+
+            if(leaderCardMap.get(index)){
+
+                leaderChosenIndex = index;
+
+                return "activate leader card";
+            }
+
+            else {
+
+                return "the card cannot be activated";
+            }
 
 
+        }
 
-        return "";
+        else {
+
+            return "invalid input";
+        }
+
     }
+
+
+    private String discardLeaderCard(String lastWord) {
+
+        int index = Integer.parseInt(lastWord);
+
+        if(leaderCardMap.keySet().contains(index)){
+
+            leaderChosenIndex = index;
+
+            return "discard leader card";
+
+        }
+
+        else {
+
+            return "invalid input";
+        }
+
+    }
+
 
     private String handleUseFamilyPawn(String lastWord){
 
@@ -745,9 +789,9 @@ public class InputChecker {
         this.leaderCardMap = leaderCardMap;
     }
 
-    public void showLeaderCardMap(){
+    /*public void showLeaderCardMap(){
 
-        setCurrentPlayerState(PlayerState.LEADER_CARDS);
+        //setCurrentPlayerState(PlayerState.LEADER_CARDS);
 
         System.out.println("these are your lea");
 
@@ -755,9 +799,35 @@ public class InputChecker {
 
             System.out.println();
         }
+    }*/
+
+    public PlayerState getPlayerStateBeforeLeaderCard() {
+        return playerStateBeforeLeaderCard;
     }
 
     public void setLeaderCards(List<String> leaderCards) {
         this.leaderCards = leaderCards;
+    }
+
+    public void showAvailableLeaderCards() {
+
+        playerStateBeforeLeaderCard = currentPlayerState;
+
+        setCurrentPlayerState(PlayerState.LEADER);
+
+        System.out.println("these are your available leader cards");
+
+        for(int index = 0; index < leaderCards.size(); index++){
+
+            System.out.println("index " + index + ") " + leaderCards.get(index));
+
+        }
+    }
+
+    public void resetPlayerState() {
+
+        currentPlayerState = playerStateBeforeLeaderCard;
+        System.out.println(currentPlayerState);
+        handleHelp();
     }
 }

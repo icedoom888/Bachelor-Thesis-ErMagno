@@ -136,4 +136,17 @@ public class LeaderCard {
     public void setActivated(boolean activated) {
         this.activated = activated;
     }
+
+    @Override
+    public String toString() {
+        return "LeaderCard{" +
+                "leaderName = '" + leaderName + '\'' +
+                ", requirement = " + requirement +
+                ", permanent = " + permanent +
+                effect +
+                bonusAndMalusOnAction +
+                bonusAndMalusOnCost +
+                bonusAndMalusOnGoods +
+                '}';
+    }
 }

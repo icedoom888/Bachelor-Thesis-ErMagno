@@ -26,7 +26,7 @@ public class Controller implements Observer<Input>  {
     private final long throwDicesTime = 150000;
     private final long chooseBonusTilesTime = 150000;
     private final long prayTime = 150000;
-    private final long turnTime = 150000;
+    private final long turnTime = 500000;
 
     private Integer playersPraying;
     private ActionChecker actionChecker;
@@ -138,17 +138,24 @@ public class Controller implements Observer<Input>  {
 
             for (Player player : model.getTurnOrder()) {
 
+                System.out.println("INDICE PLAYER " + model.getTurnOrder().indexOf(player) + " nome " + player.getPlayerID());
+
                 if (player.getPlayerState() != PlayerState.SUSPENDED) {
 
                     suspendedPlayers = false;
 
                     player.setPlayerState(PlayerState.THROWDICES);
 
-                    System.out.println("IN SET NEW ROUND: playerColor = " + player.getPlayerColor() + "Set to throw dices\n");
+                    System.out.println("IN SET NEW ROUND: playerColor = " + player.getPlayerID() + " colore: " + player.getPlayerColor() + "Set to throw dices\n");
 
                     startTimer(player);
 
                     break;
+                }
+
+                else {
+
+                    System.out.println("SECONDO IL CONTROLLER QUESTO PLAYER E' SOSPESO " + player.getPlayerID());
                 }
             }
         }
@@ -650,10 +657,11 @@ public class Controller implements Observer<Input>  {
             // temporary bonusMalusOn cost setted in the player
             if (currentBonusAction.getBonusAndMalusOnCost() != null) {
 
+                System.out.println(currentBonusAction.getBonusAndMalusOnCost());
+
                 model.getCurrentPlayer().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
 
             }
-
 
             actionChecker.resetActionListExceptPlayer();
 

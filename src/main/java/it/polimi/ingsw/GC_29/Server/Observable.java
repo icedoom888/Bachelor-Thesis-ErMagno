@@ -33,9 +33,7 @@ public abstract class Observable<C> {
     public void notifyObserver(C c) throws Exception {
 
 
-            System.out.println("I am the "+this.getClass().getSimpleName());
-
-        System.out.println("LA DIMENSIONE DEGLI OBSERVERS E' "+observers.size());
+           // System.out.println("I am the "+this.getClass().getSimpleName());
 
             for(Observer<C> o: this.observers){
                 o.update(c);
