@@ -132,6 +132,7 @@ public class ChoosePrivilegeController {
 
         }
 
+
         councilPrivilegeEffectChosenList.add(index);
 
         for (Map<Integer, ObtainEffect> councilEffectsMap : currentParchmentList) {
@@ -154,6 +155,7 @@ public class ChoosePrivilegeController {
 
             if (gameBoardController.getPlayerState() == PlayerState.CHOOSE_COUNCIL_PRIVILEGE) {
                 sender.sendInput(councilPrivilegeEffectChosenList, true);
+
             }
 
             /*else if (gameBoardController.getPlayerState() == PlayerState.DISCARDINGLEADER) {

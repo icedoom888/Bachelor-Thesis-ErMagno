@@ -32,8 +32,11 @@ public class EndTurn extends Input {
         Player currentPlayer = model.getCurrentPlayer();
 
         currentPlayer.setPlayerState(PlayerState.WAITING);
-        System.out.println("END TURN, NOME " + currentPlayer.getPlayerID() + " colore " + currentPlayer.getPlayerColor());
+        System.out.println("\n\nTURNO: " + model.getCurrentTurn());
+        System.out.println("END TURN, NOME " + currentPlayer.getPlayerID() + " colore " + currentPlayer.getPlayerColor()+"\n\n");
+        System.out.println("INDICE DEL PLAYER CHE STA FINENDO IL TURNO: " + model.getTurnOrder().indexOf(currentPlayer));
 
+        System.out.println("\n\nTURN ORDER UGUALE A: " + model.getTurnOrder());
 
         List<Player> turnOrder = model.getTurnOrder();
 
@@ -44,6 +47,7 @@ public class EndTurn extends Input {
         //else if (turnOrder.indexOf(currentPlayer) == turnOrder.size()-1) {
         else if (seeIfLastPlayer(turnOrder, currentPlayer)) {
 
+            System.out.println("TURNO MINORE DI QUATTRO, SETTO IL PLAYER CORRENTE\n\n");
 
             if (model.getCurrentTurn() < 4) {
 
@@ -56,6 +60,9 @@ public class EndTurn extends Input {
                     if (player.getPlayerState() != PlayerState.SUSPENDED) {
 
                         model.setCurrentPlayer(player);
+
+                        System.out.println("IL PLAYER CORRENTE è: " + player.getPlayerID() + "\n\n");
+
                         break;
 
                     }
@@ -74,7 +81,7 @@ public class EndTurn extends Input {
 
             else if (model.getCurrentTurn() == 4) {
 
-                System.out.println("Setting Skipped players");
+                System.out.println("TURNO UGUALE A QUATTRO, SETTO GLI SKIPPED\n\n");
 
                 setSkippedPlayer(model, controller);
 
@@ -84,6 +91,9 @@ public class EndTurn extends Input {
         else {
 
             int indexOfNextPlayer = turnOrder.indexOf(currentPlayer) + 1;
+
+            System.out.println("\n\nNON è L'ULTIMO TURNO, IL PLAYER CHE DEVE ESSERE SETTATO CORRENTE è: "
+                    + turnOrder.get(indexOfNextPlayer) + "\n IL CUI INDICE è: " + indexOfNextPlayer);
 
             boolean b = true;
 
@@ -104,6 +114,8 @@ public class EndTurn extends Input {
 
             }
 
+            System.out.println("\n\nINDICE CHE PASSO AL CONTROLLER PER SCEGLIERE IL CURRENT PLAYER: " + indexOfNextPlayer);
+
             controller.chooseCurrentPlayer(indexOfNextPlayer);
         }
     }
@@ -113,7 +125,7 @@ public class EndTurn extends Input {
 
         if (model.getSkippedTurnPlayers().isEmpty()) {
 
-            System.out.println("nessuno skippa");
+            System.out.println("NESSUNO STA SKIPPANDO, VADO IN END ROUND \n\n");
 
             model.setGameState(GameState.RUNNING);
 
@@ -164,15 +176,27 @@ public class EndTurn extends Input {
 
     private boolean seeIfLastPlayer(List<Player> turnOrder, Player currentPlayer) {
 
+        System.out.println("\n\nSONO IN SEE IF LAST PLAYER");
+
         int indexOfCurrentPlayer = turnOrder.indexOf(currentPlayer);
 
+        System.out.println("\n\nINDICE DEL CURRENT PLAYER: " + indexOfCurrentPlayer);
+
+
         if (indexOfCurrentPlayer == turnOrder.size()-1) {
+
+            System.out.println("\n\nIL GIOCATORE è L'ULTIMO DEL TURNO: il giocatore è: " + currentPlayer.getPlayerID());
+
             return true;
         }
 
         else {
 
             for (indexOfCurrentPlayer = indexOfCurrentPlayer + 1; indexOfCurrentPlayer < turnOrder.size(); indexOfCurrentPlayer++) {
+
+                if (turnOrder.get(indexOfCurrentPlayer).getPlayerState() != PlayerState.SUSPENDED) {
+                    return false;
+                }
 
                 if (turnOrder.get(indexOfCurrentPlayer).getPlayerState() == PlayerState.SUSPENDED
                         && indexOfCurrentPlayer == turnOrder.size() - 1) {

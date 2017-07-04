@@ -75,12 +75,26 @@ public class CouncilPalaceActionSpace extends ActionSpace {
     }
 
     public void setTurnOrder(PlayerColor pawnColor) {
-        for (int i = 0; i < turnOrder.length; i++) {
-            if (turnOrder[i] == null) {
-                turnOrder[i] = pawnColor;
-                break;
+
+        if (!turnOrderContains(pawnColor)) {
+
+            for (int i = 0; i < turnOrder.length; i++) {
+                if (turnOrder[i] == null) {
+                    turnOrder[i] = pawnColor;
+                    break;
+                }
             }
         }
+    }
+
+    private boolean turnOrderContains(PlayerColor pawnColor) {
+
+        for (PlayerColor playerColor : turnOrder) {
+            if (pawnColor == playerColor) return true;
+        }
+
+        return false;
+
     }
 
     public String toTable() {
