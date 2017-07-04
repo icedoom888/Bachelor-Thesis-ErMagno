@@ -870,6 +870,7 @@ public class GameBoardController {
         else {
             sender.sendInput("not use leader card");
             playerState = lastPlayerState;
+            setLeaderButtons(false);
         }
     }
 
