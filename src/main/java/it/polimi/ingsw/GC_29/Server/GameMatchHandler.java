@@ -3,11 +3,16 @@ package it.polimi.ingsw.GC_29.Server;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 import it.polimi.ingsw.GC_29.Controllers.GameState;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Initialize;
+import it.polimi.ingsw.GC_29.Controllers.JoinGame;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIView;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;
+import it.polimi.ingsw.GC_29.Server.Socket.ServerSocketView;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -63,6 +68,17 @@ public class GameMatchHandler implements LogoutInterface{
 
         loggedPlayersList.add(username);
 
+        if(clientsCurrentMatchMap.containsKey(username)){
+
+            try {
+                reconnectClient(playerSocket, username);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return;
+        }
+
         if(!lobbyCreated){
 
             lobbySettings();
@@ -90,6 +106,8 @@ public class GameMatchHandler implements LogoutInterface{
         if(clientsCurrentMatchMap.containsKey(clientStub.getUserName())){
 
             reconnectClient(clientStub);
+
+            return;
         }
 
         System.out.println("IL CLIENT NON E' IN ALCUNA PARTITA");
@@ -109,6 +127,58 @@ public class GameMatchHandler implements LogoutInterface{
         }
 
         evaluateConditions();
+
+    }
+
+    private void reconnectClient(PlayerSocket playerSocket, String username) throws IOException {
+
+        System.out.println("Creo server socket view");
+
+        System.out.println("SONO IN RECONNECT CLIENT SOCKET");
+
+        ServerNewGame clientCurrentMatch = clientsCurrentMatchMap.get(username);
+
+        PlayerColor playerColor = clientCurrentMatch.getClientPlayerColorMap().get(username);
+
+        ObjectOutputStream socketOut = playerSocket.getSocketOut();
+
+        try {
+            socketOut.writeObject(playerColor);
+            socketOut.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        GameStatus gameStatus = clientCurrentMatch.getGameSetup().getGameStatus();
+
+        //setta player color nello stub del client
+
+        ServerSocketView serverSocketView = new ServerSocketView(playerSocket, gameStatus, playerColor);
+
+        serverSocketView.registerObserver(clientCurrentMatch.getController());
+        clientCurrentMatch.getController().getPlayerReconnected().add(gameStatus.getPlayer(playerColor));
+
+
+        gameStatus.registerObserver(serverSocketView);
+        gameStatus.getPlayer(playerColor).registerObserver(serverSocketView);
+
+        gameStatus.getPlayer(playerColor).getActualGoodSet().registerObserver(clientCurrentMatch.getTrackController());
+
+        serverSocketView.registerLogout(this);
+        setClientMatch(gameStatus.getPlayer(playerColor).getPlayerID(),  clientCurrentMatch);
+
+        try {
+            serverSocketView.notifyObserver(new JoinGame(playerColor));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        executor.submit(serverSocketView);
+
+        //serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
+
+        //serverSocketViews.put(serverSocketView, player);
+        //executorService.submit(serverSocketView);
 
     }
 

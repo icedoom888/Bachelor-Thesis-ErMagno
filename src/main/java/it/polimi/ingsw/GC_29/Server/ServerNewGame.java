@@ -73,6 +73,8 @@ public class ServerNewGame implements Runnable {
 
         clientPlayerColorMap = new HashMap<>();
 
+        clientPlayerColorMap.put(client.getUserName(), playerColor);
+
         Player player = new Player(client.getUserName(), playerColor, new PersonalBoard(6));
 
         players.add(player);
@@ -92,6 +94,8 @@ public class ServerNewGame implements Runnable {
         addColors();
 
         PlayerColor playerColor = playerColors.remove(0);
+
+        clientPlayerColorMap.put(username, playerColor);
 
         Player player = new Player(username, playerColor, new PersonalBoard(6));
 
@@ -168,6 +172,9 @@ public class ServerNewGame implements Runnable {
                 gameSetup.getGameStatus().getPlayer(player.getPlayerColor()).registerObserver(serverSocketView);
 
                 player.getActualGoodSet().registerObserver(trackController);
+
+                serverSocketView.registerLogout(logoutInterface);
+                logoutInterface.setClientMatch(gameSetup.getGameStatus().getPlayer(player.getPlayerColor()).getPlayerID(),  this);
 
                 //serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
 

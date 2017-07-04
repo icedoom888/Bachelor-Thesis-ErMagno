@@ -43,10 +43,18 @@ public class ServerSocketView extends View implements Runnable {
     }
 
     @Override
-    public void update(Change o)  {
+    public void update(Change o) throws IOException {
 
         System.out.println("UPDATE from Server");
         System.out.println(o);
+
+        /*socketOut.writeObject("Change");
+
+        socketOut.flush();
+        socketOut.reset();
+        socketOut.writeObject(o);
+        socketOut.flush();*/
+
         try {
 
             socketOut.writeObject("Change");
@@ -56,10 +64,10 @@ public class ServerSocketView extends View implements Runnable {
             socketOut.writeObject(o);
             socketOut.flush();
 
-        } catch (SocketException e){
+        } catch (Exception e){
+
+            System.out.println("ECCEZIONE CATCHATA IN UPDATE");
             handleDisconnection();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
     }
@@ -182,15 +190,26 @@ public class ServerSocketView extends View implements Runnable {
                 } catch (ClassNotFoundException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                } catch (SocketException e){
+                } catch (Exception e){
+                    System.out.println("ECCEZIONE CATCHATA IN RUN");
                     handleDisconnection();
+                    b = false;
+                    try {
+                        this.socket.close();
+                        this.socketIn.close();
+                        this.socketOut.close();
+                        System.out.println("SOCKET CHIUSI");
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    System.out.println("SONO USCITO DA HANDLE DISCONNECTION");
                 }
-                catch (IOException e) {
+                /*catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                }*/
             }
 
     }
@@ -464,6 +483,7 @@ public class ServerSocketView extends View implements Runnable {
             this.socketOut.flush();
 
         } catch (IOException e) {
+            System.out.println("ECCEZIONE CATCHATA IN SENDOUT");
             e.printStackTrace();
         }
     }
