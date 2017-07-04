@@ -273,6 +273,7 @@ public class WorkAction extends Action {
                         maxWorkersNeeded = workersNeeded;
                     }
                 }
+
             }
 
             workersNeeded = 0;

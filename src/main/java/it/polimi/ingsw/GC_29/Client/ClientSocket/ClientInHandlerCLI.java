@@ -49,7 +49,6 @@ public class ClientInHandlerCLI implements Runnable {
                     case "Change":
                         updateClient();
                         break;
-
                     case "Valid Actions":
                         validActions();
                         break;
@@ -66,9 +65,12 @@ public class ClientInHandlerCLI implements Runnable {
                         getFamilyPawnsAvailability();
                         break;
                     case "Get Bonus Tile":
-                        System.out.println("Bonus TILE");
                         getBonusTiles();
                         break;
+                    case "Leader":
+                        getAvailableLeaderCards();
+                        break;
+
 
 
 
@@ -83,6 +85,7 @@ public class ClientInHandlerCLI implements Runnable {
             }
         }
     }
+
 
 
 
@@ -166,13 +169,7 @@ public class ClientInHandlerCLI implements Runnable {
 
             case CHOOSE_COUNCIL_PRIVILEGE:
 
-                try {
-                    socketIn.readObject();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                readVoid();
                 getCouncilPrivileges();
 
                 break;
@@ -209,11 +206,29 @@ public class ClientInHandlerCLI implements Runnable {
         }
     }
 
+    private void getAvailableLeaderCards() {
+
+        try {
+            Map<Integer, Boolean> validLeaders = (Map<Integer, Boolean>)socketIn.readObject();
+            inputChecker.setLeaderCardMap(validLeaders);
+            String string = (String)socketIn.readObject();
+
+            if (string.contentEquals("Leader Cards")) {
+                List<String> leaders = (List<String>)socketIn.readObject();
+                inputChecker.setLeaderCards(leaders);
+                inputChecker.showAvailableLeaderCards();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void getCouncilPrivileges() {
 
         try {
-            socketIn.readObject();
             List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
             inputChecker.setCouncilPrivilegeEffectList(councilPrivileges);
             inputChecker.nextPrivilegeEffect();

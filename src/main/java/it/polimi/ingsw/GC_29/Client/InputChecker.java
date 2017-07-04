@@ -401,6 +401,8 @@ public class InputChecker {
 
         int index = Integer.parseInt(lastWord);
 
+        System.out.println("\n\nInput checker leadermap: " + leaderCardMap);
+
         if(leaderCardMap.keySet().contains(index)){
 
             leaderChosenIndex = index;
@@ -786,7 +788,11 @@ public class InputChecker {
 
     public void setLeaderCardMap(Map<Integer, Boolean> leaderCardMap){
 
+        System.out.println("SETTING LEADER CARD MAP IN INPUT CHECKER");
+
         this.leaderCardMap = leaderCardMap;
+
+        System.out.println("\n\nleader map dell'input checker: " + leaderCardMap);
     }
 
     /*public void showLeaderCardMap(){

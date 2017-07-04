@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Server.Socket;
+package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.LeaderCard;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
@@ -45,6 +45,7 @@ public class LeaderAction extends Input {
                     player.setLastState(player.getPlayerState());
                     CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
                     councilPrivilegeEffect.execute(player);
+                    System.out.println("\n\nPLAYER SET TO CHOOSE COUNCIL SERVER");
                     player.setPlayerState(PlayerState.CHOOSE_COUNCIL_PRIVILEGE);
                     //player.setPlayerState(PlayerState.DISCARDINGLEADER);
                 }

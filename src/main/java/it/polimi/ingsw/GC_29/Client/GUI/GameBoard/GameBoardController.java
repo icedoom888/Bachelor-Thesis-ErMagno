@@ -135,7 +135,7 @@ public class GameBoardController {
     private Button activatedLeader;
 
     @FXML
-    private Button dichardedLeader;
+    private Button discardedLeader;
 
     @FXML
     private AnchorPane waitingForPlayers;
@@ -854,10 +854,10 @@ public class GameBoardController {
     public void handleUseLeaderCards(ActionEvent event){
 
         if (playerState != PlayerState.LEADER) {
-            sender.sendInput("use leader cards");
+            sender.sendInput("use leader cards GUI");
         }
 
-        else sender.sendInput("return to action");
+        else sender.sendInput("not use leader card");
     }
 
 
@@ -872,27 +872,27 @@ public class GameBoardController {
         if(activateButton== activate0){
             sender.sendInput("activate leader card 0");
             activatedLeader = activate0;
-            dichardedLeader = burn0;
+            discardedLeader = burn0;
         }
 
         if(activateButton== activate1){
             sender.sendInput("activate leader card 1");
             activatedLeader = activate1;
-            dichardedLeader = burn1;
+            discardedLeader = burn1;
 
         }
 
         if(activateButton== activate2){
             sender.sendInput("activate leader card 2");
             activatedLeader = activate2;
-            dichardedLeader = burn2;
+            discardedLeader = burn2;
 
         }
 
         if(activateButton== activate3){
             sender.sendInput("activate leader card 3");
             activatedLeader = activate3;
-            dichardedLeader = burn3;
+            discardedLeader = burn3;
 
         }
 
@@ -930,6 +930,8 @@ public class GameBoardController {
             activate3.setDisable(true);
             burn3.setDisable(true);
         }
+
+        System.out.println("\n\nLeader discarded AND INPUT SENT\n\n");
     }
 
     public void setPossibleLeaders(Map<Integer, Boolean> leadersAvailable) {
@@ -1526,6 +1528,44 @@ public class GameBoardController {
     }
 
 
+    /**
+     * Funzione chiamata nel momento in cui una partita deve essere ripristiata,
+     * viene ripristinata la bonusTile selezionata in precedenza dal giocatore
+     * @param bonusTileX
+     */
+    public void setBonusTile(Integer bonusTileX) {
+        Image image = new Image(bonusTilesMap.get(bonusTileX));
+        bonusTile.setImage(image);
+    }
+
+    /**
+     * Funzione chiamata nel momento in cui una partita deve essere ripristiata,
+     * viene ripristinato il valore dei punti delle track che erano presenti quando la partita è terminata
+     * @param playerColor
+     * @param goodType
+     * @param numberOfPoints
+     */
+    public void resetTrack(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints) {
+
+        String numberOfPointString = String.valueOf(numberOfPoints);
+
+        switch (playerColor){
+            case BLUE:
+                bluePlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case GREEN:
+                greenPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case RED:
+                redPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case YELLOW:
+                yellowPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+        }
+    }
+
+
 
     public void setState(PlayerState newPlayerState) {
 
@@ -1673,6 +1713,8 @@ public class GameBoardController {
                 noButtonsAble();
 
                 setLeaderButtons(false);
+
+                setUseLeader(false);
 
                 break;
 
@@ -1937,4 +1979,7 @@ public class GameBoardController {
     public PlayerState getPlayerState() {
         return playerState;
     }
+
+
+
 }

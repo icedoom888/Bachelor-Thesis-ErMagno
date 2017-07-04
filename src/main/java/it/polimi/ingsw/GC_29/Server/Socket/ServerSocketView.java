@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Server.Socket;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Components.LeaderCard;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.*;
@@ -103,7 +104,6 @@ public class ServerSocketView extends View implements Runnable {
                             case "bonus tile":
                                 int bonusTile = (int)socketIn.readObject();
                                 notifyObserver(new BonusTileChosen(bonusTile));
-                                System.out.println("HO NOTIFIOATO OBSERVER");
                                 break;
 
                             case "throw dices":
@@ -165,6 +165,11 @@ public class ServerSocketView extends View implements Runnable {
                                 notifyObserver(new Pray(false, playerColor));
                                 break;
 
+                            case "use leader cards GUI":
+                                playerColor = (PlayerColor)socketIn.readObject();
+                                notifyObserver(new UseLeaderCardsGUI(playerColor));
+                                break;
+
                             case "activate leader card":
                                 int index = (Integer)socketIn.readObject();
                                 playerColor = (PlayerColor)socketIn.readObject();
@@ -172,6 +177,7 @@ public class ServerSocketView extends View implements Runnable {
                                 break;
 
                             case "discard leader card":
+                                System.out.println("DISCARDING LEADER FROM SERVER\n\n");
                                 index = (Integer)socketIn.readObject();
                                 playerColor = (PlayerColor)socketIn.readObject();
                                 notifyObserver(new LeaderAction(false, index, playerColor));
@@ -180,7 +186,6 @@ public class ServerSocketView extends View implements Runnable {
                             case "join game":
                                 playerColor = (PlayerColor)socketIn.readObject();
                                 notifyObserver(new JoinGame(playerColor));
-                                System.out.println("OBSERVER NOTIFICATO JOIN GAME SOCKET");
                                 break;
 
 
@@ -247,6 +252,17 @@ public class ServerSocketView extends View implements Runnable {
             Map<Integer, Boolean> validLeaders = query.perform(model);
 
             sendOut(validLeaders);
+        }
+
+        if (q instanceof LeaderCardsQuery) {
+
+            sendOut("Leader Cards");
+
+            LeaderCardsQuery query = (LeaderCardsQuery)q;
+
+            List<String> leaderCards = query.perform(model);
+
+            sendOut(leaderCards);
         }
 
         if (q instanceof GetValidActions) {
@@ -479,6 +495,7 @@ public class ServerSocketView extends View implements Runnable {
 
         try {
 
+            this.socketOut.reset();
             this.socketOut.writeObject(o);
             this.socketOut.flush();
 

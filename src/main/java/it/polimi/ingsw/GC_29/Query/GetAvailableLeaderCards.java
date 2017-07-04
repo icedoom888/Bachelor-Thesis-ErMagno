@@ -25,13 +25,14 @@ public class GetAvailableLeaderCards extends Query<Map<Integer, Boolean>> {
     @Override
     public Map<Integer, Boolean> perform(GameStatus model) {
 
-         for (Player player : model.getTurnOrder()) {
+        HashMap<Integer, Boolean> leadersAvailable = new HashMap<>();
+
+        for (Player player : model.getTurnOrder()) {
 
             if (player.getPlayerColor() == playerColor) {
 
                 ArrayList<LeaderCard> leaderCards = player.getLeaderCards();
 
-                HashMap<Integer, Boolean> leadersAvailable = new HashMap<>();
 
                 for (LeaderCard leaderCard : leaderCards) {
 
@@ -39,16 +40,12 @@ public class GetAvailableLeaderCards extends Query<Map<Integer, Boolean>> {
 
                         leadersAvailable.put(leaderCards.indexOf(leaderCard), leaderCard.isPossible(player));
 
-                        System.out.println(leadersAvailable);
                     }
                 }
-
-
-                return leadersAvailable;
 
             }
         }
 
-        return null;
+        return leadersAvailable;
     }
 }

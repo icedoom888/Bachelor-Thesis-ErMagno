@@ -687,6 +687,34 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
+    private void updateBonusTileDisc(Integer bonusTile) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.setBonusTile(bonusTile);
+
+
+            }
+        });
+    }
+
+    private void trackAfterDisconnection(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.resetTrack(playerColor, goodType, numberOfPoints);
+
+
+            }
+        });
+    }
+
 
 
 
@@ -805,6 +833,18 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
             availableLeaders(leadersAvailable);
         }
+
+        @Override
+        public void updateBonusTileFromDisconnection(Integer bonusTile) {
+            updateBonusTileDisc(bonusTile);
+        }
+
+        @Override
+        public void resetTrack(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints) {
+            trackAfterDisconnection(playerColor, goodType, numberOfPoints);
+        }
+
+
     }
 
 

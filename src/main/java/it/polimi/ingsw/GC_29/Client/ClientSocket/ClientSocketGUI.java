@@ -103,7 +103,7 @@ public class ClientSocketGUI {
                 inputChecker.setPlayerColor(playerColor);
                 //TODO: incoerenza con il lato cli, assegni il playerColor all'outHandler, quando in realtà l'input checker ha già il playerColor
                 clientOutHandlerGUI.setInputChecker(inputChecker);
-                clientOutHandlerGUI.setPlayerColor(playerColor);
+                //clientOutHandlerGUI.setPlayerColor(playerColor);
                 clientInHandlerGUI.setInputChecker(inputChecker);
 
              }

@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.*;
-import it.polimi.ingsw.GC_29.Server.Socket.LeaderAction;
+import it.polimi.ingsw.GC_29.Controllers.LeaderAction;
 import it.polimi.ingsw.GC_29.Server.View;
 
 import java.rmi.RemoteException;
