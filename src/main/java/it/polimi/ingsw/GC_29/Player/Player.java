@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Server.Observable;
 
+import java.rmi.MarshalledObject;
 import java.util.*;
 import java.util.List;
 
@@ -314,7 +315,7 @@ public class Player extends Observable<Change> {
     }
 
 
-    public void updateLeaderGUI() {
+    private void updateLeaderGUI() {
 
         ArrayList<String> leaderUrls = new ArrayList<>();
 
@@ -329,6 +330,25 @@ public class Player extends Observable<Change> {
         }
     }
 
+    public void sendAvailableLeaders() {
+
+        Map<Integer, Boolean> leadersAvailable = new HashMap<>();
+
+        for (LeaderCard leaderCard : leaderCards) {
+
+            if (!(leaderCard.isActivated() || leaderCard.isDiscarded())) {
+
+                leadersAvailable.put(leaderCards.indexOf(leaderCard), leaderCard.isPossible(this));
+
+            }
+        }
+
+        try {
+            notifyObserver(new LeadersAvailableGUI(leadersAvailable));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setLastState(PlayerState lastState) {
         this.lastState = lastState;
@@ -337,6 +357,8 @@ public class Player extends Observable<Change> {
     public PlayerState getLastState() {
         return lastState;
     }
+
+
 }
 
 

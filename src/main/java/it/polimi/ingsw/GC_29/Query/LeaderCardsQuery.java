@@ -23,6 +23,8 @@ public class LeaderCardsQuery extends Query<List<String>> {
     @Override
     public List<String> perform(GameStatus model) {
 
+        System.out.println("\n\nPLAYER COLOR: " + playerColor);
+
         Player player = model.getPlayer(playerColor);
 
         List<LeaderCard> leaderCards = player.getLeaderCards();

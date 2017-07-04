@@ -164,7 +164,5 @@ public class ClientOutHandlerGUI implements Runnable {
         commonOutSocket.setInputChecker(inputChecker);
     }
 
-    public void setPlayerColor(PlayerColor playerColor) {
-        commonOutSocket.setPlayerColor(playerColor);
-    }
+
 }

@@ -22,7 +22,6 @@ public class CommonOutSocket implements InputInterfaceGUI{
     private ObjectOutputStream socketOut;
     private Map<String, Integer> activatedCardMap;
     private List<Integer> councilPrivilegeEffectChosenList;
-    private PlayerColor playerColor;
     private InputChecker inputChecker;
     //private CommonView commonView;
 
@@ -37,12 +36,16 @@ public class CommonOutSocket implements InputInterfaceGUI{
         try {
             // Implements the communication protocol, creating the Actions corresponding to the input of the user
 
+            System.out.println("\n\nINPUT RECEIVED FROM BUTTONS: " + inputLine + "\n\n");
+
             if (!inputLine.contentEquals("activated cards GUI")
                     && !inputLine.contentEquals("council privileges chosen GUI")
                     && !inputLine.contentEquals("council privileges chosen leader GUI")
-                    && !inputLine.contentEquals("use leader cards")) {
+                    && !inputLine.contentEquals("use leader cards GUI")) {
 
                 inputLine = inputChecker.checkInput(inputLine);
+
+                System.out.println("\n\n" + inputLine + "\n\n");
             }
 
             switch (inputLine) {
@@ -201,30 +204,43 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.reset();
                     socketOut.writeObject(councilPrivilegeEffectChosenList);
                     socketOut.flush();
-                    socketOut.writeObject(playerColor);
+                    socketOut.writeObject(inputChecker.getPlayerColor());
                     break;
 
 
                 case "pray":
                     socketOut.writeObject("pray");
                     socketOut.flush();
-                    socketOut.writeObject(playerColor);
+                    socketOut.writeObject(inputChecker.getPlayerColor());
                     socketOut.flush();
                     break;
 
                 case "do not pray":
                     socketOut.writeObject("do not pray");
                     socketOut.flush();
-                    socketOut.writeObject(playerColor);
+                    socketOut.writeObject(inputChecker.getPlayerColor());
                     socketOut.flush();
                     break;
 
                 case "use leader cards":
-
-                    System.out.println("USING LEADER");
-                    query = new GetAvailableLeaderCards(playerColor);
+                    query = new GetAvailableLeaderCards(inputChecker.getPlayerColor());
                     socketOut.writeObject(query);
                     socketOut.flush();
+                    query = new LeaderCardsQuery(inputChecker.getPlayerColor());
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                    break;
+
+                case "use leader cards GUI":
+                    inputChecker.setCurrentPlayerState(PlayerState.LEADER);
+                    socketOut.writeObject("use leader cards GUI");
+                    socketOut.flush();
+                    socketOut.writeObject(inputChecker.getPlayerColor());
+                    socketOut.flush();
+                    break;
+
+                case "not use leader card":
+                    inputChecker.resetPlayerState();
                     break;
 
                 case "activate leader card":
@@ -233,17 +249,19 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.flush();
                     socketOut.writeObject(index);
                     socketOut.flush();
-                    socketOut.writeObject(playerColor);
+                    socketOut.writeObject(inputChecker.getPlayerColor());
                     break;
 
 
                 case "discard leader card":
+                    System.out.println("DISCARDING LEADER DA COMMONOUT\n\n");
                     index = inputChecker.getLeaderChosenIndex();
                     socketOut.writeObject("discard leader card");
                     socketOut.flush();
                     socketOut.writeObject(index);
                     socketOut.flush();
-                    socketOut.writeObject(playerColor);
+                    socketOut.writeObject(inputChecker.getPlayerColor());
+                    socketOut.flush();
                     break;
 
                 case "see my goodset":
@@ -377,6 +395,8 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
             case CHOOSE_COUNCIL_PRIVILEGE:
 
+                System.out.println("\n\nASKING FOR THE PRIVILEGES DA COMMONOUT");
+
                 query = new GetCouncilPrivileges();
                 try {
                     socketOut.writeObject(query);
@@ -450,10 +470,6 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
     public void setInputChecker(InputChecker inputChecker) {
         this.inputChecker = inputChecker;
-    }
-
-    public void setPlayerColor(PlayerColor playerColor) {
-        this.playerColor = playerColor;
     }
 
 }

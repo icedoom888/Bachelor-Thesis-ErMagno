@@ -45,4 +45,6 @@ public interface GuiChangeListener {
 
 
     void sendLeaderCards(Map<Integer, Boolean> leadersAvailable);
+
+    void updateBonusTileFromDisconnection(Integer bonusTile);
 }

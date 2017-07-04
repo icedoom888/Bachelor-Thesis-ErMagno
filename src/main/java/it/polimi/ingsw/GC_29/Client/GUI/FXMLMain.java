@@ -687,6 +687,20 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
+    private void updateBonusTileDisc(Integer bonusTile) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.setBonusTile(bonusTile);
+
+
+            }
+        });
+    }
+
 
 
 
@@ -804,6 +818,11 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         public void sendLeaderCards(Map<Integer, Boolean> leadersAvailable) {
 
             availableLeaders(leadersAvailable);
+        }
+
+        @Override
+        public void updateBonusTileFromDisconnection(Integer bonusTile) {
+            updateBonusTileDisc(bonusTile);
         }
     }
 

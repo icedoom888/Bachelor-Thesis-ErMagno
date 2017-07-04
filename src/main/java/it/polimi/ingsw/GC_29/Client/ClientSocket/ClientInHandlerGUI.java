@@ -54,7 +54,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                         updateClientGUI();
                         break;
 
-                    case "Leader":
+                    /*case "Leader":
 
                         try {
 
@@ -65,12 +65,15 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
                             System.out.println("Leaders received\n");
 
-                            getAvailableLeaders(availableLeaders);
+                            inputChecker.setLeaderCardMap(availableLeaders);
+
+                            //getAvailableLeaders(availableLeaders);
                         } catch (IOException | ClassNotFoundException e) {
                             e.printStackTrace();
                         }
 
                         break;
+                        */
 
                     /*
                     case "Valid Actions":
@@ -143,6 +146,11 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         if (c instanceof GUIChange) {
 
             GUIChange guiChange = (GUIChange)c;
+            if (guiChange instanceof LeadersAvailableGUI) {
+
+                LeadersAvailableGUI leadersAvailableGUI = (LeadersAvailableGUI)guiChange;
+                inputChecker.setLeaderCardMap(leadersAvailableGUI.getLeadersAvailable());
+            }
             guiChange.perform(listeners);
 
         }
