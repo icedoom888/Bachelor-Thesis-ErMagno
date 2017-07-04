@@ -1527,12 +1527,42 @@ public class GameBoardController {
 
     }
 
-    public void setBonusTile(Integer bonusTile) {
 
+    /**
+     * Funzione chiamata nel momento in cui una partita deve essere ripristiata,
+     * viene ripristinata la bonusTile selezionata in precedenza dal giocatore
+     * @param bonusTileX
+     */
+    public void setBonusTile(Integer bonusTileX) {
+        Image image = new Image(bonusTilesMap.get(bonusTileX));
+        bonusTile.setImage(image);
     }
 
+    /**
+     * Funzione chiamata nel momento in cui una partita deve essere ripristiata,
+     * viene ripristinato il valore dei punti delle track che erano presenti quando la partita è terminata
+     * @param playerColor
+     * @param goodType
+     * @param numberOfPoints
+     */
     public void resetTrack(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints) {
 
+        String numberOfPointString = String.valueOf(numberOfPoints);
+
+        switch (playerColor){
+            case BLUE:
+                bluePlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case GREEN:
+                greenPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case RED:
+                redPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+            case YELLOW:
+                yellowPlayerTrack.get(goodType).setText(numberOfPointString);
+                break;
+        }
     }
 
 
