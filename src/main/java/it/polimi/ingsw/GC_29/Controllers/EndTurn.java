@@ -27,6 +27,11 @@ public class EndTurn extends Input {
 
         //TODO: qui devi inserire il controllo sulla lista dei riconessi e chiamare il metodo handleReconnectedPlayers
 
+        if(!(controller.getPlayerReconnected().isEmpty())){
+
+            controller.handleReconnectedPlayers();
+        }
+        
         controller.stopTimer();
 
         Player currentPlayer = model.getCurrentPlayer();

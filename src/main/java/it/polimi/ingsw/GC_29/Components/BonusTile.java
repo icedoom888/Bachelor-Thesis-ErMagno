@@ -45,4 +45,23 @@ public class BonusTile {
             return productionEffect;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BonusTile bonusTile = (BonusTile) o;
+
+        if (getProductionEffect() != null ? !getProductionEffect().equals(bonusTile.getProductionEffect()) : bonusTile.getProductionEffect() != null)
+            return false;
+        return getHarvestEffect() != null ? getHarvestEffect().equals(bonusTile.getHarvestEffect()) : bonusTile.getHarvestEffect() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getProductionEffect() != null ? getProductionEffect().hashCode() : 0;
+        result = 31 * result + (getHarvestEffect() != null ? getHarvestEffect().hashCode() : 0);
+        return result;
+    }
 }
