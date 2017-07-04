@@ -69,10 +69,37 @@ public class ActionChecker {
 
         System.out.println("LO ZONE TYPE DELLA BONUS ACTION E' " + zoneType);
 
-        ArrayList<Action> filteredActionList = filterActionListPerZoneType(zoneType);
+        checkActionOnPawnFiltered(familyPawn, zoneType);
 
-        checkActionOnPawn(familyPawn, filteredActionList);
+    }
 
+    private void checkActionOnPawnFiltered(FamilyPawn familyPawn, ZoneType zoneType) {
+
+        checkActionOnPawn(familyPawn, actionList);
+
+        if(zoneType == ZoneType.ANYTOWER){
+
+            for(Action action : actionList){
+                if(action.getZoneType() != ZoneType.GREENTOWER
+                        && action.getZoneType() != ZoneType.YELLOWTOWER
+                        && action.getZoneType() != ZoneType.BLUETOWER
+                        && action.getZoneType() != ZoneType.PURPLETOWER){
+
+                    action.setValid(false);
+                }
+            }
+        }
+
+        else {
+
+            for (Action action : actionList) {
+
+                if (action.getZoneType() != zoneType) {
+
+                    action.setValid(false);
+                }
+            }
+        }
     }
 
     /**
@@ -100,7 +127,7 @@ public class ActionChecker {
     }
 
 
-    private ArrayList<Action> filterActionListPerZoneType(ZoneType zoneType){
+    /*private ArrayList<Action> filterActionListPerZoneType(ZoneType zoneType){
 
         ArrayList<Action> filteredActionList = new ArrayList<>();
 
@@ -131,7 +158,7 @@ public class ActionChecker {
         }
 
         return filteredActionList;
-    }
+    }*/
 
     public void resetActionList(){
 
