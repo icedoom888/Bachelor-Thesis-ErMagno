@@ -1116,14 +1116,17 @@ public class GameBoardController {
         for (Integer integer : harvestBox.keySet()){
             Image image = null;
             harvestBox.get(integer).setImage(image);
+            harvestBoxFreeSlot = 0;
         }
         for (Integer integer : productionBox.keySet()){
             Image image = null;
             productionBox.get(integer).setImage(image);
+            productionBoxFreeSlot = 0;
         }
         for (Integer integer : gridMap.keySet()){
             Image image = null;
             gridMap.get(integer).setImage(image);
+            gridFreeSlot = 0;
         }
     }
 
