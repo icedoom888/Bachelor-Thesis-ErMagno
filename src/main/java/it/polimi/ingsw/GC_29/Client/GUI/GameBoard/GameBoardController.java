@@ -1531,6 +1531,10 @@ public class GameBoardController {
 
     }
 
+    public void resetTrack(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints) {
+
+    }
+
 
 
     public void setState(PlayerState newPlayerState) {
@@ -1945,6 +1949,7 @@ public class GameBoardController {
     public PlayerState getPlayerState() {
         return playerState;
     }
+
 
 
 }

@@ -2,7 +2,9 @@ package it.polimi.ingsw.GC_29.Client.GUI;
 
 
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Controllers.*;
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,4 +49,6 @@ public interface GuiChangeListener {
     void sendLeaderCards(Map<Integer, Boolean> leadersAvailable);
 
     void updateBonusTileFromDisconnection(Integer bonusTile);
+
+    void resetTrack(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints);
 }

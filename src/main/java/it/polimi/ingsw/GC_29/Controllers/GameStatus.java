@@ -212,10 +212,19 @@ public class GameStatus extends Observable<Change>{
 
     }
 
-    public void updateTrackGUI(PlayerColor playerColor, GoodType faithpoints, int numberOfPoints) {
+    public void updateTrackGUI(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
 
         try {
-            notifyObserver(new TrackChange(playerColor, faithpoints, numberOfPoints));
+            notifyObserver(new TrackChange(playerColor, goodType, numberOfPoints));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateDisconnectedTrackGUI(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
+
+        try {
+            notifyObserver(new TrackReset(playerColor, goodType, numberOfPoints));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -242,5 +251,7 @@ public class GameStatus extends Observable<Change>{
         }
 
     }
+
+
 }
 

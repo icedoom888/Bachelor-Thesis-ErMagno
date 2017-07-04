@@ -781,7 +781,7 @@ public class Controller implements Observer<Input>  {
     private void handleReconnectedPlayers(){
 
         for (Player player : playerReconnected) {
-            //TODO: bonus tile, goodset, personalBoard
+
             try {
 
                 player.notifyObserver(new GoodSetChange(player.getActualGoodSet()));
@@ -819,7 +819,7 @@ public class Controller implements Observer<Input>  {
                 e.printStackTrace();
             }
         }
-        //TODO: tower, track
+
         for (CardColor cardColor : CardColor.values()) {
             if (cardColor != CardColor.ANY) {
                 model.updateTowerGUI(cardColor);
@@ -827,11 +827,10 @@ public class Controller implements Observer<Input>  {
         }
 
 
-        //TODO: sbagliato perché il metodo li aggiunge non li copia uguali
         for (Player player : model.getTurnOrder()) {
-            model.updateTrackGUI(player.getPlayerColor(), GoodType.VICTORYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
-            model.updateTrackGUI(player.getPlayerColor(), GoodType.MILITARYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS));
-            model.updateTrackGUI(player.getPlayerColor(), GoodType.FAITHPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS));
+            model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.VICTORYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
+            model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.MILITARYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS));
+            model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.FAITHPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS));
         }
     }
 
