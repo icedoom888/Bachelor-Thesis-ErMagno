@@ -259,6 +259,10 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
+    /**
+     * Lancia la schermata principale del gioco,
+     * settando tutti i controller interni e le varie schermate ausiliarie
+     */
 
     private void setGameboard() {
 

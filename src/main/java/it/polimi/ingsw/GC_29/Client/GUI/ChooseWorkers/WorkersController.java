@@ -32,6 +32,14 @@ public class WorkersController {
     @FXML
     private Text error;
 
+    /**
+     * Questa funzione è lanciata quando il giocatore invia la scelta dei workers indicati cliccando sul pulsante submit,
+     * la funzione esegue un controllo sul contenuto dell'area di testo in cui il giocatore ha indicato la sua scelta,
+     * se il contenuto è vuoto oppure non contiene un valore accettabile
+     * viene mostrata una scritta di errore ed il giocatore deve riempire nuovamente il campo e premere submit ancora,
+     * se il contenuto è presente esso viene inviato tramite l'InputInterfaceGUI
+     * @param event
+     */
     public void sendSubmit(ActionEvent event){
         String choiceMade = chosenWorkers.getText();
         if(!choiceMade.isEmpty()){
@@ -50,6 +58,12 @@ public class WorkersController {
             error.setVisible(true);
         }
     }
+
+    /**
+     * Questa funzione è chiamata per mostrare all'interno della Text Area principale,
+     * l'elenco dei workers tra cui il player può scegliere.
+     * @param newWorkers
+     */
     public void updateShownCosts(String newWorkers){
         shownWorkers.setText(newWorkers);
         error.setVisible(false);

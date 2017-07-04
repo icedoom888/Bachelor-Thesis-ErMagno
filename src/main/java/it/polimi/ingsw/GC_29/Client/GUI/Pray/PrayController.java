@@ -33,6 +33,14 @@ public class PrayController {
     @FXML
     private Button submit;
 
+
+    /**
+     * Questa funzione è lanciata quando il giocatore invia la scelta sull'essere scomunicato oppure no premendo sul pulsante submit,
+     * la funzione esegue un controllo verificando che il giocatore abbia effettivamente eseguito una scelta,
+     * se la scelta non è stata fatta viene mostrato un errore,
+     * se la scelta è stata fatta essa viene inviata tramite l'InputInterfaceGUI
+     * @param event
+     */
     public void sendSubmit(ActionEvent event){
         if(pray.isSelected()){
             sender.sendInput("pray");
@@ -45,11 +53,20 @@ public class PrayController {
         }
     }
 
+    /**
+     * Questa funzione aggiorna l'immagine della scheda scomunica da mostrare al giocatore
+     * @param newExcommunication
+     */
     public void updatePray(String newExcommunication){
         excommunicationDetails.setImage(new Image(newExcommunication));
     }
 
 
+    /**
+     * Questa funzione non permette ad entrambi i pulsanti pray e don't pray di essere selezionati contemporaneamente,
+     * se uno è selezionato e il giocatore clicca l'altro, automaticamente il primo sarà deselezionato
+     * @param event
+     */
     public void switchButtons(ActionEvent event){
         if (event.getSource()==pray){
             getExcommunicated.setSelected(false);
