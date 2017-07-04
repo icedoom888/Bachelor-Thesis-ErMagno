@@ -189,6 +189,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
                     socketOut.writeObject("council privileges chosen");
                     socketOut.flush();
+                    socketOut.reset();
                     socketOut.writeObject(councilPrivilegeEffectChosenList);
                     socketOut.flush();
                     break;
@@ -197,6 +198,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
                     socketOut.writeObject("council privileges chosen leader");
                     socketOut.flush();
+                    socketOut.reset();
                     socketOut.writeObject(councilPrivilegeEffectChosenList);
                     socketOut.flush();
                     socketOut.writeObject(playerColor);

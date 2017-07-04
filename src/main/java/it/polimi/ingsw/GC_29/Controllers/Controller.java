@@ -42,9 +42,6 @@ public class Controller implements Observer<Input>  {
         this.model = model;
         playersPraying = 0;
         actionChecker = new ActionChecker(model);
-
-        playerSuspended = new ArrayList<>();
-
         playerReconnected = new ArrayList<>();
 
         //setCardsOnTowers();
@@ -566,6 +563,7 @@ public class Controller implements Observer<Input>  {
      * ones who have already been copied. Then the TurnOrder in the GameStatus is set.
      */
     private void setNewTurnOrder() {
+
         PlayerColor[] newTurnOrder = model.getGameBoard().getCouncilPalace().getTurnOrder();
         List<Player> oldTurnOrder = model.getTurnOrder();
         ArrayList<Player> temporaryTurnOrder = new ArrayList<>();
@@ -778,7 +776,48 @@ public class Controller implements Observer<Input>  {
         return playerReconnected;
     }
 
+    /*
     private void handleReconnectedPlayers(){
-        //TODO: usa questo metodo per riaggiornare le view
+
+        for (Player player : playerReconnected) {
+            //TODO: bonus tile, goodset, personalBoard
+            try {
+
+                player.notifyObserver(new GoodSetChange(player.getActualGoodSet()));
+
+                for (CardColor cardColor : CardColor.values()) {
+                    if (cardColor != CardColor.ANY) {
+                        for (DevelopmentCard developmentCard : player.getPersonalBoard().getLane(cardColor).getCards()) {
+                            player.notifyObserver(new PersonalCardChange(developmentCard.getSpecial(), cardColor));
+                        }
+                    }
+                }
+
+                player.notifyObserver(new BONUSTILECHANGEGUI(player.getPersonalBoard().getBonusTile()));
+
+
+
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //TODO: tower, track
+        for (CardColor cardColor : CardColor.values()) {
+            if (cardColor != CardColor.ANY) {
+                model.updateTowerGUI(cardColor);
+            }
+        }
+
+
+        //TODO: sbagliato perché il metodo li aggiunge non li copia uguali
+        for (Player player : model.getTurnOrder()) {
+            model.updateTrackGUI(player.getPlayerColor(), GoodType.VICTORYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
+            model.updateTrackGUI(player.getPlayerColor(), GoodType.MILITARYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS));
+            model.updateTrackGUI(player.getPlayerColor(), GoodType.FAITHPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS));
+        }
     }
+    */
 }
