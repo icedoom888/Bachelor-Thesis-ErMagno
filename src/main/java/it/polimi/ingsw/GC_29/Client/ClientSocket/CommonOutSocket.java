@@ -244,6 +244,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     break;
 
                 case "activate leader card":
+                    inputChecker.resetPlayerState();
                     index = inputChecker.getLeaderChosenIndex();
                     socketOut.writeObject("activate leader card");
                     socketOut.flush();
@@ -254,7 +255,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
 
                 case "discard leader card":
-                    System.out.println("DISCARDING LEADER DA COMMONOUT\n\n");
+                    inputChecker.resetPlayerState();
                     index = inputChecker.getLeaderChosenIndex();
                     socketOut.writeObject("discard leader card");
                     socketOut.flush();

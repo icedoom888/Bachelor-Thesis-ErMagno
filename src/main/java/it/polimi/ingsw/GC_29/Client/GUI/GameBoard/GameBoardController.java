@@ -12,7 +12,6 @@ import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.Controllers.PlayerStateChange;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -862,8 +861,6 @@ public class GameBoardController {
      */
     public void handleUseLeaderCards(ActionEvent event){
 
-        System.out.println("SONO IN USE LEADER, STATO " + playerState);
-
         if (playerState != PlayerState.LEADER) {
             sender.sendInput("use leader cards GUI");
             lastPlayerState = playerState;
@@ -873,7 +870,7 @@ public class GameBoardController {
         else {
             sender.sendInput("not use leader card");
             playerState = lastPlayerState;
-            setState(playerState);
+            setLeaderButtons(false);
         }
     }
 
