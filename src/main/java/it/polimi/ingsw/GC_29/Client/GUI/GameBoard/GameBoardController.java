@@ -1121,6 +1121,10 @@ public class GameBoardController {
             Image image = null;
             productionBox.get(integer).setImage(image);
         }
+        for (Integer integer : gridMap.keySet()){
+            Image image = null;
+            gridMap.get(integer).setImage(image);
+        }
     }
 
 
@@ -1265,6 +1269,7 @@ public class GameBoardController {
      * @param availability
      */
     public void updatePossibleActions(Map<Integer, String> availability){
+        System.out.println(availability);
         for (Integer i : availability.keySet()) {
             /*if (i == 20) {
                 actionGrid.get(i).setDisable(false);
