@@ -1,0 +1,24 @@
+package it.polimi.ingsw.GC_29.Components;
+
+import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ * Created by AlbertoPennino on 05/07/2017.
+ */
+public class PawnSlotTest {
+    PawnSlot pawnSlot = new PawnSlot(3,true);
+    FamilyPawn pawn1 = new FamilyPawn(PlayerColor.BLUE,FamilyPawnType.ORANGE,4);
+    FamilyPawn pawn2 = new FamilyPawn(PlayerColor.BLUE,FamilyPawnType.BLACK,4);
+    FamilyPawn pawn3 = new FamilyPawn(PlayerColor.GREEN,FamilyPawnType.BLACK,1);
+
+    @Test
+    public void TestSearchFamiliar(){
+        pawnSlot.addPawn(pawn1);
+        pawnSlot.addPawn(pawn2);
+
+        assertTrue(pawnSlot.searchFamiliar(pawn1));
+        assertFalse(pawnSlot.searchFamiliar(pawn3));
+    }
+}

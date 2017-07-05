@@ -43,13 +43,13 @@ public class DevelopmentCardTest {
 
         controller.setNewRound();
 
-        //System.out.println(model.getGameBoard().getVictoryPointsTrack().toTable());
-        //System.out.println(model.getGameBoard().getFaithPointsTrack().toTable());
+        System.out.println(model.getGameBoard().getVictoryPointsTrack().toTable());
+        System.out.println(model.getGameBoard().getFaithPointsTrack().toTable());
 
-        /*Tower tower = model.getGameBoard().getTower(CardColor.YELLOW);
+        Tower tower = model.getGameBoard().getTower(CardColor.YELLOW);
         for (Floor floor : tower.getFloors()) {
             System.out.println(floor.getDevelopmentCard().toTable());
-        }*/
+        }
 
         //System.out.println(model.getGameBoard().toTable());
 
