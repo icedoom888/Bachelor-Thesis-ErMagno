@@ -386,4 +386,8 @@ public class ServerNewGame implements Runnable {
     public void setIsRunning(Boolean isRunning){
         this.isRunning = isRunning;
     }
+
+    public LogoutInterface getLogoutInterface() {
+        return logoutInterface;
+    }
 }

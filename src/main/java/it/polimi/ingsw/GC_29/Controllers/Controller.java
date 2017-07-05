@@ -871,6 +871,12 @@ public class Controller implements Observer<Input>  {
         if(closedClients == 0){
 
             System.out.println("I AM THE CONTROLLER, I AM CLOSING THE GAME");
+
+            for (Player player : model.getTurnOrder()) {
+                currentMatch.getLogoutInterface().getClientMatch().remove(player.getPlayerID());
+                currentMatch.getLogoutInterface().clientDisconnected(player.getPlayerID());
+            }
+
             currentMatch.setIsRunning(false);
         }
         else {
