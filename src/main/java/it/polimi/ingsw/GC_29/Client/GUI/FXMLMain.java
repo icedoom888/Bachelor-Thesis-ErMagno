@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
+import it.polimi.ingsw.GC_29.Client.GUI.DisconectedPlayer.DisconnectedPlayerController;
 import it.polimi.ingsw.GC_29.Client.GUI.EndGame.EndGameController;
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginChange;
@@ -435,6 +436,17 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             childReconnected.setVisible(false);
             gameBoardController.setReconnectedPlayersPane(childReconnected);
             gameBoardController.setReconnectedPlayersController(reconnectedPlayersController);
+
+            //Adding DisconnectedPlayer
+            FXMLLoader loaderDisconnected = new FXMLLoader(getClass().getResource("/FXML/DisconnectedPlayer.fxml"));
+            AnchorPane childDisconnected = loaderDisconnected.load();
+            gameboardRoot.getChildren().add( childDisconnected);
+            AnchorPane.setBottomAnchor(childDisconnected,200.0);
+            AnchorPane.setLeftAnchor(childDisconnected,200.0);
+            DisconnectedPlayerController disconnectedPlayerController = loaderDisconnected.getController();
+            childDisconnected.setVisible(false);
+            gameBoardController.setDisconnectedPlayerPane(childDisconnected);
+            gameBoardController.setDisconnectedPlayerController(disconnectedPlayerController);
 
             //Adding EndGame
             FXMLLoader loaderEndGame = new FXMLLoader(getClass().getResource("/FXML/EndGame.fxml"));

@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
+import it.polimi.ingsw.GC_29.Client.GUI.DisconectedPlayer.DisconnectedPlayerController;
 import it.polimi.ingsw.GC_29.Client.GUI.EndGame.EndGameController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Client.GUI.ReconnectedPlayers.ReconnectedPlayersController;
@@ -120,6 +121,7 @@ public class GameBoardController {
     private SuspendedController suspendedController;
     private EndGameController endGameController;
     private ReconnectedPlayersController reconnectedPlayersController;
+    private DisconnectedPlayerController disconnectedPlayerController;
 
 
     //PanesGUI
@@ -137,6 +139,7 @@ public class GameBoardController {
     private AnchorPane youHaveBeenExcommunicatedPane;
     private AnchorPane endGamePane;
     private AnchorPane reconnectedPlayersPane;
+    private AnchorPane disconnectedPlayerPane;
 
 
     @FXML
@@ -1691,6 +1694,18 @@ public class GameBoardController {
 
 
     /**
+     * Shows the disconnectedPlayerPane and show the player that disconnected form the game
+     * @param playerId
+     */
+    public void disconnectedPlayer(String playerId){
+        disconnectedPlayerController.updateDisconnectedPlayer(playerId);
+        disconnectedPlayerPane.setVisible(true);
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        delay.setOnFinished( event -> disconnectedPlayerPane.setVisible(false) );
+        delay.play();
+    }
+
+    /**
      * Shows the reconnectedPlayersPane and shows all the player that reconnected
      * @param playerIds
      */
@@ -2159,6 +2174,14 @@ public class GameBoardController {
 
     public void setReconnectedPlayersController(ReconnectedPlayersController reconnectedPlayersController) {
         this.reconnectedPlayersController = reconnectedPlayersController;
+    }
+
+    public void setDisconnectedPlayerController(DisconnectedPlayerController disconnectedPlayerController) {
+        this.disconnectedPlayerController = disconnectedPlayerController;
+    }
+
+    public void setDisconnectedPlayerPane(AnchorPane disconnectedPlayerPane) {
+        this.disconnectedPlayerPane = disconnectedPlayerPane;
     }
 
     public PlayerState getPlayerState() {
