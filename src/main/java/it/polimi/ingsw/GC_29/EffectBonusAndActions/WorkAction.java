@@ -315,11 +315,17 @@ public class WorkAction extends Action {
 
         setWorkers(workers + workersChosen);
 
+        System.out.println("DENTRO HANDLE PAY CARDS, NUMERO WORKERS " + workersChosen + "\n");
+
+
+
         List<DevelopmentCard> cardsToActivateList = cardsForWorkers.get(workersChosen);
 
         Boolean isPayToObtain = false;
 
         for (DevelopmentCard card : cardsToActivateList) {
+
+
 
             String cardKey = card.getSpecial();
 
@@ -337,6 +343,8 @@ public class WorkAction extends Action {
 
 
                     if(effect1.checkSufficientGoods(player)){
+
+                        System.out.println("LA CARTA AGGIIUNTA NELLA PAY TO OBTAIN MAP E' " + cardKey);
                         payToObtainCardsMap.put(cardKey, card);
                         isPayToObtain = true;
                     }

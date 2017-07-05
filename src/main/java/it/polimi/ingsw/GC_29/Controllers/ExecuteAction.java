@@ -52,6 +52,8 @@ public class ExecuteAction extends Input {
 
             if (workAction.getCardsForWorkers().keySet().contains(0)) {
 
+                System.out.println("STO CHIAMANDO HANDLE PAY CARDS CON ZERO WORKERS");
+
                 controller.handlePayToObtainCards(workAction, currentPlayer, 0);
 
                 /*if (workAction.handlePayToObtainCards(0)) {

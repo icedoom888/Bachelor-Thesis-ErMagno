@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Query;
 import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 
 import java.util.HashMap;
@@ -28,9 +29,20 @@ public class GetPayToObtainCards extends Query<Map<String, HashMap<Integer, Stri
 
             for(Effect effect : card.getPermanentEffect()){
 
-                int effectIndex = card.getPermanentEffect().indexOf(effect);
+                if(effect instanceof PayToObtainEffect){
 
-                payToObtainCardMap.get(card.getSpecial()).put(effectIndex, effect.toString());
+                    PayToObtainEffect effect1 = (PayToObtainEffect) effect;
+
+                    if(effect1.checkSufficientGoods(model.getCurrentPlayer())){
+
+                        //System.out.println("LA CARTA AGGIIUNTA NELLA PAY TO OBTAIN MAP E' " + cardKey);
+                        int effectIndex = card.getPermanentEffect().indexOf(effect);
+
+                        payToObtainCardMap.get(card.getSpecial()).put(effectIndex, effect.toString());
+
+                    }
+
+                }
 
                 //payToObtainCardMap.get(card.toString()).put(effectIndex, effect.toString());
 
@@ -39,4 +51,5 @@ public class GetPayToObtainCards extends Query<Map<String, HashMap<Integer, Stri
 
         return payToObtainCardMap;
     }
+
 }

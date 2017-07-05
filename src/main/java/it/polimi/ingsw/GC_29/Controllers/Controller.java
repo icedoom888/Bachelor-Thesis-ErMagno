@@ -116,13 +116,13 @@ public class Controller implements Observer<Input>  {
 
                     /////////PER TESTING/////////
 
-                    endGame();
-                    return;
+                    //endGame();
+                   // return;
 
                 /////////PER TESTING/////////
                 //DECOMMENTARE IL RESTO DEL CASE E CANCELLARE LA SEZIONE PER TESTIN
-                    //model.setCurrentEra(Era.SECOND);
-                    //break;
+                    model.setCurrentEra(Era.SECOND);
+                    break;
                 case SECOND:
                     model.setCurrentEra(Era.THIRD);
                     break;

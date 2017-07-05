@@ -118,7 +118,7 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
                 break;
 
             case ACTIVATE_PAY_TO_OBTAIN_CARDS:
-                getPayToObtainCardsGUI(serverViewStub.getPayToObtainCards());
+                getPayToObtainCardsGUI(serverViewStub.getPayToObtainCardsGUI());
                 break;
 
             case CHOOSECOST:

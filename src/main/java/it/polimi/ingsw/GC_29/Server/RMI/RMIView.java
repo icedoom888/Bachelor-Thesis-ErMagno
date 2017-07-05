@@ -3,10 +3,7 @@ package it.polimi.ingsw.GC_29.Server.RMI;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
+import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.*;
 import it.polimi.ingsw.GC_29.Controllers.LeaderAction;
@@ -272,6 +269,11 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
+    public Map<String, HashMap<Integer, String>> getPayToObtainCardsGUI() throws RemoteException {
+        return new GetPayToObtainCards().perform(gameStatus);
+    }
+
+    @Override
     public void activateCards(int workersChosen) throws RemoteException {
         try {
             notifyObserver(new ActivateCards(workersChosen));
@@ -293,9 +295,21 @@ public class RMIView extends View implements RMIViewRemote {
 
             for(Effect effect : card.getPermanentEffect()){
 
-                int effectIndex = card.getPermanentEffect().indexOf(effect);
+                if(effect instanceof PayToObtainEffect){
 
-                payToObtainCardMap.get(card.toString()).put(effectIndex, effect.toString());
+                    PayToObtainEffect effect1 = (PayToObtainEffect) effect;
+
+                    if(effect1.checkSufficientGoods(gameStatus.getCurrentPlayer())){
+
+                        //System.out.println("LA CARTA AGGIIUNTA NELLA PAY TO OBTAIN MAP E' " + cardKey);
+                        int effectIndex = card.getPermanentEffect().indexOf(effect);
+
+                        payToObtainCardMap.get(card.toString()).put(effectIndex, effect.toString());
+
+                    }
+
+                }
+
 
             }
         }
