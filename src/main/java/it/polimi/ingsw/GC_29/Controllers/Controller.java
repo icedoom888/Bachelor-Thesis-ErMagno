@@ -110,14 +110,13 @@ public class Controller implements Observer<Input>  {
 
             switch (oldEra) {
                 case FIRST:
-                    System.out.println("CONTROLLER CHIAMA END GAME");
-                    endGame();
-                    return;
-                    //model.setCurrentEra(Era.SECOND)
+                    model.setCurrentEra(Era.SECOND);
+                    break;
                 case SECOND:
                     model.setCurrentEra(Era.THIRD);
                     break;
                 case THIRD:
+                    System.out.println("CONTROLLER CHIAMA END GAME");
                     endGame();
                     return;
 
