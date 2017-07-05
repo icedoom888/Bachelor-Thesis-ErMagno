@@ -21,5 +21,18 @@ public class Disconnection extends Input {
         SuspendPlayer suspendPlayer = new SuspendPlayer(controller, model, model.getPlayer(playerColor));
 
         suspendPlayer.run();
+
+        if(controller.minNumberOfPlayerReached()){
+
+            controller.endGame();
+
+        }
+
+        else {
+
+            model.notifyPlayerDisconnected(model.getPlayer(playerColor));
+        }
+
+
     }
 }

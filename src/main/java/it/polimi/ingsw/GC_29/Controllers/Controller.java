@@ -40,6 +40,8 @@ public class Controller implements Observer<Input>  {
     private Map<Player, Integer> playerBonusTileIndexMap;
     private int closedClients;
     private ServerNewGame currentMatch;
+    private final int minNumberOfPlayers = 2;
+
 
 
     public Controller(GameStatus model){
@@ -374,8 +376,6 @@ public class Controller implements Observer<Input>  {
         //winner.setPlayerState();
 
         model.setEndGame(winner);
-
-
 
         System.out.println("The winner is... " + winner);
 
@@ -795,7 +795,11 @@ public class Controller implements Observer<Input>  {
 
         //TODO: leader card update
 
+        List<String> usernamePLayerReconnectedList = new ArrayList<>();
+
         for (Player player : playerReconnected) {
+
+            usernamePLayerReconnectedList.add(player.getPlayerID());
 
             try {
 
@@ -815,8 +819,6 @@ public class Controller implements Observer<Input>  {
                         }
                     }
                 }
-
-                System.out.println(" \n INDICE MAPPA " + playerBonusTileIndexMap.get(player ) + " NOME PLAYER " +player.getPlayerID());
 
                 player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
 
@@ -838,6 +840,8 @@ public class Controller implements Observer<Input>  {
             model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.MILITARYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS));
             model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.FAITHPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS));
         }
+
+        model.notifyPlayerReconnected(usernamePLayerReconnectedList);
 
         playerReconnected.clear();
     }
@@ -864,4 +868,24 @@ public class Controller implements Observer<Input>  {
     public void setCurrentMatch(ServerNewGame currentMatch) {
         this.currentMatch = currentMatch;
     }
+
+    public boolean minNumberOfPlayerReached() {
+
+        int numberOfSuspended = 0;
+
+        for (Player player : model.getTurnOrder()) {
+            if(player.getPlayerState() == PlayerState.SUSPENDED){
+                numberOfSuspended++;
+            }
+
+            if(numberOfSuspended > minNumberOfPlayers){
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 }

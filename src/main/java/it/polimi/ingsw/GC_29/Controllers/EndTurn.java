@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class EndTurn extends Input {
 
+    private final int minNumberOfPlayers = 2;
+
     /**
      * During the EndTurn, the current PlayerState is set to WAITING. Then, if the player that was playing was
      * playing because he skipped a turn, the method chooses another player from the ones who skipped. If the list
@@ -33,6 +35,18 @@ public class EndTurn extends Input {
         }
         
         controller.stopTimer();
+
+        if(controller.minNumberOfPlayerReached()){
+
+            try {
+                controller.endGame();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
+
 
         Player currentPlayer = model.getCurrentPlayer();
 

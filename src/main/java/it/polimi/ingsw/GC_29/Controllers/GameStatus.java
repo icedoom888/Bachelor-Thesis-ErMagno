@@ -260,5 +260,24 @@ public class GameStatus extends Observable<Change>{
             e.printStackTrace();
         }
     }
+
+    public void notifyPlayerReconnected(List<String> usernamePLayerReconnectedList) {
+
+        try {
+            notifyObserver(new ReconnectionChange(usernamePLayerReconnectedList));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void notifyPlayerDisconnected(Player player) {
+
+        try {
+            notifyObserver(new PlayerDisconnectedChange(player.getPlayerID()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 

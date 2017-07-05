@@ -13,10 +13,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -33,7 +30,9 @@ public class GameMatchHandler implements LogoutInterface{
 
     private Boolean lobbyCreated = false;
 
-    private final int maxNumberOfPlayers = 2;
+    private final int maxNumberOfPlayers = 3;
+
+    private Timer timer;
 
     private boolean minClientNumberReached = false;
 
@@ -43,7 +42,7 @@ public class GameMatchHandler implements LogoutInterface{
 
     private String currentMatchID;
 
-    private final long elapsedTime = 300000;
+    private final long elapsedTime = 30000;
 
     private int currentClientListSize = 0;
 
@@ -128,7 +127,7 @@ public class GameMatchHandler implements LogoutInterface{
 
     }
 
-    private void reconnectClient(PlayerSocket playerSocket, String username) throws IOException {
+    synchronized private void reconnectClient(PlayerSocket playerSocket, String username) throws IOException {
 
         System.out.println("Creo server socket view");
 
@@ -180,7 +179,7 @@ public class GameMatchHandler implements LogoutInterface{
 
     }
 
-    private void reconnectClient(ClientRemoteInterface clientStub) throws RemoteException {
+    synchronized private void reconnectClient(ClientRemoteInterface clientStub) throws RemoteException {
 
         System.out.println("SONO IN RECONNECT CLIENT");
 
@@ -218,7 +217,6 @@ public class GameMatchHandler implements LogoutInterface{
 
         clientStub.joinGame();
 
-
 }
 
     private void lobbySettings() {
@@ -243,15 +241,22 @@ public class GameMatchHandler implements LogoutInterface{
 
             System.out.println("NUOVA PARTITA!");
 
-            executor.submit(getCurrentNewGame());
+            timer.cancel();
 
-            lobbyCreated = false;
-
-            minClientNumberReached = false;
-
-            currentClientListSize=0;
+            runNewGame();
 
         }
+    }
+
+    private void runNewGame(){
+
+        executor.submit(getCurrentNewGame());
+
+        lobbyCreated = false;
+
+        minClientNumberReached = false;
+
+        currentClientListSize=0;
     }
 
 
@@ -261,14 +266,23 @@ public class GameMatchHandler implements LogoutInterface{
 
             minClientNumberReached = true;
 
-            startTime = System.currentTimeMillis();
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+
+                @Override
+                public void run() {
+
+                    System.out.println("ESEGUO TASK");
+                    runNewGame();
+                }
+            }, elapsedTime);
         }
 
     }
 
     public boolean evaluateConditionNewGame() {
 
-        Boolean result = ((System.currentTimeMillis() - startTime >= elapsedTime && minClientNumberReached) || currentClientListSize == maxNumberOfPlayers);
+        Boolean result = (currentClientListSize == maxNumberOfPlayers);
 
         if(result){
             System.out.println("LE CONDIZIONI PER NUOVA PARTITA SONO VALIDE");
