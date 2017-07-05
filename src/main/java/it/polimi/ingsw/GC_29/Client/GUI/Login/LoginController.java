@@ -36,10 +36,10 @@ public class LoginController extends Observable<LoginChange> implements Controll
 
 
     /**
-     * Questa funzione è chiamata quando il giocatore preme submit sulla schermata di Login,
-     * La funzione controlla se tutti i campi sono stati completati/selezionati,
-     * se ciò non avviene mostra una scritta di errore,
-     * altrimenti avvia la connessione con il server in modalità Socket o RMI a seconda della scelta del giocatore.
+     * called when the player clicks on the submit button
+     * checks if all the areas are completed
+     * if they aren't an error message is shown
+     * if they are begins the connection with the server
      * @param event
      */
     public void sendSubmit(ActionEvent event){
@@ -82,8 +82,7 @@ public class LoginController extends Observable<LoginChange> implements Controll
 
 
     /**
-     * Questa funzione non permette ad entrambi i pulsanti rmi e socket di essere selezionati contemporaneamente,
-     * se uno è selezionato e il giocatore clicka l'altro, automaticamente il primo sarà deselezionato
+     * doesn't allow to both RMI and Socket buttons to be selected simultaneously
      * @param event
      */
     public void switchButtons(ActionEvent event){
@@ -96,7 +95,7 @@ public class LoginController extends Observable<LoginChange> implements Controll
     }
 
     /**
-     * chiude la finestra di Login
+     * closes the login window
      */
     public void close() {
 

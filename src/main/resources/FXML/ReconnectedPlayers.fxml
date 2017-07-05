@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.ReconnectedPlayers.ReconnectedPlayersController">
+   <children>
+      <Label layoutX="30.0" layoutY="31.0" text="The following players reconnected to the game:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="reconnectedPlayers" layoutX="30.0" layoutY="67.0" prefHeight="297.0" prefWidth="541.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+   </children>
+</AnchorPane>

@@ -150,7 +150,7 @@ public class GameMatchHandler implements LogoutInterface{
 
         //setta player color nello stub del client
 
-        ServerSocketView serverSocketView = new ServerSocketView(playerSocket, gameStatus, playerColor);
+        ServerSocketView serverSocketView = new ServerSocketView(playerSocket, gameStatus, playerColor, username);
 
         serverSocketView.registerObserver(clientCurrentMatch.getController());
         clientCurrentMatch.getController().getPlayerReconnected().add(gameStatus.getPlayer(playerColor));

@@ -7,7 +7,10 @@ import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
+import it.polimi.ingsw.GC_29.Client.GUI.DisconectedPlayer.DisconnectedPlayerController;
+import it.polimi.ingsw.GC_29.Client.GUI.EndGame.EndGameController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
+import it.polimi.ingsw.GC_29.Client.GUI.ReconnectedPlayers.ReconnectedPlayersController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
 import it.polimi.ingsw.GC_29.Components.*;
@@ -37,36 +40,36 @@ public class GameBoardController {
     private PlayerState lastPlayerState;
 
 
-    //mappa carte per immagini
+    //map for card's images
     private HashMap<String,String> cardMap = new HashMap<>();
 
     private HashMap<Integer, ImageView> leaderCardsImage;
     private HashMap<Integer, Button> leaderCardsActivate;
     private HashMap<Integer, Button> leaderCardsBurn;
 
-    //mappa bonustiles per immagini
+    //map for bonus tiles'images
     private HashMap<String,String> bonusTilesMap = new HashMap<>();
 
-    //mappa pedine per immagini
+    //map for pawn's images
     private HashMap<FamilyPawnType,String> bluePawnsImagesMap = new HashMap<>();
     private HashMap<FamilyPawnType,String> greenPawnsImagesMap = new HashMap<>();
     private HashMap<FamilyPawnType,String> redPawnsImagesMap = new HashMap<>();
     private HashMap<FamilyPawnType,String> yellowPawnsImagesMap = new HashMap<>();
 
-    //mappa spazi pedine delle Box
+    //map for pawn's images in the boxes
     private HashMap<Integer,ImageView> productionBox = new HashMap<>();
     private int productionBoxFreeSlot = 0;
     private HashMap<Integer,ImageView> harvestBox = new HashMap<>();
     private int harvestBoxFreeSlot = 0;
 
-    //mappa testi nelle tracks
+    //map for track's texts
     private HashMap<GoodType,Text> greenPlayerTrack = new HashMap<>();
     private HashMap<GoodType,Text> bluePlayerTrack = new HashMap<>();
     private HashMap<GoodType,Text> redPlayerTrack = new HashMap<>();
     private HashMap<GoodType,Text> yellowPlayerTrack = new HashMap<>();
 
 
-    //mappa pedine della grid
+    //map for pawn's images in the grid
     private HashMap<Integer,ImageView> gridMap = new HashMap<>();
     private int gridFreeSlot = 0;
 
@@ -76,7 +79,7 @@ public class GameBoardController {
     private HashMap<Integer, ImageView> personalYellowCards = new HashMap<>();
     private HashMap<Integer, ImageView> personalPurpleCards = new HashMap<>();
 
-    //Posizioni libere della personal
+    //free slot in the personalBoard
     private int greenFreeSlot=0;
     private int blueFreeSlot=0;
     private int yellowFreeSlot=0;
@@ -87,12 +90,12 @@ public class GameBoardController {
     private HashMap<Integer, ImageView> yellowTower = new HashMap<>();
     private HashMap<Integer, ImageView> purpleTower = new HashMap<>();
 
-    //quando devo settare i pulsanti attivi
+    //set active buttons
     private HashMap<Integer, ImageView> actionButtons = new HashMap<>();
     private HashMap<Integer,GridPane> actionGrid = new HashMap<>();
     private HashMap<Integer,HBox> actionBox = new HashMap<>();
 
-    //quando devo sapere a che azione corrisponde il pulsante premuto
+    //maps to associate button to action
     private HashMap<ImageView, Integer> buttonAction = new HashMap<>();
     private HashMap<GridPane,Integer> gridAction = new HashMap<>();
     private HashMap<HBox,Integer> boxAction = new HashMap<>();
@@ -104,10 +107,10 @@ public class GameBoardController {
     private ArrayList<ImageView> familyPawns;
 
 
-    //ChooseDistribution, classe che serve per parlare con il server
+    //ChooseDistribution, to talk to the server
     private InputInterfaceGUI sender;
 
-    //Controller delle schermate interne
+    //Controllers of the panes
     private BonusTileController bonusTileController;
     private ChooseCostController chooseCostController;
     private PayToObtainController payToObtainController;
@@ -116,9 +119,12 @@ public class GameBoardController {
     private PrayController prayController;
     private WorkersController workersController;
     private SuspendedController suspendedController;
+    private EndGameController endGameController;
+    private ReconnectedPlayersController reconnectedPlayersController;
+    private DisconnectedPlayerController disconnectedPlayerController;
 
 
-    //Pane delle schermate interne utilizzati per hidarle
+    //PanesGUI
     private AnchorPane bonusTilePane;
     private AnchorPane chooseCostPane;
     private AnchorPane payToObtainPane;
@@ -130,6 +136,10 @@ public class GameBoardController {
     private AnchorPane throwDicesPane;
     private AnchorPane bonusActionPane;
     private AnchorPane suspendedPane;
+    private AnchorPane youHaveBeenExcommunicatedPane;
+    private AnchorPane endGamePane;
+    private AnchorPane reconnectedPlayersPane;
+    private AnchorPane disconnectedPlayerPane;
 
 
     @FXML
@@ -511,9 +521,7 @@ public class GameBoardController {
 
 
     /**
-     * Initialize è una funzione che accede ai parametri FXML una volta lanciata l'applicazione
-     * permette di inserirli all'interno di strutture dati utili alla gestione grafica quali hashmap
-     * contiene inoltre l'elenco degli url delle carte associati al loro nome
+     * standard initialize function used to load the FXML elements into maps and lists
      */
     @FXML
     public void initialize() {
@@ -856,15 +864,14 @@ public class GameBoardController {
 
 
     /**
-     * Attivata quando il player clicca il pulsante UseLeaderCards, e comunica la scelta tramite l'InputInterfaceGUI
+     * called when a player clicks the UseLeaders button
+     * sends the choice made by the InputInterfaceGUI
      * @param event
      */
     public void handleUseLeaderCards(ActionEvent event){
 
         if (playerState != PlayerState.LEADER) {
             sender.sendInput("use leader cards GUI");
-            lastPlayerState = playerState;
-            playerState = PlayerState.LEADER;
         }
 
         else {
@@ -876,7 +883,8 @@ public class GameBoardController {
 
 
     /**
-     * Gestisce l'attivazione di una leader card
+     * called when a player clicks the activateLeader button
+     * sends the choice made by the InputInterfaceGUI
      * @param event
      */
     public void handleActivateLeader(ActionEvent event){
@@ -913,8 +921,8 @@ public class GameBoardController {
     }
 
     /**
-     * Gestisce la distruzione di una leader card
-
+     * called when a player clicks the burnLeader button
+     * sends the choice made by the InputInterfaceGUI
      * @param event
      * @throws Exception
      */
@@ -950,13 +958,15 @@ public class GameBoardController {
 
 
     /**
-     * Quando è chiamata attiva o disattiva i pulsanti di activate e burn delle rispettive leader cards
-     * a seconda che esse siano segnate come available all'interno della mappa leadersAvailable
+     * when called disables or ables the burn or activate buttons of the leader cards depending on the information
+     * in the leaderAvailable map it recieves
      * @param leadersAvailable
      */
     public void setPossibleLeaders(Map<Integer, Boolean> leadersAvailable) {
 
-        System.out.println(leadersAvailable);
+
+        lastPlayerState = playerState;
+        playerState = PlayerState.LEADER;
 
         for (Integer integer : leadersAvailable.keySet()) {
 
@@ -969,7 +979,7 @@ public class GameBoardController {
     }
 
     /**
-     * Aggiorna le immagini delle carte leader del player
+     * updates the leader cards of the player
      * @param leaders
      */
     public void updateLeaderCards(ArrayList<String> leaders){
@@ -1017,7 +1027,8 @@ public class GameBoardController {
     */
 
     /**
-     * Gestisce l'attivazione bottone Lancia Dadi
+     * called when a player clicks the throwDices button
+     * sends the choice made by the InputInterfaceGUI
      * @param event
      */
     public void handleThrowDices(ActionEvent event){
@@ -1025,7 +1036,8 @@ public class GameBoardController {
     }
 
     /**
-     * Gestisce l'attivazione bottone Salta Azione
+     * called when a player clicks the skipAction button
+     * sends the choice made by the InputInterfaceGUI
      * @param event
      */
     public void handleSkipAction(ActionEvent event){
@@ -1033,7 +1045,8 @@ public class GameBoardController {
     }
 
     /**
-     * Gestisce l'attivazione bottone Fine Turno
+     * called when a player clicks the endTurn button
+     * sends the choice made by the InputInterfaceGUI
      * @param event
      */
     public void handleEndTurn(ActionEvent event){
@@ -1041,7 +1054,8 @@ public class GameBoardController {
     }
 
     /**
-     * Gestisce l'attivazione dei pulsanti seleziona pedina
+     * called when a player selects a pawn
+     * sends the choice made via the InputInterfaceGUI
      * @param event
      */
     public void handlePawnPicked(MouseEvent event) {
@@ -1062,8 +1076,8 @@ public class GameBoardController {
 
 
     /**
-     * Attivata quando un giocato reseleziona l'actionSpace dove vuole posizionare una pedina e
-     * comunica la scelta fatta tramite l'InputInterfaceGUI
+     * called when a player selects an actionSpace to place a pawn
+     * sends the choice made via the InputInterfaceGUI
      * @param event
      */
     public void handleActionChosenImageView(MouseEvent event){
@@ -1076,8 +1090,8 @@ public class GameBoardController {
     }
 
     /**
-     * Attivata quando un giocatore seleziona una carta sulla gameboard o sulla personalboard,
-     * La funzione apre un riquadro mostrando la carta in dimensioni maggiori
+     * called when the player clicks on a card anywhere on the gameboard,
+     * shows a zoom pane with a bigger version of the card
      * @param event
      */
     public void handleZoom(MouseEvent event){
@@ -1088,8 +1102,8 @@ public class GameBoardController {
     }
 
     /**
-     * Attivata quando il giocatore dalla schermata di Zoom clicca il pulsante Ok,
-     * chiude la schermata di zoom
+     * called when the player from the zoom pane presses the Ok button
+     * closes the zoom pane
      * @param event
      */
     public void handleEndZoom(ActionEvent event){
@@ -1097,8 +1111,8 @@ public class GameBoardController {
     }
 
     /**
-     * Inserisce graficamente la pedina selezionata dal giocatore sull'actionSpace da egli selezionato,
-     * chiama poi 3 funzioni diverse a seconda della tipologia di actionSpace
+     * loads the image of the pawn selected on the actionspace selected
+     * calls three differnt functions based on the actionSpace selected
      * @param familyPawn
      * @param actionIndex
      */
@@ -1133,7 +1147,7 @@ public class GameBoardController {
     }
 
     /**
-     * Aggiunge graficamente l'immagine della pedina sugli actionSpace singoli
+     * loads the image of the pawn selected on the actionspace selected
      * @param image
      * @param actionIndex
      */
@@ -1145,7 +1159,7 @@ public class GameBoardController {
     }
 
     /**
-     * Aggiunge graficamente l'immagine della pedina all'interno della box corrispondente, nel primo posto libero
+     * loads the image of the pawn selected on the actionspace Box selected, at the first available place
      * @param image
      * @param actionIndex
      */
@@ -1161,7 +1175,7 @@ public class GameBoardController {
     }
 
     /**
-     * Aggiunge graficamente l'immagine della pedina all'interno della grid corrispondente, nel primo posto libero
+     * loads the image of the pawn selected on the actionspace Grid selected, at the first available place
      * @param image
      * @param actionIndex
      */
@@ -1171,7 +1185,7 @@ public class GameBoardController {
     }
 
     /**
-     * rimuove tutte le immagini delle pedine dalla gameboard
+     * removes all the pawns from the gameboard
      */
     public void removeAllPawns(){
         for (Integer integer : actionButtons.keySet()) {
@@ -1198,7 +1212,7 @@ public class GameBoardController {
 
 
     /**
-         * Quando viene chiamata setta i vari pulsanti pedina che possono essere clickati
+         * when called sets all the buttons that can be clicked
          * @param availability
          */
     public void activatePawns(Map<FamilyPawn,Boolean> availability){
@@ -1278,7 +1292,7 @@ public class GameBoardController {
 
 
     /**
-     * Quando è chiamata modifica le immagini delle carte visualizzate sulla PersonalBoard
+     * when called updates the images of the cards on the personalBoard
      * @param cardColor
      */
     public void updateCardsPersonalBoard(String name, CardColor cardColor){
@@ -1304,7 +1318,7 @@ public class GameBoardController {
     }
 
     /**
-     * Quando viene chiamata modifica le quantità di resourceAmount sulla PersonalBoard
+     * when called updates the goodset of the player on the personalBoard
      * @param newGoodSet
      */
     public void updatePersonalGoodSet(GoodSet newGoodSet/*, PlayerColor playerColor*/){
@@ -1333,7 +1347,7 @@ public class GameBoardController {
     }
 
     /**
-     * Quando è chiamata attiva/disattiva tutti i pulsanti ActionSpace che si possono clickare
+     * when called shows/hides all the actionSpaces the player can select
      * @param availability
      */
     public void updatePossibleActions(Map<Integer, String> availability){
@@ -1374,10 +1388,7 @@ public class GameBoardController {
     }
 
     /**
-     * modifica il contenuto delle tracks,
-     * gli viene passato il player a cui cambiare le risorse,
-     * la risorsa da cambiare,
-     * e infine il numero di punti da aggiungere
+     * modifies the content of the tracks
      * @param playerColor
      * @param goodType
      * @param numberOfPoints
@@ -1417,7 +1428,7 @@ public class GameBoardController {
     }
 
     /**
-     * Quando è chiamata modifica tutte le carte sulle torri
+     * when called updates all the cards on the towers
      */
     public void updateTower(ArrayList<String> cardNames, CardColor cardColor){
 
@@ -1471,7 +1482,7 @@ public class GameBoardController {
     }
 
     /**
-     * Quando è chiamata fissa l'immagine della BonusTile che riceve
+     * When called loads the image of the bonus tile selected on the gameboard pane
      */
     public void updateBonusTile(String bonusTileIndex){
 
@@ -1480,7 +1491,7 @@ public class GameBoardController {
     }
 
     /**
-     * Quando è chiamata visualizza sulla Gameboard le immagini delle Excomunication tiles che gli vengono passate
+     * Used to update the images of the excommunication tiles on the main gameboard pane
      * @param tiles
      */
     public void updateExcomunicationTiles(ArrayList<String> tiles){
@@ -1510,9 +1521,9 @@ public class GameBoardController {
 
 
     /**
-     * chiamata quando bisogna mostrare al giocatore la schermata ChooseWorkers,
-     * la schermata è poi modificata mostrando al suo interno le possibili scelte presenti nella mappa cardsForWorkers,
-     * vengono inoltre salvate nel controller della schermata le scelte possibili
+     * called when the ChooseWorkers pane has to be shown
+     * the pane is modified to show the player the options he can choose
+     * the possible choices are saved in the controller
      * @param cardsForWorkers
      */
     public void chooseWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
@@ -1538,8 +1549,8 @@ public class GameBoardController {
     }
 
     /**
-     * chiamata quando bisogna mostrare al giocatore la schermata ChoosePayToObtainCards,
-     * la schermata è poi modificata mostrando al suo interno le possibili scelte presenti nella mappa payToObtainCards
+     * called when the ChoosePayToObtain pane has to be shown
+     * the pane is modified to show the player the options he can choose
      * @param payToObtainCards
      */
     public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
@@ -1552,8 +1563,8 @@ public class GameBoardController {
 
 
     /**
-     * chiamata quando bisogna mostrare al giocatore la schermata ChooseCost,
-     * la schermata è poi modificata mostrando al suo interno le possibili scelte presenti nella mappa possibleCosts
+     * called when the ChooseCost pane has to be shown
+     * the pane is modified to show the player the options he can choose
      * @param possibleCosts
      */
     public void chooseCost(Map<Integer, String> possibleCosts) {
@@ -1570,8 +1581,7 @@ public class GameBoardController {
 
 
     /**
-     * chiamata quando bisogna mostrare al giocatore la schermata ChoosePrivileges,
-     *
+     * called when the ChoosePrivilege pane has to be shown
      * @param councilPrivileges
      */
    public void choosePrivileges(List<Integer> councilPrivileges) {
@@ -1580,8 +1590,8 @@ public class GameBoardController {
     }
 
     /**
-     * chiamata quando bisogna mostrare al giocatore la schermata ChooseBonus,
-     * la schermata è poi modificata in modo tale da mostrare solo le bonustiles presenti nella mappa
+     * called when the ChooseBonusTile pane has to be shown
+     * the pane is modified in order to allow the player to select only the tiles available
      * @param bonusTiles
      */
     public void chooseBonusTile(Map<Integer, String> bonusTiles) {
@@ -1591,10 +1601,9 @@ public class GameBoardController {
     }
 
 
-    //TODO: Verificare il funzionamento
     /**
-     * chiamata quando bisogna mostrare la schermata YourTurn,
-     * per avvisare il giocatore che il suo turno è iniziato
+     * called when the YourTurn pane has to be shown
+     * to warn the player that his turn started
      */
     private void yourTurn() throws InterruptedException {
         yourTurnPane.setVisible(true);
@@ -1604,8 +1613,8 @@ public class GameBoardController {
     }
 
     /**
-     * chiamata quando bisogna mostrare la schermata Throw Dices,
-     * per avvisare il giocatore che deve tirare i dadi
+     * called when the throwDices pane has to be shown
+     * to warn the player he has to throw the dices
      */
     private void throwDices() throws InterruptedException {
 
@@ -1617,8 +1626,8 @@ public class GameBoardController {
     }
 
     /**
-     * chiamata quando bisogna mostrare la schermata Bonus Action,
-     * per avvisare il giocatore che ha ricevuto un'azione bonus
+     * called when the bonusAction pane has to be shown
+     * to warn the player that he recieved a bonus action
      */
     private void bonusAction() throws InterruptedException {
 
@@ -1630,8 +1639,8 @@ public class GameBoardController {
     }
 
     /**
-     * chiamata quando bisogna mostrare la schermata Pray,
-     * viene mostrata come immagine l'ecommunication che gli viene passata
+     * called when the pray pane has to be shown
+     *the pane is shown with the image of the relative excommunication tile
      * @param excommunication
      */
     public void pray(String excommunication){
@@ -1642,8 +1651,8 @@ public class GameBoardController {
 
 
     /**
-     * Funzione chiamata nel momento in cui una partita deve essere ripristiata,
-     * viene ripristinata la bonusTile selezionata in precedenza dal giocatore
+     * Function called when the game has to be reloaded,
+     * the bonusTile is reloaded as it was when the game was interrupted
      * @param bonusTileX
      */
     public void setBonusTile(Integer bonusTileX) {
@@ -1657,8 +1666,8 @@ public class GameBoardController {
     }
 
     /**
-     * Funzione chiamata nel momento in cui una partita deve essere ripristiata,
-     * viene ripristinato il valore dei punti delle track che erano presenti quando la partita è terminata
+     * Function called when the game has to be reloaded,
+     * the values on the tracks are reloaded as they were when the game was interrupted
      * @param playerColor
      * @param goodType
      * @param numberOfPoints
@@ -1683,6 +1692,50 @@ public class GameBoardController {
         }
     }
 
+
+    /**
+     * Shows the disconnectedPlayerPane and show the player that disconnected form the game
+     * @param playerId
+     */
+    public void disconnectedPlayer(String playerId){
+        disconnectedPlayerController.updateDisconnectedPlayer(playerId);
+        disconnectedPlayerPane.setVisible(true);
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        delay.setOnFinished( event -> disconnectedPlayerPane.setVisible(false) );
+        delay.play();
+    }
+
+    /**
+     * Shows the reconnectedPlayersPane and shows all the player that reconnected
+     * @param playerIds
+     */
+    public void reconnectPlayers(List<String> playerIds){
+        reconnectedPlayersController.updateReconnectedPlayers(playerIds);
+        reconnectedPlayersPane.setVisible(true);
+        PauseTransition delay = new PauseTransition(Duration.seconds(4));
+        delay.setOnFinished( event -> reconnectedPlayersPane.setVisible(false) );
+        delay.play();
+    }
+
+    /**
+     * Function called to show the YouHaveBeenExcommunicatedPane
+     */
+    public void youHaveBeenExcommunicated(){
+        youHaveBeenExcommunicatedPane.setVisible(true);
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        delay.setOnFinished( event -> youHaveBeenExcommunicatedPane.setVisible(false) );
+        delay.play();
+    }
+
+    /**
+     * function called when the game is over,
+     * shows the winner
+     * @param winnerId
+     */
+    public void endGame(String winnerId){
+        endGameController.updateWinner(winnerId);
+        endGamePane.setVisible(true);
+    }
 
     /**
      * Setta lo stato in cui si trova il Giocatore, e a seconda dello stato mostra le schermate relative
@@ -1899,7 +1952,7 @@ public class GameBoardController {
 
 
     /**
-     * chiude tutte le finestre aperte
+     * closes all open windows
      */
     public void closeWindows() {
 
@@ -1985,7 +2038,7 @@ public class GameBoardController {
     }
 
     /**
-     * disattiva tutti i bottoni
+     * deactivate all buttons
      */
     public void noButtonsAble() {
 
@@ -2101,6 +2154,34 @@ public class GameBoardController {
 
     public void setSuspendedPane(AnchorPane suspendedPane) {
         this.suspendedPane = suspendedPane;
+    }
+
+    public void setYouHaveBeenExcommunicatedPane(AnchorPane youHaveBeenExcommunicatedPane) {
+        this.youHaveBeenExcommunicatedPane = youHaveBeenExcommunicatedPane;
+    }
+
+    public void setEndGameController(EndGameController endGameController) {
+        this.endGameController = endGameController;
+    }
+
+    public void setEndGamePane(AnchorPane endGamePane) {
+        this.endGamePane = endGamePane;
+    }
+
+    public void setReconnectedPlayersPane(AnchorPane reconnectedPlayersPane) {
+        this.reconnectedPlayersPane = reconnectedPlayersPane;
+    }
+
+    public void setReconnectedPlayersController(ReconnectedPlayersController reconnectedPlayersController) {
+        this.reconnectedPlayersController = reconnectedPlayersController;
+    }
+
+    public void setDisconnectedPlayerController(DisconnectedPlayerController disconnectedPlayerController) {
+        this.disconnectedPlayerController = disconnectedPlayerController;
+    }
+
+    public void setDisconnectedPlayerPane(AnchorPane disconnectedPlayerPane) {
+        this.disconnectedPlayerPane = disconnectedPlayerPane;
     }
 
     public PlayerState getPlayerState() {

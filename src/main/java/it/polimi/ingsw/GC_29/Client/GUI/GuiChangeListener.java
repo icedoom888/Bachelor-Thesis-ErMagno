@@ -51,4 +51,6 @@ public interface GuiChangeListener {
     void updateBonusTileFromDisconnection(Integer bonusTile);
 
     void resetTrack(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints);
+
+    void endGame(String winner);
 }

@@ -29,10 +29,9 @@ public class ChooseCostController {
     private Text error;
 
     /**
-     * Questa funzione è lanciata quando il giocatore invia la scelta del costo cliccando sul pulsante submit,
-     * la funzione esegue un controllo sul contenuto dell'area di testo in cui il giocatore ha indicato la sua scelta,
-     * se il contenuto è vuoto viene mostrata una scritta di errore ed il giocatore deve riempire il campo e premere submit ancora,
-     * se il contenuto è presente esso viene inviato tramite l'InputInterfaceGUI
+     * called when the player clicks on the submit button,
+     * controls if the text field is empty: if it is shows an error message,
+     * if it isn't sends the player choice via InputInterfaceGUI
      * @param event
      */
     public void sendSubmit(ActionEvent event){
@@ -45,8 +44,7 @@ public class ChooseCostController {
     }
 
     /**
-     * Questa funzione è chiamata per mostrare all'interno della Text Area principale,
-     * l'elenco dei costi tra cui il player può scegliere.
+     * when called updates the text in the main text area in order to show the new costs the player has to choose from
      * @param newCosts
      */
     public void updateShownCosts(String newCosts){

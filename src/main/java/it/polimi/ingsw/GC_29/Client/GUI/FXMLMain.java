@@ -10,10 +10,13 @@ import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
+import it.polimi.ingsw.GC_29.Client.GUI.DisconectedPlayer.DisconnectedPlayerController;
+import it.polimi.ingsw.GC_29.Client.GUI.EndGame.EndGameController;
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginChange;
 import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginController;
 import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
+import it.polimi.ingsw.GC_29.Client.GUI.ReconnectedPlayers.ReconnectedPlayersController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
 import it.polimi.ingsw.GC_29.Components.CardColor;
@@ -414,6 +417,50 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             gameBoardController.setSuspendedPane(childSuspended);
             gameBoardController.setSuspendedController(suspendedController);
 
+            //Adding YouHaveBeenExcommunicated
+            FXMLLoader loaderExcommunicated = new FXMLLoader(getClass().getResource("/FXML/YouHaveBeenExcommunicated.fxml"));
+            AnchorPane childExcommunicated = loaderExcommunicated.load();
+            gameboardRoot.getChildren().add(childExcommunicated);
+            AnchorPane.setBottomAnchor(childExcommunicated,200.0);
+            AnchorPane.setLeftAnchor(childExcommunicated,200.0);
+            childExcommunicated.setVisible(false);
+            gameBoardController.setYouHaveBeenExcommunicatedPane(childExcommunicated);
+
+            //Adding ReconnectedPlayers
+            FXMLLoader loaderReconnected = new FXMLLoader(getClass().getResource("/FXML/ReconnectedPlayers.fxml"));
+            AnchorPane childReconnected = loaderReconnected.load();
+            gameboardRoot.getChildren().add(childReconnected);
+            AnchorPane.setBottomAnchor(childReconnected,200.0);
+            AnchorPane.setLeftAnchor(childReconnected,200.0);
+            ReconnectedPlayersController reconnectedPlayersController = loaderReconnected.getController();
+            childReconnected.setVisible(false);
+            gameBoardController.setReconnectedPlayersPane(childReconnected);
+            gameBoardController.setReconnectedPlayersController(reconnectedPlayersController);
+
+            //Adding DisconnectedPlayer
+            FXMLLoader loaderDisconnected = new FXMLLoader(getClass().getResource("/FXML/DisconnectedPlayer.fxml"));
+            AnchorPane childDisconnected = loaderDisconnected.load();
+            gameboardRoot.getChildren().add( childDisconnected);
+            AnchorPane.setBottomAnchor(childDisconnected,200.0);
+            AnchorPane.setLeftAnchor(childDisconnected,200.0);
+            DisconnectedPlayerController disconnectedPlayerController = loaderDisconnected.getController();
+            childDisconnected.setVisible(false);
+            gameBoardController.setDisconnectedPlayerPane(childDisconnected);
+            gameBoardController.setDisconnectedPlayerController(disconnectedPlayerController);
+
+            //Adding EndGame
+            FXMLLoader loaderEndGame = new FXMLLoader(getClass().getResource("/FXML/EndGame.fxml"));
+            AnchorPane childEndGame = loaderEndGame.load();
+            gameboardRoot.getChildren().add(childEndGame);
+            AnchorPane.setBottomAnchor(childEndGame,200.0);
+            AnchorPane.setLeftAnchor(childEndGame,200.0);
+            EndGameController endGameController = loaderEndGame.getController();
+            childEndGame.setVisible(false);
+            gameBoardController.setEndGamePane(childEndGame);
+            gameBoardController.setEndGameController(endGameController);
+
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -720,6 +767,21 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         });
     }
 
+    private void endGameGui(String winner) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.endGame(winner);
+
+
+            }
+        });
+
+    }
+
 
 
 
@@ -849,9 +911,14 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             trackAfterDisconnection(playerColor, goodType, numberOfPoints);
         }
 
+        @Override
+        public void endGame(String winner) {
+
+            endGameGui(winner);
+        }
+
 
     }
-
 
 
 

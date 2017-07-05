@@ -35,10 +35,9 @@ public class PrayController {
 
 
     /**
-     * Questa funzione è lanciata quando il giocatore invia la scelta sull'essere scomunicato oppure no premendo sul pulsante submit,
-     * la funzione esegue un controllo verificando che il giocatore abbia effettivamente eseguito una scelta,
-     * se la scelta non è stata fatta viene mostrato un errore,
-     * se la scelta è stata fatta essa viene inviata tramite l'InputInterfaceGUI
+     * called when the player clicks on the submit button,
+     * if a choice has been made then it is sent via InputInterfaceGUI
+     * else it shows an error message
      * @param event
      */
     public void sendSubmit(ActionEvent event){
@@ -54,7 +53,7 @@ public class PrayController {
     }
 
     /**
-     * Questa funzione aggiorna l'immagine della scheda scomunica da mostrare al giocatore
+     * updates the image of the excommunication tile on the pane
      * @param newExcommunication
      */
     public void updatePray(String newExcommunication){
@@ -63,8 +62,7 @@ public class PrayController {
 
 
     /**
-     * Questa funzione non permette ad entrambi i pulsanti pray e don't pray di essere selezionati contemporaneamente,
-     * se uno è selezionato e il giocatore clicca l'altro, automaticamente il primo sarà deselezionato
+     * doesn't allow to both Pray and Don't pray buttons to be selected simultaneously
      * @param event
      */
     public void switchButtons(ActionEvent event){

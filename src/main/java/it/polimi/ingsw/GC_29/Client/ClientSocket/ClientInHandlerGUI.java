@@ -24,6 +24,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
     private CommonOutSocket commonOutSocket;
     private ObjectInputStream socketIn;
+    private Integer passes=0;
     //private ChangeViewGUI changeViewGUI;
     //private List<GuiChangeListener> listeners = Lists.newArrayList();
 
@@ -101,6 +102,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                //break;
             }
         }
     }
@@ -135,12 +137,13 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                 e.printStackTrace();
             }
 
-            //System.out.println("if you want to see your valid input for this current state insert : help");
         }
 
         if(c instanceof GameChange){
-            inputChecker.setcurrentGameState(((GameChange)c).getNewGameState());
-            //TODO: if relation with the church chiedo se questo player è stato scomunicato passando dallo stub e poi printo quello che devo
+            System.out.println(passes);
+            passes++;
+            System.out.println("GAME CHANGE ARRIVATA");
+            handleGameState((GameChange)c);
         }
 
         if (c instanceof GUIChange) {
@@ -150,12 +153,57 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             if (guiChange instanceof LeadersAvailableGUI) {
 
                 LeadersAvailableGUI leadersAvailableGUI = (LeadersAvailableGUI)guiChange;
-                inputChecker.setLeaderCardMap(leadersAvailableGUI.getLeadersAvailable());
+
+                Map<Integer, Boolean> leadersAvailable = leadersAvailableGUI.getLeadersAvailable();
+
+                if (!leadersAvailable.isEmpty()) {
+                    inputChecker.setLeaderCardMap(leadersAvailable);
+                    inputChecker.setCurrentPlayerState(PlayerState.LEADER);
+                    leadersAvailableGUI.perform(listeners);
+                }
             }
-            guiChange.perform(listeners);
+
+            else guiChange.perform(listeners);
 
         }
 
+    }
+
+    private void handleGameState(GameChange currentGameChange) {
+
+        GameState currentGameState = currentGameChange.getNewGameState();
+
+        inputChecker.setcurrentGameState(currentGameState);
+
+        if(currentGameState == GameState.ENDED){
+
+            inputChecker.setCurrentPlayerState(PlayerState.ENDGAME);
+
+            String winner = ((EndGame)currentGameChange).getWinner();
+
+            //Lancia schermata
+            System.out.println("\n\nLANCIO END GAME DA CLIENT IN HANDLER");
+            endGame(winner);
+
+            //serverViewStub.endGame();
+            commonOutSocket.endGame();
+
+            try {
+                socketIn.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Thread.sleep((long)10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
+            System.exit(0);
+
+        }
     }
 
     private void handlePlayerState(PlayerState currentPlayerState) {

@@ -159,25 +159,21 @@ public class EndTurn extends Input {
 
             Player newCurrentPlayer = null; //ho dovuto inizializzare per lo stesso motivo
 
-            boolean b = true;
+            List<Player> skippedPlayers = model.getSkippedTurnPlayers();
 
-            while (b) {
+            for (Player skippedPlayer : skippedPlayers) {
 
-                List<Player> skippedPlayers = model.getSkippedTurnPlayers();
+                boolean b = true;
 
-                for (Player skippedPlayer : skippedPlayers) {
+                while (b) {
 
                     if (skippedPlayer.getPlayerState() != PlayerState.SUSPENDED) {
 
-                        b = false;
                         newCurrentPlayer = skippedPlayer;
                         skippedPlayers.remove(skippedPlayer);
                         break;
                     }
-
-                    skippedPlayers.remove(skippedPlayer);
                 }
-
             }
 
             //Player newCurrentPlayer = model.getSkippedTurnPlayers().remove(0);
