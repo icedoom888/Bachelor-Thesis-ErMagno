@@ -10,7 +10,7 @@ public class GameChange extends Change {
      */
    // private static final long serialVersionUID = 5551223529797237865L;
 
-    private final GameState newGameState;
+    protected final GameState newGameState;
 
     public GameChange(GameState newGameState){
         this.newGameState = newGameState;

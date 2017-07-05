@@ -89,4 +89,5 @@ public interface RMIViewRemote extends Remote {
 
     void useLeaderCardGui(PlayerColor playerColor) throws RemoteException;
 
+    void endGame() throws RemoteException;
 }

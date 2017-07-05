@@ -1,9 +1,7 @@
 package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
-import it.polimi.ingsw.GC_29.Controllers.GameState;
 import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Controllers.Initialize;
 import it.polimi.ingsw.GC_29.Controllers.JoinGame;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIView;
@@ -27,7 +25,7 @@ import java.util.concurrent.Executors;
  */
 public class GameMatchHandler implements LogoutInterface{
 
-    private Map<String,ServerNewGame> newGameList;
+    private Map<String,ServerNewGame> newGameMap;
 
     private List<String> loggedPlayersList;
 
@@ -55,7 +53,7 @@ public class GameMatchHandler implements LogoutInterface{
 
     public GameMatchHandler(){
 
-        newGameList = new HashMap<>();
+        newGameMap = new HashMap<>();
 
         loggedPlayersList = new ArrayList<>();
 
@@ -83,13 +81,13 @@ public class GameMatchHandler implements LogoutInterface{
 
             lobbySettings();
 
-            newGameList.put(currentMatchID, new ServerNewGame(username, playerSocket, this));
+            newGameMap.put(currentMatchID, new ServerNewGame(username, playerSocket, this));
 
         }
 
         else if(currentClientListSize < maxNumberOfPlayers){
 
-            newGameList.get(currentMatchID).addClient(username, playerSocket);
+            newGameMap.get(currentMatchID).addClient(username, playerSocket);
             currentClientListSize++;
         }
 
@@ -116,13 +114,13 @@ public class GameMatchHandler implements LogoutInterface{
 
             lobbySettings();
 
-            newGameList.put(currentMatchID, new ServerNewGame(clientStub, this));
+            newGameMap.put(currentMatchID, new ServerNewGame(clientStub, this));
 
         }
 
         else if(currentClientListSize < maxNumberOfPlayers){
 
-            newGameList.get(currentMatchID).addClient(clientStub);
+            newGameMap.get(currentMatchID).addClient(clientStub);
             currentClientListSize++;
         }
 
@@ -289,7 +287,7 @@ public class GameMatchHandler implements LogoutInterface{
     }
 
     public ServerNewGame getCurrentNewGame() {
-        return newGameList.get(currentMatchID);
+        return newGameMap.get(currentMatchID);
     }
 
     public void setLobbyCreated(boolean lobbyCreated) {
@@ -321,6 +319,17 @@ public class GameMatchHandler implements LogoutInterface{
     public void setClientMatch(String username, ServerNewGame match) {
         clientsCurrentMatchMap.put(username, match);
         System.out.println("CLIENT LEGATO AD UNA PARTITA");
+    }
+
+    @Override
+    public Map<String, ServerNewGame> getClientMatch() {
+        return clientsCurrentMatchMap;
+    }
+
+    @Override
+    public Map<String, ServerNewGame> getMatchMap() {
+
+        return newGameMap;
     }
 
 }

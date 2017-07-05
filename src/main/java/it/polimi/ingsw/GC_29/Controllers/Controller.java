@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
+import it.polimi.ingsw.GC_29.Server.ServerNewGame;
 import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
 
 import java.rmi.RemoteException;
@@ -37,6 +38,8 @@ public class Controller implements Observer<Input>  {
 
     private List<Player> playerReconnected;
     private Map<Player, Integer> playerBonusTileIndexMap;
+    private int closedClients;
+    private ServerNewGame currentMatch;
 
 
     public Controller(GameStatus model){
@@ -45,6 +48,8 @@ public class Controller implements Observer<Input>  {
         actionChecker = new ActionChecker(model);
         playerReconnected = new ArrayList<>();
         playerBonusTileIndexMap = new HashMap<>();
+        closedClients = model.getTurnOrder().size();
+
 
         //setCardsOnTowers();
 
@@ -105,8 +110,10 @@ public class Controller implements Observer<Input>  {
 
             switch (oldEra) {
                 case FIRST:
-                    model.setCurrentEra(Era.SECOND);
-                    break;
+                    System.out.println("CONTROLLER CHIAMA END GAME");
+                    endGame();
+                    return;
+                    //model.setCurrentEra(Era.SECOND)
                 case SECOND:
                     model.setCurrentEra(Era.THIRD);
                     break;
@@ -367,7 +374,7 @@ public class Controller implements Observer<Input>  {
 
         //winner.setPlayerState();
 
-        model.setGameState(GameState.ENDED);
+        model.setEndGame(winner);
 
 
 
@@ -442,11 +449,13 @@ public class Controller implements Observer<Input>  {
 
     private void pointsFromPurpleCards(Player player) throws Exception {
 
-        if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMPURPLE)) {
-            DevelopmentCard[] cards =  player.getPersonalBoard().getLane(CardColor.PURPLE).getCards();
+        if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMPURPLE) && player.getCardsOwned().get(CardColor.PURPLE) != 0) {
+            List<DevelopmentCard> cards =  Arrays.asList(player.getPersonalBoard().getLane(CardColor.PURPLE).getCards());
 
             for (DevelopmentCard card : cards) {
-
+                if(card == null){
+                    break;
+                }
                 for (Effect effect : card.getPermanentEffect()) {
                     effect.execute(player);
                 }
@@ -461,8 +470,9 @@ public class Controller implements Observer<Input>  {
      */
     private void pointsFromBlueCards(Player player) throws Exception {
 
-        if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMBLUE)) {
-            int numberOfBlueCards = player.getCardsOwned().get(CardColor.BLUE);
+        int numberOfBlueCards = player.getCardsOwned().get(CardColor.BLUE);
+
+        if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMBLUE) && numberOfBlueCards != 0) {
 
             switch (numberOfBlueCards) {
 
@@ -496,8 +506,11 @@ public class Controller implements Observer<Input>  {
      * @param player
      */
     private void pointsFromGreenCards(Player player) throws Exception {
-        if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMGREEN)) {
-            int numberOfGreenCards = player.getCardsOwned().get(CardColor.GREEN);
+
+        int numberOfGreenCards = player.getCardsOwned().get(CardColor.GREEN);
+
+        if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMGREEN) && numberOfGreenCards != 0) {
+
             player.updateGoodSet(new GoodSet(0,0,0,0,player.getPersonalBoard().getTerritoryLane().getSlot(numberOfGreenCards-1).getVictoryPointsGiven(),0,0));
         }
     }
@@ -832,5 +845,24 @@ public class Controller implements Observer<Input>  {
 
     public Map<Player, Integer> getPlayerBonusTileIndexMap() {
         return playerBonusTileIndexMap;
+    }
+
+    public synchronized void clientClosed() {
+
+        closedClients--;
+
+        if(closedClients == 0){
+
+            System.out.println("I AM THE CONTROLLER, I AM CLOSING THE GAME");
+            currentMatch.setIsRunning(false);
+        }
+        else {
+
+            System.out.println("HO RICEVUTO CHIUSURA DA UN CLIENT");
+        }
+    }
+
+    public void setCurrentMatch(ServerNewGame currentMatch) {
+        this.currentMatch = currentMatch;
     }
 }

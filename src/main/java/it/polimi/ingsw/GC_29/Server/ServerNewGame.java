@@ -55,6 +55,8 @@ public class ServerNewGame implements Runnable {
 
     private HashMap<ServerSocketView, Player> serverSocketViews = new HashMap<>();
 
+    private Boolean isRunning = true;
+
 
 
     public ServerNewGame(ClientRemoteInterface client, LogoutInterface logoutInterface) throws RemoteException {
@@ -141,6 +143,7 @@ public class ServerNewGame implements Runnable {
 
         try {
             controller = new Controller(gameSetup.getGameStatus());
+            controller.setCurrentMatch(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -267,11 +270,22 @@ public class ServerNewGame implements Runnable {
         }
 
 
+        while (isRunning){
 
+            /*try {
+                Thread.sleep((long) 15000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        Boolean b = true;
+            b = false;*/
 
-        while (b){}
+        }
+
+        System.out.println("SONO FUORI CICLO NEW GAME CHIUDO GIOCO");
+        if(logoutInterface.getMatchMap().containsValue(this)){
+            logoutInterface.getMatchMap().remove(this);
+        }
 
     }
 
@@ -367,5 +381,9 @@ public class ServerNewGame implements Runnable {
 
     public TrackController getTrackController() {
         return trackController;
+    }
+
+    public void setIsRunning(Boolean isRunning){
+        this.isRunning = isRunning;
     }
 }

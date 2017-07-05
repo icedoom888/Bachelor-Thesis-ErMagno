@@ -61,7 +61,7 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
         try {
             connectServerRMI();
             loginRMI();
-            createNewGameRMI();
+            //createNewGameRMI();
         } catch (Exception e) {
             System.out.println("Exception: " + e);
             e.printStackTrace();
@@ -69,11 +69,6 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
             // Always close it:
             //TODO: chiudi connessione
         }
-
-    }
-
-    private void createNewGameRMI() {
-
 
     }
 

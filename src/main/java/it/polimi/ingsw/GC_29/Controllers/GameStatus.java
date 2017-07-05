@@ -253,5 +253,12 @@ public class GameStatus extends Observable<Change>{
     }
 
 
+    public void setEndGame(Player winner) {
+        try {
+            notifyObserver(new EndGame(winner.getPlayerID()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 

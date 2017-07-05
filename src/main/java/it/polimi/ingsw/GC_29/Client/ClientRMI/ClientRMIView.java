@@ -15,7 +15,7 @@ import java.util.*;
  * Created by Christian on 07/06/2017.
  */
 public class ClientRMIView implements ClientViewRemote, Serializable {
-    
+
 
     private transient InputChecker inputChecker;
 
@@ -62,10 +62,44 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
         if(c instanceof GameChange){
 
-            GameState currentGameState = ((GameChange)c).getNewGameState();
+            handleGameState((GameChange) c);
 
-            inputChecker.setcurrentGameState(currentGameState);
         }
+    }
+
+    private void handleGameState(GameChange currentGameChange) {
+
+        GameState currentGameState = currentGameChange.getNewGameState();
+
+        inputChecker.setcurrentGameState(currentGameState);
+
+        if(currentGameState == GameState.ENDED){
+
+            inputChecker.setCurrentPlayerState(PlayerState.ENDGAME);
+
+            String winner = ((EndGame)currentGameChange).getWinner();
+
+            System.out.println("THE GAME IS ENDED. THE WINNER IS " + winner + "!\n");
+
+            System.out.println("IN A FEW SECONDS THE GAME WILL BE TERMINATED");
+
+            try {
+                serverViewStub.endGame();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Thread.sleep((long)10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
+            System.exit(0);
+
+        }
+
     }
 
     private void handlePlayerState(PlayerState currentPlayerState) throws RemoteException {
