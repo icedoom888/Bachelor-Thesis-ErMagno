@@ -14,12 +14,12 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1150.0">
          <children>
-            <ImageView fitHeight="760.0" fitWidth="900.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ImageView fitHeight="760.0" fitWidth="900.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
                <image>
                   <Image url="@../lorenzo_materiale_grafico_compr/GameboardElements/gameboardBack.png" />
                </image>
             </ImageView>
-            <HBox alignment="CENTER" prefHeight="700.0" prefWidth="1100.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="730.0" prefWidth="1133.0" spacing="10.0">
                <children>
                   <VBox alignment="CENTER" minHeight="600.0" minWidth="550.0" prefHeight="600.0" prefWidth="550.0">
                      <children>
@@ -748,7 +748,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox prefHeight="162.0" prefWidth="550.0">
+                        <HBox prefHeight="193.0" prefWidth="550.0">
                            <children>
                               <HBox alignment="CENTER" prefHeight="162.0" prefWidth="444.0" HBox.hgrow="ALWAYS">
                                  <children>
@@ -810,13 +810,16 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <VBox alignment="CENTER" prefHeight="179.0" prefWidth="103.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                              <VBox alignment="BOTTOM_CENTER" prefHeight="186.0" prefWidth="104.0" spacing="20.0" HBox.hgrow="ALWAYS">
                                  <children>
                                     <Button fx:id="useLeaderCards" mnemonicParsing="false" onAction="#handleUseLeaderCards" text="Use Leaders" />
                                     <Button fx:id="throwDices" mnemonicParsing="false" onAction="#handleThrowDices" text="Throw Dices" />
                                     <Button fx:id="skipAction" layoutX="32.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleSkipAction" text="Skip Action" />
                                     <Button fx:id="endTurn" layoutX="32.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleEndTurn" text="End Turn" />
                                  </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                               </VBox>
                            </children>
                         </HBox>

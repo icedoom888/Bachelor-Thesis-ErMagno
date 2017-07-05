@@ -29,8 +29,8 @@ public class BonusTileController {
 
 
     /**
-     * Questa funzione è chiamata quando è cliccato il primo pulsante della schermata ovvero quando è selezionata la prima tile
-     * ed invia tramite l'InputInterfaceGUI la stringa contenente la scelta fatta
+     * called when the button1 is clicked,
+     * sends the choice made via InputInterfaceGUI
      * @param event
      */
     public void executeButton1(ActionEvent event) {
@@ -48,8 +48,8 @@ public class BonusTileController {
     }
 
     /**
-     * Questa funzione è chiamata quando è cliccato il primo pulsante della schermata ovvero quando è selezionata la seconda tile
-     * ed invia tramite l'InputInterfaceGUI la stringa contenente la scelta fatta
+     * called when the button2 is clicked,
+     * sends the choice made via InputInterfaceGUI
      * @param event
      */
     public void executeButton2(ActionEvent event) {
@@ -63,8 +63,8 @@ public class BonusTileController {
     }
 
     /**
-     * Questa funzione è chiamata quando è cliccato il primo pulsante della schermata ovvero quando è selezionata la terza tile
-     * ed invia tramite l'InputInterfaceGUI la stringa contenente la scelta fatta
+     * called when the button3 is clicked,
+     * sends the choice made via InputInterfaceGUI
      * @param event
      */
     public void executeButton3(ActionEvent event) {
@@ -79,8 +79,8 @@ public class BonusTileController {
     }
 
     /**
-     * Questa funzione è chiamata quando è cliccato il primo pulsante della schermata ovvero quando è selezionata la quarta tile
-     * ed invia tramite l'InputInterfaceGUI la stringa contenente la scelta fatta
+     * called when the button4 is clicked,
+     * sends the choice made via InputInterfaceGUI
      * @param event
      */
     public void executeButton4(ActionEvent event) {
@@ -95,8 +95,8 @@ public class BonusTileController {
     }
 
     /**
-     * Questa funzione è chiamata quando è cliccato il primo pulsante della schermata ovvero quando è selezionata la quinta tile
-     * ed invia tramite l'InputInterfaceGUI la stringa contenente la scelta fatta
+     * called when the button5 is clicked,
+     * sends the choice made via InputInterfaceGUI
      * @param event
      */
     public void executeButton5(ActionEvent event) {
@@ -111,7 +111,7 @@ public class BonusTileController {
     }
 
     /**
-     * utilizzata per comporre la stringa di risposta
+     * used to build the answer string
      * @return
      */
     private String executeButton() {
@@ -127,7 +127,7 @@ public class BonusTileController {
     */
 
     /**
-     * Setta la InputInterfaceGUI su cui inviare le risposte al server
+     * sets the InputInterfaceGUI
      * @param sender
      */
     public void setSender(InputInterfaceGUI sender) {
@@ -135,9 +135,8 @@ public class BonusTileController {
     }
 
     /**
-     * Questa funzione è utilizzata per mostrare le possibili bonus tile da far selezionare al player,
-     * prende in ingresso un elenco di bonusTiles associate alla loro disponibilità,
-     * se non sono disponibili il pulsane associato è disabilitato
+     * This function shows to the player the bonus tiles he can select,
+     * those not available are disabled
      * @param bonusTiles
      */
     public void setBonusTiles(Map<Integer, String> bonusTiles) {
@@ -169,7 +168,7 @@ public class BonusTileController {
     }
 
     /**
-     * setta il riferimento al gameboardController
+     * set the gameBoardController
      * @param gameBoardController
      */
     public void setGameBoardController(GameBoardController gameBoardController) {

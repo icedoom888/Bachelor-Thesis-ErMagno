@@ -41,11 +41,9 @@ public class ChooseEffectController {
 
 
     /**
-     * Questa funzione è lanciata quando il giocatore invia la scelta del effetto indicato cliccando sul pulsante submit,
-     * la funzione esegue un controllo sul contenuto dell'area di testo in cui il giocatore ha indicato la sua scelta,
-     * se il contenuto è vuoto oppure non contiene un valore accettabile
-     * viene mostrata una scritta di errore ed il giocatore deve riempire nuovamente il campo e premere submit ancora,
-     * se il contenuto è presente esso viene inviato tramite l'InputInterfaceGUI
+     * called when the player clicks on the submit button,
+     * controls if the text field is empty: if it is shows an error message,
+     * if it isn't checks if the choice made is allowed and then sends the player choice via InputInterfaceGUI
      * @param event
      */
     public void sendSubmit(ActionEvent event){
@@ -67,8 +65,7 @@ public class ChooseEffectController {
     }
 
     /**
-     * Questa funzione è chiamata per mostrare all'interno della Text Area principale,
-     * l'elenco degli effetti tra cui il player può scegliere.
+     * called to show in the main text area the options the player can choose from
      * @param newEffects
      */
     public void updateShownEffects(String newEffects){
@@ -91,8 +88,8 @@ public class ChooseEffectController {
     }
 
     /**
-     * Questa funzione è chiamata per settare l'elenco di scelte possibili in una variabile locale choices
-     * e genera il testo da inserire all'interno della Text Area chiamando poi il metodo updateShownEffects per mostrarlo
+     * called to set a local variable with the possible choices,
+     * and created the string containing the choices to be set into the main text  Area
      * @param currentPayToObtainEffectsMap
      */
     public void askWhichEffect(Map<Integer, String> currentPayToObtainEffectsMap) {
