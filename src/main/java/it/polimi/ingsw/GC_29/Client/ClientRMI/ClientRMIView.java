@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
+import sun.nio.cs.US_ASCII;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -123,6 +124,14 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
             System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
             System.exit(0);
+
+        }
+
+        if(currentGameChange instanceof NextTurn){
+
+            String username = ((NextTurn)currentGameChange).getUsername();
+
+            System.out.println("NOW IS THE TURN OF THE PLAYER: " + username);
 
         }
 

@@ -97,6 +97,8 @@ public class EndTurn extends Input {
 
                 model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);
 
+                model.notifyNextTurn();
+
                 controller.startTimer(model.getCurrentPlayer());
             }
 
@@ -185,6 +187,8 @@ public class EndTurn extends Input {
             controller.getActionChecker().setCurrentPlayer();
 
             newCurrentPlayer.setPlayerState(PlayerState.DOACTION);
+
+            model.notifyNextTurn();
 
             controller.startTimer(newCurrentPlayer);
 

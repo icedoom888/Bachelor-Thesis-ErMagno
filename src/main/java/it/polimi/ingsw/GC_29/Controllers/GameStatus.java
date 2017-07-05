@@ -113,6 +113,8 @@ public class GameStatus extends Observable<Change>{
 
     public void setCurrentTurn(int currentTurn) {
         this.currentTurn = currentTurn;
+
+
     }
 
     /*public int getNumberOfPlayers() {
@@ -278,6 +280,15 @@ public class GameStatus extends Observable<Change>{
             e.printStackTrace();
         }
 
+    }
+
+    public void notifyNextTurn() {
+
+        try {
+            notifyObserver(new NextTurn(currentPlayer.getPlayerID()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

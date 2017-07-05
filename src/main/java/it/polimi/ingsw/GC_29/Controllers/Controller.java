@@ -229,6 +229,9 @@ public class Controller implements Observer<Input>  {
                 && model.getCurrentTurn() == 1) {
 
             firstPlayer.setPlayerState(PlayerState.ENDTURN);
+
+            new EndTurn().perform(model, this);
+            return;
         }
 
 
@@ -239,6 +242,8 @@ public class Controller implements Observer<Input>  {
             actionChecker.setCurrentPlayer();
 
             firstPlayer.setPlayerState(PlayerState.DOACTION);
+
+            model.notifyNextTurn();
 
             startTimer(firstPlayer);
 
@@ -879,20 +884,16 @@ public class Controller implements Observer<Input>  {
 
     public boolean minNumberOfPlayerReached() {
 
-        int numberOfSuspended = 0;
+        int numberOfPlayerOnline = 0;
 
         for (Player player : model.getTurnOrder()) {
-            if(player.getPlayerState() == PlayerState.SUSPENDED){
-                numberOfSuspended++;
-            }
-
-            if(numberOfSuspended > minNumberOfPlayers){
-
-                return true;
+            if(player.getPlayerState() != PlayerState.SUSPENDED){
+                numberOfPlayerOnline++;
             }
         }
 
-        return false;
+        return numberOfPlayerOnline < minNumberOfPlayers;
+
     }
 
 
