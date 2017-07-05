@@ -12,10 +12,7 @@ import org.testng.collections.Lists;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Lorenzotara on 23/06/17.
@@ -25,6 +22,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
     private CommonOutSocket commonOutSocket;
     private ObjectInputStream socketIn;
     private Integer passes=0;
+    Boolean isRunning = true;
     //private ChangeViewGUI changeViewGUI;
     //private List<GuiChangeListener> listeners = Lists.newArrayList();
 
@@ -39,9 +37,9 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         System.out.println("Client In Running");
 
 
-        Boolean b = true;
 
-        while(b){
+
+        while(isRunning){
 
             // handles input messages coming from the server
             try {
@@ -102,6 +100,8 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+
+
                 //break;
             }
         }
@@ -185,7 +185,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             System.out.println("\n\nLANCIO END GAME DA CLIENT IN HANDLER");
             endGame(winner);
 
-            //serverViewStub.endGame();
+            isRunning = false;
             commonOutSocket.endGame();
 
             try {
@@ -194,14 +194,24 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                 e.printStackTrace();
             }
 
-            try {
-                Thread.sleep((long)10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
-            System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
-            System.exit(0);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+
+                @Override
+                public void run() {
+
+                    System.out.println("ESEGUO TASK");
+                    System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
+                    /*try {
+                        socketIn.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }*/
+
+                    System.exit(0);
+                }
+            }, (long) 10000);
 
         }
     }

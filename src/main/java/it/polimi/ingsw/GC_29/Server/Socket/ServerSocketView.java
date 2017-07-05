@@ -198,7 +198,7 @@ public class ServerSocketView extends View implements Runnable {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                                break;
+                                return;
 
 
                         }

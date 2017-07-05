@@ -116,14 +116,16 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
                 e.printStackTrace();
             }
 
-            try {
-                Thread.sleep((long)10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
 
-            System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
-            System.exit(0);
+                @Override
+                public void run() {
+
+                    System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
+                    System.exit(0);
+                }
+            }, (long) 10000);
 
         }
 

@@ -18,7 +18,7 @@ public class ClientInHandlerCLI implements Runnable {
 
     private ObjectInputStream socketIn;
     private CommonOutSocket commonOutSocket;
-    //private CommonView commonView;
+    private Boolean isRunning = true;
     private InputChecker inputChecker;
 
     public ClientInHandlerCLI(ObjectInputStream socketIn) {
@@ -32,9 +32,7 @@ public class ClientInHandlerCLI implements Runnable {
 
         System.out.println("Client In Running");
 
-        Boolean b = true;
-
-        while(b){
+        while(isRunning){
 
             // handles input messages coming from the server, just showing them to the user
             try {
@@ -137,17 +135,27 @@ public class ClientInHandlerCLI implements Runnable {
 
             System.out.println("IN A FEW SECONDS THE GAME WILL BE TERMINATED");
 
-            //serverViewStub.endGame();
+            isRunning = false;
+
             commonOutSocket.endGame();
 
             try {
-                Thread.sleep((long)10000);
-            } catch (InterruptedException e) {
+                socketIn.close();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
-            System.exit(0);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+
+                @Override
+                public void run() {
+
+                    System.out.println("ESEGUO TASK");
+                    System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
+                    System.exit(0);
+                }
+            }, (long) 10000);
 
         }
 

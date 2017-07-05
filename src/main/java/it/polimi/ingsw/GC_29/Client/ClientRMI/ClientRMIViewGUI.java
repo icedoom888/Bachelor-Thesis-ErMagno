@@ -7,13 +7,12 @@ import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Time;
+import java.util.*;
 
 /**
  * Created by Christian on 01/07/2017.
@@ -66,7 +65,7 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
 
         if(c instanceof GameChange){
 
-            inputChecker.setcurrentGameState(((GameChange)c).getNewGameState());
+            handleGameState((GameChange) c);
         }
 
         if (c instanceof GUIChange) {
@@ -79,6 +78,45 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
                 handleLeaderCard(leaderChange);
             }
             else guiChange.perform(listeners);
+
+        }
+    }
+
+
+    private void handleGameState(GameChange currentGameChange) {
+
+        GameState currentGameState = currentGameChange.getNewGameState();
+
+        inputChecker.setcurrentGameState(currentGameState);
+
+        if(currentGameState == GameState.ENDED){
+
+            inputChecker.setCurrentPlayerState(PlayerState.ENDGAME);
+
+            String winner = ((EndGame)currentGameChange).getWinner();
+
+            //Lancia schermata
+            System.out.println("\n\nLANCIO END GAME DA CLIENT IN HANDLER");
+            endGame(winner);
+
+            try {
+                serverViewStub.endGame();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+
+                @Override
+                public void run() {
+
+                    System.out.println("ESEGUO TASK");
+                    System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
+                    System.exit(0);
+                }
+            }, (long) 10000);
 
         }
     }

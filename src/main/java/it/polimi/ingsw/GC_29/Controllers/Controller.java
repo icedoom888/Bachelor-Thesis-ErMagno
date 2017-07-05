@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_29.Server.Observer;
 import it.polimi.ingsw.GC_29.Server.ServerNewGame;
 import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
 import javafx.print.PageLayout;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.rmi.RemoteException;
 import java.util.*;
@@ -116,13 +117,13 @@ public class Controller implements Observer<Input>  {
 
                     /////////PER TESTING/////////
 
-                    //endGame();
-                   // return;
+                    endGame();
+                    return;
 
                 /////////PER TESTING/////////
                 //DECOMMENTARE IL RESTO DEL CASE E CANCELLARE LA SEZIONE PER TESTIN
-                    model.setCurrentEra(Era.SECOND);
-                    break;
+                   // model.setCurrentEra(Era.SECOND);
+                   // break;
                 case SECOND:
                     model.setCurrentEra(Era.THIRD);
                     break;
@@ -243,7 +244,7 @@ public class Controller implements Observer<Input>  {
 
             firstPlayer.setPlayerState(PlayerState.DOACTION);
 
-            model.notifyNextTurn();
+            //model.notifyNextTurn();
 
             startTimer(firstPlayer);
 
@@ -882,7 +883,7 @@ public class Controller implements Observer<Input>  {
         this.currentMatch = currentMatch;
     }
 
-    public boolean minNumberOfPlayerReached() {
+    synchronized public boolean minNumberOfPlayerReached() {
 
         int numberOfPlayerOnline = 0;
 
