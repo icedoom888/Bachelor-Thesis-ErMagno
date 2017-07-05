@@ -232,7 +232,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     break;
 
                 case "use leader cards GUI":
-                    inputChecker.setCurrentPlayerState(PlayerState.LEADER);
+                    //inputChecker.setCurrentPlayerState(PlayerState.LEADER);
                     socketOut.writeObject("use leader cards GUI");
                     socketOut.flush();
                     socketOut.writeObject(inputChecker.getPlayerColor());
@@ -473,4 +473,14 @@ public class CommonOutSocket implements InputInterfaceGUI{
         this.inputChecker = inputChecker;
     }
 
+    public void endGame() {
+
+        try {
+            socketOut.writeObject("end game");
+            socketOut.flush();
+            socketOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

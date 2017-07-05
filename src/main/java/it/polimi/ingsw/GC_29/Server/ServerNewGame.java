@@ -168,7 +168,7 @@ public class ServerNewGame implements Runnable {
 
                 System.out.println("Creo server socket view");
 
-                ServerSocketView serverSocketView = new ServerSocketView(playersSocketMap.get(player), gameSetup.getGameStatus(), player.getPlayerColor());
+                ServerSocketView serverSocketView = new ServerSocketView(playersSocketMap.get(player), gameSetup.getGameStatus(), player.getPlayerColor(), player.getPlayerID());
 
                 serverSocketView.registerObserver(controller);
                 gameSetup.getGameStatus().registerObserver(serverSocketView);

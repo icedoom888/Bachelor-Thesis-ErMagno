@@ -30,16 +30,18 @@ public class ServerSocketView extends View implements Runnable {
     private ObjectOutputStream socketOut;
     private GameStatus model;
     private PlayerColor playerColor;
+    private final String username;
     private static final Object socketLock = new Object();
 
 
-    public ServerSocketView(PlayerSocket playerSocket, GameStatus model, PlayerColor playerColor) throws IOException {
+    public ServerSocketView(PlayerSocket playerSocket, GameStatus model, PlayerColor playerColor, String playerID) throws IOException {
         this.socket = playerSocket.getSocket();
         this.socketIn = playerSocket.getSocketIn();
         this.socketOut = playerSocket.getSocketOut();
         this.model = model;
         this.validActionQuery = new GetValidActions();
         this.playerColor = playerColor;
+        this.username = playerID;
 
     }
 
@@ -59,7 +61,6 @@ public class ServerSocketView extends View implements Runnable {
         try {
 
             socketOut.writeObject("Change");
-
             socketOut.flush();
             socketOut.reset();
             socketOut.writeObject(o);
@@ -186,6 +187,17 @@ public class ServerSocketView extends View implements Runnable {
                             case "join game":
                                 playerColor = (PlayerColor)socketIn.readObject();
                                 notifyObserver(new JoinGame(playerColor));
+                                break;
+
+                            case "end game":
+
+                                logoutInterface.getClientMatch().remove(username);
+
+                                try {
+                                    notifyObserver(new Closed());
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                                 break;
 
 

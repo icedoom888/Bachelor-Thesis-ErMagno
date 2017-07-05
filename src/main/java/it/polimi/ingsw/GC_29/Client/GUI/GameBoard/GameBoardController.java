@@ -872,8 +872,6 @@ public class GameBoardController {
 
         if (playerState != PlayerState.LEADER) {
             sender.sendInput("use leader cards GUI");
-            lastPlayerState = playerState;
-            playerState = PlayerState.LEADER;
         }
 
         else {
@@ -966,7 +964,9 @@ public class GameBoardController {
      */
     public void setPossibleLeaders(Map<Integer, Boolean> leadersAvailable) {
 
-        System.out.println(leadersAvailable);
+
+        lastPlayerState = playerState;
+        playerState = PlayerState.LEADER;
 
         for (Integer integer : leadersAvailable.keySet()) {
 

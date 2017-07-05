@@ -53,16 +53,22 @@ public class Login {
 
                     username = (String)socketIn.readObject();
                     String password = (String)socketIn.readObject();
-                    String pw = gameMatchHandler.getUserPassword().get(username);
 
-                    if (pw == null) {
-                        gameMatchHandler.getUserPassword().put(username, password);
-                        logged = true;
+                    if (!gameMatchHandler.verifyLoggedClient(username)) {
+
+                        String pw = gameMatchHandler.getUserPassword().get(username);
+
+                        if (pw == null) {
+                            gameMatchHandler.getUserPassword().put(username, password);
+                            logged = true;
+                        }
+
+                        else {
+                            logged = password.equals(pw);
+                        }
                     }
 
-                    else {
-                        logged = password.equals(pw);
-                    }
+                    else logged = false;
 
 
                 }

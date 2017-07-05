@@ -116,9 +116,41 @@ public class ClientInHandlerCLI implements Runnable {
         }
 
         if(c instanceof GameChange){
-            inputChecker.setcurrentGameState(((GameChange)c).getNewGameState());
-            //TODO: if relation with the church chiedo se questo player è stato scomunicato passando dallo stub e poi printo quello che devo
+
+            handlleGameState((GameChange)c);
         }
+    }
+
+    private void handlleGameState(GameChange currentGameChange) {
+
+        GameState currentGameState = currentGameChange.getNewGameState();
+
+        inputChecker.setcurrentGameState(currentGameState);
+
+        if(currentGameState == GameState.ENDED){
+
+            inputChecker.setCurrentPlayerState(PlayerState.ENDGAME);
+
+            String winner = ((EndGame)currentGameChange).getWinner();
+
+            System.out.println("THE GAME IS ENDED. THE WINNER IS " + winner + "!\n");
+
+            System.out.println("IN A FEW SECONDS THE GAME WILL BE TERMINATED");
+
+            //serverViewStub.endGame();
+            commonOutSocket.endGame();
+
+            try {
+                Thread.sleep((long)10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
+            System.exit(0);
+
+        }
+
     }
 
 

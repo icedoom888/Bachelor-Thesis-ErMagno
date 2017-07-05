@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
 import it.polimi.ingsw.GC_29.Server.ServerNewGame;
 import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
+import javafx.print.PageLayout;
 
 import java.rmi.RemoteException;
 import java.util.*;
@@ -110,8 +111,16 @@ public class Controller implements Observer<Input>  {
 
             switch (oldEra) {
                 case FIRST:
-                    model.setCurrentEra(Era.SECOND);
-                    break;
+
+                    /////////PER TESTING/////////
+
+                    endGame();
+                    return;
+
+                /////////PER TESTING/////////
+                //DECOMMENTARE IL RESTO DEL CASE E CANCELLARE LA SEZIONE PER TESTIN
+                    //model.setCurrentEra(Era.SECOND);
+                    //break;
                 case SECOND:
                     model.setCurrentEra(Era.THIRD);
                     break;
@@ -433,7 +442,7 @@ public class Controller implements Observer<Input>  {
 
         int secondPlayerMilitaryPoints = players.get(1).getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS);
 
-        for (militaryIndex = 1; militaryIndex < players.size(); militaryIndex++) {
+        for (militaryIndex = 1; militaryIndex < players.size() - 1; militaryIndex++) {
 
             Player player = players.get(militaryIndex+1);
 
@@ -530,8 +539,6 @@ public class Controller implements Observer<Input>  {
                 player.getFamilyPawnAvailability().put(FamilyPawnType.ORANGE, true);
                 player.getFamilyPawnAvailability().put(FamilyPawnType.WHITE, true);
                 player.getFamilyPawnAvailability().put(FamilyPawnType.NEUTRAL, true);
-
-                //TODO: da rivedere
 
                 player.setFamilyPawnValue(FamilyPawnType.BLACK, 5);
                 player.setFamilyPawnValue(FamilyPawnType.ORANGE, 5);
@@ -793,13 +800,14 @@ public class Controller implements Observer<Input>  {
 
     public void handleReconnectedPlayers(){
 
-        //TODO: leader card update
 
         for (Player player : playerReconnected) {
 
             try {
 
                 player.notifyObserver(new GoodSetChange(player.getActualGoodSet()));
+
+                player.setLeaderCards(player.getLeaderCards());
 
                 for (CardColor cardColor : CardColor.values()) {
                     if (cardColor != CardColor.ANY) {

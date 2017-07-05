@@ -205,6 +205,10 @@ public class GuiChangeHandler {
     }
 
 
-
-
+    public void endGame(String winner) {
+        for (GuiChangeListener listener : listeners) {
+            System.out.println("\n\nLANCIANDO END GAME\n\n");
+            listener.endGame(winner);
+        }
+    }
 }

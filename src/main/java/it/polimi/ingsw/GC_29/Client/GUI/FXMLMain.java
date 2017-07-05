@@ -767,6 +767,21 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         });
     }
 
+    private void endGameGui(String winner) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.endGame(winner);
+
+
+            }
+        });
+
+    }
+
 
 
 
@@ -896,9 +911,14 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             trackAfterDisconnection(playerColor, goodType, numberOfPoints);
         }
 
+        @Override
+        public void endGame(String winner) {
+
+            endGameGui(winner);
+        }
+
 
     }
-
 
 
 

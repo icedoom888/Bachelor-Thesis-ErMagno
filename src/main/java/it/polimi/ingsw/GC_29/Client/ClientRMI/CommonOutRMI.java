@@ -179,7 +179,7 @@ public class CommonOutRMI implements InputInterfaceGUI{
                     break;
 
                 case "use leader cards GUI":
-                    inputChecker.setCurrentPlayerState(PlayerState.LEADER);
+                    //inputChecker.setCurrentPlayerState(PlayerState.LEADER);
                     serverViewStub.useLeaderCardGui(playerColor);
                     break;
 
