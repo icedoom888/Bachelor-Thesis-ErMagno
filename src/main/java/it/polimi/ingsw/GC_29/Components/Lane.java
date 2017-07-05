@@ -1,4 +1,8 @@
 package it.polimi.ingsw.GC_29.Components;
+
+import de.vandermeer.asciitable.AsciiTable;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
+
 /**
  * Created by AlbertoPennino on 18/05/2017.
  */
@@ -46,5 +50,26 @@ public class  Lane implements Cleanable {
 
     public boolean isFree() {
         return firstFreeSlotIndex < cards.length;
+    }
+
+    public String toTable() {
+        AsciiTable laneTable = new AsciiTable();
+        int i = 0;
+        laneTable.addRule();
+        laneTable.addRow("Index","Card");
+        for (DevelopmentCard developmentCard : cards){
+            if (developmentCard!= null) {
+                laneTable.addRule();
+                laneTable.addRow(i + ")","Card: \n" + developmentCard.toString());
+            }
+            else {
+                laneTable.addRule();
+                laneTable.addRow(i + ")","No card");
+            }
+            i++;
+        }
+        laneTable.setTextAlignment(TextAlignment.CENTER);
+        laneTable.addRule();
+        return laneTable.render() + "\n\n\n";
     }
 }

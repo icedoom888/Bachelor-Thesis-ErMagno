@@ -1,5 +1,9 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import de.vandermeer.asciitable.AsciiTable;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
+import javafx.fxml.FXML;
+
 /**
  * Created by AlbertoPennino on 18/05/2017.
  */
@@ -22,4 +26,25 @@ public class TerritoryLane extends Lane {
         return slots[position];
     }
 
+    @Override
+    public String toTable() {
+        AsciiTable laneTable = new AsciiTable();
+        int i = 0;
+        laneTable.addRule();
+        laneTable.addRow("Index","VictoryPoints Given","Military Points Given","Card");
+        for (DevelopmentCard developmentCard : cards){
+            if (developmentCard!= null) {
+                laneTable.addRule();
+                laneTable.addRow(i + ")",slots[i].getVictoryPointsGiven(),slots[i].getMilitaryPointsNeeded(),"Card: \n" + developmentCard.toString());
+            }
+            else {
+                laneTable.addRule();
+                laneTable.addRow(i + ")",slots[i].getVictoryPointsGiven(),slots[i].getMilitaryPointsNeeded(),"No card");
+            }
+            i++;
+        }
+        laneTable.setTextAlignment(TextAlignment.LEFT);
+        laneTable.addRule();
+        return laneTable.render() + "\n\n\n";
+    }
 }

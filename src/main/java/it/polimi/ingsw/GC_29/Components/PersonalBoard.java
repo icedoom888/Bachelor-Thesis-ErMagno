@@ -69,4 +69,18 @@ public class PersonalBoard {
     public void setBonusTile(BonusTile bonusTile) {
         this.bonusTile = bonusTile;
     }
+
+    public String toTable() {
+        String finalString = "";
+
+        finalString += "\n\n\n";
+        finalString += bonusTile.toTable();
+        for (CardColor cardColor : laneMap.keySet()) {
+            finalString += cardColor.toString() + " LANE :\n";
+            finalString += laneMap.get(cardColor).toTable();
+        }
+        return finalString;
+    }
+
+
 }
