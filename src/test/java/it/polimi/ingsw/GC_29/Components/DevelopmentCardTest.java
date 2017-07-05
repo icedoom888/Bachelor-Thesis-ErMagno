@@ -51,7 +51,7 @@ public class DevelopmentCardTest {
             System.out.println(floor.getDevelopmentCard().toTable());
         }
 
-        //System.out.println(model.getGameBoard().toTable());
+        System.out.println(model.getGameBoard().toTable());
 
         System.out.println(model.getGameBoard().getTower(ZoneType.BLUETOWER).getFloor(0).getDevelopmentCard().toTable());
     }

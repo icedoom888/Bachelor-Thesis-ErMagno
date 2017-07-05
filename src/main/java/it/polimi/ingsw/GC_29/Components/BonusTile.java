@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
+import de.vandermeer.asciitable.AsciiTable;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
@@ -63,5 +64,17 @@ public class BonusTile {
         int result = getProductionEffect() != null ? getProductionEffect().hashCode() : 0;
         result = 31 * result + (getHarvestEffect() != null ? getHarvestEffect().hashCode() : 0);
         return result;
+    }
+
+    public String toTable() {
+        AsciiTable bonusTable = new AsciiTable();
+        bonusTable.addRule();
+        bonusTable.addRow("Production Effect: ","Harvest Effect: ");
+        bonusTable.addRule();
+        bonusTable.addRow(productionEffect,harvestEffect);
+        bonusTable.addRule();
+
+
+        return "BONUS TILE: \n" + bonusTable.render() + "\n\n\n";
     }
 }
