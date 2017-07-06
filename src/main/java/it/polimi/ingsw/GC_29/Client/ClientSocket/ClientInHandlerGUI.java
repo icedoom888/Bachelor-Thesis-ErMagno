@@ -146,6 +146,16 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             handleGameState((GameChange)c);
         }
 
+        if(c instanceof ReconnectionChange){
+
+            handleReconnection((ReconnectionChange)c);
+        }
+
+        if(c instanceof PlayerDisconnectedChange){
+
+            handlePlayerDisconnected((PlayerDisconnectedChange)c);
+        }
+
         if (c instanceof GUIChange) {
 
             GUIChange guiChange = (GUIChange)c;
@@ -167,6 +177,22 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
         }
 
+    }
+
+    private void handlePlayerDisconnected(PlayerDisconnectedChange c) {
+
+        for (GuiChangeListener listener : listeners) {
+
+            listener.showDisconnectedPlayer(c.getUsername());
+        }
+    }
+
+    private void handleReconnection(ReconnectionChange c) {
+
+        for (GuiChangeListener listener : listeners) {
+
+            listener.showReconnectedPlayers(c.getReconnectedPlayerUsernames());
+        }
     }
 
     private void handleGameState(GameChange currentGameChange) {

@@ -53,4 +53,8 @@ public interface GuiChangeListener {
     void resetTrack(PlayerColor playerColor, GoodType goodType, Integer numberOfPoints);
 
     void endGame(String winner);
+
+    void showDisconnectedPlayer(String username);
+
+    void showReconnectedPlayers(List<String> reconnectedPlayerUsernames);
 }

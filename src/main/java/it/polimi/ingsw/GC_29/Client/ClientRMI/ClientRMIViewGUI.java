@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
+import it.polimi.ingsw.GC_29.Client.GUI.GuiChangeListener;
 import it.polimi.ingsw.GC_29.Client.GuiChangeHandler;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Components.CardColor;
@@ -68,6 +69,17 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
             handleGameState((GameChange) c);
         }
 
+        if(c instanceof ReconnectionChange){
+
+            handleReconnection((ReconnectionChange)c);
+        }
+
+        if(c instanceof PlayerDisconnectedChange){
+
+            handlePlayerDisconnected((PlayerDisconnectedChange)c);
+        }
+
+
         if (c instanceof GUIChange) {
 
             GUIChange guiChange = (GUIChange)c;
@@ -79,6 +91,22 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
             }
             else guiChange.perform(listeners);
 
+        }
+    }
+
+    private void handlePlayerDisconnected(PlayerDisconnectedChange c) {
+
+        for (GuiChangeListener listener : listeners) {
+
+            listener.showDisconnectedPlayer(c.getUsername());
+        }
+    }
+
+    private void handleReconnection(ReconnectionChange c) {
+
+        for (GuiChangeListener listener : listeners) {
+
+            listener.showReconnectedPlayers(c.getReconnectedPlayerUsernames());
         }
     }
 
