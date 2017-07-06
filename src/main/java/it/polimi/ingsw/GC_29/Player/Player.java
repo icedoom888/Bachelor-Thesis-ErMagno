@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  */
 public class Player extends Observable<Change> {
 
-    private static final Logger LOGGER = Logger.getLogger(Player.class.getName());
     private PlayerState playerState;
 
     private String playerID;
@@ -179,10 +178,6 @@ public class Player extends Observable<Change> {
 
     public Pawn getMarkerDiscs() {
         return markerDiscs;
-    }
-
-    public void removeLeaderCard(LeaderCard leaderCard) {
-        //TODO: scelta la carta leader da rimuovere, questo metodo la rimuove
     }
 
 
