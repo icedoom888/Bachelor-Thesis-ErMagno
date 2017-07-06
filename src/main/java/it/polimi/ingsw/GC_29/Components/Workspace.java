@@ -10,8 +10,6 @@ import java.util.Map;
 /**
  * Created by Lorenzotara on 17/05/17.
  */
-
-//TODO: rivedere costruttore fatto per togliere errori a caso
 public class Workspace implements Cleanable {
     private EnumMap<FieldType,ActionSpace> fields;
     private ZoneType type;
@@ -68,10 +66,12 @@ public class Workspace implements Cleanable {
 
     public String toTable() {
         AsciiTable workSpaceTable = new AsciiTable();
-        for (FieldType fieldType : fields.keySet()) {
+
+        for (Map.Entry<FieldType, ActionSpace> fieldsEntry : fields.entrySet()) {
             workSpaceTable.addRule();
-            workSpaceTable.addRow(fieldType, fields.get(fieldType).toString());
+            workSpaceTable.addRow(fieldsEntry.getKey(), fieldsEntry.getValue().toString());
         }
+
         return "\n\n\n" + type + "\n\n" + workSpaceTable.render();
     }
 }

@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_29.Server;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -10,6 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class Observable<C> {
 
+    private static final Logger LOGGER = Logger.getLogger(Observable.class.getName());
     private List<Observer<C>> observers;
 
     public Observable(){
@@ -34,7 +37,7 @@ public abstract class Observable<C> {
                 try {
                     o.update(c);
                 } catch (ObserverException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
             }
 

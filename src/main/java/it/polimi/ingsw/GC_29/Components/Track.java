@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
 import de.vandermeer.asciitable.AsciiTable;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,13 +69,15 @@ public class Track implements Cleanable {
         PawnSlot pawnSlot = track[index];
         Pawn realPawn = pawnSlot.findPawn(pawn);
 
+        int finalIndex = index + increment;
+
         if (realPawn != null) {
 
-            if (index + increment < 0) increment = - index;
+            if (finalIndex < 0) finalIndex = 0;
 
             track[index].removePawn(realPawn);
-            track[index + increment].addPawn(realPawn);
-            pawnMap.put(realPawn,index + increment);
+            track[finalIndex].addPawn(realPawn);
+            pawnMap.put(realPawn,finalIndex);
 
         } else {
             System.out.println("Error: Wrong Pawn");
