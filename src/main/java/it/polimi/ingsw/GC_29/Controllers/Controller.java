@@ -846,6 +846,9 @@ public class Controller implements Observer<Input>  {
             }
         }
 
+        //player reconnected removed from the disconnected list
+        playerDisconnected.clear();
+
         for (CardColor cardColor : CardColor.values()) {
             if (cardColor != CardColor.ANY) {
                 model.updateTowerGUI(cardColor);
