@@ -29,6 +29,8 @@ public class EndTurn extends Input {
 
         //TODO: qui devi inserire il controllo sulla lista dei riconessi e chiamare il metodo handleReconnectedPlayers
 
+        handleDisconnectedPlayers(model, controller);
+
         if(!(controller.getPlayerReconnected().isEmpty())){
 
             controller.handleReconnectedPlayers();
@@ -141,6 +143,16 @@ public class EndTurn extends Input {
 
             controller.chooseCurrentPlayer(indexOfNextPlayer);
         }
+    }
+
+    private void handleDisconnectedPlayers(GameStatus model, Controller controller) {
+
+        for (Player player : controller.getPlayerDisconnected()) {
+            model.notifyPlayerDisconnected(model.getPlayer(player.getPlayerColor()));
+        }
+
+        controller.getPlayerDisconnected().clear();
+
     }
 
 
