@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.GUI.GameBoard;
 
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
 import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
@@ -14,6 +15,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.ReconnectedPlayers.ReconnectedPlayersCon
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
 import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import javafx.animation.PauseTransition;
@@ -30,6 +32,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by AlbertoPennino on 21/06/2017.
@@ -39,45 +43,47 @@ public class GameBoardController {
     private PlayerState playerState;
     private PlayerState lastPlayerState;
 
+    private transient static final Logger LOGGER = Logger.getLogger(ClientRMIView.class.getName());
+
 
     //map for card's images
-    private HashMap<String,String> cardMap = new HashMap<>();
+    private Map<String,String> cardMap = new HashMap<>();
 
-    private HashMap<Integer, ImageView> leaderCardsImage;
-    private HashMap<Integer, Button> leaderCardsActivate;
-    private HashMap<Integer, Button> leaderCardsBurn;
+    private Map<Integer, ImageView> leaderCardsImage;
+    private Map<Integer, Button> leaderCardsActivate;
+    private Map<Integer, Button> leaderCardsBurn;
 
     //map for bonus tiles'images
     private HashMap<String,String> bonusTilesMap = new HashMap<>();
 
     //map for pawn's images
-    private HashMap<FamilyPawnType,String> bluePawnsImagesMap = new HashMap<>();
-    private HashMap<FamilyPawnType,String> greenPawnsImagesMap = new HashMap<>();
-    private HashMap<FamilyPawnType,String> redPawnsImagesMap = new HashMap<>();
-    private HashMap<FamilyPawnType,String> yellowPawnsImagesMap = new HashMap<>();
+    private Map<FamilyPawnType,String> bluePawnsImagesMap = new EnumMap<>(FamilyPawnType.class);
+    private Map<FamilyPawnType,String> greenPawnsImagesMap = new EnumMap<>(FamilyPawnType.class);
+    private Map<FamilyPawnType,String> redPawnsImagesMap = new EnumMap<>(FamilyPawnType.class);
+    private Map<FamilyPawnType,String> yellowPawnsImagesMap = new EnumMap<>(FamilyPawnType.class);
 
     //map for pawn's images in the boxes
-    private HashMap<Integer,ImageView> productionBox = new HashMap<>();
+    private Map<Integer,ImageView> productionBox = new HashMap<>();
     private int productionBoxFreeSlot = 0;
-    private HashMap<Integer,ImageView> harvestBox = new HashMap<>();
+    private Map<Integer,ImageView> harvestBox = new HashMap<>();
     private int harvestBoxFreeSlot = 0;
 
     //map for track's texts
-    private HashMap<GoodType,Text> greenPlayerTrack = new HashMap<>();
-    private HashMap<GoodType,Text> bluePlayerTrack = new HashMap<>();
-    private HashMap<GoodType,Text> redPlayerTrack = new HashMap<>();
-    private HashMap<GoodType,Text> yellowPlayerTrack = new HashMap<>();
+    private Map<GoodType,Text> greenPlayerTrack = new EnumMap<>(GoodType.class);
+    private Map<GoodType,Text> bluePlayerTrack = new EnumMap<>(GoodType.class);
+    private Map<GoodType,Text> redPlayerTrack = new EnumMap<>(GoodType.class);
+    private Map<GoodType,Text> yellowPlayerTrack = new EnumMap<>(GoodType.class);
 
 
     //map for pawn's images in the grid
-    private HashMap<Integer,ImageView> gridMap = new HashMap<>();
+    private Map<Integer,ImageView> gridMap = new HashMap<>();
     private int gridFreeSlot = 0;
 
 
-    private HashMap<Integer, ImageView> personalGreenCards = new HashMap<>();
-    private HashMap<Integer, ImageView> personalBlueCards = new HashMap<>();
-    private HashMap<Integer, ImageView> personalYellowCards = new HashMap<>();
-    private HashMap<Integer, ImageView> personalPurpleCards = new HashMap<>();
+    private Map<Integer, ImageView> personalGreenCards = new HashMap<>();
+    private Map<Integer, ImageView> personalBlueCards = new HashMap<>();
+    private Map<Integer, ImageView> personalYellowCards = new HashMap<>();
+    private Map<Integer, ImageView> personalPurpleCards = new HashMap<>();
 
     //free slot in the personalBoard
     private int greenFreeSlot=0;
@@ -85,24 +91,24 @@ public class GameBoardController {
     private int yellowFreeSlot=0;
     private int purpleFreeSlot=0;
 
-    private HashMap<Integer, ImageView> greenTower = new HashMap<>();
-    private HashMap<Integer, ImageView> blueTower = new HashMap<>();
-    private HashMap<Integer, ImageView> yellowTower = new HashMap<>();
-    private HashMap<Integer, ImageView> purpleTower = new HashMap<>();
+    private Map<Integer, ImageView> greenTower = new HashMap<>();
+    private Map<Integer, ImageView> blueTower = new HashMap<>();
+    private Map<Integer, ImageView> yellowTower = new HashMap<>();
+    private Map<Integer, ImageView> purpleTower = new HashMap<>();
 
     //set active buttons
-    private HashMap<Integer, ImageView> actionButtons = new HashMap<>();
-    private HashMap<Integer,GridPane> actionGrid = new HashMap<>();
-    private HashMap<Integer,HBox> actionBox = new HashMap<>();
+    private Map<Integer, ImageView> actionButtons = new HashMap<>();
+    private Map<Integer,GridPane> actionGrid = new HashMap<>();
+    private Map<Integer,HBox> actionBox = new HashMap<>();
 
     //maps to associate button to action
-    private HashMap<ImageView, Integer> buttonAction = new HashMap<>();
-    private HashMap<GridPane,Integer> gridAction = new HashMap<>();
-    private HashMap<HBox,Integer> boxAction = new HashMap<>();
+    private Map<ImageView, Integer> buttonAction = new HashMap<>();
+    private Map<GridPane,Integer> gridAction = new HashMap<>();
+    private Map<HBox,Integer> boxAction = new HashMap<>();
 
 
-    private HashMap<GoodType,Text> resourceAmount = new HashMap<>();
-    private HashMap<Integer,ImageView> coverImages = new HashMap<>();
+    private Map<GoodType,Text> resourceAmount = new EnumMap<>(GoodType.class);
+    private Map<Integer,ImageView> coverImages = new HashMap<>();
 
     private ArrayList<ImageView> familyPawns;
 
@@ -114,11 +120,9 @@ public class GameBoardController {
     private BonusTileController bonusTileController;
     private ChooseCostController chooseCostController;
     private PayToObtainController payToObtainController;
-    private ChooseEffectController chooseEffectController;
     private ChoosePrivilegeController choosePrivilegeController;
     private PrayController prayController;
     private WorkersController workersController;
-    private SuspendedController suspendedController;
     private EndGameController endGameController;
     private ReconnectedPlayersController reconnectedPlayersController;
     private DisconnectedPlayerController disconnectedPlayerController;
@@ -518,6 +522,9 @@ public class GameBoardController {
     private AnchorPane zoomPane;
     @FXML
     private Button endZoom;
+
+    private SuspendedController suspendedController;
+    private ChooseEffectController chooseEffectController;
 
 
     /**
@@ -924,9 +931,8 @@ public class GameBoardController {
      * called when a player clicks the burnLeader button
      * sends the choice made by the InputInterfaceGUI
      * @param event
-     * @throws Exception
      */
-    public void handleBurnLeader(ActionEvent event) throws Exception {
+    public void handleBurnLeader(ActionEvent event) {
         Object burnButton = event.getSource();
         if (burnButton== burn0){
             sender.sendInput("discard leader card 0");
@@ -968,14 +974,23 @@ public class GameBoardController {
         lastPlayerState = playerState;
         playerState = PlayerState.LEADER;
 
-        for (Integer integer : leadersAvailable.keySet()) {
+        for (Map.Entry<Integer, Boolean> entry : leadersAvailable.entrySet()) {
+
+            if(entry.getValue()){
+                leaderCardsActivate.get(entry.getKey()).setDisable(false);
+            }
+
+            leaderCardsBurn.get(entry.getKey()).setDisable(false);
+        }
+
+        /*for (Integer integer : leadersAvailable.keySet()) {
 
             if (leadersAvailable.get(integer)) {
                 leaderCardsActivate.get(integer).setDisable(false);
             }
 
             leaderCardsBurn.get(integer).setDisable(false);
-        }
+        }*/
     }
 
     /**
@@ -1084,9 +1099,15 @@ public class GameBoardController {
         Integer actionSelected = buttonAction.get(event.getSource());
         System.out.println("input sent from gameboard Controller : execute action " + actionSelected.toString());
         sender.sendInput("execute action " + actionSelected.toString());
-        for(Integer integer : coverImages.keySet()){
-            coverImages.get(integer).setVisible(false);
+
+        for (Map.Entry<Integer, ImageView> entry : coverImages.entrySet()) {
+
+            entry.getValue().setVisible(false);
         }
+
+        /*for(Integer integer : coverImages.keySet()){
+            coverImages.get(integer).setVisible(false);
+        }*/
     }
 
     /**
@@ -1153,9 +1174,15 @@ public class GameBoardController {
      */
     private void updatePawnOnActionspace(Image image, int actionIndex) {
         actionButtons.get(actionIndex).setImage(image);
-        for (Integer integer : coverImages.keySet()){
-            coverImages.get(integer).setVisible(false);
+
+        for (Map.Entry<Integer, ImageView> entry : coverImages.entrySet()) {
+
+            entry.getValue().setVisible(false);
         }
+
+        /*for (Integer integer : coverImages.keySet()){
+            coverImages.get(integer).setVisible(false);
+        }*/
     }
 
     /**
@@ -1188,6 +1215,34 @@ public class GameBoardController {
      * removes all the pawns from the gameboard
      */
     public void removeAllPawns(){
+
+        for (Map.Entry<Integer, ImageView> entry : actionButtons.entrySet()) {
+            Image image = null;
+            entry.getValue().setImage(image);
+        }
+
+        for (Map.Entry<Integer, ImageView> entry : harvestBox.entrySet()) {
+
+            Image image = null;
+            entry.getValue().setImage(image);
+            harvestBoxFreeSlot = 0;
+
+        }
+
+        for (Map.Entry<Integer, ImageView> entry : productionBox.entrySet()) {
+
+            Image image = null;
+            entry.getValue().setImage(image);
+            productionBoxFreeSlot = 0;
+
+        }
+
+        /*for (Map.Entry<Integer, ImageView> entry : gridMap.entrySet()) {
+            Image image = null;
+            entry.getValue().setImage(image);
+            gridFreeSlot = 0;
+        }
+
         for (Integer integer : actionButtons.keySet()) {
             Image image = null;
             actionButtons.get(integer).setImage(image);
@@ -1206,7 +1261,7 @@ public class GameBoardController {
             Image image = null;
             gridMap.get(integer).setImage(image);
             gridFreeSlot = 0;
-        }
+        }*/
     }
 
 
@@ -1217,7 +1272,19 @@ public class GameBoardController {
          */
     public void activatePawns(Map<FamilyPawn,Boolean> availability){
 
-        for (FamilyPawn pawn: availability.keySet()) {
+        for (Map.Entry<FamilyPawn, Boolean> entry : availability.entrySet()) {
+
+            if(entry.getValue()){
+
+                setPawnAvailable(entry.getKey());
+            }
+            else {
+
+                setNotAvailable(entry.getKey().getType());
+            }
+        }
+
+        /*for (FamilyPawn pawn: availability.keySet()) {
 
             if (availability.get(pawn)) {
                 setPawnAvailable(pawn);
@@ -1227,7 +1294,7 @@ public class GameBoardController {
             else {
                 setNotAvailable(pawn.getType());
             }
-        }
+        }*/
     }
 
     private void setNotAvailable(FamilyPawnType type) {
@@ -1534,7 +1601,21 @@ public class GameBoardController {
         chooseWorkersPane.setVisible(true);
         StringBuilder newWorkers= new StringBuilder();
 
-        for (Integer index:cardsForWorkers.keySet()) {
+        for (Map.Entry<Integer, ArrayList<String>> entry : cardsForWorkers.entrySet()) {
+
+            Integer index = entry.getKey();
+            choices.add(index);
+            newWorkers.append(index.toString()).append(") ");
+
+            for (int i = 0;i < (entry.getValue()).size(); i++) {
+                newWorkers.append((cardsForWorkers.get(index)).get(i));
+            }
+
+            newWorkers.append("\n");
+
+        }
+
+        /*for (Integer index:cardsForWorkers.keySet()) {
             choices.add(index);
             newWorkers.append(index.toString()).append(") ");
 
@@ -1543,7 +1624,8 @@ public class GameBoardController {
             }
 
             newWorkers.append("\n");
-        }
+        }*/
+        
         workersController.updateShownCosts(newWorkers.toString());
         workersController.setChoices(choices);
     }
@@ -1572,9 +1654,15 @@ public class GameBoardController {
         chooseCostPane.setVisible(true);
         StringBuilder newCosts= new StringBuilder();
 
-        for (Integer index : possibleCosts.keySet()) {
-            newCosts.append(index.toString()).append(") ").append(possibleCosts.get(index)).append("\n");
+        for (Map.Entry<Integer, String> entry : possibleCosts.entrySet()) {
+
+            newCosts.append(entry.getKey().toString()).append(") ").append(entry.getValue()).append("\n");
+
         }
+
+       /* for (Integer index : possibleCosts.keySet()) {
+            newCosts.append(index.toString()).append(") ").append(possibleCosts.get(index)).append("\n");
+        }*/
 
         chooseCostController.updateShownCosts(newCosts.toString());
     }
@@ -1790,7 +1878,9 @@ public class GameBoardController {
                 try {
                     throwDices();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    LOGGER.log(Level.WARNING, "Interrupted!", e);
+                    // clean up state...
+                    Thread.currentThread().interrupt();
                 }
 
                 break;
@@ -1816,7 +1906,9 @@ public class GameBoardController {
                 try {
                     yourTurn();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    LOGGER.log(Level.WARNING, "Interrupted!", e);
+                    // clean up state...
+                    Thread.currentThread().interrupt();
                 }
 
 
@@ -1842,7 +1934,9 @@ public class GameBoardController {
                 try {
                     bonusAction();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    LOGGER.log(Level.WARNING, "Interrupted!", e);
+                    // clean up state...
+                    Thread.currentThread().interrupt();
                 }
 
                 break;
@@ -1874,15 +1968,6 @@ public class GameBoardController {
             case CHOOSECOST:
             case CHOOSE_COUNCIL_PRIVILEGE:
             case PRAY:
-
-                noButtonsAble();
-
-                setLeaderButtons(false);
-
-                setUseLeader(false);
-
-                break;
-
             case WAITING:
 
                 noButtonsAble();
@@ -1892,19 +1977,6 @@ public class GameBoardController {
                 setUseLeader(false);
 
                 break;
-
-            /*case DISCARDINGLEADER:
-
-                noButtonsAble();
-
-                setLeaderButtons(false);
-
-                List<Integer> councilPrivilege = new ArrayList<>();
-                councilPrivilege.add(1);
-
-                choosePrivileges(councilPrivilege);
-
-                break;*/
 
             case ENDTURN:
 

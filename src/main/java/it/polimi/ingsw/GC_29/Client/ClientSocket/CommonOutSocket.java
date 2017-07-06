@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.Instruction;
@@ -11,8 +12,12 @@ import it.polimi.ingsw.GC_29.Query.*;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 23/06/17.
@@ -23,7 +28,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
     private Map<String, Integer> activatedCardMap;
     private List<Integer> councilPrivilegeEffectChosenList;
     private InputChecker inputChecker;
-    //private CommonView commonView;
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
     public CommonOutSocket(ObjectOutputStream socketOut) {
         this.socketOut = socketOut;
@@ -117,37 +122,20 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
                 case "activate card":
                     if(inputChecker.handleCardDecision()){
-                        if(inputChecker.nextCard()){
-                            inputChecker.askActivateCard();
-                        }
-                        else {
-                            socketOut.writeObject("pay to obtain cards chosen");
-                            socketOut.flush();
-                            socketOut.writeObject(inputChecker.getActivatedCardMap());
-                            socketOut.flush();
-                        }
+                        handleNextCard();
                     }
                     break;
 
                 case "effect chosen":
                     inputChecker.addCard();
-                    if(inputChecker.nextCard()){
-                        inputChecker.askActivateCard();
-
-                    }
-                    else {
-                        socketOut.writeObject("pay to obtain cards chosen");
-                        socketOut.flush();
-                        socketOut.writeObject(inputChecker.getActivatedCardMap());
-                        socketOut.flush();
-                    }
+                    handleNextCard();
                     break;
 
                 case "activated cards GUI":
 
                     socketOut.writeObject("pay to obtain cards chosen");
                     socketOut.flush();
-                    socketOut.writeObject(activatedCardMap);
+                    socketOut.writeObject((HashMap<String, Integer>)activatedCardMap);
                     socketOut.flush();
                     break;
 
@@ -173,7 +161,8 @@ public class CommonOutSocket implements InputInterfaceGUI{
                         if (inputChecker.getCurrentPlayerState() == PlayerState.CHOOSE_COUNCIL_PRIVILEGE) {
                             socketOut.writeObject("council privileges chosen");
                             socketOut.flush();
-                            socketOut.writeObject(inputChecker.getCouncilPrivilegeEffectChosenList());
+                            ArrayList<Integer> privilegeChosenList = (ArrayList<Integer>)inputChecker.getCouncilPrivilegeEffectChosenList();
+                            socketOut.writeObject(privilegeChosenList);
                             socketOut.flush();
                         }
 
@@ -193,7 +182,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject("council privileges chosen");
                     socketOut.flush();
                     socketOut.reset();
-                    socketOut.writeObject(councilPrivilegeEffectChosenList);
+                    socketOut.writeObject((ArrayList<Integer>)councilPrivilegeEffectChosenList);
                     socketOut.flush();
                     break;
 
@@ -202,7 +191,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject("council privileges chosen leader");
                     socketOut.flush();
                     socketOut.reset();
-                    socketOut.writeObject(councilPrivilegeEffectChosenList);
+                    socketOut.writeObject((ArrayList<Integer>)councilPrivilegeEffectChosenList);
                     socketOut.flush();
                     socketOut.writeObject(inputChecker.getPlayerColor());
                     break;
@@ -232,8 +221,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     break;
 
                 case "use leader cards GUI":
-                    //inputChecker.setCurrentPlayerState(PlayerState.LEADER);
-                    socketOut.writeObject("use leader cards GUI");
+                   socketOut.writeObject("use leader cards GUI");
                     socketOut.flush();
                     socketOut.writeObject(inputChecker.getPlayerColor());
                     socketOut.flush();
@@ -301,10 +289,26 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
             }
         } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            LOGGER.info((Supplier<String>) e1);
         }
 
+
+    }
+
+    private void handleNextCard() throws IOException {
+
+        if(inputChecker.nextCard()){
+            inputChecker.askActivateCard();
+        }
+        else {
+            socketOut.writeObject("pay to obtain cards chosen");
+            socketOut.flush();
+
+            HashMap<String, Integer> getActivateCardMap = ((HashMap<String, Integer>)inputChecker.getActivatedCardMap());
+            socketOut.writeObject(getActivateCardMap);
+            //socketOut.writeObject(inputChecker.getActivatedCardMap());
+            socketOut.flush();
+        }
 
     }
 
@@ -335,7 +339,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
                 // Fino a qui ho inviato la query
@@ -350,12 +354,10 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
                 break;
-
-            //TODO: inserire gestione altri stati se necessario
 
 
             case CHOOSEWORKERS:
@@ -365,7 +367,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
                 break;
@@ -377,7 +379,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
                 break;
@@ -389,7 +391,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
                 break;
@@ -403,7 +405,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
                 break;
@@ -415,7 +417,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
                 break;
@@ -427,9 +429,12 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
+                break;
+
+            default:
                 break;
 
         }
@@ -480,7 +485,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
             socketOut.flush();
             socketOut.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 }
