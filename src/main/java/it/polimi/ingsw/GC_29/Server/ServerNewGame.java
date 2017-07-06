@@ -37,7 +37,7 @@ public class ServerNewGame implements Runnable {
 
     private long startTime;
 
-    private final int maxNumberOfPlayers = 2;
+    //private final int maxNumberOfPlayers = 2;
 
     private ArrayList<PlayerColor> playerColors = new ArrayList<>();
 
@@ -362,9 +362,9 @@ public class ServerNewGame implements Runnable {
         return clientRMIList;
     }
 
-    public int getMaxNumberOfPlayers() {
+   /* public int getMaxNumberOfPlayers() {
         return maxNumberOfPlayers;
-    }
+    }*/
 
 
     public GameSetup getGameSetup() {

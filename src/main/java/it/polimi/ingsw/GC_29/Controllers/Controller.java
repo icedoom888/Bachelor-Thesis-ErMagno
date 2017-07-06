@@ -836,6 +836,8 @@ public class Controller implements Observer<Input>  {
 
                 player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
 
+                player.setPlayerState(PlayerState.WAITING);
+
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -30,7 +30,7 @@ public class GameMatchHandler implements LogoutInterface{
 
     private Boolean lobbyCreated = false;
 
-    private final int maxNumberOfPlayers = 2;
+    private final int maxNumberOfPlayers = 3;
 
     private Timer timer;
 
@@ -153,6 +153,7 @@ public class GameMatchHandler implements LogoutInterface{
         ServerSocketView serverSocketView = new ServerSocketView(playerSocket, gameStatus, playerColor, username);
 
         serverSocketView.registerObserver(clientCurrentMatch.getController());
+        System.out.println("SONO IN GAMEMATCHHANDLER AGGIUNGO AI RECONNECTED " + gameStatus.getPlayer(playerColor).getPlayerID());
         clientCurrentMatch.getController().getPlayerReconnected().add(gameStatus.getPlayer(playerColor));
 
 
