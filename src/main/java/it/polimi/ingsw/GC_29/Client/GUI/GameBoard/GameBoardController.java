@@ -1697,7 +1697,7 @@ public class GameBoardController {
      * Shows the disconnectedPlayerPane and show the player that disconnected form the game
      * @param playerId
      */
-    public void disconnectedPlayer(String playerId){
+    public void disconnectedPlayer(List<String> playerId){
         disconnectedPlayerController.updateDisconnectedPlayer(playerId);
         disconnectedPlayerPane.setVisible(true);
         PauseTransition delay = new PauseTransition(Duration.seconds(3));

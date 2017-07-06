@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -147,9 +148,14 @@ public class EndTurn extends Input {
 
     private void handleDisconnectedPlayers(GameStatus model, Controller controller) {
 
+        List<String> playerNamesDisconnected = new ArrayList<>();
+
         for (Player player : controller.getPlayerDisconnected()) {
-            model.notifyPlayerDisconnected(model.getPlayer(player.getPlayerColor()));
+
+            playerNamesDisconnected.add(player.getPlayerID());
         }
+
+        model.notifyPlayerDisconnected(playerNamesDisconnected);
 
         controller.getPlayerDisconnected().clear();
 

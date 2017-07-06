@@ -272,10 +272,10 @@ public class GameStatus extends Observable<Change>{
         }
     }
 
-    public void notifyPlayerDisconnected(Player player) {
+    public void notifyPlayerDisconnected(List<String> playerNames) {
 
         try {
-            notifyObserver(new PlayerDisconnectedChange(player.getPlayerID()));
+            notifyObserver(new PlayerDisconnectedChange(playerNames));
         } catch (Exception e) {
             e.printStackTrace();
         }

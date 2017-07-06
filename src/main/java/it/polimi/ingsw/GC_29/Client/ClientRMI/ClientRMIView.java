@@ -80,7 +80,16 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
     private void handlePlayerDisconnected(PlayerDisconnectedChange c) {
 
-        System.out.println("THE FOLLOWING PLAYER IS DISCONNECTED: " +c.getUsername());
+        List<String> usernames = c.getUsername();
+
+        System.out.println("THE FOLLOWING PLAYERS ARE DISCONNECTED: ");
+
+        for (String username : usernames) {
+
+            System.out.println(username.toUpperCase());
+
+        }
+        
     }
 
     private void handleReconnection(ReconnectionChange c) {

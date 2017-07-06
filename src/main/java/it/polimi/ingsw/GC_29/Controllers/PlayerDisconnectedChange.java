@@ -1,18 +1,20 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import java.util.List;
+
 /**
  * Created by Christian on 05/07/2017.
  */
 public class PlayerDisconnectedChange extends Change {
 
-    private String username;
+    private List<String> usernames;
 
-    public PlayerDisconnectedChange(String username){
+    public PlayerDisconnectedChange(List<String> usernames){
 
-        this.username = username;
+        this.usernames = usernames;
     }
 
-    public String getUsername() {
-        return username;
+    public List<String> getUsername() {
+        return usernames;
     }
 }

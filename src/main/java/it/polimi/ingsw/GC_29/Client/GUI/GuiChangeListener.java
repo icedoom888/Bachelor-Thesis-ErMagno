@@ -54,7 +54,7 @@ public interface GuiChangeListener {
 
     void endGame(String winner);
 
-    void showDisconnectedPlayer(String username);
+    void showDisconnectedPlayer(List<String> username);
 
     void showReconnectedPlayers(List<String> reconnectedPlayerUsernames);
 }

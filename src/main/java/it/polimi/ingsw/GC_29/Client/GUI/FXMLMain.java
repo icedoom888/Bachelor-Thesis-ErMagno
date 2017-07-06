@@ -795,7 +795,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         });
     }
 
-    private void disconnectedPlayers(String username) {
+    private void disconnectedPlayers(List<String> username) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -944,8 +944,8 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         }
 
         @Override
-        public void showDisconnectedPlayer(String username) {
-            System.out.println("\n\n PLAYER DISCONNESSO: " + username);
+        public void showDisconnectedPlayer(List<String> username) {
+            //System.out.println("\n\n PLAYER DISCONNESSO: " + username);
             disconnectedPlayers(username);
         }
 
