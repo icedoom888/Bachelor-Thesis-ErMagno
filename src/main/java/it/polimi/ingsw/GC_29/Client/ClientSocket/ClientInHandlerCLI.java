@@ -183,6 +183,14 @@ public class ClientInHandlerCLI implements Runnable {
 
         }
 
+        if(currentGameChange instanceof NextTurn){
+
+            String username = ((NextTurn)currentGameChange).getUsername();
+
+            System.out.println("NOW IS THE TURN OF THE PLAYER: " + username);
+
+        }
+
     }
 
 
