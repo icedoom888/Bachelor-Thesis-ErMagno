@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
 import javafx.print.PageLayout;
 import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
+import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.util.*;
 
@@ -43,7 +44,7 @@ public class Controller implements Observer<Input>  {
     private int closedClients;
     private ServerNewGame currentMatch;
     private final int minNumberOfPlayers = 2;
-
+    private List<Player> playerDisconnected;
 
 
     public Controller(GameStatus model){
@@ -53,6 +54,7 @@ public class Controller implements Observer<Input>  {
         playerReconnected = new ArrayList<>();
         playerBonusTileIndexMap = new HashMap<>();
         closedClients = model.getTurnOrder().size();
+        playerDisconnected = new ArrayList<>();
 
 
         //setCardsOnTowers();
@@ -836,6 +838,8 @@ public class Controller implements Observer<Input>  {
 
                 player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
 
+                player.setPlayerState(PlayerState.WAITING);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -904,4 +908,7 @@ public class Controller implements Observer<Input>  {
     }
 
 
+    public List<Player> getPlayerDisconnected() {
+        return playerDisconnected;
+    }
 }

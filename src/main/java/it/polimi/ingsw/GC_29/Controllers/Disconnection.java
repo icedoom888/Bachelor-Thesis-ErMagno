@@ -22,7 +22,9 @@ public class Disconnection extends Input {
 
         suspendPlayer.run();
 
-        if(controller.minNumberOfPlayerReached()){
+        controller.getPlayerDisconnected().add(model.getPlayer(playerColor));
+
+        /*if(controller.minNumberOfPlayerReached()){
 
             controller.endGame();
 
@@ -31,7 +33,7 @@ public class Disconnection extends Input {
         else {
 
             model.notifyPlayerDisconnected(model.getPlayer(playerColor));
-        }
+        }*/
 
 
     }
