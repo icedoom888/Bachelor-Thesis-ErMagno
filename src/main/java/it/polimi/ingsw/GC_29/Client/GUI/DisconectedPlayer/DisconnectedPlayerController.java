@@ -20,16 +20,16 @@ public class DisconnectedPlayerController {
      */
     public void updateDisconnectedPlayer(List<String> playerId){
 
-        String text = "\n";
+        StringBuilder text = new StringBuilder("\n");
 
         for (String username : playerId) {
 
-            text = text + username.toUpperCase() + "\n";
+            text.append(username.toUpperCase()).append("\n");
 
         }
 
         System.out.println("SONO IN DISC CONTROLLER. STRINGA = " + text + " FINE");
 
-        disconnectedPlayer.setText(text);
+        disconnectedPlayer.setText(text.toString());
     }
 }

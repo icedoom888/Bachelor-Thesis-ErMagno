@@ -23,7 +23,7 @@ public class PayToObtainEffect implements Effect{
      * if the cost isn't payable the execution stops: the cost isn't detracted from the status and the @goodsObtained are not added either
      */
     @Override
-    public void execute(Player status) throws Exception {
+    public void execute(Player status) {
 
         System.out.println("eseguo execute della payToObtain");
 
@@ -33,7 +33,11 @@ public class PayToObtainEffect implements Effect{
 
             cost.setNegative();
 
-            status.updateGoodSet(cost);
+            try {
+                status.updateGoodSet(cost);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             System.out.println("The actualGoodSet after the detraction is: "+ "\n"+status.getActualGoodSet());
 

@@ -18,9 +18,10 @@ public class GetPossibleCosts extends Query<Map<Integer, String>> {
         Map<Integer, Cost> possibleCosts = ((TowerAction)model.getCurrentPlayer().getCurrentAction()).getPossibleCardCosts();
         HashMap<Integer, String> possibleCostsToString = new HashMap<>();
 
-        for (Integer integer : possibleCosts.keySet()) {
-            String cost = possibleCosts.get(integer).toString();
-            possibleCostsToString.put(integer, cost);
+        for (Map.Entry<Integer, Cost> possibleCostEntry : possibleCosts.entrySet()) {
+
+            possibleCostsToString.put(possibleCostEntry.getKey(), possibleCostEntry.getValue().toString());
+
         }
 
         return possibleCostsToString;

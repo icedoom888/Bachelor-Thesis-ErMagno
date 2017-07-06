@@ -19,12 +19,9 @@ public class GetBonusTile extends Query<Map<Integer,String>> {
 
         Map<Integer, BonusTile> modelBonusTileMap = model.getBonusTileMap();
 
-        for (Integer index : modelBonusTileMap.keySet()) {
+        for (Map.Entry<Integer, BonusTile> integerBonusTileEntry : modelBonusTileMap.entrySet()) {
 
-            BonusTile bonusTile = modelBonusTileMap.get(index);
-
-            bonusTileMap.put(index, bonusTile.toString());
-
+            bonusTileMap.put(integerBonusTileEntry.getKey(), integerBonusTileEntry.getValue().toString());
         }
 
         return bonusTileMap;

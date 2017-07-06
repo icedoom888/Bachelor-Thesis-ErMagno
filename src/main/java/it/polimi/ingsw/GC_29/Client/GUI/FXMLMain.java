@@ -210,7 +210,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
                     clientSocketGUI.getClientInHandlerGUI().addListener(new GuiListener());
 
-                    interfaceGUI = clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket();
+                    interfaceGUI = clientSocketGUI.getClientInHandlerGUI().getCommonOutSocket();
 
                     break;
 

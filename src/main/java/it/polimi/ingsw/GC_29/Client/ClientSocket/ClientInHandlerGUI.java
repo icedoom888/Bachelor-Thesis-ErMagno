@@ -11,6 +11,7 @@ import org.testng.collections.Lists;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.*;
 
@@ -26,9 +27,10 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
     //private ChangeViewGUI changeViewGUI;
     //private List<GuiChangeListener> listeners = Lists.newArrayList();
 
-    public ClientInHandlerGUI(ObjectInputStream socketIn) {
+    public ClientInHandlerGUI(ObjectInputStream socketIn, CommonOutSocket commonOutSocket) {
 
         this.socketIn = socketIn;
+        this.commonOutSocket = commonOutSocket;
        // this.changeViewGUI = new ChangeViewGUI(socketIn, commonView);
     }
 
@@ -667,5 +669,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
     }
 
 
-
+    public CommonOutSocket getCommonOutSocket() {
+        return commonOutSocket;
+    }
 }

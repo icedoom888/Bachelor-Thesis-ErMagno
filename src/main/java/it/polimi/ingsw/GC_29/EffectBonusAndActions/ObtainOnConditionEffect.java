@@ -11,8 +11,6 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public class ObtainOnConditionEffect implements Effect {
 
-    //TODO da rivedere, i metodi di evaluate sono da unire, c'è un multiplier = 100 che non deve esistere
-
     private Effect effectForEachCondition;
     private CardColor cardCondition;
     private GoodSet goodsCondition;
@@ -46,7 +44,7 @@ public class ObtainOnConditionEffect implements Effect {
      * @param status
      */
     @Override
-    public void execute(Player status) throws Exception {
+    public void execute(Player status) {
 
         evaluateActualGoodsObtained(status);
     }
@@ -54,7 +52,7 @@ public class ObtainOnConditionEffect implements Effect {
     /** evaluateActualGoodsObtain builds the @goodsObtained attribute evaluating the 2 conditions
      * @param status
      */
-    public void evaluateActualGoodsObtained(Player status) throws Exception {
+    public void evaluateActualGoodsObtained(Player status) {
 
         evaluateCardCondition(status);
 
@@ -66,7 +64,7 @@ public class ObtainOnConditionEffect implements Effect {
      * The multiplier will be multiplied for the @effectForEachCondition attribute in order to calculate the goodsObtain attribute
      * @param status
      */
-    private void evaluateCardCondition(Player status) throws Exception {
+    private void evaluateCardCondition(Player status) {
 
         if(cardCondition==null){return;}
 
@@ -95,7 +93,7 @@ public class ObtainOnConditionEffect implements Effect {
      * The multiplier will be multiplied for the @effectForEachCondition attribute in order to calculate the goodsObtain attribute
      * @param status
      */
-    private void evaluateGoodsCondition(Player status) throws Exception {
+    private void evaluateGoodsCondition(Player status) {
 
         if(goodsCondition==null){return;}
 

@@ -43,7 +43,7 @@ public class CouncilPrivilegeEffect implements Effect {
      * sums all the bonuses.
      * Then it updates the player's goodSet.
      */
-    public void execute(Player status) throws Exception {
+    public void execute(Player status) {
 
         status.getCouncilPrivilegeEffectList().add(this);
 

@@ -21,7 +21,7 @@ public class ObtainForCost implements Effect {
     }
 
     @Override
-    public void execute(Player status) throws Exception {
+    public void execute(Player status) {
 
         DevelopmentCard[] cards = status.getPersonalBoard().getLane(cardColor).getCards();
 

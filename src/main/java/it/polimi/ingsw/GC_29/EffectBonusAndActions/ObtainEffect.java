@@ -37,11 +37,15 @@ public class ObtainEffect implements Effect {
 
 
     @Override
-    public void execute(Player status) throws Exception {
+    public void execute(Player status) {
 
         //GoodSet newGoodsObtained = activateBonusMalusOnGoods(status,goodsObtained);
         Filter.apply(status, goodsObtained);
-        status.updateGoodSet(goodsObtained);
+        try {
+            status.updateGoodSet(goodsObtained);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

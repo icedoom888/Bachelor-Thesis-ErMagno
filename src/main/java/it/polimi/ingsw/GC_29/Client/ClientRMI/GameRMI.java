@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
-import com.sun.security.ntlm.Client;
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;

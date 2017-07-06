@@ -15,7 +15,7 @@ public class Special implements Effect {
     }
 
     @Override
-    public void execute(Player status) throws Exception {
+    public void execute(Player status) {
         status.getSpecialBonusAndMaluses().add(this.specialBonusAndMalus);
     }
 }

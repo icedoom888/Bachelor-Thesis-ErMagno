@@ -15,9 +15,9 @@ import java.rmi.RemoteException;
  */
 public class ExecuteAction extends Input {
 
-    int actionIndex;
+    private int actionIndex;
 
-    Player currentPlayer;
+    private transient Player currentPlayer;
 
     public ExecuteAction(int actionIndex){
 
@@ -36,10 +36,6 @@ public class ExecuteAction extends Input {
 
         currentPlayer = model.getCurrentPlayer();
 
-        //ActionChecker actionChecker = controller.getActionChecker();
-
-        //TODO: qui o lato client controllare che l'input sia valido (actionIndex)
-
         Action actionSelected = currentPlayer.getCurrentValidActionsList().get(actionIndex);
 
         if(actionSelected instanceof WorkAction) {
@@ -52,21 +48,7 @@ public class ExecuteAction extends Input {
 
             if (workAction.getCardsForWorkers().keySet().contains(0)) {
 
-                System.out.println("STO CHIAMANDO HANDLE PAY CARDS CON ZERO WORKERS");
-
                 controller.handlePayToObtainCards(workAction, currentPlayer, 0);
-
-                /*if (workAction.handlePayToObtainCards(0)) {
-
-                    currentPlayer.setPlayerState(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS);
-
-
-                }
-
-                else {
-                    workAction.execute();
-                    controller.handleEndAction();
-                }*/
             }
 
             else {
@@ -102,36 +84,6 @@ public class ExecuteAction extends Input {
             actionSelected.execute();
 
             controller.handleEndAction();
-
-            //TODO: ripetizione di codice --> REFACTOR
-
-            /*if (!currentPlayer.getCurrentBonusActionList().isEmpty()) {
-
-                ActionEffect currentBonusAction = model.getCurrentPlayer().getCurrentBonusActionList().removeFirst();
-
-                // temporary bonusMalusOn cost setted in the player
-                if (currentBonusAction.getBonusAndMalusOnCost() != null) {
-
-                    model.getCurrentPlayer().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
-
-                }
-
-
-                actionChecker.resetActionListExceptPlayer();
-
-                FamilyPawn familyPawn = new FamilyPawn(model.getCurrentPlayer().getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
-
-                actionChecker.setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
-
-                model.getCurrentPlayer().setPlayerState(PlayerState.BONUSACTION);
-
-            } else {
-
-                // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
-
-                currentPlayer.setPlayerState(PlayerState.ENDTURN);
-
-            }*/
 
         }
 

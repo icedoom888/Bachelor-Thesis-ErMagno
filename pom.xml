@@ -11,7 +11,17 @@
 		<sonar.host.url> http://localhost:9000/ </sonar.host.url>
 	</properties>
 	<description>Prova Finale Ingegneria del software</description>
-	<dependencies>
+
+
+
+
+
+
+
+
+
+
+    <dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -64,6 +74,9 @@
     </dependencies>
 	<build>
 		<plugins>
+
+
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
