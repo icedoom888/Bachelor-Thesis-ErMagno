@@ -8,19 +8,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="207.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.DisconectedPlayer.DisconnectedPlayerController">
+<AnchorPane prefHeight="372.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.DisconectedPlayer.DisconnectedPlayerController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7f8f8" height="200.0" layoutY="4.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7f8f8" height="372.0" layoutY="4.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <Label layoutX="20.0" layoutY="27.0" text="The following Player disconnected from the game:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Text fx:id="disconnectedPlayer" layoutX="20.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0">
+      <TextArea fx:id="disconnectedPlayer" editable="false" layoutX="20.0" layoutY="64.0" prefHeight="299.0" prefWidth="562.0">
          <font>
-            <Font size="36.0" />
+            <Font size="18.0" />
          </font>
-      </Text>
+      </TextArea>
    </children>
 </AnchorPane>

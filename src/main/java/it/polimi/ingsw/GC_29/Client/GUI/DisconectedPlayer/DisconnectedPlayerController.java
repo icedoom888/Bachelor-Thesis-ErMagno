@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.GUI.DisconectedPlayer;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class DisconnectedPlayerController {
 
     @FXML
-    private Text disconnectedPlayer;
+    private TextArea disconnectedPlayer;
 
     /**
      * update the name of the disconnected player to show
@@ -19,7 +20,7 @@ public class DisconnectedPlayerController {
      */
     public void updateDisconnectedPlayer(List<String> playerId){
 
-        String text = "THE FOLLOWING PLAYERS ARE DISCONNECTED: \n";
+        String text = "\n";
 
         for (String username : playerId) {
 
