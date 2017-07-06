@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
@@ -7,10 +8,7 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
 import it.polimi.ingsw.GC_29.Server.ServerNewGame;
 import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
-import javafx.print.PageLayout;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
-import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.util.*;
 
@@ -246,7 +244,7 @@ public class Controller implements Observer<Input>  {
 
             firstPlayer.setPlayerState(PlayerState.DOACTION);
 
-            //model.notifyNextTurn();
+            model.notifyEndMove();
 
             startTimer(firstPlayer);
 
@@ -808,63 +806,69 @@ public class Controller implements Observer<Input>  {
 
     public void handleReconnectedPlayers(){
 
+        if(!(playerReconnected.isEmpty())){
 
-        List<String> usernamePLayerReconnectedList = new ArrayList<>();
+            List<String> usernamePLayerReconnectedList = new ArrayList<>();
 
-        for (Player player : playerReconnected) {
+            for (Player player : playerReconnected) {
 
-            usernamePLayerReconnectedList.add(player.getPlayerID());
+                usernamePLayerReconnectedList.add(player.getPlayerID());
 
-            try {
+                try {
 
-                player.notifyObserver(new GoodSetChange(player.getActualGoodSet()));
+                    player.notifyObserver(new GoodSetChange(player.getActualGoodSet()));
 
-                player.setLeaderCards(player.getLeaderCards());
+                    player.setLeaderCards(player.getLeaderCards());
 
-                for (CardColor cardColor : CardColor.values()) {
-                    if (cardColor != CardColor.ANY) {
+                    for (CardColor cardColor : CardColor.values()) {
+                        if (cardColor != CardColor.ANY) {
 
-                        for (DevelopmentCard developmentCard : player.getPersonalBoard().getLane(cardColor).getCards()) {
-                            if(developmentCard == null){
-                                break;
+                            for (DevelopmentCard developmentCard : player.getPersonalBoard().getLane(cardColor).getCards()) {
+                                if(developmentCard == null){
+                                    break;
+                                }
+                                else{
+                                    player.notifyObserver(new PersonalCardChange(developmentCard.getSpecial(), cardColor));
+                                }
+
                             }
-                            else{
-                                player.notifyObserver(new PersonalCardChange(developmentCard.getSpecial(), cardColor));
-                            }
-
                         }
                     }
+
+                    player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
+
+                    player.setPlayerState(PlayerState.WAITING);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
-                player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
-
-                player.setPlayerState(PlayerState.WAITING);
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-        }
 
-        //player reconnected removed from the disconnected list
-        playerDisconnected.clear();
+            //player reconnected removed from the disconnected list
+            playerDisconnected.clear();
 
-        for (CardColor cardColor : CardColor.values()) {
-            if (cardColor != CardColor.ANY) {
-                model.updateTowerGUI(cardColor);
+            for (CardColor cardColor : CardColor.values()) {
+                if (cardColor != CardColor.ANY) {
+                    model.updateTowerGUI(cardColor);
+                }
             }
+
+
+            for (Player player : model.getTurnOrder()) {
+                model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.VICTORYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
+                model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.MILITARYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS));
+                model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.FAITHPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS));
+            }
+
+            model.notifyPlayerReconnected(usernamePLayerReconnectedList);
+
+            playerReconnected.clear();
+
+
         }
 
 
-        for (Player player : model.getTurnOrder()) {
-            model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.VICTORYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
-            model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.MILITARYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS));
-            model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.FAITHPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS));
-        }
-
-        model.notifyPlayerReconnected(usernamePLayerReconnectedList);
-
-        playerReconnected.clear();
     }
 
     public Map<Player, Integer> getPlayerBonusTileIndexMap() {
@@ -913,5 +917,29 @@ public class Controller implements Observer<Input>  {
 
     public List<Player> getPlayerDisconnected() {
         return playerDisconnected;
+    }
+
+
+    public void handleDisconnectedPlayers() {
+
+        if(!playerDisconnected.isEmpty()){
+
+            System.out.println("\n SONO IN HANDLE DISCONNECTED PLAYERS \n");
+
+            List<String> playerNamesDisconnected = new ArrayList<>();
+
+            for (Player player : playerDisconnected) {
+
+                System.out.println("QUESTO E' IL NOME DEL PLAYER DISCONNECTED " + player.getPlayerID());
+
+                playerNamesDisconnected.add(player.getPlayerID());
+            }
+
+            model.notifyPlayerDisconnected(playerNamesDisconnected);
+
+            playerDisconnected.clear();
+
+        }
+
     }
 }

@@ -3,9 +3,7 @@ package it.polimi.ingsw.GC_29.Client.ClientRMI;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
-import sun.nio.cs.US_ASCII;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -89,7 +87,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
             System.out.println(username.toUpperCase());
 
         }
-        
+
     }
 
     private void handleReconnection(ReconnectionChange c) {
@@ -138,11 +136,11 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
         }
 
-        if(currentGameChange instanceof NextTurn){
+        if(currentGameChange instanceof EndMove){
 
-            String username = ((NextTurn)currentGameChange).getUsername();
+            String username = ((EndMove)currentGameChange).getUsername();
 
-            System.out.println("NOW IS THE TURN OF THE PLAYER: " + username);
+            System.out.println(username.toUpperCase() +"'S MOVE ENDED");
 
         }
 

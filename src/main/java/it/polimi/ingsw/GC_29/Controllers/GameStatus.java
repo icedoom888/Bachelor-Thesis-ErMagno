@@ -282,10 +282,10 @@ public class GameStatus extends Observable<Change>{
 
     }
 
-    public void notifyNextTurn() {
+    public void notifyEndMove() {
 
         try {
-            notifyObserver(new NextTurn(currentPlayer.getPlayerID()));
+            notifyObserver(new EndMove(currentPlayer.getPlayerID()));
         } catch (Exception e) {
             e.printStackTrace();
         }

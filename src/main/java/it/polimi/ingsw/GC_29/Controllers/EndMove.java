@@ -3,11 +3,11 @@ package it.polimi.ingsw.GC_29.Controllers;
 /**
  * Created by Christian on 05/07/2017.
  */
-public class NextTurn extends GameChange {
+public class EndMove extends GameChange {
 
     private String username;
 
-    public NextTurn(String username) {
+    public EndMove(String username) {
         super(GameState.RUNNING);
 
         this.username = username;

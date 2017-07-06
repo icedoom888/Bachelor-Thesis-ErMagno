@@ -28,6 +28,8 @@ public class DisconnectedPlayerController {
 
         }
 
+        System.out.println("SONO IN DISC CONTROLLER. STRINGA = " + text + " FINE");
+
         disconnectedPlayer.setText(text);
     }
 }

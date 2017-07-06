@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Player.Player;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,14 +29,11 @@ public class EndTurn extends Input {
 
         //TODO: qui devi inserire il controllo sulla lista dei riconessi e chiamare il metodo handleReconnectedPlayers
 
-        if(!(controller.getPlayerReconnected().isEmpty())){
+        model.notifyEndMove();
 
-            controller.handleReconnectedPlayers();
-        }
+        controller.handleReconnectedPlayers();
 
-        if(!controller.getPlayerDisconnected().isEmpty()){
-            handleDisconnectedPlayers(model, controller);
-        }
+        controller.handleDisconnectedPlayers();
         
         controller.stopTimer();
 
@@ -102,8 +98,6 @@ public class EndTurn extends Input {
 
                 model.getCurrentPlayer().setPlayerState(PlayerState.DOACTION);
 
-                //model.notifyNextTurn();
-
                 controller.startTimer(model.getCurrentPlayer());
             }
 
@@ -146,23 +140,6 @@ public class EndTurn extends Input {
 
             controller.chooseCurrentPlayer(indexOfNextPlayer);
         }
-    }
-
-    private void handleDisconnectedPlayers(GameStatus model, Controller controller) {
-
-        System.out.println("\n SONO IN HANDLE DISCONNECTED PLAYERS \n");
-
-        List<String> playerNamesDisconnected = new ArrayList<>();
-
-        for (Player player : controller.getPlayerDisconnected()) {
-
-            playerNamesDisconnected.add(player.getPlayerID());
-        }
-
-        model.notifyPlayerDisconnected(playerNamesDisconnected);
-
-        controller.getPlayerDisconnected().clear();
-
     }
 
 
@@ -210,7 +187,7 @@ public class EndTurn extends Input {
 
             newCurrentPlayer.setPlayerState(PlayerState.DOACTION);
 
-            //model.notifyNextTurn();
+            //model.notifyEndMove();
 
             controller.startTimer(newCurrentPlayer);
 

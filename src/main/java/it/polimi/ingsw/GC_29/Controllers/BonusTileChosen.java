@@ -29,6 +29,12 @@ public class BonusTileChosen extends Input {
 
         controller.stopTimer();
 
+        model.notifyEndMove();
+
+        controller.handleReconnectedPlayers();
+
+        controller.handleDisconnectedPlayers();
+
         BonusTile bonusTile;
 
         if (bonusTileIndex != -1) {
