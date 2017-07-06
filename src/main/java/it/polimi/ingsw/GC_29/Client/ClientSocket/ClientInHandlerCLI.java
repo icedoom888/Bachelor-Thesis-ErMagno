@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 14/06/17.
@@ -20,6 +23,9 @@ public class ClientInHandlerCLI implements Runnable {
     private CommonOutSocket commonOutSocket;
     private Boolean isRunning = true;
     private InputChecker inputChecker;
+
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
 
     public ClientInHandlerCLI(ObjectInputStream socketIn) {
         this.socketIn = socketIn;
@@ -54,8 +60,6 @@ public class ClientInHandlerCLI implements Runnable {
                         getGoodSet();
                         break;
                     case "Get Development Cards":
-                        getCards();
-                        break;
                     case "Get Tower Cards":
                         getCards();
                         break;
@@ -69,17 +73,20 @@ public class ClientInHandlerCLI implements Runnable {
                         getAvailableLeaderCards();
                         break;
 
+                    default:
+                        break;
+
 
 
 
                 }
 
             } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+
+                LOGGER.info((Supplier<String>) e);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+
+                LOGGER.info((Supplier<String>) e);
             }
         }
     }
@@ -93,9 +100,9 @@ public class ClientInHandlerCLI implements Runnable {
         try {
             c = (Change)socketIn.readObject();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
         System.out.println(c);
         System.out.println(inputChecker.getPlayerColor());
@@ -107,7 +114,7 @@ public class ClientInHandlerCLI implements Runnable {
             try {
                 handlePlayerState(inputChecker.getCurrentPlayerState());
             } catch (RemoteException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
 
             System.out.println("if you want to see your valid input for this current state insert : help");
@@ -174,7 +181,7 @@ public class ClientInHandlerCLI implements Runnable {
             try {
                 socketIn.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
 
             Timer timer = new Timer();
@@ -280,9 +287,9 @@ public class ClientInHandlerCLI implements Runnable {
         try {
             socketIn.readObject();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -299,9 +306,9 @@ public class ClientInHandlerCLI implements Runnable {
                 inputChecker.showAvailableLeaderCards();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -314,9 +321,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.nextPrivilegeEffect();
             inputChecker.askWhichPrivilege();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
     }
@@ -328,9 +335,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setPossibleCosts(possibleCosts);
             inputChecker.askWhichCost();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -341,9 +348,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setPayToObtainCardsMap(payToObtainCards);
             inputChecker.askActivateCard();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -354,9 +361,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setPossibleCardsWorkActionMap(cardsForWorkers);
             inputChecker.printPossibleCardsWorkAction();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -368,9 +375,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setValidActionList(validActions);
             inputChecker.printValidActionList();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -381,9 +388,9 @@ public class ClientInHandlerCLI implements Runnable {
             GoodSet goodSet = (GoodSet)socketIn.readObject();
             System.out.println(goodSet);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -395,9 +402,9 @@ public class ClientInHandlerCLI implements Runnable {
                 System.out.println(developmentCard);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -406,21 +413,31 @@ public class ClientInHandlerCLI implements Runnable {
 
         try {
             Map<FamilyPawn, Boolean> familyPawns = (Map<FamilyPawn, Boolean>)socketIn.readObject();
-            HashMap<FamilyPawnType, Boolean> familyPawnsAvailability = new HashMap<>();
+            Map<FamilyPawnType, Boolean> familyPawnsAvailability = new EnumMap<>(FamilyPawnType.class);
 
-            for (FamilyPawn familyPawn : familyPawns.keySet()) {
+
+            for (Map.Entry<FamilyPawn, Boolean> entry : familyPawns.entrySet()) {
+                if(entry.getValue()){
+
+                    System.out.println(entry.getKey());
+                }
+
+                familyPawnsAvailability.put(entry.getKey().getType(), entry.getValue());
+            }
+
+            /*for (FamilyPawn familyPawn : familyPawns.keySet()) {
                 if (familyPawns.get(familyPawn)) {
                     System.out.println(familyPawn);
                 }
                 familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
-            }
+            }*/
 
             inputChecker.setFamilyPawnAvailability(familyPawnsAvailability);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -431,9 +448,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setBonusTileMap(bonusTiles);
             inputChecker.askWhichBonusTile();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
