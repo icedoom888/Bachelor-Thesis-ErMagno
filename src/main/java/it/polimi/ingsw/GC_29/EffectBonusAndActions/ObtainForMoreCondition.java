@@ -19,7 +19,7 @@ public class ObtainForMoreCondition implements Effect {
     }
 
     @Override
-    public void execute(Player status) throws Exception {
+    public void execute(Player status) {
         for (GoodSet goodSet : goodsCondition) {
             (new ObtainOnConditionEffect(effectForEachCondition,goodSet)).execute(status);
         }

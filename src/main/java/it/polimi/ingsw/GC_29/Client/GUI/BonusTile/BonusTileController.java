@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.GUI.BonusTile;
 
 
-import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientOutHandlerGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import javafx.event.ActionEvent;

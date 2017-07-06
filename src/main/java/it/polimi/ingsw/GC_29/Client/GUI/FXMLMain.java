@@ -70,7 +70,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     private ClientRMI clientRMI;
 
     @Override
-    public void update(LoginChange o) throws Exception {
+    public void update(LoginChange o) {
 
         Boolean connected = o.getConnected();
         if (connected) {
@@ -210,7 +210,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
                     clientSocketGUI.getClientInHandlerGUI().addListener(new GuiListener());
 
-                    interfaceGUI = clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket();
+                    interfaceGUI = clientSocketGUI.getClientInHandlerGUI().getCommonOutSocket();
 
                     break;
 

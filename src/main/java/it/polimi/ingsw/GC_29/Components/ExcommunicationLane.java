@@ -2,10 +2,7 @@ package it.polimi.ingsw.GC_29.Components;
 
 import de.vandermeer.asciitable.AsciiTable;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Lorenzotara on 17/05/17.
@@ -64,9 +61,9 @@ public class ExcommunicationLane implements Cleanable {
 
         AsciiTable excommunicationTable = new AsciiTable();
 
-        for (Era era : tileAndPawns.keySet()) {
+        for (Map.Entry<Era, ExcommunicationSlot> eraExcommunicationSlotEntry : tileAndPawns.entrySet()) {
             excommunicationTable.addRule();
-            excommunicationTable.addRow("Era: " + era, "Tile: " + tileAndPawns.get(era).getExcommunicationTile(), "Players: " + tileAndPawns.get(era).getPlayerPawns());
+            excommunicationTable.addRow("Era: " + eraExcommunicationSlotEntry.getKey(), "Tile: " + eraExcommunicationSlotEntry.getValue().getExcommunicationTile(), "Players: " + eraExcommunicationSlotEntry.getValue().getPlayerPawns());
         }
 
         return "\n\n\n" + "EXCOMMUNICATION LANE \n\n" + excommunicationTable.render();

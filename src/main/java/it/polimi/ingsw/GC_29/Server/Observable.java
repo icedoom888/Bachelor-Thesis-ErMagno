@@ -1,9 +1,6 @@
 package it.polimi.ingsw.GC_29.Server;
 
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -30,13 +27,15 @@ public abstract class Observable<C> {
 
     }
 
-    public void notifyObserver(C c) throws Exception {
+    public void notifyObserver(C c) {
 
-
-           // System.out.println("I am the "+this.getClass().getSimpleName());
 
             for(Observer<C> o: this.observers){
-                o.update(c);
+                try {
+                    o.update(c);
+                } catch (ObserverException e) {
+                    e.printStackTrace();
+                }
             }
 
 

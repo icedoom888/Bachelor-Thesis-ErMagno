@@ -7,9 +7,6 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public class ActionEffect implements Effect{
 
-
-    //TODO: ricordarsi di onlyWorkers quando viene attivata
-
     private ZoneType type;
 
     private int actionValue;

@@ -22,10 +22,6 @@ public class LoginGUI extends Application {
         Application.launch(args);
     }
 
-    /*public static void main(String[] args) {
-        Application.launch(BonusTileGUI.class);
-    }*/
-
 
 
 
@@ -34,24 +30,16 @@ public class LoginGUI extends Application {
 
 
 
-        System.out.println("Sono dentro a login");
 
-        //loginStage = stage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
         SplitPane root = loader.load();
-        System.out.println("ROOT: " + root);
-        //loginController = loader.getController();
+
         stage.setScene(new Scene(root));
-        Stage loginStage = new Stage();
         stage.setTitle("Login");
         stage.setHeight(400);
         stage.setWidth(600);
         stage.centerOnScreen();
-        //stage.initModality(Modality.WINDOW_MODAL);
-        System.out.println(stage.getModality());
         stage.show();
-        System.out.println(loginController);
-        System.out.println("arrivi qui?");
     }
 
     public LoginController getController() {

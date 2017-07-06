@@ -73,7 +73,7 @@ public class LeaderCard {
 
     }
 
-    public void execute(Player player) throws Exception {
+    public void execute(Player player) {
 
         if (effect != null) {
             System.out.println("executing the effect of the leader card\n");

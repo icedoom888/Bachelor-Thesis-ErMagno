@@ -25,9 +25,7 @@ public class EndTurn extends Input {
      * @throws Exception
      */
     @Override
-    public void perform(GameStatus model, Controller controller) throws Exception {
-
-        //TODO: qui devi inserire il controllo sulla lista dei riconessi e chiamare il metodo handleReconnectedPlayers
+    public void perform(GameStatus model, Controller controller) {
 
         model.notifyEndMove();
 
@@ -143,7 +141,7 @@ public class EndTurn extends Input {
     }
 
 
-    private void setSkippedPlayer(GameStatus model, Controller controller) throws Exception {
+    private void setSkippedPlayer(GameStatus model, Controller controller) {
 
         if (model.getSkippedTurnPlayers().isEmpty()) {
 

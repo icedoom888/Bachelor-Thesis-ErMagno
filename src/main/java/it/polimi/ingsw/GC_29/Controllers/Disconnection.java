@@ -16,24 +16,13 @@ public class Disconnection extends Input {
     }
 
     @Override
-    public void perform(GameStatus model, Controller controller) throws Exception {
+    public void perform(GameStatus model, Controller controller) {
 
         SuspendPlayer suspendPlayer = new SuspendPlayer(controller, model, model.getPlayer(playerColor));
 
         suspendPlayer.run();
 
         controller.getPlayerDisconnected().add(model.getPlayer(playerColor));
-
-        /*if(controller.minNumberOfPlayerReached()){
-
-            controller.endGame();
-
-        }
-
-        else {
-
-            model.notifyPlayerDisconnected(model.getPlayer(playerColor));
-        }*/
 
 
     }

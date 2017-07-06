@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Components.LeaderCard;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.*;
+import it.polimi.ingsw.GC_29.Server.ObserverException;
 import it.polimi.ingsw.GC_29.Server.View;
 
 import java.io.IOException;
@@ -18,12 +19,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 14/06/17.
  */
 public class ServerSocketView extends View implements Runnable {
 
+    private static final Logger LOGGER = Logger.getLogger(ServerSocketView.class.getName());
     private Socket socket;
     private GetValidActions validActionQuery;
     private ObjectInputStream socketIn;
@@ -46,17 +50,10 @@ public class ServerSocketView extends View implements Runnable {
     }
 
     @Override
-    public void update(Change o) throws IOException {
+    public void update(Change o) throws ObserverException {
 
         System.out.println("UPDATE from Server");
         System.out.println(o);
-
-        /*socketOut.writeObject("Change");
-
-        socketOut.flush();
-        socketOut.reset();
-        socketOut.writeObject(o);
-        socketOut.flush();*/
 
         try {
 
@@ -86,148 +83,133 @@ public class ServerSocketView extends View implements Runnable {
 
         while (b) {
             // await for incoming data from the client
-                try {
-
-                    Object object = socketIn.readObject();
-
-                    // Il server riceve una query dal ClientOut
-                    if (object instanceof Query) {
-                        handleQuery((Query)object);
-                    }
-
-                    if (object instanceof String) {
-                        String string = (String)object;
-
-                        System.out.println("la stringa ricevuta è" + string);
-
-                        switch (string) {
-
-                            case "bonus tile":
-                                int bonusTile = (int)socketIn.readObject();
-                                notifyObserver(new BonusTileChosen(bonusTile));
-                                break;
-
-                            case "throw dices":
-                                notifyObserver(new ThrowDices());
-                                break;
-
-                            case "family pawn chosen":
-                                FamilyPawnType familyPawnType = (FamilyPawnType)socketIn.readObject();
-                                notifyObserver(new UsePawnChosen(familyPawnType));
-                                break;
-
-                            case "skip action":
-                                notifyObserver(new SkipAction());
-                                break;
-
-                            case "end turn":
-                                notifyObserver(new EndTurn());
-                                break;
-
-                            case "execute action":
-                                int actionIndex = (int)socketIn.readObject();
-                                notifyObserver(new ExecuteAction(actionIndex));
-                                break;
-
-                            case "number of workers":
-                                int workers = (int)socketIn.readObject();
-                                notifyObserver(new ActivateCards(workers));
-                                break;
-
-                            case "pay to obtain cards chosen":
-                                Map<String, Integer> activatedCardMap = (Map<String, Integer>)socketIn.readObject();
-                                notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
-                                break;
 
 
-                            case "cost chosen":
-                                int costChosen = (int)socketIn.readObject();
-                                notifyObserver(new PayCard(costChosen));
-                                break;
+            try {
 
-                            case "council privileges chosen":
-                                List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
-                                notifyObserver(new PrivilegeChosen(councilPrivileges));
-                                break;
+                Object object = socketIn.readObject();
 
-                            /*case "council privileges chosen leader":
-                                councilPrivileges = (List<Integer>)socketIn.readObject();
-                                PlayerColor playerColor = (PlayerColor)socketIn.readObject();
-                                notifyObserver(new PrivilegeChosenLeader(councilPrivileges, playerColor));
-                                break;*/
-
-                            case "pray":
-                                playerColor = (PlayerColor)socketIn.readObject();
-                                notifyObserver(new Pray(true, playerColor));
-                                break;
-
-                            case "do not pray":
-                                playerColor = (PlayerColor)socketIn.readObject();
-                                notifyObserver(new Pray(false, playerColor));
-                                break;
-
-                            case "use leader cards GUI":
-                                playerColor = (PlayerColor)socketIn.readObject();
-                                notifyObserver(new UseLeaderCardsGUI(playerColor));
-                                break;
-
-                            case "activate leader card":
-                                int index = (Integer)socketIn.readObject();
-                                playerColor = (PlayerColor)socketIn.readObject();
-                                notifyObserver(new LeaderAction(true, index, playerColor));
-                                break;
-
-                            case "discard leader card":
-                                System.out.println("DISCARDING LEADER FROM SERVER\n\n");
-                                index = (Integer)socketIn.readObject();
-                                playerColor = (PlayerColor)socketIn.readObject();
-                                notifyObserver(new LeaderAction(false, index, playerColor));
-                                break;
-
-                            case "join game":
-                                playerColor = (PlayerColor)socketIn.readObject();
-                                notifyObserver(new JoinGame(playerColor));
-                                break;
-
-                            case "end game":
-
-                                logoutInterface.getClientMatch().remove(username);
-
-                                try {
-                                    notifyObserver(new Closed());
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                return;
-
-
-                        }
-                    }
-
-                } catch (ClassNotFoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (Exception e){
-                    System.out.println("ECCEZIONE CATCHATA IN RUN");
-                    handleDisconnection();
-                    b = false;
-                    try {
-                        this.socket.close();
-                        this.socketIn.close();
-                        this.socketOut.close();
-                        System.out.println("SOCKET CHIUSI");
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                    System.out.println("SONO USCITO DA HANDLE DISCONNECTION");
+                // Il server riceve una query dal ClientOut
+                if (object instanceof Query) {
+                    handleQuery((Query)object);
                 }
-                /*catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
+
+                if (object instanceof String) {
+                    String string = (String)object;
+
+                    System.out.println("la stringa ricevuta è" + string);
+
+                    switch (string) {
+
+                        case "bonus tile":
+                            int bonusTile = (int)socketIn.readObject();
+                            notifyObserver(new BonusTileChosen(bonusTile));
+                            break;
+
+                        case "throw dices":
+                            notifyObserver(new ThrowDices());
+                            break;
+
+                        case "family pawn chosen":
+                            FamilyPawnType familyPawnType = (FamilyPawnType)socketIn.readObject();
+                            notifyObserver(new UsePawnChosen(familyPawnType));
+                            break;
+
+                        case "skip action":
+                            notifyObserver(new SkipAction());
+                            break;
+
+                        case "end turn":
+                            notifyObserver(new EndTurn());
+                            break;
+
+                        case "execute action":
+                            int actionIndex = (int)socketIn.readObject();
+                            notifyObserver(new ExecuteAction(actionIndex));
+                            break;
+
+                        case "number of workers":
+                            int workers = (int)socketIn.readObject();
+                            notifyObserver(new ActivateCards(workers));
+                            break;
+
+                        case "pay to obtain cards chosen":
+                            Map<String, Integer> activatedCardMap = (Map<String, Integer>)socketIn.readObject();
+                            notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
+                            break;
+
+
+                        case "cost chosen":
+                            int costChosen = (int)socketIn.readObject();
+                            notifyObserver(new PayCard(costChosen));
+                            break;
+
+                        case "council privileges chosen":
+                            List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
+                            notifyObserver(new PrivilegeChosen(councilPrivileges));
+                            break;
+
+                        case "pray":
+                            playerColor = (PlayerColor)socketIn.readObject();
+                            notifyObserver(new Pray(true, playerColor));
+                            break;
+
+                        case "do not pray":
+                            playerColor = (PlayerColor)socketIn.readObject();
+                            notifyObserver(new Pray(false, playerColor));
+                            break;
+
+                        case "use leader cards GUI":
+                            playerColor = (PlayerColor)socketIn.readObject();
+                            notifyObserver(new UseLeaderCardsGUI(playerColor));
+                            break;
+
+                        case "activate leader card":
+                            int index = (Integer)socketIn.readObject();
+                            playerColor = (PlayerColor)socketIn.readObject();
+                            notifyObserver(new LeaderAction(true, index, playerColor));
+                            break;
+
+                        case "discard leader card":
+                            System.out.println("DISCARDING LEADER FROM SERVER\n\n");
+                            index = (Integer)socketIn.readObject();
+                            playerColor = (PlayerColor)socketIn.readObject();
+                            notifyObserver(new LeaderAction(false, index, playerColor));
+                            break;
+
+                        case "join game":
+                            playerColor = (PlayerColor)socketIn.readObject();
+                            notifyObserver(new JoinGame(playerColor));
+                            break;
+
+                        case "end game":
+
+                            logoutInterface.getClientMatch().remove(username);
+                            notifyObserver(new Closed());
+                            return;
+
+
+                    }
+                }
+            } catch (IOException e) {
+                LOGGER.info((Supplier<String>) e);
+            } catch (ClassNotFoundException e) {
+                LOGGER.info((Supplier<String>) e);
+            } catch (Exception e){
+                System.out.println("ECCEZIONE CATCHATA IN RUN");
+                handleDisconnection();
+                b = false;
+                try {
+                    this.socket.close();
+                    this.socketIn.close();
+                    this.socketOut.close();
+                    System.out.println("SOCKET CHIUSI");
+                } catch (IOException e1) {
+                    LOGGER.info((Supplier<String>) e);
+                }
+                System.out.println("SONO USCITO DA HANDLE DISCONNECTION");
             }
+        }
 
     }
 
@@ -235,25 +217,6 @@ public class ServerSocketView extends View implements Runnable {
 
         System.out.println("VIEW: received the query " + q);
 
-        /*if (q instanceof GetFamilyPawns) {
-
-            try {
-                socketOut.writeObject("Family Pawn Availability");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            GetFamilyPawnAvailability query = (GetFamilyPawnAvailability) q;
-
-            Map<FamilyPawnType, Boolean> familyPawnAvailability = query.perform(model);
-            try {
-                this.socketOut.writeObject(familyPawnAvailability);
-                this.socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
 
         if (q instanceof GetAvailableLeaderCards) {
 
@@ -278,14 +241,6 @@ public class ServerSocketView extends View implements Runnable {
         }
 
         if (q instanceof GetValidActions) {
-/*
-            try {
-                socketOut.writeObject("Valid Actions");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
 
             sendOut("Valid Actions");
 
@@ -297,14 +252,7 @@ public class ServerSocketView extends View implements Runnable {
         }
 
         if (q instanceof GetCardsForWorkers) {
-/*
-            try {
-                socketOut.writeObject("Get Cards For Workers");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
+
 
             sendOut("Get Cards For Workers");
 
@@ -317,14 +265,6 @@ public class ServerSocketView extends View implements Runnable {
         }
 
         if (q instanceof GetPossibleCosts) {
-/*
-            try {
-                socketOut.writeObject("Get Possible Costs");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
 
             sendOut("Get Possible Costs");
 
@@ -336,14 +276,6 @@ public class ServerSocketView extends View implements Runnable {
         }
 
         if (q instanceof GetCouncilPrivileges) {
-/*
-            try {
-                socketOut.writeObject("Get Council Privileges");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
 
             sendOut("Get Council Privileges");
 
@@ -355,16 +287,6 @@ public class ServerSocketView extends View implements Runnable {
         }
 
         if (q instanceof GetGoodSet) {
-/*
-            try {
-                socketOut.writeObject("Get GoodSet");
-                socketOut.flush();
-                this.socketOut.reset();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
 
             sendOut("Get GoodSet");
 
@@ -376,14 +298,6 @@ public class ServerSocketView extends View implements Runnable {
         }
 
         if (q instanceof GetDevelopmentCard) {
-/*
-            try {
-                socketOut.writeObject("Get Development Cards");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
 
             sendOut("Get Development Cards");
 
@@ -395,14 +309,6 @@ public class ServerSocketView extends View implements Runnable {
         }
 
         if (q instanceof GetTowerCard) {
-/*
-            try {
-                socketOut.writeObject("Get Tower Cards");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
 
             sendOut("Get Tower Cards");
 
@@ -415,14 +321,6 @@ public class ServerSocketView extends View implements Runnable {
         }
 
         if (q instanceof GetFamilyPawnAvailability) {
-/*
-            try {
-                socketOut.writeObject("Get Family Pawns Availability");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
 
             sendOut("Get Family Pawns Availability");
 
@@ -436,16 +334,6 @@ public class ServerSocketView extends View implements Runnable {
 
         if (q instanceof GetBonusTile) {
 
-            /*
-
-            try {
-                socketOut.writeObject("Get Bonus Tile");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
-
             sendOut("Get Bonus Tile");
 
             GetBonusTile query = (GetBonusTile) q;
@@ -457,14 +345,6 @@ public class ServerSocketView extends View implements Runnable {
 
         if (q instanceof GetPayToObtainCards) {
 
-            /*
-            try {
-                socketOut.writeObject("Get Pay To Obtain Cards");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
             sendOut("Get Pay To Obtain Cards");
 
 
@@ -477,15 +357,6 @@ public class ServerSocketView extends View implements Runnable {
         }
 
         if (q instanceof GetExcommunication) {
-
-            /*
-            try {
-                socketOut.writeObject("Get Excommunication");
-                socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            */
 
             sendOut("Get Excommunication");
 
@@ -512,8 +383,7 @@ public class ServerSocketView extends View implements Runnable {
             this.socketOut.flush();
 
         } catch (IOException e) {
-            System.out.println("ECCEZIONE CATCHATA IN SENDOUT");
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -521,13 +391,9 @@ public class ServerSocketView extends View implements Runnable {
         model.getPlayer(playerColor).unregisterObserver(this);
         model.unregisterObserver(this);
         logoutInterface.clientDisconnected(model.getPlayer(playerColor).getPlayerID());
-        System.out.println("CLIENT DISCONNECTED. CLIENT SUSPENDED");
-        //gameStatus.getPlayer(playerColor).setPlayerState(PlayerState.SUSPENDED);
-        try {
-            notifyObserver(new Disconnection(playerColor));
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
+
+        notifyObserver(new Disconnection(playerColor));
+
     }
 
 }

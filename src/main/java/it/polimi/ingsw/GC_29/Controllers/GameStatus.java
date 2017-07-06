@@ -7,6 +7,8 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import  it.polimi.ingsw.GC_29.Server.Observable;
 
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Icedoom on 19/05/2017.
@@ -14,6 +16,7 @@ import java.util.*;
 public class GameStatus extends Observable<Change>{
 
 
+    private static final Logger LOGGER = Logger.getLogger(GameStatus.class.getName());
     /*private GameEvent gameEvent;*/
     private GameState gameState;
 
@@ -153,9 +156,14 @@ public class GameStatus extends Observable<Change>{
         return gameState;
     }
 
-    public void setGameState(GameState gameState) throws Exception {
+    public void setGameState(GameState gameState) {
         this.gameState = gameState;
-        notifyObserver(new GameChange(this.gameState));
+        try {
+            notifyObserver(new GameChange(this.gameState));
+        } catch (Exception e) {
+            LOGGER.info((Supplier<String>) e);
+
+        }
     }
 
     public Action getCurrentAction() {

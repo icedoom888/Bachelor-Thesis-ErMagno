@@ -29,7 +29,6 @@ public class ClientSocketGUI {
     private ObjectOutputStream socketOut;
 
 
-    private ClientOutHandlerGUI clientOutHandlerGUI;
     private ClientInHandlerGUI clientInHandlerGUI;
 
 
@@ -83,15 +82,12 @@ public class ClientSocketGUI {
 
             if (logged) {
 
-                //TODO schermata di login successful
-
                 //outVideo.println("Login correctly done");
 
                 PlayerColor playerColor = (PlayerColor)socketIn.readObject();
 
                 this.playerColor = playerColor;
 
-                clientInHandlerGUI.setCommonOutSocket(clientOutHandlerGUI.getCommonOutSocket());
                 //clientOutHandlerGUI.setClientInHandlerGUI(clientInHandlerGUI);
 
                 //CommonView commonView = new CommonView();
@@ -101,10 +97,9 @@ public class ClientSocketGUI {
                 // the input checker must be the same for in and out handler
                 InputChecker inputChecker = new InputChecker();
                 inputChecker.setPlayerColor(playerColor);
-                //TODO: incoerenza con il lato cli, assegni il playerColor all'outHandler, quando in realtà l'input checker ha già il playerColor
-                clientOutHandlerGUI.setInputChecker(inputChecker);
                 //clientOutHandlerGUI.setPlayerColor(playerColor);
                 clientInHandlerGUI.setInputChecker(inputChecker);
+                clientInHandlerGUI.getCommonOutSocket().setInputChecker(inputChecker);
 
              }
 
@@ -138,16 +133,15 @@ public class ClientSocketGUI {
 
             //canali di comunicazione
 
-            this.socketOut = new ObjectOutputStream(/*new BufferedOutputStream*/(socket.getOutputStream()));
-            this.socketIn = new ObjectInputStream(/*new BufferedInputStream*/((socket.getInputStream())));
+            this.socketOut = new ObjectOutputStream((socket.getOutputStream()));
+            this.socketIn = new ObjectInputStream(((socket.getInputStream())));
 
 
-            //Creates one thread to send messages to the server
             //Creates one thread to receive messages from the server
 
 
-            this.clientOutHandlerGUI = new ClientOutHandlerGUI(socketOut);
-            this.clientInHandlerGUI = new ClientInHandlerGUI(socketIn);
+            CommonOutSocket commonOutSocket = new CommonOutSocket(socketOut);
+            this.clientInHandlerGUI = new ClientInHandlerGUI(socketIn, commonOutSocket);
 
 
 
@@ -176,7 +170,6 @@ public class ClientSocketGUI {
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
         executor.submit(clientInHandlerGUI);
-        executor.submit(clientOutHandlerGUI);
 
     }
 
@@ -184,10 +177,6 @@ public class ClientSocketGUI {
         return clientInHandlerGUI;
     }
 
-
-    public ClientOutHandlerGUI getClientOutHandlerGUI() {
-        return clientOutHandlerGUI;
-    }
 
     public Socket getSocket() {
         return socket;

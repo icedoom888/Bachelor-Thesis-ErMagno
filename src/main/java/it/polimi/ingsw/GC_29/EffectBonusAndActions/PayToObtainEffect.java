@@ -23,28 +23,17 @@ public class PayToObtainEffect implements Effect{
      * if the cost isn't payable the execution stops: the cost isn't detracted from the status and the @goodsObtained are not added either
      */
     @Override
-    public void execute(Player status) throws Exception {
-
-        System.out.println("eseguo execute della payToObtain");
+    public void execute(Player status) {
 
         if(checkSufficientGoods(status)){
-
-            System.out.println("Resources sufficient to activate!");
 
             cost.setNegative();
 
             status.updateGoodSet(cost);
 
-            System.out.println("The actualGoodSet after the detraction is: "+ "\n"+status.getActualGoodSet());
-
             effect.execute(status);
         }
 
-        else{
-
-            System.out.println("Resources not sufficient!");
-
-        }
     }
 
     /** checkSufficientGoods is used to make sure the price of the effect is payable with the player's resources:
@@ -64,15 +53,6 @@ public class PayToObtainEffect implements Effect{
 
     }
 
-    public void doubleResource() {
-        if (effect instanceof ObtainEffect) {
-            ((ObtainEffect)effect).doubleResources();
-        }
-
-        else if (effect instanceof CouncilPrivilegeEffect) {
-            ((CouncilPrivilegeEffect)effect).doubleResources();
-        }
-    }
 
     @Override
     public String toString() {

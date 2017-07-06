@@ -38,9 +38,6 @@ public class ExcommunicationTile {
         this.effect = effect;
     }
 
-    public ExcommunicationTile(Era first, String prova1, Object malusOnAction, BonusAndMalusOnGoods malusOnGoods, Object malusOnCost, String s) {
-        //TODO: c'è in test
-    }
 
     public Era getEra() {
         return era;
@@ -70,11 +67,11 @@ public class ExcommunicationTile {
         return url;
     }
 
-    public void execute(Player player) throws Exception {
+    public void execute(Player player) {
         if (malusOnAction != null) player.getBonusAndMalusOnAction().add(this.getMalusOnAction());
         if (malusOnGoods != null) player.getBonusAndMalusOnGoods().add(this.getMalusOnGoods());
         if (malusOnCost != null) player.getBonusAndMalusOnCost().add(this.getMalusOnCost());
-        //if (effect != null) effect.execute(player);
+
         player.getExcommunicationTiles().add(this);
 
     }

@@ -53,7 +53,6 @@ public class ChoosePrivilegeController {
     @FXML
     private Button submit;
 
-    //private HashMap<Integer, RadioButton> radioButtons = new HashMap<>();
     private HashMap<Integer, RadioButton> radioButtons = new HashMap<>();
 
 
@@ -147,7 +146,12 @@ public class ChoosePrivilegeController {
             askWhichPrivilege();
         }
 
-        else if (nextPrivilegeEffect()) {
+        /*else if (nextPrivilegeEffect()) {
+            askWhichPrivilege();
+        }*/
+
+        else if (!councilPrivilegeEffectList.isEmpty()) {
+            nextPrivilegeEffect();
             askWhichPrivilege();
         }
 
@@ -157,10 +161,6 @@ public class ChoosePrivilegeController {
                 sender.sendInput(councilPrivilegeEffectChosenList, true);
 
             }
-
-            /*else if (gameBoardController.getPlayerState() == PlayerState.DISCARDINGLEADER) {
-                sender.sendInput(councilPrivilegeEffectChosenList, false);
-            }*/
         }
 
 
@@ -190,30 +190,6 @@ public class ChoosePrivilegeController {
         privilege5.setDisable(false);
         privilege5.setSelected(false);
 
-        /*
-        for(int i = 0; i<5; i++){
-            if (!privileges.contains(i)){
-                switch (i){
-                    case (0):
-                        privilege1.setDisable(true);
-                        break;
-                    case (1):
-                        privilege2.setDisable(true);
-                        break;
-                    case (2):
-                        privilege3.setDisable(true);
-                        break;
-                    case (3):
-                        privilege4.setDisable(true);
-                        break;
-                    case (4):
-                        privilege5.setDisable(true);
-                        break;
-                }
-            }
-        }
-        */
-
         setCouncilPrivilegeEffectList(privileges);
 
         nextPrivilegeEffect();
@@ -236,35 +212,21 @@ public class ChoosePrivilegeController {
         councilPrivilegeEffectChosenList.clear();
     }
 
-    private boolean nextPrivilegeEffect() {
+    private void nextPrivilegeEffect() {
 
-        if (!councilPrivilegeEffectList.isEmpty()) {
+        currentCouncilPrivilegeEffect = councilPrivilegeEffectList.remove(0);
 
-            currentCouncilPrivilegeEffect = councilPrivilegeEffectList.remove(0);
+        for (CouncilPrivilege councilPrivilege : currentCouncilPrivilegeEffect.getParchmentList()) {
 
-            //currentParchmentList = currentCouncilPrivilegeEffect.getParchmentList();
+            Map<Integer, ObtainEffect> temporaryMap = new HashMap<>();
 
-            for (CouncilPrivilege councilPrivilege : currentCouncilPrivilegeEffect.getParchmentList()) {
+            for (int index = 0; index < councilPrivilege.getPossibleObtainEffect().size(); index++) {
 
-                Map<Integer, ObtainEffect> temporaryMap = new HashMap<>();
-
-                for (int index = 0; index < councilPrivilege.getPossibleObtainEffect().size(); index++) {
-
-                    ObtainEffect temporaryObtainEffect = councilPrivilege.getPossibleObtainEffect().get(index);
-
-                    temporaryMap.put(index, temporaryObtainEffect);
-
-                }
-
-                currentParchmentList.add(temporaryMap);
+                ObtainEffect temporaryObtainEffect = councilPrivilege.getPossibleObtainEffect().get(index);
+                temporaryMap.put(index, temporaryObtainEffect);
             }
 
-            return true;
-
-        }
-        else {
-
-            return false;
+            currentParchmentList.add(temporaryMap);
         }
     }
 
@@ -276,9 +238,6 @@ public class ChoosePrivilegeController {
     private void askWhichPrivilege() {
 
         currentParchment = currentParchmentList.remove(0);
-
-        //TODO: impl con indici sempre uguali
-        //TODO: qui va fatto il set degli effetti che possono essere attivi o meno
 
         for (Integer integer : currentParchment.keySet()) {
             radioButtons.get(integer).setDisable(false);

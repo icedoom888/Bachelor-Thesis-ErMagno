@@ -20,7 +20,7 @@ public class PrivilegeChosen extends Input {
 
 
     @Override
-    public void perform(GameStatus model, Controller controller) throws Exception {
+    public void perform(GameStatus model, Controller controller) {
 
         CouncilPrivilege councilPrivilege = new CouncilPrivilege();
 

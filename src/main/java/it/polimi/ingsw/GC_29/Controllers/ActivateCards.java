@@ -16,9 +16,7 @@ public class ActivateCards extends Input {
     }
 
     @Override
-    public void perform(GameStatus model, Controller controller) throws Exception {
-
-        System.out.println("perform activate cards");
+    public void perform(GameStatus model, Controller controller) {
 
         Player currentPlayer = model.getCurrentPlayer();
 
@@ -27,20 +25,5 @@ public class ActivateCards extends Input {
 
         controller.handlePayToObtainCards(workAction, currentPlayer, workersChosen);
 
-        /*if(workAction.handlePayToObtainCards(workersChosen)){
-
-            System.out.println("puoi attivare la payToObtain");
-
-            model.getCurrentPlayer().setPlayerState(PlayerState.ACTIVATE_PAY_TO_OBTAIN_CARDS);
-
-        }
-
-        else{
-
-            workAction.execute();
-
-            controller.handleEndAction();
-
-        }*/
     }
 }

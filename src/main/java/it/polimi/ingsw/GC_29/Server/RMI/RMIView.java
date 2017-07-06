@@ -64,11 +64,8 @@ public class RMIView extends View implements RMIViewRemote {
             gameStatus.getPlayer(playerColor).unregisterObserver(this);
             gameStatus.unregisterObserver(this);
             logoutInterface.clientDisconnected(username);
-            try {
-                notifyObserver(new Disconnection(playerColor));
-            } catch (Exception e1) {
-                LOGGER.info((Supplier<String>) e1);
-            }
+            notifyObserver(new Disconnection(playerColor));
+
 
             LOGGER.info((Supplier<String>) e);
         }
@@ -76,48 +73,38 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public void skipAction() throws RemoteException{
-        try {
-            notifyObserver(new SkipAction());
-        } catch (Exception e) {
-            LOGGER.info(e.getMessage());
-        }
+
+        notifyObserver(new SkipAction());
+
     }
 
     @Override
     public void usePawnChosen(FamilyPawnType familyPawnType) throws RemoteException{
-        try {
-            notifyObserver(new UsePawnChosen(familyPawnType));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new UsePawnChosen(familyPawnType));
+
 
     }
 
     @Override
     public void endTurn() throws RemoteException{
-        try {
-            notifyObserver(new EndTurn());
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new EndTurn());
+
     }
 
     @Override
     public void pray(boolean b, PlayerColor playerColor) throws RemoteException{
-        try {
-            notifyObserver(new Pray(b, playerColor));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new Pray(b, playerColor));
+
     }
 
     @Override
     public void initialize(PlayerColor playerColor) throws RemoteException {
-        try {
-            notifyObserver(new Initialize(playerColor));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new Initialize(playerColor));
+
     }
 
     @Override
@@ -155,11 +142,9 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public void throwDices() throws RemoteException {
-        try {
-            notifyObserver(new ThrowDices());
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new ThrowDices());
+
     }
 
     @Override
@@ -191,11 +176,9 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public void bonusTileChosen(int bonusTileChosen) throws RemoteException {
-        try {
-            notifyObserver(new BonusTileChosen(bonusTileChosen));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new BonusTileChosen(bonusTileChosen));
+
     }
 
     @Override
@@ -205,20 +188,16 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public void joinGame(PlayerColor playerColor) throws RemoteException {
-        try {
-            notifyObserver(new JoinGame(playerColor));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new JoinGame(playerColor));
+
     }
 
     @Override
     public void leaderAction(boolean b, int index, PlayerColor playerColor) throws RemoteException{
-        try {
-            notifyObserver(new LeaderAction(b, index, playerColor));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new LeaderAction(b, index, playerColor));
+
     }
 
     @Override
@@ -233,22 +212,17 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public void useLeaderCardGui(PlayerColor playerColor) throws RemoteException {
-        try {
-            notifyObserver(new UseLeaderCardsGUI(playerColor));
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
-        }
+
+        notifyObserver(new UseLeaderCardsGUI(playerColor));
+
     }
 
     @Override
     public void endGame() throws RemoteException {
         logoutInterface.getClientMatch().remove(username);
 
-        try {
-            notifyObserver(new Closed());
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+        notifyObserver(new Closed());
+
     }
 
     @Override
@@ -258,11 +232,8 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public void activateCards(int workersChosen) throws RemoteException {
-        try {
-            notifyObserver(new ActivateCards(workersChosen));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new ActivateCards(workersChosen));
     }
 
     @Override
@@ -302,11 +273,8 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public void payToObtainCardChosen(Map<String, Integer> activatedCardMap) throws RemoteException {
 
-        try {
-            notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+        notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
+
     }
 
     @Override
@@ -327,12 +295,9 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public void privilegesChosen(List<Integer> councilPrivilegeEffectChosenList) throws RemoteException {
-        try {
-            notifyObserver(new PrivilegeChosen(councilPrivilegeEffectChosenList));
-            System.out.println("OBSERVER PRIVILEGI");
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new PrivilegeChosen(councilPrivilegeEffectChosenList));
+
     }
 
     @Override
@@ -349,11 +314,9 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public void chooseCost(int costChosen) {
-        try {
-            notifyObserver(new PayCard(costChosen));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+
+        notifyObserver(new PayCard(costChosen));
+
     }
 
 
@@ -366,11 +329,7 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public void doAction(int index) throws RemoteException {
 
-        try {
-            notifyObserver(new ExecuteAction(index));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+        notifyObserver(new ExecuteAction(index));
 
     }
 

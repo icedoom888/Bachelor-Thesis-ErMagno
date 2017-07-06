@@ -5,6 +5,9 @@ import it.polimi.ingsw.GC_29.Components.GoodSet;
 import it.polimi.ingsw.GC_29.Components.GoodType;
 import it.polimi.ingsw.GC_29.Player.Player;
 
+import java.util.function.Supplier;
+import java.util.logging.Logger;
+
 
 /**
  * Created by Christian on 18/05/2017.
@@ -12,6 +15,7 @@ import it.polimi.ingsw.GC_29.Player.Player;
 
 public class ObtainEffect implements Effect {
 
+    private transient static final Logger LOGGER = Logger.getLogger(ObtainEffect.class.getName());
 
     protected GoodSet goodsObtained;
 
@@ -37,10 +41,10 @@ public class ObtainEffect implements Effect {
 
 
     @Override
-    public void execute(Player status) throws Exception {
+    public void execute(Player status) {
 
-        //GoodSet newGoodsObtained = activateBonusMalusOnGoods(status,goodsObtained);
         Filter.apply(status, goodsObtained);
+
         status.updateGoodSet(goodsObtained);
     }
 

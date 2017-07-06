@@ -25,8 +25,6 @@ public class UsePawnChosen extends Input {
 
         player = model.getCurrentPlayer();
 
-        // TODO: inserire qui o a lato client un controllo sulla disponibilità della pedina
-
         FamilyPawn familyPawn = player.getFamilyPawn(familyPawnType);
 
         ActionChecker actionChecker = controller.getActionChecker();

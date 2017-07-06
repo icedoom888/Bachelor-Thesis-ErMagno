@@ -14,8 +14,6 @@ public class CouncilPrivilegeEffect implements Effect {
 
     private List<CouncilPrivilege> parchmentList;
 
-    private Boolean modified = false; //TODO: da rivedere, orribile
-
     public CouncilPrivilegeEffect(int numberOfCouncilPrivileges) {
 
         this.numberOfCouncilPrivileges = numberOfCouncilPrivileges;
@@ -43,7 +41,7 @@ public class CouncilPrivilegeEffect implements Effect {
      * sums all the bonuses.
      * Then it updates the player's goodSet.
      */
-    public void execute(Player status) throws Exception {
+    public void execute(Player status) {
 
         status.getCouncilPrivilegeEffectList().add(this);
 
@@ -57,7 +55,4 @@ public class CouncilPrivilegeEffect implements Effect {
                 + '}';
     }
 
-    public void doubleResources() {
-        this.modified = true;
-    }
 }

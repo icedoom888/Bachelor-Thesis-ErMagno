@@ -8,8 +8,6 @@ import it.polimi.ingsw.GC_29.Player.Player;
  */
 public class BonusEffect implements Effect {
 
-    //TODO: cambiare execute non come permanent
-
     private BonusAndMalusOnAction bonusAndMalusOnAction;
     private BonusAndMalusOnGoods bonusAndMalusOnGoods;
     private BonusAndMalusOnCost bonusAndMalusOnCost;
