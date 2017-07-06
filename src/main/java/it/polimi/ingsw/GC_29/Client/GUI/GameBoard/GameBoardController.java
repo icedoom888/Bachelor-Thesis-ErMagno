@@ -1710,6 +1710,7 @@ public class GameBoardController {
      * @param playerIds
      */
     public void reconnectPlayers(List<String> playerIds){
+        System.out.println(playerIds);
         reconnectedPlayersController.updateReconnectedPlayers(playerIds);
         reconnectedPlayersPane.setVisible(true);
         PauseTransition delay = new PauseTransition(Duration.seconds(4));
