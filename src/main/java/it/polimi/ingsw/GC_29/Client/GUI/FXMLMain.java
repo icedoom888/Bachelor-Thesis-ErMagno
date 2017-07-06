@@ -35,7 +35,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
@@ -255,6 +254,18 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         loginStage.centerOnScreen();
         loginStage.show();
 
+        loginStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+
+                // consume event
+                event.consume();
+                //Platform.exit();
+
+            }
+        });
+
+
 
         loginController = loader.getController();
 
@@ -281,17 +292,17 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         gameboardStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
         AnchorPane gameboardRoot = null;
-        /*gameboardStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        gameboardStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
 
                 // consume event
                 event.consume();
                 //TODO: gestire qui la disconnessione e la terminazione del processo client
-                Platform.exit();
+                //Platform.exit();
 
             }
-        });*/
+        });
 
 
         try {

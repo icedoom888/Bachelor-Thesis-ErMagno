@@ -8,6 +8,7 @@ import javafx.scene.control.SplitPane;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Created by AlbertoPennino on 20/06/2017.
@@ -30,6 +31,8 @@ public class LoginGUI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+
 
         System.out.println("Sono dentro a login");
 

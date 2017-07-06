@@ -242,9 +242,9 @@ public class Controller implements Observer<Input>  {
 
             actionChecker.setCurrentPlayer();
 
-            firstPlayer.setPlayerState(PlayerState.DOACTION);
-
             model.notifyEndMove();
+
+            firstPlayer.setPlayerState(PlayerState.DOACTION);
 
             startTimer(firstPlayer);
 
