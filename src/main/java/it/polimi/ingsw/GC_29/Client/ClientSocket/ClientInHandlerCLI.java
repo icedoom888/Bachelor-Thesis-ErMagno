@@ -117,6 +117,30 @@ public class ClientInHandlerCLI implements Runnable {
 
             handlleGameState((GameChange)c);
         }
+
+        if(c instanceof ReconnectionChange){
+
+            handleReconnection((ReconnectionChange)c);
+        }
+
+        if(c instanceof PlayerDisconnectedChange){
+
+            handlePlayerDisconnected((PlayerDisconnectedChange)c);
+        }
+    }
+
+    private void handlePlayerDisconnected(PlayerDisconnectedChange c) {
+        System.out.println("THE FOLLOWING PLAYER IS DISCONNECTED: " +c.getUsername());
+
+    }
+
+    private void handleReconnection(ReconnectionChange c) {
+        System.out.println("THE FOLLOWING PLAYERS ARE BACK IN THE GAME: ");
+
+        for (String s : c.getReconnectedPlayerUsernames()) {
+
+            System.out.println(s.toUpperCase());
+        }
     }
 
     private void handlleGameState(GameChange currentGameChange) {

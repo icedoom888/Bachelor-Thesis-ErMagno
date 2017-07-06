@@ -782,6 +782,32 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
     }
 
+    private void reconnectedPlayers(List<String> reconnectedPlayerUsernames) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.reconnectPlayers(reconnectedPlayerUsernames);
+
+
+            }
+        });
+    }
+
+    private void disconnectedPlayers(String username) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.disconnectedPlayer(username);
+
+
+            }
+        });
+    }
+
 
 
 
@@ -917,8 +943,20 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             endGameGui(winner);
         }
 
+        @Override
+        public void showDisconnectedPlayer(String username) {
+            disconnectedPlayers(username);
+        }
+
+        @Override
+        public void showReconnectedPlayers(List<String> reconnectedPlayerUsernames) {
+            reconnectedPlayers(reconnectedPlayerUsernames);
+
+        }
+
 
     }
+
 
 
 

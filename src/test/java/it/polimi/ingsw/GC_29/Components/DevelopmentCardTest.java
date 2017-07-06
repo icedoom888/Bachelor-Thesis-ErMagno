@@ -32,6 +32,12 @@ public class DevelopmentCardTest {
 
         gameSetup.init();
 
+        gameSetup.setExcommunicationTiles();
+
+        gameSetup.setGoodsForPlayers();
+
+        gameSetup.setLeaderCards();
+
         GameStatus model = gameSetup.getGameStatus();
 
         Controller controller = null;
