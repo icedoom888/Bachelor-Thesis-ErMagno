@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.InputChecker;
-import it.polimi.ingsw.GC_29.Components.CardColor;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
@@ -9,6 +8,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
+import java.util.logging.*;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -20,9 +20,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
     private transient RMIViewRemote serverViewStub;
 
-    private List<String> playerDevCard;
-
-    private Map<CardColor, List<String>> towerCardsMap;
+    private transient static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
 
     public ClientRMIView(){
@@ -30,7 +28,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
         try {
             UnicastRemoteObject.exportObject(this, 0);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
 
     }
@@ -48,7 +46,9 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
     @Override
     public void updateClient(Change c) throws RemoteException {
         // Just prints what was received from the server
-        System.out.println(c);
+
+
+        System.out.println((c));
 
         if(c instanceof PlayerStateChange){
 
@@ -113,7 +113,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
             String winner = ((EndGame)currentGameChange).getWinner();
 
-            System.out.println("THE GAME IS ENDED. THE WINNER IS " + winner + "!\n");
+            System.out.println("THE GAME IS ENDED. THE WINNER IS " + winner + "!");
 
             System.out.println("IN A FEW SECONDS THE GAME WILL BE TERMINATED");
 
@@ -193,28 +193,8 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
                 System.out.println("you have to decide whether to swear fidelity to the pope or not \n the valid input is : pray / do not pray");
                 break;
 
-            //TODO: inserire gestione altri stati se necessario
-        }
-    }
-
-
-    public void getPlayerDevCard() throws RemoteException {
-
-        playerDevCard = serverViewStub.getDevelopmentCard(inputChecker.getPlayerCardColor());
-
-        for (String s : playerDevCard) {
-            System.out.println(s);
-        }
-    }
-
-    public void getTowerCard() throws RemoteException {
-
-        List<String> towerCards = serverViewStub.getTowerCards(inputChecker.getTowerCardColor());
-
-        towerCardsMap.put(inputChecker.getTowerCardColor(), towerCards);
-
-        for (String towerCard : towerCards) {
-            System.out.println(towerCard);
+            default:
+                break;
         }
     }
 
