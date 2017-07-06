@@ -945,6 +945,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
         @Override
         public void showDisconnectedPlayer(String username) {
+            System.out.println("\n\n PLAYER DISCONNESSO: " + username);
             disconnectedPlayers(username);
         }
 
