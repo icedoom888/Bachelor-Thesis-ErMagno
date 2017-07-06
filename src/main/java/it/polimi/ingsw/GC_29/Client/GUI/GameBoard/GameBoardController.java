@@ -1694,7 +1694,7 @@ public class GameBoardController {
 
 
     /**
-     * Shows the disconnectedPlayerPane and show the player that disconnected form the game
+     * Shows the disconnectedPlayerPane and show the players that disconnected form the game
      * @param playerId
      */
     public void disconnectedPlayer(List<String> playerId){
@@ -1739,8 +1739,7 @@ public class GameBoardController {
     }
 
     /**
-     * Setta lo stato in cui si trova il Giocatore, e a seconda dello stato mostra le schermate relative
-     * e attiva/disattiva alcuni pulsanti
+     * Sets the current player status and shows the relative panes
      * @param newPlayerState
      */
     public void setState(PlayerState newPlayerState) {
