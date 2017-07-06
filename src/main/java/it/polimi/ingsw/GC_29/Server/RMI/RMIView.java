@@ -12,8 +12,10 @@ import it.polimi.ingsw.GC_29.Server.View;
 
 import java.rmi.RemoteException;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  * Created by Christian on 07/06/2017.
@@ -62,12 +64,13 @@ public class RMIView extends View implements RMIViewRemote {
             gameStatus.getPlayer(playerColor).unregisterObserver(this);
             gameStatus.unregisterObserver(this);
             logoutInterface.clientDisconnected(username);
-            LOGGER.log(Level.SEVERE, "CLIENT DISCONNECTED. CLIENT SUSPENDED");
             try {
                 notifyObserver(new Disconnection(playerColor));
             } catch (Exception e1) {
-                LOGGER.log(Level.SEVERE, e1.getMessage());
+                LOGGER.info((Supplier<String>) e1);
             }
+
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -76,7 +79,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new SkipAction());
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info(e.getMessage());
         }
     }
 
@@ -85,7 +88,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new UsePawnChosen(familyPawnType));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
 
     }
@@ -95,7 +98,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new EndTurn());
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -104,7 +107,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new Pray(b, playerColor));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -113,7 +116,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new Initialize(playerColor));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -155,7 +158,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new ThrowDices());
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -191,7 +194,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new BonusTileChosen(bonusTileChosen));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -205,7 +208,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new JoinGame(playerColor));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -214,7 +217,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new LeaderAction(b, index, playerColor));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -244,7 +247,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new Closed());
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -258,7 +261,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new ActivateCards(workersChosen));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -302,7 +305,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -328,7 +331,7 @@ public class RMIView extends View implements RMIViewRemote {
             notifyObserver(new PrivilegeChosen(councilPrivilegeEffectChosenList));
             System.out.println("OBSERVER PRIVILEGI");
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -349,7 +352,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new PayCard(costChosen));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -366,7 +369,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new ExecuteAction(index));
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
 
     }

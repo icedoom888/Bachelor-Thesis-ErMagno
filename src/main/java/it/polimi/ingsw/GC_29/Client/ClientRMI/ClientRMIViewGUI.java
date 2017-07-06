@@ -6,11 +6,12 @@ import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
-import java.io.PrintStream;
+
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.logging.*;
 
 /**
@@ -25,17 +26,11 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
 
     public ClientRMIViewGUI(){
 
-
-
-        LOGGER.setLevel(Level.ALL);
-        ConsoleHandler handler = new ConsoleHandler();
-        handler.setFormatter(new SimpleFormatter());
-        LOGGER.addHandler(handler);
         //rende remota questa classe
         try {
             UnicastRemoteObject.exportObject(this, 0);
         } catch (RemoteException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
 
         }
     }

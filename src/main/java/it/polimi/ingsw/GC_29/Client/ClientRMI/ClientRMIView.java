@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.logging.*;
 
 /**
@@ -28,7 +29,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
         try {
             UnicastRemoteObject.exportObject(this, 0);
         } catch (RemoteException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
+            LOGGER.info((Supplier<String>) e);
         }
 
     }
