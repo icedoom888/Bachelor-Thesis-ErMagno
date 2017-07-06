@@ -41,7 +41,7 @@ public class TowerAction extends Action {
 
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
 
         super.payWorkers();
         super.addPawn();
@@ -325,7 +325,7 @@ public class TowerAction extends Action {
     /**
      * This method activates all the immediate effects of the selected card
      */
-    private void activateCardEffects() throws Exception {
+    private void activateCardEffects() {
 
         List<Effect> immediateEffects = this.cardSelected.getImmediateEffect();
 

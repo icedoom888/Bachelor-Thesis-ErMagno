@@ -50,10 +50,12 @@ public class Market implements Cleanable {
 
     public String toTable() {
         AsciiTable marketTable = new AsciiTable();
-        for (ShopName shopName : houses.keySet()) {
+
+        for (Map.Entry<ShopName, ActionSpace> shopNameActionSpaceEntry : houses.entrySet()) {
             marketTable.addRule();
-            marketTable.addRow(shopName, houses.get(shopName).toString());
+            marketTable.addRow(shopNameActionSpaceEntry.getKey(), shopNameActionSpaceEntry.getValue().toString());
         }
+
 
         return "\n\n\n" + "MARKET \n\n" + marketTable.render();
     }

@@ -14,8 +14,6 @@ public class CouncilPrivilegeEffect implements Effect {
 
     private List<CouncilPrivilege> parchmentList;
 
-    private Boolean modified = false; //TODO: da rivedere, orribile
-
     public CouncilPrivilegeEffect(int numberOfCouncilPrivileges) {
 
         this.numberOfCouncilPrivileges = numberOfCouncilPrivileges;
@@ -57,7 +55,4 @@ public class CouncilPrivilegeEffect implements Effect {
                 + '}';
     }
 
-    public void doubleResources() {
-        this.modified = true;
-    }
 }

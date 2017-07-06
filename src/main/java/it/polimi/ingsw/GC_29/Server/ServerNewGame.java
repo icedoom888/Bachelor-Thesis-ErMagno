@@ -250,11 +250,8 @@ public class ServerNewGame implements Runnable {
 
         for (ServerSocketView serverSocketView : serverSocketViews.keySet()) {
 
-            try {
-                serverSocketView.notifyObserver(new Initialize(serverSocketViews.get(serverSocketView).getPlayerColor()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            serverSocketView.notifyObserver(new Initialize(serverSocketViews.get(serverSocketView).getPlayerColor()));
+
 
             executorService.submit(serverSocketView);
 

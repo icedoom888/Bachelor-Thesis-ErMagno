@@ -21,7 +21,7 @@ public class CouncilPalaceAction extends Action {
 
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
 
         super.payWorkers();
         super.addPawn();
@@ -51,7 +51,7 @@ public class CouncilPalaceAction extends Action {
         }
     }
 
-    private void executeCouncilPrivilegeEffect() throws Exception {
+    private void executeCouncilPrivilegeEffect() {
         ((CouncilPalaceActionSpace) actionSpaceSelected).getEffect_2().execute(player);
     }
 

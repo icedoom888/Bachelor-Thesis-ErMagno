@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
+import it.polimi.ingsw.GC_29.Server.ObserverException;
 import it.polimi.ingsw.GC_29.Server.ServerNewGame;
 import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
 
@@ -60,10 +61,20 @@ public class Controller implements Observer<Input>  {
         createActions();
     }
 
-    public void update(Input input) throws Exception {
+    public void update(Input input) {
         System.out.println("I AM THE CONTROLLER UPDATING THE MODEL");
-        Observer.super.update(input);
-        input.perform(model, this);
+
+        try {
+            Observer.super.update(input);
+        } catch (ObserverException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            input.perform(model, this);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -72,7 +83,7 @@ public class Controller implements Observer<Input>  {
 
     }
 
-    public void handleEndRound() throws Exception {
+    public void handleEndRound() {
 
         System.out.println("handle end round del controller");
 
@@ -102,9 +113,7 @@ public class Controller implements Observer<Input>  {
      *
      * @throws Exception
      */
-    public void setNewRound() throws Exception {
-
-        System.out.println("set new round del controller");
+    public void setNewRound() {
 
         setFamilyPawnsAndLeaderValues();
         setNewTurnOrder();
@@ -220,7 +229,7 @@ public class Controller implements Observer<Input>  {
 
     }
 
-    public void chooseCurrentPlayer(Integer index) throws Exception {
+    public void chooseCurrentPlayer(Integer index) {
 
         Player firstPlayer = model.getTurnOrder().get(index);
 
@@ -270,7 +279,7 @@ public class Controller implements Observer<Input>  {
      * @return a List of players that have sufficient faithPoints
      *
      */
-    private List<Player> excommunicatePlayers() throws Exception {
+    private List<Player> excommunicatePlayers() {
 
         ArrayList<Player> safePlayers = new ArrayList<>();
 
@@ -301,7 +310,7 @@ public class Controller implements Observer<Input>  {
      * @param player
      * @throws RemoteException
      */
-    public void executeTiles(Player player) throws Exception {
+    public void executeTiles(Player player) {
 
         Era currentEra = model.getCurrentEra();
         ExcommunicationTile tileToExecute = model.getGameBoard().getExcommunicationLane().getExcommunicationTile(currentEra);
@@ -347,7 +356,7 @@ public class Controller implements Observer<Input>  {
     /**
      * endGame calculates the victoryPoints of all the players and chooses the winner
      */
-    public void endGame() throws Exception {
+    public void endGame() {
 
         List<Player> players = model.getTurnOrder();
         Player winner = null;
@@ -398,7 +407,7 @@ public class Controller implements Observer<Input>  {
 
     }
 
-    private void transformResourcesInPoints(Player player) throws Exception {
+    private void transformResourcesInPoints(Player player) {
         int totalResource = 0;
 
         GoodSet playerGoodSet = player.getActualGoodSet();
@@ -416,7 +425,7 @@ public class Controller implements Observer<Input>  {
     }
 
     //TODO: testing
-    private void pointsFromMilitaryPoints() throws Exception {
+    private void pointsFromMilitaryPoints() {
 
         ArrayList<Player> players = new ArrayList<>();
 
@@ -461,7 +470,7 @@ public class Controller implements Observer<Input>  {
 
     }
 
-    private void pointsFromPurpleCards(Player player) throws Exception {
+    private void pointsFromPurpleCards(Player player) {
 
         if (!Filter.applySpecial(player, SpecialBonusAndMalus.NOVICTORYFROMPURPLE) && player.getCardsOwned().get(CardColor.PURPLE) != 0) {
             List<DevelopmentCard> cards =  Arrays.asList(player.getPersonalBoard().getLane(CardColor.PURPLE).getCards());
@@ -482,7 +491,7 @@ public class Controller implements Observer<Input>  {
      * This method calculates how many points the player receives from the number of his blue cards
      * @param player
      */
-    private void pointsFromBlueCards(Player player) throws Exception {
+    private void pointsFromBlueCards(Player player) {
 
         int numberOfBlueCards = player.getCardsOwned().get(CardColor.BLUE);
 
@@ -519,7 +528,7 @@ public class Controller implements Observer<Input>  {
      * This method calculates how many points the player receives from the number of his green cards
      * @param player
      */
-    private void pointsFromGreenCards(Player player) throws Exception {
+    private void pointsFromGreenCards(Player player) {
 
         int numberOfGreenCards = player.getCardsOwned().get(CardColor.GREEN);
 
@@ -536,7 +545,7 @@ public class Controller implements Observer<Input>  {
      * this method set all the availabilities of the family pawns to true and give them the right action value
      * @throws Exception
      */
-    public void setFamilyPawnsAndLeaderValues() throws Exception {
+    public void setFamilyPawnsAndLeaderValues() {
 
         for (Player player : model.getTurnOrder()) {
 

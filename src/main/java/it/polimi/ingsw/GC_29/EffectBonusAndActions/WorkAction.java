@@ -45,7 +45,7 @@ public class WorkAction extends Action {
     }
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
 
         super.payWorkers();
         super.addPawn();
@@ -134,7 +134,7 @@ public class WorkAction extends Action {
     }
 
 
-    public void buildDifferentChoices() throws Exception {
+    public void buildDifferentChoices() {
 
         payWorkers();
         workers = 0;
@@ -463,7 +463,7 @@ public class WorkAction extends Action {
     /**
      * This method activates all the effects selected by the player
      */
-    private void activateEffects() throws Exception {
+    private void activateEffects() {
 
         System.out.println("activate effects");
 
@@ -480,7 +480,7 @@ public class WorkAction extends Action {
         }
     }
 
-    private void activateBonusTile() throws Exception {
+    private void activateBonusTile() {
 
         player.getPersonalBoard().getBonusTile().getEffect(zoneType).execute(player);
 

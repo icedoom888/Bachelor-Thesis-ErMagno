@@ -22,8 +22,6 @@ public class SkipAction extends Input {
 
         else {
 
-            // TODO: qui ci va la logica (chiamando opportuni metodi di questa classe) del GameController sulla gestione di fine giro
-
             currentPlayer.setPlayerState(PlayerState.ENDTURN);
 
         }

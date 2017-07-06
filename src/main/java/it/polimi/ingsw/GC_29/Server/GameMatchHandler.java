@@ -148,7 +148,6 @@ public class GameMatchHandler implements LogoutInterface{
 
         GameStatus gameStatus = clientCurrentMatch.getGameSetup().getGameStatus();
 
-        //setta player color nello stub del client
 
         ServerSocketView serverSocketView = new ServerSocketView(playerSocket, gameStatus, playerColor, username);
 
@@ -165,24 +164,17 @@ public class GameMatchHandler implements LogoutInterface{
         serverSocketView.registerLogout(this);
         setClientMatch(gameStatus.getPlayer(playerColor).getPlayerID(),  clientCurrentMatch);
 
-        try {
-            serverSocketView.notifyObserver(new JoinGame(playerColor));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        serverSocketView.notifyObserver(new JoinGame(playerColor));
+
 
         executor.submit(serverSocketView);
 
-        //serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
-
-        //serverSocketViews.put(serverSocketView, player);
-        //executorService.submit(serverSocketView);
 
     }
 
     synchronized private void reconnectClient(ClientRemoteInterface clientStub) throws RemoteException {
 
-        System.out.println("SONO IN RECONNECT CLIENT");
 
         String username = clientStub.getUserName();
 

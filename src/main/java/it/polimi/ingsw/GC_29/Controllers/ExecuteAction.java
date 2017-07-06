@@ -32,7 +32,7 @@ public class ExecuteAction extends Input {
      * @throws RemoteException
      */
     @Override
-    public void perform(GameStatus model, Controller controller) throws Exception {
+    public void perform(GameStatus model, Controller controller) {
 
         currentPlayer = model.getCurrentPlayer();
 

@@ -116,15 +116,6 @@ public class ObtainOnConditionEffect implements Effect {
         }
     }
 
-    public void doubleResources() {
-        if (effectForEachCondition instanceof ObtainEffect) {
-            ((ObtainEffect)effectForEachCondition).doubleResources();
-        }
-
-        else if (effectForEachCondition instanceof CouncilPrivilegeEffect) {
-            ((CouncilPrivilegeEffect)effectForEachCondition).doubleResources();
-        }
-    }
 
 
 

@@ -55,22 +55,17 @@ public class LoginController extends Observable<LoginChange> implements Controll
 
                 setConnection(Distribution.RMI);
                 connected = true;
-                try {
-                    notifyObserver(new LoginChange(connected));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                notifyObserver(new LoginChange(connected));
+
             }
 
             else if (socket.isSelected()) {
 
                 setConnection(Distribution.SOCKET);
                 connected = true;
-                try {
-                    notifyObserver(new LoginChange(connected));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                notifyObserver(new LoginChange(connected));
+
             }
 
 

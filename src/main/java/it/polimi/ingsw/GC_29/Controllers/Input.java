@@ -9,5 +9,5 @@ import java.rmi.RemoteException;
 public abstract class Input implements Serializable{
 
 
-    public abstract void perform(GameStatus model, Controller controller) throws Exception;
+    public abstract void perform(GameStatus model, Controller controller) throws RemoteException;
 }

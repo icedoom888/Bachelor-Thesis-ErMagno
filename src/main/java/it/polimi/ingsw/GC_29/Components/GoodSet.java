@@ -10,6 +10,8 @@ import it.polimi.ingsw.GC_29.Server.Observable;
 import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 import static java.lang.Math.max;
 
@@ -18,6 +20,7 @@ import static java.lang.Math.max;
  */
 public class GoodSet extends Observable<MovePawn> implements Serializable{
 
+    private static final Logger LOGGER = Logger.getLogger(GoodSet.class.getName());
     private EnumMap<GoodType,Integer> goodSetMap;
 
     public GoodSet(int wood, int stone, int coins, int workers, int victoryPoints, int militaryPoints, int faithPoints) {
@@ -68,15 +71,20 @@ public class GoodSet extends Observable<MovePawn> implements Serializable{
         }
     }
 
-    public void updateModelTracks(GoodSet goodSetToAdd) throws Exception {
+    public void updateModelTracks(GoodSet goodSetToAdd) {
 
         int victoryPoints = goodSetToAdd.getGoodAmount(GoodType.VICTORYPOINTS);
         int militaryPoints = goodSetToAdd.getGoodAmount(GoodType.MILITARYPOINTS);
         int faithPoints = goodSetToAdd.getGoodAmount(GoodType.FAITHPOINTS);
 
-        if (victoryPoints != 0) notifyObserver(new VictoryMove(victoryPoints));
-        if (militaryPoints != 0) notifyObserver(new MilitaryMove(militaryPoints));
-        if (faithPoints != 0) notifyObserver(new FaithMove(faithPoints));
+        if (victoryPoints != 0) try {
+            notifyObserver(new VictoryMove(victoryPoints));
+            if (militaryPoints != 0) notifyObserver(new MilitaryMove(militaryPoints));
+            if (faithPoints != 0) notifyObserver(new FaithMove(faithPoints));
+        } catch (Exception e) {
+            LOGGER.info((Supplier<String>) e);
+        }
+
     }
 
     public void subGoodSet(GoodSet goodSetToSub){

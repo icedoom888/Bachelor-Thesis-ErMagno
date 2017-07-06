@@ -8,12 +8,15 @@ import it.polimi.ingsw.GC_29.Server.Observable;
 import java.rmi.MarshalledObject;
 import java.util.*;
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 17/05/2017.
  */
 public class Player extends Observable<Change> {
 
+    private static final Logger LOGGER = Logger.getLogger(Player.class.getName());
     private PlayerState playerState;
 
     private String playerID;
@@ -111,43 +114,24 @@ public class Player extends Observable<Change> {
 
     public void setPlayerState(PlayerState playerState) {
 
-        System.out.println("STO CAMBIANDO STATO PLAYER IN " + playerState);
-        System.out.println("SONO IL PLAYER " + playerID);
-
         if (this.playerState != PlayerState.SUSPENDED) {
 
             synchronized (lock) {
 
-                System.out.println("SONO NEL LOCK DI SET PLAYER STATE, PLAYER STATE CORRENTE " + this.playerState);
-
                 this.playerState = playerState;
 
-                try {
-                    notifyObserver(new PlayerStateChange(this.playerState));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                notifyObserver(new PlayerStateChange(this.playerState));
             }
         }
-
-
-        System.out.println("SONO IN SET PLAYER ALLA FINE, PLAYERSTATE " + this.playerState + " nome " + playerID);
-
 
     }
 
     public void setNotSuspended() {
 
-        System.out.println("STO RIMETTENDO IN WAITING PLAYER SOSPESO");
-
         synchronized (lock) {
             this.playerState = PlayerState.WAITING;
 
-            try {
-                notifyObserver(new PlayerStateChange(this.playerState));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            notifyObserver(new PlayerStateChange(this.playerState));
         }
 
     }
@@ -262,11 +246,12 @@ public class Player extends Observable<Change> {
         this.cardsOwned.put(cardColor,(this.getNumberOfCardsOwned(cardColor)+1));
     }
 
-    public void updateGoodSet(GoodSet newGoodSet) throws Exception {
+    public void updateGoodSet(GoodSet newGoodSet) {
 
         actualGoodSet.addGoodSet(newGoodSet);
 
         notifyObserver(new GoodSetChange(actualGoodSet));
+
 
 
         this.actualGoodSet.updateModelTracks(newGoodSet);
@@ -316,11 +301,8 @@ public class Player extends Observable<Change> {
 
     public void updatePersonalBoardGUI(String special, CardColor cardColor) {
 
-        try {
-            notifyObserver(new PersonalCardChange(special, cardColor));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        notifyObserver(new PersonalCardChange(special, cardColor));
+
     }
 
 
@@ -332,11 +314,9 @@ public class Player extends Observable<Change> {
             leaderUrls.add(leaderCard.getUrl());
         }
 
-        try {
-            notifyObserver(new LeaderCardChange(leaderUrls));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        notifyObserver(new LeaderCardChange(leaderUrls));
+
     }
 
     public void sendAvailableLeaders() {
@@ -352,11 +332,7 @@ public class Player extends Observable<Change> {
             }
         }
 
-        try {
-            notifyObserver(new LeadersAvailableGUI(leadersAvailable));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        notifyObserver(new LeadersAvailableGUI(leadersAvailable));
     }
 
     public void setLastState(PlayerState lastState) {

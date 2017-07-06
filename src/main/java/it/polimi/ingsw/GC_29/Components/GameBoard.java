@@ -161,10 +161,10 @@ public class GameBoard {
         return diceLane;
     }
 
-    public Dice getDice(FamilyPawnType familyPawnType) throws Exception {
+    public Dice getDice(FamilyPawnType familyPawnType)  {
 
         if (familyPawnType==FamilyPawnType.BONUS || familyPawnType==FamilyPawnType.NEUTRAL) {
-            throw new Exception("Wrong FamilyType");
+            System.out.println(("Wrong FamilyType"));
         }
 
         for (Dice dice : diceLane) {

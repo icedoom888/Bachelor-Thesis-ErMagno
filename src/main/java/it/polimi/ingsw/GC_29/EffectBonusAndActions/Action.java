@@ -70,7 +70,7 @@ public abstract class Action implements Serializable{
     }
 
 
-    public void execute() throws Exception {
+    public void execute() {
 
         payWorkers();
         addPawn();
@@ -82,8 +82,7 @@ public abstract class Action implements Serializable{
     /**
      * During the execute, this method make the player pay to increase the value of his pawn
      */
-    //TODO: utilizare un filtraggio speciale su bonus e malus per il malus che fa pagare doppi o i workers
-    protected void payWorkers() throws Exception {
+    protected void payWorkers() {
 
         player.updateGoodSet(new GoodSet(0,0,0,-workers,0,0,0));
     }
@@ -214,7 +213,7 @@ public abstract class Action implements Serializable{
      * This method controls if the pawn is a bonusPawn from a bonus action, in that case it does not add the paen in the action space,
      * but it gives the effects of the actionSpace to the player (see the game Rules).
      */
-    protected void addPawn() throws Exception {
+    protected void addPawn() {
 
         if(temporaryPawn.getType() != FamilyPawnType.BONUS){
 

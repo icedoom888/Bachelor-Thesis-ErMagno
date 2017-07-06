@@ -23,7 +23,7 @@ public class Initialize extends Input {
     }
 
     @Override
-    public void perform(GameStatus model, Controller controller) throws Exception {
+    public void perform(GameStatus model, Controller controller) {
 
         if(model.getGameState() == null){
 

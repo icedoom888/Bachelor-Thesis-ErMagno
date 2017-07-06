@@ -13,12 +13,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 02/06/2017.
  */
 public class ObjectDeserializer {
 
+    private static final Logger LOGGER = Logger.getLogger(ObjectDeserializer.class.getName());
     final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
             .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
             .registerSubtype(ObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect")
@@ -136,7 +139,7 @@ public class ObjectDeserializer {
         try {
             fileReader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         return bonusTiles;

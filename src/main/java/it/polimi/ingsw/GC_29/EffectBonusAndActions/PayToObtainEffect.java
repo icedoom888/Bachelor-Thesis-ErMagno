@@ -25,30 +25,15 @@ public class PayToObtainEffect implements Effect{
     @Override
     public void execute(Player status) {
 
-        System.out.println("eseguo execute della payToObtain");
-
         if(checkSufficientGoods(status)){
-
-            System.out.println("Resources sufficient to activate!");
 
             cost.setNegative();
 
-            try {
-                status.updateGoodSet(cost);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            System.out.println("The actualGoodSet after the detraction is: "+ "\n"+status.getActualGoodSet());
+            status.updateGoodSet(cost);
 
             effect.execute(status);
         }
 
-        else{
-
-            System.out.println("Resources not sufficient!");
-
-        }
     }
 
     /** checkSufficientGoods is used to make sure the price of the effect is payable with the player's resources:
@@ -68,15 +53,6 @@ public class PayToObtainEffect implements Effect{
 
     }
 
-    public void doubleResource() {
-        if (effect instanceof ObtainEffect) {
-            ((ObtainEffect)effect).doubleResources();
-        }
-
-        else if (effect instanceof CouncilPrivilegeEffect) {
-            ((CouncilPrivilegeEffect)effect).doubleResources();
-        }
-    }
 
     @Override
     public String toString() {
