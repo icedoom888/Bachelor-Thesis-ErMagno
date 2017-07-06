@@ -28,11 +28,15 @@ import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
@@ -277,6 +281,17 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         gameboardStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
         AnchorPane gameboardRoot = null;
+        /*gameboardStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+
+                // consume event
+                event.consume();
+                //TODO: gestire qui la disconnessione e la terminazione del processo client
+                Platform.exit();
+
+            }
+        });*/
 
 
         try {
