@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Server.RMI;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.Controllers.*;
@@ -11,6 +12,10 @@ import it.polimi.ingsw.GC_29.Server.View;
 
 import java.rmi.RemoteException;
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * Created by Christian on 07/06/2017.
@@ -27,6 +32,9 @@ public class RMIView extends View implements RMIViewRemote {
     private PlayerColor playerColor;
 
     private String username;
+
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
 
 
     public RMIView(GameStatus gameStatus, PlayerColor playerColor, String username){
@@ -53,17 +61,16 @@ public class RMIView extends View implements RMIViewRemote {
             clientView.updateClient(o);
 
         } catch (RemoteException e) {
-            //e.printStackTrace();
             gameStatus.getPlayer(playerColor).unregisterObserver(this);
             gameStatus.unregisterObserver(this);
             logoutInterface.clientDisconnected(username);
-            System.out.println("CLIENT DISCONNECTED. CLIENT SUSPENDED");
-            //gameStatus.getPlayer(playerColor).setPlayerState(PlayerState.SUSPENDED);
             try {
                 notifyObserver(new Disconnection(playerColor));
             } catch (Exception e1) {
-                e1.printStackTrace();
+                LOGGER.info((Supplier<String>) e1);
             }
+
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -72,7 +79,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new SkipAction());
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info(e.getMessage());
         }
     }
 
@@ -81,7 +88,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new UsePawnChosen(familyPawnType));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
     }
@@ -91,7 +98,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new EndTurn());
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -100,7 +107,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new Pray(b, playerColor));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -109,7 +116,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new Initialize(playerColor));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -151,30 +158,14 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new ThrowDices());
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
     @Override
     public Map<Integer, ArrayList<String>> getCardsForWorkers() throws RemoteException {
 
-        Map<Integer, ArrayList<DevelopmentCard>> cardsForWorkersMap = ((WorkAction)gameStatus.getCurrentPlayer().getCurrentAction()).getCardsForWorkers();
-
-        Map<Integer, ArrayList<String>> cardMap = new HashMap<>();
-
-        for(Integer workersIndex : cardsForWorkersMap.keySet()){
-
-            ArrayList<DevelopmentCard> cards = cardsForWorkersMap.get(workersIndex);
-
-            cardMap.put(workersIndex, new ArrayList<>());
-
-            for (DevelopmentCard card : cards) {
-
-                cardMap.get(workersIndex).add(card.toString());
-            }
-        }
-
-        return cardMap;
+        return new GetCardsForWorkers().perform(gameStatus);
 
     }
 
@@ -183,9 +174,10 @@ public class RMIView extends View implements RMIViewRemote {
         Map<Integer, Cost> possibleCosts = ((TowerAction)gameStatus.getCurrentPlayer().getCurrentAction()).getPossibleCardCosts();
         HashMap<Integer, String> possibleCostsToString = new HashMap<>();
 
-        for (Integer integer : possibleCosts.keySet()) {
-            String cost = possibleCosts.get(integer).toString();
-            possibleCostsToString.put(integer, cost);
+        for(Map.Entry<Integer,Cost> entry : possibleCosts.entrySet()){
+
+            String cost = entry.getValue().toString();
+            possibleCostsToString.put(entry.getKey(), cost);
         }
 
         return possibleCostsToString;
@@ -202,7 +194,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new BonusTileChosen(bonusTileChosen));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -216,7 +208,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new JoinGame(playerColor));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -225,18 +217,9 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new LeaderAction(b, index, playerColor));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
-
-    /*@Override
-    public void privilegeLeader(List<Integer> councilPrivilegeEffectChosenList, PlayerColor playerColor) throws RemoteException{
-        try {
-            notifyObserver(new PrivilegeChosenLeader(councilPrivilegeEffectChosenList, playerColor));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 
     @Override
     public Map<Integer, Boolean> getLeaderCardsMap(PlayerColor playerColor) throws RemoteException {
@@ -253,7 +236,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new UseLeaderCardsGUI(playerColor));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -264,7 +247,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new Closed());
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -278,7 +261,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new ActivateCards(workersChosen));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -301,7 +284,6 @@ public class RMIView extends View implements RMIViewRemote {
 
                     if(effect1.checkSufficientGoods(gameStatus.getCurrentPlayer())){
 
-                        //System.out.println("LA CARTA AGGIIUNTA NELLA PAY TO OBTAIN MAP E' " + cardKey);
                         int effectIndex = card.getPermanentEffect().indexOf(effect);
 
                         payToObtainCardMap.get(card.toString()).put(effectIndex, effect.toString());
@@ -323,7 +305,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new PayToObtainCardsChosen(activatedCardMap));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -349,7 +331,7 @@ public class RMIView extends View implements RMIViewRemote {
             notifyObserver(new PrivilegeChosen(councilPrivilegeEffectChosenList));
             System.out.println("OBSERVER PRIVILEGI");
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -370,7 +352,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new PayCard(costChosen));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -387,7 +369,7 @@ public class RMIView extends View implements RMIViewRemote {
         try {
             notifyObserver(new ExecuteAction(index));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
     }
