@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
-import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Model.TowerAction;
+import it.polimi.ingsw.GC_29.Model.Player;
 
 /**
  * Created by Lorenzotara on 18/06/17.

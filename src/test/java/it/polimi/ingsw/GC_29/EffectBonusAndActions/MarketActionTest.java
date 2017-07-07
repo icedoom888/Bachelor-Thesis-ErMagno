@@ -1,14 +1,11 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Components.PersonalBoard;
+import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
 import it.polimi.ingsw.GC_29.Controllers.Model;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.Player;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -79,7 +76,7 @@ public class MarketActionTest {
         GoodSet goodSetExpected = new GoodSet(2,2,7,1,2,2,2);
         assertTrue(player1.getActualGoodSet().equals(goodSetExpected));
         assertFalse(player1.getFamilyPawnAvailability().get(FamilyPawnType.NEUTRAL));
-        assertTrue(actionList.get(16).actionSpaceSelected.isOccupied());
+        assertTrue(actionList.get(16).getActionSpaceSelected().isOccupied());
 
         actionList.get(16).setPlayer(player2);
         actionList.get(16).setFamiliyPawn(familyPawn2);
@@ -93,7 +90,7 @@ public class MarketActionTest {
         goodSetExpected = new GoodSet(2,2,2,7,2,2,2);
         assertTrue(player2.getActualGoodSet().equals(goodSetExpected));
         assertFalse(player2.getFamilyPawnAvailability().get(FamilyPawnType.BLACK));
-        assertTrue(actionList.get(17).actionSpaceSelected.isOccupied());
+        assertTrue(actionList.get(17).getActionSpaceSelected().isOccupied());
 
         actionList.get(18).setPlayer(player2);
         actionList.get(18).setFamiliyPawn(familyPawn4);

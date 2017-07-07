@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterface;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 

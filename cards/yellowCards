@@ -33,7 +33,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -49,9 +49,9 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
         "effectForEachCondition": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -115,7 +115,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -131,9 +131,9 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
         "effectForEachCondition": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -197,7 +197,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -213,7 +213,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 1,
@@ -226,7 +226,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -241,7 +241,7 @@
         }
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 2,
@@ -254,7 +254,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -306,7 +306,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -322,7 +322,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -335,7 +335,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -387,7 +387,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -403,9 +403,9 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
         "effectForEachCondition": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -469,7 +469,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -485,9 +485,9 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
         "effectForEachCondition": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -551,7 +551,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -567,7 +567,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -580,7 +580,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -595,7 +595,7 @@
         }
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -608,7 +608,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -660,7 +660,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -676,7 +676,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -689,7 +689,7 @@
           }
         },
         "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect",
       "numberOfCouncilPrivileges": 1,
       "parchmentList": [
         {
@@ -808,7 +808,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -824,7 +824,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -837,7 +837,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 2,
@@ -889,7 +889,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -905,7 +905,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -918,7 +918,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -933,7 +933,7 @@
         }
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -946,7 +946,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -998,7 +998,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1014,7 +1014,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 1,
@@ -1027,7 +1027,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1042,7 +1042,7 @@
         }
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 3,
@@ -1055,7 +1055,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1107,7 +1107,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1123,7 +1123,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1136,7 +1136,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1151,7 +1151,7 @@
         }
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1164,7 +1164,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1216,7 +1216,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1232,7 +1232,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 1,
@@ -1245,7 +1245,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1297,7 +1297,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1313,7 +1313,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1326,7 +1326,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1378,7 +1378,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1394,7 +1394,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1407,7 +1407,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1459,7 +1459,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1475,7 +1475,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1526,7 +1526,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1542,7 +1542,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1555,7 +1555,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1607,7 +1607,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1623,7 +1623,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 1,
@@ -1636,7 +1636,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1651,7 +1651,7 @@
         }
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1664,7 +1664,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1716,7 +1716,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1732,7 +1732,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1745,7 +1745,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1797,7 +1797,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1813,7 +1813,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1864,7 +1864,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1880,7 +1880,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1931,7 +1931,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1947,7 +1947,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1960,7 +1960,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 3,
@@ -2012,7 +2012,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -2028,7 +2028,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -2079,7 +2079,7 @@
     "color": "YELLOW",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -2095,7 +2095,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -2109,7 +2109,7 @@
         }
       },
       {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect",
       "numberOfCouncilPrivileges": 1,
       "parchmentList": [
         {

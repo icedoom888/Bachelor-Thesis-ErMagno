@@ -1,10 +1,6 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.BonusTile;
-import it.polimi.ingsw.GC_29.Components.CardColor;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Components.PersonalBoard;
-import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Model.*;
 import org.testng.annotations.Test;
 
 /**

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.Pawn;
+import it.polimi.ingsw.GC_29.Model.Pawn;
 
 import java.io.Serializable;
 

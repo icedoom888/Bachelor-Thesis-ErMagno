@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Client.GUI.GuiChangeListener;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.GoodSet;
 
 import java.util.List;
 

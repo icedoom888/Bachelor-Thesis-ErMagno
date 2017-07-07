@@ -1,9 +1,9 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.LeaderCard;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.LeaderCard;
+import it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect;
+import it.polimi.ingsw.GC_29.Model.Player;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 
 /**
  * Created by Lorenzotara on 02/07/17.

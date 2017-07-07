@@ -1,14 +1,12 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.*;
+import it.polimi.ingsw.GC_29.Model.Action;
+import it.polimi.ingsw.GC_29.Model.Player;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import  it.polimi.ingsw.GC_29.Server.Observable;
 
 import java.util.*;
-import java.util.function.Supplier;
-import java.util.logging.Logger;
 
 /**
  * Created by Icedoom on 19/05/2017.

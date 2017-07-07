@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
-import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Model.WorkAction;
+import it.polimi.ingsw.GC_29.Model.Player;
 
 /**
  * Created by Christian on 16/06/2017.

@@ -1,19 +1,5 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import org.testng.annotations.Test;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-
-import static org.testng.Assert.*;
-
 /**
  * Created by Christian on 02/06/2017.
 

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
+import it.polimi.ingsw.GC_29.Model.WorkAction;
 
 import java.util.Map;
 

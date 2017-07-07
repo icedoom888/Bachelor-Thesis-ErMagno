@@ -168,9 +168,9 @@
     "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_5.png",
     "era": "THIRD",
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
       "effectForEachCondition": {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -202,9 +202,9 @@
     "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_4.png",
     "era": "THIRD",
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
       "effectForEachCondition": {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -236,9 +236,9 @@
     "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_7.png",
     "era": "THIRD",
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainForMoreCondition",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainForMoreCondition",
       "effectForEachCondition": {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -308,7 +308,7 @@
     "url": "lorenzo_materiale_grafico_compr/Lorenzo_Punchboard_CUT_compressed/excomm_3_6.png",
     "era": "THIRD",
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainForCost",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainForCost",
       "cardColor": "YELLOW",
       "goodTypesToPay": [
         "WOOD",

@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.GoodType;
-import it.polimi.ingsw.GC_29.Components.Track;
+import it.polimi.ingsw.GC_29.Model.GoodType;
+import it.polimi.ingsw.GC_29.Model.Track;
 
 /**
  * Created by Lorenzotara on 11/06/17.

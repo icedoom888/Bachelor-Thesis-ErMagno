@@ -1,10 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
-import it.polimi.ingsw.GC_29.Player.Player;
-
 /**
  * Created by Christian on 19/05/2017.
  */

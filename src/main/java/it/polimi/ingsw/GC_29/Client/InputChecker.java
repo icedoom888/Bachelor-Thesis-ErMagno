@@ -1,14 +1,13 @@
 package it.polimi.ingsw.GC_29.Client;
 
-import com.sun.media.jfxmedia.events.PlayerStateEvent;
-import it.polimi.ingsw.GC_29.Components.CardColor;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.Model.CardColor;
+import it.polimi.ingsw.GC_29.Model.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.GameState;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilege;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.CouncilPrivilege;
+import it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect;
+import it.polimi.ingsw.GC_29.Model.ObtainEffect;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 
 import java.util.*;
 import java.util.regex.Matcher;

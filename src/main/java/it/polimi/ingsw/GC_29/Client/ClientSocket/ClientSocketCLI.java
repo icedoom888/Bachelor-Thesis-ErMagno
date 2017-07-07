@@ -1,12 +1,10 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
-import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

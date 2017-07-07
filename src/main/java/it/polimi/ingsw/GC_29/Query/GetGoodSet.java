@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Model.GoodSet;
 import it.polimi.ingsw.GC_29.Controllers.Model;
 
 /**

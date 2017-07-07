@@ -1,10 +1,10 @@
 package it.polimi.ingsw.GC_29.Client.GUI;
 
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.GoodType;
+import it.polimi.ingsw.GC_29.Model.FamilyPawn;
+import it.polimi.ingsw.GC_29.Model.GoodType;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 
 import java.util.ArrayList;
 import java.util.HashMap;

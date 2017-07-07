@@ -1,12 +1,12 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.Era;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Components.GoodType;
-import it.polimi.ingsw.GC_29.Components.SpecialBonusAndMalus;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Filter;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.Era;
+import it.polimi.ingsw.GC_29.Model.GoodSet;
+import it.polimi.ingsw.GC_29.Model.GoodType;
+import it.polimi.ingsw.GC_29.Model.SpecialBonusAndMalus;
+import it.polimi.ingsw.GC_29.Model.Filter;
+import it.polimi.ingsw.GC_29.Model.Player;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 
 /**
  * Created by Lorenzotara on 10/06/17.

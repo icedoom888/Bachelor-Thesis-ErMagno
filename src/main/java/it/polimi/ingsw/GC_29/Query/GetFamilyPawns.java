@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
+import it.polimi.ingsw.GC_29.Model.FamilyPawn;
 import it.polimi.ingsw.GC_29.Controllers.Model;
 
 import java.util.List;

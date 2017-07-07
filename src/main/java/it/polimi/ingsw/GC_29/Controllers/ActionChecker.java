@@ -1,8 +1,9 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
-import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Model.Action;
+import it.polimi.ingsw.GC_29.Model.FamilyPawn;
+import it.polimi.ingsw.GC_29.Model.ZoneType;
+import it.polimi.ingsw.GC_29.Model.Player;
 
 import java.util.ArrayList;
 

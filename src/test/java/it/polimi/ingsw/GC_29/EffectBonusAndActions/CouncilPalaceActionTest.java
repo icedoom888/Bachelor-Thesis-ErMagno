@@ -1,15 +1,14 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.*;
+import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
 import it.polimi.ingsw.GC_29.Controllers.Model;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.Player;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.testng.Assert.*;
 

@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Client.GUI.GuiChangeListener;
-import it.polimi.ingsw.GC_29.Components.CardColor;
+import it.polimi.ingsw.GC_29.Model.CardColor;
 
 import java.util.List;
 

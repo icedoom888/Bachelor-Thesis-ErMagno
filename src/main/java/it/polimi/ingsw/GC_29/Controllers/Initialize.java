@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.Player;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 
 import java.util.List;
 

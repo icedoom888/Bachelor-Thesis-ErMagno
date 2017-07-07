@@ -1,14 +1,5 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Filter;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by AlbertoPennino on 22/05/2017.
  */

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Client.GUI.GuiChangeListener;
-import it.polimi.ingsw.GC_29.Components.LeaderCard;
 
 import java.util.ArrayList;
 import java.util.List;

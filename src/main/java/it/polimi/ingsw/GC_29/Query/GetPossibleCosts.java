@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Components.Cost;
+import it.polimi.ingsw.GC_29.Model.Cost;
 import it.polimi.ingsw.GC_29.Controllers.Model;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
+import it.polimi.ingsw.GC_29.Model.TowerAction;
 
 import java.util.HashMap;
 import java.util.Map;
