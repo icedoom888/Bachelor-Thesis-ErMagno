@@ -165,17 +165,17 @@ public class WorkAction extends Action {
             if(workersNeeded < player.getActualGoodSet().getGoodAmount(GoodType.WORKERS)){
 
                 workersNeeded = max(0, workersNeeded);
-            }
 
-            if(!(cardsForWorkers.containsKey(workersNeeded))){
+                if(!(cardsForWorkers.containsKey(workersNeeded))){
 
-                cardsForWorkers.put(workersNeeded, new ArrayList<>());
-                cardsForWorkers.get(workersNeeded).add(card);
-            }
+                    cardsForWorkers.put(workersNeeded, new ArrayList<>());
+                    cardsForWorkers.get(workersNeeded).add(card);
+                }
 
-            else {
+                else {
 
-                cardsForWorkers.get(workersNeeded).add(card);
+                    cardsForWorkers.get(workersNeeded).add(card);
+                }
             }
 
         }
@@ -188,7 +188,7 @@ public class WorkAction extends Action {
 
         Set<Integer> workersSet = cardsForWorkers.keySet();
 
-        ArrayList<Integer> workersList = new ArrayList<Integer>(Arrays.asList(workersSet.toArray(new Integer[workersSet.size()])));
+        ArrayList<Integer> workersList = new ArrayList<>(Arrays.asList(workersSet.toArray(new Integer[workersSet.size()])));
 
         Collections.sort(workersList);
 
@@ -316,8 +316,6 @@ public class WorkAction extends Action {
         setWorkers(workers + workersChosen);
 
         System.out.println("DENTRO HANDLE PAY CARDS, NUMERO WORKERS " + workersChosen + "\n");
-
-
 
         List<DevelopmentCard> cardsToActivateList = cardsForWorkers.get(workersChosen);
 
