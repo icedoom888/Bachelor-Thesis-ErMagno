@@ -54,6 +54,8 @@ public class CouncilPalaceActionTest {
 
         controller.setCardsOnTowers();
 
+        //TODO: cosa fai? che current player setti?
+
         controller.getActionChecker().setCurrentPlayer();
 
         ArrayList<Action> actionList = controller.getActionChecker().getActionList();

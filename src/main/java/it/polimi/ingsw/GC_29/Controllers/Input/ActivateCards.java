@@ -17,6 +17,13 @@ public class ActivateCards extends Input {
         this.workersChosen = workersChosen;
     }
 
+
+    /**
+     * After a player has chose the cards he wants to activate during a WorkAction,
+     * the controller performs this input and then calls handlePayToObtainCards
+     * @param model
+     * @param controller
+     */
     @Override
     public void perform(Model model, Controller controller) {
 

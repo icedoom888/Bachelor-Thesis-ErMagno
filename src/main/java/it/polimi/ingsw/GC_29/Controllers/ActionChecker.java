@@ -41,7 +41,7 @@ public class ActionChecker {
 
     }
 
-    public void setCurrentPlayer() throws NullPointerException{
+    public void setCurrentPlayer() {
 
         this.currentPlayer = model.getCurrentPlayer();
 
@@ -58,8 +58,6 @@ public class ActionChecker {
     }
 
     public void setValidActionForFamilyPawn(FamilyPawn familyPawn, ZoneType zoneType){
-
-        System.out.println("LO ZONE TYPE DELLA BONUS ACTION E' " + zoneType);
 
         checkActionOnPawnFiltered(familyPawn, zoneType);
 

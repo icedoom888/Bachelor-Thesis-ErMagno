@@ -31,6 +31,16 @@ public class SuspendPlayer extends TimerTask {
 
         playerToSuspend.setPlayerState(PlayerState.SUSPENDED);
 
+        if (controller.minNumberOfPlayerReached()) {
+
+            try {
+                controller.endGame();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
         switch (playerState) {
 
             case THROWDICES:

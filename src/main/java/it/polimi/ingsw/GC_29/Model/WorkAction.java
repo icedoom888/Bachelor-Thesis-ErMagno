@@ -308,21 +308,25 @@ public class WorkAction extends Action {
     }*/
 
 
+    /**
+     * After a player has chosen how many workers he wants to use,
+     * all the effects of the cards that he can afford in the building lane
+     * are added to the effectsToActivateList, except for the PatToObtainEffects.
+     * Cards with that effect are saved in payToObtainCardsMap with key the name of the card
+     * and value the card itself.
+     * Returns true if there are pay to obtain cards
+     * @param workersChosen
+     * @return
+     */
     public Boolean handlePayToObtainCards(int workersChosen){
 
         setWorkers(workers + workersChosen);
-
-        System.out.println("DENTRO HANDLE PAY CARDS, NUMERO WORKERS " + workersChosen + "\n");
-
-
 
         List<DevelopmentCard> cardsToActivateList = cardsForWorkers.get(workersChosen);
 
         Boolean isPayToObtain = false;
 
         for (DevelopmentCard card : cardsToActivateList) {
-
-
 
             String cardKey = card.getSpecial();
 
@@ -341,7 +345,6 @@ public class WorkAction extends Action {
 
                     if(effect1.checkSufficientGoods(player)){
 
-                        System.out.println("LA CARTA AGGIIUNTA NELLA PAY TO OBTAIN MAP E' " + cardKey);
                         payToObtainCardsMap.put(cardKey, card);
                         isPayToObtain = true;
                     }

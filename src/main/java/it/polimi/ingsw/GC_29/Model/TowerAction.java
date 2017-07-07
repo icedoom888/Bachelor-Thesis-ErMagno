@@ -65,8 +65,6 @@ public class TowerAction extends Action {
      */
     private boolean checkFamilyPresence() { // va a controllare nella torre se c'è un familiare del player
 
-        // TODO: bonus e neutra
-
         boolean familiarPresent = false;
         for (Floor floor : towerChosen.getFloors()) {
             ActionSpace actionSpace = floor.getActionSpace();
