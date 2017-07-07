@@ -131,6 +131,11 @@ public class WorkAction extends Action {
     }
 
 
+    /**
+     * This method builds different arrays of cards associated to the number of workers that
+     * the player would need to pay to activate their effects,
+     * the arrays are created only if the resources of the player are enough to pay hte workersNeeded
+     **/
     public void buildDifferentChoices() {
 
         payWorkers();
@@ -201,14 +206,18 @@ public class WorkAction extends Action {
                 cardsForWorkers.get(nextWorkersKey).add(developmentCard);
             }
         }
+
+        if(!cardsForWorkers.containsKey(0)){
+
+            ArrayList<DevelopmentCard> zeroWorkers = new ArrayList<>();
+            cardsForWorkers.put(0, zeroWorkers);
+        }
+
     }
 
 
-    /**
-     * This method builds different arrays of cards associated to the number of workers that
-     * the player would need to pay to activate their effects,
-     * the arrays are created only if the resources of the player are enough to pay hte workersNeeded
 
+/*
     public void buildDifferentChoices() throws Exception {
 
         activateBonusTile();
