@@ -131,6 +131,11 @@ public class WorkAction extends Action {
     }
 
 
+    /**
+     * This method builds different arrays of cards associated to the number of workers that
+     * the player would need to pay to activate their effects,
+     * the arrays are created only if the resources of the player are enough to pay hte workersNeeded
+     **/
     public void buildDifferentChoices() {
 
         payWorkers();
@@ -162,17 +167,17 @@ public class WorkAction extends Action {
             if(workersNeeded < player.getActualGoodSet().getGoodAmount(GoodType.WORKERS)){
 
                 workersNeeded = max(0, workersNeeded);
-            }
 
-            if(!(cardsForWorkers.containsKey(workersNeeded))){
+                if(!(cardsForWorkers.containsKey(workersNeeded))){
 
-                cardsForWorkers.put(workersNeeded, new ArrayList<>());
-                cardsForWorkers.get(workersNeeded).add(card);
-            }
+                    cardsForWorkers.put(workersNeeded, new ArrayList<>());
+                    cardsForWorkers.get(workersNeeded).add(card);
+                }
 
-            else {
+                else {
 
-                cardsForWorkers.get(workersNeeded).add(card);
+                    cardsForWorkers.get(workersNeeded).add(card);
+                }
             }
 
         }
@@ -185,7 +190,7 @@ public class WorkAction extends Action {
 
         Set<Integer> workersSet = cardsForWorkers.keySet();
 
-        ArrayList<Integer> workersList = new ArrayList<Integer>(Arrays.asList(workersSet.toArray(new Integer[workersSet.size()])));
+        ArrayList<Integer> workersList = new ArrayList<>(Arrays.asList(workersSet.toArray(new Integer[workersSet.size()])));
 
         Collections.sort(workersList);
 
@@ -201,14 +206,18 @@ public class WorkAction extends Action {
                 cardsForWorkers.get(nextWorkersKey).add(developmentCard);
             }
         }
+
+        if(!cardsForWorkers.containsKey(0)){
+
+            ArrayList<DevelopmentCard> zeroWorkers = new ArrayList<>();
+            cardsForWorkers.put(0, zeroWorkers);
+        }
+
     }
 
 
-    /**
-     * This method builds different arrays of cards associated to the number of workers that
-     * the player would need to pay to activate their effects,
-     * the arrays are created only if the resources of the player are enough to pay hte workersNeeded
 
+/*
     public void buildDifferentChoices() throws Exception {
 
         activateBonusTile();
@@ -308,25 +317,19 @@ public class WorkAction extends Action {
     }*/
 
 
-    /**
-     * After a player has chosen how many workers he wants to use,
-     * all the effects of the cards that he can afford in the building lane
-     * are added to the effectsToActivateList, except for the PatToObtainEffects.
-     * Cards with that effect are saved in payToObtainCardsMap with key the name of the card
-     * and value the card itself.
-     * Returns true if there are pay to obtain cards
-     * @param workersChosen
-     * @return
-     */
     public Boolean handlePayToObtainCards(int workersChosen){
 
         setWorkers(workers + workersChosen);
+
+        System.out.println("DENTRO HANDLE PAY CARDS, NUMERO WORKERS " + workersChosen + "\n");
 
         List<DevelopmentCard> cardsToActivateList = cardsForWorkers.get(workersChosen);
 
         Boolean isPayToObtain = false;
 
         for (DevelopmentCard card : cardsToActivateList) {
+
+
 
             String cardKey = card.getSpecial();
 
@@ -345,6 +348,7 @@ public class WorkAction extends Action {
 
                     if(effect1.checkSufficientGoods(player)){
 
+                        System.out.println("LA CARTA AGGIIUNTA NELLA PAY TO OBTAIN MAP E' " + cardKey);
                         payToObtainCardsMap.put(cardKey, card);
                         isPayToObtain = true;
                     }

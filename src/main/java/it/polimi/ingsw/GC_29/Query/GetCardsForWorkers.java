@@ -30,7 +30,6 @@ public class GetCardsForWorkers extends Query<Map<Integer, ArrayList<String>>> {
                 cardMap.get(cardsForWorkersEntry.getKey()).add(card.toString());
             }
 
-
         }
 
 
