@@ -19,6 +19,7 @@ import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Client.GUI.ReconnectedPlayers.ReconnectedPlayersController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
+import it.polimi.ingsw.GC_29.Controllers.Change.*;
 import it.polimi.ingsw.GC_29.Model.CardColor;
 import it.polimi.ingsw.GC_29.Model.FamilyPawn;
 import it.polimi.ingsw.GC_29.Model.GoodSet;

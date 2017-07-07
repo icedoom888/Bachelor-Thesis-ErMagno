@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
+import it.polimi.ingsw.GC_29.Controllers.Change.ExcommunicationChange;
 import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Model.Player;
 

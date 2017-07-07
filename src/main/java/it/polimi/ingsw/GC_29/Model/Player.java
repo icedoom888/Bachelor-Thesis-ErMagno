@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Model;
 
 import it.polimi.ingsw.GC_29.Controllers.*;
+import it.polimi.ingsw.GC_29.Controllers.Change.*;
 import it.polimi.ingsw.GC_29.Server.Observable;
 
 import java.util.*;

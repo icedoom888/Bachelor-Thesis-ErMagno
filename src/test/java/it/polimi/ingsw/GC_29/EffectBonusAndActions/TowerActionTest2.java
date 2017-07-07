@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_29.Model.PersonalBoard;
 import it.polimi.ingsw.GC_29.Controllers.ActionChecker;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
-import it.polimi.ingsw.GC_29.Controllers.Model;
+import it.polimi.ingsw.GC_29.Model.Model;
 import it.polimi.ingsw.GC_29.Model.Player;
 import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import org.testng.annotations.Test;

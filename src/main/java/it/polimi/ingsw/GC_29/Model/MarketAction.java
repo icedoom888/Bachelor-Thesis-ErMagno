@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_29.Model;
 
-import it.polimi.ingsw.GC_29.Controllers.Model;
-
 /**
  * Created by Lorenzotara on 19/05/17.
  */

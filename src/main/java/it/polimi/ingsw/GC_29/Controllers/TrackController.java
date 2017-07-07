@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import it.polimi.ingsw.GC_29.Controllers.MovePawn.MovePawn;
+import it.polimi.ingsw.GC_29.Model.Model;
 import it.polimi.ingsw.GC_29.Server.Observer;
 
 /**

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Controllers.Model;
+import it.polimi.ingsw.GC_29.Model.Model;
 import it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect;
 
 import java.util.ArrayList;

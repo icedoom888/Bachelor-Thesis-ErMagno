@@ -1,9 +1,9 @@
 package it.polimi.ingsw.GC_29.Model;
 
-import it.polimi.ingsw.GC_29.Controllers.FaithMove;
-import it.polimi.ingsw.GC_29.Controllers.MilitaryMove;
-import it.polimi.ingsw.GC_29.Controllers.MovePawn;
-import it.polimi.ingsw.GC_29.Controllers.VictoryMove;
+import it.polimi.ingsw.GC_29.Controllers.MovePawn.FaithMove;
+import it.polimi.ingsw.GC_29.Controllers.MovePawn.MilitaryMove;
+import it.polimi.ingsw.GC_29.Controllers.MovePawn.MovePawn;
+import it.polimi.ingsw.GC_29.Controllers.MovePawn.VictoryMove;
 import it.polimi.ingsw.GC_29.Server.Observable;
 
 import java.io.Serializable;

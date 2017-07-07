@@ -2,10 +2,11 @@ package it.polimi.ingsw.GC_29.Server.RMI;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
+import it.polimi.ingsw.GC_29.Controllers.Change.Change;
+import it.polimi.ingsw.GC_29.Controllers.Input.*;
 import it.polimi.ingsw.GC_29.Model.*;
-import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Model.PlayerColor;
-import it.polimi.ingsw.GC_29.Controllers.LeaderAction;
+import it.polimi.ingsw.GC_29.Controllers.Input.LeaderAction;
 import it.polimi.ingsw.GC_29.Server.View;
 import it.polimi.ingsw.GC_29.Query.*;
 
@@ -231,7 +232,7 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public void activateCards(int workersChosen) throws RemoteException {
 
-        notifyObserver(new ActivateCards(workersChosen));
+        notifyObserver(new ClientInput.ActivateCards(workersChosen));
     }
 
     @Override

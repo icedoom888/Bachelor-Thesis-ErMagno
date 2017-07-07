@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_29.Model;
 
-import it.polimi.ingsw.GC_29.Controllers.Model;
-
 import java.util.*;
 
 import static java.lang.Math.max;

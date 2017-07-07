@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Server;
 
 
-import it.polimi.ingsw.GC_29.Controllers.Model;
+import it.polimi.ingsw.GC_29.Model.Model;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

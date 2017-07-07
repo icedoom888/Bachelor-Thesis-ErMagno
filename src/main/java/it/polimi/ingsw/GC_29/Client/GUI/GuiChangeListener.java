@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.GUI;
 
 
+import it.polimi.ingsw.GC_29.Controllers.Change.*;
 import it.polimi.ingsw.GC_29.Model.FamilyPawn;
 import it.polimi.ingsw.GC_29.Model.GoodType;
 import it.polimi.ingsw.GC_29.Controllers.*;

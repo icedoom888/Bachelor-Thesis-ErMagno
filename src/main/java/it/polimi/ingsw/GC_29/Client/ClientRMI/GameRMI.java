@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
-import it.polimi.ingsw.GC_29.Controllers.Input;
+import it.polimi.ingsw.GC_29.Controllers.Input.Input;
 import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.Query;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;

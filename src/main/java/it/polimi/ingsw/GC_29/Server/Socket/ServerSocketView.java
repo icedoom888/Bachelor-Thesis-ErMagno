@@ -1,10 +1,8 @@
 package it.polimi.ingsw.GC_29.Server.Socket;
 
-import it.polimi.ingsw.GC_29.Model.FamilyPawn;
-import it.polimi.ingsw.GC_29.Model.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Model.GoodSet;
-import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Model.PlayerColor;
+import it.polimi.ingsw.GC_29.Controllers.Change.Change;
+import it.polimi.ingsw.GC_29.Controllers.Input.*;
+import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Server.ObserverException;
 import it.polimi.ingsw.GC_29.Server.View;
 import it.polimi.ingsw.GC_29.Query.*;
@@ -128,7 +126,7 @@ public class ServerSocketView extends View implements Runnable {
 
                         case "number of workers":
                             int workers = (int)socketIn.readObject();
-                            notifyObserver(new ActivateCards(workers));
+                            notifyObserver(new ClientInput.ActivateCards(workers));
                             break;
 
                         case "pay to obtain cards chosen":

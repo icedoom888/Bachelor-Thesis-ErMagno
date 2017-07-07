@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_29.Model;
 
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
-import it.polimi.ingsw.GC_29.Controllers.Model;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Model.LeaderCard;
-import it.polimi.ingsw.GC_29.Controllers.Model;
+import it.polimi.ingsw.GC_29.Model.Model;
 import it.polimi.ingsw.GC_29.Model.Player;
 import it.polimi.ingsw.GC_29.Model.PlayerColor;
 

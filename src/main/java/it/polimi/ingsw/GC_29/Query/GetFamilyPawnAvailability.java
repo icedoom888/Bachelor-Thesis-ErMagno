@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Model.FamilyPawn;
 import it.polimi.ingsw.GC_29.Model.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Controllers.Model;
+import it.polimi.ingsw.GC_29.Model.Model;
 
 import java.util.HashMap;
 import java.util.List;
