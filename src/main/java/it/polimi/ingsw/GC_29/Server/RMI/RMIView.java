@@ -232,7 +232,7 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public void activateCards(int workersChosen) throws RemoteException {
 
-        notifyObserver(new ClientInput.ActivateCards(workersChosen));
+        notifyObserver(new ActivateCards(workersChosen));
     }
 
     @Override

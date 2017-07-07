@@ -126,7 +126,7 @@ public class ServerSocketView extends View implements Runnable {
 
                         case "number of workers":
                             int workers = (int)socketIn.readObject();
-                            notifyObserver(new ClientInput.ActivateCards(workers));
+                            notifyObserver(new ActivateCards(workers));
                             break;
 
                         case "pay to obtain cards chosen":
