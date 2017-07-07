@@ -13,7 +13,7 @@ public class UsePawnChosen extends Input {
 
 
     private FamilyPawnType familyPawnType;
-    private Player player;
+    private transient Player player;
 
     public UsePawnChosen(FamilyPawnType familyPawnType){
 

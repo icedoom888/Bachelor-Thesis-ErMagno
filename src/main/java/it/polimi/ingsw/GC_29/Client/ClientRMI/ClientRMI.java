@@ -206,4 +206,9 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
     public GameRMI getGameRMI() {
         return gameRMI;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

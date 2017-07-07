@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class PrivilegeChosen extends Input {
 
-    List<Integer> councilPrivilegeEffectChosenList;
+    private List<Integer> councilPrivilegeEffectChosenList;
 
     public PrivilegeChosen(List<Integer> councilPrivilegeEffectChosenList) {
 

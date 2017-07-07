@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 public abstract class Observable<C> {
 
+    private static final Logger LOGGER = Logger.getLogger(Observable.class.getName());
     private List<Observer<C>> observers;
 
     private static final Logger LOGGER = Logger.getLogger(Model.class.getName());

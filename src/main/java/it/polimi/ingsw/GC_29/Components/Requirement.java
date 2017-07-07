@@ -32,21 +32,21 @@ public class Requirement {
 
         if (cardsRequired != null) {
 
-            for (CardColor cardColor : cardsRequired.keySet()) {
+            for (Map.Entry<CardColor, Integer> cardsRequiredEntry : cardsRequired.entrySet()) {
+
+                CardColor cardColor = cardsRequiredEntry.getKey();
 
                 if (cardColor != CardColor.ANY) {
 
-                    isPossible = isPossible && (cardsRequired.get(cardColor) <= playerCards.get(cardColor));
+                    isPossible = isPossible && (cardsRequiredEntry.getValue() <= playerCards.get(cardColor));
                 }
 
                 else {
 
                     isPossible = isPossible && anyColor(playerCards);
-
-
                 }
-
             }
+
         }
 
         if (goodSetRequired != null) {
