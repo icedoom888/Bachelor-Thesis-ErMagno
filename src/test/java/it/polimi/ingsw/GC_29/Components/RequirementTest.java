@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
@@ -9,8 +8,8 @@ import java.util.HashMap;
  * Created by AlbertoPennino on 05/07/2017.
  */
 public class RequirementTest {
-    @Test
-    public void TestIsPossible(){
+    @org.testng.annotations.Test
+    public void testIsPossible() throws Exception {
 
         GoodSet goodSetRequirement1 = new GoodSet(1,1,0,0,0,0,0);
         HashMap<CardColor,Integer> cardRequirement2 = new HashMap<>();

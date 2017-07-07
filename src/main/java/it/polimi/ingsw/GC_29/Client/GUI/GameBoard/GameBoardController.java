@@ -1462,6 +1462,11 @@ public class GameBoardController {
      */
     public void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
 
+        System.out.print(playerColor + "  ");
+        System.out.print(goodType + "  ");
+        System.out.print(numberOfPoints + "  ");
+
+
         String numberOfPointString;
         int value;
         int sum;

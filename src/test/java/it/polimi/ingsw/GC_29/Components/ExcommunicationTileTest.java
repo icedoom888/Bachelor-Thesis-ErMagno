@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_29.Components;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -12,8 +11,11 @@ import java.util.ArrayList;
  * Created by AlbertoPennino on 05/07/2017.
  */
 public class ExcommunicationTileTest {
-    @Test
-    public void testExecute() throws Exception{
+    @org.testng.annotations.Test
+
+
+    public void testExecute1() throws Exception {
+        //Game initialization
         ArrayList<Player> players = new ArrayList<>();
 
         Player player1 = new Player("l", PlayerColor.BLUE, new PersonalBoard(6));
@@ -34,6 +36,10 @@ public class ExcommunicationTileTest {
         int bonusOnCost = player1.getBonusAndMalusOnCost().size();
         int bonusOnGoods = player1.getBonusAndMalusOnGoods().size();
 
+        /**
+         * control on the addition of the effect to the players
+         */
+
         if (excommunicationTile1.getMalusOnAction()!= null){
             assertTrue(bonusOnAction == 1);
             assertFalse(bonusOnCost == 1);
@@ -50,6 +56,5 @@ public class ExcommunicationTileTest {
             assertFalse(bonusOnCost == 1);
 
         }
-
     }
 }
