@@ -53,8 +53,6 @@ public class Server {
 
         gameMatchHandler = new GameMatchHandler();
 
-        execute();
-
     }
 
     private void execute() throws AlreadyBoundException, IOException {
@@ -155,6 +153,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException, AlreadyBoundException {
         Server server = new Server();
+        server.execute();
     }
 
 

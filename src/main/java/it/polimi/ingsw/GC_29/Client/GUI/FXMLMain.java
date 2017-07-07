@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Client.GUI;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.*;
 import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
@@ -44,6 +45,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 23/06/17.
@@ -62,7 +65,9 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     private PlayerState currentPlayerState;
 
     private GameBoardController gameBoardController;
-    //private ChooseDistribution chooseDistribution;
+
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
 
     private InputInterfaceGUI interfaceGUI;
 
@@ -126,7 +131,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         } catch (Exception e) {
 
             System.out.println("Exception: " + e);
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
 
         }
 
@@ -170,9 +175,9 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
                     try {
                         connectRMI();
                     } catch (RemoteException e) {
-                        e.printStackTrace();
+                        LOGGER.info((Supplier<String>) e);
                     } catch (NotBoundException e) {
-                        e.printStackTrace();
+                        LOGGER.info((Supplier<String>) e);
                     }
                     break;
 
@@ -182,7 +187,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             if (!logged) {
 
                 loginController.showError();
-                //loginController.connectionStable();
+
             }
 
         }
@@ -244,7 +249,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         try {
             loginRoot = loader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         loginStage.setScene(new Scene(loginRoot));
@@ -489,7 +494,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         gameboardStage.setScene(new Scene(gameboardRoot));

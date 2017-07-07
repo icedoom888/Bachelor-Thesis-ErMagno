@@ -240,27 +240,29 @@ public class GameBoard {
     }
 
     public String toTable() {
+
+        StringBuilder bld = new StringBuilder();
         String finalString = "";
 
         for (Tower tower : towerMap.values()) {
-            finalString += tower.toTable();
+            bld.append(tower.toTable());
         }
-        finalString += "\n\n\n";
+        bld.append("\n\n\n");
         for (Workspace workspace : workAreaMap.values()) {
-            finalString += workspace.toTable();
+            bld.append(workspace.toTable());
         }
-        finalString += "\n\n\n";
-        finalString += market.toTable();
-        finalString += "\n\n\n";
-        finalString += councilPalace.toTable();
-        finalString += "\n\n\n";
-        finalString += excommunicationLane.toTable();
-        finalString += "\n\n\n";
-        finalString += victoryPointsTrack.toTable();
-        finalString += "\n\n\n";
-        finalString += venturesPointsTrack.toTable();
-        finalString += "\n\n\n";
-        finalString += faithPointsTrack.toTable();
+        bld.append("\n\n\n");
+        bld.append(market.toTable());
+        bld.append("\n\n\n");
+        bld.append(councilPalace.toTable());
+        bld.append("\n\n\n");
+        bld.append( excommunicationLane.toTable());
+        bld.append("\n\n\n");
+        bld.append(victoryPointsTrack.toTable());
+        bld.append("\n\n\n");
+        bld.append(venturesPointsTrack.toTable());
+        bld.append("\n\n\n");
+        bld.append(faithPointsTrack.toTable());
 
 
         return finalString;
@@ -282,6 +284,5 @@ public class GameBoard {
             towerMap.get(ZoneType.YELLOWTOWER).getFloor(i).addCard(yellowDeck[i]);
             towerMap.get(ZoneType.PURPLETOWER).getFloor(i).addCard(purpleDeck[i]);
         }
-        int i = 0;
     }
 }

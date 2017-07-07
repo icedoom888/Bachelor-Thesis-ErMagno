@@ -31,6 +31,7 @@ public class SuspendPlayer extends TimerTask {
 
         playerToSuspend.setPlayerState(PlayerState.SUSPENDED);
 
+
         switch (playerState) {
 
             case THROWDICES:
@@ -58,8 +59,6 @@ public class SuspendPlayer extends TimerTask {
 
                 break;
 
-            case WAITING:
-                break;
 
             case CHOOSECOST:
 
@@ -79,21 +78,13 @@ public class SuspendPlayer extends TimerTask {
                 break;
 
 
+
             case SUSPENDED:
+            case WAITING:
+            default:
                 break;
 
         }
-
-
-
-
-
-
-        // viene chiamata con timer.schedule(task, 1000)
-        // il numero di secondi indica quanto deve aspettare prima di partire
-        // timer.cancel()
-
-
 
     }
 

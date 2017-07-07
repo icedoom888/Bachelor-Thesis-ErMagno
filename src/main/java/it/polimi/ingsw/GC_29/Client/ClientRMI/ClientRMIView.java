@@ -124,7 +124,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
             try {
                 serverViewStub.endGame();
             } catch (RemoteException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
 
             Timer timer = new Timer();

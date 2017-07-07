@@ -28,6 +28,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
     private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
 
+
     public ClientInHandlerGUI(ObjectInputStream socketIn, CommonOutSocket commonOutSocket) {
 
         this.socketIn = socketIn;
@@ -200,15 +201,10 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
     private void handlePlayerState(PlayerState currentPlayerState) {
 
-       try {
 
-            commonOutSocket.handlePlayerState(currentPlayerState);
+        commonOutSocket.handlePlayerState(currentPlayerState);
+        firePlayerState(currentPlayerState);
 
-            firePlayerState(currentPlayerState);
-
-        } catch (RemoteException e) {
-            LOGGER.info((Supplier<String>) e);
-        }
 
         switch (currentPlayerState){
 

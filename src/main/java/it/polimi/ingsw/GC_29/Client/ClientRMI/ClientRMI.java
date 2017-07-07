@@ -15,6 +15,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -44,6 +46,9 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
     private EnumInterface gameInterface;
 
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
+
     public ClientRMI(EnumInterface gameInterface) throws RemoteException{
 
         super();
@@ -61,13 +66,9 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
         try {
             connectServerRMI();
             loginRMI();
-            //createNewGameRMI();
+
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
-            e.printStackTrace();
-        } finally {
-            // Always close it:
-            //TODO: chiudi connessione
+            LOGGER.info((Supplier<String>) e);
         }
 
     }

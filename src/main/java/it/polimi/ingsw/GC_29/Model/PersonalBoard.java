@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Model;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * Created by icedoom on 18/05/17.
@@ -71,15 +72,21 @@ public class PersonalBoard {
     }
 
     public String toTable() {
-        String finalString = "";
 
-        finalString += "\n\n\n";
-        finalString += bonusTile.toTable();
-        for (CardColor cardColor : laneMap.keySet()) {
-            finalString += cardColor.toString() + " LANE :\n";
-            finalString += laneMap.get(cardColor).toTable();
+        StringBuilder bld = new StringBuilder();
+
+        bld.append("\n\n\n");
+        bld.append(bonusTile.toTable());
+
+        for (Map.Entry<CardColor, Lane> entry : laneMap.entrySet()) {
+
+            bld.append(entry.getKey());
+            bld.append(" LANE :\n");
+            bld.append(entry.getValue().toTable());
         }
-        return finalString;
+
+
+        return bld.toString();
     }
 
 

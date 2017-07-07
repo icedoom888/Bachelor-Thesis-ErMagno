@@ -279,9 +279,6 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     break;
 
                 case "help":
-                    handleHelp();
-                    break;
-
                 default:
                     handleHelp();
                     break;
@@ -327,7 +324,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
     }
 
 
-    public void handlePlayerState(PlayerState currentPlayerState) throws RemoteException {
+    public void handlePlayerState(PlayerState currentPlayerState) {
 
         switch (currentPlayerState){
 

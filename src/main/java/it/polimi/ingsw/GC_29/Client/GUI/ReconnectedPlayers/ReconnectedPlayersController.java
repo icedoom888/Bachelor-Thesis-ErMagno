@@ -18,10 +18,15 @@ public class ReconnectedPlayersController {
      * @param playerIds
      */
     public void updateReconnectedPlayers(List<String> playerIds){
-        String reconnectedPlayers = new String("\n");
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n");
+
         for (String id : playerIds){
-            reconnectedPlayers = reconnectedPlayers + "\n" + id +"\n";
+            stringBuilder.append("\n");
+            stringBuilder.append(id);
+
         }
-        reconnectedPlayersArea.setText(reconnectedPlayers);
+        reconnectedPlayersArea.setText(stringBuilder.toString());
     }
 }

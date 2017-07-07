@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Controllers.Change.BonusTileChangeGui;
 import it.polimi.ingsw.GC_29.Controllers.Change.GoodSetChange;
 import it.polimi.ingsw.GC_29.Controllers.Change.PersonalCardChange;
@@ -15,6 +16,8 @@ import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
 
 import java.rmi.RemoteException;
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -48,6 +51,8 @@ public class Controller implements Observer<Input>  {
     private final int minNumberOfPlayers = 2;
     private List<Player> playerDisconnected;
 
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
 
     public Controller(Model model){
         this.model = model;
@@ -70,13 +75,13 @@ public class Controller implements Observer<Input>  {
         try {
             Observer.super.update(input);
         } catch (ObserverException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         try {
             input.perform(model, this);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -728,7 +733,7 @@ public class Controller implements Observer<Input>  {
             try {
                 workAction.execute();
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
             workAction.getCardsForWorkers().clear();
             handleEndAction();
@@ -853,7 +858,7 @@ public class Controller implements Observer<Input>  {
 
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
             }
 

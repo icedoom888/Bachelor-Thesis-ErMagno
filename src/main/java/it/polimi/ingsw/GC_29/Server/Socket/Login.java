@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Server.Socket;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Server.GameMatchHandler;
@@ -8,6 +9,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 14/06/17.
@@ -21,6 +24,9 @@ public class Login {
     private String username;
     private boolean logged;
     private EnumInterface enumInterface;
+
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
 
 
     public Login(PlayerSocket playerSocket, GameMatchHandler gameMatchHandler) throws IOException {
@@ -81,9 +87,9 @@ public class Login {
                 if (enumInterface == EnumInterface.GUI) break;
 
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
         }
 

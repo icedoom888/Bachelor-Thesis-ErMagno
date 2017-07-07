@@ -12,7 +12,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class ConnectionInterfaceImpl extends UnicastRemoteObject implements ConnectionInterface{
 
 
-    GameMatchHandler gameMatchHandler;
+    private transient GameMatchHandler gameMatchHandler;
 
     public ConnectionInterfaceImpl(GameMatchHandler gameMatchHandler) throws RemoteException {
         super();
@@ -50,8 +50,6 @@ public class ConnectionInterfaceImpl extends UnicastRemoteObject implements Conn
         System.out.println("CLIENT AGGIUNTO");
 
         gameMatchHandler.addClient(clientStub);
-
-
 
 
     }
