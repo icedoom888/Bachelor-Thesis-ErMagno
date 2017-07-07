@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Server;
 
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Model.Model;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.logging.Logger;
 public abstract class Observable<C> {
 
     private List<Observer<C>> observers;
+
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
 
     public Observable(){
