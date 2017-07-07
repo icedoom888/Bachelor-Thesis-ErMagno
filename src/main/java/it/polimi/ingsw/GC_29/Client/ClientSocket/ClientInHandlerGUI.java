@@ -167,12 +167,14 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             //Lancia schermata
             System.out.println("\n\nLANCIO END GAME DA CLIENT IN HANDLER");
             endGame(winner);
+            System.out.println("END GAME LANCIATO");
 
             isRunning = false;
             commonOutSocket.endGame();
 
             try {
                 socketIn.close();
+                System.out.println("SOCKET CLOSED");
             } catch (IOException e) {
                 LOGGER.info((Supplier<String>) e);
             }

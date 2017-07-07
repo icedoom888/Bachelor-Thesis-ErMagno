@@ -46,8 +46,6 @@ public class GameRMI extends CommonOutRMI implements Runnable {
             //Capture input from user
             String inputLine = stdIn.nextLine();
             System.out.println("SENDING "+inputLine);
-            Input input;
-            Query query;
 
             sendInput(inputLine);
         }

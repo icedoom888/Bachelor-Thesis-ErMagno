@@ -515,6 +515,7 @@ public class Controller implements Observer<Input>  {
                     break;
                 case 3:
                     player.updateGoodSet(new GoodSet(0,0,0,0,6,0,0));
+                    System.out.println("");
                     break;
                 case 4:
                     player.updateGoodSet(new GoodSet(0,0,0,0,10,0,0));

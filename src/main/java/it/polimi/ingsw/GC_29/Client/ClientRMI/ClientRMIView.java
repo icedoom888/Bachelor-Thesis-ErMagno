@@ -29,18 +29,18 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
     public ClientRMIView(){
 
-        try {
-            UnicastRemoteObject.exportObject(this, 0);
-        } catch (RemoteException e) {
-            LOGGER.info((Supplier<String>) e);
-        }
-
     }
 
 
     public void connectWithServerView(RMIViewRemote serverViewStub, InputChecker inputChecker){
 
         this.serverViewStub = serverViewStub;
+
+        try {
+            UnicastRemoteObject.exportObject(this, 0);
+        } catch (RemoteException e) {
+            LOGGER.info((Supplier<String>) e);
+        }
 
         this.inputChecker = inputChecker;
 
@@ -50,7 +50,6 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
     @Override
     public void updateClient(Change c) throws RemoteException {
         // Just prints what was received from the server
-
 
         System.out.println((c));
 

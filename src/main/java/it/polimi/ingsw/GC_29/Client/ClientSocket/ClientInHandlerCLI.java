@@ -114,11 +114,7 @@ public class ClientInHandlerCLI implements Runnable {
 
             inputChecker.setCurrentPlayerState(((PlayerStateChange)c).getNewPlayerState());
 
-            try {
-                handlePlayerState(inputChecker.getCurrentPlayerState());
-            } catch (RemoteException e) {
-                LOGGER.info((Supplier<String>) e);
-            }
+            handlePlayerState(inputChecker.getCurrentPlayerState());
 
             System.out.println("if you want to see your valid input for this current state insert : help");
         }
@@ -126,40 +122,36 @@ public class ClientInHandlerCLI implements Runnable {
         if(c instanceof GameChange){
 
             handlleGameState((GameChange)c);
+
         }
 
         if(c instanceof ReconnectionChange){
 
-            handleReconnection((ReconnectionChange)c);
+            ReconnectionChange change = ((ReconnectionChange)c);
+            System.out.println("THE FOLLOWING PLAYERS ARE BACK IN THE GAME: ");
+
+            for (String s : change.getReconnectedPlayerUsernames()) {
+
+                System.out.println(s.toUpperCase());
+            }
         }
 
         if(c instanceof PlayerDisconnectedChange){
 
-            handlePlayerDisconnected((PlayerDisconnectedChange)c);
+            PlayerDisconnectedChange change = ((PlayerDisconnectedChange)c);
+
+            List<String> usernames = change.getUsername();
+
+            System.out.println("THE FOLLOWING PLAYERS ARE DISCONNECTED: ");
+
+            for (String username : usernames) {
+
+                System.out.println(username.toUpperCase());
+
+            }
         }
     }
 
-    private void handlePlayerDisconnected(PlayerDisconnectedChange c) {
-
-        List<String> usernames = c.getUsername();
-
-        System.out.println("THE FOLLOWING PLAYERS ARE DISCONNECTED: ");
-
-        for (String username : usernames) {
-
-            System.out.println(username.toUpperCase());
-
-        }
-    }
-
-    private void handleReconnection(ReconnectionChange c) {
-        System.out.println("THE FOLLOWING PLAYERS ARE BACK IN THE GAME: ");
-
-        for (String s : c.getReconnectedPlayerUsernames()) {
-
-            System.out.println(s.toUpperCase());
-        }
-    }
 
     private void handlleGameState(GameChange currentGameChange) {
 
@@ -169,37 +161,10 @@ public class ClientInHandlerCLI implements Runnable {
 
         if(currentGameState == GameState.ENDED){
 
-            inputChecker.setCurrentPlayerState(PlayerState.ENDGAME);
-
-            String winner = ((EndGame)currentGameChange).getWinner();
-
-            System.out.println("THE GAME IS ENDED. THE WINNER IS " + winner + "!\n");
-
-            System.out.println("IN A FEW SECONDS THE GAME WILL BE TERMINATED");
-
-            isRunning = false;
-
-            commonOutSocket.endGame();
-
-            try {
-                socketIn.close();
-            } catch (IOException e) {
-                LOGGER.info((Supplier<String>) e);
-            }
-
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-
-                @Override
-                public void run() {
-
-                    System.out.println("ESEGUO TASK");
-                    System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
-                    exit(0);
-                }
-            }, (long) 10000);
+            handleEndGame(currentGameChange);
 
         }
+
 
         if(currentGameChange instanceof EndMove){
 
@@ -211,8 +176,47 @@ public class ClientInHandlerCLI implements Runnable {
 
     }
 
+    private void handleEndGame(GameChange currentGameChange) {
 
-    private void handlePlayerState(PlayerState currentPlayerState) throws RemoteException {
+
+        inputChecker.setCurrentPlayerState(PlayerState.ENDGAME);
+
+        StringBuilder bld = new StringBuilder();
+
+         ((EndGame)currentGameChange).getWinner();
+
+        bld.append("THE GAME IS ENDED. THE WINNER IS " );
+        bld.append(((EndGame)currentGameChange).getWinner());
+        bld.append("\n");
+        bld.append("IN A FEW SECONDS THE GAME WILL BE TERMINATED");
+
+        System.out.println(bld.toString());
+
+        isRunning = false;
+
+        commonOutSocket.endGame();
+
+        try {
+            socketIn.close();
+        } catch (IOException e) {
+            LOGGER.info((Supplier<String>) e);
+        }
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+
+                exit(0);
+            }
+        }, (long) 10000);
+
+
+    }
+
+
+    private void handlePlayerState(PlayerState currentPlayerState) {
 
         inputChecker.setCurrentPlayerState(currentPlayerState);
 
@@ -275,14 +279,8 @@ public class ClientInHandlerCLI implements Runnable {
                 System.out.println("you have to decide whether to swear fidelity to the pope or not \n the valid input is : pray / do not pray");
                 break;
 
-            /*case DISCARDINGLEADER:
-
-                List<Integer> councilPrivileges = new ArrayList<>();
-                councilPrivileges.add(1);
-                inputChecker.setCouncilPrivilegeEffectList(councilPrivileges);
-                inputChecker.nextPrivilegeEffect();
-                inputChecker.askWhichPrivilege();
-                break;*/
+            default:
+                break;
         }
     }
 

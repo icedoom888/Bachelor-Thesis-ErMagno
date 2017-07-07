@@ -84,6 +84,7 @@ public class ClientSocketCLI {
                 socketOut.flush();
                 socketOut.writeObject(password);
                 socketOut.flush();
+                System.out.println("");
 
                 logged = socketIn.readBoolean();
 
