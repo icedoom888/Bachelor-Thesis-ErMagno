@@ -13,11 +13,8 @@ import java.util.logging.Logger;
 /**
  * Created by Icedoom on 19/05/2017.
  */
-public class GameStatus extends Observable<Change>{
+public class Model extends Observable<Change>{
 
-
-    private static final Logger LOGGER = Logger.getLogger(GameStatus.class.getName());
-    /*private GameEvent gameEvent;*/
     private GameState gameState;
 
     // Mancano i controller da inserire in futuro
@@ -34,7 +31,7 @@ public class GameStatus extends Observable<Change>{
     private HashMap<FamilyPawn, ActionSpace> pawnsOnActionSpace;
     private Map<Integer, BonusTile> bonusTileMap;
 
-    public GameStatus() {
+    public Model() {
 
         orderedDecks = new EnumMap<>(CardColor.class);
         pawnsOnActionSpace = new HashMap<>();
@@ -120,10 +117,6 @@ public class GameStatus extends Observable<Change>{
 
     }
 
-    /*public int getNumberOfPlayers() {
-        return numberOfPlayers;
-    }*/
-
 
     public List<Player> getTurnOrder() {
 
@@ -158,12 +151,9 @@ public class GameStatus extends Observable<Change>{
 
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
-        try {
-            notifyObserver(new GameChange(this.gameState));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
 
-        }
+        notifyObserver(new GameChange(this.gameState));
+
     }
 
     public Action getCurrentAction() {
@@ -214,89 +204,68 @@ public class GameStatus extends Observable<Change>{
             }
         }
 
-        try {
-            notifyObserver(new TowerCardsChange(cards, cardColor));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        notifyObserver(new TowerCardsChange(cards, cardColor));
+
 
     }
 
     public void updateTrackGUI(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
 
-        try {
-            notifyObserver(new TrackChange(playerColor, goodType, numberOfPoints));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        notifyObserver(new TrackChange(playerColor, goodType, numberOfPoints));
+
     }
 
     public void updateDisconnectedTrackGUI(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
 
-        try {
-            notifyObserver(new TrackReset(playerColor, goodType, numberOfPoints));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        notifyObserver(new TrackReset(playerColor, goodType, numberOfPoints));
+
     }
 
     public void updatePawnsGUI(FamilyPawn temporaryPawn) {
 
         int actionIndex = currentPlayer.getCurrentValidActionsList().indexOf(currentPlayer.getCurrentAction());
 
-        try {
-            notifyObserver(new AddPawnChange(temporaryPawn, actionIndex));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        notifyObserver(new AddPawnChange(temporaryPawn, actionIndex));
+
 
     }
 
     public void clearPawns() {
 
-        try {
-            notifyObserver(new ClearPawns());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        notifyObserver(new ClearPawns());
+
 
     }
 
 
     public void setEndGame(Player winner) {
-        try {
-            notifyObserver(new EndGame(winner.getPlayerID()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        notifyObserver(new EndGame(winner.getPlayerID()));
+
     }
 
     public void notifyPlayerReconnected(List<String> usernamePLayerReconnectedList) {
 
-        try {
-            notifyObserver(new ReconnectionChange(usernamePLayerReconnectedList));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        notifyObserver(new ReconnectionChange(usernamePLayerReconnectedList));
+
     }
 
     public void notifyPlayerDisconnected(List<String> playerNames) {
 
-        try {
-            notifyObserver(new PlayerDisconnectedChange(playerNames));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        notifyObserver(new PlayerDisconnectedChange(playerNames));
+
 
     }
 
     public void notifyEndMove() {
 
-        try {
-            notifyObserver(new EndMove(currentPlayer.getPlayerID()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        notifyObserver(new EndMove(currentPlayer.getPlayerID()));
+
     }
 }
 

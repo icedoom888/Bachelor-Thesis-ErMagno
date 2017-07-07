@@ -1,20 +1,16 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.Era;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Components.GameBoard;
 import it.polimi.ingsw.GC_29.Components.PersonalBoard;
 import it.polimi.ingsw.GC_29.Controllers.ActionChecker;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-
-import static org.testng.Assert.*;
 
 /**
  * Created by Lorenzotara on 15/06/17.
@@ -36,7 +32,7 @@ public class TowerActionTest2 {
 
         gameSetup.init();
 
-        GameStatus model = gameSetup.getGameStatus();
+        Model model = gameSetup.getModel();
 
 
         Player currentPlayer = player1;

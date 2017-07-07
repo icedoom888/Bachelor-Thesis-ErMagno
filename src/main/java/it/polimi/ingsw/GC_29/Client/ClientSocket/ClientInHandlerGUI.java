@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.GUI.*;
 import it.polimi.ingsw.GC_29.Client.GuiChangeHandler;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
@@ -14,6 +15,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
+
+import static java.lang.System.exit;
 
 /**
  * Created by Lorenzotara on 23/06/17.
@@ -23,22 +28,20 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
     private CommonOutSocket commonOutSocket;
     private ObjectInputStream socketIn;
     private Integer passes=0;
-    Boolean isRunning = true;
-    //private ChangeViewGUI changeViewGUI;
-    //private List<GuiChangeListener> listeners = Lists.newArrayList();
+    private Boolean isRunning = true;
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
 
     public ClientInHandlerGUI(ObjectInputStream socketIn, CommonOutSocket commonOutSocket) {
 
         this.socketIn = socketIn;
         this.commonOutSocket = commonOutSocket;
-       // this.changeViewGUI = new ChangeViewGUI(socketIn, commonView);
-    }
+   }
 
     @Override
     public void run() {
+
         System.out.println("Client In Running");
-
-
 
 
         while(isRunning){
@@ -47,64 +50,19 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             try {
                 String input = (String)socketIn.readObject();
 
-                //System.out.println("Update da Server View arrivato a Client In GUI");
+               if (input.contentEquals("Change")) {
 
-                switch (input) {
+                   updateClientGUI();
 
-                    case "Change":
-                        updateClientGUI();
-                        break;
-
-                    /*case "Leader":
-
-                        try {
-
-                            System.out.println("Waiting for leaders\n");
-
-
-                            Map<Integer, Boolean> availableLeaders = (Map<Integer, Boolean>)socketIn.readObject();
-
-                            System.out.println("Leaders received\n");
-
-                            inputChecker.setLeaderCardMap(availableLeaders);
-
-                            //getAvailableLeaders(availableLeaders);
-                        } catch (IOException | ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
-
-                        break;
-                        */
-
-                    /*
-                    case "Valid Actions":
-                        validActionsGUI();
-                        break;
-                    case "Get GoodSet":
-                        getGoodSetGUI();
-                        break;
-                    case "Get Development Cards":
-                        getCardsGUI("development");
-                        break;
-                    case "Get Tower Cards":
-                        getCardsGUI("tower");
-                        break;
-                    case "Get Family Pawns Availability":
-                        getFamilyPawnsAvailabilityGUI();
-                        break;
-
-                        */
                 }
 
             } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+
+                LOGGER.info((Supplier<String>) e);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
 
+                LOGGER.info((Supplier<String>) e);
 
-                //break;
             }
         }
     }
@@ -117,9 +75,9 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         try {
             c = (Change)socketIn.readObject();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
         //System.out.println(c);
         //System.out.println(commonView.getPlayerColor());
@@ -136,7 +94,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
 
             } catch (/*RemoteException*/ Exception e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
 
         }
@@ -219,7 +177,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             try {
                 socketIn.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
 
 
@@ -237,7 +195,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                         e.printStackTrace();
                     }*/
 
-                    System.exit(0);
+                    exit(0);
                 }
             }, (long) 10000);
 
@@ -246,16 +204,14 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
     private void handlePlayerState(PlayerState currentPlayerState) {
 
-        //inputChecker.setCurrentPlayerState(currentPlayerState);
-
-        try {
+       try {
 
             commonOutSocket.handlePlayerState(currentPlayerState);
 
             firePlayerState(currentPlayerState);
 
         } catch (RemoteException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         switch (currentPlayerState){
@@ -266,23 +222,8 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getFamilyPawnsAvailabilityGUI((Map<FamilyPawn, Boolean>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
-
-                /*try {
-                    String input = (String)socketIn.readObject();
-
-                    System.out.println("DO action: " + input);
-
-
-                    if (input.contentEquals("Get Family Pawns Availability")) {
-                        getFamilyPawnsAvailabilityGUI();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }*/
 
                 break;
 
@@ -293,22 +234,8 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     validActionsGUI((Map<Integer, String>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
-
-                /*try {
-                    String input = (String)socketIn.readObject();
-
-                    System.out.println("VALID ACTIONS: " + input);
-
-                    if (input.contentEquals("Valid Actions")) {
-                        validActionsGUI();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }*/
 
                 break;
 
@@ -318,22 +245,8 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getCardsForWorkersGUI((Map<Integer, ArrayList<String>>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
-
-                /*try {
-                    String input = (String)socketIn.readObject();
-
-                    System.out.println("Choose workers: " + input);
-
-                    if (input.contentEquals("Get Cards For Workers")) {
-                        getCardsForWorkersGUI();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }*/
 
                 break;
 
@@ -343,22 +256,8 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getPayToObtainCardsGUI((Map<String, HashMap<Integer, String>>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
-
-                /*try {
-                    String input = (String)socketIn.readObject();
-
-                    System.out.println("Pay to obtain: " + input);
-
-                    if (input.contentEquals("Get Pay To Obtain Cards")) {
-                        getPayToObtainCardsGUI();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }*/
 
                 break;
 
@@ -368,22 +267,8 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getPossibleCostsGUI((Map<Integer, String>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
-
-                /*try {
-                    String input = (String)socketIn.readObject();
-
-                    System.out.println("choose cost: " + input);
-
-                    if (input.contentEquals("Get Possible Costs")) {
-                        getPossibleCostsGUI();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }*/
 
                 break;
 
@@ -393,22 +278,8 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getCouncilPrivilegesGUI((List<Integer>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
-
-                /*try {
-                    String input = (String)socketIn.readObject();
-
-                    System.out.println("council privilege: " + input);
-
-                    if (input.contentEquals("Get Council Privileges")) {
-                        getCouncilPrivilegesGUI();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }*/
 
                 break;
 
@@ -418,23 +289,9 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getBonusTilesGUI((Map<Integer, String>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
-                /*try {
-
-                    String input = (String)socketIn.readObject();
-
-                    System.out.println("Bonus Tiles : " + input);
-
-                    if (input.contentEquals("Get Bonus Tile")) {
-                        getBonusTilesGUI();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }*/
 
                 break;
 
@@ -444,23 +301,10 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getExcommunicationTileUrl((String)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
 
-                /*try {
 
-                    String input = (String)socketIn.readObject();
-
-                    System.out.println("PRAY : " + input);
-
-                    if (input.contentEquals("Get Excommunication")) {
-                        getExcommunicationTileUrl();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }*/
 
                 break;
 
@@ -471,196 +315,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
 
 
-   /* private void firePray(String excommunicationUrl) {
-        for (GuiChangeListener listener : listeners) {
-            listener.pray(excommunicationUrl);
-        }
-    }
 
-
-    private void firePlayerState(PlayerState currentPlayerState) {
-
-        for (GuiChangeListener listener : listeners) {
-            listener.changeState(currentPlayerState);
-        }
-
-    }
-
-
-    private void fireValidActions() {
-
-        for (GuiChangeListener listener : listeners) {
-
-            listener.validActions(commonView.getInputChecker().getValidActionList());
-
-        }
-    }
-
-
-    private void fireFamilyPawns(Map<FamilyPawn, Boolean> familyPawns) {
-
-        for (GuiChangeListener listener : listeners) {
-            listener.updatePawns(familyPawns);
-        }
-    }
-
-    private void fireCardsForWorkers(Map<Integer, ArrayList<String>> cardsForWorkers) {
-
-        for (GuiChangeListener listener : listeners) {
-            listener.cardsForWorkers(cardsForWorkers);
-        }
-
-    }
-
-    private void firePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCard) {
-
-        for (GuiChangeListener listener : listeners) {
-            listener.payToObtainCard(payToObtainCard);
-        }
-    }
-
-    private void firePossibleCosts(Map<Integer, String> possibleCosts) {
-
-        for (GuiChangeListener listener : listeners) {
-            listener.possibleCosts(possibleCosts);
-        }
-
-    }
-
-    private void fireCouncilPrivileges(List<Integer> councilPrivileges) {
-
-        for (GuiChangeListener listener : listeners) {
-            listener.councilPrivilege(councilPrivileges);
-        }
-
-    }
-
-    private void fireBonusTiles(Map<Integer, String> bonusTiles) {
-
-        for (GuiChangeListener listener : listeners) {
-            listener.bonusTile(bonusTiles);
-        }
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    public void addListener(GuiChangeListener listener) {
-        listeners.add(listener);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    private void validActionsGUI(Map<Integer, String> validActions) {
-
-        //Map<Integer, String> validActions = (Map<Integer, String>)socketIn.readObject();
-        commonView.getInputChecker().setValidActionList(validActions);
-        fireValidActions();
-
-
-    }
-
-
-
-    private void getFamilyPawnsAvailabilityGUI(Map<FamilyPawn, Boolean> familyPawns) {
-
-        //Map<FamilyPawn, Boolean> familyPawns = (Map<FamilyPawn, Boolean>)socketIn.readObject();
-
-        HashMap<FamilyPawnType, Boolean> familyPawnsAvailability = new HashMap<>();
-
-        for (FamilyPawn familyPawn : familyPawns.keySet()) {
-
-            familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
-        }
-
-        commonView.getInputChecker().setFamilyPawnAvailability(familyPawnsAvailability);
-
-        fireFamilyPawns(familyPawns);
-
-    }
-
-
-
-    private void getCardsForWorkersGUI(Map<Integer, ArrayList<String>> cardsForWorkers) {
-
-        //Map<Integer, ArrayList<String>> cardsForWorkers = (Map<Integer, ArrayList<String>>)socketIn.readObject();
-        commonView.getInputChecker().setPossibleCardsWorkActionMap(cardsForWorkers);
-
-        fireCardsForWorkers(cardsForWorkers);
-
-    }
-
-
-    private void getPayToObtainCardsGUI(Map<String, HashMap<Integer, String>> payToObtainCards) {
-
-        //Map<String, HashMap<Integer, String>> payToObtainCards = (Map<String, HashMap<Integer, String>>)socketIn.readObject();
-        commonView.getInputChecker().setPayToObtainCardsMap(payToObtainCards);
-
-        firePayToObtainCards(payToObtainCards);
-
-    }
-
-
-
-    private void getPossibleCostsGUI(Map<Integer, String> possibleCosts) {
-
-        //Map<Integer, String> possibleCosts = (Map<Integer, String>)socketIn.readObject();
-        commonView.getInputChecker().setPossibleCosts(possibleCosts);
-
-        firePossibleCosts(possibleCosts);
-
-    }
-
-
-
-    private void getCouncilPrivilegesGUI(List<Integer> councilPrivileges) {
-
-        //List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
-        commonView.getInputChecker().setCouncilPrivilegeEffectList(councilPrivileges);
-        //commonView.getInputChecker().nextPrivilegeEffect();
-        //commonView.getInputChecker().askWhichPrivilege();
-
-        fireCouncilPrivileges(councilPrivileges);
-
-    }
-
-
-
-    private void getBonusTilesGUI(Map<Integer, String> bonusTiles) {
-
-        //Map<Integer, String> bonusTiles = (Map<Integer, String>)socketIn.readObject();
-        commonView.getInputChecker().setBonusTileMap(bonusTiles);
-
-        fireBonusTiles(bonusTiles);
-
-    }
-
-
-    private void getExcommunicationTileUrl(String excommunicationUrl) {
-
-        //String excommunicationUrl = (String)socketIn.readObject();
-
-        firePray(excommunicationUrl);
-
-    }*/
 
 
     public void setCommonOutSocket(CommonOutSocket commonOutSocket) {

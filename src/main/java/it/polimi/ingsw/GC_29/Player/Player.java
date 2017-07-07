@@ -247,8 +247,6 @@ public class Player extends Observable<Change> {
 
         notifyObserver(new GoodSetChange(actualGoodSet));
 
-
-
         this.actualGoodSet.updateModelTracks(newGoodSet);
     }
 

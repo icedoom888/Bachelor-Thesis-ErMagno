@@ -6,7 +6,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 public class Closed extends Input {
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
         controller.clientClosed();
     }
 }

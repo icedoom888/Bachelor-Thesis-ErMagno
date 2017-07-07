@@ -7,9 +7,9 @@ import it.polimi.ingsw.GC_29.Server.Observer;
  */
 public class TrackController implements Observer<MovePawn> {
 
-    private GameStatus model;
+    private Model model;
 
-    public TrackController(GameStatus model) {
+    public TrackController(Model model) {
         this.model = model;
     }
 

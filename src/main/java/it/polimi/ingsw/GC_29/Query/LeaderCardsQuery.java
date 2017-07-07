@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Components.LeaderCard;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
@@ -21,7 +21,7 @@ public class LeaderCardsQuery extends Query<List<String>> {
     }
 
     @Override
-    public List<String> perform(GameStatus model) {
+    public List<String> perform(Model model) {
 
         System.out.println("\n\nPLAYER COLOR: " + playerColor);
 

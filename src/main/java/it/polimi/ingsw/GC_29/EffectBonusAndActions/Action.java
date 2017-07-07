@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 import java.io.Serializable;
@@ -9,15 +9,15 @@ import java.io.Serializable;
 /**
  * Created by Lorenzotara on 19/05/17.
  */
-public abstract class Action implements Serializable{
+public abstract class Action {
 
 
     protected int workers;
-    protected transient FamilyPawn temporaryPawn;
-    protected transient GameStatus gameStatus;
+    protected FamilyPawn temporaryPawn;
+    protected Model model;
     protected ZoneType zoneType;
-    protected transient ActionSpace actionSpaceSelected;
-    protected transient Player player;
+    protected ActionSpace actionSpaceSelected;
+    protected Player player;
     protected Boolean enable = true;
     protected Boolean onlyWorkers = false; // TODO: patch per leader cardsss
 
@@ -39,10 +39,10 @@ public abstract class Action implements Serializable{
 
     protected Boolean isValid = true;
 
-    public Action(ZoneType zoneType, GameStatus gameStatus) {
+    public Action(ZoneType zoneType, Model model) {
 
         this.zoneType = zoneType;
-        this.gameStatus = gameStatus;
+        this.model = model;
     }
 
 
@@ -219,9 +219,9 @@ public abstract class Action implements Serializable{
 
             actionSpaceSelected.addPawn(temporaryPawn);
 
-            gameStatus.getPawnsOnActionSpace().put(temporaryPawn, actionSpaceSelected);
+            model.getPawnsOnActionSpace().put(temporaryPawn, actionSpaceSelected);
 
-            gameStatus.updatePawnsGUI(temporaryPawn);
+            model.updatePawnsGUI(temporaryPawn);
         }
 
 

@@ -12,11 +12,11 @@ public class SuspendPlayer extends TimerTask {
 
     //private final long turnTime = 180000; // Three minutes to complete your turn
     private Controller controller;
-    private GameStatus model;
+    private Model model;
     private Player playerToSuspend;
 
 
-    public SuspendPlayer(Controller controller, GameStatus model, Player playerToSuspend) {
+    public SuspendPlayer(Controller controller, Model model, Player playerToSuspend) {
         this.controller = controller;
         this.model = model;
         this.playerToSuspend = playerToSuspend;
@@ -33,13 +33,7 @@ public class SuspendPlayer extends TimerTask {
 
             case THROWDICES:
 
-                try {
-                    new ThrowDices().perform(model, controller);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                //endTurn();
+                new ThrowDices().perform(model, controller);
 
                 break;
 
@@ -58,12 +52,7 @@ public class SuspendPlayer extends TimerTask {
 
             case PRAY:
 
-                try {
-                    new Pray(false, playerToSuspend.getPlayerColor()).perform(model, controller);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
+                new Pray(false, playerToSuspend.getPlayerColor()).perform(model, controller);
 
                 break;
 
@@ -72,11 +61,8 @@ public class SuspendPlayer extends TimerTask {
 
             case CHOOSECOST:
 
-                try {
-                    new PayCard(0).perform(model, controller);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                new PayCard(0).perform(model, controller);
 
                 endTurn();
 
@@ -85,11 +71,8 @@ public class SuspendPlayer extends TimerTask {
 
             case CHOOSE_BONUS_TILE:
 
-                try {
-                    new BonusTileChosen().perform(model, controller);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                new BonusTileChosen().perform(model, controller);
 
                 break;
 
@@ -114,11 +97,9 @@ public class SuspendPlayer extends TimerTask {
 
     private void endTurn() {
 
-        try {
-            System.out.println("STO LANCIANDO END TURN DA SUSPEND PLAYER, PLAYER STATE: " + playerToSuspend.getPlayerState());
-            new EndTurn().perform(model, controller);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        System.out.println("STO LANCIANDO END TURN DA SUSPEND PLAYER, PLAYER STATE: " + playerToSuspend.getPlayerState());
+        new EndTurn().perform(model, controller);
+
     }
 }

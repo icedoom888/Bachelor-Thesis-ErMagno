@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import it.polimi.ingsw.GC_29.Components.*;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
@@ -24,7 +23,7 @@ import java.util.*;
  */
 public class Controller implements Observer<Input>  {
 
-    private final GameStatus model;
+    private final Model model;
 
     private final long throwDicesTime = 150000;
     private final long chooseBonusTilesTime = 150000;
@@ -46,7 +45,7 @@ public class Controller implements Observer<Input>  {
     private List<Player> playerDisconnected;
 
 
-    public Controller(GameStatus model){
+    public Controller(Model model){
         this.model = model;
         playersPraying = 0;
         actionChecker = new ActionChecker(model);
@@ -597,7 +596,7 @@ public class Controller implements Observer<Input>  {
      * oldTurnOrder following the order of the color in newTurnOrder in a temporary arrayList. While doing this process,
      * the method saves all the indices of the oldTurnOrder that point to the players that have already been copied.
      * After this first step, all the players of the oldTurnOrder are added to the temporary arrayList, skipping the
-     * ones who have already been copied. Then the TurnOrder in the GameStatus is set.
+     * ones who have already been copied. Then the TurnOrder in the Model is set.
      */
     private void setNewTurnOrder() {
 

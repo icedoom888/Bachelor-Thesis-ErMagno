@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 public class SkipAction extends Input {
 
     @Override
-    public void perform(GameStatus model, Controller controller) throws RemoteException {
+    public void perform(Model model, Controller controller) throws RemoteException {
 
         Player currentPlayer = model.getCurrentPlayer();
 

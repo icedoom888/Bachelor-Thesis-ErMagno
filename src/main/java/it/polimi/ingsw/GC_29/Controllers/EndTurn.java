@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Player.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +14,7 @@ public class EndTurn extends Input {
     /**
      * During the EndTurn, the current PlayerState is set to WAITING. Then, if the player that was playing was
      * playing because he skipped a turn, the method chooses another player from the ones who skipped. If the list
-     * of skipped players is empty, the GameStatus is set to RUNNING and it is the end of the Round. On the other hand,
+     * of skipped players is empty, the Model is set to RUNNING and it is the end of the Round. On the other hand,
      * if it was a normal player, if he is not the last one, the controller chooses the next player. In case he was the
      * last player, but it was not the last turn, the first player in order starts to play. In the event that the turn
      * was the 4th, the GameState is set to CheckOnSkipped and, if there are players who have skipped the turn, they
@@ -25,7 +24,7 @@ public class EndTurn extends Input {
      * @throws Exception
      */
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         model.notifyEndMove();
 
@@ -141,7 +140,7 @@ public class EndTurn extends Input {
     }
 
 
-    private void setSkippedPlayer(GameStatus model, Controller controller) {
+    private void setSkippedPlayer(Model model, Controller controller) {
 
         if (model.getSkippedTurnPlayers().isEmpty()) {
 

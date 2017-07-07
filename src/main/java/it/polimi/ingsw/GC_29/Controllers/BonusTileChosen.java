@@ -25,7 +25,7 @@ public class BonusTileChosen extends Input {
 
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         controller.stopTimer();
 
@@ -124,7 +124,7 @@ public class BonusTileChosen extends Input {
         }
     }
 
-    private void beginMatch(GameStatus model, Controller controller) {
+    private void beginMatch(Model model, Controller controller) {
 
         List<Player> turnOrder = model.getTurnOrder();
 

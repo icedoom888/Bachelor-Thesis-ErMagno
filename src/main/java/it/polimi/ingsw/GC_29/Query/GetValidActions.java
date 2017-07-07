@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class GetValidActions extends Query<Map<Integer, String>> {
 
     @Override
-    public Map<Integer, String> perform(GameStatus model) {
+    public Map<Integer, String> perform(Model model) {
 
         ArrayList<Action> actionList = model.getCurrentPlayer().getCurrentValidActionsList();
 

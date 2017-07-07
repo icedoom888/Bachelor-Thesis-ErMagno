@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 public class GetCouncilPrivileges extends Query<List<Integer>> {
 
     @Override
-    public List<Integer> perform(GameStatus model) {
+    public List<Integer> perform(Model model) {
 
         List<Integer> parchmentAmountList = new ArrayList<>();
 

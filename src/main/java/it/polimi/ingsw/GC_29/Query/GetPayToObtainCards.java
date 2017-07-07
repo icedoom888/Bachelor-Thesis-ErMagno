@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class GetPayToObtainCards extends Query<Map<String, HashMap<Integer, String>>> {
 
     @Override
-    public Map<String, HashMap<Integer, String>> perform(GameStatus model) {
+    public Map<String, HashMap<Integer, String>> perform(Model model) {
 
         WorkAction workAction = (WorkAction)model.getCurrentPlayer().getCurrentAction();
 

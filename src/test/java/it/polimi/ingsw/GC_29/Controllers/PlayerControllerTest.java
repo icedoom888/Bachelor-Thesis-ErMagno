@@ -55,14 +55,14 @@ public class PlayerControllerTest {
 
 
 
-        GameStatus.getInstance().getGameBoard().getTower(ZoneType.GREENTOWER).getFloor(0).setDevelopmentCard(testCard);
-        GameStatus.getInstance().getGameBoard().getTower(ZoneType.GREENTOWER).getFloor(1).setDevelopmentCard(testCard1);
-        GameStatus.getInstance().getGameBoard().getTower(ZoneType.YELLOWTOWER).getFloor(1).setDevelopmentCard(testCard1);
-        GameStatus.getInstance().getGameBoard().getTower(ZoneType.BLUETOWER).getFloor(1).setDevelopmentCard(testCard1);
-        GameStatus.getInstance().getGameBoard().getTower(ZoneType.PURPLETOWER).getFloor(1).setDevelopmentCard(testCard1);
+        Model.getInstance().getGameBoard().getTower(ZoneType.GREENTOWER).getFloor(0).setDevelopmentCard(testCard);
+        Model.getInstance().getGameBoard().getTower(ZoneType.GREENTOWER).getFloor(1).setDevelopmentCard(testCard1);
+        Model.getInstance().getGameBoard().getTower(ZoneType.YELLOWTOWER).getFloor(1).setDevelopmentCard(testCard1);
+        Model.getInstance().getGameBoard().getTower(ZoneType.BLUETOWER).getFloor(1).setDevelopmentCard(testCard1);
+        Model.getInstance().getGameBoard().getTower(ZoneType.PURPLETOWER).getFloor(1).setDevelopmentCard(testCard1);
 
 
-        GameStatus.getInstance().setCurrentPlayer(player);
+        Model.getInstance().setCurrentPlayer(player);
 
         PlayerController testController = new PlayerController();
 
@@ -93,11 +93,11 @@ public class PlayerControllerTest {
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile1, tile2, tile3);
 
-        GameStatus.getInstance().setGameBoard(gameBoard);
+        Model.getInstance().setGameBoard(gameBoard);
 
-        GameStatus.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
+        Model.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
 
-        GameStatus.getInstance().setCurrentPlayer(currentPlayer);
+        Model.getInstance().setCurrentPlayer(currentPlayer);
 
         PlayerController testController = new PlayerController();
 
@@ -141,11 +141,11 @@ public class PlayerControllerTest {
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile1, tile2, tile3);
 
-        GameStatus.getInstance().setGameBoard(gameBoard);
+        Model.getInstance().setGameBoard(gameBoard);
 
-        GameStatus.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
+        Model.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
 
-        GameStatus.getInstance().setCurrentPlayer(currentPlayer);
+        Model.getInstance().setCurrentPlayer(currentPlayer);
 
         PlayerController testController = new PlayerController();
 
@@ -189,11 +189,11 @@ public class PlayerControllerTest {
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile1, tile2, tile3);
 
-        GameStatus.getInstance().setGameBoard(gameBoard);
+        Model.getInstance().setGameBoard(gameBoard);
 
-        GameStatus.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
+        Model.getInstance().getGameBoard().getTowerMap().put(ZoneType.GREENTOWER, testTower);
 
-        GameStatus.getInstance().setCurrentPlayer(currentPlayer);
+        Model.getInstance().setCurrentPlayer(currentPlayer);
 
         PlayerController testController = new PlayerController();
 

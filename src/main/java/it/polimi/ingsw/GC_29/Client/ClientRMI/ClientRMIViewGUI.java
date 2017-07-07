@@ -14,6 +14,8 @@ import java.util.*;
 import java.util.function.Supplier;
 import java.util.logging.*;
 
+import static java.lang.System.exit;
+
 /**
  * Created by Christian on 01/07/2017.
  */
@@ -129,7 +131,7 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
                 @Override
                 public void run() {
 
-                    System.exit(0);
+                    exit(0);
                 }
             }, (long) 10000);
 

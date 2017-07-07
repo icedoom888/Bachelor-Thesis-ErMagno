@@ -15,7 +15,7 @@ public class JoinGame extends Input {
     }
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         System.out.println("il colore del player sospeso è "+playerColor);
 

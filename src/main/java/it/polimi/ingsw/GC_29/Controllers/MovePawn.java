@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.Pawn;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
 import java.io.Serializable;
 
@@ -16,9 +15,9 @@ public abstract class MovePawn implements Serializable {
         this.numberOfPoints = numberOfPoints;
     }
 
-    public abstract void moveOnTrack(GameStatus model);
+    public abstract void moveOnTrack(Model model);
 
-    public Pawn playerPawn(GameStatus model) {
+    public Pawn playerPawn(Model model) {
         return model.getCurrentPlayer().getMarkerDiscs();
     }
 }

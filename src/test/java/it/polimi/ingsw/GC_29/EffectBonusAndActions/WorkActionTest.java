@@ -1,16 +1,5 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Controllers.GameSetup;
-import org.testng.annotations.Test;
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Player.*;
-import it.polimi.ingsw.GC_29.ProveGSon.MainGSonFromFile;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.EnumMap;
-
 /**
  * Created by AlbertoPennino on 02/06/2017.
 
@@ -82,19 +71,19 @@ public class WorkActionTest {
         action5.setFamiliyPawn(selectedPawn3);
         action5.setPlayer(player1);
 
-        GameStatus.getInstance().setCurrentAction(action1);
+        Model.getInstance().setCurrentAction(action1);
         System.out.println("executing action 1");
         action1.execute();
-        GameStatus.getInstance().setCurrentAction(action2);
+        Model.getInstance().setCurrentAction(action2);
         System.out.println("executing action 2");
         action2.execute();
-        GameStatus.getInstance().setCurrentAction(action3);
+        Model.getInstance().setCurrentAction(action3);
         System.out.println("executing action 3");
         action3.execute();
-        GameStatus.getInstance().setCurrentAction(action4);
+        Model.getInstance().setCurrentAction(action4);
         System.out.println("executing action 4");
         action4.execute();
-        GameStatus.getInstance().setCurrentAction(action5);
+        Model.getInstance().setCurrentAction(action5);
         System.out.println("executing action 5");
         action5.execute();
 
@@ -130,7 +119,7 @@ public class WorkActionTest {
         action.setFamiliyPawn(selectedPawn1);
         action.setPlayer(player1);
 
-        GameStatus.getInstance().setCurrentAction(action);
+        Model.getInstance().setCurrentAction(action);
         System.out.println("executing action..");
         action.execute();
 
@@ -167,7 +156,7 @@ public class WorkActionTest {
         action.setFamiliyPawn(selectedPawn1);
         action.setPlayer(player1);
 
-        GameStatus.getInstance().setCurrentAction(action);
+        Model.getInstance().setCurrentAction(action);
         System.out.println("executing action..");
         action.execute();
 

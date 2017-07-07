@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Components.LeaderCard;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
@@ -23,7 +22,7 @@ public class GetAvailableLeaderCards extends Query<Map<Integer, Boolean>> {
 
 
     @Override
-    public Map<Integer, Boolean> perform(GameStatus model) {
+    public Map<Integer, Boolean> perform(Model model) {
 
         HashMap<Integer, Boolean> leadersAvailable = new HashMap<>();
 

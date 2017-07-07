@@ -14,6 +14,8 @@ import java.util.*;
 import java.util.function.Supplier;
 import java.util.logging.Logger;
 
+import static java.lang.System.exit;
+
 /**
  * Created by Lorenzotara on 14/06/17.
  */
@@ -192,7 +194,7 @@ public class ClientInHandlerCLI implements Runnable {
 
                     System.out.println("ESEGUO TASK");
                     System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
-                    System.exit(0);
+                    exit(0);
                 }
             }, (long) 10000);
 

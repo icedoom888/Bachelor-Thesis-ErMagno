@@ -2,8 +2,8 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.ProveGSon.EnumMapInstanceCreator;
 
@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.rmi.RemoteException;
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 28/05/2017.
@@ -24,7 +26,7 @@ public class GameSetup {
 
     private int numberOfPlayers;
 
-    private GameStatus gameStatus;
+    private Model model;
 
     private GameBoard gameBoard;
 
@@ -36,10 +38,14 @@ public class GameSetup {
 
     private ArrayList<Player> players;
 
-    public GameSetup(ArrayList<Player> clientList) throws RemoteException {
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
 
-        this.gameStatus = new GameStatus();
+
+    public GameSetup(ArrayList<Player> clientList) {
+
+
+        this.model = new Model();
         this.players = clientList;
         this.numberOfPlayers = players.size();
         this.orderedDecks = new EnumMap<>(CardColor.class);
@@ -69,17 +75,25 @@ public class GameSetup {
 
 
     /**
-     * from the main the init method will be called, it will setup all the gameStatus, at the end the main method
+     * from the main the init method will be called, it will setup all the model, at the end the main method
      * will call the GameManager (manager for the setting of the currentPlayer, the management of the begin round, the end round
      * and the end era (relationship with the church is managed there)
      */
-    public void init() throws Exception {
+    public void init()  {
 
-        this.gameBoard = loadGameBoardFromFile(numberOfPlayers);
+        try {
+            this.gameBoard = loadGameBoardFromFile(numberOfPlayers);
+        } catch (IOException e) {
+            LOGGER.info((Supplier<String>) e);
+        }
 
         for(CardColor color : CardColor.values()){
             if (color != CardColor.ANY) {
-                this.orderedDecks.put(color, getDeckFromFile(color));
+                try {
+                    this.orderedDecks.put(color, getDeckFromFile(color));
+                } catch (FileNotFoundException e) {
+                    LOGGER.info((Supplier<String>) e);
+                }
             }
         }
 
@@ -187,7 +201,7 @@ public class GameSetup {
         try {
             excommunicationTileMap = getExcommunicationTilesFromFile();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         ExcommunicationTile tileFirstEra = getRandomTile(Era.FIRST);
@@ -198,9 +212,9 @@ public class GameSetup {
         gameBoard.getExcommunicationLane().setExcommunicationLane(tileFirstEra, tileSecondEra, tileThirdEra);
 
         try {
-            gameStatus.notifyObserver(new ExcommunicationChange(tileFirstEra.getUrl(), tileSecondEra.getUrl(), tileThirdEra.getUrl()));
+            model.notifyObserver(new ExcommunicationChange(tileFirstEra.getUrl(), tileSecondEra.getUrl(), tileThirdEra.getUrl()));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
@@ -221,12 +235,12 @@ public class GameSetup {
         try {
             leaderCards = getLeaderCardsFromFile();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         Collections.shuffle(leaderCards);
 
-        for (Player player : gameStatus.getTurnOrder()) {
+        for (Player player : model.getTurnOrder()) {
 
             ArrayList<LeaderCard> playerLeaderCards = new ArrayList<>();
 
@@ -245,9 +259,14 @@ public class GameSetup {
 
 
 
-    public void setGoodsForPlayers() throws Exception {
+    public void setGoodsForPlayers() {
 
-        FileReader fileReader = new FileReader("goodsForPlayerSetup");
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader("goodsForPlayerSetup");
+        } catch (FileNotFoundException e) {
+            LOGGER.info((Supplier<String>) e);
+        }
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 
@@ -269,33 +288,33 @@ public class GameSetup {
 
     private void setGameStatus() {
 
-        gameStatus.setGameBoard(gameBoard);
+        model.setGameBoard(gameBoard);
 
-        gameStatus.setOrderedDecks(orderedDecks);
+        model.setOrderedDecks(orderedDecks);
 
-        gameStatus.setTurnOrder(players);
+        model.setTurnOrder(players);
 
-        gameStatus.setPawns(players);
+        model.setPawns(players);
 
-        gameStatus.setCurrentPlayer(players.get(0));
+        model.setCurrentPlayer(players.get(0));
 
-        gameStatus.setCurrentEra(Era.FIRST);
+        model.setCurrentEra(Era.FIRST);
 
-        gameStatus.setCurrentRound(1);
+        model.setCurrentRound(1);
 
-        gameStatus.setCurrentTurn(1);
+        model.setCurrentTurn(1);
 
         try {
-            gameStatus.setBonusTileMap(loadBonusTilesFromFile());
+            model.setBonusTileMap(loadBonusTilesFromFile());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
     }
 
 
-    public GameStatus getGameStatus() {
-        return gameStatus;
+    public Model getModel() {
+        return model;
     }
 
     private Map<Integer, BonusTile> loadBonusTilesFromFile() throws FileNotFoundException {

@@ -1,18 +1,14 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import de.vandermeer.asciitable.AsciiTable;
-import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ZoneType;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-
-import static org.testng.Assert.*;
 
 /**
  * Created by Lorenzotara on 19/06/17.
@@ -38,7 +34,7 @@ public class DevelopmentCardTest {
 
         gameSetup.setLeaderCards();
 
-        GameStatus model = gameSetup.getGameStatus();
+        Model model = gameSetup.getModel();
 
         Controller controller = null;
         try {

@@ -12,7 +12,7 @@ public class ThrowDices extends Input {
 
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         controller.stopTimer();
 

@@ -15,7 +15,7 @@ public class UseLeaderCardsGUI extends Input {
     }
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
         for (Player player : model.getTurnOrder()) {
 
             if (player.getPlayerColor() == playerColor) {

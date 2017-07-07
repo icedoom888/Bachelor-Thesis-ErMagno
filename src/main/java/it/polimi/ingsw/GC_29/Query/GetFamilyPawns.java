@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class GetFamilyPawns extends Query<List<FamilyPawn>> {
     @Override
-    public List<FamilyPawn> perform(GameStatus model) {
+    public List<FamilyPawn> perform(Model model) {
         return model.getCurrentPlayer().getFamilyPawns();
     }
 }

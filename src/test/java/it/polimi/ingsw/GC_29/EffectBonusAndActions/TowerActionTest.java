@@ -1,15 +1,5 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Controllers.GameSetup;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import org.testng.annotations.Test;
-import it.polimi.ingsw.GC_29.Player.*;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-
 /**
  * Created by Lorenzotara on 22/05/17.
 
@@ -74,7 +64,7 @@ public class TowerActionTest {
         ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
 
-        GameBoard gameBoard = GameStatus.getInstance().getGameBoard();
+        GameBoard gameBoard = Model.getInstance().getGameBoard();
 
         gameBoard.getTower(ZoneType.BLUETOWER).getFloor(3).setDevelopmentCard(blueCard);
 
@@ -164,7 +154,7 @@ public class TowerActionTest {
         ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
 
-        GameBoard gameBoard = GameStatus.getInstance().getGameBoard();
+        GameBoard gameBoard = Model.getInstance().getGameBoard();
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
 
@@ -237,7 +227,7 @@ public class TowerActionTest {
         ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
 
-        GameBoard gameBoard = GameStatus.getInstance().getGameBoard();
+        GameBoard gameBoard = Model.getInstance().getGameBoard();
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
         player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,0,10,10,10));
@@ -328,7 +318,7 @@ public class TowerActionTest {
         ExcommunicationTile tile_2 = new ExcommunicationTile(Era.SECOND,"un",null,null,null,"su ogni");
         ExcommunicationTile tile_3 = new ExcommunicationTile(Era.THIRD,"bufu",null,null,null,"cosa");
 
-        GameBoard gameBoard = GameStatus.getInstance().getGameBoard();
+        GameBoard gameBoard = Model.getInstance().getGameBoard();
 
         gameBoard.getExcommunicationLane().setExcommunicationLane(tile_1, tile_2, tile_3);
         player1.getActualGoodSet().addGoodSet(new GoodSet(10,10,10,10,10,10,10));
@@ -364,7 +354,7 @@ public class TowerActionTest {
         System.out.println("Value of the pawn after BM: " + towerAction.getTemporaryPawn().getActualValue());
         System.out.println(towerAction.getPossibleCardCosts());
 
-        GameStatus.getInstance().setCurrentAction(towerAction);
+        Model.getInstance().setCurrentAction(towerAction);
 
         towerAction.execute();
         towerAction.update();

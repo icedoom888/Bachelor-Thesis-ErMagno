@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Server;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 import it.polimi.ingsw.GC_29.Components.PersonalBoard;
 import it.polimi.ingsw.GC_29.Controllers.*;
@@ -19,6 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 12/06/2017.
@@ -30,6 +33,9 @@ public class ServerNewGame implements Runnable {
     private ArrayList<Player> players;
     private LogoutInterface logoutInterface;
     private Map<String, PlayerColor> clientPlayerColorMap;
+
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
 
     private Boolean minClientNumberReached = false;
 
@@ -114,7 +120,7 @@ public class ServerNewGame implements Runnable {
             socketOut.writeObject(playerColor);
             socketOut.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
     }
@@ -138,21 +144,21 @@ public class ServerNewGame implements Runnable {
             gameSetup = new GameSetup(players);
             gameSetup.init();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         try {
-            controller = new Controller(gameSetup.getGameStatus());
+            controller = new Controller(gameSetup.getModel());
             controller.setCurrentMatch(this);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
-        trackController = new TrackController(gameSetup.getGameStatus());
+        trackController = new TrackController(gameSetup.getModel());
 
 
         /*try {
-            startRMIView(gameSetup.getGameStatus(), controller);
+            startRMIView(gameSetup.getModel(), controller);
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (AlreadyBoundException e) {
@@ -168,16 +174,16 @@ public class ServerNewGame implements Runnable {
 
                 System.out.println("Creo server socket view");
 
-                ServerSocketView serverSocketView = new ServerSocketView(playersSocketMap.get(player), gameSetup.getGameStatus(), player.getPlayerColor(), player.getPlayerID());
+                ServerSocketView serverSocketView = new ServerSocketView(playersSocketMap.get(player), gameSetup.getModel(), player.getPlayerColor(), player.getPlayerID());
 
                 serverSocketView.registerObserver(controller);
-                gameSetup.getGameStatus().registerObserver(serverSocketView);
-                gameSetup.getGameStatus().getPlayer(player.getPlayerColor()).registerObserver(serverSocketView);
+                gameSetup.getModel().registerObserver(serverSocketView);
+                gameSetup.getModel().getPlayer(player.getPlayerColor()).registerObserver(serverSocketView);
 
                 player.getActualGoodSet().registerObserver(trackController);
 
                 serverSocketView.registerLogout(logoutInterface);
-                logoutInterface.setClientMatch(gameSetup.getGameStatus().getPlayer(player.getPlayerColor()).getPlayerID(),  this);
+                logoutInterface.setClientMatch(gameSetup.getModel().getPlayer(player.getPlayerColor()).getPlayerID(),  this);
 
                 //serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
 
@@ -187,9 +193,9 @@ public class ServerNewGame implements Runnable {
             }
 
             catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
         }
 
@@ -201,19 +207,18 @@ public class ServerNewGame implements Runnable {
 
             try {
                 // Create the RMI View, that will be shared with the client
-                RMIView rmiView = new RMIView(gameSetup.getGameStatus(), clientRemoteInterface.getPlayerColor(), clientRemoteInterface.getUserName());
+                RMIView rmiView = new RMIView(gameSetup.getModel(), clientRemoteInterface.getPlayerColor(), clientRemoteInterface.getUserName());
 
-                RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
-                        exportObject(rmiView, 0);
+                UnicastRemoteObject.exportObject(rmiView, 0);
 
                 //controller observes this view
                 rmiView.registerObserver(controller);
 
                 //this view observes the model
-                gameSetup.getGameStatus().registerObserver(rmiView);
-                gameSetup.getGameStatus().getPlayer(clientRemoteInterface.getPlayerColor()).registerObserver(rmiView);
+                gameSetup.getModel().registerObserver(rmiView);
+                gameSetup.getModel().getPlayer(clientRemoteInterface.getPlayerColor()).registerObserver(rmiView);
 
-                gameSetup.getGameStatus().getPlayer(clientRemoteInterface.getPlayerColor()).getActualGoodSet().registerObserver(trackController);
+                gameSetup.getModel().getPlayer(clientRemoteInterface.getPlayerColor()).getActualGoodSet().registerObserver(trackController);
 
                 //registred view in gameMatchHandler
                 rmiView.registerLogout(logoutInterface);
@@ -226,11 +231,12 @@ public class ServerNewGame implements Runnable {
                 }
 
                 catch (RemoteException e) {
-                        e.printStackTrace();}
+                    LOGGER.info((Supplier<String>) e);
+                }
                 //La passo al client
 
             } catch (RemoteException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
 
         }
@@ -243,18 +249,16 @@ public class ServerNewGame implements Runnable {
             gameSetup.setExcommunicationTiles();
             gameSetup.setLeaderCards();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         controller.setCardsOnTowers();
 
-        for (ServerSocketView serverSocketView : serverSocketViews.keySet()) {
+        for (Map.Entry<ServerSocketView, Player> entry : serverSocketViews.entrySet()) {
 
-            serverSocketView.notifyObserver(new Initialize(serverSocketViews.get(serverSocketView).getPlayerColor()));
+            entry.getKey().notifyObserver(new Initialize(entry.getValue().getPlayerColor()));
 
-
-            executorService.submit(serverSocketView);
-
+            executorService.submit(entry.getKey());
         }
 
         for (ClientRemoteInterface clientRemoteInterface : clientRMIList) {
@@ -262,7 +266,7 @@ public class ServerNewGame implements Runnable {
             try {
                 clientRemoteInterface.initialize();
             } catch (RemoteException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
         }
 
@@ -293,7 +297,7 @@ public class ServerNewGame implements Runnable {
         while (b){}
     }
 
-    /*private void startRMIView(GameStatus gameStatus, Controller controller) throws RemoteException, AlreadyBoundException {
+    /*private void startRMIView(Model model, Controller controller) throws RemoteException, AlreadyBoundException {
         //create the registry to publish remote objects
         Registry registry = LocateRegistry.createRegistry(PORT);
         System.out.println("Constructing the RMI registry");
@@ -302,7 +306,7 @@ public class ServerNewGame implements Runnable {
         //controller observes this view
         rmiView.registerObserver(controller);
         //this view observes the model
-        gameStatus.registerObserver(rmiView);
+        model.registerObserver(rmiView);
         // publish the view in the registry as a remote object
         RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
                 exportObject(rmiView, 0);
@@ -327,7 +331,7 @@ public class ServerNewGame implements Runnable {
             socketOut.writeObject(playerColor);
             socketOut.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
     }

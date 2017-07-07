@@ -1,8 +1,12 @@
 package it.polimi.ingsw.GC_29.Server;
 
 
+import it.polimi.ingsw.GC_29.Controllers.Model;
+
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 07/06/2017.
@@ -11,6 +15,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class Observable<C> {
 
     private List<Observer<C>> observers;
+
+    private static final Logger LOGGER = Logger.getLogger(Model.class.getName());
+
 
     public Observable(){
         this.observers= new CopyOnWriteArrayList<>();
@@ -34,7 +41,7 @@ public abstract class Observable<C> {
                 try {
                     o.update(c);
                 } catch (ObserverException e) {
-                    e.printStackTrace();
+                    LOGGER.info((Supplier<String>) e);
                 }
             }
 

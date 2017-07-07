@@ -198,8 +198,6 @@ public class InputChecker {
 
         }
 
-        Integer.parseInt(lastWord);
-
         return null;
     }
 
@@ -273,13 +271,13 @@ public class InputChecker {
 
     private String handleActivateCard(String lastWord) {
 
-        if(lastWord.equals("yes")){
+        if("yes".equals(lastWord)){
 
             cardIsToActivate = true;
 
             return "activate card";
         }
-        if(lastWord.equals("no")){
+        if("no".equals(lastWord)){
             cardIsToActivate = false;
             return "activate card";
         }
@@ -626,11 +624,12 @@ public class InputChecker {
 
         System.out.println("choose between these privilege effects: ");
 
-        for (Integer index : currentParchment.keySet()) {
+        for (Map.Entry<Integer, ObtainEffect> entry : currentParchment.entrySet()) {
 
-            ObtainEffect obtainEffect = currentParchment.get(index);
+            ObtainEffect obtainEffect = entry.getValue();
 
-            System.out.println("privilege " + index + ") " + obtainEffect);
+            System.out.println("privilege " + entry.getKey() + ") " + obtainEffect);
+
         }
 
     }
@@ -644,11 +643,15 @@ public class InputChecker {
     }
 
     public void askWhichCost() {
+
         System.out.println("Choose how to pay between the following costs:\n");
-        for (Integer integer : possibleCosts.keySet()) {
-            String cost = possibleCosts.get(integer);
-            System.out.println(integer + ")   " + cost);
+
+        for (Map.Entry<Integer, String> entry : possibleCosts.entrySet()) {
+
+            System.out.println(entry.getKey() + ")   " + entry.getValue());
+
         }
+
     }
 
     public int getCostChosen() {
@@ -667,9 +670,10 @@ public class InputChecker {
 
         System.out.println("Select one of the next bonus tiles");
 
-        for (Integer bonusTileIndex : bonusTileMap.keySet()) {
+        for (Map.Entry<Integer, String> entry : bonusTileMap.entrySet()) {
 
-            System.out.println("bonus tile index: " + bonusTileIndex + ")  " + bonusTileMap.get(bonusTileIndex));
+            System.out.println("bonus tile index: " + entry.getKey() + ")  " + entry.getValue());
+
 
         }
 

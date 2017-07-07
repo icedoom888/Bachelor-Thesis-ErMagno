@@ -17,10 +17,10 @@ import java.util.List;
     //TODO: move delle pawn sulle track a fine turno
     //TODO: traduzione risorse punti vittoria
 
-    private GameStatus gameStatus;
+    private Model model;
 
     public GameController() {
-        this.gameStatus = GameStatus.getInstance();
+        this.model = Model.getInstance();
     }
 
     public void init() throws Exception {
@@ -30,32 +30,32 @@ import java.util.List;
         DevelopmentCard[] yellowDeck = new DevelopmentCard[4];
         DevelopmentCard[] purpleDeck = new DevelopmentCard[4];
 
-        while (gameStatus.getCurrentRound() <= 6) {
+        while (model.getCurrentRound() <= 6) {
 
 
             setFamilyPawnsValues();
 
             for (int i = 0; i < 4; i++) {
-                greenDeck[i] = gameStatus.getOrderedDecks().get(CardColor.GREEN).pop();
-                blueDeck[i] = gameStatus.getOrderedDecks().get(CardColor.BLUE).pop();
-                yellowDeck[i] = gameStatus.getOrderedDecks().get(CardColor.YELLOW).pop();
-                purpleDeck[i] = gameStatus.getOrderedDecks().get(CardColor.PURPLE).pop();
+                greenDeck[i] = model.getOrderedDecks().get(CardColor.GREEN).pop();
+                blueDeck[i] = model.getOrderedDecks().get(CardColor.BLUE).pop();
+                yellowDeck[i] = model.getOrderedDecks().get(CardColor.YELLOW).pop();
+                purpleDeck[i] = model.getOrderedDecks().get(CardColor.PURPLE).pop();
 
             }
 
-            gameStatus.getGameBoard().setTurn(greenDeck,blueDeck,yellowDeck,purpleDeck);
+            model.getGameBoard().setTurn(greenDeck,blueDeck,yellowDeck,purpleDeck);
 
             // throwDices(); TODO: metodo di interfaccia
 
 
-            while (gameStatus.getCurrentTurn() <= gameStatus.getTurnOrder().size()) {
+            while (model.getCurrentTurn() <= model.getTurnOrder().size()) {
 
-                for (Player player : gameStatus.getTurnOrder()) {
-                    gameStatus.setCurrentPlayer(player);
-                    gameStatus.getPlayerController().init();
+                for (Player player : model.getTurnOrder()) {
+                    model.setCurrentPlayer(player);
+                    model.getPlayerController().init();
                 }
 
-                gameStatus.setCurrentTurn(gameStatus.getCurrentTurn()+1);
+                model.setCurrentTurn(model.getCurrentTurn()+1);
 
             }
 
@@ -63,24 +63,24 @@ import java.util.List;
             checkSkipTurn();
             setNewTurnOrder();
 
-            if (gameStatus.getCurrentRound()%2 == 0) {
+            if (model.getCurrentRound()%2 == 0) {
                 executeTiles();
 
-                if (gameStatus.getCurrentEra() == Era.FIRST) {
-                    gameStatus.setCurrentEra(Era.SECOND);
+                if (model.getCurrentEra() == Era.FIRST) {
+                    model.setCurrentEra(Era.SECOND);
 
-                } else if (gameStatus.getCurrentEra() == Era.SECOND) {
-                    gameStatus.setCurrentEra(Era.THIRD);
+                } else if (model.getCurrentEra() == Era.SECOND) {
+                    model.setCurrentEra(Era.THIRD);
 
-                } else if (gameStatus.getCurrentEra() == Era.THIRD) endGame();
+                } else if (model.getCurrentEra() == Era.THIRD) endGame();
             }
 
-            gameStatus.getGameBoard().clearAll();
-            gameStatus.setCurrentTurn(1);
+            model.getGameBoard().clearAll();
+            model.setCurrentTurn(1);
 
             // Setting availability on every pawn
 
-            for (Player player : gameStatus.getTurnOrder()) {
+            for (Player player : model.getTurnOrder()) {
 
                 for (FamilyPawnType familyPawnType : FamilyPawnType.values()){
 
@@ -88,7 +88,7 @@ import java.util.List;
                 }
             }
 
-            gameStatus.setCurrentRound(gameStatus.getCurrentRound()+1);
+            model.setCurrentRound(model.getCurrentRound()+1);
 
         }
     }
@@ -96,14 +96,14 @@ import java.util.List;
 
     //TODO testing
     private void setFamilyPawnsValues() throws Exception {
-        for (Player player : gameStatus.getTurnOrder()) {
+        for (Player player : model.getTurnOrder()) {
 
             Dice tempDice;
 
             for (FamilyPawnType familyPawnType : FamilyPawnType.values()) {
 
                 if (familyPawnType != FamilyPawnType.BONUS && familyPawnType != FamilyPawnType.NEUTRAL) {
-                    tempDice = gameStatus.getGameBoard().getDice(familyPawnType);
+                    tempDice = model.getGameBoard().getDice(familyPawnType);
                     player.setFamilyPawnValue(familyPawnType, tempDice.getFace());
 
                 }
@@ -117,7 +117,7 @@ import java.util.List;
      */
     /*public void endGame() throws Exception { //TODO: make private
 
-        List<Player> players = gameStatus.getTurnOrder();
+        List<Player> players = model.getTurnOrder();
 
         Player winner = null;
         int winningPoints = 0;
@@ -164,7 +164,7 @@ import java.util.List;
     /*private void executeTiles() throws Exception {
 
         int threshold=0;
-        Era currentEra = gameStatus.getCurrentEra();
+        Era currentEra = model.getCurrentEra();
         switch (currentEra) {
             case FIRST:
                 threshold = 3;
@@ -177,10 +177,10 @@ import java.util.List;
                 break;
         }
 
-        ExcommunicationTile tileToExecute = gameStatus.getGameBoard().getExcommunicationLane().getExcommunicationTile(currentEra);
-        FaithPointsTrack faithPointsTrack = gameStatus.getGameBoard().getFaithPointsTrack();
+        ExcommunicationTile tileToExecute = model.getGameBoard().getExcommunicationLane().getExcommunicationTile(currentEra);
+        FaithPointsTrack faithPointsTrack = model.getGameBoard().getFaithPointsTrack();
 
-        List<Player> players = gameStatus.getTurnOrder();
+        List<Player> players = model.getTurnOrder();
         ArrayList<Pawn> excommunicatedPawns = new ArrayList<Pawn>();
 
         for (int i = 0; i < threshold; i++) {
@@ -218,11 +218,11 @@ import java.util.List;
      * oldTurnOrder following the order of the color in newTurnOrder in a temporary arrayList. While doing this process,
      * the method saves all the indices of the oldTurnOrder that point to the players that have already been copied.
      * After this first step, all the players of the oldTurnOrder are added to the temporary arrayList, skipping the
-     * ones who have already been copied. Then the TurnOrder in the GameStatus is set.
+     * ones who have already been copied. Then the TurnOrder in the Model is set.
      */
     /*public void setNewTurnOrder() {  //Todo: make private
-        PlayerColor[] newTurnOrder = gameStatus.getGameBoard().getCouncilPalace().getTurnOrder();
-        List<Player> oldTurnOrder = gameStatus.getTurnOrder();
+        PlayerColor[] newTurnOrder = model.getGameBoard().getCouncilPalace().getTurnOrder();
+        List<Player> oldTurnOrder = model.getTurnOrder();
         ArrayList<Player> temporaryTurnOrder = new ArrayList<>();
         ArrayList<Integer> indices = new ArrayList<>();
 
@@ -241,7 +241,7 @@ import java.util.List;
             if (!indices.contains(i)) temporaryTurnOrder.add(oldTurnOrder.get(i));
         }
 
-        gameStatus.setTurnOrder(temporaryTurnOrder);
+        model.setTurnOrder(temporaryTurnOrder);
 
     }
 
@@ -252,12 +252,12 @@ import java.util.List;
      */
     /*private void checkSkipTurn() throws Exception {
 
-        List<Player> players = gameStatus.getSkippedTurnPlayers();
+        List<Player> players = model.getSkippedTurnPlayers();
 
         if (!players.isEmpty()) {
             for (Player player : players) {
-                gameStatus.setCurrentPlayer(player);
-                gameStatus.getPlayerController().init();
+                model.setCurrentPlayer(player);
+                model.getPlayerController().init();
             }
         }
     }

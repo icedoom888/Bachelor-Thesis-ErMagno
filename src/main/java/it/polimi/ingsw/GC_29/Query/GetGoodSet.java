@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 
 /**
  * Created by Lorenzotara on 18/06/17.
@@ -9,7 +9,7 @@ import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 public class GetGoodSet extends Query<GoodSet> {
 
     @Override
-    public GoodSet perform(GameStatus model) {
+    public GoodSet perform(Model model) {
         return model.getCurrentPlayer().getActualGoodSet();
     }
 }

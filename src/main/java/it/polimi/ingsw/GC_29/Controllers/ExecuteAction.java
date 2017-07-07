@@ -1,9 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 import it.polimi.ingsw.GC_29.Player.Player;
@@ -32,7 +29,7 @@ public class ExecuteAction extends Input {
      * @throws RemoteException
      */
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         currentPlayer = model.getCurrentPlayer();
 

@@ -1,16 +1,10 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Components.ShopName;
-import it.polimi.ingsw.GC_29.Components.Tower;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
 import it.polimi.ingsw.GC_29.Player.Player;
-import jdk.nashorn.internal.objects.NativeUint8Array;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Christian on 01/06/2017.
@@ -21,16 +15,16 @@ public class ActionChecker {
     private ArrayList<Action> actionList;
     private Player currentPlayer;
     private ArrayList<Action> validActionList;
-    private GameStatus gameStatus;
+    private Model model;
 
     //test variable
     private boolean testVariable = false;
 
-    public ActionChecker(GameStatus gameStatus){
+    public ActionChecker(Model model){
 
         actionList = new ArrayList<>();
         validActionList = new ArrayList<>();
-        this.gameStatus = gameStatus;
+        this.model = model;
     }
 
 
@@ -51,7 +45,7 @@ public class ActionChecker {
 
     public void setCurrentPlayer() throws NullPointerException{
 
-        this.currentPlayer = gameStatus.getCurrentPlayer();
+        this.currentPlayer = model.getCurrentPlayer();
 
         for(Action action : actionList){
 

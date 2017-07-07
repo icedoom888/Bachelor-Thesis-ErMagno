@@ -1,15 +1,16 @@
 package it.polimi.ingsw.GC_29.Client;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMI;
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientSocketCLI;
 import it.polimi.ingsw.GC_29.Client.GUI.FXMLMain;
-import it.polimi.ingsw.GC_29.Client.GUI.Login.LoginGUI;
-import it.polimi.ingsw.GC_29.Server.Socket.Login;
 import javafx.application.Application;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 11/06/2017.
@@ -24,10 +25,16 @@ public class Client {
 
     private boolean interfaceChosen;
 
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
+
     private ClientRMI gameRMI;
 
-    public Client() throws RemoteException {
-        super();
+    public Client() {
+
+    }
+
+    private void start(){
 
         askWhichInterface();
 
@@ -40,7 +47,6 @@ public class Client {
                 Application.launch(FXMLMain.class);
                 break;
         }
-
     }
 
 
@@ -50,35 +56,11 @@ public class Client {
             executeCLI();
         }
         catch (Exception e){
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
-        finally {
-            // TODO: chiusura canale rmi e canale socket
-        }
+
     }
 
-    /*private void askWhichConnectionGUI() {
-
-
-
-        LoginController loginController = new LoginController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/LoginGUI.fxml"));
-        loader.setController(loginController);
-        Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-        SplitPane root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(new Scene(root));
-        stage.setTitle("Login");
-        stage.setHeight(400);
-        stage.setWidth(500);
-        stage.centerOnScreen();
-        stage.show();
-    }*/
 
     private void askWhichInterface() {
         Scanner stdIn = new Scanner(System.in);
@@ -145,12 +127,16 @@ public class Client {
         }
     }
 
-    private void executeCLI() throws Exception {
+    private void executeCLI() {
 
         switch (distribution) {
 
             case RMI:
-                gameRMI = new ClientRMI(EnumInterface.CLI);
+                try {
+                    gameRMI = new ClientRMI(EnumInterface.CLI);
+                } catch (RemoteException e) {
+                    LOGGER.info((Supplier<String>) e);
+                }
                 gameRMI.executeRMI();
                 break;
 
@@ -159,7 +145,7 @@ public class Client {
                 break;
 
             default:
-                throw new Exception("Illegal distribution type: " + distribution);
+                throw new IllegalArgumentException("Illegal distribution type: " + distribution);
 
         }
 
@@ -173,18 +159,15 @@ public class Client {
             clientSocketCLI.startClientCLI();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
     }
 
 
-    private void close() {
 
-    }
-
-
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         Client client = new Client();
+        client.start();
     }
 }
 

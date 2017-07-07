@@ -1,8 +1,6 @@
 package it.polimi.ingsw.GC_29.Components;
 
-import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import org.junit.Test;
@@ -29,7 +27,7 @@ public class ExcommunicationTileTest {
         gameSetup.init();
         gameSetup.setExcommunicationTiles();
 
-        ExcommunicationTile excommunicationTile1 = gameSetup.getGameStatus().getGameBoard().getExcommunicationLane().getExcommunicationTile(Era.FIRST);
+        ExcommunicationTile excommunicationTile1 = gameSetup.getModel().getGameBoard().getExcommunicationLane().getExcommunicationTile(Era.FIRST);
         excommunicationTile1.execute(player1);
 
         int bonusOnAction = player1.getBonusAndMalusOnAction().size();

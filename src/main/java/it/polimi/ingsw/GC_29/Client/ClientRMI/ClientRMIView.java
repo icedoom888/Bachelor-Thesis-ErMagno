@@ -11,6 +11,8 @@ import java.util.*;
 import java.util.function.Supplier;
 import java.util.logging.*;
 
+import static java.lang.System.exit;
+
 /**
  * Created by Christian on 07/06/2017.
  */
@@ -131,7 +133,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
                 public void run() {
 
                     System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
-                    System.exit(0);
+                    exit(0);
                 }
             }, (long) 10000);
 

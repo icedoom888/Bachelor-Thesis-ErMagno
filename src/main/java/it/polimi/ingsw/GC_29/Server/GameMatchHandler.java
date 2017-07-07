@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.Controllers.JoinGame;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIView;
@@ -146,23 +146,23 @@ public class GameMatchHandler implements LogoutInterface{
             e.printStackTrace();
         }
 
-        GameStatus gameStatus = clientCurrentMatch.getGameSetup().getGameStatus();
+        Model model = clientCurrentMatch.getGameSetup().getModel();
 
 
-        ServerSocketView serverSocketView = new ServerSocketView(playerSocket, gameStatus, playerColor, username);
+        ServerSocketView serverSocketView = new ServerSocketView(playerSocket, model, playerColor, username);
 
         serverSocketView.registerObserver(clientCurrentMatch.getController());
-        System.out.println("SONO IN GAMEMATCHHANDLER AGGIUNGO AI RECONNECTED " + gameStatus.getPlayer(playerColor).getPlayerID());
-        clientCurrentMatch.getController().getPlayerReconnected().add(gameStatus.getPlayer(playerColor));
+        System.out.println("SONO IN GAMEMATCHHANDLER AGGIUNGO AI RECONNECTED " + model.getPlayer(playerColor).getPlayerID());
+        clientCurrentMatch.getController().getPlayerReconnected().add(model.getPlayer(playerColor));
 
 
-        gameStatus.registerObserver(serverSocketView);
-        gameStatus.getPlayer(playerColor).registerObserver(serverSocketView);
+        model.registerObserver(serverSocketView);
+        model.getPlayer(playerColor).registerObserver(serverSocketView);
 
-        gameStatus.getPlayer(playerColor).getActualGoodSet().registerObserver(clientCurrentMatch.getTrackController());
+        model.getPlayer(playerColor).getActualGoodSet().registerObserver(clientCurrentMatch.getTrackController());
 
         serverSocketView.registerLogout(this);
-        setClientMatch(gameStatus.getPlayer(playerColor).getPlayerID(),  clientCurrentMatch);
+        setClientMatch(model.getPlayer(playerColor).getPlayerID(),  clientCurrentMatch);
 
 
         serverSocketView.notifyObserver(new JoinGame(playerColor));
@@ -182,9 +182,9 @@ public class GameMatchHandler implements LogoutInterface{
 
         clientStub.setPlayerColor(clientCurrentMatch.getClientPlayerColorMap().get(username));
 
-        GameStatus gameStatus = clientCurrentMatch.getGameSetup().getGameStatus();
+        Model model = clientCurrentMatch.getGameSetup().getModel();
 
-        RMIView rmiView = new RMIView(gameStatus, clientStub.getPlayerColor(), username);
+        RMIView rmiView = new RMIView(model, clientStub.getPlayerColor(), username);
 
         RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
                 exportObject(rmiView, 0);
@@ -192,13 +192,13 @@ public class GameMatchHandler implements LogoutInterface{
         //controller observes this view
         rmiView.registerObserver(clientCurrentMatch.getController());
         //add the reconnected player in a list of the controller
-        clientCurrentMatch.getController().getPlayerReconnected().add(gameStatus.getPlayer(clientStub.getPlayerColor()));
+        clientCurrentMatch.getController().getPlayerReconnected().add(model.getPlayer(clientStub.getPlayerColor()));
 
         //this view observes the model
-        clientCurrentMatch.getGameSetup().getGameStatus().registerObserver(rmiView);
-        clientCurrentMatch.getGameSetup().getGameStatus().getPlayer(clientStub.getPlayerColor()).registerObserver(rmiView);
+        clientCurrentMatch.getGameSetup().getModel().registerObserver(rmiView);
+        clientCurrentMatch.getGameSetup().getModel().getPlayer(clientStub.getPlayerColor()).registerObserver(rmiView);
 
-        clientCurrentMatch.getGameSetup().getGameStatus().getPlayer(clientStub.getPlayerColor()).getActualGoodSet().registerObserver(clientCurrentMatch.getTrackController());
+        clientCurrentMatch.getGameSetup().getModel().getPlayer(clientStub.getPlayerColor()).getActualGoodSet().registerObserver(clientCurrentMatch.getTrackController());
 
         //registred view in gameMatchHandler
         rmiView.registerLogout(this);

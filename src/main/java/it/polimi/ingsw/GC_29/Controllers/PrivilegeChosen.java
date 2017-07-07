@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_29.Controllers;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilege;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ public class PrivilegeChosen extends Input {
 
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         CouncilPrivilege councilPrivilege = new CouncilPrivilege();
 

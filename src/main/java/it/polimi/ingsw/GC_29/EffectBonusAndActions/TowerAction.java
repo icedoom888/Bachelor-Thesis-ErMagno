@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,11 +25,11 @@ public class TowerAction extends Action {
 
     public TowerAction(
             ZoneType actionSelected,
-            GameStatus gameStatus,
+            Model model,
             int floorIndex) {
 
-        super(actionSelected, gameStatus);
-        this.towerChosen = this.gameStatus.getGameBoard().getTower(zoneType);
+        super(actionSelected, model);
+        this.towerChosen = this.model.getGameBoard().getTower(zoneType);
         this.floorIndex = floorIndex;
         this.actionSpaceSelected = towerChosen.getFloor(floorIndex).getActionSpace();
         this.actionSpaceGoodSet = new GoodSet();
@@ -279,11 +278,7 @@ public class TowerAction extends Action {
 
         goodSetToPay.setNegative();
 
-        try {
-            player.updateGoodSet(goodSetToPay);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        player.updateGoodSet(goodSetToPay);
 
     }
 
@@ -316,7 +311,7 @@ public class TowerAction extends Action {
 
         CardColor cardColor = card.getColor();
 
-        gameStatus.updateTowerGUI(cardColor);
+        model.updateTowerGUI(cardColor);
         player.updatePersonalBoardGUI(card.getSpecial(), cardColor);
 
     }

@@ -1,10 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import it.polimi.ingsw.GC_29.Components.LeaderCard;
-import it.polimi.ingsw.GC_29.Controllers.Controller;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Controllers.Input;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
@@ -25,7 +21,7 @@ public class LeaderAction extends Input {
     }
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         System.out.println("performing leader action \n");
 

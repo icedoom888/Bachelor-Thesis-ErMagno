@@ -1,10 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.Market;
 import it.polimi.ingsw.GC_29.Components.ShopName;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
-import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 
 /**
  * Created by Lorenzotara on 19/05/17.
@@ -14,12 +11,12 @@ public class MarketAction extends Action {
     private ShopName shopName;
 
     public MarketAction(ShopName houseSelected,
-                        GameStatus gameStatus) {
-        super(ZoneType.MARKET, gameStatus);
+                        Model model) {
+        super(ZoneType.MARKET, model);
 
         this.shopName = houseSelected;
 
-        this.actionSpaceSelected = this.gameStatus.getGameBoard().getMarket().getShop(shopName);
+        this.actionSpaceSelected = this.model.getGameBoard().getMarket().getShop(shopName);
     }
 
     @Override

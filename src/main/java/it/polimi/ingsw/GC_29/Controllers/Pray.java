@@ -8,9 +8,6 @@ import it.polimi.ingsw.GC_29.EffectBonusAndActions.Filter;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
-import java.rmi.RemoteException;
-import java.util.List;
-
 /**
  * Created by Lorenzotara on 10/06/17.
  */
@@ -26,7 +23,7 @@ public class Pray extends Input {
     }
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         controller.stopTimer();
 

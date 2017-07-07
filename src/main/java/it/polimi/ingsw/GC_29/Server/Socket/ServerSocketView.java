@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_29.Server.Socket;
 import it.polimi.ingsw.GC_29.Components.FamilyPawn;
 import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Components.LeaderCard;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.*;
@@ -14,7 +13,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,13 +30,13 @@ public class ServerSocketView extends View implements Runnable {
     private GetValidActions validActionQuery;
     private ObjectInputStream socketIn;
     private ObjectOutputStream socketOut;
-    private GameStatus model;
+    private Model model;
     private PlayerColor playerColor;
     private final String username;
     private static final Object socketLock = new Object();
 
 
-    public ServerSocketView(PlayerSocket playerSocket, GameStatus model, PlayerColor playerColor, String playerID) throws IOException {
+    public ServerSocketView(PlayerSocket playerSocket, Model model, PlayerColor playerColor, String playerID) throws IOException {
         this.socket = playerSocket.getSocket();
         this.socketIn = playerSocket.getSocketIn();
         this.socketOut = playerSocket.getSocketOut();

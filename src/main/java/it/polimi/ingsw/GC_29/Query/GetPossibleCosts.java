@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Components.Cost;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.TowerAction;
 
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class GetPossibleCosts extends Query<Map<Integer, String>> {
 
     @Override
-    public Map<Integer, String> perform(GameStatus model) {
+    public Map<Integer, String> perform(Model model) {
 
         Map<Integer, Cost> possibleCosts = ((TowerAction)model.getCurrentPlayer().getCurrentAction()).getPossibleCardCosts();
         HashMap<Integer, String> possibleCostsToString = new HashMap<>();

@@ -53,7 +53,7 @@ public class GameControllerTest {
 
         testGameController.endGame();
 
-        GameStatus.getInstance().getTurnOrder().clear();
+        Model.getInstance().getTurnOrder().clear();
 
     }
 
@@ -75,9 +75,9 @@ public class GameControllerTest {
 
         GameController testGameController = new GameController();
 
-        GameStatus gameStatus = GameStatus.getInstance();
+        Model model = Model.getInstance();
 
-        GameBoard gameBoard = gameStatus.getGameBoard();
+        GameBoard gameBoard = model.getGameBoard();
 
         gameBoard.getCouncilPalace().setTurnOrder(player1.getPlayerColor());
         gameBoard.getCouncilPalace().setTurnOrder(player2.getPlayerColor());
@@ -89,13 +89,13 @@ public class GameControllerTest {
             System.out.println(gameBoard.getCouncilPalace().getTurnOrder()[i]);
         }
 
-        System.out.println("Old TurnOrder: " + gameStatus.getTurnOrder());
+        System.out.println("Old TurnOrder: " + model.getTurnOrder());
 
         testGameController.setNewTurnOrder();
 
-        System.out.println("New TurnOrder: " + gameStatus.getTurnOrder());
+        System.out.println("New TurnOrder: " + model.getTurnOrder());
 
-        GameStatus.getInstance().getTurnOrder().clear();
+        Model.getInstance().getTurnOrder().clear();
 
     }
 

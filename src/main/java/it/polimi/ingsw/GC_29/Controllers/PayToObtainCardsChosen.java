@@ -19,7 +19,7 @@ public class PayToObtainCardsChosen extends Input {
 
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         System.out.println("PERFORM DELLA PAYTOOBRAINCARDSCHOSEN: ACTIVATEDCARDMAP.SIZE = " + activatedCardMap.size());
 

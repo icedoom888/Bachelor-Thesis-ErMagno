@@ -37,7 +37,7 @@ public class ClientSocketCLI {
     }
 
 
-    public void startClientCLI() throws UnknownHostException, IOException {
+    public void startClientCLI() throws IOException {
         System.out.println("Client avviato");
 
         try {

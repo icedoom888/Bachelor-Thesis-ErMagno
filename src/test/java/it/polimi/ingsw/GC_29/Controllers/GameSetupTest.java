@@ -37,7 +37,7 @@ public class GameSetupTest {
 
         testGameSetup.init();
 
-        ArrayDeque<DevelopmentCard> yellowDeck = GameStatus.getInstance().getOrderedDecks().get(CardColor.YELLOW);
+        ArrayDeque<DevelopmentCard> yellowDeck = Model.getInstance().getOrderedDecks().get(CardColor.YELLOW);
 
         Integer i = 1;
 

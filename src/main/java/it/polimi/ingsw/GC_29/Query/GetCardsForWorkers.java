@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Query;
 
 import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.Map;
 public class GetCardsForWorkers extends Query<Map<Integer, ArrayList<String>>> {
 
     @Override
-    public Map<Integer, ArrayList<String>> perform(GameStatus model) {
+    public Map<Integer, ArrayList<String>> perform(Model model) {
 
         Map<Integer, ArrayList<DevelopmentCard>> cardsForWorkersMap = ((WorkAction)model.getCurrentPlayer().getCurrentAction()).getCardsForWorkers();
 

@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
 import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
+import it.polimi.ingsw.GC_29.Controllers.Model;
 
 import java.util.*;
 
@@ -21,11 +21,11 @@ public class WorkAction extends Action {
 
 
     public WorkAction(ZoneType zoneType,
-                      GameStatus gameStatus,
+                      Model model,
                       FieldType fieldSelected){
 
-        super(zoneType, gameStatus);
-        this.workspaceSelected = this.gameStatus.getGameBoard().getWorkArea(zoneType);
+        super(zoneType, model);
+        this.workspaceSelected = this.model.getGameBoard().getWorkArea(zoneType);
 
         this.actionSpaceSelected = workspaceSelected.getActionSpace(fieldSelected);
         this.fieldSelected = fieldSelected;
@@ -108,7 +108,7 @@ public class WorkAction extends Action {
      */
     private boolean checkNeutralRule() {
 
-        if (gameStatus.getTurnOrder().size() < 4) return true;
+        if (model.getTurnOrder().size() < 4) return true;
 
         if(temporaryPawn.getType()==FamilyPawnType.NEUTRAL){
             System.out.println("The neutral rule is respected");

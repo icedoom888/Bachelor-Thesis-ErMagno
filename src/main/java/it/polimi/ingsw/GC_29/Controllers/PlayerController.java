@@ -20,7 +20,7 @@ import it.polimi.ingsw.GC_29.Player.Player;
 
     public PlayerController() {
 
-        //this.player = GameStatus.getInstance().getCurrentPlayer();
+        //this.player = Model.getInstance().getCurrentPlayer();
         currentTurnState = new BeginTurnState();
 
     }

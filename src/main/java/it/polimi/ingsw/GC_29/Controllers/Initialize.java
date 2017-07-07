@@ -1,12 +1,9 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 
-import it.polimi.ingsw.GC_29.Components.BonusTile;
 import it.polimi.ingsw.GC_29.Player.Player;
 import it.polimi.ingsw.GC_29.Player.PlayerColor;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +20,7 @@ public class Initialize extends Input {
     }
 
     @Override
-    public void perform(GameStatus model, Controller controller) {
+    public void perform(Model model, Controller controller) {
 
         if(model.getGameState() == null){
 

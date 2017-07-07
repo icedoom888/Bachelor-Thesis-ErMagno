@@ -13,7 +13,6 @@ import it.polimi.ingsw.GC_29.Server.View;
 import java.rmi.RemoteException;
 import java.util.*;
 import java.util.function.Supplier;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
@@ -27,7 +26,7 @@ public class RMIView extends View implements RMIViewRemote {
 
     private GetValidActions validActionQuery;
 
-    private GameStatus gameStatus;
+    private Model model;
 
     private PlayerColor playerColor;
 
@@ -37,9 +36,9 @@ public class RMIView extends View implements RMIViewRemote {
 
 
 
-    public RMIView(GameStatus gameStatus, PlayerColor playerColor, String username){
+    public RMIView(Model model, PlayerColor playerColor, String username){
 
-        this.gameStatus = gameStatus;
+        this.model = model;
 
         this.playerColor = playerColor;
 
@@ -61,8 +60,8 @@ public class RMIView extends View implements RMIViewRemote {
             clientView.updateClient(o);
 
         } catch (RemoteException e) {
-            gameStatus.getPlayer(playerColor).unregisterObserver(this);
-            gameStatus.unregisterObserver(this);
+            model.getPlayer(playerColor).unregisterObserver(this);
+            model.unregisterObserver(this);
             logoutInterface.clientDisconnected(username);
             notifyObserver(new Disconnection(playerColor));
 
@@ -112,7 +111,7 @@ public class RMIView extends View implements RMIViewRemote {
 
         List<String> returnList = new ArrayList<>();
 
-        List<DevelopmentCard> playerCards = Arrays.asList(gameStatus.getCurrentPlayer().getPersonalBoard().getLane(cardColor).getCards());
+        List<DevelopmentCard> playerCards = Arrays.asList(model.getCurrentPlayer().getPersonalBoard().getLane(cardColor).getCards());
 
         for (DevelopmentCard playerCard : playerCards) {
 
@@ -130,7 +129,7 @@ public class RMIView extends View implements RMIViewRemote {
 
         List<String> returnList = new ArrayList<>();
 
-        List<Floor> floors = Arrays.asList(gameStatus.getGameBoard().getTower(towerCardColor).getFloors());
+        List<Floor> floors = Arrays.asList(model.getGameBoard().getTower(towerCardColor).getFloors());
 
         for (Floor floor : floors) {
 
@@ -150,13 +149,13 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public Map<Integer, ArrayList<String>> getCardsForWorkers() throws RemoteException {
 
-        return new GetCardsForWorkers().perform(gameStatus);
+        return new GetCardsForWorkers().perform(model);
 
     }
 
     @Override
     public Map<Integer, String> getPossibleCosts() {
-        Map<Integer, Cost> possibleCosts = ((TowerAction)gameStatus.getCurrentPlayer().getCurrentAction()).getPossibleCardCosts();
+        Map<Integer, Cost> possibleCosts = ((TowerAction) model.getCurrentPlayer().getCurrentAction()).getPossibleCardCosts();
         HashMap<Integer, String> possibleCostsToString = new HashMap<>();
 
         for(Map.Entry<Integer,Cost> entry : possibleCosts.entrySet()){
@@ -171,7 +170,7 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public Map<Integer,String> getBonusTileList() throws RemoteException {
-        return new GetBonusTile().perform(gameStatus);
+        return new GetBonusTile().perform(model);
     }
 
     @Override
@@ -183,7 +182,7 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public Map<FamilyPawn, Boolean> getFamilyPawns() throws RemoteException {
-        return new GetFamilyPawnAvailability().perform(gameStatus);
+        return new GetFamilyPawnAvailability().perform(model);
     }
 
     @Override
@@ -202,12 +201,12 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public Map<Integer, Boolean> getLeaderCardsMap(PlayerColor playerColor) throws RemoteException {
-        return new GetAvailableLeaderCards(playerColor).perform(gameStatus);
+        return new GetAvailableLeaderCards(playerColor).perform(model);
     }
 
     @Override
     public List<String> getLeaderCards(PlayerColor playerColor) throws RemoteException {
-        return new LeaderCardsQuery(playerColor).perform(gameStatus);
+        return new LeaderCardsQuery(playerColor).perform(model);
     }
 
     @Override
@@ -227,7 +226,7 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public Map<String, HashMap<Integer, String>> getPayToObtainCardsGUI() throws RemoteException {
-        return new GetPayToObtainCards().perform(gameStatus);
+        return new GetPayToObtainCards().perform(model);
     }
 
     @Override
@@ -239,7 +238,7 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public Map<String, HashMap<Integer, String>> getPayToObtainCards() throws RemoteException {
 
-        WorkAction workAction = (WorkAction)gameStatus.getCurrentPlayer().getCurrentAction();
+        WorkAction workAction = (WorkAction) model.getCurrentPlayer().getCurrentAction();
 
         Map<String, HashMap<Integer, String>> payToObtainCardMap = new HashMap<>();
 
@@ -253,7 +252,7 @@ public class RMIView extends View implements RMIViewRemote {
 
                     PayToObtainEffect effect1 = (PayToObtainEffect) effect;
 
-                    if(effect1.checkSufficientGoods(gameStatus.getCurrentPlayer())){
+                    if(effect1.checkSufficientGoods(model.getCurrentPlayer())){
 
                         int effectIndex = card.getPermanentEffect().indexOf(effect);
 
@@ -282,12 +281,12 @@ public class RMIView extends View implements RMIViewRemote {
 
         List<Integer> parchmentAmountList = new ArrayList<>();
 
-        for (CouncilPrivilegeEffect councilPrivilegeEffect : gameStatus.getCurrentPlayer().getCouncilPrivilegeEffectList()) {
+        for (CouncilPrivilegeEffect councilPrivilegeEffect : model.getCurrentPlayer().getCouncilPrivilegeEffectList()) {
 
             parchmentAmountList.add(councilPrivilegeEffect.getNumberOfCouncilPrivileges());
         }
 
-        gameStatus.getCurrentPlayer().getCouncilPrivilegeEffectList().clear();
+        model.getCurrentPlayer().getCouncilPrivilegeEffectList().clear();
 
         return parchmentAmountList;
 
@@ -303,13 +302,13 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public GoodSet getPlayerGoodset() throws RemoteException {
 
-      return gameStatus.getCurrentPlayer().getActualGoodSet();
+      return model.getCurrentPlayer().getActualGoodSet();
     }
 
     @Override
     public List<FamilyPawn> getPlayerPawns() throws RemoteException {
 
-        return gameStatus.getCurrentPlayer().getFamilyPawns();
+        return model.getCurrentPlayer().getFamilyPawns();
     }
 
     @Override
@@ -323,7 +322,7 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public Map<Integer, String> getValidActionList() throws RemoteException {
 
-        return validActionQuery.perform(gameStatus);
+        return validActionQuery.perform(model);
     }
 
     @Override
@@ -335,7 +334,7 @@ public class RMIView extends View implements RMIViewRemote {
 
     @Override
     public Map<FamilyPawnType, Boolean> getFamilyPawnAvailability() throws RemoteException{
-        return gameStatus.getCurrentPlayer().getFamilyPawnAvailability();
+        return model.getCurrentPlayer().getFamilyPawnAvailability();
     }
 
 

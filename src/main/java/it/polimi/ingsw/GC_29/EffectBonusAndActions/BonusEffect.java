@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 
-import it.polimi.ingsw.GC_29.Controllers.GameStatus;
 import it.polimi.ingsw.GC_29.Player.Player;
 
 /**
