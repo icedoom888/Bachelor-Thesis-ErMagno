@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_29.Client;
 
 import it.polimi.ingsw.GC_29.Client.GUI.GuiChangeListener;
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
+import it.polimi.ingsw.GC_29.Model.FamilyPawn;
+import it.polimi.ingsw.GC_29.Model.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import org.testng.collections.Lists;
 

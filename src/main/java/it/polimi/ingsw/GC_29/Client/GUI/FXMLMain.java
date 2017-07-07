@@ -19,19 +19,19 @@ import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Client.GUI.ReconnectedPlayers.ReconnectedPlayersController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
-import it.polimi.ingsw.GC_29.Components.CardColor;
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
-import it.polimi.ingsw.GC_29.Components.GoodType;
+import it.polimi.ingsw.GC_29.Controllers.Change.*;
+import it.polimi.ingsw.GC_29.Model.CardColor;
+import it.polimi.ingsw.GC_29.Model.FamilyPawn;
+import it.polimi.ingsw.GC_29.Model.GoodSet;
+import it.polimi.ingsw.GC_29.Model.GoodType;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -769,8 +769,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-
-                System.out.println("SONO NEL RUN DI UPDATE BONUS TILE, INDICE " + bonusTile);
 
                 gameBoardController.setBonusTile(bonusTile);
 

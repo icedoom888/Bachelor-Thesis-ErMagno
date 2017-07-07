@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Controllers.*;
+import it.polimi.ingsw.GC_29.Controllers.Change.*;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
 import java.io.Serializable;

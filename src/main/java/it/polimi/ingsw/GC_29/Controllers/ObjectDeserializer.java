@@ -3,10 +3,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
-import it.polimi.ingsw.GC_29.ProveGSon.EnumMapInstanceCreator;
-import it.polimi.ingsw.GC_29.ProveGSon.RuntimeTypeAdapterFactory;
+import it.polimi.ingsw.GC_29.Model.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,15 +21,15 @@ public class ObjectDeserializer {
     private static final Logger LOGGER = Logger.getLogger(ObjectDeserializer.class.getName());
     final RuntimeTypeAdapterFactory<Effect> typeFactory = RuntimeTypeAdapterFactory
             .of(Effect.class, "@class") // Here you specify which is the parent class and what field particularizes the child class.
-            .registerSubtype(ObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect")
-            .registerSubtype(ActionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect")
-            .registerSubtype(BonusEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect")
-            .registerSubtype(CouncilPrivilegeEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect")
-            .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect")
-            .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect")
-            .registerSubtype(Special.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special")
-            .registerSubtype(ObtainForCost.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainForCost")
-            .registerSubtype(ObtainForMoreCondition.class, "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainForMoreCondition");
+            .registerSubtype(ObtainEffect.class, "it.polimi.ingsw.GC_29.Model.ObtainEffect")
+            .registerSubtype(ActionEffect.class, "it.polimi.ingsw.GC_29.Model.ActionEffect")
+            .registerSubtype(BonusEffect.class, "it.polimi.ingsw.GC_29.Model.BonusEffect")
+            .registerSubtype(CouncilPrivilegeEffect.class, "it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect")
+            .registerSubtype(ObtainOnConditionEffect.class, "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect")
+            .registerSubtype(PayToObtainEffect.class, "it.polimi.ingsw.GC_29.Model.PayToObtainEffect")
+            .registerSubtype(Special.class, "it.polimi.ingsw.GC_29.Model.Special")
+            .registerSubtype(ObtainForCost.class, "it.polimi.ingsw.GC_29.Model.ObtainForCost")
+            .registerSubtype(ObtainForMoreCondition.class, "it.polimi.ingsw.GC_29.Model.ObtainForMoreCondition");
 
     private GsonBuilder gsonBuilder;
 

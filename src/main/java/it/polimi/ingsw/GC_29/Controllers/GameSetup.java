@@ -3,15 +3,14 @@ package it.polimi.ingsw.GC_29.Controllers;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.ProveGSon.EnumMapInstanceCreator;
+import it.polimi.ingsw.GC_29.Controllers.Change.ExcommunicationChange;
+import it.polimi.ingsw.GC_29.Model.*;
+import it.polimi.ingsw.GC_29.Model.Player;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.rmi.RemoteException;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.logging.Logger;

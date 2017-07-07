@@ -1,9 +1,9 @@
 package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
-import it.polimi.ingsw.GC_29.Controllers.Model;
-import it.polimi.ingsw.GC_29.Controllers.JoinGame;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.Model;
+import it.polimi.ingsw.GC_29.Controllers.Input.JoinGame;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIView;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;

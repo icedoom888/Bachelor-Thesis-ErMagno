@@ -2,13 +2,13 @@ package it.polimi.ingsw.GC_29.Server.RMI;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
-import it.polimi.ingsw.GC_29.Query.*;
-import it.polimi.ingsw.GC_29.Controllers.LeaderAction;
+import it.polimi.ingsw.GC_29.Controllers.Change.Change;
+import it.polimi.ingsw.GC_29.Controllers.Input.*;
+import it.polimi.ingsw.GC_29.Model.*;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
+import it.polimi.ingsw.GC_29.Controllers.Input.LeaderAction;
 import it.polimi.ingsw.GC_29.Server.View;
+import it.polimi.ingsw.GC_29.Query.*;
 
 import java.rmi.RemoteException;
 import java.util.*;

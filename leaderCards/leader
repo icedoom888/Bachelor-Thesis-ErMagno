@@ -9,7 +9,7 @@
     },
     "permanent": true,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "@class": "it.polimi.ingsw.GC_29.Model.Special",
       "specialBonusAndMalus": "PAWNONOCCUPIEDSPACE"
     }
   },
@@ -23,7 +23,7 @@
     },
     "permanent": true,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "@class": "it.polimi.ingsw.GC_29.Model.Special",
       "specialBonusAndMalus": "FREETOWER"
     }
   },
@@ -70,7 +70,7 @@
     },
     "permanent": false,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
       "goodsObtained": {
         "goodSetMap": {
           "WOOD": 0,
@@ -104,7 +104,7 @@
     },
     "permanent": false,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
       "goodsObtained": {
         "goodSetMap": {
           "WOOD": 0,
@@ -138,7 +138,7 @@
     },
     "permanent": false,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
       "goodsObtained": {
         "goodSetMap": {
           "WOOD": 1,
@@ -172,7 +172,7 @@
     },
     "permanent": false,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
       "goodsObtained": {
         "goodSetMap": {
           "WOOD": 0,
@@ -200,7 +200,7 @@
     },
     "permanent": true,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "@class": "it.polimi.ingsw.GC_29.Model.Special",
       "specialBonusAndMalus": "CHANGEVALUEOFEVERYPAWN"
     }
   },
@@ -238,7 +238,7 @@
     },
     "permanent": true,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "@class": "it.polimi.ingsw.GC_29.Model.Special",
       "specialBonusAndMalus": "FIVEVICTORYPOINTSIFPRAY"
     }
   },
@@ -264,7 +264,7 @@
     },
     "permanent": true,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.Special",
+      "@class": "it.polimi.ingsw.GC_29.Model.Special",
       "specialBonusAndMalus": "NOMILITARYFORTERRITORY"
     }
   },
@@ -279,7 +279,7 @@
     },
     "permanent": false,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
       "goodsObtained": {
         "goodSetMap": {
           "WOOD": 0,
@@ -313,7 +313,7 @@
     },
     "permanent": false,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect",
       "numberOfCouncilPrivileges": 1,
       "parchmentList": [
         {
@@ -432,7 +432,7 @@
     },
     "permanent": false,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
       "goodsObtained": {
         "goodSetMap": {
           "WOOD": 0,
@@ -458,7 +458,7 @@
     },
     "permanent": false,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
       "type": "PRODUCTION",
       "actionValue": 0,
       "onlyWorkers": true
@@ -474,7 +474,7 @@
     },
     "permanent": false,
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
       "type": "HARVEST",
       "actionValue": 1,
       "onlyWorkers": true

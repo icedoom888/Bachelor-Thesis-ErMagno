@@ -1,15 +1,5 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
-import it.polimi.ingsw.GC_29.Client.InputChecker;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Controllers.GameState;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Action;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * Created by Lorenzotara on 15/06/17.
 public class CommonView {

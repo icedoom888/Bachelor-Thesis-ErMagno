@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Server;
 
 
-import it.polimi.ingsw.GC_29.Controllers.Model;
+import it.polimi.ingsw.GC_29.Model.Model;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 
 public abstract class Observable<C> {
 
-    private static final Logger LOGGER = Logger.getLogger(Observable.class.getName());
     private List<Observer<C>> observers;
 
 

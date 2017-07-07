@@ -2,8 +2,8 @@ package it.polimi.ingsw.GC_29.Server.RMI;
 
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.*;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

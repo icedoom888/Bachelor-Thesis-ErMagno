@@ -3,16 +3,12 @@ package it.polimi.ingsw.GC_29.Client.ClientSocket;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.GUI.*;
 import it.polimi.ingsw.GC_29.Client.GuiChangeHandler;
-import it.polimi.ingsw.GC_29.Client.InputChecker;
-import it.polimi.ingsw.GC_29.Components.FamilyPawn;
-import it.polimi.ingsw.GC_29.Components.FamilyPawnType;
-import it.polimi.ingsw.GC_29.Components.GoodSet;
+import it.polimi.ingsw.GC_29.Controllers.Change.*;
+import it.polimi.ingsw.GC_29.Model.FamilyPawn;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import org.testng.collections.Lists;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.*;
 import java.util.function.Supplier;

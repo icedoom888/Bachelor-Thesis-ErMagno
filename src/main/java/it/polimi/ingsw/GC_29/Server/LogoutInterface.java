@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_29.Server;
 
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
-
 import java.util.Map;
 
 /**

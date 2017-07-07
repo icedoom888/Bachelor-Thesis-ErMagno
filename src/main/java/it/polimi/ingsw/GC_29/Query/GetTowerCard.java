@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Components.CardColor;
-import it.polimi.ingsw.GC_29.Components.Floor;
-import it.polimi.ingsw.GC_29.Controllers.Model;
+import it.polimi.ingsw.GC_29.Model.CardColor;
+import it.polimi.ingsw.GC_29.Model.Floor;
+import it.polimi.ingsw.GC_29.Model.Model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

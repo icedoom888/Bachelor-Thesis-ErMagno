@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
-import it.polimi.ingsw.GC_29.Controllers.Change;
+import it.polimi.ingsw.GC_29.Controllers.Change.Change;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

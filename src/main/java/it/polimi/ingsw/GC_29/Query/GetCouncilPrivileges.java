@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Controllers.Model;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect;
+import it.polimi.ingsw.GC_29.Model.Model;
+import it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect;
 
 import java.util.ArrayList;
 import java.util.List;

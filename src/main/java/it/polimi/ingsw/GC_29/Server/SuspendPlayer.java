@@ -1,7 +1,9 @@
 package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Player.Player;
+import it.polimi.ingsw.GC_29.Controllers.Input.*;
+import it.polimi.ingsw.GC_29.Model.Model;
+import it.polimi.ingsw.GC_29.Model.Player;
 
 import java.util.TimerTask;
 

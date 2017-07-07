@@ -754,7 +754,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -780,7 +780,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -806,7 +806,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 1,
@@ -832,7 +832,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 2,
@@ -866,7 +866,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -892,7 +892,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -918,7 +918,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -944,7 +944,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -978,7 +978,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -1004,7 +1004,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -1030,7 +1030,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -1056,7 +1056,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -1090,7 +1090,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -1116,7 +1116,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -1142,7 +1142,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -1168,7 +1168,7 @@
         {
           "actionSpace": {
             "effect": {
-              "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+              "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
               "goodsObtained": {
                 "goodSetMap": {
                   "WOOD": 0,
@@ -1236,7 +1236,7 @@
   },
   "councilPalace": {
     "effect_2": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect",
       "numberOfCouncilPrivileges": 1,
       "effectsChosen": [
         null
@@ -1248,7 +1248,7 @@
       null
     ],
     "effect": {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
       "goodsObtained": {
         "goodSetMap": {
           "WOOD": 0,
@@ -1274,7 +1274,7 @@
     "houses": {
       "MONEYSHOP": {
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1298,7 +1298,7 @@
       },
       "WORKERSHOP": {
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,

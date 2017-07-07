@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_29.Server;
 
-import it.polimi.ingsw.GC_29.Controllers.Change;
-import it.polimi.ingsw.GC_29.Controllers.Input;
+import it.polimi.ingsw.GC_29.Controllers.Change.Change;
+import it.polimi.ingsw.GC_29.Controllers.Input.Input;
 
 /**
  * Created by Christian on 07/06/2017.

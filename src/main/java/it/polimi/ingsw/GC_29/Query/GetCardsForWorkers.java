@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
-import it.polimi.ingsw.GC_29.Controllers.Model;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
+import it.polimi.ingsw.GC_29.Model.DevelopmentCard;
+import it.polimi.ingsw.GC_29.Model.Model;
+import it.polimi.ingsw.GC_29.Model.WorkAction;
 
 import java.util.ArrayList;
 import java.util.HashMap;

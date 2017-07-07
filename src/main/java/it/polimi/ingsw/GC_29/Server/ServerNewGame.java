@@ -2,10 +2,11 @@ package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
-import it.polimi.ingsw.GC_29.Components.PersonalBoard;
+import it.polimi.ingsw.GC_29.Controllers.Input.Initialize;
+import it.polimi.ingsw.GC_29.Model.PersonalBoard;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.Player;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIView;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;

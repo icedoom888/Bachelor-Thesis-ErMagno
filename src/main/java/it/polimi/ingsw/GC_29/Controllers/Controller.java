@@ -1,9 +1,13 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.*;
-import it.polimi.ingsw.GC_29.Player.Player;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Controllers.Change.BonusTileChangeGui;
+import it.polimi.ingsw.GC_29.Controllers.Change.GoodSetChange;
+import it.polimi.ingsw.GC_29.Controllers.Change.PersonalCardChange;
+import it.polimi.ingsw.GC_29.Controllers.Input.EndTurn;
+import it.polimi.ingsw.GC_29.Controllers.Input.Input;
+import it.polimi.ingsw.GC_29.Model.*;
+import it.polimi.ingsw.GC_29.Model.Player;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
 import it.polimi.ingsw.GC_29.Server.ObserverException;
 import it.polimi.ingsw.GC_29.Server.ServerNewGame;

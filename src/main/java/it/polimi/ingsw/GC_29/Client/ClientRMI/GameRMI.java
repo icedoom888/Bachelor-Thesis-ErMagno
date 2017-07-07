@@ -1,14 +1,12 @@
 package it.polimi.ingsw.GC_29.Client.ClientRMI;
 
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
-import it.polimi.ingsw.GC_29.Controllers.Input;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Controllers.Input.Input;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Query.Query;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 /**

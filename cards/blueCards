@@ -34,7 +34,7 @@
     "immediateEffect": [],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
         "bonusAndMalusOnAction": {
           "zoneType": "PRODUCTION",
           "diceIncrementOrReduction": 2
@@ -78,7 +78,7 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -94,7 +94,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
         "bonusAndMalusOnAction": {
           "zoneType": "GREENTOWER",
           "diceIncrementOrReduction": 2
@@ -138,7 +138,7 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -190,12 +190,12 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
         "type": "ANYTOWER",
         "actionValue": 4
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -248,7 +248,7 @@
     "immediateEffect": [],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
         "bonusAndMalusOnAction": {
           "zoneType": "BLUETOWER",
           "diceIncrementOrReduction": 2
@@ -308,7 +308,7 @@
     "immediateEffect": [],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
         "bonusAndMalusOnAction": {
           "zoneType": "YELLOWTOWER",
           "diceIncrementOrReduction": 2
@@ -378,7 +378,7 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect",
       "numberOfCouncilPrivileges": 1,
       "parchmentList": [
         {
@@ -461,7 +461,7 @@
     ],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
         "bonusAndMalusOnAction": {
           "zoneType": "PURPLETOWER",
           "diceIncrementOrReduction": 2
@@ -506,7 +506,7 @@
     "immediateEffect": [],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
         "bonusAndMalusOnAction": {
           "zoneType": "HARVEST",
           "diceIncrementOrReduction": 2
@@ -550,7 +550,7 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -603,7 +603,7 @@
     "immediateEffect": [],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
         "bonusAndMalusOnAction": {
           "zoneType": "HARVEST",
           "diceIncrementOrReduction": 3
@@ -648,7 +648,7 @@
     "immediateEffect": [],
     "permanentEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.BonusEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
         "bonusAndMalusOnAction": {
           "zoneType": "PRODUCTION",
           "diceIncrementOrReduction": 3
@@ -692,12 +692,12 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
         "type": "GREENTOWER",
         "actionValue": 6
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -749,7 +749,7 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
         "type": "YELLOWTOWER",
         "actionValue": 6,
         "bonusAndMalusOnCost": {
@@ -807,12 +807,12 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
         "type": "PURPLETOWER",
         "actionValue": 6
       },
       {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect",
       "numberOfCouncilPrivileges": 1,
       "parchmentList": [
         {
@@ -931,7 +931,7 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
         "type": "BLUETOWER",
         "actionValue": 6,
         "bonusAndMalusOnCost": {
@@ -989,7 +989,7 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect",
       "numberOfCouncilPrivileges": 3,
       "parchmentList": [
         {
@@ -1256,9 +1256,9 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
         "effectForEachCondition": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1323,9 +1323,9 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
         "effectForEachCondition": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1390,9 +1390,9 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
         "effectForEachCondition": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1457,9 +1457,9 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainOnConditionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainOnConditionEffect",
         "effectForEachCondition": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1524,12 +1524,12 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
         "type": "HARVEST",
         "actionValue": 4
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1581,12 +1581,12 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
         "type": "PRODUCTION",
         "actionValue": 4
       },
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
         "goodsObtained": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1638,7 +1638,7 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.PayToObtainEffect",
         "cost": {
           "goodSetMap": {
             "WOOD": 0,
@@ -1651,7 +1651,7 @@
           }
         },
         "effect": {
-          "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ObtainEffect",
+          "@class": "it.polimi.ingsw.GC_29.Model.ObtainEffect",
           "goodsObtained": {
             "goodSetMap": {
               "WOOD": 0,
@@ -1704,12 +1704,12 @@
     "color": "BLUE",
     "immediateEffect": [
       {
-        "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.ActionEffect",
+        "@class": "it.polimi.ingsw.GC_29.Model.ActionEffect",
         "type": "ANYTOWER",
         "actionValue": 7
       },
       {
-      "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
+      "@class": "it.polimi.ingsw.GC_29.Model.CouncilPrivilegeEffect",
       "numberOfCouncilPrivileges": 1,
       "parchmentList": [
         {

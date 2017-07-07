@@ -14,10 +14,9 @@ import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
 import it.polimi.ingsw.GC_29.Client.GUI.ReconnectedPlayers.ReconnectedPlayersController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
-import it.polimi.ingsw.GC_29.Components.*;
-import it.polimi.ingsw.GC_29.Controllers.Input;
+import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.Player.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -1461,6 +1460,11 @@ public class GameBoardController {
      * @param numberOfPoints
      */
     public void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
+
+        System.out.print(playerColor + "  ");
+        System.out.print(goodType + "  ");
+        System.out.print(numberOfPoints + "  ");
+
 
         String numberOfPointString;
         int value;

@@ -1,10 +1,10 @@
 package it.polimi.ingsw.GC_29.Query;
 
-import it.polimi.ingsw.GC_29.Components.DevelopmentCard;
-import it.polimi.ingsw.GC_29.Controllers.Model;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.Effect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.PayToObtainEffect;
-import it.polimi.ingsw.GC_29.EffectBonusAndActions.WorkAction;
+import it.polimi.ingsw.GC_29.Model.DevelopmentCard;
+import it.polimi.ingsw.GC_29.Model.Model;
+import it.polimi.ingsw.GC_29.Model.Effect;
+import it.polimi.ingsw.GC_29.Model.PayToObtainEffect;
+import it.polimi.ingsw.GC_29.Model.WorkAction;
 
 import java.util.HashMap;
 import java.util.Map;
