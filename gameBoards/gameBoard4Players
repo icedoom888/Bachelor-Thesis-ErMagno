@@ -1383,7 +1383,7 @@
       "PRIVILEGESHOP": {
         "effect": {
           "@class": "it.polimi.ingsw.GC_29.EffectBonusAndActions.CouncilPrivilegeEffect",
-          "numberOfCouncilPrivileges": 1,
+          "numberOfCouncilPrivileges": 2,
           "effectsChosen": [
             null
           ]
