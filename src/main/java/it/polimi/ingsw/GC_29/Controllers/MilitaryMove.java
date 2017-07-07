@@ -14,6 +14,7 @@ public class MilitaryMove extends MovePawn {
 
     @Override
     public void moveOnTrack(Model model) {
+
         Track militaryPointsTrack = model.getGameBoard().getVenturesPointsTrack();
         militaryPointsTrack.movePawn(numberOfPoints, super.playerPawn(model));
         model.updateTrackGUI(model.getCurrentPlayer().getPlayerColor(), GoodType.MILITARYPOINTS, numberOfPoints);

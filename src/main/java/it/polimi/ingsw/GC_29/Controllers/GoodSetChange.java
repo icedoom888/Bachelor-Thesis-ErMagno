@@ -14,6 +14,7 @@ public class GoodSetChange extends GUIChange {
     private GoodSet goodSet;
 
     public GoodSetChange(GoodSet goodSet) {
+
         this.goodSet = goodSet;
     }
 

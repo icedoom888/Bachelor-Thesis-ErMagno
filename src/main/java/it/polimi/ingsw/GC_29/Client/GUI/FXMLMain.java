@@ -770,8 +770,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
             @Override
             public void run() {
 
-                System.out.println("SONO NEL RUN DI UPDATE BONUS TILE, INDICE " + bonusTile);
-
                 gameBoardController.setBonusTile(bonusTile);
 
 

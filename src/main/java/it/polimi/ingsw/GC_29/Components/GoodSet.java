@@ -77,13 +77,10 @@ public class GoodSet extends Observable<MovePawn> implements Serializable{
         int militaryPoints = goodSetToAdd.getGoodAmount(GoodType.MILITARYPOINTS);
         int faithPoints = goodSetToAdd.getGoodAmount(GoodType.FAITHPOINTS);
 
-        if (victoryPoints != 0) try {
-            notifyObserver(new VictoryMove(victoryPoints));
-            if (militaryPoints != 0) notifyObserver(new MilitaryMove(militaryPoints));
-            if (faithPoints != 0) notifyObserver(new FaithMove(faithPoints));
-        } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
-        }
+        if (victoryPoints != 0) notifyObserver(new VictoryMove(victoryPoints));
+        if (militaryPoints != 0) notifyObserver(new MilitaryMove(militaryPoints));
+        if (faithPoints != 0) notifyObserver(new FaithMove(faithPoints));
+
 
     }
 

@@ -212,7 +212,6 @@ public class Model extends Observable<Change>{
 
     public void updateTrackGUI(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
 
-
         notifyObserver(new TrackChange(playerColor, goodType, numberOfPoints));
 
     }
