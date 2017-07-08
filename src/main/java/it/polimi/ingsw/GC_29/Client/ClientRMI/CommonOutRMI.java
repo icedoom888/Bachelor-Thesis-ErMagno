@@ -9,8 +9,11 @@ import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 01/07/2017.
@@ -22,6 +25,8 @@ public class CommonOutRMI implements InputInterfaceGUI{
     protected RMIViewRemote serverViewStub;
     private Map<String, Integer> activatedCardMap;
     private List<Integer> councilPrivilegeEffectChosenList;
+
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
     public CommonOutRMI(){
 
@@ -220,18 +225,15 @@ public class CommonOutRMI implements InputInterfaceGUI{
                     System.out.println("SERVER AVVISATO JOIN GAME");
                     break;
 
-                case "help":
-                    handleHelp();
-                    break;
 
+                case "help":
                 default:
                     handleHelp();
                     break;
 
             }
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+        } catch (RemoteException e) {
+            LOGGER.info((Supplier<String>) e);
         }
 
 

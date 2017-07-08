@@ -71,7 +71,6 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     break;
 
                 case "skip action":
-                    System.out.println("STAI SKIPPANDO L'AZIONE");
                     socketOut.writeObject("skip action");
                     socketOut.flush();
                     break;
@@ -279,9 +278,6 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     break;
 
                 case "help":
-                    handleHelp();
-                    break;
-
                 default:
                     handleHelp();
                     break;
@@ -327,7 +323,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
     }
 
 
-    public void handlePlayerState(PlayerState currentPlayerState) throws RemoteException {
+    public void handlePlayerState(PlayerState currentPlayerState) {
 
         switch (currentPlayerState){
 

@@ -40,14 +40,10 @@ public class EndTurn extends Input {
 
         if(controller.minNumberOfPlayerReached()){
 
-            try {
-                controller.endGame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            controller.endGame();
+
             return;
         }
-
 
 
         Player currentPlayer = model.getCurrentPlayer();
@@ -55,11 +51,11 @@ public class EndTurn extends Input {
         System.out.println("SONO DENTRO PERFORM END TURN, IL CURRENT PLAYER CHE HA CHIAMATO END TURN E' " + currentPlayer.getPlayerID() + " color " + currentPlayer.getPlayerColor());
 
         currentPlayer.setPlayerState(PlayerState.WAITING);
-        System.out.println("\n\nTURNO: " + model.getCurrentTurn());
-        System.out.println("END TURN, NOME " + currentPlayer.getPlayerID() + " colore " + currentPlayer.getPlayerColor()+"\n\n");
-        System.out.println("INDICE DEL PLAYER CHE STA FINENDO IL TURNO: " + model.getTurnOrder().indexOf(currentPlayer));
+       // System.out.println("\n\nTURNO: " + model.getCurrentTurn());
+        //System.out.println("END TURN, NOME " + currentPlayer.getPlayerID() + " colore " + currentPlayer.getPlayerColor()+"\n\n");
+        //System.out.println("INDICE DEL PLAYER CHE STA FINENDO IL TURNO: " + model.getTurnOrder().indexOf(currentPlayer));
 
-        System.out.println("\n\nTURN ORDER UGUALE A: " + model.getTurnOrder());
+        //System.out.println("\n\nTURN ORDER UGUALE A: " + model.getTurnOrder());
 
         List<Player> turnOrder = model.getTurnOrder();
 
@@ -165,32 +161,39 @@ public class EndTurn extends Input {
 
             for (Player skippedPlayer : skippedPlayers) {
 
-                boolean b = true;
-
-                while (b) {
-
-                    if (skippedPlayer.getPlayerState() != PlayerState.SUSPENDED) {
-
-                        newCurrentPlayer = skippedPlayer;
-                        skippedPlayers.remove(skippedPlayer);
-                        break;
-                    }
+                if (skippedPlayer.getPlayerState() != PlayerState.SUSPENDED) {
+                    newCurrentPlayer = skippedPlayer;
+                    skippedPlayers.remove(skippedPlayer);
+                    break;
                 }
+
             }
 
-            //Player newCurrentPlayer = model.getSkippedTurnPlayers().remove(0);
+            if(newCurrentPlayer != null){
 
-            model.setCurrentPlayer(newCurrentPlayer);
+                model.setCurrentPlayer(newCurrentPlayer);
 
-            controller.getActionChecker().resetActionList();
+                controller.getActionChecker().resetActionList();
 
-            controller.getActionChecker().setCurrentPlayer();
+                controller.getActionChecker().setCurrentPlayer();
 
-            newCurrentPlayer.setPlayerState(PlayerState.DOACTION);
+                newCurrentPlayer.setPlayerState(PlayerState.DOACTION);
 
-            //model.notifyEndMove();
+                model.notifyEndMove();
 
-            controller.startTimer(newCurrentPlayer);
+                controller.startTimer(newCurrentPlayer);
+
+            }
+
+            else{
+
+                model.setGameState(GameState.RUNNING);
+
+                skippedPlayers.clear();
+
+                controller.handleEndRound();
+
+            }
 
         }
     }

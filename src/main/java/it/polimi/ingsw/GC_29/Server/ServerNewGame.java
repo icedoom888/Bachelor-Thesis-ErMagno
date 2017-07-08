@@ -168,14 +168,16 @@ public class ServerNewGame implements Runnable {
 
         //startSocketView();
 
+        for (Map.Entry<Player, PlayerSocket> entry : playersSocketMap.entrySet()) {
 
-        for (Player player : playersSocketMap.keySet()) {
+            Player player = entry.getKey();
+            PlayerSocket playerSocket = entry.getValue();
 
             try {
 
                 System.out.println("Creo server socket view");
 
-                ServerSocketView serverSocketView = new ServerSocketView(playersSocketMap.get(player), gameSetup.getModel(), player.getPlayerColor(), player.getPlayerID());
+                ServerSocketView serverSocketView = new ServerSocketView(playerSocket, gameSetup.getModel(), player.getPlayerColor(), player.getPlayerID());
 
                 serverSocketView.registerObserver(controller);
                 gameSetup.getModel().registerObserver(serverSocketView);
@@ -198,7 +200,9 @@ public class ServerNewGame implements Runnable {
             } catch (Exception e) {
                 LOGGER.info((Supplier<String>) e);
             }
+
         }
+
 
         System.out.println("DOVE TI BLOCCHI");
 
@@ -292,29 +296,6 @@ public class ServerNewGame implements Runnable {
 
     }
 
-    private void startSocketView() {
-
-        //TODO: implementa socket view
-        Boolean b = true;
-        while (b){}
-    }
-
-    /*private void startRMIView(Model model, Controller controller) throws RemoteException, AlreadyBoundException {
-        //create the registry to publish remote objects
-        Registry registry = LocateRegistry.createRegistry(PORT);
-        System.out.println("Constructing the RMI registry");
-        // Create the RMI View, that will be shared with the client
-        RMIView rmiView=new RMIView();
-        //controller observes this view
-        rmiView.registerObserver(controller);
-        //this view observes the model
-        model.registerObserver(rmiView);
-        // publish the view in the registry as a remote object
-        RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
-                exportObject(rmiView, 0);
-        System.out.println("Binding the server implementation to the registry");
-        registry.bind(NAME, rmiView); // TODO: il bind verrà chiamato ad ogni inizio partita --> ti darà eccezione AlreadyBound, sistema
-    }*/
 
     public void addClient(String username, PlayerSocket playerSocket) {
 

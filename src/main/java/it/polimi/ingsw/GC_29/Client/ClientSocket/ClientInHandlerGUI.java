@@ -28,6 +28,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
     private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
 
+
     public ClientInHandlerGUI(ObjectInputStream socketIn, CommonOutSocket commonOutSocket) {
 
         this.socketIn = socketIn;
@@ -166,12 +167,14 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
             //Lancia schermata
             System.out.println("\n\nLANCIO END GAME DA CLIENT IN HANDLER");
             endGame(winner);
+            System.out.println("END GAME LANCIATO");
 
             isRunning = false;
             commonOutSocket.endGame();
 
             try {
                 socketIn.close();
+                System.out.println("SOCKET CLOSED");
             } catch (IOException e) {
                 LOGGER.info((Supplier<String>) e);
             }
@@ -200,15 +203,10 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
     private void handlePlayerState(PlayerState currentPlayerState) {
 
-       try {
 
-            commonOutSocket.handlePlayerState(currentPlayerState);
+        commonOutSocket.handlePlayerState(currentPlayerState);
+        firePlayerState(currentPlayerState);
 
-            firePlayerState(currentPlayerState);
-
-        } catch (RemoteException e) {
-            LOGGER.info((Supplier<String>) e);
-        }
 
         switch (currentPlayerState){
 

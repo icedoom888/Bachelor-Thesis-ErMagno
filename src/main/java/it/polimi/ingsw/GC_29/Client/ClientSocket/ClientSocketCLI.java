@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Client.ClientSocket;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Model.PlayerColor;
 
@@ -7,6 +8,8 @@ import java.io.*;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 14/06/17.
@@ -29,6 +32,8 @@ public class ClientSocketCLI {
     private ClientOutHandlerCLI clientOutHandlerCLI;
     private ClientInHandlerCLI clientInHandlerCLI;
 
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
 
 
     public ClientSocketCLI() throws IOException {
@@ -45,19 +50,9 @@ public class ClientSocketCLI {
 
             playNewGameCLI();
 
-            //chiudi();
-            //TODO: gestisci fine partita
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
-            e.printStackTrace();
-        } /*finally {
-            // Always close it:
-            try {
-                socket.close();
-            } catch (IOException e) {
-                System.err.println("Socket not closed");
-            }
-        }*/
+            LOGGER.info((Supplier<String>) e);
+        }
 
     }
 
@@ -89,6 +84,7 @@ public class ClientSocketCLI {
                 socketOut.flush();
                 socketOut.writeObject(password);
                 socketOut.flush();
+                System.out.println("");
 
                 logged = socketIn.readBoolean();
 
@@ -114,12 +110,12 @@ public class ClientSocketCLI {
 
         } catch (Exception e) {
             System.out.println("Exception: " + e);
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
 
             try {
                 socket.close();
             } catch (IOException ex) {
-                System.err.println("Socket not closed");
+                LOGGER.info((Supplier<String>) ex);
             }
         }
 
@@ -188,14 +184,13 @@ public class ClientSocketCLI {
 
         } catch (Exception e) {
 
-            System.out.println("Exception: " + e);
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
 
             // Always close it:
             try {
                 socket.close();
             } catch (IOException ex) {
-                System.err.println("Socket not closed");
+                LOGGER.info((Supplier<String>) ex);
             }
         }
     }

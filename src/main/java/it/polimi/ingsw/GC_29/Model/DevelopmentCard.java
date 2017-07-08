@@ -103,22 +103,37 @@ public class DevelopmentCard {
         asciiTable.addRule();
         asciiTable.addRow( "Color: " + color, "Action Value: " + actionValue);
         asciiTable.addRule();
-        String stringImm = "Immediate Effects: \n";
+
+
+        StringBuilder bldImm = new StringBuilder();
+
+        bldImm.append("Immediate Effects: \n");
         for (Effect effect : immediateEffect) {
-            stringImm += effect.toString()+"\n";
+            bldImm.append(effect.toString());
+            bldImm.append("\n");
         }
-        String stringPer = "Permanent Effects: \n";
+
+        String stringImm = bldImm.toString();
+
+
+        StringBuilder bldPerm = new StringBuilder();
+        bldPerm.append("Permanent Effects: \n");
+
         for (Effect effect : permanentEffect) {
-            stringPer += effect.toString()+"\n";
+            bldPerm.append(effect.toString());
+            bldPerm.append("\n");
         }
+
+        String stringPer = bldPerm.toString();
+
+
         asciiTable.addRow(stringImm, stringPer);
         asciiTable.addRule();
         asciiTable.addRow("Main Cost: " + cardCost.getMainCost().getCost(), "Necessary Resources: " + cardCost.getMainCost().getNecessaryResources());
         asciiTable.addRow("Alternative Cost: " + cardCost.getAlternativeCost().getCost(), "Necessary Resources: " + cardCost.getAlternativeCost().getNecessaryResources());
         asciiTable.addRule();
         asciiTable.setTextAlignment(TextAlignment.CENTER);
-        String rend = asciiTable.render();
-        return rend;
+        return asciiTable.render();
     }
 
     /*@Override

@@ -6,10 +6,7 @@ import it.polimi.ingsw.GC_29.Model.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import org.testng.collections.Lists;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Christian on 01/07/2017.
@@ -116,14 +113,17 @@ public class GuiChangeHandler {
 
     protected void getFamilyPawnsAvailabilityGUI(Map<FamilyPawn, Boolean> familyPawns) {
 
-        //Map<FamilyPawn, Boolean> familyPawns = (Map<FamilyPawn, Boolean>)socketIn.readObject();
+       Map<FamilyPawnType, Boolean> familyPawnsAvailability = new EnumMap<>(FamilyPawnType.class);
 
-        Map<FamilyPawnType, Boolean> familyPawnsAvailability = new HashMap<>();
+        for (Map.Entry<FamilyPawn, Boolean> entry : familyPawns.entrySet()) {
 
-        for (FamilyPawn familyPawn : familyPawns.keySet()) {
+            familyPawnsAvailability.put(entry.getKey().getType(), entry.getValue());
+        }
+
+        /*for (FamilyPawn familyPawn : familyPawns.keySet()) {
 
             familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
-        }
+        }*/
 
         inputChecker.setFamilyPawnAvailability(familyPawnsAvailability);
 

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Server;
 
+import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 import it.polimi.ingsw.GC_29.Model.Model;
 import it.polimi.ingsw.GC_29.Controllers.Input.JoinGame;
@@ -16,6 +17,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Christian on 12/06/2017.
@@ -50,6 +53,9 @@ public class GameMatchHandler implements LogoutInterface{
 
     private ExecutorService executor = Executors.newCachedThreadPool();
 
+    private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
+
+
     public GameMatchHandler(){
 
         newGameMap = new HashMap<>();
@@ -70,7 +76,7 @@ public class GameMatchHandler implements LogoutInterface{
             try {
                 reconnectClient(playerSocket, username);
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
 
             return;
@@ -143,7 +149,7 @@ public class GameMatchHandler implements LogoutInterface{
             socketOut.writeObject(playerColor);
             socketOut.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.info((Supplier<String>) e);
         }
 
         Model model = clientCurrentMatch.getGameSetup().getModel();
@@ -186,8 +192,7 @@ public class GameMatchHandler implements LogoutInterface{
 
         RMIView rmiView = new RMIView(model, clientStub.getPlayerColor(), username);
 
-        RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
-                exportObject(rmiView, 0);
+        UnicastRemoteObject.exportObject(rmiView, 0);
 
         //controller observes this view
         rmiView.registerObserver(clientCurrentMatch.getController());
