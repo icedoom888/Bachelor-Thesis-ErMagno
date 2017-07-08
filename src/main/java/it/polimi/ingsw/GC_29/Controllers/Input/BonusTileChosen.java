@@ -27,6 +27,17 @@ public class BonusTileChosen extends Input {
     }
 
 
+    /**
+     * This perform stops the timer for the bonusTile.
+     * As every starting turn input, it checks if there are players disconnected
+     * or that want to reconnect.
+     * Then it gives the bonus tile chosen from the client to the correct player.
+     * If there are other players who have to chose the tile, it will be the turn of another one.
+     * If, insted, everyone chose his tile, beginMatch() is called.
+     *
+     * @param model
+     * @param controller
+     */
     @Override
     public void perform(Model model, Controller controller) {
 
@@ -127,6 +138,14 @@ public class BonusTileChosen extends Input {
         }
     }
 
+    /**
+     * This method finds out the first player that has to throw the dices (it can happen
+     * that the first player (and the second, and the third...) is suspended) and set his state
+     * to throw dices and all the other players state to waiting
+     *
+     * @param model
+     * @param controller
+     */
     private void beginMatch(Model model, Controller controller) {
 
         List<Player> turnOrder = model.getTurnOrder();

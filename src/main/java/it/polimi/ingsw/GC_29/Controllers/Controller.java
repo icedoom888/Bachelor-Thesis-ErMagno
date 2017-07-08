@@ -722,6 +722,14 @@ public class Controller implements Observer<Input>  {
         }
     }
 
+    /**
+     * If the workaction has pay to obtain cards to handle, the player state is set to
+     * ACTIVATE_PAY_TO_OBTAIN_CARDS. If not the workaction is executed and then handleEndAction()
+     * is called.
+     * @param workAction
+     * @param currentPlayer
+     * @param workers
+     */
     public void handlePayToObtainCards(WorkAction workAction, Player currentPlayer, int workers) {
 
         if (workAction.handlePayToObtainCards(workers)) {
