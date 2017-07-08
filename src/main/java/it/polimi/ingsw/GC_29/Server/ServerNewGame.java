@@ -249,6 +249,7 @@ public class ServerNewGame implements Runnable {
             gameSetup.setGoodsForPlayers();
             gameSetup.setExcommunicationTiles();
             gameSetup.setLeaderCards();
+            gameSetup.sendIdGui();
         } catch (Exception e) {
             LOGGER.info((Supplier<String>) e);
         }

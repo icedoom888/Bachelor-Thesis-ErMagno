@@ -133,7 +133,8 @@ public class Controller implements Observer<Input>  {
                     return;
 
                 /////////PER TESTING/////////
-                //DECOMMENTARE IL RESTO DEL CASE E CANCELLARE LA SEZIONE PER TESTIN
+                //TODO:
+                //DECOMMENTARE IL RESTO DEL CASE E CANCELLARE LA SEZIONE PER TESTING
                    // model.setCurrentEra(Era.SECOND);
                    // break;
                 case SECOND:

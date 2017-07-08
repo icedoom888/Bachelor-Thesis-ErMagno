@@ -321,4 +321,15 @@ public class GameSetup {
         return new ObjectDeserializer().getBonusTiles();
 
     }
+
+    public void sendIdGui() {
+
+        HashMap<PlayerColor, String> playerNames = new HashMap<>();
+
+        for (Player player : players) {
+            playerNames.put(player.getPlayerColor(), player.getPlayerID());
+        }
+
+        model.sendIdGui(playerNames);
+    }
 }

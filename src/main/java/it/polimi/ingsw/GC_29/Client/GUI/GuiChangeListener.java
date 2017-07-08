@@ -58,4 +58,6 @@ public interface GuiChangeListener {
     void showDisconnectedPlayer(List<String> username);
 
     void showReconnectedPlayers(List<String> reconnectedPlayerUsernames);
+
+    void sendPlayerNames(Map<PlayerColor, String> playerNames);
 }

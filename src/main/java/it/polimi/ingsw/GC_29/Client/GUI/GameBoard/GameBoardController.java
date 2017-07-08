@@ -1830,6 +1830,10 @@ public class GameBoardController {
         endGamePane.setVisible(true);
     }
 
+    public void initializeNames(Map<PlayerColor, String> playerNames) {
+
+    }
+
     /**
      * Sets the current player status and shows the relative panes
      * @param newPlayerState

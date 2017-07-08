@@ -832,6 +832,20 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         });
     }
 
+    private void initializeTracks(Map<PlayerColor, String> playerNames) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.initializeNames(playerNames);
+
+
+            }
+        });
+    }
+
 
 
 
@@ -977,6 +991,11 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         public void showReconnectedPlayers(List<String> reconnectedPlayerUsernames) {
             reconnectedPlayers(reconnectedPlayerUsernames);
 
+        }
+
+        @Override
+        public void sendPlayerNames(Map<PlayerColor, String> playerNames) {
+            initializeTracks(playerNames);
         }
 
 

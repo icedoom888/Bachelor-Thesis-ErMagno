@@ -262,5 +262,10 @@ public class Model extends Observable<Change>{
         notifyObserver(new EndMove(currentPlayer.getPlayerID()));
 
     }
+
+    public void sendIdGui(HashMap<PlayerColor, String> playerNames) {
+
+        notifyObserver(new PlayerNames(playerNames));
+    }
 }
 
