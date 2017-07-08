@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
+import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Controllers.Change.BonusTileChangeGui;
 import it.polimi.ingsw.GC_29.Controllers.Change.GoodSetChange;
@@ -14,6 +15,9 @@ import it.polimi.ingsw.GC_29.Server.ObserverException;
 import it.polimi.ingsw.GC_29.Server.ServerNewGame;
 import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.*;
 import java.util.function.Supplier;
@@ -32,10 +36,10 @@ public class Controller implements Observer<Input>  {
 
     private final Model model;
 
-    private final long throwDicesTime = 150000;
-    private final long chooseBonusTilesTime = 150000;
-    private final long prayTime = 150000;
-    private final long turnTime = 500000;
+    private long throwDicesTime;
+    private long chooseBonusTilesTime;
+    private long prayTime;
+    private long turnTime;
 
     private Integer playersPraying;
     private ActionChecker actionChecker;
@@ -53,6 +57,8 @@ public class Controller implements Observer<Input>  {
 
     private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
+    private final String timerFilePath = "timerMove/timerMove";
+
 
     public Controller(Model model){
         this.model = model;
@@ -63,8 +69,31 @@ public class Controller implements Observer<Input>  {
         closedClients = model.getTurnOrder().size();
         playerDisconnected = new ArrayList<>();
 
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(timerFilePath);
+        } catch (FileNotFoundException e) {
+            LOGGER.info((Supplier<String>) e);
+        }
 
-        //setCardsOnTowers();
+        long timer = 180000;
+
+        if(fileReader!=null){
+
+            timer = new GsonBuilder().create().fromJson(fileReader, Long.class);
+
+            try {
+                fileReader.close();
+            } catch (IOException e) {
+                LOGGER.info((Supplier<String>) e);
+            }
+
+        }
+
+        throwDicesTime = timer;
+        chooseBonusTilesTime = timer;
+        prayTime = timer;
+        turnTime = timer;
 
         createActions();
     }

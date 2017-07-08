@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Server;
 
+import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
 import it.polimi.ingsw.GC_29.Model.Model;
@@ -10,6 +11,8 @@ import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;
 import it.polimi.ingsw.GC_29.Server.Socket.ServerSocketView;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
@@ -33,19 +36,17 @@ public class GameMatchHandler implements LogoutInterface{
 
     private Boolean lobbyCreated = false;
 
-    private final int maxNumberOfPlayers = 2;
+    private final int maxNumberOfPlayers = 4;
 
     private Timer timer;
 
     private boolean minClientNumberReached = false;
 
-    private long startTime;
-
     private int indexMatch = 0;
 
     private String currentMatchID;
 
-    private final long elapsedTime = 30000;
+    private long elapsedTime;
 
     private int currentClientListSize = 0;
 
@@ -55,8 +56,35 @@ public class GameMatchHandler implements LogoutInterface{
 
     private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
+    private static final String timerFilePath = "timer/timer";
+
 
     public GameMatchHandler(){
+
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(timerFilePath);
+        } catch (FileNotFoundException e) {
+            LOGGER.info((Supplier<String>) e);
+        }
+
+        if(fileReader!=null){
+
+            elapsedTime = new GsonBuilder().create().fromJson(fileReader, Long.class);
+
+            try {
+                fileReader.close();
+            } catch (IOException e) {
+                LOGGER.info((Supplier<String>) e);
+            }
+
+        }
+
+        else {
+
+            elapsedTime = (long)180000;
+        }
+
 
         newGameMap = new HashMap<>();
 
