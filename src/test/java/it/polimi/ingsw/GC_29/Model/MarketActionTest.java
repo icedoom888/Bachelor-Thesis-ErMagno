@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.EffectBonusAndActions;
+package it.polimi.ingsw.GC_29.Model;
 
 import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
@@ -17,6 +17,53 @@ import static org.testng.Assert.assertTrue;
  * Created by AlbertoPennino on 07/07/2017.
  */
 public class MarketActionTest {
+    @Test
+    public void testToString() throws Exception {
+        ArrayList<Player> players = new ArrayList<>();
+
+        Player player1 = new Player("l", PlayerColor.BLUE, new PersonalBoard(6));
+        Player player2 = new Player("e", PlayerColor.GREEN, new PersonalBoard(6));
+        Player player3 = new Player("d", PlayerColor.RED, new PersonalBoard(6));
+        Player player4 = new Player("o", PlayerColor.YELLOW, new PersonalBoard(6));
+
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+
+        GameSetup gameSetup = new GameSetup(players);
+
+        gameSetup.init();
+
+        gameSetup.setExcommunicationTiles();
+
+        for (Player player : players){
+            player.updateGoodSet(new GoodSet(2,2,2,2,2,2,2));
+        }
+
+        gameSetup.setLeaderCards();
+
+        Model model = gameSetup.getModel();
+
+        Controller controller = null;
+        try {
+            controller = new Controller(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        controller.setCardsOnTowers();
+
+        controller.getActionChecker().setCurrentPlayer();
+
+        ArrayList<Action> actionList = controller.getActionChecker().getActionList();
+
+        FamilyPawn familyPawn1 = new FamilyPawn(player1.getFamilyPawn(FamilyPawnType.NEUTRAL));
+        actionList.get(16).setPlayer(player1);
+        actionList.get(16).setFamiliyPawn(familyPawn1);
+        System.out.println(actionList.get(16));
+    }
+
     @Test
     public void testExecute() throws Exception {
 
@@ -113,7 +160,7 @@ public class MarketActionTest {
         assertTrue(player2.getActualGoodSet().equals(goodSetExpected));
         assertTrue(player2.getCouncilPrivilegeEffectList().size()==1);
         System.out.println(player2.getCouncilPrivilegeEffectList().get(0));
-        assertTrue(player2.getCouncilPrivilegeEffectList().get(0).getNumberOfCouncilPrivileges()==1);
+        assertTrue(player2.getCouncilPrivilegeEffectList().get(0).getNumberOfCouncilPrivileges()==2);
 
     }
 }
