@@ -56,6 +56,12 @@ public class WorkAction extends Action {
            System.out.println("The field is full!");
            return false;
         }
+
+        else{
+
+            System.out.println("THE FIELD " + fieldSelected + "IS FREE" + actionSpaceSelected.isOccupied() + actionSpaceSelected.isOccupied());
+        }
+
         return true;
     }
 
@@ -71,7 +77,7 @@ public class WorkAction extends Action {
         }
         FieldType other = FieldType.FIRST;
         if(workspaceSelected.getActionSpace(other).isOccupied()){
-            System.out.println("The first field is free");
+            System.out.println("The first field is occupied");
             return true;
         }
         System.out.println("The first field is empty!");
@@ -104,8 +110,6 @@ public class WorkAction extends Action {
      * @return true if the neutral rule is respected, false otherwise
      */
     private boolean checkNeutralRule() {
-
-        if (model.getTurnOrder().size() < 4) return true;
 
         if(temporaryPawn.getType()==FamilyPawnType.NEUTRAL){
             System.out.println("The neutral rule is respected");
@@ -156,6 +160,16 @@ public class WorkAction extends Action {
             lane = player.getPersonalBoard().getLane(CardColor.GREEN);
         }
 
+        int actualValue = temporaryPawn.getActualValue();
+        if(fieldSelected == FieldType.SECOND){
+
+            actionSpaceSelected.getEffect().execute(player);
+            System.out.println("MALUS ON FIELD ACTIVATED");
+            System.out.println("VALORE PEDINA " + temporaryPawn.getActualValue());
+
+        }
+
+
         for (DevelopmentCard card : lane.getCards()) {
 
             if(card==null){
@@ -183,6 +197,8 @@ public class WorkAction extends Action {
         }
 
         recollectCardsForWorkers();
+
+        temporaryPawn.setActualValue(actualValue);
 
     }
 
@@ -522,6 +538,7 @@ public class WorkAction extends Action {
 
         System.out.println("WORKACTION - effects to activate: " + effectsToActivate);
     }
+
 
     public boolean handlePayToObtainCards() {
         return handlePayToObtainCards(workers);
