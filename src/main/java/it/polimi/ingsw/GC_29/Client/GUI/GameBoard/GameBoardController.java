@@ -1244,11 +1244,12 @@ public class GameBoardController {
 
         }
 
-        /*for (Map.Entry<Integer, ImageView> entry : gridMap.entrySet()) {
+        for (Map.Entry<Integer, ImageView> entry : gridMap.entrySet()) {
             Image image = null;
             entry.getValue().setImage(image);
             gridFreeSlot = 0;
         }
+        /*
 
         for (Integer integer : actionButtons.keySet()) {
             Image image = null;

@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_29.EffectBonusAndActions;
 /**
  * Created by Lorenzotara on 22/05/17.
 
-public class TowerActionTest {
+public class TowerActionTest2 {
 
     @Test
     public void testIsPossible1() throws Exception {

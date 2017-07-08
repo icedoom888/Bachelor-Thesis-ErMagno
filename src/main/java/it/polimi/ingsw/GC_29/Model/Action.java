@@ -130,7 +130,6 @@ public abstract class Action {
      */
     private boolean checkSufficientActionValue() {
 
-        //TODO: filter ONLYWORKERS
         if (!onlyWorkers) {
             executeBonusAndMalusOnAction();
         }

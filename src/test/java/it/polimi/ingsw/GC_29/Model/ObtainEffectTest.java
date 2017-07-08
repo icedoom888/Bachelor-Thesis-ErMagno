@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.EffectBonusAndActions;
+package it.polimi.ingsw.GC_29.Model;
 
 import it.polimi.ingsw.GC_29.Model.*;
 import org.testng.Assert;
