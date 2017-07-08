@@ -191,6 +191,14 @@ public class GameBoardController {
     @FXML
     private Text blueFaithPoints;
 
+    @FXML
+    private Text greenName;
+    @FXML
+    private Text yellowName;
+    @FXML
+    private Text redName;
+    @FXML
+    private Text blueName;
 
     @FXML
     private ImageView grid0;
@@ -1609,13 +1617,14 @@ public class GameBoardController {
 
             Integer index = entry.getKey();
             choices.add(index);
-            newWorkers.append(index.toString()).append(") ");
+            newWorkers.append("Workers amount: ");
+            newWorkers.append(index.toString()).append(") \n");
 
             for (int i = 0;i < (entry.getValue()).size(); i++) {
                 newWorkers.append((cardsForWorkers.get(index)).get(i));
             }
 
-            newWorkers.append("\n");
+            newWorkers.append("\n\n");
 
         }
 
@@ -1830,8 +1839,57 @@ public class GameBoardController {
         endGamePane.setVisible(true);
     }
 
+    /**
+     * At the beginning of the game inserts the names of the players in the track tab pane
+     * @param playerNames
+     */
     public void initializeNames(Map<PlayerColor, String> playerNames) {
-
+        for (PlayerColor color : PlayerColor.values()){
+            if (playerNames.keySet().contains(color)){
+                switch (color){
+                    case RED:
+                        redName.setText(playerNames.get(color));
+                        break;
+                    case GREEN:
+                        greenName.setText(playerNames.get(color));
+                        break;
+                    case BLUE:
+                        blueName.setText(playerNames.get(color));
+                        break;
+                    case YELLOW:
+                        yellowName.setText(playerNames.get(color));
+                        break;
+                }
+            }
+            else {
+                switch (color){
+                    case RED:
+                        redName.setText("");
+                        for (GoodType goodType:redPlayerTrack.keySet()){
+                            redPlayerTrack.get(goodType).setText("");
+                        }
+                        break;
+                    case GREEN:
+                        greenName.setText("");
+                        for (GoodType goodType:greenPlayerTrack.keySet()){
+                            greenPlayerTrack.get(goodType).setText("");
+                        }
+                        break;
+                    case BLUE:
+                        blueName.setText("");
+                        for (GoodType goodType:bluePlayerTrack.keySet()){
+                            bluePlayerTrack.get(goodType).setText("");
+                        }
+                        break;
+                    case YELLOW:
+                        yellowName.setText("");
+                        for (GoodType goodType:yellowPlayerTrack.keySet()){
+                            yellowPlayerTrack.get(goodType).setText("");
+                        }
+                        break;
+                }
+            }
+        }
     }
 
     /**

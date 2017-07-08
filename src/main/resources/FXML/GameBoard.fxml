@@ -547,22 +547,22 @@
                                                                   <Font size="15.0" />
                                                                </font>
                                                             </Text>
-                                                            <Text fill="#09bc12" strokeType="OUTSIDE" strokeWidth="0.0" text="Green" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                            <Text fx:id="greenName" fill="#09bc12" strokeType="OUTSIDE" strokeWidth="0.0" text="Green" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                                                <font>
                                                                   <Font size="15.0" />
                                                                </font>
                                                             </Text>
-                                                            <Text fill="#0d4fdd" strokeType="OUTSIDE" strokeWidth="0.0" text="Blue" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                            <Text fx:id="blueName" fill="#0d4fdd" strokeType="OUTSIDE" strokeWidth="0.0" text="Blue" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                                                <font>
                                                                   <Font size="15.0" />
                                                                </font>
                                                             </Text>
-                                                            <Text fill="#ee0808" strokeType="OUTSIDE" strokeWidth="0.0" text="Red" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                            <Text fx:id="redName" fill="#ee0808" strokeType="OUTSIDE" strokeWidth="0.0" text="Red" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                                                <font>
                                                                   <Font size="15.0" />
                                                                </font>
                                                             </Text>
-                                                            <Text fill="#eedb0c" strokeType="OUTSIDE" strokeWidth="0.0" text="Yellow" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                            <Text fx:id="yellowName" fill="#eedb0c" strokeType="OUTSIDE" strokeWidth="0.0" text="Yellow" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                                                                <font>
                                                                   <Font size="15.0" />
                                                                </font>
