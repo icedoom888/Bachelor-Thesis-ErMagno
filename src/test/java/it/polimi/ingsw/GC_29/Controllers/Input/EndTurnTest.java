@@ -3,13 +3,11 @@ package it.polimi.ingsw.GC_29.Controllers.Input;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.GameSetup;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
-import it.polimi.ingsw.GC_29.Model.Model;
-import it.polimi.ingsw.GC_29.Model.PersonalBoard;
-import it.polimi.ingsw.GC_29.Model.Player;
-import it.polimi.ingsw.GC_29.Model.PlayerColor;
+import it.polimi.ingsw.GC_29.Model.*;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.testng.Assert.*;
 
@@ -83,6 +81,54 @@ public class EndTurnTest {
                 }
             }
         }
+
+        Player notSkippingPlayer = model.getTurnOrder().get(0);
+        Player skippingPlayer1 = model.getTurnOrder().get(1);
+        Player skippingPlayer2 = model.getTurnOrder().get(2);
+        Player skippingPlayer3 = model.getTurnOrder().get(3);
+
+        skippingPlayer1.getSpecialBonusAndMaluses().add(SpecialBonusAndMalus.SKIPFIRSTTURN);
+        skippingPlayer2.getSpecialBonusAndMaluses().add(SpecialBonusAndMalus.SKIPFIRSTTURN);
+        skippingPlayer3.getSpecialBonusAndMaluses().add(SpecialBonusAndMalus.SKIPFIRSTTURN);
+
+        ArrayList<Player> skippingPlayers = new ArrayList<>();
+
+        skippingPlayers.add(skippingPlayer1);
+        skippingPlayers.add(skippingPlayer2);
+        skippingPlayers.add(skippingPlayer3);
+
+        model.setSkippedTurnPlayers(skippingPlayers);
+
+
+        new ThrowDices().perform(model, controller);
+
+        new EndTurn().perform(model, controller);
+
+        assertTrue(notSkippingPlayer.getPlayerState() == PlayerState.DOACTION);
+        assertTrue(skippingPlayer1.getPlayerState() == PlayerState.WAITING);
+        assertTrue(skippingPlayer2.getPlayerState() == PlayerState.WAITING);
+        assertTrue(skippingPlayer3.getPlayerState() == PlayerState.WAITING);
+
+        /**
+         * Concludo gli ultimi 3 turni "normali"
+         */
+        for (int j = 0; j < 3*4; j++) {
+
+            new EndTurn().perform(model, controller);
+        }
+
+
+        /**
+         * Ora giocano gli skippati
+         */
+
+        assertTrue(skippingPlayer1.getPlayerState() == PlayerState.DOACTION);
+        new EndTurn().perform(model, controller);
+        assertTrue(skippingPlayer2.getPlayerState() == PlayerState.DOACTION);
+        new EndTurn().perform(model, controller);
+        assertTrue(skippingPlayer3.getPlayerState() == PlayerState.DOACTION);
+        new EndTurn().perform(model, controller);
+        assertTrue(notSkippingPlayer.getPlayerState() == PlayerState.THROWDICES);
 
     }
 

@@ -51,11 +51,6 @@ public class EndTurn extends Input {
         System.out.println("SONO DENTRO PERFORM END TURN, IL CURRENT PLAYER CHE HA CHIAMATO END TURN E' " + currentPlayer.getPlayerID() + " color " + currentPlayer.getPlayerColor());
 
         currentPlayer.setPlayerState(PlayerState.WAITING);
-       // System.out.println("\n\nTURNO: " + model.getCurrentTurn());
-        //System.out.println("END TURN, NOME " + currentPlayer.getPlayerID() + " colore " + currentPlayer.getPlayerColor()+"\n\n");
-        //System.out.println("INDICE DEL PLAYER CHE STA FINENDO IL TURNO: " + model.getTurnOrder().indexOf(currentPlayer));
-
-        //System.out.println("\n\nTURN ORDER UGUALE A: " + model.getTurnOrder());
 
         List<Player> turnOrder = model.getTurnOrder();
 
