@@ -92,7 +92,7 @@ public class ObtainOnConditionEffect implements Effect {
 
         if(goodsCondition==null){return;}
 
-        int multiplier=100;//valore inizializzato alto per necessità
+        Integer multiplier = null;
 
         for(GoodType type : GoodType.values()){
 
@@ -100,9 +100,10 @@ public class ObtainOnConditionEffect implements Effect {
 
                 int temporaryMultiplier = status.getActualGoodSet().getGood(type).getAmount()/goodsCondition.getGood(type).getAmount();
 
-                if(temporaryMultiplier<=multiplier){
+                if(multiplier== null || temporaryMultiplier<=multiplier){
 
                     multiplier=temporaryMultiplier;
+
                 }
             }
         }
