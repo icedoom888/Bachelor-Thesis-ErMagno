@@ -92,12 +92,10 @@ public class TowerAction extends Action {
                 int goldCost = towerChosen.getCostIfOccupied();
 
                 if (player.getActualGoodSet().getGoodAmount(GoodType.COINS) >= goldCost) {
-                    //This branch is taken if the player have enough coins to pay the access to the occupied tower
                     towerCost = new GoodSet(0,0,goldCost,0,0,0,0);
                     return true;
 
                 } else {
-                    System.out.println("You don't have enough coins to access to the tower!");
                     return false;
                 }
             }
@@ -111,8 +109,6 @@ public class TowerAction extends Action {
      * controls in the future. The effect is not activated.
      */
     private void setActionSpaceEffect() {
-
-        // TODO: inserire assertion sul tipo dell'effetto, in modo da assicurarci a livello di debug che il tipo sia un ObtainEffect
 
         ObtainEffect effect = (ObtainEffect) this.actionSpaceSelected.getEffect();
         GoodSet actionSpaceGoodSet = effect.getGoodsObtained();
@@ -209,55 +205,6 @@ public class TowerAction extends Action {
                 && player.getPersonalBoard().getLane(type).isFree();
     }
 
-    /*private void payCard() throws Exception {
-
-        GoodSet goodSetToPay;
-
-        if(!cardCost.isWithPrice()){
-            return;
-        }
-
-        if (towerCost.getGoodAmount(GoodType.COINS) != 0) {
-            System.out.println("You have to pay the access to the tower because it's occupied: ");
-            System.out.println("The cost is " + towerCost.getGoodAmount(GoodType.COINS) + " coins.");
-        }
-
-        System.out.println("The actual cost of the card is: \n" + cardCost);
-
-        if (possibleCardCosts.size() > 1) {
-            System.out.println("Applying your bonusAndMalus you can choose between different costs: ");
-
-            int i = 1;
-            for (Cost cost : possibleCardCosts) {
-                System.out.println(i + ") " + cost);
-                i++;
-            }
-
-            System.out.println("Write the number of the option chosen");
-
-            int answer = 0; // random
-
-            goodSetToPay = possibleCardCosts.get(answer).getCost();
-            goodSetToPay.setNegative();
-
-            player.updateModelTracks(goodSetToPay);
-            System.out.println("The card has been paid");
-            return;
-        }
-
-        System.out.println("Applying your bonusAndMalus you have to pay: ");
-
-        goodSetToPay = possibleCardCosts.get(0).getCost();
-
-        System.out.println(goodSetToPay);
-
-        goodSetToPay.setNegative();
-
-        player.updateModelTracks(goodSetToPay);
-        System.out.println("The card has been paid");
-    }*/
-
-
     private void pay() {
         GoodSet goodSetToPay = new GoodSet();
 
@@ -301,7 +248,7 @@ public class TowerAction extends Action {
                 playerBoard.getVenturesLane().addCard(card);
                 break;
             default:
-                System.out.println("Ops! There has been an error!");
+                break;
         }
 
         CardColor cardColor = card.getColor();
@@ -335,8 +282,6 @@ public class TowerAction extends Action {
      * ...
      */
     protected void update() {
-        
-        //TODO: dividi in più metodi
 
         super.update();
 
@@ -345,11 +290,6 @@ public class TowerAction extends Action {
         for (Effect effect : cardSelected.getPermanentEffect()) {
             if (effect instanceof BonusEffect) {
                 BonusEffect effect1 = (BonusEffect)effect;
-                /*
-                player.getBonusAndMalusOnAction().add(effect1.getBonusAndMalusOnAction());
-                player.getBonusAndMalusOnCost().add(effect1.getBonusAndMalusOnCost());
-                player.getBonusAndMalusOnGoods().add(effect1.getBonusAndMalusOnGoods());
-                */
 
                 if (effect1.getBonusAndMalusOnAction() != null) player.getBonusAndMalusOnAction().add(effect1.getBonusAndMalusOnAction());
                 if (effect1.getBonusAndMalusOnGoods() != null) player.getBonusAndMalusOnGoods().add(effect1.getBonusAndMalusOnGoods());
@@ -378,8 +318,6 @@ public class TowerAction extends Action {
     public void setCardSelected(DevelopmentCard cardSelected) {
         this.cardSelected = cardSelected;
     }
-
-    // metodi per testing
 
 
     public Tower getTowerChosen() {
@@ -414,7 +352,7 @@ public class TowerAction extends Action {
     public String toString() {
         return "TowerAction{"
                 + super.toString() + ", floorIndex=" + floorIndex
-                + cardSelected.getImmediateEffect().toString() + '}';
+                /*+ cardSelected.getImmediateEffect().toString()*/ + '}';
     }
 
     public void setCostChosen(int costChosen) {
