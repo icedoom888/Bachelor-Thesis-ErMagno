@@ -23,7 +23,7 @@ public class BonusAndMalusOnGoods {
 
         Map<GoodType, Integer> temporaryHashMapGoodSet = goodsObtained.getMapGoodSet();
 
-        for (GoodType type : GoodType.values()) { // il doppio ciclo for mi sta bene poiché la dimensione del secondo for è costante, dunque complessità O(n)
+        for (GoodType type : GoodType.values()) {
 
             int goodObtainedAmount = temporaryHashMapGoodSet.get(type);
 
