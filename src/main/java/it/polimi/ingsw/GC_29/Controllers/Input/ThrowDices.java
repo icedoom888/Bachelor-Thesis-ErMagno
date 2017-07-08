@@ -31,24 +31,21 @@ public class ThrowDices extends Input {
 
         int currentPlayerIndex = 0; //devo inizializzarla se no da errori in chooseCurrentPlayer
 
-        boolean b = true;
-
-        while (b) {
+        boolean playerChosen = false;
 
             for (Player player : turnOrder) {
 
-                if (player.getPlayerState() != PlayerState.SUSPENDED) {
+                player.setPlayerState(PlayerState.WAITING);
+
+                if (player.getPlayerState() != PlayerState.SUSPENDED && !playerChosen) {
 
                     currentPlayerIndex =  turnOrder.indexOf(player);
 
-                    b = false;
+                    playerChosen = true;
 
-                    break;
                 }
 
             }
-        }
-
 
         controller.chooseCurrentPlayer(currentPlayerIndex);
 
