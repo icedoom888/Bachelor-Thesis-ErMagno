@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.EffectBonusAndActions;
+package it.polimi.ingsw.GC_29.Model;
 
 /**
  * Created by AlbertoPennino on 02/06/2017.

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.EffectBonusAndActions;
+package it.polimi.ingsw.GC_29.Model;
 
 import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
@@ -16,6 +16,54 @@ import static org.testng.Assert.*;
  * Created by AlbertoPennino on 07/07/2017.
  */
 public class CouncilPalaceActionTest {
+    @Test
+    public void testToString() throws Exception {
+        ArrayList<Player> players = new ArrayList<>();
+
+        Player player1 = new Player("l", PlayerColor.BLUE, new PersonalBoard(6));
+        Player player2 = new Player("e", PlayerColor.GREEN, new PersonalBoard(6));
+        Player player3 = new Player("d", PlayerColor.RED, new PersonalBoard(6));
+
+
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+
+        GameSetup gameSetup = new GameSetup(players);
+
+        gameSetup.init();
+
+        gameSetup.setExcommunicationTiles();
+
+        for (Player player : players){
+            player.updateGoodSet(new GoodSet(2,2,2,2,2,2,2));
+        }
+
+        gameSetup.setLeaderCards();
+
+        Model model = gameSetup.getModel();
+
+        Controller controller = null;
+        try {
+            controller = new Controller(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        controller.setCardsOnTowers();
+
+        controller.getActionChecker().setCurrentPlayer();
+
+        ArrayList<Action> actionList = controller.getActionChecker().getActionList();
+        FamilyPawn familyPawn1 = new FamilyPawn(player1.getFamilyPawn(FamilyPawnType.NEUTRAL));
+
+        System.out.println(player1.getActualGoodSet());
+
+        actionList.get(20).setFamiliyPawn(familyPawn1);
+        actionList.get(20).setPlayer(player1);
+        System.out.println(actionList.get(20).toString());
+
+    }
 
     @Test
     public void testExecute() throws Exception {
@@ -53,8 +101,6 @@ public class CouncilPalaceActionTest {
         }
 
         controller.setCardsOnTowers();
-
-        //TODO: cosa fai? che current player setti?
 
         controller.getActionChecker().setCurrentPlayer();
 
@@ -108,12 +154,17 @@ public class CouncilPalaceActionTest {
         System.out.println(player2.getActualGoodSet());
         verify = player2.getActualGoodSet().equals(expectedGoodsetPlayer2);
         assertTrue(verify);
-
-        order = councilPalaceActionSpace.getTurnOrder();
-        assertTrue( order[0] == PlayerColor.BLUE);
-        assertTrue(order[1]==PlayerColor.GREEN);
-
         assertFalse(player2.getFamilyPawnAvailability().get(FamilyPawnType.NEUTRAL));
+
+
+        FamilyPawn familyPawn3 = new FamilyPawn(player3.getFamilyPawn(FamilyPawnType.BLACK));
+        familyPawn3.setActualValue(2);
+        actionList.get(20).setFamiliyPawn(familyPawn3);
+        actionList.get(20).setPlayer(player3);
+        assertTrue(actionList.get(20).isPossible());
+        actionList.get(20).isPossible();
+        actionList.get(20).execute();
+
 
     }
 
