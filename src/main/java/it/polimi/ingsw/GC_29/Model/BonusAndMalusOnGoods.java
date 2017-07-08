@@ -27,13 +27,23 @@ public class BonusAndMalusOnGoods {
 
             int goodObtainedAmount = temporaryHashMapGoodSet.get(type);
 
-            int BonusMalusOnGoodAmount = goodSetBonusMalus.getMapGoodSet().get(type);
+            int bonusMalusOnGoodAmount = goodSetBonusMalus.getMapGoodSet().get(type);
 
-            if (goodObtainedAmount * BonusMalusOnGoodAmount != 0) {
+            if (goodObtainedAmount * bonusMalusOnGoodAmount != 0) {
 
-                int temporaryAmount = goodObtainedAmount + BonusMalusOnGoodAmount;
+                int temporaryAmount = goodObtainedAmount + bonusMalusOnGoodAmount;
 
-                temporaryHashMapGoodSet.put(type, temporaryAmount);
+                //Questo if else non esisteva, c'era la riga commentata sotto
+
+                if (temporaryAmount >= 0) {
+
+                    temporaryHashMapGoodSet.put(type, temporaryAmount);
+                }
+                else {
+                    temporaryHashMapGoodSet.put(type, 0);
+                }
+
+                //temporaryHashMapGoodSet.put(type, temporaryAmount);
             }
         }
     }

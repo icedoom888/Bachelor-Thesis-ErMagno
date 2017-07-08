@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_29.Model;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by Lorenzotara on 26/05/17.
@@ -55,8 +56,34 @@ public class BonusAndMalusOnCost {
     }
 
 
-    public void changeCost(Cost cost, GoodSet discount) {
-        cost.getCost().addGoodSet(discount);
+    private void changeCost(Cost cost, GoodSet discount) {
+
+
+        for (Map.Entry<GoodType, Integer> goodTypeIntegerEntry : discount.getMapGoodSet().entrySet()) {
+
+            Integer goodAmountCost = cost.getCost().getGoodAmount(goodTypeIntegerEntry.getKey());
+            Integer goodDiscount = goodTypeIntegerEntry.getValue();
+            GoodType goodType = goodTypeIntegerEntry.getKey();
+
+            if (goodDiscount * goodAmountCost != 0) {
+
+                GoodSet goodSetToAdd = new GoodSet();
+
+                if (goodAmountCost - goodDiscount >= 0) {
+
+                    goodSetToAdd.setGoodAmount(goodType, - goodDiscount);
+                }
+
+                else {
+
+                    goodSetToAdd.setGoodAmount(goodType, - cost.getCost().getGoodAmount(goodType));
+
+                }
+
+                cost.getCost().addGoodSet(goodSetToAdd);
+
+            }
+        }
     }
 
     @Override

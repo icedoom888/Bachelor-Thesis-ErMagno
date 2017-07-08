@@ -33,6 +33,8 @@ public class SuspendPlayer extends TimerTask {
 
         if (controller.minNumberOfPlayerReached()) {
 
+            System.out.println("\n\nIN SUSPENDED: MIN NUMBER OF PLAYERS REACHED");
+
             try {
                 controller.endGame();
             } catch (Exception e) {
@@ -44,6 +46,8 @@ public class SuspendPlayer extends TimerTask {
         switch (playerState) {
 
             case THROWDICES:
+
+                System.out.println("I AM SUSPENDING THE PLAYER DURING THROWDICES");
 
                 new ThrowDices().perform(model, controller);
 
@@ -64,6 +68,9 @@ public class SuspendPlayer extends TimerTask {
 
             case PRAY:
 
+                System.out.println("I AM SUSPENDING THE PLAYER DURING PRAY");
+
+
                 new Pray(false, playerToSuspend.getPlayerColor()).perform(model, controller);
 
                 break;
@@ -71,6 +78,7 @@ public class SuspendPlayer extends TimerTask {
 
             case CHOOSECOST:
 
+                System.out.println("I AM SUSPENDING THE PLAYER DURING CHOOSECOST");
 
                 new PayCard(0).perform(model, controller);
 
@@ -80,6 +88,8 @@ public class SuspendPlayer extends TimerTask {
 
 
             case CHOOSE_BONUS_TILE:
+
+                System.out.println("I AM SUSPENDING THE PLAYER DURING CHOOSE BONUS TILE");
 
 
                 new BonusTileChosen().perform(model, controller);

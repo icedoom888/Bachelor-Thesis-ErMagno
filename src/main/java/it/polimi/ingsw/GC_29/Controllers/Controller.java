@@ -966,6 +966,8 @@ public class Controller implements Observer<Input>  {
             }
         }
 
+        System.out.println("\n\n" + numberOfPlayerOnline + "\n\n");
+
         return numberOfPlayerOnline < minNumberOfPlayers;
 
     }

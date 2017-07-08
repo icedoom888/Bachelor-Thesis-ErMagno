@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_29.Controllers.Input;
 
+import it.polimi.ingsw.GC_29.Controllers.Change.BonusTileChangeGui;
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Model.BonusTile;
@@ -54,6 +55,7 @@ public class BonusTileChosen extends Input {
         if (bonusTileIndex != -1) {
 
             bonusTile = model.getBonusTileMap().remove(bonusTileIndex);
+
         }
 
         else {
@@ -63,6 +65,15 @@ public class BonusTileChosen extends Input {
             List<BonusTile> bonusTileList = new ArrayList<>(bonusTileMap.values());
 
             bonusTile = bonusTileList.get(0);
+
+            for (Map.Entry<Integer, BonusTile> integerBonusTileEntry : bonusTileMap.entrySet()) {
+
+                if (integerBonusTileEntry.getValue() == bonusTile) {
+                    model.getCurrentPlayer().notifyObserver(new BonusTileChangeGui(integerBonusTileEntry.getKey()));
+                    break;
+                }
+            }
+
 
             bonusTileMap.remove(bonusTile);
         }
