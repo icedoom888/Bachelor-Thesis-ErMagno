@@ -25,10 +25,13 @@ public class ObtainForCost implements Effect {
         int increment = 0;
 
         for (DevelopmentCard card : cards) {
-            for (GoodType goodType : goodTypesToPay) {
-                increment += card.getCardCost().getMainCost().getCost().getGoodAmount(goodType);
-                increment += card.getCardCost().getAlternativeCost().getCost().getGoodAmount(goodType);
 
+            if (card != null) {
+                for (GoodType goodType : goodTypesToPay) {
+                    increment += card.getCardCost().getMainCost().getCost().getGoodAmount(goodType);
+                    increment += card.getCardCost().getAlternativeCost().getCost().getGoodAmount(goodType);
+
+                }
             }
         }
 
