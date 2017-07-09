@@ -82,7 +82,10 @@ public class ActionEffect implements Effect{
     }
 
 
-
+    /**
+     * adds the bonus action to the list of bonus actions of the player
+     * @param player
+     */
     @Override
     public void execute(Player player) {
 

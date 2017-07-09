@@ -56,6 +56,11 @@ public class BonusAndMalusOnCost {
     }
 
 
+    /**
+     * Changes the cost of a card based on the discount that the player earned,
+     * @param cost
+     * @param discount
+     */
     private void changeCost(Cost cost, GoodSet discount) {
 
 

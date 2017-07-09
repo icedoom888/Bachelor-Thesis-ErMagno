@@ -69,6 +69,11 @@ public class GoodSet extends Observable<MovePawn> implements Serializable{
         }
     }
 
+    /**
+     * updates the tracks of the gameboard when a player's goodset changes
+     * in order to update the faithPoints,militaryPoints and victoryPoints tracks
+     * @param goodSetToAdd
+     */
     public void updateModelTracks(GoodSet goodSetToAdd) {
 
         int victoryPoints = goodSetToAdd.getGoodAmount(GoodType.VICTORYPOINTS);

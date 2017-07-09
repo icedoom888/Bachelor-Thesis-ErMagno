@@ -68,6 +68,12 @@ public class LeaderCard {
     }
     */
 
+    /**
+     * checks if the card has already been activated or if the card has been discharged, also
+     * checks the if the card's requirements are met by the player in order to activate the card
+     * @param player
+     * @return
+     */
     public boolean isPossible(Player player) {
 
         Map<CardColor, Integer> playerCards = player.getCardsOwned();
