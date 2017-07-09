@@ -9,7 +9,7 @@ import java.util.Map;
 public class BonusAndMalusOnCost {
 
     private ZoneType zoneType;
-    private GoodSet firstDiscount;
+    private GoodSet firstDiscount; //positive value means major cost
     private GoodSet secondDiscount;
     private boolean alternative;
 

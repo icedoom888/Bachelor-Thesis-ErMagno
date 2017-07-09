@@ -20,7 +20,6 @@ public class ActionSpace implements Cleanable {
         this.occupied = occupied;
     }
 
-    // TODO: clean e remove
 
     public Effect getEffect() {
         return effect;
@@ -73,6 +72,7 @@ public class ActionSpace implements Cleanable {
         for(Pawn pawn : pawnPlaced.getPlayerPawns()){
             if (pawn.getPlayerColor()==familyPawn.getPlayerColor() && ((FamilyPawn)pawn).getType()== familyPawn.getType()) {
                 pawnPlaced.removePawn(pawn);
+                if (pawnPlaced.isFree()) occupied = false;
                 break;
             }
         }

@@ -9,7 +9,6 @@ import java.util.Arrays;
  */
 public class CouncilPalaceActionSpace extends ActionSpace {
 
-    //TODO: cambia turnOrder in ArrayList
     private Effect effect_2;
     private int numberOfPlayers;
     private PlayerColor[] turnOrder;
@@ -41,12 +40,21 @@ public class CouncilPalaceActionSpace extends ActionSpace {
                 '}';
     }
 
+    /**
+     * adding the pawn will probably creates differences in the turn order.
+     * The methods calls the super.addPawn() and then setTurnOrder()
+     * @param pawn
+     */
     @Override
     public void addPawn(FamilyPawn pawn) {
         super.addPawn(pawn);
         setTurnOrder(pawn.getPlayerColor());
     }
 
+    /**
+     * It removes the pawn from the turnOrder
+     * @param familyPawn
+     */
     @Override
     public void removePawn(FamilyPawn familyPawn){
         super.removePawn(familyPawn);
@@ -61,15 +69,16 @@ public class CouncilPalaceActionSpace extends ActionSpace {
     public void clean(){
         super.clean();
 
-        /*for (PlayerColor playerColor : turnOrder) {
-            playerColor = null;
-        }*/
-
         for (int r=0; r <turnOrder.length; r++){
             turnOrder[r]= null;
         }
     }
 
+    /**
+     * The playerColor is put in the array only if the turnOrder does not already contains
+     * that color
+     * @param pawnColor
+     */
     public void setTurnOrder(PlayerColor pawnColor) {
 
         if (!turnOrderContains(pawnColor)) {

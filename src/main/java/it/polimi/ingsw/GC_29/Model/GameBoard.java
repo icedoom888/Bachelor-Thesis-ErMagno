@@ -82,9 +82,6 @@ public class GameBoard {
         return venturesPointsTrack;
     }
 
-    /* public Track getTurnOrderTrack() {
-        return turnOrderTrack;
-    } */
 
     public FaithPointsTrack getFaithPointsTrack() {
         return faithPointsTrack;
@@ -200,12 +197,6 @@ public class GameBoard {
 
         market.clean();
         councilPalace.clean();
-
-
-        // perchè questa cosa?
-        /*for (Dice dice : diceLane) {
-            dice = null;
-        }*/
     }
 
     public void clearRound(){

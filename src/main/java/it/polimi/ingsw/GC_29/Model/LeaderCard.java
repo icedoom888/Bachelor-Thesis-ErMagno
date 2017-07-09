@@ -18,6 +18,7 @@ public class LeaderCard {
     private boolean activated;
 
 
+    /*
     public LeaderCard(String leaderName, String url, Requirement requirement, boolean permanent, Effect effect) {
         this.leaderName = leaderName;
         this.url = url;
@@ -53,6 +54,20 @@ public class LeaderCard {
         this.bonusAndMalusOnGoods = bonusAndMalusOnGoods;
     }
 
+    public LeaderCard(String leaderName, String url, Requirement requirement, boolean permanent, Effect effect, BonusAndMalusOnAction bonusAndMalusOnAction, BonusAndMalusOnCost bonusAndMalusOnCost, BonusAndMalusOnGoods bonusAndMalusOnGoods, boolean discarded, boolean activated) {
+        this.leaderName = leaderName;
+        this.url = url;
+        this.requirement = requirement;
+        this.permanent = permanent;
+        this.effect = effect;
+        this.bonusAndMalusOnAction = bonusAndMalusOnAction;
+        this.bonusAndMalusOnCost = bonusAndMalusOnCost;
+        this.bonusAndMalusOnGoods = bonusAndMalusOnGoods;
+        this.discarded = discarded;
+        this.activated = activated;
+    }
+    */
+
     public boolean isPossible(Player player) {
 
         Map<CardColor, Integer> playerCards = player.getCardsOwned();
@@ -66,10 +81,15 @@ public class LeaderCard {
 
     }
 
+    /**
+     * When the player decides to activate the leader card, this method is called.
+     * If there is an effect, it is executed; all the bonus and maluses are added to
+     * the player's lists
+     * @param player
+     */
     public void execute(Player player) {
 
         if (effect != null) {
-            System.out.println("executing the effect of the leader card\n");
             effect.execute(player);
         }
 
@@ -86,15 +106,6 @@ public class LeaderCard {
         }
 
         activated = true;
-
-
-/*
-        if (permanent) {
-            player.getPermanentLeaders().put(this, false);
-        }
-        else player.getOncePerRoundLeaders().put(this, false);
-
-        */
 
     }
 

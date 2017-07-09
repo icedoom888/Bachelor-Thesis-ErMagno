@@ -13,7 +13,6 @@ public class Model extends Observable<Change>{
 
     private GameState gameState;
 
-    // Mancano i controller da inserire in futuro
     private GameBoard gameBoard;
     private EnumMap<CardColor, ArrayDeque<DevelopmentCard>> orderedDecks;
     private Player currentPlayer;
@@ -21,7 +20,6 @@ public class Model extends Observable<Change>{
     private int currentTurn;
     private int currentRound;
     private Action currentAction;
-    //private final int numberOfPlayers = COSTANTEDAFILE; TODO: bisogna creare delle costanti da file da usare, come in questo caso
     private ArrayList<Player> turnOrder;
     private ArrayList<Player> skippedTurnPlayers;
     private HashMap<FamilyPawn, ActionSpace> pawnsOnActionSpace;
@@ -48,15 +46,6 @@ public class Model extends Observable<Change>{
 
         return gameBoard;
     }
-
-    /**
-     * this method notify all the player's view that a change in the game is happened, so the view can update
-     * @param
-     */
-    /*public void setGameEvent(GameEvent gameEvent) throws RemoteException {
-        this.gameEvent = gameEvent;
-        notifyObserver(new GameChange(this.gameEvent));
-    }*/
 
     public Map<CardColor, ArrayDeque<DevelopmentCard>> getOrderedDecks() {
 
