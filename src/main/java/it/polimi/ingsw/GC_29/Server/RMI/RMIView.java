@@ -230,6 +230,16 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
+    public String seeGameBoard() throws RemoteException {
+        return new GameBoardQuery().perform(model);
+    }
+
+    @Override
+    public String seePersonalBoard(PlayerColor playerColor) throws RemoteException {
+        return new PersonalBoardQuery(playerColor).perform(model);
+    }
+
+    @Override
     public void activateCards(int workersChosen) throws RemoteException {
 
         notifyObserver(new ActivateCards(workersChosen));

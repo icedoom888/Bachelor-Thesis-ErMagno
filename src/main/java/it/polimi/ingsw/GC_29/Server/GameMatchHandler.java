@@ -36,7 +36,7 @@ public class GameMatchHandler implements LogoutInterface{
 
     private Boolean lobbyCreated = false;
 
-    private final int maxNumberOfPlayers = 3;
+    private final int maxNumberOfPlayers = 4;
 
     private Timer timer;
 

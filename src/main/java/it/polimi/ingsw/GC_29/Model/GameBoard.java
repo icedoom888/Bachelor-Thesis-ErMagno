@@ -257,7 +257,7 @@ public class GameBoard {
 
         finalString = bld.toString();
 
-        return finalString;
+        return bld.toString();
     }
 
 
