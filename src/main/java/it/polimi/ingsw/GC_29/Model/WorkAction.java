@@ -56,12 +56,6 @@ public class WorkAction extends Action {
            System.out.println("The field is full!");
            return false;
         }
-
-        else{
-
-            System.out.println("THE FIELD " + fieldSelected + "IS FREE" + actionSpaceSelected.isOccupied() + actionSpaceSelected.isOccupied());
-        }
-
         return true;
     }
 
@@ -111,6 +105,10 @@ public class WorkAction extends Action {
      */
     private boolean checkNeutralRule() {
 
+        if(model.getTurnOrder().size() < 3){
+            return true;
+        }
+
         if(temporaryPawn.getType()==FamilyPawnType.NEUTRAL){
             System.out.println("The neutral rule is respected");
             return true;
@@ -125,6 +123,7 @@ public class WorkAction extends Action {
         }
 
         for (Pawn pawnPresent : workspaceSelected.getActionSpace(otherField).getPawnPlaced().getPlayerPawns()){
+            System.out.println("SONO IN NEUTRAL RULE COLORE " + temporaryPawn.getType() + "PAWN OTHER " + pawnPresent.getPlayerColor());
             if (temporaryPawn.getPlayerColor()== pawnPresent.getPlayerColor() && ((FamilyPawn)pawnPresent).getType()!=FamilyPawnType.NEUTRAL){
                 System.out.println("The neutral rule is NOT respected");
                 return false;
@@ -160,12 +159,18 @@ public class WorkAction extends Action {
             lane = player.getPersonalBoard().getLane(CardColor.GREEN);
         }
 
-        int actualValue = temporaryPawn.getActualValue();
+
+        int pawnValue = temporaryPawn.getActualValue();
+
         if(fieldSelected == FieldType.SECOND){
 
-            actionSpaceSelected.getEffect().execute(player);
+            BonusAndMalusOnAction bonusAndMalusOnAction = ((BonusEffect)actionSpaceSelected.getEffect()).getBonusAndMalusOnAction();
+
+            pawnValue = pawnValue + bonusAndMalusOnAction.getDiceIncrementOrReduction();
+
+           /* actionSpaceSelected.getEffect().execute(player);
             System.out.println("MALUS ON FIELD ACTIVATED");
-            System.out.println("VALORE PEDINA " + temporaryPawn.getActualValue());
+            System.out.println("VALORE PEDINA " + temporaryPawn.getActualValue());*/
 
         }
 
@@ -176,9 +181,9 @@ public class WorkAction extends Action {
                 break;
             }
 
-            int workersNeeded = card.getActionValue() - temporaryPawn.getActualValue();
+            int workersNeeded = card.getActionValue() - pawnValue;
 
-            if(workersNeeded < player.getActualGoodSet().getGoodAmount(GoodType.WORKERS)){
+            if(workersNeeded <= player.getActualGoodSet().getGoodAmount(GoodType.WORKERS)){
 
                 workersNeeded = max(0, workersNeeded);
 
@@ -197,8 +202,6 @@ public class WorkAction extends Action {
         }
 
         recollectCardsForWorkers();
-
-        temporaryPawn.setActualValue(actualValue);
 
     }
 

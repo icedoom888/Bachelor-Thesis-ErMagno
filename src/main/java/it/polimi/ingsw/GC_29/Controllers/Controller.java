@@ -702,7 +702,7 @@ public class Controller implements Observer<Input>  {
 
                 for (FieldType fieldType : FieldType.values()) {
                     WorkAction workAction = new WorkAction(zoneType, model, fieldType);
-                    if (fieldType == FieldType.SECOND && model.getTurnOrder().size() < 4) {
+                    if (fieldType == FieldType.SECOND && model.getTurnOrder().size() < 3) {
                         workAction.setEnable(false);
                     }
 

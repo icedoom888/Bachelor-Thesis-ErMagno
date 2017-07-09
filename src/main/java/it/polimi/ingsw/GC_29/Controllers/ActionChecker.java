@@ -107,6 +107,9 @@ public class ActionChecker {
 
             action.setFamiliyPawn(new FamilyPawn(familyPawnChosen));
 
+            System.out.println("SONO IN ACTION CHECKER COLORE " + action.getTemporaryPawn().getType() + "VALORE " +action.getTemporaryPawn().getActualValue());
+
+
             action.setValid(action.isPossible());
 
 

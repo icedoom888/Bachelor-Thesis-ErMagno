@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class ObtainEffect implements Effect {
 
-    private transient static final Logger LOGGER = Logger.getLogger(ObtainEffect.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ObtainEffect.class.getName());
 
     protected GoodSet goodsObtained;
 
@@ -39,6 +39,8 @@ public class ObtainEffect implements Effect {
     public void execute(Player status) {
 
         Filter.apply(status, goodsObtained);
+
+        System.out.println("SONO NELLA EXECUTE OBTAIN " + goodsObtained);
 
         status.updateGoodSet(goodsObtained);
     }
