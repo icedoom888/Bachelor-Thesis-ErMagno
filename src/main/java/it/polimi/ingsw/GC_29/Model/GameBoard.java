@@ -255,6 +255,7 @@ public class GameBoard {
         bld.append("\n\n\n");
         bld.append(faithPointsTrack.toTable());
 
+        finalString = bld.toString();
 
         return finalString;
     }

@@ -114,8 +114,15 @@ public class Tower implements Cleanable {
         AsciiTable towerTable = new AsciiTable();
         for (int i = 0; i < floors.length; i++) {
             towerTable.addRule();
-            towerTable.addRow("Floor: " + i, "Card: \n" + floors[i].getDevelopmentCard().toString(), "Action Space:\n" + floors[i].getActionSpace().toString());
+            if (floors[i].getDevelopmentCard()!= null){
+                towerTable.addRow("Floor: " + i, "Card: \n" + floors[i].getDevelopmentCard().toString(), "Action Space:\n" + floors[i].getActionSpace().toString());
+            }
+            else {
+                towerTable.addRow("Floor: " + i, "Card: \n" + "No Card", "Action Space:\n" + floors[i].getActionSpace().toString());
+            }
         }
+        towerTable.addRule();
+
         towerTable.setTextAlignment(TextAlignment.CENTER);
         return "\n\n\n" + zoneType + "\n" + towerTable.render();
     }

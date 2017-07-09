@@ -38,6 +38,7 @@ public class FaithPointsTrack extends Track {
             asciiTable.addRule();
             asciiTable.addRow(i, "Victory Points: " + victoryPointsPerSlot[i], track[i].getPlayerPawns());
         }
+        asciiTable.addRule();
 
         return asciiTable.render();
     }

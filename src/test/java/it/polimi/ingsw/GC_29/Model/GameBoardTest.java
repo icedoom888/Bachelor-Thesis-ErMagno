@@ -38,6 +38,35 @@ public class GameBoardTest {
         assertTrue(gameBoard.getDice(FamilyPawnType.BLACK)!=null);
         //gameBoard.toString();
         //System.out.println(gameBoard.toTable());
+
+        ArrayList<Player> players = new ArrayList<>();
+
+        Player player1 = new Player("l", PlayerColor.BLUE, new PersonalBoard(6));
+        Player player2 = new Player("e", PlayerColor.GREEN, new PersonalBoard(6));
+        Player player3 = new Player("d", PlayerColor.RED, new PersonalBoard(6));
+        Player player4 = new Player("x", PlayerColor.YELLOW, new PersonalBoard(6));
+
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+
+        GameSetup gameSetup = new GameSetup(players);
+        gameSetup.init();
+        gameSetup.setExcommunicationTiles();
+        gameSetup.setLeaderCards();
+        gameSetup.setGoodsForPlayers();
+        Model model = gameSetup.getModel();
+        Controller controller = null;
+        try {
+            controller = new Controller(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        controller.setCardsOnTowers();
+
+        System.out.println(model.getGameBoard().toTable());
     }
 
 }

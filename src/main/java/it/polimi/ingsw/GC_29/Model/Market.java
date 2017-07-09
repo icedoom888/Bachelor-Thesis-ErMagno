@@ -51,6 +51,7 @@ public class Market implements Cleanable {
             marketTable.addRule();
             marketTable.addRow(shopNameActionSpaceEntry.getKey(), shopNameActionSpaceEntry.getValue().toString());
         }
+        marketTable.addRule();
 
 
         return "\n\n\n" + "MARKET \n\n" + marketTable.render();
