@@ -92,4 +92,8 @@ public interface RMIViewRemote extends Remote {
     void endGame() throws RemoteException;
 
     Map<String,HashMap<Integer,String>> getPayToObtainCardsGUI() throws RemoteException;
+
+    String seeGameBoard() throws RemoteException;
+
+    String seePersonalBoard(PlayerColor playerColor) throws RemoteException;
 }

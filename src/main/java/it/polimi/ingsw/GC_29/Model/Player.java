@@ -92,6 +92,8 @@ public class Player extends Observable<Change> {
 
         excommunicationTiles = new ArrayList<>();
 
+        this.lastState = null;
+
     }
 
     public ArrayList<Action> getCurrentValidActionsList() {
