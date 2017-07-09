@@ -16,6 +16,11 @@ import java.util.regex.Pattern;
 /**
  * Created by Christian on 14/06/2017.
  */
+
+/**
+ * The InputChecker class verifies the input from CLI and GUI (a string)
+ * considering the current playerState of the player and the instructionSet.
+ */
 public class InputChecker {
 
     private InstructionSet instructionSet;
@@ -99,10 +104,19 @@ public class InputChecker {
 
         leaderCards = new ArrayList<>();
 
-        //TODO dalla view ad ogni update devo settare i valori giusti (pawnAvailability, playerState, gameState)
     }
 
-
+    /**
+     * this method verifies the string inputLine considering the current PlayerState
+     * and the instructionList created from the instrctionSet with the currentPlayerState.
+     * It verifies if in the instructionList there whether there is a regex, in that case
+     * controls if the inputLine matches the regex and then it is called the handleRegexMethod.
+     * If the instruction is not a regex, the method only controls if the input line is equal
+     * with the instruction and return the filtered String. In negative case it is returned
+     * a string of "invalid input".
+     * @param inputLine
+     * @return
+     */
     public String checkInput(String inputLine) {
 
         String checkedString = inputLine;
@@ -137,9 +151,13 @@ public class InputChecker {
     }
 
 
-
+    /**
+     * this method calls the right method to handle the specific regex
+     * @param inputLine
+     * @param instruction
+     * @return
+     */
     private String handleRegex(String inputLine, Instruction instruction) {
-
 
 
         String[] parts = inputLine.split(" ");
@@ -200,7 +218,13 @@ public class InputChecker {
         return null;
     }
 
-
+    /**
+     * this method checks and saves the index of the bonus tile chosen in the field bonusTileChosen
+     * that is then used by the client view and return the filtered string valid
+     * for the client view
+     * @param lastWord
+     * @return
+     */
     private String handleBonusTile(String lastWord) {
 
         int index = Integer.parseInt(lastWord);
@@ -219,6 +243,13 @@ public class InputChecker {
         }
     }
 
+    /**
+     * this method checks and saves the index of the cost chosen in the field costChosen
+     * that is then used by the client view and sended to the server view
+     * and return the filtered string valid for the client view
+     * @param lastWord
+     * @return
+     */
     private String handleCostChosen(String lastWord) {
 
         int index = Integer.parseInt(lastWord);
@@ -268,6 +299,13 @@ public class InputChecker {
         }
     }
 
+    /**
+     * this method handle the regex for the pay to obtain card in the workAction.
+     * It checks and saves the choice in the field cardToActivate that is sended from the client
+     * view to the server view.
+     * @param lastWord
+     * @return
+     */
     private String handleActivateCard(String lastWord) {
 
         if("yes".equals(lastWord)){
@@ -284,6 +322,14 @@ public class InputChecker {
         return "invalid input";
     }
 
+
+    /**
+     * this method is used to handle the choice between different alternatives of PayToObtain effect
+     * in a single payToObtain card. The index is checked and saved in the field currentPayToObtainEffectIndex that will be
+     * sended from the client view to the server view.
+     * @param lastWord
+     * @return
+     */
     private String handleChooseEffect(String lastWord) {
 
         int index = Integer.parseInt(lastWord);
@@ -302,6 +348,13 @@ public class InputChecker {
         }
     }
 
+    /**
+     * this method handle the choice of more workers in a workAction in order to activate
+     * more cards in the lane player related with the specific workAction. The index is checked and saved
+     * in the field workersChosen that will be sended from the client view to the server view.
+     * @param lastWord
+     * @return
+     */
     private String handleWorkersToActivateCards(String lastWord) {
 
         int index = Integer.parseInt(lastWord);
@@ -321,6 +374,14 @@ public class InputChecker {
 
     }
 
+
+    /**
+     * this method handle the query for CLI about cards of the player or of a specific tower in order
+     * to print the right cards asked from the client.
+     * @param lastWord
+     * @param isPlayerCard
+     * @return
+     */
     private String handleQueryCards(String lastWord, Boolean isPlayerCard) {
 
         String upperCaseWord = lastWord.toUpperCase();
@@ -348,6 +409,12 @@ public class InputChecker {
         
     }
 
+    /**
+     * this method checks and saves the index of the action selected by the client. It saves the index in the field
+     * actionIndex, this field will be sended from the client view to the server view.
+     * @param lastWord
+     * @return
+     */
     private String handleExecuteAction(String lastWord){
 
         int index = Integer.parseInt(lastWord);
@@ -365,6 +432,12 @@ public class InputChecker {
 
     }
 
+    /**
+     * this method checks and saves the index of the LeaderCard to be activated. The field
+     * leaderChosenIndex will be sended from the client view to the server view.
+     * @param lastWord
+     * @return
+     */
     private String activateLeaderCard(String lastWord) {
 
         int index = Integer.parseInt(lastWord);
@@ -393,7 +466,12 @@ public class InputChecker {
 
     }
 
-
+    /**
+     * this method checks and saves the index of the leader card that will be discarded.
+     * The field leaderChosenIndex will be sended from the client view to the server view.
+     * @param lastWord
+     * @return
+     */
     private String discardLeaderCard(String lastWord) {
 
         int index = Integer.parseInt(lastWord);
@@ -415,7 +493,14 @@ public class InputChecker {
 
     }
 
-
+    /**
+     * this method is used to handle the pawn chosen for the request of the validAction list for that specific pawn.
+     * It checks and saves the color of the pawn in the field familyPawnChosen. the field will be sended to the
+     * server view.
+     *
+     * @param lastWord
+     * @return
+     */
     private String handleUseFamilyPawn(String lastWord){
 
         String upperCaseWord = lastWord.toUpperCase();
@@ -436,7 +521,10 @@ public class InputChecker {
         return "invalid input";
     }
 
-
+    /**
+     * this method print all the possible valid input for the client in the specific current PlayerState
+     * of the player
+     */
     public void handleHelp(){
 
         List<Instruction> instructionList = instructionSet.getInstructions(currentPlayerState);

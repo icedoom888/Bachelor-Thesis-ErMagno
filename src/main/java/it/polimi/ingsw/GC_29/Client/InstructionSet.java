@@ -9,6 +9,12 @@ import java.util.List;
 /**
  * Created by Christian on 10/06/2017.
  */
+
+
+/**
+ * In this class are created all the possible instruction in the game
+ */
+
 public class InstructionSet {
 
     private final Instruction skipAction = new Instruction("skip action",
@@ -111,6 +117,12 @@ public class InstructionSet {
     /////////////////////////////////////////////////////////////////////7
 
 
+    /**
+     * this method returns a List of all the valid Instructions for the player
+     * in the specific playerState
+     * @param playerState : currentPlayerState
+     * @return
+     */
     public List<Instruction> getInstructions(PlayerState playerState){
 
         ArrayList<Instruction> returnList = new ArrayList<>();

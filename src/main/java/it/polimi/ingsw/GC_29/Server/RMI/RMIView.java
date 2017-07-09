@@ -19,6 +19,14 @@ import java.util.logging.Logger;
 /**
  * Created by Christian on 07/06/2017.
  */
+
+/**
+ *
+ * RMIView class implements the RMIViewRemote and so implements all the method necessary to
+ * the remote invocation. The class extends the View class in order to be Observable for the
+ * Input objects (the controller observes the view) and observer of Change (the view observes the model)
+ */
+
 public class RMIView extends View implements RMIViewRemote {
 
 
@@ -70,6 +78,11 @@ public class RMIView extends View implements RMIViewRemote {
         }
     }
 
+    /**
+     * notify the controller about a SkipAction Input, the player skipped the current action (he can have different bonus
+     * action to perform and maybe he just want to skip one action)
+     * @throws RemoteException
+     */
     @Override
     public void skipAction() throws RemoteException{
 
@@ -77,6 +90,12 @@ public class RMIView extends View implements RMIViewRemote {
 
     }
 
+    /**
+     * notify controller with UsePawnChosen Input --> the input is used to comunicate the pawn chosen in order
+     * to create the valid action list for that specific pawn
+     * @param familyPawnType
+     * @throws RemoteException
+     */
     @Override
     public void usePawnChosen(FamilyPawnType familyPawnType) throws RemoteException{
 
@@ -85,12 +104,14 @@ public class RMIView extends View implements RMIViewRemote {
 
     }
 
+
     @Override
     public void endTurn() throws RemoteException{
 
         notifyObserver(new EndTurn());
 
     }
+
 
     @Override
     public void pray(boolean b, PlayerColor playerColor) throws RemoteException{
@@ -99,6 +120,11 @@ public class RMIView extends View implements RMIViewRemote {
 
     }
 
+    /**
+     * it is used at the beginning of the game in order to initialize the playerColor of the Player
+     * @param playerColor
+     * @throws RemoteException
+     */
     @Override
     public void initialize(PlayerColor playerColor) throws RemoteException {
 
@@ -146,6 +172,12 @@ public class RMIView extends View implements RMIViewRemote {
 
     }
 
+    /**
+     * return a map with key the amount of workers to pay in a workAction in order to activate
+     * all the cards in the ArrayList related with the key
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public Map<Integer, ArrayList<String>> getCardsForWorkers() throws RemoteException {
 
@@ -153,6 +185,10 @@ public class RMIView extends View implements RMIViewRemote {
 
     }
 
+    /**
+     * return a map with key the index of the alternative cost for a card
+     * @return
+     */
     @Override
     public Map<Integer, String> getPossibleCosts() {
         Map<Integer, Cost> possibleCosts = ((TowerAction) model.getCurrentPlayer().getCurrentAction()).getPossibleCardCosts();
@@ -185,6 +221,12 @@ public class RMIView extends View implements RMIViewRemote {
         return new GetFamilyPawnAvailability().perform(model);
     }
 
+    /**
+     * notify controller with a JoinGame input --> this input is created when a player
+     * is suspended or disconnected and come back in the game.
+     * @param playerColor
+     * @throws RemoteException
+     */
     @Override
     public void joinGame(PlayerColor playerColor) throws RemoteException {
 
@@ -216,6 +258,11 @@ public class RMIView extends View implements RMIViewRemote {
 
     }
 
+    /**
+     * notify controller that the player ha s received the message of the end game and that the
+     * client is terminated
+     * @throws RemoteException
+     */
     @Override
     public void endGame() throws RemoteException {
         logoutInterface.getClientMatch().remove(username);
@@ -245,6 +292,15 @@ public class RMIView extends View implements RMIViewRemote {
         notifyObserver(new ActivateCards(workersChosen));
     }
 
+
+    /**
+     * this method returns to the client a map with key the description of the payToObtain card of the player
+     * for the workAction, the field related with the key is a map with key the index of the alternative
+     * pay to obtain effect in the specific card (there are cards with two alternatives of effect that the player
+     * has to choose.
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public Map<String, HashMap<Integer, String>> getPayToObtainCards() throws RemoteException {
 
@@ -279,6 +335,12 @@ public class RMIView extends View implements RMIViewRemote {
         return payToObtainCardMap;
     }
 
+    /**
+     * notify the controller with the PayToObtainCardsChosen input --> the map has key the toString of the card activated
+     * and field the index of the pay to Obtain effect chosen.
+     * @param activatedCardMap
+     * @throws RemoteException
+     */
     @Override
     public void payToObtainCardChosen(Map<String, Integer> activatedCardMap) throws RemoteException {
 

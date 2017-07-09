@@ -8,6 +8,12 @@ import java.rmi.RemoteException;
 /**
  * Created by Christian on 11/06/2017.
  */
+
+/**
+ * interface used for the stub regarding the connection and login to the game
+ * 
+ */
+
 public interface ConnectionInterface extends Remote{
 
     Boolean login(String username, String Password) throws RemoteException;

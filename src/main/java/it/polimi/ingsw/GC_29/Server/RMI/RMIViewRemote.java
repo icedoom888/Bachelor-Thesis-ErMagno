@@ -15,6 +15,12 @@ import java.util.Map;
 /**
  * Created by Christian on 07/06/2017.
  */
+
+/**
+ * this interface declares all the method that the client RMI view calls from the serverStub
+ * on client-side
+ */
+
 public interface RMIViewRemote extends Remote {
 
     void registerClient(

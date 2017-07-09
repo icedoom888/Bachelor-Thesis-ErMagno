@@ -25,9 +25,16 @@ import java.util.logging.Logger;
 
 /**
  * Created by Christian on 12/06/2017.
+ */
+
+/**
  *
- * GameMatchHandler handles everything that concerns entering a game or creating one.
- * It handles players disconnected that want to reconnect to the same game they were playing
+ * GameMatchHandler class creates new matches and add the clients in the current lobby
+ * if there is one. It has memory of all the matches that are running (newGameMap field),
+ * all the players that are logged (loggedPlayersList) and the relation between a client
+ * and his current match. It implements the LogoutInterface in order to expose methods
+ * useful for the disconnection and reconnection called from the client view.
+ *
  */
 public class GameMatchHandler implements LogoutInterface{
 
@@ -288,6 +295,7 @@ public class GameMatchHandler implements LogoutInterface{
         currentClientListSize++;
 
     }
+
 
     private void evaluateConditions() {
 

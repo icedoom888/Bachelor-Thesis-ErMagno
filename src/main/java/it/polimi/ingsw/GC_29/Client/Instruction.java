@@ -8,6 +8,15 @@ import java.util.List;
 /**
  * Created by Lorenzotara on 13/06/17.
  */
+
+/**
+ * This class represent the concept of the instruction for the game.
+ * the field "instruction" is the description of the instruction (also it is the string checked if the instruction
+ * does not have a regex).
+ * The instrcution could contain a regex.
+ *
+ * the field stateList is a list of all the playerState where the instruction is valid.
+ */
 public class Instruction {
 
     private String instruction;
