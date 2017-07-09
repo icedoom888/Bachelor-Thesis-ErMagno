@@ -26,6 +26,16 @@ import java.util.logging.Logger;
 /**
  * Created by Christian on 12/06/2017.
  */
+
+/**
+ *
+ * GameMatchHandler class creates new matches and add the clients in the current lobby
+ * if there is one. It has memory of all the matches that are running (newGameMap field),
+ * all the players that are logged (loggedPlayersList) and the relation between a client
+ * and his current match. It implements the LogoutInterface in order to expose methods
+ * useful for the disconnection and reconnection called from the client view.
+ *
+ */
 public class GameMatchHandler implements LogoutInterface{
 
     private Map<String,ServerNewGame> newGameMap;
@@ -94,8 +104,15 @@ public class GameMatchHandler implements LogoutInterface{
     }
 
 
-
-    synchronized public void addClient(String username, PlayerSocket playerSocket) throws RemoteException {
+    /**
+     * add a client with socket distribution in the current lobby if it has been created.
+     * if the lobby is not created, it creates a new lobby. If the client is associated with a running game
+     * it calls the reconectCLient method.
+     * @param username
+     * @param playerSocket
+     * @throws RemoteException
+     */
+    synchronized public void addClient(String username, PlayerSocket playerSocket) {
 
         loggedPlayersList.add(username);
 
@@ -129,7 +146,13 @@ public class GameMatchHandler implements LogoutInterface{
     }
 
 
-
+    /**
+     * It adds a client with RMI distribution in the current lobby if it has been created.
+     * if the lobby is not created, it creates a new lobby. If the client is associated with a running game
+     * it calls the reconectCLient method.
+     * @param clientStub
+     * @throws RemoteException
+     */
     synchronized public void addClient(ClientRemoteInterface clientStub) throws RemoteException {
 
         loggedPlayersList.add(clientStub.getUserName());
@@ -161,6 +184,13 @@ public class GameMatchHandler implements LogoutInterface{
 
     }
 
+    /**
+     * this method reconnect the client in its current match, it creates a client view and makes all
+     * the necessary registrations with controller, model and server view
+     * @param playerSocket
+     * @param username
+     * @throws IOException
+     */
     synchronized private void reconnectClient(PlayerSocket playerSocket, String username) throws IOException {
 
         System.out.println("Creo server socket view");
@@ -207,6 +237,12 @@ public class GameMatchHandler implements LogoutInterface{
 
     }
 
+    /**
+     * this method reconnect the client in its current match, it creates a client view and makes all
+     * the necessary registrations with controller, model and server view
+     * @param clientStub
+     * @throws RemoteException
+     */
     synchronized private void reconnectClient(ClientRemoteInterface clientStub) throws RemoteException {
 
 
@@ -258,6 +294,7 @@ public class GameMatchHandler implements LogoutInterface{
         currentClientListSize++;
 
     }
+
 
     private void evaluateConditions() {
 

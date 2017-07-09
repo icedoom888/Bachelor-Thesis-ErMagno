@@ -62,54 +62,12 @@ public class Server {
 
         System.out.println("START SOCKET");
         startSocket();
-        /*Thread socketThread = new Thread(socketConnection);
-        socketThread.start();*/
 
-       // Boolean b = true;
-
-        /*long i = 0;
-
-        long var = 213999999;
-
-        System.out.println("ENTRO NEL CICLO SERVER");
-
-        while (b){ // TODO: rifare rispetto al runnable
-
-            if(i % var == 0){
-
-               // System.out.println("sono dentro main" + i);
-            }
-
-
-            if(gameMatchHandler.isLobbyCreated()){
-                System.out.println("condizione lobby vera");
-                gameMatchHandler.evaluateMinCondition();
-
-                if(gameMatchHandler.evaluateConditionNewGame()){
-
-                    System.out.println("NUOVA PARTITA!");
-
-                    executor.submit(gameMatchHandler.getCurrentNewGame());
-
-                    gameMatchHandler.setLobbyCreated(false);
-
-                }
-            }
-
-            i++;
-            if(i == 1283999994){
-                i=0;
-            }
-        }*/
-
-        System.out.println("ERRORE: FUORI CICLO");
 
     }
 
     private void startSocket() throws IOException {
 
-        // creates the thread pool to handle clients
-        //ExecutorService executor = Executors.newCachedThreadPool();
 
         //creats the socket
         ServerSocket serverSocket = new ServerSocket(PORT);
@@ -138,15 +96,6 @@ public class Server {
 
             else socket.close();
 
-
-
-/*
-            // the view observes the model
-            this.gioco.registerObserver(view);
-
-            // the controller observes the view
-            view.registerObserver(this.controller);
-*/
 
         }
     }

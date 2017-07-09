@@ -9,6 +9,14 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * Created by Christian on 12/06/2017.
  */
+
+/**
+ *
+ * This class implements the ConnectionInterface and it is used for the remote invocation
+ * in order to handle the login and the connection with the new game,
+ *
+ */
+
 public class ConnectionInterfaceImpl extends UnicastRemoteObject implements ConnectionInterface{
 
 

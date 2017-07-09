@@ -223,6 +223,7 @@ public class CommonOutRMI implements InputInterfaceGUI{
 
                 case "see personal board":
                     System.out.println(serverViewStub.seePersonalBoard(playerColor));
+                    break;
 
                 case "help":
                 default:
