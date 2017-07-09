@@ -220,6 +220,12 @@ public class CommonOutRMI implements InputInterfaceGUI{
                     System.out.println("SERVER AVVISATO JOIN GAME");
                     break;
 
+                case "see game board":
+                    System.out.println(serverViewStub.seeGameBoard());
+                    break;
+
+                case "see personal board":
+                    System.out.println(serverViewStub.seePersonalBoard(playerColor));
 
                 case "help":
                 default:

@@ -111,6 +111,8 @@ public class CouncilPalaceActionSpace extends ActionSpace {
             councilTable.addRule();
             councilTable.addRow(i + ")", playerColor);
         }
+        councilTable.addRule();
+
 
         return "\n\n\n" + "COUNCIL PALACE \n\n" + councilTable.render();
     }

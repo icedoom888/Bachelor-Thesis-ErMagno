@@ -65,6 +65,7 @@ public class ExcommunicationLane implements Cleanable {
             excommunicationTable.addRule();
             excommunicationTable.addRow("Era: " + eraExcommunicationSlotEntry.getKey(), "Tile: " + eraExcommunicationSlotEntry.getValue().getExcommunicationTile(), "Players: " + eraExcommunicationSlotEntry.getValue().getPlayerPawns());
         }
+        excommunicationTable.addRule();
 
         return "\n\n\n" + "EXCOMMUNICATION LANE \n\n" + excommunicationTable.render();
     }

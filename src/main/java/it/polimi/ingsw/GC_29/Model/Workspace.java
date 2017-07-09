@@ -73,6 +73,8 @@ public class Workspace implements Cleanable {
             workSpaceTable.addRow(fieldsEntry.getKey(), fieldsEntry.getValue().toString());
         }
 
+        workSpaceTable.addRule();
+
         return "\n\n\n" + type + "\n\n" + workSpaceTable.render();
     }
 }

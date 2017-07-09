@@ -160,15 +160,6 @@ public class Controller implements Observer<Input>  {
 
             switch (oldEra) {
                 case FIRST:
-
-                    /////////PER TESTING/////////
-
-                    //endGame();
-                    //return;
-
-                /////////PER TESTING/////////
-                //TODO:
-                //DECOMMENTARE IL RESTO DEL CASE E CANCELLARE LA SEZIONE PER TESTING
                    model.setCurrentEra(Era.SECOND);
                    break;
                 case SECOND:
@@ -731,9 +722,7 @@ public class Controller implements Observer<Input>  {
             // temporary bonusMalusOn cost setted in the player
             if (currentBonusAction.getBonusAndMalusOnCost() != null) {
 
-                System.out.println(currentBonusAction.getBonusAndMalusOnCost());
-
-                model.getCurrentPlayer().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
+               model.getCurrentPlayer().getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
 
             }
 
@@ -745,9 +734,22 @@ public class Controller implements Observer<Input>  {
 
             model.getCurrentPlayer().setPlayerState(PlayerState.BONUSACTION);
 
-        } else {
+            return;
+
+        }
+
+        if(model.getCurrentPlayer().getLastState() != null){
+
+            model.getCurrentPlayer().setPlayerState(model.getCurrentPlayer().getLastState());
+
+            model.getCurrentPlayer().setLastState(null);
+
+        }
+
+        else {
 
             model.getCurrentPlayer().setPlayerState(PlayerState.ENDTURN);
+
 
         }
     }

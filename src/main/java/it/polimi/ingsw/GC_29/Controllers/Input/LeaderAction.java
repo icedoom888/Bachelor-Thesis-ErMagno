@@ -32,6 +32,7 @@ public class LeaderAction extends Input {
                 if (activate) {
 
                     leaderCard.execute(player);
+                    handleBonusAndCouncil(player, controller);
                     }
 
 
@@ -45,6 +46,37 @@ public class LeaderAction extends Input {
 
                 break;
             }
+        }
+    }
+
+    private void handleBonusAndCouncil(Player player, Controller controller) {
+
+        if(!player.getCouncilPrivilegeEffectList().isEmpty()){
+
+            player.setLastState(player.getPlayerState());
+            player.setPlayerState(PlayerState.CHOOSE_COUNCIL_PRIVILEGE);
+        }
+
+        if (!player.getCurrentBonusActionList().isEmpty()) {
+
+            ActionEffect currentBonusAction = player.getCurrentBonusActionList().removeFirst();
+
+            // temporary bonusMalusOn cost setted in the player
+            if (currentBonusAction.getBonusAndMalusOnCost() != null) {
+
+               player.getCurrentBonusActionBonusMalusOnCostList().add(currentBonusAction.getBonusAndMalusOnCost());
+
+            }
+
+            controller.getActionChecker().resetActionListExceptPlayer();
+
+            FamilyPawn familyPawn = new FamilyPawn(player.getPlayerColor(), FamilyPawnType.BONUS, currentBonusAction.getActionValue());
+
+            controller.getActionChecker().setValidActionForFamilyPawn(familyPawn, currentBonusAction.getType());
+
+            player.setLastState(player.getPlayerState());
+            player.setPlayerState(PlayerState.BONUSACTION);
+
         }
     }
 }

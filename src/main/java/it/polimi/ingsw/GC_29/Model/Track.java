@@ -116,6 +116,7 @@ public class Track implements Cleanable {
             asciiTable.addRule();
             asciiTable.addRow(i, track[i].getPlayerPawns());
         }
+        asciiTable.addRule();
 
         return asciiTable.render();
     }
