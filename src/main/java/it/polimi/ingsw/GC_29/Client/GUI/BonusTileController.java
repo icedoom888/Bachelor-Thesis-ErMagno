@@ -1,14 +1,10 @@
-package it.polimi.ingsw.GC_29.Client.GUI.BonusTile;
+package it.polimi.ingsw.GC_29.Client.GUI;
 
 
-import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 import java.util.Map;
 

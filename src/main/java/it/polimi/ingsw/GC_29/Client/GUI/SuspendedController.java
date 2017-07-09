@@ -1,9 +1,9 @@
-package it.polimi.ingsw.GC_29.Client.GUI.Suspended;
+package it.polimi.ingsw.GC_29.Client.GUI;
 
 
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 
-import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
+import it.polimi.ingsw.GC_29.Client.GUI.GameBoardController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 

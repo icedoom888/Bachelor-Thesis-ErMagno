@@ -1,7 +1,6 @@
-package it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege;
+package it.polimi.ingsw.GC_29.Client.GUI;
 
 
-import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Model.CouncilPrivilege;

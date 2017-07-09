@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="372.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.DisconectedPlayer.DisconnectedPlayerController">
+<AnchorPane prefHeight="372.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.DisconnectedPlayerController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7f8f8" height="372.0" layoutY="4.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <Label layoutX="20.0" layoutY="27.0" text="The following Players disconnected from the game:">
