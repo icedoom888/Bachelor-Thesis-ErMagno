@@ -113,6 +113,12 @@ public final class Filter {
         }
     }
 
+    /**
+     * checks for the presence of special bonus and malus on particular ZoneTypes
+     * @param player
+     * @param zoneType
+     * @return
+     */
     public static boolean applySpecial(Player player, ZoneType zoneType) {
 
         switch (zoneType) {

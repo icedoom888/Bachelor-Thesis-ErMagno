@@ -230,6 +230,10 @@ public class Player extends Observable<Change> {
         this.currentAction = currentAction;
     }
 
+    /**
+     * adds a card to the player
+     * @param cardColor
+     */
     public void updateCardsOwned(CardColor cardColor){
         /* durante una towerAction nel momento in cui la carta sarà
           aggiunta alla PersonalBoard dovrà essere chiamato anche questo metodo
@@ -237,6 +241,10 @@ public class Player extends Observable<Change> {
         this.cardsOwned.put(cardColor,(this.getNumberOfCardsOwned(cardColor)+1));
     }
 
+    /**
+     * updates the player's resources
+     * @param newGoodSet
+     */
     public void updateGoodSet(GoodSet newGoodSet) {
 
         actualGoodSet.addGoodSet(newGoodSet);

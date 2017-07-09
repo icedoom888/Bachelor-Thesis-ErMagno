@@ -24,6 +24,14 @@ public class Requirement {
         return cardsRequired;
     }
 
+
+    /**
+     * Checks if the requirent is satisfiable by the player based on his actual GoodSet
+     * and the cards he owns
+     * @param playerCards
+     * @param playerGoodSet
+     * @return
+     */
     public boolean isPossible(Map<CardColor, Integer> playerCards, GoodSet playerGoodSet) {
 
         boolean isPossible = true;

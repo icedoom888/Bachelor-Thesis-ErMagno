@@ -61,6 +61,11 @@ public class ExcommunicationTile {
         return url;
     }
 
+    /**
+     * when called this method adds the bonus and malus of the respective tile to the player
+     * that got the excommunicated
+     * @param player
+     */
     public void execute(Player player) {
         if (malusOnAction != null) player.getBonusAndMalusOnAction().add(this.getMalusOnAction());
         if (malusOnGoods != null) player.getBonusAndMalusOnGoods().add(this.getMalusOnGoods());

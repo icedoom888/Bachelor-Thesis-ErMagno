@@ -15,6 +15,12 @@ public class ObtainForMoreCondition implements Effect {
         this.goodsCondition = goodsCondition;
     }
 
+    /**
+     * Generates different ObtainOnCondition Effects based on the goodsCondition field,
+     * then executes all those effects for the player
+     * that activated the ObtainForMoreCondition effect
+     * @param status
+     */
     @Override
     public void execute(Player status) {
         for (GoodSet goodSet : goodsCondition) {
