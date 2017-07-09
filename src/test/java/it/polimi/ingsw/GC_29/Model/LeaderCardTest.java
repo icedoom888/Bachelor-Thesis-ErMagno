@@ -96,7 +96,6 @@ public class LeaderCardTest {
         if (player1.getLeaderCards().get(3).isPossible(player1)){
             player1.getLeaderCards().get(3).execute(player1);
             assertTrue(player1.getLeaderCards().get(3).isActivated());
-
         }
         player1.getLeaderCards().get(0).getLeaderName();
         player1.getLeaderCards().get(0).getRequirement();
