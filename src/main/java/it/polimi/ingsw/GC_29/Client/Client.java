@@ -14,6 +14,9 @@ import java.util.logging.Logger;
 
 /**
  * Created by Christian on 11/06/2017.
+ *
+ * Main class of the client. When it runs it asks the client which interface he wants to use
+ * and then which kind of connection if he decided CLI, otherwise it launches FXMLMain.
  */
 public class Client {
 
@@ -94,6 +97,11 @@ public class Client {
         }
     }
 
+    /**
+     * Until the client has not given a valid input,
+     * this method continues to ask the client which connection
+     * he wants to use
+     */
     private void askWhichConnectionCLI() {
 
         Scanner stdIn = new Scanner(System.in);
@@ -127,6 +135,11 @@ public class Client {
         }
     }
 
+    /**
+     * After the player's chosen which connection he will be using,
+     * executeCLI switch his decision and creates a new ClientRMI or
+     * calls executeSocket.
+     */
     private void executeCLI() {
 
         switch (distribution) {

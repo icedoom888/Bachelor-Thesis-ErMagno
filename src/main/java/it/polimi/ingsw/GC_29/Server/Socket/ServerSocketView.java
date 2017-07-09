@@ -20,6 +20,11 @@ import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 14/06/17.
+ *
+ * ServerSocketView extends View and it is the view from the server side.
+ * It waits for messages from the client: if they are string it means that it has to notify
+ * the controller with an Input. If they are queries it means that it has to perform them and
+ * then send the result back to the client.
  */
 public class ServerSocketView extends View implements Runnable {
 
@@ -92,8 +97,6 @@ public class ServerSocketView extends View implements Runnable {
 
                 if (object instanceof String) {
                     String string = (String)object;
-
-                    System.out.println("la stringa ricevuta è" + string);
 
                     switch (string) {
 
@@ -209,6 +212,11 @@ public class ServerSocketView extends View implements Runnable {
 
     }
 
+    /**
+     * When the ServerSocketView receives a query, this method understands which
+     * class the query is instance of and then performs it.
+     * @param q
+     */
     private void handleQuery(Query q) {
 
         System.out.println("VIEW: received the query " + q);

@@ -19,6 +19,10 @@ import static java.lang.System.exit;
 
 /**
  * Created by Christian on 01/07/2017.
+ *
+ * As the ClientRMIView, this class's duty is to be the intermediary between the client and the server view.
+ * It saves the stub of the serverRMIView as an attribute and handles the updates
+ * of the client. It also extends the GuiChangeHandler class, that is used to communicate with the GUI.
  */
 public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemote, Serializable {
 
@@ -47,6 +51,13 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
     }
 
 
+    /**
+     * It is always called by the serverViewStub and has the goal to
+     * understand which kind of change happened and then calls handlePlayerState if
+     * it has been a playerStateChange, handle GameState if it has been a gameStateChange, ...
+     * @param c
+     * @throws RemoteException
+     */
     @Override
     public void updateClient(Change c) throws RemoteException {
         // Just prints what was received from the server
@@ -109,6 +120,12 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
     }
 
 
+    /**
+     * When the gameState is set to Ended, this method calls the endGame() to update the GUI and then
+     * calls the endGame method of the stub and after ten seconds it exits.
+     * @param currentGameChange
+     * @throws RemoteException
+     */
     private void handleGameState(GameChange currentGameChange) throws RemoteException {
 
         GameState currentGameState = currentGameChange.getNewGameState();
@@ -151,6 +168,11 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
         }
     }
 
+    /**
+     * When a player's state change, this method fires the change to the gui, gets from the server the right objects it needs and
+     * calls the super class methods to update the gui.
+     * @throws RemoteException
+     */
     private void handlePlayerState() throws RemoteException {
 
 

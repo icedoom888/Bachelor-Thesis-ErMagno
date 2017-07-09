@@ -13,6 +13,9 @@ import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 14/06/17.
+ *
+ * ClientSocketCLI has the function to connect the client to the server,
+ * handle the login and start the threads of communication.
  */
 public class ClientSocketCLI {
 
@@ -57,9 +60,12 @@ public class ClientSocketCLI {
     }
 
 
-
-
-
+    /**
+     * Until the player has not given right username and passwords,
+     * this method continue to ask him to insert username and password.
+     * When the form is correctly filled, it receives the player color assigned
+     * and saves it.
+     */
     private void loginCLI() {
 
         try {
@@ -73,9 +79,6 @@ public class ClientSocketCLI {
                 outVideo.println("Inserire password:");
                 String password = inKeyboard.readLine();
 
-                //ObjectOutputStream outSocket = clientOutHandlerCLI.getCommonOutSocket().getSocketOut();
-                //ObjectInputStream inSocket = clientInHandlerCLI.getSocketIn();
-
                 socketOut.writeObject("login");
                 socketOut.flush();
                 socketOut.writeObject("cli");
@@ -84,7 +87,6 @@ public class ClientSocketCLI {
                 socketOut.flush();
                 socketOut.writeObject(password);
                 socketOut.flush();
-                System.out.println("");
 
                 logged = socketIn.readBoolean();
 
@@ -104,9 +106,6 @@ public class ClientSocketCLI {
 
             }
 
-            //TODO: spostato da dentro al while a fuori
-
-
 
         } catch (Exception e) {
             System.out.println("Exception: " + e);
@@ -121,27 +120,23 @@ public class ClientSocketCLI {
 
     }
 
+    /**
+     * playNewGameCLI starts the clientInHandlerCLI and the
+     * clientOutHandlerCLI. Therefore it sets the player color in the inputChecker
+     * that will be an attribute of the previous classes.
+     */
     private void playNewGameCLI() {
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
-        clientInHandlerCLI.setClientOutHandlerCLI(clientOutHandlerCLI);
-        //clientOutHandlerCLI.setClientInHandlerCLI(clientInHandlerCLI);
-
-
-        //commonView.setInputChecker();
-        //commonView.setPlayerColor(playerColor);
+        clientInHandlerCLI.setClientOutHandlerCLI(clientOutHandlerCLI);;
 
         InputChecker inputChecker = new InputChecker();
         inputChecker.setPlayerColor(playerColor);
 
         clientInHandlerCLI.setInputChecker(inputChecker);
 
-        //clientOutHandlerCLI.setCommonView(commonView);
         clientOutHandlerCLI.setInputChecker(inputChecker);
-
-        //clientInHandlerCLI.setCommonView(commonView);
-
 
 
         executor.submit(clientInHandlerCLI);
@@ -149,8 +144,9 @@ public class ClientSocketCLI {
     }
 
 
-
-
+    /**
+     * connectCLI connects the client to the server
+     */
     private void connectCLI() {
 
         try {
@@ -194,11 +190,6 @@ public class ClientSocketCLI {
             }
         }
     }
-
-    /*public static void main(String[] args) throws UnknownHostException, IOException{
-        ClientSocketCLI client = new ClientSocketCLI();
-        client.startClientCLI();
-    }*/
 
     public void setPlayerColor(PlayerColor playerColor) {
         this.playerColor = playerColor;

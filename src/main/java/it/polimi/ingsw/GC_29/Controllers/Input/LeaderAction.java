@@ -40,9 +40,7 @@ public class LeaderAction extends Input {
                     player.setLastState(player.getPlayerState());
                     CouncilPrivilegeEffect councilPrivilegeEffect = new CouncilPrivilegeEffect(1);
                     councilPrivilegeEffect.execute(player);
-                    System.out.println("\n\nPLAYER SET TO CHOOSE COUNCIL SERVER");
                     player.setPlayerState(PlayerState.CHOOSE_COUNCIL_PRIVILEGE);
-                    //player.setPlayerState(PlayerState.DISCARDINGLEADER);
                 }
 
                 break;
