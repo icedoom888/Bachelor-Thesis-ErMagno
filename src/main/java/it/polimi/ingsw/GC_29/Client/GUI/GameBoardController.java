@@ -1,19 +1,8 @@
-package it.polimi.ingsw.GC_29.Client.GUI.GameBoard;
+package it.polimi.ingsw.GC_29.Client.GUI;
 
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
-import it.polimi.ingsw.GC_29.Client.GUI.BonusTile.BonusTileController;
-import it.polimi.ingsw.GC_29.Client.GUI.ChooseCost.ChooseCostController;
-import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.ChooseEffectController;
-import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController;
-import it.polimi.ingsw.GC_29.Client.GUI.ChoosePrivilege.ChoosePrivilegeController;
-import it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController;
-import it.polimi.ingsw.GC_29.Client.GUI.DisconectedPlayer.DisconnectedPlayerController;
-import it.polimi.ingsw.GC_29.Client.GUI.EndGame.EndGameController;
-import it.polimi.ingsw.GC_29.Client.GUI.Pray.PrayController;
-import it.polimi.ingsw.GC_29.Client.GUI.ReconnectedPlayers.ReconnectedPlayersController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
-import it.polimi.ingsw.GC_29.Client.GUI.Suspended.SuspendedController;
 import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import it.polimi.ingsw.GC_29.Model.PlayerColor;

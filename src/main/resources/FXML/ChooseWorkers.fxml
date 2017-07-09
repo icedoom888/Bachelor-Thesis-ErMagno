@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="462.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers.WorkersController">
+<AnchorPane prefHeight="462.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_29.Client.GUI.WorkersController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="462.0" stroke="BLACK" strokeType="INSIDE" width="664.0" />
       <Label layoutX="37.0" layoutY="33.0" text="Choose the number of workers that you want to spend!">

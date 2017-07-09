@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Client.GUI.Pray;
+package it.polimi.ingsw.GC_29.Client.GUI;
 
 
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;

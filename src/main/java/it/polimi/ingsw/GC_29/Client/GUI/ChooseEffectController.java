@@ -1,8 +1,6 @@
-package it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect;
+package it.polimi.ingsw.GC_29.Client.GUI;
 
 
-import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
-import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +9,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 

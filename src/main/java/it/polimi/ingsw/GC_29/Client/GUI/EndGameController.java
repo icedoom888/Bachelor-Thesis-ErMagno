@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Client.GUI.EndGame;
+package it.polimi.ingsw.GC_29.Client.GUI;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;

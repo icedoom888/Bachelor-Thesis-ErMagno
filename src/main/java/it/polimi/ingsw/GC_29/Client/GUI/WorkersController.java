@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_29.Client.GUI.ChooseWorkers;
+package it.polimi.ingsw.GC_29.Client.GUI;
 
 
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;

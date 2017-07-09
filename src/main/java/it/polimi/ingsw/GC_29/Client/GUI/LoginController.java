@@ -1,7 +1,6 @@
-package it.polimi.ingsw.GC_29.Client.GUI.Login;
+package it.polimi.ingsw.GC_29.Client.GUI;
 import it.polimi.ingsw.GC_29.Client.ClientSocket.ClientSocketCLI;
 import it.polimi.ingsw.GC_29.Client.Distribution;
-import it.polimi.ingsw.GC_29.Client.GUI.ControllerGUI;
 import it.polimi.ingsw.GC_29.Server.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

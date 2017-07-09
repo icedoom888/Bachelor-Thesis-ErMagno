@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_29.Model;
 
-import it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect.PayToObtainController;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;

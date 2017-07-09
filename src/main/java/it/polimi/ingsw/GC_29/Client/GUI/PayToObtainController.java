@@ -1,9 +1,7 @@
-package it.polimi.ingsw.GC_29.Client.GUI.ChooseEffect;
+package it.polimi.ingsw.GC_29.Client.GUI;
 
 
-import it.polimi.ingsw.GC_29.Client.GUI.GameBoard.GameBoardController;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
-import it.polimi.ingsw.GC_29.Controllers.PlayerState;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
