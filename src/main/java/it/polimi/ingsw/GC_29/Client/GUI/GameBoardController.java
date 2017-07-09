@@ -777,32 +777,6 @@ public class GameBoardController {
         actionButtons.put(23,production1);
         actionBox.put(24,production2);
 
-        /*
-        buttonAction.put(greenTowerAction1,0);
-        buttonAction.put(greenTowerAction2,1);
-        buttonAction.put(greenTowerAction3,2);
-        buttonAction.put(greenTowerAction4,3);
-        buttonAction.put(yellowTowerAction1,4);
-        buttonAction.put(yellowTowerAction2,5);
-        buttonAction.put(yellowTowerAction3,6);
-        buttonAction.put(yellowTowerAction4,7);
-        buttonAction.put(blueTowerAction1,8);
-        buttonAction.put(blueTowerAction2,9);
-        buttonAction.put(blueTowerAction3,10);
-        buttonAction.put(blueTowerAction4,11);
-        buttonAction.put(purpleTowerAction1,12);
-        buttonAction.put(purpleTowerAction2,13);
-        buttonAction.put(purpleTowerAction3,14);
-        buttonAction.put(purpleTowerAction4,15);
-        buttonAction.put(market1,16);
-        buttonAction.put(market2,17);
-        buttonAction.put(market3,18);
-        buttonAction.put(market4,19);
-        gridAction.put(councilPalace,20);
-        buttonAction.put(harvest1,21);
-        boxAction.put(harvest2,22);
-        buttonAction.put(production1,23);
-        boxAction.put(production2,24);*/
 
         buttonAction.put(greenTowerAction1Cover,0);
         buttonAction.put(greenTowerAction2Cover,1);
@@ -921,6 +895,8 @@ public class GameBoardController {
 
         }
 
+        activateButton.setDisable(true);
+
     }
 
     /**
@@ -979,14 +955,6 @@ public class GameBoardController {
             leaderCardsBurn.get(entry.getKey()).setDisable(false);
         }
 
-        /*for (Integer integer : leadersAvailable.keySet()) {
-
-            if (leadersAvailable.get(integer)) {
-                leaderCardsActivate.get(integer).setDisable(false);
-            }
-
-            leaderCardsBurn.get(integer).setDisable(false);
-        }*/
     }
 
     /**
@@ -1027,15 +995,6 @@ public class GameBoardController {
         leaderCardsBurn.put(3, burn3);
     }
 
-    /*
-    public void activationLeaders(boolean activated, boolean permanent){
-        if (activated){
-            if (permanent){
-                activatedLeader.setDisable(true);
-            }
-        }
-    }
-    */
 
     /**
      * called when a player clicks the throwDices button
@@ -1101,9 +1060,6 @@ public class GameBoardController {
             entry.getValue().setVisible(false);
         }
 
-        /*for(Integer integer : coverImages.keySet()){
-            coverImages.get(integer).setVisible(false);
-        }*/
     }
 
     /**
@@ -1176,9 +1132,6 @@ public class GameBoardController {
             entry.getValue().setVisible(false);
         }
 
-        /*for (Integer integer : coverImages.keySet()){
-            coverImages.get(integer).setVisible(false);
-        }*/
     }
 
     /**
@@ -1238,27 +1191,6 @@ public class GameBoardController {
             entry.getValue().setImage(image);
             gridFreeSlot = 0;
         }
-        /*
-
-        for (Integer integer : actionButtons.keySet()) {
-            Image image = null;
-            actionButtons.get(integer).setImage(image);
-        }
-        for (Integer integer : harvestBox.keySet()){
-            Image image = null;
-            harvestBox.get(integer).setImage(image);
-            harvestBoxFreeSlot = 0;
-        }
-        for (Integer integer : productionBox.keySet()){
-            Image image = null;
-            productionBox.get(integer).setImage(image);
-            productionBoxFreeSlot = 0;
-        }
-        for (Integer integer : gridMap.keySet()){
-            Image image = null;
-            gridMap.get(integer).setImage(image);
-            gridFreeSlot = 0;
-        }*/
     }
 
 
@@ -1281,17 +1213,6 @@ public class GameBoardController {
             }
         }
 
-        /*for (FamilyPawn pawn: availability.keySet()) {
-
-            if (availability.get(pawn)) {
-                setPawnAvailable(pawn);
-
-            }
-
-            else {
-                setNotAvailable(pawn.getType());
-            }
-        }*/
     }
 
     private void setNotAvailable(FamilyPawnType type) {
@@ -1417,35 +1338,14 @@ public class GameBoardController {
     public void updatePossibleActions(Map<Integer, String> availability){
         System.out.println(availability);
         for (Integer i : availability.keySet()) {
-            /*if (i == 20) {
-                actionGrid.get(i).setDisable(false);
-            }
-            else if (i == 22 || i == 24) {
-                actionBox.get(i).setDisable(false);
-            }
-            else if (i!=20 && i!=22 && i!=24){
-                actionButtons.get(i).setDisable(false);
-            }*/
+
             coverImages.get(i).setVisible(true);
         }
 
         for(int r=0;r<25;r++) {
 
             if (!availability.containsKey(r)) {
-                /*
 
-                if (r==20) {
-                    actionGrid.get(r).setDisable(true);
-                }
-
-                else if (r==22 || r==24) {
-                    actionBox.get(r).setDisable(true);
-                }
-
-                else if (r!=20 && r!=22 && r!=24) {
-                    actionButtons.get(r).setDisable(true);
-                }
-                */
                 coverImages.get(r).setVisible(false);
             }
         }
@@ -1458,10 +1358,6 @@ public class GameBoardController {
      * @param numberOfPoints
      */
     public void updateTrack(PlayerColor playerColor, GoodType goodType, int numberOfPoints) {
-
-        System.out.print(playerColor + "  ");
-        System.out.print(goodType + "  ");
-        System.out.print(numberOfPoints + "  ");
 
 
         String numberOfPointString;
@@ -1568,24 +1464,6 @@ public class GameBoardController {
         excummunicationTile1.setImage(new Image(tiles.get(0)));
         excummunicationTile2.setImage(new Image(tiles.get(1)));
         excummunicationTile3.setImage(new Image(tiles.get(2)));
-
-        /*
-        int i=1;
-        for (String tile : tiles){
-            switch (i){
-                case 1:
-                    excummunicationTile1.setImage(new Image(tile));
-                    break;
-                case 2:
-                    excummunicationTile2.setImage(new Image(tile));
-                    break;
-                case 3:
-                    excummunicationTile3.setImage(new Image(tile));
-                    break;
-            }
-            i++;
-        }
-        */
     }
 
 
@@ -1618,16 +1496,6 @@ public class GameBoardController {
 
         }
 
-        /*for (Integer index:cardsForWorkers.keySet()) {
-            choices.add(index);
-            newWorkers.append(index.toString()).append(") ");
-
-            for (int i = 0;i < (cardsForWorkers.get(index)).size(); i++) {
-                newWorkers.append((cardsForWorkers.get(index)).get(i));
-            }
-
-            newWorkers.append("\n");
-        }*/
         
         workersController.updateShownCosts(newWorkers.toString());
         workersController.setChoices(choices);
@@ -1639,8 +1507,6 @@ public class GameBoardController {
      * @param payToObtainCards
      */
     public void choosePayToObtainCards(Map<String, HashMap<Integer, String>> payToObtainCards) {
-
-        System.out.println("choose payToObtain gameboard controller");
 
         payToObtainController.chooseCards(payToObtainCards);
 
@@ -1663,10 +1529,6 @@ public class GameBoardController {
 
         }
 
-       /* for (Integer index : possibleCosts.keySet()) {
-            newCosts.append(index.toString()).append(") ").append(possibleCosts.get(index)).append("\n");
-        }*/
-
         chooseCostController.updateShownCosts(newCosts.toString());
     }
 
@@ -1676,7 +1538,6 @@ public class GameBoardController {
      * @param councilPrivileges
      */
    public void choosePrivileges(List<Integer> councilPrivileges) {
-        //choosePrivilegePane.setVisible(true);
         choosePrivilegeController.choosePrivilege(councilPrivileges);
     }
 
@@ -1688,7 +1549,6 @@ public class GameBoardController {
     public void chooseBonusTile(Map<Integer, String> bonusTiles) {
         bonusTilePane.setVisible(true);
         bonusTileController.setBonusTiles(bonusTiles);
-        //bonusTilePane.setDisable(false);
     }
 
 

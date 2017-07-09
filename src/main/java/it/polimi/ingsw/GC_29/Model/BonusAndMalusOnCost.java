@@ -26,9 +26,8 @@ public class BonusAndMalusOnCost {
     }
 
     /**
-     * This method creates the list of all the possible costs that card can assume taking into
-     * account all the bonusAndMalusOnCost of the player and all the possible alternatives of the
-     * cardCost
+     * This method creates the list of all the possible costs that the card can assume taking into
+     * all the possible alternatives of the cardCost
      * @param costs
      * @param cardZoneType
      */

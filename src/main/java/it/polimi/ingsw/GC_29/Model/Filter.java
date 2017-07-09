@@ -65,8 +65,8 @@ public final class Filter {
 
 
     /**
-     * This method divides the cardCost in its two components (if present) and put them in a list.
-     * Then it calls the filter of bonusAndMalusOnCost on the list.
+     * This method divides the cardCost in its two components (if the alternative is present) and put them in a list.
+     * Then it calls the filter of every bonusAndMalusOnCost on the player's list.
      * @param player
      * @param cardCost
      * @param costs
