@@ -161,7 +161,10 @@ public abstract class Action {
     }
 
 
-
+    /**
+     * returns the workers needed to do the action taking into account all the bonus and malus of the player
+     * @return
+     */
     private int workersNeeded() {
 
         int workersNeeded = actionSpaceSelected.getActionCost() - temporaryPawn.getActualValue();
@@ -227,6 +230,9 @@ public abstract class Action {
         }
     }
 
+    /**
+     * updates the pawn's availabilty on the player and sets the actionSpace occupied
+     */
     protected void update() {
 
         FamilyPawnType familyPawnType = temporaryPawn.getType();

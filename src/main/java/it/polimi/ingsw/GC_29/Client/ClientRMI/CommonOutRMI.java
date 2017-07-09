@@ -17,6 +17,11 @@ import java.util.logging.Logger;
 
 /**
  * Created by Christian on 01/07/2017.
+ *
+ * CommonOutRMI is a class that is used by clients playing in CLI and
+ * clients playing in GUI. It handles all the messages between the client
+ * and the server.
+ * It implements InputInterfaceGUI
  */
 public class CommonOutRMI implements InputInterfaceGUI{
 
@@ -161,7 +166,6 @@ public class CommonOutRMI implements InputInterfaceGUI{
                     serverViewStub.privilegesChosen(councilPrivilegeEffectChosenList);
                     break;
 
-
                 case "pray":
                     serverViewStub.pray(true, playerColor);
                     break;
@@ -183,7 +187,6 @@ public class CommonOutRMI implements InputInterfaceGUI{
                 case "activate leader card":
                     int index = inputChecker.getLeaderChosenIndex();
                     serverViewStub.leaderAction(true, index, playerColor);
-
                     break;
 
                 case "discard leader card":

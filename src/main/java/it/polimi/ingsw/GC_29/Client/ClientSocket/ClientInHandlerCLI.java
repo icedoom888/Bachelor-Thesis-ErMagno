@@ -19,6 +19,12 @@ import static java.lang.System.exit;
 
 /**
  * Created by Lorenzotara on 14/06/17.
+ *
+ * ClientInHandlerCLI (as ClientInHandlerGUI) is class which goal is to wait until
+ * the server as something to send to the client.
+ * The first thing it receives is a String and this is the way the method run can understand
+ * what to do after. If it is a Change, the method updateClient() will be called. In all the other
+ * cases the string will be an answer to a request from the client to see components of the game.
  */
 public class ClientInHandlerCLI implements Runnable {
 
@@ -76,6 +82,11 @@ public class ClientInHandlerCLI implements Runnable {
                         getAvailableLeaderCards();
                         break;
 
+                    case "GameBoard":
+                    case "Personal Board":
+                        getComponent();
+                        break;
+
                     default:
                         break;
 
@@ -97,6 +108,12 @@ public class ClientInHandlerCLI implements Runnable {
 
 
 
+    /**
+     * updateClient() has the goal to understand which kind of change has happened in the model:
+     * PlayerStateChange, GameChange...
+     * In case of PlayerState change, the new player state will be set into the inputChecker and then
+     * the method handlePlayerState(currentPlayerState) will be called.
+     */
     private void updateClient() {
 
         Change c = null;
@@ -216,6 +233,12 @@ public class ClientInHandlerCLI implements Runnable {
     }
 
 
+    /**
+     * After a player state has been changed, this method calls the commonOutSocket to send
+     * the right query and waits for the answer from the server. After that it sets the right attributes
+     * in the inputChecker
+     * @param currentPlayerState
+     */
     private void handlePlayerState(PlayerState currentPlayerState) {
 
         inputChecker.setCurrentPlayerState(currentPlayerState);
@@ -287,6 +310,18 @@ public class ClientInHandlerCLI implements Runnable {
     private void readVoid() {
         try {
             socketIn.readObject();
+        } catch (IOException e) {
+            LOGGER.info((Supplier<String>) e);
+        } catch (ClassNotFoundException e) {
+            LOGGER.info((Supplier<String>) e);
+        }
+    }
+
+    private void getComponent() {
+
+        try {
+            String component = (String)socketIn.readObject();
+            System.out.println(component);
         } catch (IOException e) {
             LOGGER.info((Supplier<String>) e);
         } catch (ClassNotFoundException e) {
@@ -425,13 +460,6 @@ public class ClientInHandlerCLI implements Runnable {
 
                 familyPawnsAvailability.put(entry.getKey().getType(), entry.getValue());
             }
-
-            /*for (FamilyPawn familyPawn : familyPawns.keySet()) {
-                if (familyPawns.get(familyPawn)) {
-                    System.out.println(familyPawn);
-                }
-                familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
-            }*/
 
             inputChecker.setFamilyPawnAvailability(familyPawnsAvailability);
 

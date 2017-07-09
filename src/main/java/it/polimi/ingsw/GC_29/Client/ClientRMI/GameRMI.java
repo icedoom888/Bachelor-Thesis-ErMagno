@@ -13,6 +13,9 @@ import java.util.logging.Logger;
 
 /**
  * Created by Christian on 18/06/2017.
+ *
+ * It handles the messages from the CLI and uses the method of the super class
+ * (sendInput()) to warn the server
  */
 public class GameRMI extends CommonOutRMI implements Runnable {
 

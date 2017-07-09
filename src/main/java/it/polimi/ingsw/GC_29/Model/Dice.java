@@ -27,6 +27,9 @@ public class Dice {
         this.color= dicetype;
     }
 
+    /**
+     * roll the dice generating a random number from 1 to 6
+     */
     public void roll(){
 
         face = ThreadLocalRandom.current().nextInt(1,7);

@@ -36,6 +36,15 @@ public class TowerAction extends Action {
     }
 
 
+    /**
+     * executing a work action causes in order the following events:
+     * the relative workers are payed by the player,
+     * the pawn is added on the actionSpace,
+     * the card's cost is payed,
+     * the card is given to the player and added to his personalBoard,
+     * the card's immediate effects are activated,
+     * and finally the player's pawns are updated
+     */
     @Override
     public void execute() {
 
@@ -47,6 +56,15 @@ public class TowerAction extends Action {
         update();
     }
 
+    /**
+     * checks if the player is able to perform the towerAction by checking:
+     * if the actiomSpace is already occupied,
+     * if the player has already put a familiar in the tower,
+     * if he has enough room in his personalBoard,
+     * and if he has enough resources, filtered with bonus and maluses, to pay the card.
+     * If all these conditions are respected then the action is possible
+     * @return
+     */
     @Override
     public boolean isPossible() {
 

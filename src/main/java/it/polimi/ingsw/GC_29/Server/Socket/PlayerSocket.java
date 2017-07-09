@@ -8,6 +8,8 @@ import java.net.Socket;
 
 /**
  * Created by Lorenzotara on 15/06/17.
+ *
+ * This class is a container of all information about the socket of the player
  */
 public class PlayerSocket {
 

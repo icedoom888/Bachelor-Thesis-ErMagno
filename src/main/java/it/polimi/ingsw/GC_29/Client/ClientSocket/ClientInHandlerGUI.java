@@ -18,6 +18,11 @@ import static java.lang.System.exit;
 
 /**
  * Created by Lorenzotara on 23/06/17.
+ *
+ * ClientInHandlerGUI is similar to ClientInHandlerCLI. It can not receive query
+ * that are made directly from the client because GUI is updated for every change
+ * during the game. This class extends GuiChangeHandler, that handles the communication
+ * with the GUI
  */
 public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
@@ -66,6 +71,12 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
 
 
+    /**
+     * updateClientGUI() has the goal to understand which kind of change has happened in the model:
+     * PlayerStateChange, GameChange...
+     * In case of PlayerState change, the new player state will be set into the inputChecker and then
+     * the method handlePlayerState(currentPlayerState) will be called.
+     */
     private void updateClientGUI() {
 
         Change c = null;
@@ -152,6 +163,12 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         }
     }
 
+    /**
+     * When the game is set to ENDED, this method handles the end of the game,
+     * sending through the commonOutSocket a String "end game" (see commonOutSocket endGame)
+     * and after ten seconds it exits.
+     * @param currentGameChange
+     */
     private void handleGameState(GameChange currentGameChange) {
 
         GameState currentGameState = currentGameChange.getNewGameState();
@@ -188,11 +205,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
                     System.out.println("ESEGUO TASK");
                     System.out.println("I AM THE CLIENT VIEW AND I AM CLOSING THE GAME");
-                    /*try {
-                        socketIn.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }*/
+
 
                     exit(0);
                 }
@@ -201,6 +214,13 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         }
     }
 
+    /**
+     * First the method calls the commonOutSocket to make the right query. Then it fires
+     * the playerState change to the GUI in order to update it.
+     * Finally it waits for the right answer from the server and then it calls the right method
+     * of the super class.
+     * @param currentPlayerState
+     */
     private void handlePlayerState(PlayerState currentPlayerState) {
 
 

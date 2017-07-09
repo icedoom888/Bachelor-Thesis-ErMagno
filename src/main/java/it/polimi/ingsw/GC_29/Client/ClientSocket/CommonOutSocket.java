@@ -20,6 +20,12 @@ import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 23/06/17.
+ *
+ * CommonoOutSocket is a common class to send input for clients that are using GUI or CLI.
+ * Input Checker checks the validity of the input. It is always called except for 4 cases
+ * of input coming from GUI, that have already been checked from the GameboardController.
+ * These inputs are sent to the ServerSocketView
+ * It implements InputInterfaceGUI
  */
 public class CommonOutSocket implements InputInterfaceGUI{
 
@@ -60,8 +66,6 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.flush();
                     socketOut.writeObject(bonusTile);
                     socketOut.flush();
-
-                    System.out.println("HO INVIATO LA TILE AL SERVER");
                     break;
 
                 case "throw dices":
@@ -164,14 +168,6 @@ public class CommonOutSocket implements InputInterfaceGUI{
                             socketOut.flush();
                         }
 
-                        /*else if (inputChecker.getCurrentPlayerState() == PlayerState.DISCARDINGLEADER) {
-
-                            socketOut.writeObject("council privileges chosen leader");
-                            socketOut.flush();
-                            socketOut.writeObject(inputChecker.getCouncilPrivilegeEffectChosenList());
-                            socketOut.flush();
-                            socketOut.writeObject(playerColor);
-                        }*/
                     }
                     break;
 
@@ -277,6 +273,18 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     System.out.println("SOCKET JOIN GAME INVIATO AL SERVER");
                     break;
 
+                case "see game board":
+                    query = new GameBoardQuery();
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                    break;
+
+                case "see personal board":
+                    query = new PersonalBoardQuery(inputChecker.getPlayerColor());
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                    break;
+
                 case "help":
                 default:
                     handleHelp();
@@ -323,6 +331,12 @@ public class CommonOutSocket implements InputInterfaceGUI{
     }
 
 
+    /**
+     * When a player state is changed, ClientInHandler calls this method in order to send the right
+     * query to the server. For example, when a player is set to DOACTION, this method will ask the server
+     * to send the availabilities of the player pawns, while the clientInHandler is waiting to receive them.
+     * @param currentPlayerState
+     */
     public void handlePlayerState(PlayerState currentPlayerState) {
 
         switch (currentPlayerState){

@@ -9,6 +9,9 @@ import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 14/06/17.
+ *
+ * ClienOutHandlerCLI waits for the client to write an input
+ * from the keyboard. Then it sends it to the commonOutSocket.
  */
 public class ClientOutHandlerCLI implements Runnable {
 

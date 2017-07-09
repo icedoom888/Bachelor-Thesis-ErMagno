@@ -17,6 +17,13 @@ public class ObtainForCost implements Effect {
         this.goodSetObtained = goodSetObtained;
     }
 
+
+    /**
+     * Calculates the goodset obtained by looking at the costs of the cards owned by the player
+     * if those costs happen to involve the goodTypes in goodTypesToPay then an increment is calculated
+     * that increment will be multiplied with the goodsetObtained
+     * the final result will be the GoodSet that will be given to the player
+     */
     @Override
     public void execute(Player status) {
 

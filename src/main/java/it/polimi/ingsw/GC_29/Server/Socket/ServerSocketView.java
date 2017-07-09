@@ -20,6 +20,11 @@ import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 14/06/17.
+ *
+ * ServerSocketView extends View and it is the view from the server side.
+ * It waits for messages from the client: if they are string it means that it has to notify
+ * the controller with an Input. If they are queries it means that it has to perform them and
+ * then send the result back to the client.
  */
 public class ServerSocketView extends View implements Runnable {
 
@@ -92,8 +97,6 @@ public class ServerSocketView extends View implements Runnable {
 
                 if (object instanceof String) {
                     String string = (String)object;
-
-                    System.out.println("la stringa ricevuta è" + string);
 
                     switch (string) {
 
@@ -179,7 +182,6 @@ public class ServerSocketView extends View implements Runnable {
                             break;
 
                         case "end game":
-
                             logoutInterface.getClientMatch().remove(username);
                             notifyObserver(new Closed());
                             return;
@@ -209,10 +211,38 @@ public class ServerSocketView extends View implements Runnable {
 
     }
 
+    /**
+     * When the ServerSocketView receives a query, this method understands which
+     * class the query is instance of and then performs it.
+     * @param q
+     */
     private void handleQuery(Query q) {
 
         System.out.println("VIEW: received the query " + q);
 
+
+        if (q instanceof GameBoardQuery) {
+
+            sendOut("GameBoard");
+
+            GameBoardQuery query = (GameBoardQuery)q;
+
+            String gameBoard = query.perform(model);
+
+            sendOut(gameBoard);
+        }
+
+        if (q instanceof PersonalBoardQuery) {
+
+            sendOut("Personal Board");
+
+            PersonalBoardQuery query = (PersonalBoardQuery)q;
+
+            String personalBoard = query.perform(model);
+
+            sendOut(personalBoard);
+
+        }
 
         if (q instanceof GetAvailableLeaderCards) {
 

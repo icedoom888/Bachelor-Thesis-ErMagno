@@ -20,6 +20,8 @@ import java.util.logging.Logger;
 
 /**
  * Created by Christian on 07/06/2017.
+ *
+ * ClientRMI handles the login and the RMI connection with the server.
  */
 public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterface{
 
@@ -74,6 +76,11 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
     }
 
 
+    /**
+     * connectServerRMI finds the registry and saves the stub in connectionStub.
+     * @throws RemoteException
+     * @throws NotBoundException
+     */
     public void connectServerRMI() throws RemoteException, NotBoundException {
 
         Registry reg = LocateRegistry.getRegistry(HOST, PORT);
@@ -81,6 +88,15 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
     }
 
+    /**
+     * loginGUI is called after the client has inserted username, password and kind of connection in GUI.
+     * It calls the login method of the stub that returns a boolean value: true if the
+     * login has been successful, false otherwise.
+     * @param userName
+     * @param password
+     * @return
+     * @throws RemoteException
+     */
     public Boolean loginGUI(String userName, String password) throws RemoteException {
 
         Boolean logged;
@@ -102,6 +118,12 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
     }
 
 
+    /**
+     * loginRMI is called when a client, playing in CLI, tries to login.
+     * It calls the stub to verify if the login has been successful or not.
+     * Finally it calls a new GameRMI() and it adds the client to the connectionStub.
+     * @throws RemoteException
+     */
     private void loginRMI() throws RemoteException {
 
         Scanner stdIn = new Scanner(System.in);
@@ -144,11 +166,9 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
 
         System.out.println("GAME BEGUN TRUE");
         this.serverViewStub = serverViewStub;
-        //gameRMI = new GameRMI(playerColor, serverViewStub);
-        //setNewGame per gameRMI
+
         gameRMI.connectWithServerView(gameInterface, playerColor, serverViewStub);
-        //executor.submit(gameRMI);
-        //System.out.println("THREAD LANCIATO");
+
     }
 
     @Override

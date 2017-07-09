@@ -10,6 +10,11 @@ import java.util.*;
 
 /**
  * Created by Christian on 01/07/2017.
+ *
+ * GuiChangeHandler handles the communication between the ClientInHandlerGUI or
+ * ClientRMIViewGUI and the GUI.
+ * It has a list of GUIChangeListener that advise the GUI of the changes that happened
+ * in the model or answers to the requests of the client
  */
 public class GuiChangeHandler {
 
@@ -120,11 +125,6 @@ public class GuiChangeHandler {
             familyPawnsAvailability.put(entry.getKey().getType(), entry.getValue());
         }
 
-        /*for (FamilyPawn familyPawn : familyPawns.keySet()) {
-
-            familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
-        }*/
-
         inputChecker.setFamilyPawnAvailability(familyPawnsAvailability);
 
         fireFamilyPawns(familyPawns);
@@ -135,7 +135,6 @@ public class GuiChangeHandler {
 
     protected void getCardsForWorkersGUI(Map<Integer, ArrayList<String>> cardsForWorkers) {
 
-        //Map<Integer, ArrayList<String>> cardsForWorkers = (Map<Integer, ArrayList<String>>)socketIn.readObject();
         inputChecker.setPossibleCardsWorkActionMap(cardsForWorkers);
 
         fireCardsForWorkers(cardsForWorkers);
@@ -145,7 +144,6 @@ public class GuiChangeHandler {
 
     protected void getPayToObtainCardsGUI(Map<String, HashMap<Integer, String>> payToObtainCards) {
 
-        //Map<String, HashMap<Integer, String>> payToObtainCards = (Map<String, HashMap<Integer, String>>)socketIn.readObject();
         inputChecker.setPayToObtainCardsMap(payToObtainCards);
 
         firePayToObtainCards(payToObtainCards);
@@ -156,7 +154,6 @@ public class GuiChangeHandler {
 
     protected void getPossibleCostsGUI(Map<Integer, String> possibleCosts) {
 
-        //Map<Integer, String> possibleCosts = (Map<Integer, String>)socketIn.readObject();
         inputChecker.setPossibleCosts(possibleCosts);
 
         firePossibleCosts(possibleCosts);
@@ -167,10 +164,7 @@ public class GuiChangeHandler {
 
     protected void getCouncilPrivilegesGUI(List<Integer> councilPrivileges) {
 
-        //List<Integer> councilPrivileges = (List<Integer>)socketIn.readObject();
         inputChecker.setCouncilPrivilegeEffectList(councilPrivileges);
-        //commonView.getInputChecker().nextPrivilegeEffect();
-        //commonView.getInputChecker().askWhichPrivilege();
 
         fireCouncilPrivileges(councilPrivileges);
 
@@ -180,7 +174,6 @@ public class GuiChangeHandler {
 
     protected void getBonusTilesGUI(Map<Integer, String> bonusTiles) {
 
-        //Map<Integer, String> bonusTiles = (Map<Integer, String>)socketIn.readObject();
         inputChecker.setBonusTileMap(bonusTiles);
 
         fireBonusTiles(bonusTiles);
@@ -189,8 +182,6 @@ public class GuiChangeHandler {
 
 
     protected void getExcommunicationTileUrl(String excommunicationUrl) {
-
-        //String excommunicationUrl = (String)socketIn.readObject();
 
         firePray(excommunicationUrl);
 

@@ -15,6 +15,9 @@ import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 23/06/17.
+ *
+ * As ClientSocketCLI, ClientSocketGUI handles the login and the socket connection
+ * with the server
  */
 public class ClientSocketGUI {
 
@@ -49,14 +52,20 @@ public class ClientSocketGUI {
 
     }
 
+    /**
+     * Using GUI, the client has to decide his username, password and kind of connection
+     * in once. If the connection is socket, the connection is established and the server
+     * checks if the data are correct. In a negative case, the server closes the socket after
+     * having warned the client that the login was not successful and this method closes the socket too.
+     * @param username
+     * @param password
+     * @return
+     */
     public boolean loginGUI(String username, String password) {
 
         boolean logged = false;
 
         try {
-
-            //ObjectOutputStream outSocket = clientOutHandlerGUI.getCommonOutSocket().getSocketOut();
-            //ObjectInputStream inSocket = clientInHandlerGUI.getSocketIn();
 
             socketOut.writeObject("login");
             socketOut.flush();
@@ -71,22 +80,13 @@ public class ClientSocketGUI {
 
             if (logged) {
 
-                //outVideo.println("Login correctly done");
-
                 PlayerColor playerColor = (PlayerColor)socketIn.readObject();
 
                 this.playerColor = playerColor;
 
-                //clientOutHandlerGUI.setClientInHandlerGUI(clientInHandlerGUI);
-
-                //CommonView commonView = new CommonView();
-                //commonView.setInputChecker(new InputChecker());
-                //commonView.setPlayerColor(playerColor);
-
                 // the input checker must be the same for in and out handler
                 InputChecker inputChecker = new InputChecker();
                 inputChecker.setPlayerColor(playerColor);
-                //clientOutHandlerGUI.setPlayerColor(playerColor);
                 clientInHandlerGUI.setInputChecker(inputChecker);
                 clientInHandlerGUI.getCommonOutSocket().setInputChecker(inputChecker);
 
@@ -110,7 +110,12 @@ public class ClientSocketGUI {
     }
 
 
+    /**
+     * connectGUI create the commonOutSocket and set the clientInHandlerGUI after having
+     * chosen the right socket.
+     */
     public void connectGUI() {
+
         try {
 
             System.out.println("Il client tenta di connettersi");
@@ -127,12 +132,8 @@ public class ClientSocketGUI {
 
             //Creates one thread to receive messages from the server
 
-
             CommonOutSocket commonOutSocket = new CommonOutSocket(socketOut);
             this.clientInHandlerGUI = new ClientInHandlerGUI(socketIn, commonOutSocket);
-
-
-
 
             System.out.println("Client connesso");
 
@@ -151,9 +152,10 @@ public class ClientSocketGUI {
     }
 
 
+    /**
+     * playNewGameGUI starts clientInHandlerGUI
+     */
     public void playNewGameGUI() {
-
-        //clientInHandlerGUI.start();
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
 

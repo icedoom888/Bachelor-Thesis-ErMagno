@@ -14,8 +14,10 @@ import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 14/06/17.
+ *
+ * LoginSocket handles the client's login if he has chosen Socket Distribution.
  */
-public class Login {
+public class LoginSocket {
 
     private final ObjectInputStream socketIn;
     private final ObjectOutputStream socketOut;
@@ -28,8 +30,7 @@ public class Login {
     private static final Logger LOGGER  = Logger.getLogger(ClientRMIView.class.getName());
 
 
-
-    public Login(PlayerSocket playerSocket, GameMatchHandler gameMatchHandler) throws IOException {
+    public LoginSocket(PlayerSocket playerSocket, GameMatchHandler gameMatchHandler) throws IOException {
         this.socketIn = playerSocket.getSocketIn();
         this.socketOut = playerSocket.getSocketOut();
         this.socket = playerSocket.socket;
@@ -37,6 +38,14 @@ public class Login {
         this.logged = false;
     }
 
+    /**
+     * CLI case: the player inserts his username and password and the gameMatchHandler checks if they are
+     * correct. If they are correct the client is logged, otherwise it asks again to fill username and password.
+     *
+     * GUI case: the player inserts username, password and connection and then the login does the same things
+     * as in cli, except that if the login has not been successful, it exits the loop.
+     * @return
+     */
     public String login() {
 
 

@@ -16,6 +16,10 @@ import static java.lang.System.exit;
 
 /**
  * Created by Christian on 07/06/2017.
+ *
+ * ClientRMIView is the intermediary between the client and the server view.
+ * It saves the stub of the serverRMIView as an attribute and handles the updates
+ * of the client.
  */
 public class ClientRMIView implements ClientViewRemote, Serializable {
 
@@ -47,6 +51,13 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
     }
 
 
+    /**
+     * It is always called by the serverViewStub and has the goal to
+     * understand which kind of change happened and then calls handlePlayerState if
+     * it has been a playerStateChange, handle GameState if it has been a gameStateChange, ...
+     * @param c
+     * @throws RemoteException
+     */
     @Override
     public void updateClient(Change c) throws RemoteException {
         // Just prints what was received from the server
@@ -149,6 +160,12 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
     }
 
+    /**
+     * When a player's state change, this method gets from the server the right objects it needs and
+     * set them in the input checker.
+     * @param currentPlayerState
+     * @throws RemoteException
+     */
     private void handlePlayerState(PlayerState currentPlayerState) throws RemoteException {
 
         inputChecker.setCurrentPlayerState(currentPlayerState);

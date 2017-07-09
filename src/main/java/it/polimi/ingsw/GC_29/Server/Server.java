@@ -2,13 +2,10 @@ package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterfaceImpl;
-import it.polimi.ingsw.GC_29.Server.Socket.Login;
+import it.polimi.ingsw.GC_29.Server.Socket.LoginSocket;
 import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;
-import it.polimi.ingsw.GC_29.Server.Socket.ServerSocketView;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.AlreadyBoundException;
@@ -68,7 +65,6 @@ public class Server {
 
     private void startSocket() throws IOException {
 
-
         //creats the socket
         ServerSocket serverSocket = new ServerSocket(PORT);
 
@@ -82,13 +78,11 @@ public class Server {
 
             PlayerSocket playerSocket = new PlayerSocket(socket);
 
-            Login login = new Login(playerSocket, gameMatchHandler);
+            LoginSocket loginSocket = new LoginSocket(playerSocket, gameMatchHandler);
 
-            System.out.println("DOPO LOGIN");
+            String username = loginSocket.login();
 
-            String username = login.login();
-
-            if (!(login.getEnumInterface() == EnumInterface.GUI && !login.isLogged())) {
+            if (!(loginSocket.getEnumInterface() == EnumInterface.GUI && !loginSocket.isLogged())) {
 
                 gameMatchHandler.addClient(username, playerSocket);
 

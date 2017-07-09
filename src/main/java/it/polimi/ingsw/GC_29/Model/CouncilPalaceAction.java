@@ -13,6 +13,10 @@ public class CouncilPalaceAction extends Action {
     }
 
 
+    /**
+     * executes the action by paying the workers, adding the pawn on the actionSpace,
+     * executing the CouncilPrivilege Effect, adding the player in the turn order.
+     */
     @Override
     public void execute() {
 

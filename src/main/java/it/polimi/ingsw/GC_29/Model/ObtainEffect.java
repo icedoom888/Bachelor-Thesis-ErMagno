@@ -35,6 +35,13 @@ public class ObtainEffect implements Effect {
     }
 
 
+    /**
+     * gives the respective resources to the player
+     * who activated the effect by filtering the goods gained
+     * with the bonuses and maluses of the player
+     * and then adding the modified goodset to the player's goodset
+     * @param status
+     */
     @Override
     public void execute(Player status) {
 

@@ -105,14 +105,14 @@ public class GameMatchHandler implements LogoutInterface{
 
 
     /**
-     * add a client with socket distribution in the current lobby if it has been created.
-     * if the lobby is not created, it creates a new lobby. If the client is associated with a running game
-     * it calls the reconectCLient method.
+     * addClient() socket case: adds a client that has successfully done the login to a game if there is one that is not full,
+     * or creates another game otherwise. In case the player has been disconnected, it checks if its username is
+     * in the map of the players that are currently registered in a game and then connects him.
      * @param username
      * @param playerSocket
      * @throws RemoteException
      */
-    synchronized public void addClient(String username, PlayerSocket playerSocket) {
+    synchronized public void addClient(String username, PlayerSocket playerSocket) throws RemoteException {
 
         loggedPlayersList.add(username);
 
@@ -147,9 +147,7 @@ public class GameMatchHandler implements LogoutInterface{
 
 
     /**
-     * It adds a client with RMI distribution in the current lobby if it has been created.
-     * if the lobby is not created, it creates a new lobby. If the client is associated with a running game
-     * it calls the reconectCLient method.
+     * add client() rmi case: does the same of addClient() socket case.
      * @param clientStub
      * @throws RemoteException
      */
@@ -185,8 +183,11 @@ public class GameMatchHandler implements LogoutInterface{
     }
 
     /**
-     * this method reconnect the client in its current match, it creates a client view and makes all
-     * the necessary registrations with controller, model and server view
+     * reconnectClient() socket case: is called after a client has been disconnected from a game and then wants to enter the game
+     * again. It finds his color, it gives him a new socketOut if his playing with socket distribution,
+     * it creates a new serverView for the player and registers the controller as an observer and register the view
+     * as an observer of the model. After having notified the controller with a JoinGame Input, the serverSocketView
+     * starts running.
      * @param playerSocket
      * @param username
      * @throws IOException
@@ -238,8 +239,8 @@ public class GameMatchHandler implements LogoutInterface{
     }
 
     /**
-     * this method reconnect the client in its current match, it creates a client view and makes all
-     * the necessary registrations with controller, model and server view
+     * reconnectClient() rmi case: it does the same steps of reconnectClient() socket case for
+     * rmi distribution.
      * @param clientStub
      * @throws RemoteException
      */
