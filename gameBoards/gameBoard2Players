@@ -1199,36 +1199,70 @@
     }
   },
   "workAreaMap": {
-    "HARVEST": {
-      "fields": {
-        "FIRST": {
-          "actionCost": 1,
-          "pawnPlaced": {
-            "playerPawns": [],
-            "maxNumberOfPawns": 1,
-            "free": true
+      "HARVEST": {
+        "fields": {
+          "FIRST": {
+            "actionCost": 1,
+            "pawnPlaced": {
+              "playerPawns": [],
+              "maxNumberOfPawns": 1,
+              "free": true
+            },
+            "single": true,
+            "occupied": false
           },
-          "single": true,
-          "occupied": false
-        }
+          "SECOND": {
+            "effect": {
+              "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
+              "bonusAndMalusOnAction": {
+                "zoneType": "HARVEST",
+                "diceIncrementOrReduction": -3
+              }
+            },
+            "actionCost": 1,
+            "pawnPlaced": {
+              "playerPawns": [],
+              "maxNumberOfPawns": 2,
+              "free": true
+            },
+            "single": false,
+            "occupied": false
+          }
+        },
+        "type": "HARVEST"
       },
-      "type": "HARVEST"
-    },
-    "PRODUCTION": {
-      "fields": {
-        "FIRST": {
-          "actionCost": 1,
-          "pawnPlaced": {
-            "playerPawns": [],
-            "maxNumberOfPawns": 1,
-            "free": true
+      "PRODUCTION": {
+        "fields": {
+          "FIRST": {
+            "actionCost": 1,
+            "pawnPlaced": {
+              "playerPawns": [],
+              "maxNumberOfPawns": 1,
+              "free": true
+            },
+            "single": true,
+            "occupied": false
           },
-          "single": true,
-          "occupied": false
-        }
-      },
-      "type": "PRODUCTION"
-    }
+          "SECOND": {
+            "effect": {
+              "@class": "it.polimi.ingsw.GC_29.Model.BonusEffect",
+              "bonusAndMalusOnAction": {
+                "zoneType": "PRODUCTION",
+                "diceIncrementOrReduction": -3
+              }
+            },
+            "actionCost": 1,
+            "pawnPlaced": {
+              "playerPawns": [],
+              "maxNumberOfPawns": 2,
+              "free": true
+            },
+            "single": false,
+            "occupied": false
+          }
+        },
+        "type": "PRODUCTION"
+      }
   },
   "excommunicationLane": {
     "tileAndPawns": {},

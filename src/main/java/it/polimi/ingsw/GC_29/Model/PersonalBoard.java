@@ -8,8 +8,6 @@ import java.util.Map;
  */
 public class PersonalBoard {
 
-    // TODO: sistemare le Lane, c'è una EnumMap rispetto al colore quando in realtà le lane hanno già un attributo colore, si può far meglio
-
     private BonusTile bonusTile;
     private Lane buildingLane;
     private Lane venturesLane;

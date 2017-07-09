@@ -68,19 +68,6 @@ public class Tower implements Cleanable {
                 '}';
     }
 
-    /*@Override
-    public String toString() {
-        AsciiArtTable towerTable = new AsciiArtTable();
-        towerTable.addHeadline(zoneType);
-        towerTable.addHeaderCols("Floor", "Card", "ActionSpace");
-
-        for (int i = 0; i < floors.length; i++) {
-            Floor floor = floors[i];
-            towerTable.add(i, floor.getDevelopmentCard().toString(), floor.getActionSpace().toString());
-        }
-
-        return towerTable.getOutput();
-    }*/
 
     public Floor[] getFloors() {
         return floors;
@@ -123,10 +110,7 @@ public class Tower implements Cleanable {
     }
 
     public String toTable() {
-        /*AsciiTable heading = new AsciiTable();
-        heading.addRule();
-        heading.addRow(zoneType);
-        String header = heading.render();*/
+
         AsciiTable towerTable = new AsciiTable();
         for (int i = 0; i < floors.length; i++) {
             towerTable.addRule();

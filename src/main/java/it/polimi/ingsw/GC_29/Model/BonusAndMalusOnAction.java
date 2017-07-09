@@ -58,22 +58,6 @@ public class BonusAndMalusOnAction {
      */
     public void filter(FamilyPawn familyPawn, ZoneType zoneType){
 
-        /* if (this.zoneType == ZoneType.ANYZONE) {
-            if (this.familyPawnType == FamilyPawnType.ANY) {
-
-                int newActionValue = familyPawn.getActualValue() + diceIncrementOrReduction;
-
-                familyPawn.setActualValue(newActionValue);
-            }
-
-            else if (this.familyPawnType == familyPawn.getType() || this.familyPawnType == null) {
-
-                int newActionValue = familyPawn.getActualValue() + diceIncrementOrReduction;
-
-                familyPawn.setActualValue(newActionValue);
-            }
-        } */
-
         if ((this.zoneType == ZoneType.ANYZONE
                     || (this.zoneType == ZoneType.ANYTOWER
                         && (zoneType == ZoneType.BLUETOWER
