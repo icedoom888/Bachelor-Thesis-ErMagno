@@ -181,7 +181,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
         if (logged) {
 
-            // Login Successful
+            // LoginSocket Successful
 
 
             loginStage.close();
@@ -239,7 +239,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         }
 
         loginStage.setScene(new Scene(loginRoot));
-        loginStage.setTitle("Login");
+        loginStage.setTitle("LoginSocket");
         loginStage.setHeight(400);
         loginStage.setWidth(600);
         loginStage.centerOnScreen();

@@ -182,7 +182,6 @@ public class ServerSocketView extends View implements Runnable {
                             break;
 
                         case "end game":
-
                             logoutInterface.getClientMatch().remove(username);
                             notifyObserver(new Closed());
                             return;
@@ -221,6 +220,29 @@ public class ServerSocketView extends View implements Runnable {
 
         System.out.println("VIEW: received the query " + q);
 
+
+        if (q instanceof GameBoardQuery) {
+
+            sendOut("GameBoard");
+
+            GameBoardQuery query = (GameBoardQuery)q;
+
+            String gameBoard = query.perform(model);
+
+            sendOut(gameBoard);
+        }
+
+        if (q instanceof PersonalBoardQuery) {
+
+            sendOut("Personal Board");
+
+            PersonalBoardQuery query = (PersonalBoardQuery)q;
+
+            String personalBoard = query.perform(model);
+
+            sendOut(personalBoard);
+
+        }
 
         if (q instanceof GetAvailableLeaderCards) {
 

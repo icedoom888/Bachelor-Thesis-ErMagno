@@ -26,6 +26,9 @@ import java.util.logging.Logger;
 
 /**
  * Created by Christian on 12/06/2017.
+ *
+ * An instance of ServerNewGame is created when a game is created. It has a list of all the players
+ * that are playing and a map for players playing in socket that contains the player and socket assigned.
  */
 public class ServerNewGame implements Runnable {
 
@@ -43,8 +46,6 @@ public class ServerNewGame implements Runnable {
     private long elapsedTime = 300000;
 
     private long startTime;
-
-    //private final int maxNumberOfPlayers = 2;
 
     private ArrayList<PlayerColor> playerColors = new ArrayList<>();
 
@@ -65,7 +66,12 @@ public class ServerNewGame implements Runnable {
     private Boolean isRunning = true;
 
 
-
+    /**
+     * Constructor for first player playing in RMI
+     * @param client
+     * @param logoutInterface
+     * @throws RemoteException
+     */
     public ServerNewGame(ClientRemoteInterface client, LogoutInterface logoutInterface) throws RemoteException {
 
         this.logoutInterface = logoutInterface;
@@ -94,6 +100,14 @@ public class ServerNewGame implements Runnable {
 
     }
 
+
+
+    /**
+     * Constructor for first player playing in Socket
+     * @param username
+     * @param playerSocket
+     * @param logoutInterface
+     */
     public ServerNewGame(String username, PlayerSocket playerSocket, LogoutInterface logoutInterface) {
 
         this.logoutInterface = logoutInterface;
@@ -135,6 +149,14 @@ public class ServerNewGame implements Runnable {
 
     }
 
+    /**
+     * When max numbers of players for one game is reached or when the timer has ended, the serverNewGame
+     * is started. It creates a new GameSetup and initialize the model. Then a controller and a track controller
+     * are created. For every player (playing in socket or rmi) the serverView is createdand  is registered
+     * as an observer of the model and of the player, the track controller is registered as an observer of
+     * the goodSet of the player. A logout interface is set in the serverView and then every view with its
+     * corresponding player is saved in a map to handle disconnections.
+     */
     @Override
     public void run() {
 
@@ -158,16 +180,6 @@ public class ServerNewGame implements Runnable {
         trackController = new TrackController(gameSetup.getModel());
 
 
-        /*try {
-            startRMIView(gameSetup.getModel(), controller);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        } catch (AlreadyBoundException e) {
-            e.printStackTrace();
-        }*/
-
-        //startSocketView();
-
         for (Map.Entry<Player, PlayerSocket> entry : playersSocketMap.entrySet()) {
 
             Player player = entry.getKey();
@@ -188,10 +200,8 @@ public class ServerNewGame implements Runnable {
                 serverSocketView.registerLogout(logoutInterface);
                 logoutInterface.setClientMatch(gameSetup.getModel().getPlayer(player.getPlayerColor()).getPlayerID(),  this);
 
-                //serverSocketView.notifyObserver(new Initialize(player.getPlayerColor()));
 
                 serverSocketViews.put(serverSocketView, player);
-                //executorService.submit(serverSocketView);
 
             }
 
@@ -204,11 +214,7 @@ public class ServerNewGame implements Runnable {
         }
 
 
-        System.out.println("DOVE TI BLOCCHI");
-
         for (ClientRemoteInterface clientRemoteInterface : clientRMIList) {
-            System.out.println("Non entri nel for? giusto");
-
 
             try {
                 // Create the RMI View, that will be shared with the client
@@ -246,9 +252,6 @@ public class ServerNewGame implements Runnable {
 
         }
 
-
-        System.out.println("Qua arrivi?");
-
         try {
             gameSetup.setGoodsForPlayers();
             gameSetup.setExcommunicationTiles();
@@ -279,13 +282,6 @@ public class ServerNewGame implements Runnable {
 
         while (isRunning){
 
-            /*try {
-                Thread.sleep((long) 15000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            b = false;*/
 
         }
 
@@ -297,6 +293,14 @@ public class ServerNewGame implements Runnable {
     }
 
 
+    /**
+     * After the creation of the serverNewGame, every time a client wants to enter
+     * this game, this method is called and it saves him in the map of username - playerColor
+     * and in the socket case also in the map of player - socket. Finally the new created player is
+     * added to the list of player
+     * @param username
+     * @param playerSocket
+     */
     public void addClient(String username, PlayerSocket playerSocket) {
 
         PlayerColor playerColor = playerColors.remove(0);
@@ -319,6 +323,11 @@ public class ServerNewGame implements Runnable {
 
     }
 
+    /**
+     * addClient() case RMI
+     * @param clientStub
+     * @throws RemoteException
+     */
     public void addClient(ClientRemoteInterface clientStub) throws RemoteException {
 
         clientStub.setPlayerColor(playerColors.remove(0));
@@ -327,28 +336,12 @@ public class ServerNewGame implements Runnable {
         Player player = new Player(clientStub.getUserName(), clientStub.getPlayerColor(), new PersonalBoard(6));
         players.add(player);    }
 
-    /*public void evaluateMinCondition(){
-        if(!minClientNumberReached && clientRMIList.size() >= 2){
-            minClientNumberReached = true;
-            startTime = System.currentTimeMillis();
-        }
-    }
-    public boolean evaluateConditionNewGame() {
-        Boolean result = ((System.currentTimeMillis() - startTime >= elapsedTime && minClientNumberReached) || clientRMIList.size() == maxNumberOfPlayers);
-        if(result){
-            System.out.println("LE CONDIZIONI PER NUOVA PARTITA SONO VALIDE");
-        }
-        return result;
-    }*/
 
 
     public ArrayList<ClientRemoteInterface> getClientRMIList() {
         return clientRMIList;
     }
 
-   /* public int getMaxNumberOfPlayers() {
-        return maxNumberOfPlayers;
-    }*/
 
 
     public GameSetup getGameSetup() {

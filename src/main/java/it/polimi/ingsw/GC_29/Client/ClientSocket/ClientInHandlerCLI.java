@@ -82,6 +82,11 @@ public class ClientInHandlerCLI implements Runnable {
                         getAvailableLeaderCards();
                         break;
 
+                    case "GameBoard":
+                    case "Personal Board":
+                        getComponent();
+                        break;
+
                     default:
                         break;
 
@@ -99,6 +104,8 @@ public class ClientInHandlerCLI implements Runnable {
             }
         }
     }
+
+
 
 
     /**
@@ -310,6 +317,18 @@ public class ClientInHandlerCLI implements Runnable {
         }
     }
 
+    private void getComponent() {
+
+        try {
+            String component = (String)socketIn.readObject();
+            System.out.println(component);
+        } catch (IOException e) {
+            LOGGER.info((Supplier<String>) e);
+        } catch (ClassNotFoundException e) {
+            LOGGER.info((Supplier<String>) e);
+        }
+    }
+
     private void getAvailableLeaderCards() {
 
         try {
@@ -441,13 +460,6 @@ public class ClientInHandlerCLI implements Runnable {
 
                 familyPawnsAvailability.put(entry.getKey().getType(), entry.getValue());
             }
-
-            /*for (FamilyPawn familyPawn : familyPawns.keySet()) {
-                if (familyPawns.get(familyPawn)) {
-                    System.out.println(familyPawn);
-                }
-                familyPawnsAvailability.put(familyPawn.getType(), familyPawns.get(familyPawn));
-            }*/
 
             inputChecker.setFamilyPawnAvailability(familyPawnsAvailability);
 

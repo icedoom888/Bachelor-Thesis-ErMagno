@@ -273,6 +273,18 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     System.out.println("SOCKET JOIN GAME INVIATO AL SERVER");
                     break;
 
+                case "see game board":
+                    query = new GameBoardQuery();
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                    break;
+
+                case "see personal board":
+                    query = new PersonalBoardQuery(inputChecker.getPlayerColor());
+                    socketOut.writeObject(query);
+                    socketOut.flush();
+                    break;
+
                 case "help":
                 default:
                     handleHelp();

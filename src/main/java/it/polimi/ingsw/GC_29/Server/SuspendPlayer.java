@@ -9,6 +9,8 @@ import java.util.TimerTask;
 
 /**
  * Created by Lorenzotara on 30/06/17.
+ *
+ * SuspendPlayer extends TimerTask. Its run his called when the timer in the controller ends.
  */
 public class SuspendPlayer extends TimerTask {
 
@@ -24,6 +26,10 @@ public class SuspendPlayer extends TimerTask {
         this.playerToSuspend = playerToSuspend;
     }
 
+    /**
+     * run() set the player to suspended and switch his previous state in order
+     * to complete in default what the player was doing.
+     */
     @Override
     public void run() {
 

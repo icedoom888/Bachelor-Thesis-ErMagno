@@ -2,13 +2,10 @@ package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Server.RMI.ConnectionInterfaceImpl;
-import it.polimi.ingsw.GC_29.Server.Socket.Login;
+import it.polimi.ingsw.GC_29.Server.Socket.LoginSocket;
 import it.polimi.ingsw.GC_29.Server.Socket.PlayerSocket;
-import it.polimi.ingsw.GC_29.Server.Socket.ServerSocketView;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.AlreadyBoundException;
@@ -62,54 +59,11 @@ public class Server {
 
         System.out.println("START SOCKET");
         startSocket();
-        /*Thread socketThread = new Thread(socketConnection);
-        socketThread.start();*/
 
-       // Boolean b = true;
-
-        /*long i = 0;
-
-        long var = 213999999;
-
-        System.out.println("ENTRO NEL CICLO SERVER");
-
-        while (b){ // TODO: rifare rispetto al runnable
-
-            if(i % var == 0){
-
-               // System.out.println("sono dentro main" + i);
-            }
-
-
-            if(gameMatchHandler.isLobbyCreated()){
-                System.out.println("condizione lobby vera");
-                gameMatchHandler.evaluateMinCondition();
-
-                if(gameMatchHandler.evaluateConditionNewGame()){
-
-                    System.out.println("NUOVA PARTITA!");
-
-                    executor.submit(gameMatchHandler.getCurrentNewGame());
-
-                    gameMatchHandler.setLobbyCreated(false);
-
-                }
-            }
-
-            i++;
-            if(i == 1283999994){
-                i=0;
-            }
-        }*/
-
-        System.out.println("ERRORE: FUORI CICLO");
 
     }
 
     private void startSocket() throws IOException {
-
-        // creates the thread pool to handle clients
-        //ExecutorService executor = Executors.newCachedThreadPool();
 
         //creats the socket
         ServerSocket serverSocket = new ServerSocket(PORT);
@@ -124,13 +78,11 @@ public class Server {
 
             PlayerSocket playerSocket = new PlayerSocket(socket);
 
-            Login login = new Login(playerSocket, gameMatchHandler);
+            LoginSocket loginSocket = new LoginSocket(playerSocket, gameMatchHandler);
 
-            System.out.println("DOPO LOGIN");
+            String username = loginSocket.login();
 
-            String username = login.login();
-
-            if (!(login.getEnumInterface() == EnumInterface.GUI && !login.isLogged())) {
+            if (!(loginSocket.getEnumInterface() == EnumInterface.GUI && !loginSocket.isLogged())) {
 
                 gameMatchHandler.addClient(username, playerSocket);
 
@@ -138,15 +90,6 @@ public class Server {
 
             else socket.close();
 
-
-
-/*
-            // the view observes the model
-            this.gioco.registerObserver(view);
-
-            // the controller observes the view
-            view.registerObserver(this.controller);
-*/
 
         }
     }

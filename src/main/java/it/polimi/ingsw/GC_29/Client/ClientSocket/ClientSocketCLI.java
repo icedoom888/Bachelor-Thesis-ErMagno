@@ -92,7 +92,7 @@ public class ClientSocketCLI {
 
                 if (logged) {
 
-                    outVideo.println("Login correctly done");
+                    outVideo.println("LoginSocket correctly done");
 
                     PlayerColor playerColor = (PlayerColor)socketIn.readObject();
 

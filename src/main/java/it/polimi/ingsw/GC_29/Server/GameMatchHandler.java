@@ -25,6 +25,9 @@ import java.util.logging.Logger;
 
 /**
  * Created by Christian on 12/06/2017.
+ *
+ * GameMatchHandler handles everything that concerns entering a game or creating one.
+ * It handles players disconnected that want to reconnect to the same game they were playing
  */
 public class GameMatchHandler implements LogoutInterface{
 
@@ -94,7 +97,14 @@ public class GameMatchHandler implements LogoutInterface{
     }
 
 
-
+    /**
+     * addClient() socket case: adds a client that has successfully done the login to a game if there is one that is not full,
+     * or creates another game otherwise. In case the player has been disconnected, it checks if its username is
+     * in the map of the players that are currently registered in a game and then connects him.
+     * @param username
+     * @param playerSocket
+     * @throws RemoteException
+     */
     synchronized public void addClient(String username, PlayerSocket playerSocket) throws RemoteException {
 
         loggedPlayersList.add(username);
@@ -129,7 +139,11 @@ public class GameMatchHandler implements LogoutInterface{
     }
 
 
-
+    /**
+     * add client() rmi case: does the same of addClient() socket case.
+     * @param clientStub
+     * @throws RemoteException
+     */
     synchronized public void addClient(ClientRemoteInterface clientStub) throws RemoteException {
 
         loggedPlayersList.add(clientStub.getUserName());
@@ -161,6 +175,16 @@ public class GameMatchHandler implements LogoutInterface{
 
     }
 
+    /**
+     * reconnectClient() socket case: is called after a client has been disconnected from a game and then wants to enter the game
+     * again. It finds his color, it gives him a new socketOut if his playing with socket distribution,
+     * it creates a new serverView for the player and registers the controller as an observer and register the view
+     * as an observer of the model. After having notified the controller with a JoinGame Input, the serverSocketView
+     * starts running.
+     * @param playerSocket
+     * @param username
+     * @throws IOException
+     */
     synchronized private void reconnectClient(PlayerSocket playerSocket, String username) throws IOException {
 
         System.out.println("Creo server socket view");
@@ -207,6 +231,12 @@ public class GameMatchHandler implements LogoutInterface{
 
     }
 
+    /**
+     * reconnectClient() rmi case: it does the same steps of reconnectClient() socket case for
+     * rmi distribution.
+     * @param clientStub
+     * @throws RemoteException
+     */
     synchronized private void reconnectClient(ClientRemoteInterface clientStub) throws RemoteException {
 
 
