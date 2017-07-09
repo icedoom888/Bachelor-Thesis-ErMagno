@@ -31,18 +31,8 @@ public class Server {
 
     private GameMatchHandler gameMatchHandler;
 
-    private final int maxNumberOfPlayers = 2;
-
     private ConnectionInterfaceImpl connectionServer;
 
-    private Boolean lobbyCreated = false;
-
-    private Boolean minClientNumberReached = false;
-
-    private long startTime;
-
-
-    private final long elapsedTime = 300000;
 
 
     protected Server() throws AlreadyBoundException, IOException {
