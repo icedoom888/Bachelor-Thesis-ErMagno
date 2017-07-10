@@ -292,6 +292,11 @@ public class RMIView extends View implements RMIViewRemote {
     }
 
     @Override
+    public String getExcommunicationTileUrl() throws RemoteException {
+        return new GetExcommunication().perform(model);
+    }
+
+    @Override
     public void activateCards(int workersChosen) throws RemoteException {
 
         notifyObserver(new ActivateCards(workersChosen));

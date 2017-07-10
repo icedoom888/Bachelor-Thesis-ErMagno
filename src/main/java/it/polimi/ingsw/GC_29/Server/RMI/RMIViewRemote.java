@@ -102,4 +102,6 @@ public interface RMIViewRemote extends Remote {
     String seeGameBoard() throws RemoteException;
 
     String seePersonalBoard(PlayerColor playerColor) throws RemoteException;
+
+    String getExcommunicationTileUrl() throws RemoteException;
 }

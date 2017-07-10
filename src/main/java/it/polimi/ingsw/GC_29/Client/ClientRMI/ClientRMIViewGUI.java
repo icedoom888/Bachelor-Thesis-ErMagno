@@ -219,7 +219,7 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
                 break;
 
             case PRAY:
-                getExcommunicationTileUrl("you have to decide whether to swear fidelity to the pope or not \n the valid input is : pray / do not pray");
+                getExcommunicationTileUrl(serverViewStub.getExcommunicationTileUrl());
                 break;
 
             default:
