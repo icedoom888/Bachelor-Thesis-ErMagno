@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_29.Controllers;
 
 import com.google.gson.GsonBuilder;
+import com.sun.org.apache.xpath.internal.SourceTree;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Controllers.Change.BonusTileChangeGui;
 import it.polimi.ingsw.GC_29.Controllers.Change.GoodSetChange;
@@ -866,6 +868,8 @@ public class Controller implements Observer<Input>  {
 
         if(!(playerReconnected.isEmpty())){
 
+            System.out.println("SONO NEL CICLO DI HANDLE RECONNECTED, LA LISTA NON E' VUOTA");
+
             List<String> usernamePLayerReconnectedList = new ArrayList<>();
 
             for (Player player : playerReconnected) {
@@ -880,9 +884,17 @@ public class Controller implements Observer<Input>  {
 
                     for (CardColor cardColor : CardColor.values()) {
                         if (cardColor != CardColor.ANY) {
+                            System.out.println("SONO DENTRO CICLO CARD COLOR");
+
+                            System.out.println("PERSONAL VUOTA? " + player.getPersonalBoard() == null);
+                            System.out.println("lane VUOTA? " + player.getPersonalBoard().getLane(cardColor) == null);
+                            System.out.println("cards VUOTA? " + player.getPersonalBoard().getLane(cardColor).getCards()== null);
+
+
 
                             for (DevelopmentCard developmentCard : player.getPersonalBoard().getLane(cardColor).getCards()) {
                                 if(developmentCard == null){
+                                    System.out.println("LA CARTA DALLA LANE E' NULLA");
                                     break;
                                 }
                                 else{
@@ -893,9 +905,35 @@ public class Controller implements Observer<Input>  {
                         }
                     }
 
-                    player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
+                    System.out.println("SONO FUORI DAL CILO CARD COLOR");
+
+                    System.out.println("BONUS TILE PLAYER " + playerBonusTileIndexMap.get(player));
+
+                    if(playerBonusTileIndexMap.get(player) != null){
+
+                        player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
+
+                        System.out.println("NOTIFICATO GUI BONUS TILE");
+
+                        /*List<Integer> indexKeys = Arrays.asList(model.getBonusTileMap().keySet().toArray(new Integer[model.getBonusTileMap().size()]));
+
+                        int bonusIndex = indexKeys.get(0);
+
+                        BonusTile bonusTile = model.getBonusTileMap().get(bonusIndex);
+
+                        model.getBonusTileMap().remove(bonusTile);
+
+                        playerBonusTileIndexMap.put(player, bonusIndex);
+
+                        player.getPersonalBoard().setBonusTile(bonusTile);*/
+
+                    }
+
+
 
                     player.setPlayerState(PlayerState.WAITING);
+
+                    playerDisconnected.remove(player);
 
 
                 } catch (Exception e) {
@@ -903,8 +941,6 @@ public class Controller implements Observer<Input>  {
                 }
             }
 
-            //player reconnected removed from the disconnected list
-            playerDisconnected.clear();
 
             for (CardColor cardColor : CardColor.values()) {
                 if (cardColor != CardColor.ANY) {
@@ -923,6 +959,8 @@ public class Controller implements Observer<Input>  {
             model.notifyPlayerReconnected(usernamePLayerReconnectedList);
 
             playerReconnected.clear();
+
+            System.out.println("SONO ALLA FINE DEL METODO HANDLE RECONNECTED");
 
 
         }

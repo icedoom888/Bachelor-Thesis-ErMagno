@@ -46,6 +46,7 @@ public class BonusTileChosen extends Input {
 
         model.notifyEndMove();
 
+        System.out.println("SONO IN PERFOMR BONUS TILE SCELTA");
         controller.handleReconnectedPlayers();
 
         controller.handleDisconnectedPlayers();
@@ -158,6 +159,29 @@ public class BonusTileChosen extends Input {
      * @param controller
      */
     private void beginMatch(Model model, Controller controller) {
+
+
+        for (Player player : model.getTurnOrder()) {
+
+            if(player.getPersonalBoard().getBonusTile() == null){
+
+                Map<Integer, BonusTile> bonusTileMap = model.getBonusTileMap();
+
+                List<BonusTile> bonusTileList = new ArrayList<>(bonusTileMap.values());
+
+                BonusTile bonusTile = bonusTileList.get(0);
+
+                for (Map.Entry<Integer, BonusTile> integerBonusTileEntry : bonusTileMap.entrySet()) {
+
+                    if (integerBonusTileEntry.getValue() == bonusTile) {
+                        player.notifyObserver(new BonusTileChangeGui(integerBonusTileEntry.getKey()));
+                        player.getPersonalBoard().setBonusTile(bonusTile);
+                        break;
+                    }
+                }
+
+            }
+        }
 
         List<Player> turnOrder = model.getTurnOrder();
 

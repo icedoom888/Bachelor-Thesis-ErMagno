@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class PlayerNames extends GUIChange {
 
-    Map<PlayerColor, String> playerNames;
+    private Map<PlayerColor, String> playerNames;
 
     public PlayerNames(HashMap<PlayerColor, String> playerNames) {
         this.playerNames = playerNames;

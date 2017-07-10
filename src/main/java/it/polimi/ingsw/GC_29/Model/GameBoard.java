@@ -233,7 +233,6 @@ public class GameBoard {
     public String toTable() {
 
         StringBuilder bld = new StringBuilder();
-        String finalString = "";
 
         for (Tower tower : towerMap.values()) {
             bld.append(tower.toTable());
@@ -254,8 +253,6 @@ public class GameBoard {
         bld.append(venturesPointsTrack.toTable());
         bld.append("\n\n\n");
         bld.append(faithPointsTrack.toTable());
-
-        finalString = bld.toString();
 
         return bld.toString();
     }
