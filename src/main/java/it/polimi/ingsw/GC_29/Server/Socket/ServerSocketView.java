@@ -67,8 +67,9 @@ public class ServerSocketView extends View implements Runnable {
 
         } catch (Exception e){
 
-            LOGGER.log(Level.INFO, e.getMessage(), e);
             handleDisconnection();
+            LOGGER.log(Level.INFO, e.getMessage(), e);
+
         }
 
     }
