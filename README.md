@@ -136,6 +136,26 @@
  
  
  
+ 
+ REQUIREMENTS IMPLEMENTED
+ 
+ 1) complete set of the game rules;
+ 
+ 2) Command Line Interface;
+ 
+ 3) Graphical User Interface;
+ 
+ 4) Socket distribution;
+ 
+ 5) RMI distribution;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  UML
  
  For each main package we generated two UML, one with all the classes expanded and one with the association enabled (for the model we generated 3 UML as you will see).

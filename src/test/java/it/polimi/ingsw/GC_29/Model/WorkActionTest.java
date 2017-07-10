@@ -16,9 +16,17 @@ import static org.testng.Assert.*;
  */
 public class WorkActionTest {
 
+    /**
+     *
+     * This test verifies the right behaviour of the isPossible() method of the WorkAction class
+     *
+     * @throws Exception
+     */
     @Test
     public void testIsPossible() throws Exception {
 
+
+        // Variables needed for the test
 
         ArrayList<Player> players = new ArrayList<>();
 
@@ -47,6 +55,11 @@ public class WorkActionTest {
 
         controller.setCardsOnTowers();
 
+        /**
+         * WorkAction variable created ( production zone and second field of the production zone, the one with the
+         * malus of three dice Decrement on the action
+         */
+
         WorkAction workAction = new WorkAction(ZoneType.PRODUCTION, model, FieldType.SECOND);
 
         for (FamilyPawnType familyPawnType : player1.getFamilyPawnAvailability().keySet()) {
@@ -69,7 +82,16 @@ public class WorkActionTest {
 
         Boolean result = workAction.isPossible();
 
+        /**
+         *
+         * tested the fact that if the first field is free, the pawn cannot be setted in the second field
+         */
         assertFalse(result);
+
+        /**
+         *
+         * a second variable workAction, production in first field
+         */
 
         WorkAction workAction1 = new WorkAction(ZoneType.PRODUCTION, model, FieldType.FIRST);
 
@@ -77,36 +99,69 @@ public class WorkActionTest {
 
         workAction1.setPlayer(player1);
 
+        /**
+         *
+         * the first field is free, the isPossible method is expected to return true
+         */
         assertTrue(workAction1.isPossible());
 
+        /**
+         *
+         * pawn added in the first field
+         *
+         */
         workAction1.addPawn();
 
         workAction.setFamiliyPawn(player1.getFamilyPawn(FamilyPawnType.ORANGE));
 
+        /**
+         *
+         * the isPossible() method is expected to return false because in the first field there is
+         * a coloured pawn of the same player (player 1), so you cannot add a pawn in the second field
+         *
+         */
         assertTrue(!workAction.isPossible());
 
+
+        //using a neutral pawn for the second field
         workAction.setFamiliyPawn(player1.getFamilyPawn(FamilyPawnType.NEUTRAL));
 
+
+        /**
+         * the isPossible() is expected to return true because we used a NEUTRAL pawn of the same player
+         *
+         */
         assertTrue(workAction.isPossible());
 
         workAction1.setPlayer(player2);
 
         workAction1.setFamiliyPawn(player2.getFamilyPawn(FamilyPawnType.BLACK));
 
+        /**
+         * expected false because the action space of the first field is already occupied
+         */
         assertTrue(!workAction1.isPossible());
 
         workAction.setFamiliyPawn(player2.getFamilyPawn(FamilyPawnType.BLACK));
 
         workAction.setPlayer(player2);
 
+
+        /**
+         * expected true because the second field is free, the first field is occupied and the pawn belongs
+         * to another player
+         */
         assertTrue(workAction.isPossible());
 
     }
 
-    @Test
-    public void testExecute() throws Exception {
-    }
-
+    /**
+     *
+     * this test verifies the correct behaviour of buildDifferentChoices, a method that creates
+     * a map with key the amount of workers needed in order to activate a set of cards owned by the player.
+     *
+     * @throws Exception
+     */
     @Test
     public void testBuildDifferentChoices() throws Exception {
 
@@ -263,8 +318,5 @@ public class WorkActionTest {
 
     }
 
-    @Test
-    public void testHandlePayToObtainCards() throws Exception {
-    }
 
 }
