@@ -161,6 +161,9 @@
  For each main package we generated two UML, one with all the classes expanded and one with the association enabled (for the model we generated 3 UML as you will see).
  We generated SVG file in order to let you zoom and see correctly (for the best experience we opened the UML svg files with Google Chrome that renders correctly the file).
  
+ We also included the initial UML of the model that we have made at the beginning of the project (in the folder "/uml_iniziale_model_alto_livello"). However, due to the lack of time, we have not modified these files, so there are 
+ classes that were changed or totally removed/added.
+ 
  
  
  
