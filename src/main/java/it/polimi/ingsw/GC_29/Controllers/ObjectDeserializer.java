@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -136,7 +137,7 @@ public class ObjectDeserializer {
         try {
             fileReader.close();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         return bonusTiles;

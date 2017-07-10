@@ -32,6 +32,8 @@ public class EndTurn extends Input {
 
         model.notifyEndMove();
 
+        System.out.println("PLAYER AVVISATI END MOVE");
+
         controller.handleReconnectedPlayers();
 
         controller.handleDisconnectedPlayers();

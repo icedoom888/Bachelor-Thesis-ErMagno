@@ -37,7 +37,7 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
         try {
             UnicastRemoteObject.exportObject(this, 0);
         } catch (RemoteException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
 
         }
     }

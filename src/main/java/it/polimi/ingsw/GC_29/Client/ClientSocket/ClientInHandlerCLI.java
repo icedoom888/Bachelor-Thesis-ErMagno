@@ -14,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.lang.System.exit;
@@ -94,10 +95,10 @@ public class ClientInHandlerCLI implements Runnable {
 
             } catch (ClassNotFoundException e) {
 
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             } catch (IOException e) {
 
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
         }
     }
@@ -117,9 +118,9 @@ public class ClientInHandlerCLI implements Runnable {
         try {
             c = (Change)socketIn.readObject();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
         System.out.println(c);
         System.out.println(inputChecker.getPlayerColor());
@@ -218,7 +219,7 @@ public class ClientInHandlerCLI implements Runnable {
         try {
             socketIn.close();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         Timer timer = new Timer();
@@ -313,9 +314,9 @@ public class ClientInHandlerCLI implements Runnable {
         try {
             socketIn.readObject();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -325,9 +326,9 @@ public class ClientInHandlerCLI implements Runnable {
             String component = (String)socketIn.readObject();
             System.out.println(component);
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -344,9 +345,9 @@ public class ClientInHandlerCLI implements Runnable {
                 inputChecker.showAvailableLeaderCards();
             }
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -359,9 +360,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.nextPrivilegeEffect();
             inputChecker.askWhichPrivilege();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
     }
@@ -373,9 +374,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setPossibleCosts(possibleCosts);
             inputChecker.askWhichCost();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -386,9 +387,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setPayToObtainCardsMap(payToObtainCards);
             inputChecker.askActivateCard();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -399,9 +400,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setPossibleCardsWorkActionMap(cardsForWorkers);
             inputChecker.printPossibleCardsWorkAction();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -413,9 +414,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setValidActionList(validActions);
             inputChecker.printValidActionList();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -426,9 +427,9 @@ public class ClientInHandlerCLI implements Runnable {
             GoodSet goodSet = (GoodSet)socketIn.readObject();
             System.out.println(goodSet);
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -440,9 +441,9 @@ public class ClientInHandlerCLI implements Runnable {
                 System.out.println(developmentCard);
             }
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -466,9 +467,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setFamilyPawnAvailability(familyPawnsAvailability);
 
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -479,9 +480,9 @@ public class ClientInHandlerCLI implements Runnable {
             inputChecker.setBonusTileMap(bonusTiles);
             inputChecker.askWhichBonusTile();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 

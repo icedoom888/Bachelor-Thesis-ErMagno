@@ -13,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.lang.System.exit;
@@ -61,10 +62,10 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
             } catch (ClassNotFoundException e) {
 
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             } catch (IOException e) {
 
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
 
             }
         }
@@ -84,9 +85,9 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         try {
             c = (Change)socketIn.readObject();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         } catch (ClassNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
         //System.out.println(c);
         //System.out.println(commonView.getPlayerColor());
@@ -103,7 +104,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
 
 
             } catch (/*RemoteException*/ Exception e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
 
         }
@@ -200,7 +201,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                 socketIn.close();
                 System.out.println("SOCKET CLOSED");
             } catch (IOException e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
 
 
@@ -243,7 +244,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getFamilyPawnsAvailabilityGUI((Map<FamilyPawn, Boolean>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -255,7 +256,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     validActionsGUI((Map<Integer, String>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -266,7 +267,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getCardsForWorkersGUI((Map<Integer, ArrayList<String>>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -277,7 +278,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getPayToObtainCardsGUI((Map<String, HashMap<Integer, String>>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -288,7 +289,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getPossibleCostsGUI((Map<Integer, String>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -299,7 +300,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getCouncilPrivilegesGUI((List<Integer>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -310,7 +311,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getBonusTilesGUI((Map<Integer, String>)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
 
@@ -322,7 +323,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
                     socketIn.readObject();
                     getExcommunicationTileUrl((String)socketIn.readObject());
                 } catch (IOException | ClassNotFoundException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
 

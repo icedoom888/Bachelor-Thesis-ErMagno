@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Server.RMI;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientViewRemote;
 import it.polimi.ingsw.GC_29.Controllers.Change.Change;
+import it.polimi.ingsw.GC_29.Controllers.Change.EndMove;
 import it.polimi.ingsw.GC_29.Controllers.Input.*;
 import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Model.PlayerColor;
@@ -13,6 +14,7 @@ import it.polimi.ingsw.GC_29.Query.*;
 import java.rmi.RemoteException;
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
@@ -65,16 +67,19 @@ public class RMIView extends View implements RMIViewRemote {
     @Override
     public void update(Change o)  {
         try {
+
             clientView.updateClient(o);
+
 
         } catch (RemoteException e) {
             model.getPlayer(playerColor).unregisterObserver(this);
             model.unregisterObserver(this);
             logoutInterface.clientDisconnected(username);
+            System.out.println("AVVERTO SERVER CLIENT DISCONNESSO RMI");
             notifyObserver(new Disconnection(playerColor));
+            System.out.println("NOTIFY DISCONNECTION INVIATA");
 
-
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, "RMI VIEW DISCONNESSA", e);
         }
     }
 

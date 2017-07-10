@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -59,7 +60,7 @@ public class Client {
             executeCLI();
         }
         catch (Exception e){
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
     }
@@ -148,7 +149,7 @@ public class Client {
                 try {
                     gameRMI = new ClientRMI(EnumInterface.CLI);
                 } catch (RemoteException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
                 gameRMI.executeRMI();
                 break;
@@ -172,7 +173,7 @@ public class Client {
             clientSocketCLI.startClientCLI();
 
         } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 

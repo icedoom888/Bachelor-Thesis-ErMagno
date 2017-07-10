@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 import java.rmi.RemoteException;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -59,7 +60,7 @@ public class GameRMI extends CommonOutRMI implements Runnable {
         try {
             serverViewStub.initialize(playerColor);
         } catch (RemoteException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
     }
@@ -77,7 +78,7 @@ public class GameRMI extends CommonOutRMI implements Runnable {
                 try {
                     serverViewStub.registerClient(rmiView);
                 } catch (RemoteException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
                 break;
 
@@ -87,7 +88,7 @@ public class GameRMI extends CommonOutRMI implements Runnable {
                 try {
                     serverViewStub.registerClient(clientRMIViewGUI);
                 } catch (RemoteException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
                 break;
 

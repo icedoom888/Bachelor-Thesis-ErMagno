@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Server;
 
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRemoteInterface;
+import it.polimi.ingsw.GC_29.Controllers.Input.Disconnection;
 import it.polimi.ingsw.GC_29.Controllers.Input.Initialize;
 import it.polimi.ingsw.GC_29.Model.PersonalBoard;
 import it.polimi.ingsw.GC_29.Controllers.*;
@@ -22,6 +23,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -135,7 +137,7 @@ public class ServerNewGame implements Runnable {
             socketOut.writeObject(playerColor);
             socketOut.flush();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
     }
@@ -167,14 +169,14 @@ public class ServerNewGame implements Runnable {
             gameSetup = new GameSetup(players);
             gameSetup.init();
         } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         try {
             controller = new Controller(gameSetup.getModel());
             controller.setCurrentMatch(this);
         } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         trackController = new TrackController(gameSetup.getModel());
@@ -206,9 +208,9 @@ public class ServerNewGame implements Runnable {
             }
 
             catch (IOException e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             } catch (Exception e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
 
         }
@@ -242,12 +244,12 @@ public class ServerNewGame implements Runnable {
                 }
 
                 catch (RemoteException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
                 //La passo al client
 
             } catch (RemoteException e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
 
         }
@@ -258,7 +260,7 @@ public class ServerNewGame implements Runnable {
             gameSetup.setLeaderCards();
             gameSetup.sendIdGui();
         } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         controller.setCardsOnTowers();
@@ -275,7 +277,7 @@ public class ServerNewGame implements Runnable {
             try {
                 clientRemoteInterface.initialize();
             } catch (RemoteException e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
         }
 
@@ -318,7 +320,7 @@ public class ServerNewGame implements Runnable {
             socketOut.writeObject(playerColor);
             socketOut.flush();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
     }
@@ -334,7 +336,8 @@ public class ServerNewGame implements Runnable {
         clientPlayerColorMap.put(clientStub.getUserName(), clientStub.getPlayerColor());
         clientRMIList.add(clientStub);
         Player player = new Player(clientStub.getUserName(), clientStub.getPlayerColor(), new PersonalBoard(6));
-        players.add(player);    }
+        players.add(player);
+    }
 
 
 

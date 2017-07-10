@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -115,7 +116,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         } catch (Exception e) {
 
             System.out.println("Exception: " + e);
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
 
         }
 
@@ -159,9 +160,9 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
                     try {
                         connectRMI();
                     } catch (RemoteException e) {
-                        LOGGER.info((Supplier<String>) e);
+                        LOGGER.log(Level.INFO, e.getMessage(), e);
                     } catch (NotBoundException e) {
-                        LOGGER.info((Supplier<String>) e);
+                        LOGGER.log(Level.INFO, e.getMessage(), e);
                     }
                     break;
 
@@ -228,7 +229,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         try {
             loginRoot = loader.load();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         loginStage.setScene(new Scene(loginRoot));
@@ -279,8 +280,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
                 // consume event
                 event.consume();
-                //TODO: gestire qui la disconnessione e la terminazione del processo client
-                //Platform.exit();
 
             }
         });
@@ -470,7 +469,7 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
 
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         gameboardStage.setScene(new Scene(gameboardRoot));

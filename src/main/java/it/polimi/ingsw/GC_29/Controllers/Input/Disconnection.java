@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_29.Controllers.Input;
 
 import it.polimi.ingsw.GC_29.Controllers.Controller;
 import it.polimi.ingsw.GC_29.Model.Model;
+import it.polimi.ingsw.GC_29.Model.Player;
 import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.SuspendPlayer;
 
@@ -25,7 +26,6 @@ public class Disconnection extends Input {
         suspendPlayer.run();
 
         controller.getPlayerDisconnected().add(model.getPlayer(playerColor));
-
 
     }
 }

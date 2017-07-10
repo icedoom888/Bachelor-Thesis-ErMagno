@@ -21,6 +21,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -75,7 +76,7 @@ public class GameMatchHandler implements LogoutInterface{
         try {
             fileReader = new FileReader(timerFilePath);
         } catch (FileNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         if(fileReader!=null){
@@ -85,7 +86,7 @@ public class GameMatchHandler implements LogoutInterface{
             try {
                 fileReader.close();
             } catch (IOException e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
 
         }
@@ -121,7 +122,7 @@ public class GameMatchHandler implements LogoutInterface{
             try {
                 reconnectClient(playerSocket, username);
             } catch (IOException e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
 
             return;
@@ -208,7 +209,7 @@ public class GameMatchHandler implements LogoutInterface{
             socketOut.writeObject(playerColor);
             socketOut.flush();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         Model model = clientCurrentMatch.getGameSetup().getModel();

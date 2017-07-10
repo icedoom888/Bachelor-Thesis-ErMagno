@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -73,7 +74,7 @@ public class Controller implements Observer<Input>  {
         try {
             fileReader = new FileReader(timerFilePath);
         } catch (FileNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         long timer = 180000;
@@ -85,7 +86,7 @@ public class Controller implements Observer<Input>  {
             try {
                 fileReader.close();
             } catch (IOException e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
 
         }
@@ -108,13 +109,13 @@ public class Controller implements Observer<Input>  {
         try {
             Observer.super.update(input);
         } catch (ObserverException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         try {
             input.perform(model, this);
         } catch (RemoteException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -305,7 +306,7 @@ public class Controller implements Observer<Input>  {
 
             actionChecker.setCurrentPlayer();
 
-            model.notifyEndMove();
+            //model.notifyEndMove();
 
             firstPlayer.setPlayerState(PlayerState.DOACTION);
 
@@ -798,7 +799,7 @@ public class Controller implements Observer<Input>  {
             try {
                 workAction.execute();
             } catch (Exception e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
             workAction.getCardsForWorkers().clear();
             handleEndAction();
@@ -913,7 +914,7 @@ public class Controller implements Observer<Input>  {
 
 
                 } catch (Exception e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
             }
 

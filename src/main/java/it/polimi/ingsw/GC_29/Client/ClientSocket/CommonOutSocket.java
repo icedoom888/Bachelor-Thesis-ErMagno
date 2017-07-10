@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -292,7 +293,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
 
             }
         } catch (IOException e1) {
-            LOGGER.info((Supplier<String>) e1);
+            LOGGER.log(Level.INFO, e1.getMessage(), e1);
         }
 
 
@@ -348,7 +349,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -361,7 +362,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -374,7 +375,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -386,7 +387,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -398,7 +399,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -410,7 +411,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -422,7 +423,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -434,7 +435,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     socketOut.writeObject(query);
                     socketOut.flush();
                 } catch (IOException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
 
                 break;
@@ -490,7 +491,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
             socketOut.flush();
             socketOut.close();
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 }

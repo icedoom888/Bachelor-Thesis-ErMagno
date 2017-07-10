@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_29.Client.InputChecker;
 
 import java.io.*;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -46,7 +47,7 @@ public class ClientOutHandlerCLI implements Runnable {
             try {
                 inputLine = inKeyboard.readLine();
             } catch (IOException e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
 
             commonOutSocket.sendInput(inputLine);

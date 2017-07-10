@@ -16,6 +16,7 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -70,7 +71,7 @@ public class ClientRMI extends UnicastRemoteObject implements ClientRemoteInterf
             loginRMI();
 
         } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
     }

@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_29.Model.Model;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -42,7 +43,7 @@ public abstract class Observable<C> {
                 try {
                     o.update(c);
                 } catch (ObserverException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
             }
 

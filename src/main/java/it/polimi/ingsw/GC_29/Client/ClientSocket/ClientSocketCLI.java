@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -54,7 +55,7 @@ public class ClientSocketCLI {
             playNewGameCLI();
 
         } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
     }
@@ -109,12 +110,12 @@ public class ClientSocketCLI {
 
         } catch (Exception e) {
             System.out.println("Exception: " + e);
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
 
             try {
                 socket.close();
             } catch (IOException ex) {
-                LOGGER.info((Supplier<String>) ex);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
         }
 
@@ -180,13 +181,13 @@ public class ClientSocketCLI {
 
         } catch (Exception e) {
 
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
 
             // Always close it:
             try {
                 socket.close();
             } catch (IOException ex) {
-                LOGGER.info((Supplier<String>) ex);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
         }
     }

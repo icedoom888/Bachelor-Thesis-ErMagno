@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -63,7 +64,7 @@ public class GameSetup {
         try {
             this.gameBoard = loadGameBoardFromFile(numberOfPlayers);
         } catch (IOException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         for(CardColor color : CardColor.values()){
@@ -71,7 +72,7 @@ public class GameSetup {
                 try {
                     this.orderedDecks.put(color, getDeckFromFile(color));
                 } catch (FileNotFoundException e) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.log(Level.INFO, e.getMessage(), e);
                 }
             }
         }
@@ -176,7 +177,7 @@ public class GameSetup {
         try {
             excommunicationTileMap = getExcommunicationTilesFromFile();
         } catch (FileNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         ExcommunicationTile tileFirstEra = getRandomTile(Era.FIRST);
@@ -189,7 +190,7 @@ public class GameSetup {
         try {
             model.notifyObserver(new ExcommunicationChange(tileFirstEra.getUrl(), tileSecondEra.getUrl(), tileThirdEra.getUrl()));
         } catch (Exception e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
 
@@ -210,7 +211,7 @@ public class GameSetup {
         try {
             leaderCards = getLeaderCardsFromFile();
         } catch (FileNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         Collections.shuffle(leaderCards);
@@ -240,7 +241,7 @@ public class GameSetup {
         try {
             fileReader = new FileReader("goodsForPlayerSetup");
         } catch (FileNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -282,7 +283,7 @@ public class GameSetup {
         try {
             model.setBonusTileMap(loadBonusTilesFromFile());
         } catch (FileNotFoundException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
     }

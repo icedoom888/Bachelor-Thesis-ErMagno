@@ -44,7 +44,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
         try {
             UnicastRemoteObject.exportObject(this, 0);
         } catch (RemoteException e) {
-            LOGGER.info((Supplier<String>) e);
+            LOGGER.log(Level.INFO, e.getMessage(), e);
         }
 
         this.inputChecker = inputChecker;
@@ -142,7 +142,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
             try {
                 serverViewStub.endGame();
             } catch (RemoteException e) {
-                LOGGER.info((Supplier<String>) e);
+                LOGGER.log(Level.INFO, e.getMessage(), e);
             }
 
             Timer timer = new Timer();
@@ -161,6 +161,7 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
         if(currentGameChange instanceof EndMove){
 
             String username = ((EndMove)currentGameChange).getUsername();
+            //System.out.println("MOVE ENDED PLAYER " + username);
 
         }
 
