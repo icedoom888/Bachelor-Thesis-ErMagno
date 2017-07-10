@@ -6,6 +6,8 @@ import it.polimi.ingsw.GC_29.Model.Model;
 import it.polimi.ingsw.GC_29.Model.Player;
 
 import java.util.TimerTask;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 30/06/17.
@@ -14,6 +16,7 @@ import java.util.TimerTask;
  */
 public class SuspendPlayer extends TimerTask {
 
+    private static final Logger LOGGER = Logger.getLogger(SuspendPlayer.class.getName());
     //private final long turnTime = 180000; // Three minutes to complete your turn
     private Controller controller;
     private Model model;
@@ -44,7 +47,7 @@ public class SuspendPlayer extends TimerTask {
             try {
                 controller.endGame();
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.info((Supplier<String>) e);
             }
             return;
         }

@@ -66,7 +66,7 @@ public class ServerSocketView extends View implements Runnable {
 
         } catch (Exception e){
 
-            System.out.println("ECCEZIONE CATCHATA IN UPDATE");
+            LOGGER.info((Supplier<String>) e);
             handleDisconnection();
         }
 
@@ -170,7 +170,6 @@ public class ServerSocketView extends View implements Runnable {
                             break;
 
                         case "discard leader card":
-                            System.out.println("DISCARDING LEADER FROM SERVER\n\n");
                             index = (Integer)socketIn.readObject();
                             playerColor = (PlayerColor)socketIn.readObject();
                             notifyObserver(new LeaderAction(false, index, playerColor));
@@ -194,7 +193,7 @@ public class ServerSocketView extends View implements Runnable {
             } catch (ClassNotFoundException e) {
                 LOGGER.info((Supplier<String>) e);
             } catch (Exception e){
-                System.out.println("ECCEZIONE CATCHATA IN RUN");
+                LOGGER.info((Supplier<String>) e);
                 handleDisconnection();
                 b = false;
                 try {
@@ -203,7 +202,7 @@ public class ServerSocketView extends View implements Runnable {
                     this.socketOut.close();
                     System.out.println("SOCKET CHIUSI");
                 } catch (IOException e1) {
-                    LOGGER.info((Supplier<String>) e);
+                    LOGGER.info((Supplier<String>) e1);
                 }
                 System.out.println("SONO USCITO DA HANDLE DISCONNECTION");
             }

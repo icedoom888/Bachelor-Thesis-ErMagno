@@ -36,11 +36,7 @@ public class UsePawnChosen extends Input {
 
         actionChecker.resetActionListExceptPlayer();
 
-        System.out.println("SONO IN USE PAWN CHOSEN COLORE " + familyPawnType + "VALORE " +familyPawn.getActualValue());
-
         actionChecker.setValidActionForFamilyPawn(familyPawn);
-
-        System.out.println("SONO IN USE PAWN CHOSEN COLORE " + familyPawnType + "VALORE " +familyPawn.getActualValue());
 
         player.setPlayerState(PlayerState.CHOOSEACTION);
 

@@ -46,7 +46,7 @@ public class CommonOutSocket implements InputInterfaceGUI{
         try {
             // Implements the communication protocol, creating the Actions corresponding to the input of the user
 
-            System.out.println("\n\nINPUT RECEIVED FROM BUTTONS: " + inputLine + "\n\n");
+            System.out.println("\n\nINPUT RECEIVED: " + inputLine + "\n\n");
 
             if (!inputLine.contentEquals("activated cards GUI")
                     && !inputLine.contentEquals("council privileges chosen GUI")

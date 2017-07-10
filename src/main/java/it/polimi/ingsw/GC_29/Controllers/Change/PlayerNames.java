@@ -14,7 +14,7 @@ public class PlayerNames extends GUIChange {
 
     private Map<PlayerColor, String> playerNames;
 
-    public PlayerNames(HashMap<PlayerColor, String> playerNames) {
+    public PlayerNames(Map<PlayerColor, String> playerNames) {
         this.playerNames = playerNames;
     }
 

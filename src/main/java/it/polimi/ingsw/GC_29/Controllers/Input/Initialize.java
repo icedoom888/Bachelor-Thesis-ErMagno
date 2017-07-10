@@ -49,15 +49,6 @@ public class Initialize extends Input {
         }
 
 
-        /*if(model.getCurrentPlayer().getPlayerColor() == playerColor){
-
-            controller.getActionChecker().setCurrentPlayer();
-            model.getCurrentPlayer().setPlayerState(PlayerState.THROWDICES);
-        }
-        else {
-            model.getPlayer(playerColor).setPlayerState(PlayerState.WAITING);
-        }*/
-
     }
 
 }

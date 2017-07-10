@@ -8,10 +8,6 @@ import it.polimi.ingsw.GC_29.Controllers.GameState;
  */
 public class GameChange extends Change {
 
-    /**
-     *
-     */
-   // private static final long serialVersionUID = 5551223529797237865L;
 
     protected final GameState newGameState;
 
@@ -29,8 +25,4 @@ public class GameChange extends Change {
         return "StateChange [newGameChange=" + newGameState + "]";
     }
 
-    /**
-     * questa classe quando viene ricevuta da view informa cosa è cambiato, di conseguenza la view in base al GameEvent fa una Query al controller
-     * pr ricevere l'oggetto cambiato e trattarlo di conseguenza (vedi Query esempio esercitazione12)
-     */
 }

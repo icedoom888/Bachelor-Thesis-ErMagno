@@ -32,6 +32,8 @@ import java.util.logging.Logger;
 
 /**
  * Created by Lorenzotara on 23/06/17.
+ *
+ * FXMLMain creates the Login and the Gameboard Graphic Interfaces
  */
 public class FXMLMain extends Application implements Observer<LoginChange> {
 
@@ -182,18 +184,12 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
             loginStage.close();
 
-            ///////WAITING STAGE//////////
-            //TODO:
-            ///////WAITING STAGE//////////
-
 
             switch (connection) {
 
                 case SOCKET:
 
                     clientSocketGUI.playNewGameGUI();
-
-                    //this.chooseDistribution = new ChooseDistribution(Distribution.SOCKET);
 
                     clientSocketGUI.getClientInHandlerGUI().addListener(new GuiListener());
 
@@ -202,8 +198,6 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
                     break;
 
                 case RMI:
-
-                    //this.chooseDistribution = new ChooseDistribution(Distribution.RMI);
 
                     clientRMI.getGameRMI().getClientRMIViewGUI().addListener(new GuiListener());
 
@@ -222,6 +216,9 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     }
 
 
+    /**
+     * This method creates the Login Stage
+     */
     private void setLogin() {
 
         loginStage = new Stage();
@@ -265,16 +262,13 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     }
 
     /**
-     * Lancia la schermata principale del gioco,
-     * settando tutti i controller interni e le varie schermate ausiliarie
+     * This method launch the principal stage, setting all the internal controllers
+     * and all the secondary stages.
      */
 
     private void setGameboard() {
 
         System.out.println("Gameboard Started");
-
-
-        //chooseDistribution.setCommonOutSocket(clientSocketGUI.getClientOutHandlerGUI().getCommonOutSocket());
 
         gameboardStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GameBoard.fxml"));
@@ -493,11 +487,18 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
 
 
 
+
     private void removeAllPawns() {
 
         gameBoardController.removeAllPawns();
 
     }
+
+
+    /**
+     * All these methods call the Platform.runLater() that puts the thread
+     * in a queue, waiting for space to run.
+     */
 
 
     private void updatePawn(FamilyPawn familyPawn, int actionIndex) {
@@ -848,8 +849,11 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
     }
 
 
-
-
+    /**
+     * This is the class that is listening on the ClientInHandler or ClientRMIView.
+     * Every GuiChange is sent from one of those classes through this class to
+     * the GUI
+     */
     class GuiListener implements GuiChangeListener{
 
         @Override

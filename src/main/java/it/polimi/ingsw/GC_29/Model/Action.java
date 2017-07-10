@@ -13,7 +13,7 @@ public abstract class Action {
     protected ActionSpace actionSpaceSelected;
     protected Player player;
     protected Boolean enable = true;
-    protected Boolean onlyWorkers = false; // TODO: patch per leader cardsss
+    protected Boolean onlyWorkers = false;
 
     public Boolean getValid() {
         return isValid;

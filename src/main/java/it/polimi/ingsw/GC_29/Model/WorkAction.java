@@ -358,13 +358,6 @@ public class WorkAction extends Action {
 
                     PayToObtainEffect effect1 = (PayToObtainEffect)effect;
 
-                    /**
-                     * TODO: IN QUESTO MODO NON AGGIUNGE LA CARTA NELLE RICHIESTE DA ATTIVARE
-                     * però nella richiesta dei workers per l'attivazione delle carte questa carta è ancora visibile
-                     * SISTEMARE...
-                     */
-
-
                     if(effect1.checkSufficientGoods(player)){
 
                         System.out.println("LA CARTA AGGIIUNTA NELLA PAY TO OBTAIN MAP E' " + cardKey);
@@ -386,103 +379,6 @@ public class WorkAction extends Action {
 
     }
 
-    /**
-     * This method first asks the player how many workers does he want to spend,
-     * then asks the player which effects he wants to activate for each card in case of alternatives,
-     * only if the player wants activate the card at all.
-     * The method generates then a list of effects that need to be activated
-
-    private void makeChoice() {
-        //TODO: filtraggio sul costo in workers una volta ottenuto
-        int choice;
-        //choice = askForWorkers();
-        //
-        choice=0;
-        setWorkers(workers + choice);
-        ArrayList<DevelopmentCard> cardsChosen = cardsForWorkers.get(choice);
-
-        Effect effectChosen;
-        for (DevelopmentCard card : cardsChosen){
-            if (card==null){
-                break;
-            }
-
-            if (!card.getPermanentEffect().isEmpty()) {
-
-                if (zoneType==ZoneType.PRODUCTION) {
-                    boolean ask = true;
-                    for(Effect effect : card.getPermanentEffect()) {
-
-                        System.out.println(effect.getClass().getName());
-
-                        if(!(effect instanceof PayToObtainEffect)){ // TODO: rifare, ne basta solo uno per chiedere
-                        //if (!(effect.getClass().getSpecial()=="it.polimi.ingsw.GC_29.Model.PayToObtainEffect")){
-                            ask = false;
-                        }
-                    }
-
-                    if (ask) {
-                        if (/*askForCardActivation(card)true){
-                                if(card.getPermanentEffect().size()>1) {
-                                    //effectChosen = askForEffect(card);
-                                    effectChosen=card.getPermanentEffect().get(0);
-                                }
-                                else{
-                                    effectChosen = card.getPermanentEffect().get(0);
-                                }
-                                effectsToActivate.add(effectChosen);
-                        }
-                    }
-                }
-                else{
-
-                    effectsToActivate.addAll(card.getPermanentEffect());
-
-                }
-            }
-        }
-        System.out.println();
-        System.out.println(effectsToActivate);
-
-    }*/
-
-
-
-    /*
-    //Solo per testing, sarà poi nello speaker
-    private boolean askForCardActivation(DevelopmentCard card) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Vuoi attivare questa carta: "+ card +"\n?");
-        System.out.println("Digita y o n!");
-        String answer = in.nextLine();
-        if ("y".equals(answer)){
-            return true;
-        }
-        return false;
-    }
-
-
-    //Solo per testing, sarà poi nello speaker
-    private Effect askForEffect(DevelopmentCard card) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("La carta offre diverse possibilità: "+ card.getPermanentEffect());
-        System.out.println("Digita il numero dell'effetto desiderato!");
-        int answer = (in.nextInt())-1;
-        return card.getPermanentEffect().get(answer);
-
-    }
-
-    //Solo per testing, sarà poi nello speaker
-    private int askForWorkers() {
-        System.out.println("A seconda del numero di workers che aggiungerai alla tua azione" +
-                "\n" + "ti sarà possibile attivare diversi effetti: \n" + cardsForWorkers+"\n");
-        System.out.println("Digita il numero di workers che vuoi aggiungere! \n");
-        Scanner scanner = new Scanner(System.in);
-        int answer = scanner.nextInt();
-        return answer;
-    }
-
-    */
     /**
      * This method activates all the effects selected by the player
      */

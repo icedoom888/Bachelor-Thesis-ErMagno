@@ -37,8 +37,6 @@ public class Pray extends Input {
 
             GoodSet goodSet = new GoodSet(0,0,0,0,model.getGameBoard().getFaithPointsTrack().getVictoryPointsPerSlot()[playerFaithPoints],0,0);
 
-            System.out.println("Victory points from church: " + model.getGameBoard().getFaithPointsTrack().getVictoryPointsPerSlot()[playerFaithPoints] + "\n\n");
-
             if (Filter.applySpecial(player, SpecialBonusAndMalus.FIVEVICTORYPOINTSIFPRAY)) {
 
                 goodSet.addGoodSet(new GoodSet(0,0,0,0,5,0,0));
@@ -46,11 +44,7 @@ public class Pray extends Input {
 
             Filter.apply(player, goodSet);
 
-            System.out.println("player faithPoints from goodset: " + player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS) +"\n");
-
             goodSet.addGoodSet(new GoodSet(0,0,0,0, 0, 0, - playerFaithPoints));
-
-            System.out.println("playerFaithPoints variable: " + playerFaithPoints + "\n");
 
             player.updateGoodSet(goodSet);
         }
@@ -61,12 +55,8 @@ public class Pray extends Input {
 
         player.setPlayerState(PlayerState.WAITING);
 
-        System.out.println("PLAYER SETTATO A WAITING\n");
-
 
         if (controller.getPlayersPraying() == 0) {
-
-            System.out.println("NESSUNO DEVE PIù PREGARE\n");
 
             model.setGameState(GameState.RUNNING);
 

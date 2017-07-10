@@ -33,8 +33,8 @@ public class BonusTileChosen extends Input {
      * As every starting turn input, it checks if there are players disconnected
      * or that want to reconnect.
      * Then it gives the bonus tile chosen from the client to the correct player.
-     * If there are other players who have to chose the tile, it will be the turn of another one.
-     * If, insted, everyone chose his tile, beginMatch() is called.
+     * If there are other players who have to choose the tile, it will be the turn of another one.
+     * If, instead, everyone chooses his tile, beginMatch() is called.
      *
      * @param model
      * @param controller

@@ -252,7 +252,7 @@ public class Model extends Observable<Change>{
 
     }
 
-    public void sendIdGui(HashMap<PlayerColor, String> playerNames) {
+    public void sendIdGui(Map<PlayerColor, String> playerNames) {
 
         notifyObserver(new PlayerNames(playerNames));
     }

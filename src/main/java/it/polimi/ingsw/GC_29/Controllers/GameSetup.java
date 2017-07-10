@@ -251,7 +251,7 @@ public class GameSetup {
 
         Type listType = new TypeToken<ArrayList<GoodSet>>(){}.getType();
 
-        ArrayList<GoodSet> goodsReceivedList =  gsonBuilder.create().fromJson(fileReader, listType);// TODO: parametrizzare i punti da assegnare, da file ricevo ArrayList di coins, dobbiamo fare un file di IMPOSTAZIONI iniziali
+        ArrayList<GoodSet> goodsReceivedList =  gsonBuilder.create().fromJson(fileReader, listType);
 
         for(int i = 0; i < players.size(); i++){
 
@@ -300,7 +300,7 @@ public class GameSetup {
 
     public void sendIdGui() {
 
-        HashMap<PlayerColor, String> playerNames = new HashMap<>();
+        Map<PlayerColor, String> playerNames = new EnumMap<PlayerColor, String>(PlayerColor.class);
 
         for (Player player : players) {
             playerNames.put(player.getPlayerColor(), player.getPlayerID());

@@ -6,7 +6,6 @@ package it.polimi.ingsw.GC_29.Model;
  */
 public class CardCost {
 
-    // TODO: add method to call the Static Speaker class
     private boolean withPrice; // has the card have a price?
     private boolean alternative; // can you choose between differnts methods to pay?
     private Cost mainCost; // mainCost - one of the alternatives and the alternative chosen by the player

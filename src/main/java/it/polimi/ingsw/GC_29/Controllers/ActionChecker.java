@@ -101,10 +101,6 @@ public class ActionChecker {
 
         for(Action action : temporaryActionList){
 
-            //action.setFamiliyPawn(familyPawnChosen);
-
-            //TODO: cambiato per errore nel conteggio del valore delle pedine
-
             action.setFamiliyPawn(new FamilyPawn(familyPawnChosen));
 
             System.out.println("SONO IN ACTION CHECKER COLORE " + action.getTemporaryPawn().getType() + "VALORE " +action.getTemporaryPawn().getActualValue());
@@ -119,39 +115,6 @@ public class ActionChecker {
         currentPlayer.setCurrentValidActionsList(validActionList);
     }
 
-
-    /*private ArrayList<Action> filterActionListPerZoneType(ZoneType zoneType){
-
-        ArrayList<Action> filteredActionList = new ArrayList<>();
-
-        if(zoneType == ZoneType.ANYTOWER){
-
-            for(Action action : actionList){
-                if(action.getZoneType() == ZoneType.GREENTOWER
-                    || action.getZoneType() == ZoneType.YELLOWTOWER
-                    || action.getZoneType() == ZoneType.BLUETOWER
-                    || action.getZoneType() == ZoneType.PURPLETOWER){
-
-                    filteredActionList.add(action);
-                }
-            }
-        }
-
-        else{
-
-            for(Action action : actionList){
-
-                if(action.getZoneType() == zoneType){
-
-                    System.out.println("ZONE TYPE AZIONE AGGIUNTA E' " + action.getZoneType());
-
-                    filteredActionList.add(action);
-                }
-            }
-        }
-
-        return filteredActionList;
-    }*/
 
     public void resetActionList(){
 

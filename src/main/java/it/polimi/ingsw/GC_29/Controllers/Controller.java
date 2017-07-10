@@ -419,30 +419,19 @@ public class Controller implements Observer<Input>  {
 
         pointsFromMilitaryPoints();
 
-        //TODO: cancellare
-        for (Player player : players) {
-            System.out.println("MIL: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
-        }
-
         for (Player player : players) {
 
             //PURPLE CARDS
 
             pointsFromPurpleCards(player);
 
-            System.out.println("PURPLE: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
-
             //BLUE CARDS
 
             pointsFromBlueCards(player);
 
-            System.out.println("BLUE: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
-
             //GREEN CARDS
 
             pointsFromGreenCards(player);
-
-            System.out.println("GREEN: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
 
             //EXCOMMUNICATION TILES
 
@@ -453,8 +442,6 @@ public class Controller implements Observer<Input>  {
             }
 
             transformResourcesInPoints(player);
-
-            System.out.println("RESOURCES: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
 
 
             int playerPoints = player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS);
@@ -500,7 +487,6 @@ public class Controller implements Observer<Input>  {
                 return ((Integer)player1.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS)).compareTo((Integer)player2.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS));
             }
         });
-
 
 
         int firstPlayerMilitaryPoints = players.get(0).getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS);
@@ -900,17 +886,9 @@ public class Controller implements Observer<Input>  {
 
                     for (CardColor cardColor : CardColor.values()) {
                         if (cardColor != CardColor.ANY) {
-                            System.out.println("SONO DENTRO CICLO CARD COLOR");
-
-                            System.out.println("PERSONAL VUOTA? " + player.getPersonalBoard() == null);
-                            System.out.println("lane VUOTA? " + player.getPersonalBoard().getLane(cardColor) == null);
-                            System.out.println("cards VUOTA? " + player.getPersonalBoard().getLane(cardColor).getCards()== null);
-
-
 
                             for (DevelopmentCard developmentCard : player.getPersonalBoard().getLane(cardColor).getCards()) {
                                 if(developmentCard == null){
-                                    System.out.println("LA CARTA DALLA LANE E' NULLA");
                                     break;
                                 }
                                 else{
@@ -921,20 +899,13 @@ public class Controller implements Observer<Input>  {
                         }
                     }
 
-                    System.out.println("SONO FUORI DAL CILO CARD COLOR");
-
-                    System.out.println("BONUS TILE PLAYER " + playerBonusTileIndexMap.get(player));
 
                     if(playerBonusTileIndexMap.get(player) != null){
 
                         player.notifyObserver(new BonusTileChangeGui(playerBonusTileIndexMap.get(player)));
 
-                        System.out.println("NOTIFICATO GUI BONUS TILE");
-
 
                     }
-
-
 
                     player.setPlayerState(PlayerState.WAITING);
 
@@ -966,9 +937,6 @@ public class Controller implements Observer<Input>  {
             model.notifyPlayerReconnected(usernamePLayerReconnectedList);
 
             playerReconnected.clear();
-
-            System.out.println("SONO ALLA FINE DEL METODO HANDLE RECONNECTED");
-
 
         }
 
