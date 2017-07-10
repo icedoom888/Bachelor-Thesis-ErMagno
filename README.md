@@ -136,6 +136,16 @@
  
  
  
+ UML
+ 
+ For each main package we generated two UML, one with all the classes expanded and one with the association enabled (for the model we generated 3 UML as you will see).
+ We generated SVG file in order to let you zoom and see correctly (for the best experience we opened the UML svg files with Google Chrome that renders correctly the file).
+ 
+ 
+ 
+ 
+ 
+ 
  
  CODE NOTES
  
@@ -144,6 +154,8 @@
  SONAR: we used Sonar to eliminates more bugs as possible and to have useful suggestions for our code. Then we used sonar for the elimination of duplicated code (it was very helpful and instructive).
  
  DOCUMENTATION: we tried to document more classes and methods as possible if it was needed for the comprehension of the code.
+ 
+ 
  
  
  

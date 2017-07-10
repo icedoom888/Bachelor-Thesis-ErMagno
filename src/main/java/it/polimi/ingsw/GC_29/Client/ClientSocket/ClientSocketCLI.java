@@ -129,7 +129,7 @@ public class ClientSocketCLI {
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
-        clientInHandlerCLI.setClientOutHandlerCLI(clientOutHandlerCLI);;
+        clientInHandlerCLI.setClientOutHandlerCLI(clientOutHandlerCLI);
 
         InputChecker inputChecker = new InputChecker();
         inputChecker.setPlayerColor(playerColor);

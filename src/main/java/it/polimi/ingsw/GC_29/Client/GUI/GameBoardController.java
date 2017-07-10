@@ -31,7 +31,7 @@ public class GameBoardController {
     private PlayerState playerState;
     private PlayerState lastPlayerState;
 
-    private transient static final Logger LOGGER = Logger.getLogger(ClientRMIView.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClientRMIView.class.getName());
 
 
     //map for card's images
@@ -1715,26 +1715,26 @@ public class GameBoardController {
                 switch (color){
                     case RED:
                         redName.setText("");
-                        for (GoodType goodType:redPlayerTrack.keySet()){
-                            redPlayerTrack.get(goodType).setText("");
+                        for(Text text : redPlayerTrack.values()){
+                            text.setText("");
                         }
                         break;
                     case GREEN:
                         greenName.setText("");
-                        for (GoodType goodType:greenPlayerTrack.keySet()){
-                            greenPlayerTrack.get(goodType).setText("");
+                        for(Text text : greenPlayerTrack.values()){
+                            text.setText("");
                         }
                         break;
                     case BLUE:
                         blueName.setText("");
-                        for (GoodType goodType:bluePlayerTrack.keySet()){
-                            bluePlayerTrack.get(goodType).setText("");
+                        for(Text text : bluePlayerTrack.values()){
+                            text.setText("");
                         }
                         break;
                     case YELLOW:
                         yellowName.setText("");
-                        for (GoodType goodType:yellowPlayerTrack.keySet()){
-                            yellowPlayerTrack.get(goodType).setText("");
+                        for(Text text : yellowPlayerTrack.values()){
+                            text.setText("");
                         }
                         break;
                 }
