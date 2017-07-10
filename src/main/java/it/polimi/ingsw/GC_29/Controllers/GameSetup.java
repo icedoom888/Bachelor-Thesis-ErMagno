@@ -52,26 +52,6 @@ public class GameSetup {
 
     }
 
-    /*public void setPlayers(ArrayList<Player> clientList) throws RemoteException {
-
-        players = new ArrayList<>();
-
-        for (Player player : clientList) {
-
-            String name = clientRemoteInterface.getUserName();
-            PlayerColor playerColor = clientRemoteInterface.getPlayerColor();
-
-            PersonalBoard personalBoard = new PersonalBoard(new BonusTile(new ObtainEffect(new GoodSet()), new ObtainEffect(new GoodSet())), 6);
-
-            Player player = new Player(name, playerColor, personalBoard);
-
-            players.add(player);
-        }
-
-        this.numberOfPlayers = players.size();
-
-    }*/
-
 
     /**
      * from the main the init method will be called, it will setup all the model, at the end the main method
@@ -100,10 +80,6 @@ public class GameSetup {
 
 
         Collections.shuffle(players);
-
-        // setExcommunicationTiles();
-        // setGoodsForPlayers();
-        // commentate e rese public perchè devo prima registrare la gui e poi settare i goods e exc
 
         setGameStatus();
 

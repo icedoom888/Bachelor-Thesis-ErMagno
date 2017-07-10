@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="268.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="268.0" stroke="BLACK" strokeType="INSIDE" width="602.0" />
-      <Label layoutX="106.0" layoutY="120.0" text="You have been excommuniccated!">
+      <Label layoutX="106.0" layoutY="120.0" text="You have been excommunicated!">
          <font>
             <Font size="24.0" />
          </font>

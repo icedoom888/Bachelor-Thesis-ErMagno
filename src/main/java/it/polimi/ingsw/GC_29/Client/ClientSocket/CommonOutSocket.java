@@ -351,8 +351,6 @@ public class CommonOutSocket implements InputInterfaceGUI{
                     LOGGER.info((Supplier<String>) e);
                 }
 
-                // Fino a qui ho inviato la query
-                // non devo più inviare nulla
                 break;
 
             case BONUSACTION:
@@ -406,8 +404,6 @@ public class CommonOutSocket implements InputInterfaceGUI{
                 break;
 
             case CHOOSE_COUNCIL_PRIVILEGE:
-
-                System.out.println("\n\nASKING FOR THE PRIVILEGES DA COMMONOUT");
 
                 query = new GetCouncilPrivileges();
                 try {

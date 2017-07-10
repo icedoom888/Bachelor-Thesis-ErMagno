@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Client.ClientSocket;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Controllers.Change.*;
+import it.polimi.ingsw.GC_29.Model.Era;
 import it.polimi.ingsw.GC_29.Model.FamilyPawn;
 import it.polimi.ingsw.GC_29.Model.FamilyPawnType;
 import it.polimi.ingsw.GC_29.Model.GoodSet;
@@ -52,10 +53,6 @@ public class ClientInHandlerCLI implements Runnable {
             // handles input messages coming from the server, just showing them to the user
             try {
                 String input = (String)socketIn.readObject();
-
-                System.out.println("Update da Server View arrivato a Client In");
-
-                System.out.println("\n\nINPUT: " + input);
 
                 switch (input) {
 
@@ -167,6 +164,13 @@ public class ClientInHandlerCLI implements Runnable {
 
             }
         }
+
+        if (c instanceof Excommunicated) {
+
+            Era era = ((Excommunicated)c).getExcommunication();
+
+            System.out.println("YOU HAVE BEEN EXCOMMUNICATED DURING THE " + era + "ERA");
+        }
     }
 
 
@@ -186,8 +190,6 @@ public class ClientInHandlerCLI implements Runnable {
         if(currentGameChange instanceof EndMove){
 
             String username = ((EndMove)currentGameChange).getUsername();
-
-            System.out.println(username.toUpperCase() +"'S MOVE ENDED");
 
         }
 

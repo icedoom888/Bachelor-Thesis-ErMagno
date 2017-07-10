@@ -88,6 +88,14 @@ public class ClientRMIViewGUI extends GuiChangeHandler implements ClientViewRemo
             handlePlayerDisconnected((PlayerDisconnectedChange)c);
         }
 
+        if (c instanceof Excommunicated) {
+
+            for (GuiChangeListener listener : listeners) {
+                listener.excommunicate();
+            }
+
+        }
+
 
         if (c instanceof GUIChange) {
 

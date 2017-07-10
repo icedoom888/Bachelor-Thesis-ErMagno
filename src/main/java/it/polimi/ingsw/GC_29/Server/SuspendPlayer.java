@@ -97,7 +97,6 @@ public class SuspendPlayer extends TimerTask {
 
                 System.out.println("I AM SUSPENDING THE PLAYER DURING CHOOSE BONUS TILE");
 
-
                 new BonusTileChosen().perform(model, controller);
 
                 break;

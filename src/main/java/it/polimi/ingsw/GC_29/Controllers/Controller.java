@@ -2,9 +2,7 @@ package it.polimi.ingsw.GC_29.Controllers;
 
 import com.google.gson.GsonBuilder;
 import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
-import it.polimi.ingsw.GC_29.Controllers.Change.BonusTileChangeGui;
-import it.polimi.ingsw.GC_29.Controllers.Change.GoodSetChange;
-import it.polimi.ingsw.GC_29.Controllers.Change.PersonalCardChange;
+import it.polimi.ingsw.GC_29.Controllers.Change.*;
 import it.polimi.ingsw.GC_29.Controllers.Input.EndTurn;
 import it.polimi.ingsw.GC_29.Controllers.Input.Input;
 import it.polimi.ingsw.GC_29.Model.*;
@@ -98,6 +96,10 @@ public class Controller implements Observer<Input>  {
         createActions();
     }
 
+    /**
+     * update method called by the server view after it has received an input
+     * @param input
+     */
     public void update(Input input) {
         System.out.println("I AM THE CONTROLLER UPDATING THE MODEL");
 
@@ -120,6 +122,14 @@ public class Controller implements Observer<Input>  {
 
     }
 
+    /**
+     * When every player has done 4 turns, this method is called by the input EndTurn.
+     * At first it checks if it is an even round: in this case it calls
+     * excommunicatePlayers that excommunicates the players that do not have enough
+     * faith points and then, if there is any, it asks to every player that has
+     * enough points if he wants to pray or not, setting their state to PRAY.
+     * If it is an odd round, it calls setNewRound()
+     */
     public void handleEndRound() {
 
         System.out.println("handle end round del controller");
@@ -147,8 +157,15 @@ public class Controller implements Observer<Input>  {
 
 
     /**
+     * This method handles the setting of a new round, calling
+     * the methods that make the pawns available again and the
+     * once per round leader cards available again. If the Era is the
+     * third one, endGame() is called.
      *
-     * @throws Exception
+     * After having set the players that have to skip the first turn in case of the specific
+     * malus and having cleared the gameboard, it sets the first player to the state THROWDICES.
+     * Finally it sets the turn to 1.
+     *
      */
     public void setNewRound() {
 
@@ -176,9 +193,6 @@ public class Controller implements Observer<Input>  {
 
         model.setCurrentRound(model.getCurrentRound()+1);
 
-        //DEBUG
-        System.out.println(model.getCurrentRound());
-        //DEBUG
 
         setSkippingTurnPlayers();
 
@@ -221,6 +235,10 @@ public class Controller implements Observer<Input>  {
     }
 
 
+    /**
+     * This method sets the new cards on the towers at the beginning of a new round
+     * and calls the update of the gui.
+     */
     public void setCardsOnTowers(){
 
         DevelopmentCard[] greenDeck = new DevelopmentCard[4];
@@ -243,6 +261,11 @@ public class Controller implements Observer<Input>  {
 
     }
 
+    /**
+     * Reset the availability of the once per round leader cards of the player
+     * to true.
+     * @param player
+     */
     private void setLeaderValues(Player player) {
 
         List<LeaderCard> playerLeaderCards = player.getLeaderCards();
@@ -344,6 +367,7 @@ public class Controller implements Observer<Input>  {
         Era currentEra = model.getCurrentEra();
         ExcommunicationTile tileToExecute = model.getGameBoard().getExcommunicationLane().getExcommunicationTile(currentEra);
         tileToExecute.execute(player);
+        player.notifyObserver(new Excommunicated(model.getCurrentEra()));
         player.setPlayerState(PlayerState.WAITING);
     }
 
@@ -393,19 +417,30 @@ public class Controller implements Observer<Input>  {
 
         pointsFromMilitaryPoints();
 
+        //TODO: cancellare
+        for (Player player : players) {
+            System.out.println("MIL: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
+        }
+
         for (Player player : players) {
 
             //PURPLE CARDS
 
             pointsFromPurpleCards(player);
 
+            System.out.println("PURPLE: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
+
             //BLUE CARDS
 
             pointsFromBlueCards(player);
 
+            System.out.println("BLUE: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
+
             //GREEN CARDS
 
             pointsFromGreenCards(player);
+
+            System.out.println("GREEN: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
 
             //EXCOMMUNICATION TILES
 
@@ -417,6 +452,8 @@ public class Controller implements Observer<Input>  {
 
             transformResourcesInPoints(player);
 
+            System.out.println("RESOURCES: " + player.getPlayerID() + " " + player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
+
 
             int playerPoints = player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS);
 
@@ -426,11 +463,7 @@ public class Controller implements Observer<Input>  {
             }
         }
 
-        //winner.setPlayerState();
-
         model.setEndGame(winner);
-
-        System.out.println("The winner is... " + winner);
 
         model.getGameBoard().clearAll();
 
@@ -453,7 +486,6 @@ public class Controller implements Observer<Input>  {
 
     }
 
-    //TODO: testing
     private void pointsFromMilitaryPoints() {
 
         ArrayList<Player> players = new ArrayList<>();
@@ -467,9 +499,13 @@ public class Controller implements Observer<Input>  {
             }
         });
 
+
+
         int firstPlayerMilitaryPoints = players.get(0).getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS);
 
         int militaryIndex;
+
+        players.get(0).updateGoodSet(new GoodSet(0,0,0,0,5,0,0));
 
         for (militaryIndex = 0; militaryIndex < players.size() - 1; militaryIndex++) {
 
@@ -478,13 +514,14 @@ public class Controller implements Observer<Input>  {
             if (player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS) != firstPlayerMilitaryPoints) {
                 break;
             }
-
             else player.updateGoodSet(new GoodSet(0,0,0,0,5,0,0));
         }
 
         if (militaryIndex != 0) return;
 
         int secondPlayerMilitaryPoints = players.get(1).getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS);
+
+        players.get(1).updateGoodSet(new GoodSet(0,0,0,0,2,0,0));
 
         for (militaryIndex = 1; militaryIndex < players.size() - 1; militaryIndex++) {
 
@@ -536,7 +573,6 @@ public class Controller implements Observer<Input>  {
                     break;
                 case 3:
                     player.updateGoodSet(new GoodSet(0,0,0,0,6,0,0));
-                    System.out.println("");
                     break;
                 case 4:
                     player.updateGoodSet(new GoodSet(0,0,0,0,10,0,0));
@@ -781,26 +817,6 @@ public class Controller implements Observer<Input>  {
         }
     }
 
-    /*
-    public int indexFirstPlayerNotSuspended() {
-
-        List<Player> turnOrder = model.getTurnOrder();
-
-        while (true) {
-
-            for (Player player : turnOrder) {
-
-                if (player.getPlayerState() != PlayerState.SUSPENDED) {
-
-                    return turnOrder.indexOf(player);
-                }
-
-            }
-        }
-
-    }
-    */
-
 
     public void setCurrentBonusTileIndexPlayer(int currentBonusTileIndexPlayer) {
         this.currentBonusTileIndexPlayer = currentBonusTileIndexPlayer;
@@ -912,12 +928,14 @@ public class Controller implements Observer<Input>  {
                 }
             }
 
+            ExcommunicationLane excommunicationLane = model.getGameBoard().getExcommunicationLane();
+
+            model.notifyObserver(new ExcommunicationChange(excommunicationLane.getExcommunicationTile(Era.FIRST).getUrl(), excommunicationLane.getExcommunicationTile(Era.SECOND).getUrl(), excommunicationLane.getExcommunicationTile(Era.THIRD).getUrl()));
 
             for (Player player : model.getTurnOrder()) {
                 model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.VICTORYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.VICTORYPOINTS));
                 model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.MILITARYPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.MILITARYPOINTS));
                 model.updateDisconnectedTrackGUI(player.getPlayerColor(), GoodType.FAITHPOINTS, player.getActualGoodSet().getGoodAmount(GoodType.FAITHPOINTS));
-
             }
 
             model.notifyPlayerReconnected(usernamePLayerReconnectedList);

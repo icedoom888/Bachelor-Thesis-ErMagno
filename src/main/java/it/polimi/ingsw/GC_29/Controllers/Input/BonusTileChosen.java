@@ -94,8 +94,6 @@ public class BonusTileChosen extends Input {
 
             playerToChooseBonusTileIndex--;
 
-           // controller.setCurrentBonusTileIndexPlayer(playerToChooseBonusTileIndex);
-
             Boolean isNotSuspended = false;
 
             for(; playerToChooseBonusTileIndex >= 0; playerToChooseBonusTileIndex--){

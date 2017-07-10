@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_29.Client.ClientRMI.ClientRMIView;
 import it.polimi.ingsw.GC_29.Client.GUI.*;
 import it.polimi.ingsw.GC_29.Client.GuiChangeHandler;
 import it.polimi.ingsw.GC_29.Controllers.Change.*;
+import it.polimi.ingsw.GC_29.Model.Era;
 import it.polimi.ingsw.GC_29.Model.FamilyPawn;
 import it.polimi.ingsw.GC_29.Controllers.*;
 
@@ -108,9 +109,7 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         }
 
         if(c instanceof GameChange){
-            System.out.println(passes);
             passes++;
-            System.out.println("GAME CHANGE ARRIVATA");
             handleGameState((GameChange)c);
         }
 
@@ -122,6 +121,14 @@ public class ClientInHandlerGUI extends GuiChangeHandler implements Runnable {
         if(c instanceof PlayerDisconnectedChange){
 
             handlePlayerDisconnected((PlayerDisconnectedChange)c);
+        }
+
+        if (c instanceof Excommunicated) {
+
+            for (GuiChangeListener listener : listeners) {
+                listener.excommunicate();
+            }
+
         }
 
         if (c instanceof GUIChange) {

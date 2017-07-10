@@ -7,12 +7,8 @@ import it.polimi.ingsw.GC_29.Client.Distribution;
 import it.polimi.ingsw.GC_29.Client.EnumInterface;
 import it.polimi.ingsw.GC_29.Client.InputInterfaceGUI;
 import it.polimi.ingsw.GC_29.Controllers.Change.*;
-import it.polimi.ingsw.GC_29.Model.CardColor;
-import it.polimi.ingsw.GC_29.Model.FamilyPawn;
-import it.polimi.ingsw.GC_29.Model.GoodSet;
-import it.polimi.ingsw.GC_29.Model.GoodType;
+import it.polimi.ingsw.GC_29.Model.*;
 import it.polimi.ingsw.GC_29.Controllers.*;
-import it.polimi.ingsw.GC_29.Model.PlayerColor;
 import it.polimi.ingsw.GC_29.Server.Observer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -837,6 +833,20 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         });
     }
 
+    private void excommunicateGUI() {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+
+                gameBoardController.youHaveBeenExcommunicated();
+
+
+            }
+        });
+    }
+
 
 
 
@@ -987,6 +997,11 @@ public class FXMLMain extends Application implements Observer<LoginChange> {
         @Override
         public void sendPlayerNames(Map<PlayerColor, String> playerNames) {
             initializeTracks(playerNames);
+        }
+
+        @Override
+        public void excommunicate() {
+            excommunicateGUI();
         }
 
 

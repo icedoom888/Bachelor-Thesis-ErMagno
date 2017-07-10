@@ -47,8 +47,6 @@ public class ObtainEffect implements Effect {
 
         Filter.apply(status, goodsObtained);
 
-        System.out.println("SONO NELLA EXECUTE OBTAIN " + goodsObtained);
-
         status.updateGoodSet(goodsObtained);
     }
 

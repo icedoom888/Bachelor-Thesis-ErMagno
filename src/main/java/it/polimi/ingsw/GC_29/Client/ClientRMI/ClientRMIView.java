@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_29.Client.ClientRMI;
 import it.polimi.ingsw.GC_29.Client.InputChecker;
 import it.polimi.ingsw.GC_29.Controllers.*;
 import it.polimi.ingsw.GC_29.Controllers.Change.*;
+import it.polimi.ingsw.GC_29.Model.Era;
 import it.polimi.ingsw.GC_29.Server.RMI.RMIViewRemote;
 
 import java.io.Serializable;
@@ -88,6 +89,13 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
 
             handlePlayerDisconnected((PlayerDisconnectedChange)c);
         }
+
+        if (c instanceof Excommunicated) {
+
+            Era era = ((Excommunicated)c).getExcommunication();
+
+            System.out.println("YOU HAVE BEEN EXCOMMUNICATED DURING THE " + era + "ERA");
+        }
     }
 
     private void handlePlayerDisconnected(PlayerDisconnectedChange c) {
@@ -153,8 +161,6 @@ public class ClientRMIView implements ClientViewRemote, Serializable {
         if(currentGameChange instanceof EndMove){
 
             String username = ((EndMove)currentGameChange).getUsername();
-
-            System.out.println(username.toUpperCase() +"'S MOVE ENDED");
 
         }
 
