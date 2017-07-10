@@ -113,6 +113,8 @@ public class BonusTileChosen extends Input {
 
                     controller.getPlayerBonusTileIndexMap().put(model.getTurnOrder().get(playerToChooseBonusTileIndex), bonusIndex);
 
+                    model.getTurnOrder().get(playerToChooseBonusTileIndex).getPersonalBoard().setBonusTile(bonusTile);
+
                 }
 
                 else{
@@ -175,6 +177,7 @@ public class BonusTileChosen extends Input {
 
                     if (integerBonusTileEntry.getValue() == bonusTile) {
                         player.notifyObserver(new BonusTileChangeGui(integerBonusTileEntry.getKey()));
+                        controller.getPlayerBonusTileIndexMap().put(player, integerBonusTileEntry.getKey());
                         player.getPersonalBoard().setBonusTile(bonusTile);
                         break;
                     }

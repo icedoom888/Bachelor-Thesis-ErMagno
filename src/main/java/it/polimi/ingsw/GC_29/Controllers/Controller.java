@@ -915,17 +915,6 @@ public class Controller implements Observer<Input>  {
 
                         System.out.println("NOTIFICATO GUI BONUS TILE");
 
-                        /*List<Integer> indexKeys = Arrays.asList(model.getBonusTileMap().keySet().toArray(new Integer[model.getBonusTileMap().size()]));
-
-                        int bonusIndex = indexKeys.get(0);
-
-                        BonusTile bonusTile = model.getBonusTileMap().get(bonusIndex);
-
-                        model.getBonusTileMap().remove(bonusTile);
-
-                        playerBonusTileIndexMap.put(player, bonusIndex);
-
-                        player.getPersonalBoard().setBonusTile(bonusTile);*/
 
                     }
 
