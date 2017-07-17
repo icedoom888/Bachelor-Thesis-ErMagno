@@ -213,6 +213,15 @@ public class GameBoardController {
     private ImageView grid10;
     @FXML
     private ImageView grid11;
+    @FXML
+    private ImageView grid12;
+    @FXML
+    private ImageView grid13;
+    @FXML
+    private ImageView grid14;
+    @FXML
+    private ImageView grid15;
+
 
 
     @FXML
@@ -557,7 +566,10 @@ public class GameBoardController {
         gridMap.put(9,grid9);
         gridMap.put(10,grid10);
         gridMap.put(11,grid11);
-
+        gridMap.put(12,grid12);
+        gridMap.put(13,grid13);
+        gridMap.put(14,grid14);
+        gridMap.put(15,grid15);
 
 
         productionBox.put(0,production2_0);
