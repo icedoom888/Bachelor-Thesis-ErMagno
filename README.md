@@ -1,4 +1,18 @@
-# Project Template - Prova Finale (Ingegneria del Software modified)
+# Bachelor Thesis - Software Engineering 
+
+A fully functional digital copy of the board game: Lorenzo il Magnifico. 
+
+[[Game Rules](http://europemasters.eu/wp-content/uploads/2013/08/Rulebook_LorenzoIlMagnifico.pdf)] [[Review](https://www.meeplemountain.com/reviews/lorenzo-il-magnifico/)] [[Playtrough](https://www.youtube.com/watch?v=A1nGkzHXhsg)]
+
+
+<img src="assets/lorenzo-magnifico.jpg" alt="drawing" width="514"/>
+
+## Requirements
+
+Working as a team of 3 members, we implemented a complete online board game.
+The develompemnt of the game required skills in object-oriented programming, server-client architecture design and graphical user interface.
+
+## Game Instructions
 
  GAME SETUP:
 
@@ -24,14 +38,11 @@
  
  
  
- 
- 
  CLI INSTRUCTIONS:
  
  during the game, the player is always in a specific playerState, so if you want to know which instruction are allowed in your current playerState write "help".
  
- 
- 
+
  
  
  GUI INPUTS:
